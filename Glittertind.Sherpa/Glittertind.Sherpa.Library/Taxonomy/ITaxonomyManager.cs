@@ -8,5 +8,6 @@ namespace Glittertind.Sherpa.Library.Taxonomy
 {
     interface ITaxonomyManager
     {
+        
     }
 }

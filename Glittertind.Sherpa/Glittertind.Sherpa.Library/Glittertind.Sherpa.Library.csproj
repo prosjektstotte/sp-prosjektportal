@@ -43,6 +43,9 @@
     <Compile Include="Deploy\IDeployManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Taxonomy\ITaxonomyManager.cs" />
+    <Compile Include="Taxonomy\Model\Term.cs" />
+    <Compile Include="Taxonomy\Model\TermSet.cs" />
+    <Compile Include="Taxonomy\Model\TermSetGroup.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
