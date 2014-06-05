@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Glittertind.Sherpa.Library.Taxonomy
+namespace Glittertind.Sherpa.Library.Taxonomy.Model
 {
-    interface ITaxonomyManager
+    class TermSetGroup
     {
-        
     }
 }
