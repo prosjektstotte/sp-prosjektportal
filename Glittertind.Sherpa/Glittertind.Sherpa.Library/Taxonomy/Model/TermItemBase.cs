@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Glittertind.Sherpa.Library.Taxonomy.Model
 {
-    class Term : TermItemBase
+    abstract class TermItemBase
     {
-        public List<Term> ChildTerms { get; set; }
+        public string Title { get; set; }
+        public Guid Id { get; set; }
     }
 }

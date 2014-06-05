@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Glittertind.Sherpa.Library.Taxonomy
 {
-    interface ITaxonomyManager
+    public interface ITaxonomyManager
     {
         
     }
