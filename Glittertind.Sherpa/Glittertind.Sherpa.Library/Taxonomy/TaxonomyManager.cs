@@ -36,32 +36,41 @@ namespace Glittertind.Sherpa.Library.Taxonomy
                 context.ExecuteQuery();
 
                 TermStore termStore = taxonomySession.GetDefaultSiteCollectionTermStore();
-                context.Load(termStore);
+                context.Load(termStore, x=>x.Groups);
                 context.ExecuteQuery();
 
-                context.Load(termStore.Groups);
+                var spgroup = termStore.GetGroup(group.Id);
+                if (spgroup==null)
+                {
+                    spgroup = termStore.CreateGroup(group.Title, group.Id);
+                }
+                context.Load(spgroup, x => x.TermSets);
                 context.ExecuteQuery();
-
-                var spgroup = termStore.CreateGroup(group.Title, group.Id);
-                context.Load(spgroup);
-                context.ExecuteQuery();
-
+                
                 foreach (var termSet in group.TermSets)
                 {
-                    context.Load(spgroup.TermSets);
+                    var spTermSet = termStore.GetTermSet(termSet.Id);
+                    context.Load(spTermSet,x=>x.Terms);
                     context.ExecuteQuery();
-                    var spTermSet = spgroup.CreateTermSet(termSet.Title, termSet.Id, _lcid);
-                    context.Load(spTermSet);
-                    context.ExecuteQuery();
+                    if (spTermSet.ServerObjectIsNull.Value)
+                    {
+                        spTermSet = spgroup.CreateTermSet(termSet.Title, termSet.Id, _lcid);
+                        context.Load(spTermSet,x=>x.Terms);
+                        context.ExecuteQuery();
+                    }
 
                     foreach (var term in termSet.Terms)
                     {
-                        context.Load(spTermSet.Terms);
+                        var spTerm = termStore.GetTerm(term.Id);
+                        context.Load(spTerm);
                         context.ExecuteQuery();
+                        if (spTerm.ServerObjectIsNull.Value)
+                        {
+                            var spterm = spTermSet.CreateTerm(term.Title, _lcid, term.Id);
+                            context.Load(spterm);
+                            context.ExecuteQuery();
+                        }
 
-                        var spterm = spTermSet.CreateTerm(term.Title, _lcid, term.Id);
-                        context.Load(spterm);
-                        context.ExecuteQuery();
                     }
 
                 }
