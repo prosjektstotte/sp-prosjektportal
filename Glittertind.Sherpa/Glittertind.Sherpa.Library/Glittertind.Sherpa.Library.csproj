@@ -49,9 +49,7 @@
     <Compile Include="ContentTypes\IContentTypeManager.cs" />
     <Compile Include="Deploy\DeployManager.cs" />
     <Compile Include="Deploy\IDeployManager.cs" />
-    <Compile Include="Deploy\SPWebClient.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Deploy\SPWebClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Taxonomy\ITaxonomyManager.cs" />
     <Compile Include="Taxonomy\Model\Term.cs" />

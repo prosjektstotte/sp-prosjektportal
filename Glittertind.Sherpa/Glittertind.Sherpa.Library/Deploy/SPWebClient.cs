@@ -17,5 +17,4 @@ namespace Glittertind.Sherpa.Library.Deploy
             return request;
         }
     }
-
 }
