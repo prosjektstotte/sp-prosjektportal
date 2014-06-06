@@ -11,9 +11,9 @@ namespace Glittertind.Sherpa.Library.Taxonomy
         private readonly string _userName;
         private readonly string _urlToWeb;
         private readonly int _lcid;
-        public IPersistanceProvider<TermItemBase> Provider { get; set; }
+        public IPersistanceProvider<TermSetGroup> Provider { get; set; }
 
-        public TaxonomyManager(string userName, string password, string urlToWeb, int lcid, IPersistanceProvider<TermItemBase> provider)
+        public TaxonomyManager(string userName, string password, string urlToWeb, int lcid, IPersistanceProvider<TermSetGroup> provider)
         {
             Provider = provider;
             _urlToWeb = urlToWeb;

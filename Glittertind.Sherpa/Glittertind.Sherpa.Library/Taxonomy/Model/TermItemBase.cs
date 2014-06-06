@@ -13,7 +13,7 @@ namespace Glittertind.Sherpa.Library.Taxonomy.Model
             Id = id;
         }
 
-        protected TermItemBase()
+        public TermItemBase()
         {
             
         }
