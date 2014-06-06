@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Security;
@@ -67,7 +66,7 @@ namespace Glittertind.Sherpa.Library.Deploy
                 try
                 {
                     Stream stream = spWebClient.OpenWrite(fileUrl, "PUT");
-                    BinaryWriter writer = new BinaryWriter(stream);
+                    var writer = new BinaryWriter(stream);
                     writer.Write(File.ReadAllBytes(localPath));
                     writer.Close();
                     stream.Close();
@@ -95,8 +94,6 @@ namespace Glittertind.Sherpa.Library.Deploy
                 var packageInfo = new DesignPackageInfo()
                 {
                     PackageGuid = _sandboxedSolutionGuid,
-                    MajorVersion = 1,
-                    MinorVersion = 1,
                     PackageName = nameOfPackage
                 };
 
@@ -105,24 +102,12 @@ namespace Glittertind.Sherpa.Library.Deploy
                 var fileUrl = CombineServerRelativeUri(context.Site.ServerRelativeUrl, siteRelativeUrlToLibrary, nameOfPackage);
 
                 Console.WriteLine("Installing solution package " + nameOfPackage);
+                Console.WriteLine("This could take a minute");
                 DesignPackage.Install(context, context.Site, packageInfo, fileUrl);
                 context.ExecuteQuery();
 
-                Console.WriteLine("Applying solution package " + nameOfPackage);
-                DesignPackage.Apply(context, context.Site, packageInfo);
-                context.ExecuteQuery();
-
-                Console.WriteLine("Activated and applied package " + nameOfPackage);
+                Console.WriteLine("Activated package " + nameOfPackage);
             }
-        }
-        /// <summary>
-        /// Activate a design package based on Guid
-        /// </summary>
-        /// <param name="idOfPackage"></param>
-        /// <param name="siteRelativeUrlToLibrary">Site relative URL to the library of the package</param>
-        public void ActivateDesignPackage(Guid idOfPackage, string siteRelativeUrlToLibrary)
-        {
-            throw new NotImplementedException();
         }
 
         private string CombineServerRelativeUri(params string[] args)
@@ -138,13 +123,5 @@ namespace Glittertind.Sherpa.Library.Deploy
         {
             return CombineServerRelativeUri(args).TrimStart('/');
         }
-        //private string CombineServerRelativeUri(string part1, string part2, string part3)
-        //{
-        //    return string.Format("/{0}/{1}/{2}", part1.Trim(new[] { '/' }), part2.Trim(new[] { '/' }), part3.Trim(new[] { '/' }));
-        //}
-        //private string CombineAbsoluteUri(string part1, string part2, string part3)
-        //{
-        //    return string.Format("{0}/{1}/{2}", part1.Trim(new[] { '/' }), part2.Trim(new[] { '/' }), part3.Trim(new[] { '/' }));
-        //}
     }
 }
