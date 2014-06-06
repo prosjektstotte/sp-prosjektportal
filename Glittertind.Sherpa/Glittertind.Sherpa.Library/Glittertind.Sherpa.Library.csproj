@@ -47,7 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentTypes\ContentTypeManager.cs" />
     <Compile Include="ContentTypes\IContentTypeManager.cs" />
+    <Compile Include="ContentTypes\Model\ContentType.cs" />
+    <Compile Include="ContentTypes\Model\SiteColumn.cs" />
     <Compile Include="Deploy\DeployManager.cs" />
     <Compile Include="Deploy\IDeployManager.cs" />
     <Compile Include="Deploy\SPWebClient.cs">
@@ -62,6 +65,7 @@
     <Compile Include="Taxonomy\TaxonomyConfigManger.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ContentTypes\Configuration\ContentTypes.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

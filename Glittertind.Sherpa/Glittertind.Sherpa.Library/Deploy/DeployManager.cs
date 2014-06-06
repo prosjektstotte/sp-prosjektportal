@@ -93,7 +93,7 @@ namespace Glittertind.Sherpa.Library.Deploy
 
                 var packageInfo = new DesignPackageInfo()
                 {
-                    PackageGuid = _sandboxedSolutionGuid,
+                    PackageGuid = Guid.Empty,
                     PackageName = nameOfPackage
                 };
 

@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Json;
 using CommandLine;
 using CommandLine.Text;
 using Glittertind.Sherpa.Library.Deploy;
-
+using Glittertind.Sherpa.Library.ContentTypes.Model;
 
 namespace Glittertind.Sherpa.Installer
 {
@@ -17,17 +20,16 @@ namespace Glittertind.Sherpa.Installer
                 Environment.Exit(1);
             }
 
-            var pathToSandboxedSolution = string.Format("{0}\\Tormods-Playground-1.0.wsp", Environment.CurrentDirectory);
+            //Console.Write("Insert password: ");
+            //var password = PasswordReader.GetConsoleSecurePassword();
+            //Console.WriteLine();
 
-            Console.Write("Insert password: ");
-            var password = PasswordReader.GetConsoleSecurePassword();
-            Console.WriteLine();
+            //var pathToSandboxedSolution = string.Format("{0}\\Tormods-Playground-1.0.wsp", Environment.CurrentDirectory);
+            //var deployManager = new DeployManager(options.UserName, password, options.UrlToSite);
+            //deployManager.UploadDesignPackage(pathToSandboxedSolution, "_catalogs/solutions");
+            //deployManager.ActivateDesignPackage("Tormods-Playground-1.0.wsp", "_catalogs/solutions");
 
-            var deployManager = new DeployManager(options.UserName, password, options.UrlToSite);
-            deployManager.UploadDesignPackage(pathToSandboxedSolution, "_catalogs/solutions");
-            deployManager.ActivateDesignPackage("Tormods-Playground-1.0.wsp", "_catalogs/solutions");
-
-            Console.WriteLine("Installation done");
+            //Console.WriteLine("Installation done");
             Console.ReadKey();
         }
     }

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.SharePoint.Client;
 
 namespace Glittertind.Sherpa.Library.ContentTypes
 {
     interface IContentTypeManager
-
     {
+        void CreateContentType(ClientContext cc, Web web);
+        void CreateSiteColumn(ClientContext cc, Web web);
+        void AddSiteColumnToContentType(ClientContext cc, Web web);
     }
 }
