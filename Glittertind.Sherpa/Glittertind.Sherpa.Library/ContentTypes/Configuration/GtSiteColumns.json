@@ -1,0 +1,18 @@
+﻿[
+  {
+    "Description": "Indikerer prosjektets fase",
+    "DisplayName": "Fase",
+    "Group": "Glittertind Områdekolonner",
+    "ID": "325543a5-815d-485d-a9a5-e0773ad762e9",
+    "InternalName": "GtFase",
+    "Type": "Text"
+  },
+  {
+    "Description": "Indikerer prosjektets tjenesteområde",
+    "DisplayName": "Tjenesteområde",
+    "Group": "Glittertind Områdekolonner",
+    "ID": "3275d73a-fd4d-48ba-bcc1-31526460d57b",
+    "InternalName": "GtTjOmr",
+    "Type": "TaxonomyFieldType"
+  }
+]
