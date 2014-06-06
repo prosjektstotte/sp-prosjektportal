@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Glittertind.Sherpa.Library.Taxonomy.Model
 {
-    class TermSetGroup : TermItemBase
+    public class TermSetGroup : TermItemBase
     {
+        public TermSetGroup() { }
+        public TermSetGroup(Guid id, string title) : base(id, title)
+        {
+            TermSets = new List<TermSet>();
+        }
+
         public List<TermSet> TermSets { get; set; }
     }
 }
