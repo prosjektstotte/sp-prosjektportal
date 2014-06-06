@@ -50,15 +50,16 @@
   <ItemGroup>
     <Compile Include="ContentTypes\ContentTypeManager.cs" />
     <Compile Include="ContentTypes\IContentTypeManager.cs" />
-    <Compile Include="ContentTypes\Model\ContentType.cs" />
-    <Compile Include="ContentTypes\Model\SiteColumn.cs" />
+    <Compile Include="ContentTypes\Model\GtContentType.cs" />
+    <Compile Include="ContentTypes\Model\GtSiteColumn.cs" />
     <Compile Include="Deploy\DeployManager.cs" />
     <Compile Include="Deploy\IDeployManager.cs" />
     <Compile Include="Deploy\SPWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Taxonomy\IPersistanceProvider.cs" />
+    <Compile Include="FilePersistanceProvider.cs" />
+    <Compile Include="IPersistanceProvider.cs" />
     <Compile Include="Taxonomy\ITaxonomyManager.cs" />
     <Compile Include="Taxonomy\Model\Term.cs" />
     <Compile Include="Taxonomy\Model\TermItemBase.cs" />
@@ -67,7 +68,12 @@
     <Compile Include="Taxonomy\TaxonomyManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ContentTypes\Configuration\ContentTypes.json" />
+    <None Include="ContentTypes\Configuration\GtContentTypes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ContentTypes\Configuration\GtSiteColumns.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

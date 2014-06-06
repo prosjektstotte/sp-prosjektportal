@@ -1,11 +1,13 @@
-﻿using Microsoft.SharePoint.Client;
+﻿using System.Collections.Generic;
+using Glittertind.Sherpa.Library.ContentTypes.Model;
+using Microsoft.SharePoint.Client;
 
 namespace Glittertind.Sherpa.Library.ContentTypes
 {
     interface IContentTypeManager
     {
-        void CreateContentType(ClientContext cc, Web web);
-        void CreateSiteColumn(ClientContext cc, Web web);
-        void AddSiteColumnToContentType(ClientContext cc, Web web);
+        void CreateContentTypes(ClientContext cc, List<GtContentType> contentTypes);
+        void CreateSiteColumns(ClientContext cc, List<GtSiteColumn> contentTypes);
+        void AddSiteColumnsToContentType(ClientContext cc, GtContentType configContentType);
     }
 }

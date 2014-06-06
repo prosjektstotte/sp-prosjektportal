@@ -11,9 +11,9 @@ namespace Glittertind.Sherpa.Library.Taxonomy
         private readonly string _userName;
         private readonly string _urlToWeb;
         private readonly int _lcid;
-        public IPersistanceProvider Provider { get; set; }
+        public IPersistanceProvider<TermItemBase> Provider { get; set; }
 
-        public TaxonomyManager(string userName, string password, string urlToWeb, int lcid, IPersistanceProvider provider)
+        public TaxonomyManager(string userName, string password, string urlToWeb, int lcid, IPersistanceProvider<TermItemBase> provider)
         {
             Provider = provider;
             _urlToWeb = urlToWeb;
@@ -25,7 +25,7 @@ namespace Glittertind.Sherpa.Library.Taxonomy
 
         public void WriteTaxonomyToTermStore()
         {
-            var group = Provider.Load<TermSetGroup>();
+            var group = (TermSetGroup) Provider.Load();
             using (var context = new ClientContext(_urlToWeb))
             {
                 // user must be termstore admin
