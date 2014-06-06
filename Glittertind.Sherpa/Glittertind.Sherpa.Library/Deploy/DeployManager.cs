@@ -2,44 +2,52 @@
 using System.IO;
 using System.Net;
 using System.Security;
+using System.Text;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.Publishing;
 using File = System.IO.File;
 
 namespace Glittertind.Sherpa.Library.Deploy
 {
-    class DeployManager : IDeployManager
+    public class DeployManager : IDeployManager
     {
         private readonly SecureString _password;
         private readonly string _userName;
         private readonly string _urlToWeb;
 
         //Our sandboxed solution Guid
-        private readonly Guid _sandboxedSolutionGuid = new Guid("900c28f1-fd88-47e2-8234-ef5cff5d0035");
+        private readonly Guid _sandboxedSolutionGuid = new Guid("4248075f-9981-4034-8ff2-9b9e15ba328c");
 
-        public DeployManager(string userName, string password, string urlToWeb)
+        public DeployManager(string userName, SecureString password, string urlToWeb)
         {
             _urlToWeb = urlToWeb;
             _userName = userName;
-
-            _password = new SecureString();
-            foreach (char c in password) _password.AppendChar(c);
+            _password = password;
         }
         /// <summary>
         /// Uploads a design package to a library. Can be used for uploading sandboxed solutions to solution gallery.
-        /// Starting point: http://blog.symprogress.com/2013/07/upload-wsp-file-to-office365-sp2013-using-webclient/
         /// </summary>
         /// <param name="localFilePath">Path to package (wsp)</param>
         /// <param name="siteRelativeUrlToLibrary">Site relative URL to SharePoint Library</param>
         public void UploadDesignPackage(string localFilePath, string siteRelativeUrlToLibrary)
         {
             var fileName = Path.GetFileName(localFilePath);
-            if (!string.IsNullOrEmpty(fileName))
+            if (string.IsNullOrEmpty(fileName) || string.IsNullOrEmpty(_urlToWeb) || string.IsNullOrEmpty(siteRelativeUrlToLibrary))
             {
-                var fileUrl = String.Format("{0}/{1}/{2}", _urlToWeb.TrimEnd('/'), siteRelativeUrlToLibrary.TrimEnd('/'), fileName.TrimStart('/'));
-                UploadFile(_urlToWeb, fileUrl, localFilePath);
+                throw new Exception("Could not create path to solution package!");
             }
+
+            var fileUrl = CombineAbsoluteUri(_urlToWeb, siteRelativeUrlToLibrary, fileName);
+            UploadFile(_urlToWeb, fileUrl, localFilePath);
         }
+
+        /// <summary>
+        /// Actually uploads the package to the library
+        /// Starting point: http://blog.symprogress.com/2013/07/upload-wsp-file-to-office365-sp2013-using-webclient/
+        /// </summary>
+        /// <param name="siteUrl"></param>
+        /// <param name="fileUrl"></param>
+        /// <param name="localPath"></param>
         private void UploadFile(string siteUrl, string fileUrl, string localPath)
         {
             var targetSite = new Uri(siteUrl);
@@ -48,6 +56,7 @@ namespace Glittertind.Sherpa.Library.Deploy
             {
                 var credentials = new SharePointOnlineCredentials(_userName, _password);
 
+                Console.WriteLine("Uploading package {0} to library ", Path.GetFileName(localPath));
                 var authCookie = credentials.GetAuthenticationCookie(targetSite);
                 spWebClient.CookieContainer = new CookieContainer();
                 spWebClient.CookieContainer.Add(new Cookie("FedAuth",
@@ -56,17 +65,17 @@ namespace Glittertind.Sherpa.Library.Deploy
                 spWebClient.UseDefaultCredentials = false;
                 try
                 {
-                    Stream stream = spWebClient.OpenWrite(targetSite + fileUrl, "PUT");
-                    BinaryWriter writer = new BinaryWriter(stream);
+                    Stream stream = spWebClient.OpenWrite(fileUrl, "PUT");
+                    var writer = new BinaryWriter(stream);
                     writer.Write(File.ReadAllBytes(localPath));
                     writer.Close();
                     stream.Close();
+                    Console.WriteLine("Uploaded package {0} to library ", Path.GetFileName(localPath));
                 }
                 catch (WebException we)
                 {
                     Console.WriteLine(we.Message);
                 }
-                Console.WriteLine("Uploaded package to library");
             }
         }
 
@@ -85,28 +94,34 @@ namespace Glittertind.Sherpa.Library.Deploy
                 var packageInfo = new DesignPackageInfo()
                 {
                     PackageGuid = _sandboxedSolutionGuid,
-                    MajorVersion = 1,
-                    MinorVersion = 1,
                     PackageName = nameOfPackage
                 };
 
-                Console.WriteLine("Installing design package " + nameOfPackage);
-                DesignPackage.Install(context, context.Site, packageInfo, siteRelativeUrlToLibrary);
+                context.Load(context.Site);
+                context.ExecuteQuery();
+                var fileUrl = CombineServerRelativeUri(context.Site.ServerRelativeUrl, siteRelativeUrlToLibrary, nameOfPackage);
+
+                Console.WriteLine("Installing solution package " + nameOfPackage);
+                Console.WriteLine("This could take a minute");
+                DesignPackage.Install(context, context.Site, packageInfo, fileUrl);
                 context.ExecuteQuery();
 
-                Console.WriteLine("Applying Design Package!");
-                DesignPackage.Apply(context, context.Site, packageInfo);
-                context.ExecuteQuery();
+                Console.WriteLine("Activated package " + nameOfPackage);
             }
         }
-        /// <summary>
-        /// Activate a design package based on Guid
-        /// </summary>
-        /// <param name="idOfPackage"></param>
-        /// <param name="siteRelativeUrlToLibrary">Site relative URL to the library of the package</param>
-        public void ActivateDesignPackage(Guid idOfPackage, string siteRelativeUrlToLibrary)
+
+        private string CombineServerRelativeUri(params string[] args)
         {
-            throw new NotImplementedException();
+            var sb = new StringBuilder();
+            foreach (string arg in args)
+            {
+                sb.Append( "/" + arg.Trim('/'));
+            }
+            return sb.ToString();
+        }
+        private string CombineAbsoluteUri(params string[] args)
+        {
+            return CombineServerRelativeUri(args).TrimStart('/');
         }
     }
 }
