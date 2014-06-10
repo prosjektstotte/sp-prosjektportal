@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Security;
 using System.Text;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.Publishing;
@@ -11,18 +10,16 @@ namespace Glittertind.Sherpa.Library.Deploy
 {
     public class DeployManager : IDeployManager
     {
-        private readonly SecureString _password;
-        private readonly string _userName;
+        private readonly ICredentials _credentials;
         private readonly string _urlToWeb;
 
         //Our sandboxed solution Guid
         private readonly Guid _sandboxedSolutionGuid = new Guid("4248075f-9981-4034-8ff2-9b9e15ba328c");
 
-        public DeployManager(string userName, SecureString password, string urlToWeb)
+        public DeployManager(string urlToWeb, ICredentials credentials)
         {
             _urlToWeb = urlToWeb;
-            _userName = userName;
-            _password = password;
+            _credentials = credentials;
         }
         /// <summary>
         /// Uploads a design package to a library. Can be used for uploading sandboxed solutions to solution gallery.
@@ -38,7 +35,7 @@ namespace Glittertind.Sherpa.Library.Deploy
             }
 
             var fileUrl = CombineAbsoluteUri(_urlToWeb, siteRelativeUrlToLibrary, fileName);
-            UploadFile(_urlToWeb, fileUrl, localFilePath);
+            UploadFileToSharePointOnline(_urlToWeb, fileUrl, localFilePath);
         }
 
         /// <summary>
@@ -48,16 +45,14 @@ namespace Glittertind.Sherpa.Library.Deploy
         /// <param name="siteUrl"></param>
         /// <param name="fileUrl"></param>
         /// <param name="localPath"></param>
-        private void UploadFile(string siteUrl, string fileUrl, string localPath)
+        private void UploadFileToSharePointOnline(string siteUrl, string fileUrl, string localPath)
         {
             var targetSite = new Uri(siteUrl);
 
             using (var spWebClient = new SPWebClient())
             {
-                var credentials = new SharePointOnlineCredentials(_userName, _password);
-
                 Console.WriteLine("Uploading package {0} to library ", Path.GetFileName(localPath));
-                var authCookie = credentials.GetAuthenticationCookie(targetSite);
+                var authCookie = ((SharePointOnlineCredentials)_credentials).GetAuthenticationCookie(targetSite);
                 spWebClient.CookieContainer = new CookieContainer();
                 spWebClient.CookieContainer.Add(new Cookie("FedAuth",
                           authCookie.Replace("SPOIDCRL=", string.Empty),
@@ -89,7 +84,7 @@ namespace Glittertind.Sherpa.Library.Deploy
         {
             using (var context = new ClientContext(_urlToWeb))
             {
-                context.Credentials = new SharePointOnlineCredentials(_userName, _password);
+                context.Credentials = _credentials;
 
                 var packageInfo = new DesignPackageInfo()
                 {

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
+using System.Security;
 using System.Web.Script.Serialization;
 using Glittertind.Sherpa.Library.Taxonomy;
 using Glittertind.Sherpa.Library.Taxonomy.Model;
+using Microsoft.SharePoint.Client;
 using NUnit.Framework;
 
 namespace Glittertind.Sherpa.Library.Test.Taxonomy
@@ -13,11 +12,20 @@ namespace Glittertind.Sherpa.Library.Test.Taxonomy
     [TestFixture]
     class TheTaxonomyConfigManager
     {
-        private TaxonomyManager _underTest = new TaxonomyManager("xxxxx@xxxxx.onmicrosoft.com","xxxx","https://xxxx.sharepoint.com", 1033, new MockTaxonmyPersistanceProvider<TermSetGroup>());
+        private ICredentials _testClientCredentials;
+        private TaxonomyManager _underTest;
         [SetUp]
 
         public void SetUp()
         {
+            var pw = new SecureString();
+            const string rawPw = "xxx";
+            foreach (char c in rawPw)
+            {
+                pw.AppendChar(c);
+            }
+            _testClientCredentials = new SharePointOnlineCredentials("xxx@puzzlepart.com", pw);
+            _underTest = new TaxonomyManager(_testClientCredentials, "https://pzlcloud.sharepoint.com/sites/dev-tormodguldvog/", 1033, new MockTaxonmyPersistanceProvider<TermSetGroup>());
         }
 
         [Test]

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.SharePoint.Client;
 
 namespace Glittertind.Sherpa.Library.ContentTypes.Model
@@ -16,6 +15,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes.Model
         public GtContentType()
         {
             Group = "Glittertind Innholdstyper";
+            SiteColumnsInternalNames = new List<string>();
         }
 
         public ContentTypeCreationInformation GetContentTypeCreationInformation()
@@ -23,8 +23,9 @@ namespace Glittertind.Sherpa.Library.ContentTypes.Model
             return new ContentTypeCreationInformation
             {
                 Name = InternalName,
-                Id = DisplayName,
-                Group = Group
+                Id = ID,
+                Group = Group,
+                Description = Description
             };
         }
     }

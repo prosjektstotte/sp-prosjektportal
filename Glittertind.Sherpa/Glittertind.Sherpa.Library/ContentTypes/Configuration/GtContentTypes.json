@@ -1,22 +1,30 @@
 ﻿[
   {
+    "Description": "Prosjektportal baseelement som alle prosjektportalinnholdstyper arver fra",
+    "DisplayName": "Prosjektportal baseelement",
+    "Group": "Glittertind Innholdstyper",
+    "ID": "0x010058561f86d956412b9dd7957bbcd67aae",
+    "InternalName": "GtBase"
+  },
+  {
     "Description": "Prosjektområdeside som brukes som prosjektets forside for å håndtere metadata",
     "DisplayName": "Prosjektområde",
     "Group": "Glittertind Innholdstyper",
-    "ID": "58561f86-d956-412b-9dd7-957bbcd67aae",
-    "InternalName": "GtProsjekt",
+    "ID": "0x010058561f86d956412b9dd7957bbcd67aae0008786aa052d6437293ead66d77ceba82",
+    "InternalName": "GtProject",
     "SiteColumnsInternalNames": [
-      "GtFase"
+      "GtProjectPhase",
+      "GtProjectServiceArea"
     ]
   },
   {
-    "Description": "Til risikomatrise",
-    "DisplayName": "Risiko",
+    "Description": "Brukes i prosjektets risikomatrise",
+    "DisplayName": "Risikoelement",
     "Group": "Glittertind Innholdstyper",
-    "ID": "293fde3f-cada-480b-9a77-bbdad7dfa28c",
-    "InternalName": "GtRisk",
+    "ID": "0x010058561f86d956412b9dd7957bbcd67aae00293fde3fcada480b9a77bbdad7dfa28c",
+    "InternalName": "GtRiskElement",
     "SiteColumnsInternalNames": [
-      "GtFase"
+      "GtProjectPhase"
     ]
   }
 ]

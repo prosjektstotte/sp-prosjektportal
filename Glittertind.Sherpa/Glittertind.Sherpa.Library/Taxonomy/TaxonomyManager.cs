@@ -1,4 +1,6 @@
-﻿using System.Security;
+﻿using System;
+using System.Linq;
+using System.Net;
 using Glittertind.Sherpa.Library.Taxonomy.Model;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.Taxonomy;
@@ -7,20 +9,17 @@ namespace Glittertind.Sherpa.Library.Taxonomy
 {
     public class TaxonomyManager : ITaxonomyManager
     {
-        private readonly SecureString _password;
-        private readonly string _userName;
+        private readonly ICredentials _credentials;
         private readonly string _urlToWeb;
         private readonly int _lcid;
         public IPersistanceProvider<TermSetGroup> Provider { get; set; }
 
-        public TaxonomyManager(string userName, string password, string urlToWeb, int lcid, IPersistanceProvider<TermSetGroup> provider)
+        public TaxonomyManager(ICredentials credentials, string urlToWeb, int lcid, IPersistanceProvider<TermSetGroup> provider)
         {
             Provider = provider;
             _urlToWeb = urlToWeb;
-            _userName = userName;
+            _credentials = credentials;
             _lcid = lcid;
-            _password = new SecureString();
-            foreach (char c in password) _password.AppendChar(c);
         }
 
         public void WriteTaxonomyToTermStore()
@@ -29,22 +28,13 @@ namespace Glittertind.Sherpa.Library.Taxonomy
             using (var context = new ClientContext(_urlToWeb))
             {
                 // user must be termstore admin
-                context.Credentials = new SharePointOnlineCredentials(_userName, _password);
-                TaxonomySession taxonomySession = TaxonomySession.GetTaxonomySession(context);
-                taxonomySession.UpdateCache();
-                context.Load(taxonomySession);
-                context.ExecuteQuery();
+                context.Credentials = _credentials;
+                var termStore = GetTermStore(context);
 
-                TermStore termStore = taxonomySession.GetDefaultSiteCollectionTermStore();
-                context.Load(termStore, x=>x.Groups);
-                context.ExecuteQuery();
+                var termGroup = termStore.Groups.ToList().FirstOrDefault(g => g.Id == @group.Id) ??
+                                termStore.CreateGroup(@group.Title, @group.Id);
 
-                var spgroup = termStore.GetGroup(group.Id);
-                if (spgroup==null)
-                {
-                    spgroup = termStore.CreateGroup(group.Title, group.Id);
-                }
-                context.Load(spgroup, x => x.TermSets);
+                context.Load(termGroup, x => x.TermSets);
                 context.ExecuteQuery();
                 
                 foreach (var termSet in group.TermSets)
@@ -54,7 +44,7 @@ namespace Glittertind.Sherpa.Library.Taxonomy
                     context.ExecuteQuery();
                     if (spTermSet.ServerObjectIsNull.Value)
                     {
-                        spTermSet = spgroup.CreateTermSet(termSet.Title, termSet.Id, _lcid);
+                        spTermSet = termGroup.CreateTermSet(termSet.Title, termSet.Id, _lcid);
                         context.Load(spTermSet,x=>x.Terms);
                         context.ExecuteQuery();
                     }
@@ -70,16 +60,34 @@ namespace Glittertind.Sherpa.Library.Taxonomy
                             context.Load(spterm);
                             context.ExecuteQuery();
                         }
-
                     }
-
                 }
-
-
             }
-
         }
 
+        private TermStore GetTermStore(ClientContext context)
+        {
+            TaxonomySession taxonomySession = TaxonomySession.GetTaxonomySession(context);
+            taxonomySession.UpdateCache();
+            context.Load(taxonomySession);
+            context.ExecuteQuery();
 
+            TermStore termStore = taxonomySession.GetDefaultSiteCollectionTermStore();
+            context.Load(termStore, x => x.Groups, x => x.Id);
+            context.ExecuteQuery();
+            return termStore;
+        }
+
+        public Guid GetTermStoreId()
+        {
+            using (var context = new ClientContext(_urlToWeb))
+            {
+                // user must be termstore admin
+                context.Credentials = _credentials;
+                var termStore = GetTermStore(context);
+
+                return termStore.Id;
+            }
+        }
     }
 }
