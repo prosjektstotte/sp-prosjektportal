@@ -51,7 +51,7 @@
     <Compile Include="ContentTypes\ContentTypeManager.cs" />
     <Compile Include="ContentTypes\IContentTypeManager.cs" />
     <Compile Include="ContentTypes\Model\GtContentType.cs" />
-    <Compile Include="ContentTypes\Model\GtSiteColumn.cs" />
+    <Compile Include="ContentTypes\Model\GtField.cs" />
     <Compile Include="Deploy\DeployManager.cs" />
     <Compile Include="Deploy\IDeployManager.cs" />
     <Compile Include="Deploy\SPWebClient.cs">
@@ -71,7 +71,7 @@
     <None Include="ContentTypes\Configuration\GtContentTypes.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="ContentTypes\Configuration\GtSiteColumns.json">
+    <None Include="ContentTypes\Configuration\GtFields.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

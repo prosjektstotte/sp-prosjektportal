@@ -5,7 +5,14 @@ namespace Glittertind.Sherpa.Library.ContentTypes.Model
 {
     public class GtContentType
     {
-        public string ID { get; set; }
+        private string _id;
+
+        public string ID
+        {
+            get { return _id; }
+            set { _id = value.ToUpper().Replace("0X01", "0x01"); }
+        }
+
         public string InternalName { get; set; }
         public string DisplayName { get; set; }
         public string Description { get; set; }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Policy;
 using CommandLine;
 using CommandLine.Text;
 using Glittertind.Sherpa.Library;
@@ -43,32 +42,33 @@ namespace Glittertind.Sherpa.Installer
         }
 
 
-        private static void HandleCommandKeyPress(ConsoleKey key)
+        private static void HandleCommandKeyPress(string input)
         {
-            switch (key)
+            var inputNum = Int16.Parse(input);
+            switch (inputNum)
             {
-                case (ConsoleKey.D1):
+                case (1):
                 {
                     UploadAndActivateSandboxSolution(UrlToSite, Credentials);
                     CreateSiteColumnsAndContentTypes(UrlToSite, Credentials);
                     break;
                 }
-                case (ConsoleKey.D2):
+                case (2):
                 {
                     UploadAndActivateSandboxSolution(UrlToSite, Credentials);
                     break;
                 }
-                case (ConsoleKey.D3):
+                case (3):
                 {
                     CreateSiteColumnsAndContentTypes(UrlToSite, Credentials);
                     break;
                 }
-                case (ConsoleKey.D4):
+                case (9):
                 {
-                    Console.WriteLine("Key 4 pressed");
+                    DeleteAllGlittertindSiteColumnsAndContentTypes(UrlToSite, Credentials);
                     break;
                 }
-                case (ConsoleKey.D0):
+                case (0):
                 {
                     Environment.Exit(0);
                     break;
@@ -83,17 +83,23 @@ namespace Glittertind.Sherpa.Installer
             ShowStartScreenAndExecuteCommand();
         }
 
+        private static void DeleteAllGlittertindSiteColumnsAndContentTypes(string urlToSite, SharePointOnlineCredentials credentials)
+        {
+            var mngr = new ContentTypeManager(urlToSite, credentials);
+            mngr.DeleteAllGlittertindSiteColumnsAndContentTypes("Glittertind");
+        }
+
         private static void ShowStartScreenAndExecuteCommand()
         {
             Console.WriteLine("Application options");
             Console.WriteLine("Press 1 for full installation.");
             Console.WriteLine("Press 2 to upload and activate sandboxed solution.");
             Console.WriteLine("Press 3 to setup site columns and content types.");
+            Console.WriteLine("Press 9 to DELETE all Glittertind site columns and content types.");
             Console.WriteLine("Press 0 to exit application.");
             Console.Write("Select a number to perform an operation: ");
-            var pressedKey = Console.ReadKey().Key;
-            Console.WriteLine();
-            HandleCommandKeyPress(pressedKey);
+            var input = Console.ReadLine();
+            HandleCommandKeyPress(input);
         }
 
         private static void UploadAndActivateSandboxSolution(string urlToSite, SharePointOnlineCredentials credentials)
@@ -107,13 +113,13 @@ namespace Glittertind.Sherpa.Installer
         private static void CreateSiteColumnsAndContentTypes(string urlToSite, SharePointOnlineCredentials credentials)
         {
             Console.WriteLine("Starting setup of site columns and content types");
-            var pathToSiteColumnJson = Path.Combine(Environment.CurrentDirectory, @"ContentTypes\Configuration\GtSiteColumns.json");
-            var siteColumnPersister = new FilePersistanceProvider<List<GtSiteColumn>>(pathToSiteColumnJson);
+            var pathToSiteColumnJson = Path.Combine(Environment.CurrentDirectory, @"ContentTypes\Configuration\GtFields.json");
+            var siteColumnPersister = new FilePersistanceProvider<List<GtField>>(pathToSiteColumnJson);
             var siteColumns = siteColumnPersister.Load();
 
             var taxMan = new TaxonomyManager(credentials, urlToSite, 1033, null);
             var termStoreId = taxMan.GetTermStoreId();
-            foreach (GtSiteColumn column in siteColumns.Where(column => column.Type.StartsWith("TaxonomyFieldType")))
+            foreach (GtField column in siteColumns.Where(column => column.Type.StartsWith("TaxonomyFieldType")))
             {
                 column.InitializeTaxonomyProperties(termStoreId);
             }
@@ -144,7 +150,7 @@ namespace Glittertind.Sherpa.Installer
         [ParserState]
         public IParserState LastParserState { get; set; }
 
-        [Option('u', "urlToSite", DefaultValue = "https://pzlcloud.sharepoint.com/sites/dev-tormodguldvog", HelpText = "URL til området prosjektportalen skal installeres")]
+        [Option('u', "urlToSite", DefaultValue = "https://pzlcloud.sharepoint.com/sites/dev-akpp", HelpText = "URL til området prosjektportalen skal installeres")]
         public string UrlToSite { get; set; }
 
         [Option('n', "userName", DefaultValue = "tarjeieo@puzzlepart.com", HelpText = "Brukernavn til personen som skal installere løsningen")]

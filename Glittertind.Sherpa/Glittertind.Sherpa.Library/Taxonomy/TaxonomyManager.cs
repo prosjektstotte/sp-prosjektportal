@@ -65,7 +65,7 @@ namespace Glittertind.Sherpa.Library.Taxonomy
             }
         }
 
-        private TermStore GetTermStore(ClientContext context)
+        public static TermStore GetTermStore(ClientContext context)
         {
             TaxonomySession taxonomySession = TaxonomySession.GetTaxonomySession(context);
             taxonomySession.UpdateCache();

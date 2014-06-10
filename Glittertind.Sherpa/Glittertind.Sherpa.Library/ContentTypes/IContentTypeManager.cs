@@ -6,6 +6,6 @@ namespace Glittertind.Sherpa.Library.ContentTypes
     interface IContentTypeManager
     {
         void CreateContentTypes(List<GtContentType> contentTypes);
-        void CreateSiteColumns(List<GtSiteColumn> contentTypes);
+        void CreateSiteColumns(List<GtField> fields);
     }
 }
