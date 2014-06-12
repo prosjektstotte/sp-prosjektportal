@@ -85,8 +85,9 @@ namespace Glittertind.Sherpa.Installer
 
         private static void DeleteAllGlittertindSiteColumnsAndContentTypes(string urlToSite, SharePointOnlineCredentials credentials)
         {
-            var mngr = new ContentTypeManager(urlToSite, credentials);
-            mngr.DeleteAllGlittertindSiteColumnsAndContentTypes("Glittertind");
+            var contentTypeManager = new ContentTypeManager(urlToSite, credentials);
+            contentTypeManager.DeleteAllGlittertindSiteColumnsAndContentTypes("Glittertind");
+            contentTypeManager.DisposeContext();
         }
 
         private static void ShowStartScreenAndExecuteCommand()
@@ -115,22 +116,13 @@ namespace Glittertind.Sherpa.Installer
             Console.WriteLine("Starting setup of site columns and content types");
             var pathToSiteColumnJson = Path.Combine(Environment.CurrentDirectory, @"ContentTypes\Configuration\GtFields.json");
             var siteColumnPersister = new FilePersistanceProvider<List<GtField>>(pathToSiteColumnJson);
-            var siteColumns = siteColumnPersister.Load();
-
-            var taxMan = new TaxonomyManager(credentials, urlToSite, 1033, null);
-            var termStoreId = taxMan.GetTermStoreId();
-            foreach (GtField column in siteColumns.Where(column => column.Type.StartsWith("TaxonomyFieldType")))
-            {
-                column.InitializeTaxonomyProperties(termStoreId);
-            }
-
+            
             var pathToContentTypesJson = Path.Combine(Environment.CurrentDirectory, @"ContentTypes\Configuration\GtContentTypes.json");
             var contentTypePersister = new FilePersistanceProvider<List<GtContentType>>(pathToContentTypesJson);
-            var contentTypes = contentTypePersister.Load();
 
-            var contentTypeManager = new ContentTypeManager(urlToSite, credentials);
-            contentTypeManager.CreateSiteColumns(siteColumns);
-            contentTypeManager.CreateContentTypes(contentTypes);
+            var contentTypeManager = new ContentTypeManager(urlToSite, credentials, contentTypePersister, siteColumnPersister);
+            contentTypeManager.CreateSiteColumns();
+            contentTypeManager.CreateContentTypes();
             contentTypeManager.DisposeContext();
         }
 

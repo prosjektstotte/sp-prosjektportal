@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Web.UI.WebControls;
 using Glittertind.Sherpa.Library.ContentTypes.Model;
+using Glittertind.Sherpa.Library.Taxonomy;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.Taxonomy;
 
@@ -13,6 +13,34 @@ namespace Glittertind.Sherpa.Library.ContentTypes
     public class ContentTypeManager : IContentTypeManager
     {
         public ClientContext ClientContext { get; set; }
+
+        private List<GtContentType> ContentTypes { get; set; }
+        private List<GtField> Fields { get; set; }
+
+        /// <summary>
+        /// For creating fields and content types
+        /// </summary>
+        /// <param name="urlToSite"></param>
+        /// <param name="credentials"></param>
+        /// <param name="contentTypeProvider"></param>
+        /// <param name="fieldProvider"></param>
+        public ContentTypeManager(string urlToSite, ICredentials credentials, IPersistanceProvider<List<GtContentType>> contentTypeProvider, IPersistanceProvider<List<GtField>> fieldProvider)
+        {
+            ClientContext = new ClientContext(urlToSite)
+            {
+                AuthenticationMode = ClientAuthenticationMode.Default,
+                Credentials = credentials
+            };
+
+            LoadFields(fieldProvider);
+            LoadContentTypes(contentTypeProvider);
+        }
+        /// <summary>
+        /// Cannot be used for setup
+        /// Only used for basic operations like deleting content types and fields
+        /// </summary>
+        /// <param name="urlToSite"></param>
+        /// <param name="credentials"></param>
         public ContentTypeManager(string urlToSite, ICredentials credentials)
         {
             ClientContext = new ClientContext(urlToSite)
@@ -22,14 +50,30 @@ namespace Glittertind.Sherpa.Library.ContentTypes
             };
         }
 
-        public void CreateSiteColumns(List<GtField> fields)
+        public void LoadFields(IPersistanceProvider<List<GtField>> fieldProvider)
+        {
+            Fields = fieldProvider.Load();
+
+            var termStoreId = TaxonomyManager.GetTermStoreId(ClientContext.Credentials, ClientContext.Url);
+            foreach (GtField field in Fields.Where(column => column.Type.StartsWith("TaxonomyFieldType")))
+            {
+                field.InitializeTaxonomyProperties(termStoreId);
+            }
+        }
+
+        public void LoadContentTypes(IPersistanceProvider<List<GtContentType>> contentTypeProvider)
+        {
+            ContentTypes = contentTypeProvider.Load();
+        }
+
+        public void CreateSiteColumns()
         {
             Web web = ClientContext.Web;
             FieldCollection webFieldCollection = web.Fields;
             ClientContext.Load(webFieldCollection);
             ClientContext.ExecuteQuery();
 
-            foreach (GtField field in fields)
+            foreach (GtField field in Fields)
             {
                 if (webFieldCollection.Any(item => item.InternalName == field.InternalName))
                 {
@@ -110,7 +154,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes
             ClientContext.Load(webFieldCollection);
             ClientContext.ExecuteQuery();
 
-            for (int i = webFieldCollection.Count - 1; i > 0; i--)
+            for (int i = webFieldCollection.Count - 1; i >= 0; i--)
             {
                 if (webFieldCollection[i].Group.Contains(groupName))
                 {
@@ -120,14 +164,14 @@ namespace Glittertind.Sherpa.Library.ContentTypes
             }
         }
 
-        public void CreateContentTypes(List<GtContentType> contentTypes)
+        public void CreateContentTypes()
         {
             Web web = ClientContext.Web;
             ContentTypeCollection existingContentTypes = web.ContentTypes;
             ClientContext.Load(existingContentTypes);
             ClientContext.ExecuteQuery();
 
-            foreach (GtContentType contentType in contentTypes)
+            foreach (GtContentType contentType in ContentTypes)
             {
                 if (existingContentTypes.Any(item => item.Id.ToString().Equals(contentType.ID.ToString(CultureInfo.InvariantCulture))))
                 {
