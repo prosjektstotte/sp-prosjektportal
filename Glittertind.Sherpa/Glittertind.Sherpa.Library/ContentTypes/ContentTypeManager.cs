@@ -54,7 +54,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes
         {
             Fields = fieldProvider.Load();
 
-            var termStoreId = TaxonomyManager.GetTermStoreId(ClientContext.Credentials, ClientContext.Url);
+            var termStoreId = new TaxonomyManager(ClientContext.Credentials, ClientContext.Url, 1044, null).GetTermStoreId();
             foreach (GtField field in Fields.Where(column => column.Type.StartsWith("TaxonomyFieldType")))
             {
                 field.InitializeTaxonomyProperties(termStoreId);

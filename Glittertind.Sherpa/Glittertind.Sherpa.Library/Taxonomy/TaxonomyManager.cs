@@ -65,7 +65,7 @@ namespace Glittertind.Sherpa.Library.Taxonomy
             }
         }
 
-        public static TermStore GetTermStore(ClientContext context)
+        public TermStore GetTermStore(ClientContext context)
         {
             TaxonomySession taxonomySession = TaxonomySession.GetTaxonomySession(context);
             taxonomySession.UpdateCache();
@@ -78,12 +78,12 @@ namespace Glittertind.Sherpa.Library.Taxonomy
             return termStore;
         }
 
-        public static Guid GetTermStoreId(ICredentials credentials, string urlToWeb)
+        public Guid GetTermStoreId()
         {
-            using (var context = new ClientContext(urlToWeb))
+            using (var context = new ClientContext(_urlToWeb))
             {
                 // user must be termstore admin
-                context.Credentials = credentials;
+                context.Credentials = _credentials;
                 var termStore = GetTermStore(context);
 
                 return termStore.Id;
