@@ -68,12 +68,6 @@
     <Compile Include="Taxonomy\TaxonomyManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ContentTypes\Configuration\GtContentTypes.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="ContentTypes\Configuration\GtFields.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

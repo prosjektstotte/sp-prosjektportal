@@ -17,12 +17,11 @@ namespace Glittertind.Sherpa.Library.ContentTypes.Model
         public string DisplayName { get; set; }
         public string Description { get; set; }
         public string Group { get; set; }
-        public List<string> SiteColumnsInternalNames { get; set; }
+        public List<string> SiteColumns { get; set; }
 
         public GtContentType()
         {
-            Group = "Glittertind Innholdstyper";
-            SiteColumnsInternalNames = new List<string>();
+            SiteColumns = new List<string>();
         }
 
         public ContentTypeCreationInformation GetContentTypeCreationInformation()

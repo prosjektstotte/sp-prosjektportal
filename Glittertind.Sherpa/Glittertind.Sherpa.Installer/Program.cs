@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using CommandLine;
 using CommandLine.Text;
 using Glittertind.Sherpa.Library;
@@ -38,7 +37,7 @@ namespace Glittertind.Sherpa.Installer
             {
                 Credentials.GetAuthenticationCookie(new Uri(UrlToSite));
             }
-            catch (IdcrlException exception)
+            catch (IdcrlException)
             {
                 Console.WriteLine("Wrong password. Sorry man. Thats too bad.");
                 Console.ReadLine();

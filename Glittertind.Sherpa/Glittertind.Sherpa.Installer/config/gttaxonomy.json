@@ -151,6 +151,24 @@
       ],
       "Title": "Fase",
       "Id": "abcfc9d9-a263-4abb-8234-be973c46258a"
+    },
+    {
+      "Terms": [
+        {
+          "Title": "Bygg",
+          "Id": "81d51eff-4dd8-4d9f-8373-327ce4cfebb9"
+        },
+        {
+          "Title": "IKT",
+          "Id": "f43d2dcf-27c8-432d-8b9b-dae09d9b0d7a"
+        },
+        {
+          "Title": "Organisasjonsutvikling",
+          "Id": "d93ceaad-18ef-452f-b39a-5b176354e814"
+        }
+      ],
+      "Title": "Prosjekttype",
+      "Id": "d93ceaad-18ef-452f-b39a-5b176354e814"
     }
   ],
   "Title": "Glittertind",

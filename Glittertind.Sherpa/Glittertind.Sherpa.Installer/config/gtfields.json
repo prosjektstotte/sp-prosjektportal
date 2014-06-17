@@ -1,19 +1,134 @@
 ﻿[
-  {
-    "Description": "Indikerer prosjektets fase",
-    "DisplayName": "Fase",
-    "Group": "Glittertind Områdekolonner",
-    "ID": "325543a5-815d-485d-a9a5-e0773ad762e9",
-    "InternalName": "GtProjectPhase",
-    "Type": "Text"
-  },
-  {
-    "Description": "Indikerer prosjektets tjenesteområde",
-    "DisplayName": "Tjenesteområde",
-    "Group": "Glittertind Områdekolonner",
-    "ID": "3275d73a-fd4d-48ba-bcc1-31526460d57b",
-    "InternalName": "GtProjectServiceArea",
-    "TermSetId": "99af1a25-88c1-4781-a05c-8446928d3fdd",
-    "Type": "TaxonomyFieldType"
-  }
+   {
+      Description : "",
+      DisplayName : "Prosjektnummer",
+      Group       : "Glittertind Områdekolonner",
+      ID          : "64d45745-0dd0-4c21-979b-67fb13748bb1",
+      InternalName: "GtProjectNumber",
+      Type        : "Text"
+   },
+   {
+      Description : "",
+      DisplayName : "Fase",
+      Group       : "Glittertind Områdekolonner",
+      ID          : "325543a5-815d-485d-a9a5-e0773ad762e9",
+      InternalName: "GtProjectPhase",
+      TermSetId   : "abcfc9d9-a263-4abb-8234-be973c46258a",
+      Type        : "TaxonomyFieldType"
+   },
+   {
+      Description : "",
+      DisplayName : "Prosjekttype",
+      Group       : "Glittertind Områdekolonner",
+      ID          : "ddb69044-7d2c-4865-86ec-b71413780409",
+      InternalName: "GtProjectType",
+      TermSetId   : "d93ceaad-18ef-452f-b39a-5b176354e814",
+      Type        : "TaxonomyFieldType"
+   },
+   {
+      Description : "",
+      DisplayName : "Tjenesteområde",
+      Group       : "Glittertind Områdekolonner",
+      ID          : "3275d73a-fd4d-48ba-bcc1-31526460d57b",
+      InternalName: "GtProjectServiceArea",
+      TermSetId   : "99af1a25-88c1-4781-a05c-8446928d3fdd",
+      Type        : "TaxonomyFieldType"
+   },
+   {
+      Description : "",
+      DisplayName : "Prosjektleder",
+      Group       : "Glittertind Områdekolonner",
+      ID          : "d46bed8f-0fb6-4684-8221-632fdb12598f",
+      InternalName: "GtProjectManager",
+      Type        : "User"
+   },
+   {
+      Description : "",
+      DisplayName : "Prosjekteier",
+      Group       : "Glittertind Områdekolonner",
+      ID          : "3121ac55-d68e-4fcb-8fc8-3d8ed8a601b2",
+      InternalName: "GtProjectOwner",
+      Type        : "User"
+   },
+   {
+      Description : "",
+      DisplayName : "Startdato",
+      Format      : "DateOnly",
+      Group       : "Glittertind Områdekolonner",
+      ID          : "e39c32db-a7da-4c93-9369-8aa5a7bde92d",
+      InternalName: "GtStartDate",
+      Type        : "DateTime"
+   },
+   {
+      Description : "",
+      DisplayName : "Sluttdato",
+      Format      : "DateOnly",
+      Group       : "Glittertind Områdekolonner",
+      ID          : "16623c2a-3fd1-41c2-87e7-958583dd88da",
+      InternalName: "GtEndDate",
+      Type        : "DateTime"
+   },
+   {
+      Choices     : [
+         "Lav",
+         "Medium",
+         "Høy"
+      ],
+      Default     : "Medium",
+      Description : "",
+      DisplayName : "Status risiko",
+      Format      : "RadioButtons",
+      Group       : "Glittertind Områdekolonner",
+      ID          : "fc8a879d-83bc-4670-b1f6-c9817e333614",
+      InternalName: "GtStatusRisk",
+      Type        : "Choice"
+   },
+   {
+      Choices     : [
+         "Foran plan",
+         "På plan",
+         "Etter plan"
+      ],
+      Default     : "På plan",
+      Description : "",
+      DisplayName : "Status tid",
+      Format      : "RadioButtons",
+      Group       : "Glittertind Områdekolonner",
+      ID          : "1447ef51-8e9b-4d16-aa2a-526dc9f1539e",
+      InternalName: "GtStatusTime",
+      Type        : "Choice"
+   },
+   {
+      Choices     : [
+         "Under budsjett",
+         "På budsjett",
+         "Over budsjett",
+         "Vet ikke"
+      ],
+      Default     : "På budsjett",
+      Description : "",
+      DisplayName : "Status budsjett",
+      Format      : "RadioButtons",
+      Group       : "Glittertind Områdekolonner",
+      ID          : "a9902b9d-8aad-40df-9788-ba73c64c3cb5",
+      InternalName: "GtStatusBudget",
+      Type        : "Choice"
+   },
+   {
+      Description : "",
+      DisplayName : "Snittrisiko",
+      Group       : "Glittertind Områdekolonner",
+      Hidden      : "true",
+      ID          : "8be4cd39-1468-4258-95f3-10343dc4ef11",
+      InternalName: "GtAverageRisk",
+      Type        : "Number"
+   },
+   {
+      Description : "",
+      DisplayName : "Effektmål",
+      Group       : "Glittertind Områdekolonner",
+      ID          : "018f09b8-4954-41bb-a8f6-fa531b90b79f",
+      InternalName: "GtProjectGoals",
+      Type        : "Note"
+   }
 ]

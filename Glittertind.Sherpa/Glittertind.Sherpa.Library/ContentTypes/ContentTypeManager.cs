@@ -175,6 +175,8 @@ namespace Glittertind.Sherpa.Library.ContentTypes
             {
                 if (existingContentTypes.Any(item => item.Id.ToString().Equals(contentType.ID.ToString(CultureInfo.InvariantCulture))))
                 {
+                    // We want to add fields even if the content type exists (?)
+                    AddSiteColumnsToContentType(contentType);
                     continue;
                 }
 
@@ -203,12 +205,14 @@ namespace Glittertind.Sherpa.Library.ContentTypes
             ClientContext.Load(fields);
             ClientContext.ExecuteQuery();
 
-            foreach (var fieldName in configContentType.SiteColumnsInternalNames)
+            FieldLinkCollection contentTypeFields = contentType.FieldLinks;
+            ClientContext.Load(contentTypeFields);
+            ClientContext.ExecuteQuery();
+
+            foreach (var fieldName in configContentType.SiteColumns)
             {
                 Field webField = fields.GetByInternalNameOrTitle(fieldName);
-                FieldLinkCollection contentTypeFields = contentType.FieldLinks;
                 ClientContext.Load(webField);
-                ClientContext.Load(contentTypeFields);
                 ClientContext.ExecuteQuery();
 
                 if (Enumerable.Any(contentTypeFields, existingFieldName => existingFieldName.Name == fieldName))
