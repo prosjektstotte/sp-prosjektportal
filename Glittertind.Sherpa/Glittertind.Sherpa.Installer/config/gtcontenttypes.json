@@ -12,7 +12,10 @@
       Group       : "Glittertind Innholdstyper",
       ID          : "0x010100293fde3fcada480b9a77bbdad7dfa28c000259931568f149e8ae665768c3880bf3",
       InternalName: "GtProjectDocument",
-      SiteColumns : [
+      Fields : [
+         "GtProjectPhase"
+      ],
+      RequiredFields : [
          "GtProjectPhase"
       ]
    },
@@ -29,7 +32,7 @@
       Group       : "Glittertind Innholdstyper",
       ID          : "0x010109010058561f86d956412b9dd7957bbcd67aae0008786aa052d6437293ead66d77ceba82",
       InternalName: "GtProjectFrontPage",
-      SiteColumns : [
+      Fields : [
          "GtProjectNumber",
          "GtProjectServiceArea",
          "GtProjectType",
@@ -42,6 +45,19 @@
          "GtStatusTime",
          "GtStatusBudget",
          "GtAverageRisk",
+         "GtProjectGoals"
+      ],
+      RequiredFields : [
+         "GtProjectServiceArea",
+         "GtProjectType",
+         "GtProjectPhase",
+         "GtProjectManager",
+         "GtProjectOwner",
+         "GtStartDate",
+         "GtEndDate",
+         "GtStatusRisk",
+         "GtStatusTime",
+         "GtStatusBudget",
          "GtProjectGoals"
       ]
    }

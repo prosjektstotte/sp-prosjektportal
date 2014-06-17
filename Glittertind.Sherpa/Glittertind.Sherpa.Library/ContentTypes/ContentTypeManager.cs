@@ -111,6 +111,69 @@ namespace Glittertind.Sherpa.Library.ContentTypes
             ClientContext.ExecuteQuery();
         }
 
+        public void CreateContentTypes()
+        {
+            Web web = ClientContext.Web;
+            ContentTypeCollection existingContentTypes = web.ContentTypes;
+            ClientContext.Load(existingContentTypes);
+            ClientContext.ExecuteQuery();
+
+            foreach (GtContentType contentType in ContentTypes)
+            {
+                if (existingContentTypes.Any(item => item.Id.ToString().Equals(contentType.ID.ToString(CultureInfo.InvariantCulture))))
+                {
+                    // We want to add fields even if the content type exists (?)
+                    AddSiteColumnsToContentType(contentType);
+                    continue;
+                }
+
+                var contentTypeCreationInformation = contentType.GetContentTypeCreationInformation();
+                var newContentType = existingContentTypes.Add(contentTypeCreationInformation);
+                ClientContext.ExecuteQuery();
+
+                // Update display name (internal name will not be changed)
+                newContentType.Name = contentType.DisplayName;
+                newContentType.Update(true);
+                ClientContext.ExecuteQuery();
+
+                AddSiteColumnsToContentType(contentType);
+            }
+        }
+
+        private void AddSiteColumnsToContentType(GtContentType configContentType)
+        {
+            Web web = ClientContext.Web;
+            ContentTypeCollection contentTypes = web.ContentTypes;
+            ClientContext.Load(contentTypes);
+            ClientContext.ExecuteQuery();
+            ContentType contentType = contentTypes.GetById(configContentType.ID);
+            FieldCollection fields = web.Fields;
+            ClientContext.Load(contentType);
+            ClientContext.Load(fields);
+            ClientContext.ExecuteQuery();
+
+            foreach (var fieldName in configContentType.Fields)
+            {
+                // Need to load content type fields every iteration because fields are added to the collection
+                Field webField = fields.GetByInternalNameOrTitle(fieldName);
+                FieldLinkCollection contentTypeFields = contentType.FieldLinks;
+                ClientContext.Load(contentTypeFields);
+                ClientContext.Load(webField);
+                ClientContext.ExecuteQuery();
+
+                if (Enumerable.Any(contentTypeFields, existingFieldName => existingFieldName.Name == fieldName))
+                {
+                    continue;
+                }
+
+                var link = new FieldLinkCreationInformation { Field = webField };
+                var fieldLink = contentType.FieldLinks.Add(link);
+                fieldLink.Required = configContentType.RequiredFields.Contains(fieldName);
+                contentType.Update(true);
+                ClientContext.ExecuteQuery();
+            }
+        }
+
         /// <summary>
         /// When a taxonomy field is added, a hidden field is automatically created with the syntax [random letter] + [field id on "N" format]
         /// If a taxonomy field is deleted and then readded, an exception will be thrown if this field is not deleted first.
@@ -155,68 +218,6 @@ namespace Glittertind.Sherpa.Library.ContentTypes
                     webFieldCollection[i].DeleteObject();
                     ClientContext.ExecuteQuery();
                 }
-            }
-        }
-
-        public void CreateContentTypes()
-        {
-            Web web = ClientContext.Web;
-            ContentTypeCollection existingContentTypes = web.ContentTypes;
-            ClientContext.Load(existingContentTypes);
-            ClientContext.ExecuteQuery();
-
-            foreach (GtContentType contentType in ContentTypes)
-            {
-                if (existingContentTypes.Any(item => item.Id.ToString().Equals(contentType.ID.ToString(CultureInfo.InvariantCulture))))
-                {
-                    // We want to add fields even if the content type exists (?)
-                    AddSiteColumnsToContentType(contentType);
-                    continue;
-                }
-
-                var contentTypeCreationInformation = contentType.GetContentTypeCreationInformation();
-                var newContentType = existingContentTypes.Add(contentTypeCreationInformation);
-                ClientContext.ExecuteQuery();
-
-                // Update display name (internal name will not be changed)
-                newContentType.Name = contentType.DisplayName;
-                newContentType.Update(true);
-                ClientContext.ExecuteQuery();
-
-                AddSiteColumnsToContentType(contentType);
-            }
-        }
-
-        private void AddSiteColumnsToContentType(GtContentType configContentType)
-        {
-            Web web = ClientContext.Web;
-            ContentTypeCollection contentTypes = web.ContentTypes;
-            ClientContext.Load(contentTypes);
-            ClientContext.ExecuteQuery();
-            ContentType contentType = contentTypes.GetById(configContentType.ID);
-            FieldCollection fields = web.Fields;
-            ClientContext.Load(contentType);
-            ClientContext.Load(fields);
-            ClientContext.ExecuteQuery();
-
-            foreach (var fieldName in configContentType.SiteColumns)
-            {
-                // Need to load content type fields every iteration because fields are added to the collection
-                Field webField = fields.GetByInternalNameOrTitle(fieldName);
-                FieldLinkCollection contentTypeFields = contentType.FieldLinks;
-                ClientContext.Load(contentTypeFields);
-                ClientContext.Load(webField);
-                ClientContext.ExecuteQuery();
-
-                if (Enumerable.Any(contentTypeFields, existingFieldName => existingFieldName.Name == fieldName))
-                {
-                    continue;
-                }
-
-                var link = new FieldLinkCreationInformation {Field = webField};
-                contentType.FieldLinks.Add(link);
-                contentType.Update(true);
-                ClientContext.ExecuteQuery();    
             }
         }
 
