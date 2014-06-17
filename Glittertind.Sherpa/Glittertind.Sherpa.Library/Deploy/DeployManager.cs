@@ -12,10 +12,7 @@ namespace Glittertind.Sherpa.Library.Deploy
     {
         private readonly ICredentials _credentials;
         private readonly string _urlToWeb;
-
-        //Our sandboxed solution Guid
-        private readonly Guid _sandboxedSolutionGuid = new Guid("4248075f-9981-4034-8ff2-9b9e15ba328c");
-
+        
         public DeployManager(string urlToWeb, ICredentials credentials)
         {
             _urlToWeb = urlToWeb;
@@ -29,6 +26,7 @@ namespace Glittertind.Sherpa.Library.Deploy
         public void UploadDesignPackage(string localFilePath, string siteRelativeUrlToLibrary)
         {
             var fileName = Path.GetFileName(localFilePath);
+            if (Path.GetExtension(fileName).ToLower() != ".wsp") throw new NotSupportedException("Only WSPs can be uploaded into the SharePoint solution store. "+localFilePath + " is not a wsp");
             if (string.IsNullOrEmpty(fileName) || string.IsNullOrEmpty(_urlToWeb) || string.IsNullOrEmpty(siteRelativeUrlToLibrary))
             {
                 throw new Exception("Could not create path to solution package!");
@@ -74,33 +72,42 @@ namespace Glittertind.Sherpa.Library.Deploy
             }
         }
 
+
         /// <summary>
         /// Activates a design package based on package name
         /// Starting point: http://sharepoint.stackexchange.com/questions/90809/is-it-possible-to-activate-a-solution-using-client-code-in-sharepoint-online-201
         /// </summary>
         /// <param name="nameOfPackage">The filename of the package</param>
         /// <param name="siteRelativeUrlToLibrary">Site relative URL to the library of the package</param>
-        public void ActivateDesignPackage(string nameOfPackage, string siteRelativeUrlToLibrary)
+        public void ActivateDesignPackage(string filePathOrName, string siteRelativeUrlToLibrary)
         {
+            // if we pass in a full path, correct this
+            var nameOfPackage = Path.GetFileNameWithoutExtension(filePathOrName);
             using (var context = new ClientContext(_urlToWeb))
             {
                 context.Credentials = _credentials;
 
                 var packageInfo = new DesignPackageInfo()
                 {
-                    PackageGuid = Guid.Empty,
-                    PackageName = nameOfPackage
+                    PackageName = nameOfPackage,
+                    MajorVersion = 1,
+                    MinorVersion = 0
                 };
 
                 context.Load(context.Site);
+                context.Load(context.Web);
                 context.ExecuteQuery();
-                var fileUrl = CombineServerRelativeUri(context.Site.ServerRelativeUrl, siteRelativeUrlToLibrary, nameOfPackage);
+                var fileUrl = CombineServerRelativeUri(context.Site.ServerRelativeUrl, siteRelativeUrlToLibrary, nameOfPackage +".wsp");
 
                 Console.WriteLine("Installing solution package " + nameOfPackage);
                 Console.WriteLine("This could take a minute");
-                DesignPackage.Install(context, context.Site, packageInfo, fileUrl);
+                DesignPackage.Install(context, context.Site, packageInfo,fileUrl);
                 context.ExecuteQuery();
-
+                var web = context.Web;
+                var file = web.GetFileByServerRelativeUrl(fileUrl);
+                context.Load(file);
+                file.DeleteObject();
+                context.ExecuteQuery();
                 Console.WriteLine("Activated package " + nameOfPackage);
             }
         }

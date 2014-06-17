@@ -125,10 +125,17 @@ namespace Glittertind.Sherpa.Installer
 
         private static void UploadAndActivateSandboxSolution(string urlToSite, SharePointOnlineCredentials credentials)
         {
-            var pathToSandboxedSolution = Path.Combine(Environment.CurrentDirectory, "Tormods-Playground-1.0.wsp");
+            var pathToSandboxedSolution = Path.Combine(Environment.CurrentDirectory,"solutions");
+            var files = Directory.GetFiles(pathToSandboxedSolution);
             var deployManager = new DeployManager(urlToSite, credentials);
-            deployManager.UploadDesignPackage(pathToSandboxedSolution, "_catalogs/solutions");
-            deployManager.ActivateDesignPackage("Tormods-Playground-1.0.wsp", "_catalogs/solutions");
+            foreach (var file in files)
+            {
+                deployManager.UploadDesignPackage(file, "SiteAssets");
+                deployManager.ActivateDesignPackage(file, "SiteAssets");
+            }
+            
+           
+            
         }
 
         private static void CreateSiteColumnsAndContentTypes(string urlToSite, SharePointOnlineCredentials credentials)
