@@ -54,7 +54,9 @@ namespace Glittertind.Sherpa.Installer
 
         private static void HandleCommandKeyPress(string input)
         {
-            var inputNum = int.Parse(input);
+            var inputNum = 0;
+            if (!int.TryParse(input, out inputNum)) Environment.Exit(0);
+ 
             switch (inputNum)
             {
                 case (1):

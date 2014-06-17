@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using Microsoft.SharePoint.Client;
 
 namespace Glittertind.Sherpa.Library.ContentTypes.Model
 {

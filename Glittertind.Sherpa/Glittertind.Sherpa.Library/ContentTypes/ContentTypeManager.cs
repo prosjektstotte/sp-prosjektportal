@@ -82,8 +82,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes
                 if (field.Type.StartsWith("TaxonomyFieldType"))
                 {
                     DeleteHiddenFieldForTaxonomyField(webFieldCollection, field.ID);
-
-                    CreateTaxonomyField(field, web);
+                    CreateTaxonomyField(field, webFieldCollection);
                 }
                 else
                 {
@@ -95,16 +94,15 @@ namespace Glittertind.Sherpa.Library.ContentTypes
         private void CreateField(GtField field, FieldCollection fields)
         {
             var fieldXml = field.GetFieldAsXml();
-            Field fld = fields.AddFieldAsXml(fieldXml, true, AddFieldOptions.AddFieldInternalNameHint);
-            ClientContext.Load(fields);
-            ClientContext.Load(fld);
+            Field newField = fields.AddFieldAsXml(fieldXml, true, AddFieldOptions.AddFieldInternalNameHint);
+            ClientContext.Load(newField);
             ClientContext.ExecuteQuery();
         }
 
-        private void CreateTaxonomyField(GtField field, Web web)
+        private void CreateTaxonomyField(GtField field, FieldCollection fields)
         {
             var fieldSchema = field.GetFieldAsXml();
-            var newField = web.Fields.AddFieldAsXml(fieldSchema, false, AddFieldOptions.AddFieldInternalNameHint);
+            var newField = fields.AddFieldAsXml(fieldSchema, false, AddFieldOptions.AddFieldInternalNameHint);
             ClientContext.Load(newField);
             ClientContext.ExecuteQuery();
 
@@ -205,13 +203,12 @@ namespace Glittertind.Sherpa.Library.ContentTypes
             ClientContext.Load(fields);
             ClientContext.ExecuteQuery();
 
-            FieldLinkCollection contentTypeFields = contentType.FieldLinks;
-            ClientContext.Load(contentTypeFields);
-            ClientContext.ExecuteQuery();
-
             foreach (var fieldName in configContentType.SiteColumns)
             {
+                // Need to load content type fields every iteration because fields are added to the collection
                 Field webField = fields.GetByInternalNameOrTitle(fieldName);
+                FieldLinkCollection contentTypeFields = contentType.FieldLinks;
+                ClientContext.Load(contentTypeFields);
                 ClientContext.Load(webField);
                 ClientContext.ExecuteQuery();
 
