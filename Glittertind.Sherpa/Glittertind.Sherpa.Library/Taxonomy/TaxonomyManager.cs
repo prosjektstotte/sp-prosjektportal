@@ -11,15 +11,13 @@ namespace Glittertind.Sherpa.Library.Taxonomy
     {
         private readonly ICredentials _credentials;
         private readonly string _urlToSite;
-        private readonly int _lcid;
         private IPersistanceProvider<TermSetGroup> Provider { get; set; }
 
-        public TaxonomyManager(string urlToSite, ICredentials credentials, IPersistanceProvider<TermSetGroup> provider, int lcid)
+        public TaxonomyManager(string urlToSite, ICredentials credentials, IPersistanceProvider<TermSetGroup> provider)
         {
             Provider = provider;
             _urlToSite = urlToSite;
             _credentials = credentials;
-            _lcid = lcid;
         }
 
         public void WriteTaxonomyToTermStore()
@@ -30,6 +28,7 @@ namespace Glittertind.Sherpa.Library.Taxonomy
                 // user must be termstore admin
                 context.Credentials = _credentials;
                 var termStore = GetTermStore(context);
+                var language = termStore.DefaultLanguage;
 
                 var termGroup = termStore.Groups.ToList().FirstOrDefault(g => g.Id == @group.Id) ??
                                 termStore.CreateGroup(@group.Title, @group.Id);
@@ -44,7 +43,7 @@ namespace Glittertind.Sherpa.Library.Taxonomy
                     context.ExecuteQuery();
                     if (spTermSet.ServerObjectIsNull.Value)
                     {
-                        spTermSet = termGroup.CreateTermSet(termSet.Title, termSet.Id, _lcid);
+                        spTermSet = termGroup.CreateTermSet(termSet.Title, termSet.Id, language);
                         context.Load(spTermSet,x=>x.Terms);
                         context.ExecuteQuery();
                     }
@@ -56,7 +55,7 @@ namespace Glittertind.Sherpa.Library.Taxonomy
                         context.ExecuteQuery();
                         if (spTerm.ServerObjectIsNull.Value)
                         {
-                            var spterm = spTermSet.CreateTerm(term.Title, _lcid, term.Id);
+                            var spterm = spTermSet.CreateTerm(term.Title, language, term.Id);
                             context.Load(spterm);
                             context.ExecuteQuery();
                         }

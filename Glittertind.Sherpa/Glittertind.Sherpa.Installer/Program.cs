@@ -99,7 +99,7 @@ namespace Glittertind.Sherpa.Installer
             Console.WriteLine("Starting setup of tax");
             var path = Path.Combine(Environment.CurrentDirectory, @"config\gttaxonomy.json");
             var taxPersistanceProvider = new FilePersistanceProvider<TermSetGroup>(path);
-            var taxonomyManager = new TaxonomyManager(urlToSite, credentials, taxPersistanceProvider, 1044);
+            var taxonomyManager = new TaxonomyManager(urlToSite, credentials, taxPersistanceProvider);
             taxonomyManager.WriteTaxonomyToTermStore();
         }
 
