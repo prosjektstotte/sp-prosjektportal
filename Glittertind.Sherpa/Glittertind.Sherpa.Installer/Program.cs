@@ -9,6 +9,7 @@ using Glittertind.Sherpa.Library.ContentTypes;
 using Glittertind.Sherpa.Library.Deploy;
 using Glittertind.Sherpa.Library.ContentTypes.Model;
 using Glittertind.Sherpa.Library.Taxonomy;
+using Glittertind.Sherpa.Library.Taxonomy.Model;
 using Microsoft.SharePoint.Client;
 
 namespace Glittertind.Sherpa.Installer
@@ -33,6 +34,16 @@ namespace Glittertind.Sherpa.Installer
             var password = PasswordReader.GetConsoleSecurePassword();
             Console.WriteLine();
             Credentials = new SharePointOnlineCredentials(options.UserName, password);
+            try
+            {
+                Credentials.GetAuthenticationCookie(new Uri(UrlToSite));
+            }
+            catch (IdcrlException exception)
+            {
+                Console.WriteLine("Wrong password. Sorry man. Thats too bad.");
+                Console.ReadLine();
+                Environment.Exit(1);
+            }
             Console.WriteLine("Account authenticated");
 
             ShowStartScreenAndExecuteCommand();
@@ -44,13 +55,12 @@ namespace Glittertind.Sherpa.Installer
 
         private static void HandleCommandKeyPress(string input)
         {
-            var inputNum = Int16.Parse(input);
+            var inputNum = int.Parse(input);
             switch (inputNum)
             {
                 case (1):
                 {
-                    UploadAndActivateSandboxSolution(UrlToSite, Credentials);
-                    CreateSiteColumnsAndContentTypes(UrlToSite, Credentials);
+                    SetupTaxonomy(UrlToSite, Credentials);
                     break;
                 }
                 case (2):
@@ -83,6 +93,15 @@ namespace Glittertind.Sherpa.Installer
             ShowStartScreenAndExecuteCommand();
         }
 
+        private static void SetupTaxonomy(string urlToSite, SharePointOnlineCredentials credentials)
+        {
+            Console.WriteLine("Starting setup of tax");
+            var path = Path.Combine(Environment.CurrentDirectory, @"config\gttaxonomy.json");
+            var taxPersistanceProvider = new FilePersistanceProvider<TermSetGroup>(path);
+            var taxonomyManager = new TaxonomyManager(urlToSite, credentials, taxPersistanceProvider, 1044);
+            taxonomyManager.WriteTaxonomyToTermStore();
+        }
+
         private static void DeleteAllGlittertindSiteColumnsAndContentTypes(string urlToSite, SharePointOnlineCredentials credentials)
         {
             var contentTypeManager = new ContentTypeManager(urlToSite, credentials);
@@ -93,7 +112,7 @@ namespace Glittertind.Sherpa.Installer
         private static void ShowStartScreenAndExecuteCommand()
         {
             Console.WriteLine("Application options");
-            Console.WriteLine("Press 1 for full installation.");
+            Console.WriteLine("Press 1 for taxonomy setup.");
             Console.WriteLine("Press 2 to upload and activate sandboxed solution.");
             Console.WriteLine("Press 3 to setup site columns and content types.");
             Console.WriteLine("Press 9 to DELETE all Glittertind site columns and content types.");
@@ -114,10 +133,10 @@ namespace Glittertind.Sherpa.Installer
         private static void CreateSiteColumnsAndContentTypes(string urlToSite, SharePointOnlineCredentials credentials)
         {
             Console.WriteLine("Starting setup of site columns and content types");
-            var pathToSiteColumnJson = Path.Combine(Environment.CurrentDirectory, @"ContentTypes\Configuration\GtFields.json");
+            var pathToSiteColumnJson = Path.Combine(Environment.CurrentDirectory, @"config\gtfields.json");
             var siteColumnPersister = new FilePersistanceProvider<List<GtField>>(pathToSiteColumnJson);
-            
-            var pathToContentTypesJson = Path.Combine(Environment.CurrentDirectory, @"ContentTypes\Configuration\GtContentTypes.json");
+
+            var pathToContentTypesJson = Path.Combine(Environment.CurrentDirectory, @"config\gtcontenttypes.json");
             var contentTypePersister = new FilePersistanceProvider<List<GtContentType>>(pathToContentTypesJson);
 
             var contentTypeManager = new ContentTypeManager(urlToSite, credentials, contentTypePersister, siteColumnPersister);
@@ -142,10 +161,10 @@ namespace Glittertind.Sherpa.Installer
         [ParserState]
         public IParserState LastParserState { get; set; }
 
-        [Option('u', "urlToSite", DefaultValue = "https://pzlcloud.sharepoint.com/sites/dev-akpp", HelpText = "URL til området prosjektportalen skal installeres")]
+        [Option("url", Required = true, HelpText = "URL til området prosjektportalen skal installeres")]
         public string UrlToSite { get; set; }
 
-        [Option('n', "userName", DefaultValue = "tarjeieo@puzzlepart.com", HelpText = "Brukernavn til personen som skal installere løsningen")]
+        [Option('u', "userName", Required = true, HelpText = "Brukernavn til personen som skal installere løsningen")]
         public string UserName{ get; set; }
 
 
