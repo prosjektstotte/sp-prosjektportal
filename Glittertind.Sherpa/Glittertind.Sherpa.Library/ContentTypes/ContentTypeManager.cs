@@ -73,12 +73,8 @@ namespace Glittertind.Sherpa.Library.ContentTypes
             ClientContext.Load(webFieldCollection);
             ClientContext.ExecuteQuery();
 
-            foreach (GtField field in Fields)
+            foreach (GtField field in Fields.Where(field => !webFieldCollection.Any(item => item.InternalName == field.InternalName)))
             {
-                if (webFieldCollection.Any(item => item.InternalName == field.InternalName))
-                {
-                    continue;
-                }
                 if (field.Type.StartsWith("TaxonomyFieldType"))
                 {
                     DeleteHiddenFieldForTaxonomyField(webFieldCollection, field.ID);
