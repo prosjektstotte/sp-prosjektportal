@@ -1,0 +1,20 @@
+﻿[
+   {
+      FeatureId: "8a4b8de2-6fd8-41e9-923c-c7c3c00f8295",
+      FeatureName: "OpenInClient",
+      Scope: "Site",
+      Url: "/"
+   },
+      {
+      FeatureId: "ec918931-c874-4033-bd09-4f36b2e31fef",
+      FeatureName: "WorkflowAppOnlyPolicyManager",
+      Scope: "Web",
+      Url: "/"
+   },
+   {
+      FeatureId: "15a572c6-e545-4d32-897a-bab6f5846e18",
+      FeatureName: "SiteFeed",
+      Scope: "Web",
+      Url: "/"
+   }
+]

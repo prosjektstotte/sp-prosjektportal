@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Text;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.Publishing;
 using File = System.IO.File;
@@ -26,13 +25,14 @@ namespace Glittertind.Sherpa.Library.Deploy
         public void UploadDesignPackage(string localFilePath, string siteRelativeUrlToLibrary)
         {
             var fileName = Path.GetFileName(localFilePath);
-            if (Path.GetExtension(fileName).ToLower() != ".wsp") throw new NotSupportedException("Only WSPs can be uploaded into the SharePoint solution store. "+localFilePath + " is not a wsp");
+            var extension = Path.GetExtension(fileName);
+            if (extension != null && extension.ToLower() != ".wsp") throw new NotSupportedException("Only WSPs can be uploaded into the SharePoint solution store. "+localFilePath + " is not a wsp");
             if (string.IsNullOrEmpty(fileName) || string.IsNullOrEmpty(_urlToWeb) || string.IsNullOrEmpty(siteRelativeUrlToLibrary))
             {
                 throw new Exception("Could not create path to solution package!");
             }
 
-            var fileUrl = CombineAbsoluteUri(_urlToWeb, siteRelativeUrlToLibrary, fileName);
+            var fileUrl = UriUtilities.CombineAbsoluteUri(_urlToWeb, siteRelativeUrlToLibrary, fileName);
             UploadFileToSharePointOnline(_urlToWeb, fileUrl, localFilePath);
         }
 
@@ -77,7 +77,7 @@ namespace Glittertind.Sherpa.Library.Deploy
         /// Activates a design package based on package name
         /// Starting point: http://sharepoint.stackexchange.com/questions/90809/is-it-possible-to-activate-a-solution-using-client-code-in-sharepoint-online-201
         /// </summary>
-        /// <param name="nameOfPackage">The filename of the package</param>
+        /// <param name="filePathOrName">The filename of the package</param>
         /// <param name="siteRelativeUrlToLibrary">Site relative URL to the library of the package</param>
         public void ActivateDesignPackage(string filePathOrName, string siteRelativeUrlToLibrary)
         {
@@ -87,7 +87,7 @@ namespace Glittertind.Sherpa.Library.Deploy
             {
                 context.Credentials = _credentials;
 
-                var packageInfo = new DesignPackageInfo()
+                var packageInfo = new DesignPackageInfo
                 {
                     PackageName = nameOfPackage,
                     MajorVersion = 1,
@@ -97,7 +97,7 @@ namespace Glittertind.Sherpa.Library.Deploy
                 context.Load(context.Site);
                 context.Load(context.Web);
                 context.ExecuteQuery();
-                var fileUrl = CombineServerRelativeUri(context.Site.ServerRelativeUrl, siteRelativeUrlToLibrary, nameOfPackage +".wsp");
+                var fileUrl = UriUtilities.CombineServerRelativeUri(context.Site.ServerRelativeUrl, siteRelativeUrlToLibrary, nameOfPackage +".wsp");
 
                 Console.WriteLine("Installing solution package " + nameOfPackage);
                 Console.WriteLine("This could take a minute");
@@ -110,20 +110,6 @@ namespace Glittertind.Sherpa.Library.Deploy
                 context.ExecuteQuery();
                 Console.WriteLine("Activated package " + nameOfPackage);
             }
-        }
-
-        private string CombineServerRelativeUri(params string[] args)
-        {
-            var sb = new StringBuilder();
-            foreach (string arg in args)
-            {
-                sb.Append( "/" + arg.Trim('/'));
-            }
-            return sb.ToString();
-        }
-        private string CombineAbsoluteUri(params string[] args)
-        {
-            return CombineServerRelativeUri(args).TrimStart('/');
         }
     }
 }
