@@ -28,14 +28,14 @@ namespace Glittertind.Sherpa.Library.Taxonomy
                 // user must be termstore admin
                 context.Credentials = _credentials;
                 var termStore = GetTermStore(context);
-                var language = termStore.DefaultLanguage;
 
                 var termGroup = termStore.Groups.ToList().FirstOrDefault(g => g.Id == @group.Id) ??
                                 termStore.CreateGroup(@group.Title, @group.Id);
-
+                
                 context.Load(termGroup, x => x.TermSets);
                 context.ExecuteQuery();
-                
+
+                var language = termStore.DefaultLanguage;
                 foreach (var termSet in group.TermSets)
                 {
                     var spTermSet = termStore.GetTermSet(termSet.Id);
@@ -72,7 +72,7 @@ namespace Glittertind.Sherpa.Library.Taxonomy
             context.ExecuteQuery();
 
             TermStore termStore = taxonomySession.GetDefaultSiteCollectionTermStore();
-            context.Load(termStore, x => x.Groups, x => x.Id);
+            context.Load(termStore, x => x.Groups, x => x.Id, x=> x.DefaultLanguage);
             context.ExecuteQuery();
             return termStore;
         }
