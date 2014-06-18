@@ -52,6 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Features\WebGlittertindSitePages\WebGlittertindSitePages.feature">
+      <FeatureId>{c718f2c3-c1f0-46fc-b57f-cd064abd207b}</FeatureId>
+    </None>
     <None Include="Features\SiteCatalogLists\SiteCatalogLists.feature">
       <FeatureId>{0b6695f1-2854-4999-8959-9373f99b6bf9}</FeatureId>
     </None>
@@ -62,9 +65,19 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="SPI\Modules\SitePages\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2a91b212-5e42-4f63-a48b-59c173e8fe33}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Folder Include="SPI\Lists\" />
+
+    <Content Include="Features\WebGlittertindSitePages\WebGlittertindSitePages.Template.xml">
+      <DependentUpon>WebGlittertindSitePages.feature</DependentUpon>
+    </Content>
+    <Content Include="SPI\Modules\SitePages\Elements.xml" />
+    <Content Include="SPI\Modules\SitePages\Portefolje.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\SiteCatalogLists\SiteCatalogLists.Template.xml">
