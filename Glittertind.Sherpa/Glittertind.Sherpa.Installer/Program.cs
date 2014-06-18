@@ -1,13 +1,13 @@
 ﻿using System;
+using System.Net;
 using CommandLine;
 using CommandLine.Text;
-using Microsoft.SharePoint.Client;
 
 namespace Glittertind.Sherpa.Installer
 {
     class Program
     {
-        public static SharePointOnlineCredentials Credentials { get; set; }
+        public static ICredentials Credentials { get; set; }
         public static string UrlToSite { get; set; }
 
         static void Main(string[] args)
@@ -22,9 +22,17 @@ namespace Glittertind.Sherpa.Installer
             
             PrintLogo();
             Console.WriteLine("Glittertind Sherpa Initiated");
-            Console.WriteLine("Login to {0}", UrlToSite);
-            var authenticationHandler = new AuthenticationHandler();
-            Credentials = authenticationHandler.LoginUser(options.UserName, options.UrlToSite);
+
+            if (options.SharePointOnline)
+            {
+                Console.WriteLine("Login to {0}", UrlToSite);
+                var authenticationHandler = new AuthenticationHandler();
+                Credentials = authenticationHandler.LoginUser(options.UserName, options.UrlToSite);
+            }
+            else
+            {
+                Credentials = CredentialCache.DefaultCredentials;
+            }
             ShowStartScreenAndExecuteCommand();
         }
 
@@ -120,6 +128,8 @@ namespace Glittertind.Sherpa.Installer
         [Option('u', "userName", Required = true, HelpText = "Brukernavn til personen som skal installere løsningen")]
         public string UserName{ get; set; }
 
+        [Option('o', "online", HelpText = "Indikerer om løsningen skal installeres til SharePoint online")]
+        public bool SharePointOnline { get; set; }
 
         [HelpOption]
         public string GetUsage()

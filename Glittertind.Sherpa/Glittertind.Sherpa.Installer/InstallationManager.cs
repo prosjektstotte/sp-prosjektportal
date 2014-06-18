@@ -10,7 +10,6 @@ using Glittertind.Sherpa.Library.Features;
 using Glittertind.Sherpa.Library.Features.Model;
 using Glittertind.Sherpa.Library.Taxonomy;
 using Glittertind.Sherpa.Library.Taxonomy.Model;
-using Microsoft.SharePoint.Client;
 
 namespace Glittertind.Sherpa.Installer
 {
@@ -19,7 +18,7 @@ namespace Glittertind.Sherpa.Installer
         private readonly ICredentials _credentials;
         private readonly string _urlToSite;
 
-        public InstallationManager(string urlToSite, SharePointOnlineCredentials credentials)
+        public InstallationManager(string urlToSite, ICredentials credentials)
         {
             _urlToSite = urlToSite;
             _credentials = credentials;
