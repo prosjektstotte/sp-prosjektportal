@@ -52,10 +52,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\WebGlittertindSitePages\WebGlittertindSitePages.feature">
+    <None Include="Features\WebCatalogSitePages\WebCatalogSitePages.feature">
       <FeatureId>{c718f2c3-c1f0-46fc-b57f-cd064abd207b}</FeatureId>
     </None>
-    <None Include="Features\SiteCatalogLists\SiteCatalogLists.feature">
+    <None Include="Features\WebCatalogLists\WebCatalogLists.feature">
       <FeatureId>{0b6695f1-2854-4999-8959-9373f99b6bf9}</FeatureId>
     </None>
     <None Include="key.snk" />
@@ -81,16 +81,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Features\WebGlittertindSitePages\WebGlittertindSitePages.Template.xml">
-      <DependentUpon>WebGlittertindSitePages.feature</DependentUpon>
+    <Content Include="Features\WebCatalogSitePages\WebCatalogSitePages.Template.xml">
+      <DependentUpon>WebCatalogSitePages.feature</DependentUpon>
     </Content>
     <Content Include="SPI\ContentTypeBindings\CatalogBindings\Elements.xml" />
     <Content Include="SPI\Modules\SitePages\Elements.xml" />
     <Content Include="SPI\Modules\SitePages\Portefolje.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Features\SiteCatalogLists\SiteCatalogLists.Template.xml">
-      <DependentUpon>SiteCatalogLists.feature</DependentUpon>
+    <Content Include="Features\WebCatalogLists\WebCatalogLists.Template.xml">
+      <DependentUpon>WebCatalogLists.feature</DependentUpon>
     </Content>
     <Content Include="SPI\Lists\Kunngjoringer\Elements.xml" />
     <Content Include="SPI\Lists\Standarddokumenter\Elements.xml" />
