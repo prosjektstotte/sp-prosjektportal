@@ -24,7 +24,7 @@ namespace Glittertind.Sherpa.Installer
                 {
                     break;
                 }
-                else if (i.Key == ConsoleKey.Backspace)
+                if (i.Key == ConsoleKey.Backspace && pwd.Length > 0)
                 {
                     pwd.RemoveAt(pwd.Length - 1);
                     Console.Write("\b \b");

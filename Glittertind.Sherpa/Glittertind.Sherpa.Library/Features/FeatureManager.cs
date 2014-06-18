@@ -31,7 +31,6 @@ namespace Glittertind.Sherpa.Library.Features
             var absoluteUrlToFeatureActivationScope = GetUrlToFeatureActivationScope(featureActivation.Url);
             using (var clientContext = new ClientContext(absoluteUrlToFeatureActivationScope)
             {
-                AuthenticationMode = ClientAuthenticationMode.Default,
                 Credentials = _credentials
             })
             {
@@ -69,7 +68,7 @@ namespace Glittertind.Sherpa.Library.Features
 
             if (feature.ServerObjectIsNull != null && (bool) feature.ServerObjectIsNull)
             {
-                featureCollection.Add(featureActivation.FeatureId, false, FeatureDefinitionScope.None);
+                featureCollection.Add(featureActivation.FeatureId, true, FeatureDefinitionScope.Site);
                 clientContext.ExecuteQuery();
             }
         }
