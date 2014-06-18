@@ -10,10 +10,10 @@ namespace Glittertind.Sherpa.Library.Taxonomy
     public class TaxonomyManager : ITaxonomyManager
     {
         private readonly ICredentials _credentials;
-        private readonly string _urlToSite;
+        private readonly Uri _urlToSite;
         private IPersistanceProvider<TermSetGroup> Provider { get; set; }
 
-        public TaxonomyManager(string urlToSite, ICredentials credentials, IPersistanceProvider<TermSetGroup> provider)
+        public TaxonomyManager(Uri urlToSite, ICredentials credentials, IPersistanceProvider<TermSetGroup> provider)
         {
             Provider = provider;
             _urlToSite = urlToSite;

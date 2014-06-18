@@ -10,9 +10,9 @@ namespace Glittertind.Sherpa.Library.Deploy
     public class DeployManager : IDeployManager
     {
         private readonly ICredentials _credentials;
-        private readonly string _urlToWeb;
-        
-        public DeployManager(string urlToWeb, ICredentials credentials)
+        private readonly Uri _urlToWeb;
+
+        public DeployManager(Uri urlToWeb, ICredentials credentials)
         {
             _urlToWeb = urlToWeb;
             _credentials = credentials;
@@ -27,13 +27,13 @@ namespace Glittertind.Sherpa.Library.Deploy
             var fileName = Path.GetFileName(localFilePath);
             var extension = Path.GetExtension(fileName);
             if (extension != null && extension.ToLower() != ".wsp") throw new NotSupportedException("Only WSPs can be uploaded into the SharePoint solution store. "+localFilePath + " is not a wsp");
-            if (string.IsNullOrEmpty(fileName) || string.IsNullOrEmpty(_urlToWeb) || string.IsNullOrEmpty(siteRelativeUrlToLibrary))
+            if (string.IsNullOrEmpty(fileName) || _urlToWeb != null || string.IsNullOrEmpty(siteRelativeUrlToLibrary))
             {
                 throw new Exception("Could not create path to solution package!");
             }
 
-            var fileUrl = UriUtilities.CombineAbsoluteUri(_urlToWeb, siteRelativeUrlToLibrary, fileName);
-            UploadFileToSharePointOnline(_urlToWeb, fileUrl, localFilePath);
+            var fileUrl = UriUtilities.CombineAbsoluteUri(_urlToWeb.AbsoluteUri, siteRelativeUrlToLibrary, fileName);
+            UploadFileToSharePointOnline(_urlToWeb.AbsoluteUri, fileUrl, localFilePath);
         }
 
         /// <summary>

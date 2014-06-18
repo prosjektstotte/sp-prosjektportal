@@ -25,7 +25,7 @@ namespace Glittertind.Sherpa.Library.Test.Taxonomy
                 pw.AppendChar(c);
             }
             _testClientCredentials = new SharePointOnlineCredentials("xxx@puzzlepart.com", pw);
-            _underTest = new TaxonomyManager("https://pzlcloud.sharepoint.com/sites/dev-tormodguldvog/", _testClientCredentials, new MockTaxonmyPersistanceProvider<TermSetGroup>());
+            _underTest = new TaxonomyManager(new Uri("https://pzlcloud.sharepoint.com/sites/dev-tormodguldvog/"), _testClientCredentials, new MockTaxonmyPersistanceProvider<TermSetGroup>());
         }
 
         [Test]

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="SitePages" Url="SitePages" Path="SitePages" List="119">
+    <File Path="Portefolje.aspx" Url="Portefolje.aspx" Type="GhostableInLibrary" >
+      <Property Name="title" Value="Prosjektportal - porteføljeoversikt" ></Property>
+    </File>
+  </Module>
+</Elements>
