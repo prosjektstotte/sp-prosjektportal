@@ -2,6 +2,7 @@
 using System.Net;
 using CommandLine;
 using CommandLine.Text;
+using Microsoft.SharePoint.Client;
 
 namespace Glittertind.Sherpa.Installer
 {
@@ -12,6 +13,7 @@ namespace Glittertind.Sherpa.Installer
 
         static void Main(string[] args)
         {
+            Console.Clear();
             var options = new Options();
             if (!Parser.Default.ParseArguments(args, options))
             {
@@ -27,11 +29,16 @@ namespace Glittertind.Sherpa.Installer
             {
                 Console.WriteLine("Login to {0}", UrlToSite);
                 var authenticationHandler = new AuthenticationHandler();
-                Credentials = authenticationHandler.LoginUser(options.UserName, options.UrlToSite);
+                Credentials = authenticationHandler.GetCredentialsForSharePointOnline(options.UserName, options.UrlToSite);
             }
             else
             {
                 Credentials = CredentialCache.DefaultCredentials;
+
+                using (var context = new ClientContext(options.UrlToSite) { Credentials = Credentials})
+                {
+                    Console.WriteLine("Authenticated with default credentials");
+                }
             }
             ShowStartScreenAndExecuteCommand();
         }
@@ -125,7 +132,7 @@ namespace Glittertind.Sherpa.Installer
         [Option("url", Required = true, HelpText = "URL til området prosjektportalen skal installeres")]
         public string UrlToSite { get; set; }
 
-        [Option('u', "userName", Required = true, HelpText = "Brukernavn til personen som skal installere løsningen")]
+        [Option('u', "userName", HelpText = "Brukernavn til personen som skal installere løsningen")]
         public string UserName{ get; set; }
 
         [Option('o', "online", HelpText = "Indikerer om løsningen skal installeres til SharePoint online")]
