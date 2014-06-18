@@ -52,6 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Features\WebGlittertindSitePages\WebGlittertindSitePages.feature">
+      <FeatureId>{c718f2c3-c1f0-46fc-b57f-cd064abd207b}</FeatureId>
+    </None>
     <None Include="key.snk" />
     <None Include="Package\Package.package">
       <PackageId>{1af74622-c035-4433-b0b4-89334ad333bb}</PackageId>
@@ -59,9 +62,17 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="SPI\Modules\SitePages\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2a91b212-5e42-4f63-a48b-59c173e8fe33}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Features\" />
+    <Content Include="Features\WebGlittertindSitePages\WebGlittertindSitePages.Template.xml">
+      <DependentUpon>WebGlittertindSitePages.feature</DependentUpon>
+    </Content>
+    <Content Include="SPI\Modules\SitePages\Elements.xml" />
+    <Content Include="SPI\Modules\SitePages\Portefolje.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
