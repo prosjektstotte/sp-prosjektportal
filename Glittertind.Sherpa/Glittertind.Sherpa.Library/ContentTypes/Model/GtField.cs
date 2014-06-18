@@ -14,6 +14,8 @@ namespace Glittertind.Sherpa.Library.ContentTypes.Model
         public string[] Choices { get; set; }
         public string Format { get; set; }
         public string Default { get; set; }
+        
+        public bool Required { get; set; }
         public bool Hidden { get; set; }
 
         public Guid SspId { get; set; }

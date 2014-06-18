@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using CommandLine;
 using CommandLine.Text;
-using Glittertind.Sherpa.Library;
-using Glittertind.Sherpa.Library.ContentTypes;
-using Glittertind.Sherpa.Library.Deploy;
-using Glittertind.Sherpa.Library.ContentTypes.Model;
-using Glittertind.Sherpa.Library.Taxonomy;
-using Glittertind.Sherpa.Library.Taxonomy.Model;
 using Microsoft.SharePoint.Client;
 
 namespace Glittertind.Sherpa.Installer
@@ -27,59 +19,70 @@ namespace Glittertind.Sherpa.Installer
                 Environment.Exit(1);
             }
             UrlToSite = options.UrlToSite;
+            
             PrintLogo();
             Console.WriteLine("Glittertind Sherpa Initiated");
-            Console.Write("Insert your SharePoint online password for {0}: ", options.UserName);
-            var password = PasswordReader.GetConsoleSecurePassword();
-            Console.WriteLine();
-            Credentials = new SharePointOnlineCredentials(options.UserName, password);
-            try
-            {
-                Credentials.GetAuthenticationCookie(new Uri(UrlToSite));
-            }
-            catch (IdcrlException)
-            {
-                Console.WriteLine("Wrong password. Sorry man. Thats too bad.");
-                Console.ReadLine();
-                Environment.Exit(1);
-            }
-            Console.WriteLine("Account authenticated");
-
+            Console.WriteLine("Login to {0}", UrlToSite);
+            var authenticationHandler = new AuthenticationHandler();
+            Credentials = authenticationHandler.LoginUser(options.UserName, options.UrlToSite);
             ShowStartScreenAndExecuteCommand();
-
-            Console.WriteLine("Installation done");
-            Console.ReadKey();
         }
 
+        private static void ShowStartScreenAndExecuteCommand()
+        {
+            Console.WriteLine("Application options");
+            Console.WriteLine("Press 1 to install managed metadata groups and term sets.");
+            Console.WriteLine("Press 2 to upload and activate sandboxed solution.");
+            Console.WriteLine("Press 3 to setup site columns and content types.");
+            Console.WriteLine("Press 4 to activate features.");
+            Console.WriteLine("Press 9 to DELETE all Glittertind site columns and content types.");
+            Console.WriteLine("Press 0 to exit application.");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("Select a number to perform an operation: ");
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            var input = Console.ReadLine();
+            Console.ResetColor();
+            HandleCommandKeyPress(input);
+        }
 
         private static void HandleCommandKeyPress(string input)
         {
-            var inputNum = 0;
-            if (!int.TryParse(input, out inputNum)) Environment.Exit(0);
- 
+            int inputNum;
+            if (!int.TryParse(input, out inputNum))
+            {
+                Console.WriteLine("Invalid input");
+                ShowStartScreenAndExecuteCommand();
+            }
+            var installationManager = new InstallationManager(UrlToSite, Credentials);
             switch (inputNum)
             {
-                case (1):
+                case 1:
                 {
-                    SetupTaxonomy(UrlToSite, Credentials);
+                    installationManager.SetupTaxonomy();
                     break;
                 }
-                case (2):
+                case 2:
                 {
-                    UploadAndActivateSandboxSolution(UrlToSite, Credentials);
+                    installationManager.UploadAndActivateSandboxSolution();
                     break;
                 }
-                case (3):
+                case 3:
                 {
-                    CreateSiteColumnsAndContentTypes(UrlToSite, Credentials);
+                    installationManager.CreateSiteColumnsAndContentTypes();
                     break;
                 }
-                case (9):
+                case 4:
                 {
-                    DeleteAllGlittertindSiteColumnsAndContentTypes(UrlToSite, Credentials);
+                    installationManager.ActivateFeatures();
                     break;
                 }
-                case (0):
+                case 9:
+                {
+                    installationManager.DeleteAllGlittertindSiteColumnsAndContentTypes();
+                    break;
+                }
+                case 0:
                 {
                     Environment.Exit(0);
                     break;
@@ -94,64 +97,6 @@ namespace Glittertind.Sherpa.Installer
             ShowStartScreenAndExecuteCommand();
         }
 
-        private static void SetupTaxonomy(string urlToSite, SharePointOnlineCredentials credentials)
-        {
-            Console.WriteLine("Starting setup of tax");
-            var path = Path.Combine(Environment.CurrentDirectory, @"config\gttaxonomy.json");
-            var taxPersistanceProvider = new FilePersistanceProvider<TermSetGroup>(path);
-            var taxonomyManager = new TaxonomyManager(urlToSite, credentials, taxPersistanceProvider);
-            taxonomyManager.WriteTaxonomyToTermStore();
-        }
-
-        private static void DeleteAllGlittertindSiteColumnsAndContentTypes(string urlToSite, SharePointOnlineCredentials credentials)
-        {
-            var contentTypeManager = new ContentTypeManager(urlToSite, credentials);
-            contentTypeManager.DeleteAllGlittertindSiteColumnsAndContentTypes("Glittertind");
-            contentTypeManager.DisposeContext();
-        }
-
-        private static void ShowStartScreenAndExecuteCommand()
-        {
-            Console.WriteLine("Application options");
-            Console.WriteLine("Press 1 for taxonomy setup.");
-            Console.WriteLine("Press 2 to upload and activate sandboxed solution.");
-            Console.WriteLine("Press 3 to setup site columns and content types.");
-            Console.WriteLine("Press 9 to DELETE all Glittertind site columns and content types.");
-            Console.WriteLine("Press 0 to exit application.");
-            Console.Write("Select a number to perform an operation: ");
-            var input = Console.ReadLine();
-            HandleCommandKeyPress(input);
-        }
-
-        private static void UploadAndActivateSandboxSolution(string urlToSite, SharePointOnlineCredentials credentials)
-        {
-            var pathToSandboxedSolution = Path.Combine(Environment.CurrentDirectory,"solutions");
-            var files = Directory.GetFiles(pathToSandboxedSolution);
-            var deployManager = new DeployManager(urlToSite, credentials);
-            foreach (var file in files)
-            {
-                deployManager.UploadDesignPackage(file, "SiteAssets");
-                deployManager.ActivateDesignPackage(file, "SiteAssets");
-            }
-            
-           
-            
-        }
-
-        private static void CreateSiteColumnsAndContentTypes(string urlToSite, SharePointOnlineCredentials credentials)
-        {
-            Console.WriteLine("Starting setup of site columns and content types");
-            var pathToSiteColumnJson = Path.Combine(Environment.CurrentDirectory, @"config\gtfields.json");
-            var siteColumnPersister = new FilePersistanceProvider<List<GtField>>(pathToSiteColumnJson);
-
-            var pathToContentTypesJson = Path.Combine(Environment.CurrentDirectory, @"config\gtcontenttypes.json");
-            var contentTypePersister = new FilePersistanceProvider<List<GtContentType>>(pathToContentTypesJson);
-
-            var contentTypeManager = new ContentTypeManager(urlToSite, credentials, contentTypePersister, siteColumnPersister);
-            contentTypeManager.CreateSiteColumns();
-            contentTypeManager.CreateContentTypes();
-            contentTypeManager.DisposeContext();
-        }
 
         private static void PrintLogo()
         {
