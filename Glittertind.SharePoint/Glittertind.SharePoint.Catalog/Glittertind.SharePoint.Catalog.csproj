@@ -52,6 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Features\SiteCatalogLists\SiteCatalogLists.feature">
+      <FeatureId>{0b6695f1-2854-4999-8959-9373f99b6bf9}</FeatureId>
+    </None>
     <None Include="key.snk" />
     <None Include="Package\Package.package">
       <PackageId>{1af74622-c035-4433-b0b4-89334ad333bb}</PackageId>
@@ -61,8 +64,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\" />
     <Folder Include="SPI\Lists\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Features\SiteCatalogLists\SiteCatalogLists.Template.xml">
+      <DependentUpon>SiteCatalogLists.feature</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
