@@ -16,5 +16,11 @@
       FeatureName: "SiteFeed",
       Scope: "Web",
       Url: "/"
+   },
+   {
+      FeatureId: "acb15743-f07b-4c83-8af3-ffcfdf354965",
+      FeatureName: "SearchConfigList",
+      Scope: "Web",
+      Url: "/"
    }
 ]

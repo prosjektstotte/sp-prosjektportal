@@ -52,6 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Features\SiteSearchSettings\SiteSearchSettings.feature">
+      <FeatureId>{67ce64ae-3931-4a84-ac39-ad77a93f5b28}</FeatureId>
+    </None>
     <None Include="Features\WebGlittertindSitePages\WebGlittertindSitePages.feature">
       <FeatureId>{c718f2c3-c1f0-46fc-b57f-cd064abd207b}</FeatureId>
     </None>
@@ -76,15 +79,25 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="SPI\Modules\SearchConfig\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{cdfc3114-1f0d-4a1b-955a-d118b3d21794}</SharePointProjectItemId>
+    </None>
     <None Include="SPI\Modules\SitePages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2a91b212-5e42-4f63-a48b-59c173e8fe33}</SharePointProjectItemId>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Features\SiteSearchSettings\SiteSearchSettings.Template.xml">
+      <DependentUpon>SiteSearchSettings.feature</DependentUpon>
+    </Content>
     <Content Include="Features\WebGlittertindSitePages\WebGlittertindSitePages.Template.xml">
       <DependentUpon>WebGlittertindSitePages.feature</DependentUpon>
     </Content>
     <Content Include="SPI\ContentTypeBindings\CatalogBindings\Elements.xml" />
+    <Content Include="SPI\Modules\SearchConfig\Elements.xml" />
+    <Content Include="SPI\Modules\SearchConfig\SearchConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SPI\Modules\SitePages\Elements.xml" />
     <Content Include="SPI\Modules\SitePages\Portefolje.aspx" />
   </ItemGroup>
