@@ -16,9 +16,9 @@ namespace Glittertind.Sherpa.Installer
     class InstallationManager
     {
         private readonly ICredentials _credentials;
-        private readonly string _urlToSite;
+        private readonly Uri _urlToSite;
 
-        public InstallationManager(string urlToSite, ICredentials credentials)
+        public InstallationManager(Uri urlToSite, ICredentials credentials)
         {
             _urlToSite = urlToSite;
             _credentials = credentials;

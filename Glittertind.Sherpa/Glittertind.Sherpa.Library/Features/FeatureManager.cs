@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using Glittertind.Sherpa.Library.Features.Model;
 using Microsoft.SharePoint.Client;
@@ -7,11 +8,11 @@ namespace Glittertind.Sherpa.Library.Features
 {
     public class FeatureManager : IFeatureManager
     {
-        private readonly string _urlToSite;
+        private readonly Uri _urlToSite;
         private readonly ICredentials _credentials;
         private readonly List<GtFeatureActivation> _featureActivations;
 
-        public FeatureManager(string urlToSite, ICredentials credentials, IPersistanceProvider<List<GtFeatureActivation>> featurePersistanceProvider)
+        public FeatureManager(Uri urlToSite, ICredentials credentials, IPersistanceProvider<List<GtFeatureActivation>> featurePersistanceProvider)
         {
             _urlToSite = urlToSite;
             _credentials = credentials;
@@ -76,7 +77,7 @@ namespace Glittertind.Sherpa.Library.Features
         private string GetUrlToFeatureActivationScope(string relativeOrAbsoluteUrl)
         {
             if (relativeOrAbsoluteUrl.StartsWith("/"))
-                return UriUtilities.CombineAbsoluteUri(_urlToSite, relativeOrAbsoluteUrl);
+                return UriUtilities.CombineAbsoluteUri(_urlToSite.AbsoluteUri, relativeOrAbsoluteUrl);
             return relativeOrAbsoluteUrl;
         }
     }

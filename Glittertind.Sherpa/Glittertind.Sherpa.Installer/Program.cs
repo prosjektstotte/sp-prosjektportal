@@ -8,7 +8,7 @@ namespace Glittertind.Sherpa.Installer
     class Program
     {
         public static ICredentials Credentials { get; set; }
-        public static string UrlToSite { get; set; }
+        public static Uri UrlToSite { get; set; }
 
         static void Main(string[] args)
         {
@@ -18,7 +18,7 @@ namespace Glittertind.Sherpa.Installer
                 options.GetUsage();
                 Environment.Exit(1);
             }
-            UrlToSite = options.UrlToSite;
+            UrlToSite = new Uri(options.UrlToSite);
             
             PrintLogo();
             Console.WriteLine("Glittertind Sherpa Initiated");

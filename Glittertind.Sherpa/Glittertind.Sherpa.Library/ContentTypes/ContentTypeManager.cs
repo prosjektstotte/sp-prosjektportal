@@ -24,7 +24,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes
         /// <param name="credentials"></param>
         /// <param name="contentTypeProvider"></param>
         /// <param name="fieldProvider"></param>
-        public ContentTypeManager(string urlToSite, ICredentials credentials, IPersistanceProvider<List<GtContentType>> contentTypeProvider, IPersistanceProvider<List<GtField>> fieldProvider)
+        public ContentTypeManager(Uri urlToSite, ICredentials credentials, IPersistanceProvider<List<GtContentType>> contentTypeProvider, IPersistanceProvider<List<GtField>> fieldProvider)
         {
             ClientContext = new ClientContext(urlToSite)
             {
@@ -41,7 +41,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes
         /// </summary>
         /// <param name="urlToSite"></param>
         /// <param name="credentials"></param>
-        public ContentTypeManager(string urlToSite, ICredentials credentials)
+        public ContentTypeManager(Uri urlToSite, ICredentials credentials)
         {
             ClientContext = new ClientContext(urlToSite)
             {
@@ -54,7 +54,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes
         {
             Fields = fieldProvider.Load();
 
-            var termStoreId = new TaxonomyManager(ClientContext.Url, ClientContext.Credentials, null).GetTermStoreId();
+            var termStoreId = new TaxonomyManager(new Uri(ClientContext.Url), ClientContext.Credentials, null).GetTermStoreId();
             foreach (GtField field in Fields.Where(column => column.Type.StartsWith("TaxonomyFieldType")))
             {
                 field.InitializeTaxonomyProperties(termStoreId);
