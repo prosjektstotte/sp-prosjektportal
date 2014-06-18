@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
+    <Folder Include="SPI\Lists\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
