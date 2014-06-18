@@ -5,7 +5,7 @@ namespace Glittertind.Sherpa.Installer
 {
     public class AuthenticationHandler
     {
-        public SharePointOnlineCredentials LoginUser(string userName, string urlToSite)
+        public SharePointOnlineCredentials GetCredentialsForSharePointOnline(string userName, string urlToSite)
         {
             while (true)
             {
