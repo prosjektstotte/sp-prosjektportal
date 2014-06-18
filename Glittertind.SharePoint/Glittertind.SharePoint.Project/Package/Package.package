@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" 
+        Id="1ed8092a-891d-44a5-a8bc-ea5af0817ccb" 
+        solutionId="1ed8092a-891d-44a5-a8bc-ea5af0817ccb" 
+        xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" 
+        name="Glittertind.SharePoint.Project"
+        sharePointProductVersion="15.0">
+</package>

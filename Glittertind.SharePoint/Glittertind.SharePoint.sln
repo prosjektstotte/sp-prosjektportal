@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glittertind.SharePoint.Package", "Glittertind.SharePoint.Package\Glittertind.SharePoint.Package.csproj", "{3AD6083E-40FC-4772-94F4-AEB58CB35659}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9D6EE420-C3BB-4E59-9D4B-BF17FA8DD592} = {9D6EE420-C3BB-4E59-9D4B-BF17FA8DD592}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glittertind.SharePoint.Catalog", "Glittertind.SharePoint.Catalog\Glittertind.SharePoint.Catalog.csproj", "{9D6EE420-C3BB-4E59-9D4B-BF17FA8DD592}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glittertind.SharePoint.Project", "Glittertind.SharePoint.Project\Glittertind.SharePoint.Project.csproj", "{264591DA-9E83-4968-AFEB-E4C95B9F2F07}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AD6083E-40FC-4772-94F4-AEB58CB35659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AD6083E-40FC-4772-94F4-AEB58CB35659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AD6083E-40FC-4772-94F4-AEB58CB35659}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3AD6083E-40FC-4772-94F4-AEB58CB35659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AD6083E-40FC-4772-94F4-AEB58CB35659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AD6083E-40FC-4772-94F4-AEB58CB35659}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9D6EE420-C3BB-4E59-9D4B-BF17FA8DD592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D6EE420-C3BB-4E59-9D4B-BF17FA8DD592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D6EE420-C3BB-4E59-9D4B-BF17FA8DD592}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9D6EE420-C3BB-4E59-9D4B-BF17FA8DD592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D6EE420-C3BB-4E59-9D4B-BF17FA8DD592}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D6EE420-C3BB-4E59-9D4B-BF17FA8DD592}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{264591DA-9E83-4968-AFEB-E4C95B9F2F07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{264591DA-9E83-4968-AFEB-E4C95B9F2F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{264591DA-9E83-4968-AFEB-E4C95B9F2F07}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{264591DA-9E83-4968-AFEB-E4C95B9F2F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{264591DA-9E83-4968-AFEB-E4C95B9F2F07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{264591DA-9E83-4968-AFEB-E4C95B9F2F07}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
