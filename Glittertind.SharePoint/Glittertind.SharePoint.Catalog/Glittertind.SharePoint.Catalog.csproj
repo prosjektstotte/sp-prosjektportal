@@ -62,14 +62,24 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="SPI\CTBindings\Standarddokumenter\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a23aa376-4798-4310-bd32-79a6de454106}</SharePointProjectItemId>
+    </None>
+    <None Include="SPI\Lists\Kunngjoringer\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4deb663b-e46c-4fb6-aab4-71ca5dadc2c8}</SharePointProjectItemId>
+    </None>
+    <None Include="SPI\Lists\Standarddokumenter\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{72a7d104-c204-4428-a15c-55ebd4f7c8e7}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SPI\Lists\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Features\SiteCatalogLists\SiteCatalogLists.Template.xml">
       <DependentUpon>SiteCatalogLists.feature</DependentUpon>
     </Content>
+    <Content Include="SPI\CTBindings\Standarddokumenter\Elements.xml" />
+    <Content Include="SPI\Lists\Kunngjoringer\Elements.xml" />
+    <Content Include="SPI\Lists\Standarddokumenter\Elements.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
