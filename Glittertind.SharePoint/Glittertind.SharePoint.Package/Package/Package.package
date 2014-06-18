@@ -3,5 +3,6 @@
   <features>
     <featureReference itemId="c718f2c3-c1f0-46fc-b57f-cd064abd207b" projectPath="..\Glittertind.SharePoint.Catalog\Glittertind.SharePoint.Catalog.csproj" />
     <featureReference itemId="67ce64ae-3931-4a84-ac39-ad77a93f5b28" projectPath="..\Glittertind.SharePoint.Catalog\Glittertind.SharePoint.Catalog.csproj" />
+    <featureReference itemId="0b6695f1-2854-4999-8959-9373f99b6bf9" projectPath="..\Glittertind.SharePoint.Catalog\Glittertind.SharePoint.Catalog.csproj" />
   </features>
 </package>
