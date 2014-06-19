@@ -28,6 +28,11 @@
       FeatureName: "WebCatalogSitePages",
       Scope: "Web",
       Url: "/"
-   }
-
+   },
+    {
+    FeatureId: "97f310cf-bc74-494f-8fc0-b6a3dd3bf42a",
+    FeatureName: "WebSiteAssets",
+    Scope: "Web",
+    Url: "/"
+}
 ]
