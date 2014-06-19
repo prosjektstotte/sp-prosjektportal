@@ -27,13 +27,15 @@
 <asp:Content ID="Content9" ContentPlaceHolderID="PlaceHolderBodyAreaClass" runat="server">
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
-	<h1>Opprett nytt prosjektområde</h1>
-    <div class="projectInputForm">
-        <label for="projectNameInput">Navn</label><input id="projectNameInput" type="text" placeholder="Prosjektets navn" autofocus required />
-        <label for="projectUrlInput">URL-kortnavn</label><input id="projectUrlInput" type="text" placeholder="Kortnavn som brukes i URL" required />
-        <label for="projectDescriptionInput">Beskrivelse</label><textarea id="projectDescriptionInput" type="text" cols="40" rows="3" placeholder="Beskrivelse av prosjektområdet"></textarea>
-        <label id="projectValidation" ></label>
-        <button id="createProjectBtn" onclick=" GT.Provisioning.CreateWebFromCustomForm()">Opprett prosjektområde</button>
+	<div class="newProjectPage">
+		<h1>Opprett nytt prosjektområde</h1>
+	    <div class="projectInputForm">
+	        <label for="projectNameInput">Navn</label><input id="projectNameInput" type="text" placeholder="Prosjektets navn" autofocus required />
+	        <label for="projectUrlInput">URL-kortnavn</label><input id="projectUrlInput" type="text" placeholder="Kortnavn som brukes i URL" required />
+	        <label for="projectDescriptionInput">Beskrivelse</label><textarea id="projectDescriptionInput" type="text" cols="40" rows="3" placeholder="Beskrivelse av prosjektområdet"></textarea>
+	        <div id="projectValidation" ></div>
+	        <button id="createProjectBtn" onclick="GT.Provisioning.CreateWebFromCustomForm(); return false;">Opprett prosjektområde</button>
+	    </div>
     </div>
     <link type="text/css" rel="stylesheet" href="../SiteAssets/css/gt.style.css"/>
     <script type="text/javascript" src="../SiteAssets/javascript/jquery-2.1.1.min.js"></script>
