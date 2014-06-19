@@ -53,11 +53,11 @@
     <table width="100%" cellpadding="0" cellspacing="0" style="padding: 5px 10px 10px 10px;">
         <tr>
             <td valign="top" width="20%">
-                <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Left%>" ID="WebPartZone1" Orientation="Vertical" />
+                <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Left%>" ID="LeftColumn" Orientation="Vertical" />
                 &#160;
             </td>
             <td valign="top" width="60%">
-                <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Center%>" ID="LeftColumn" Orientation="Vertical" />
+                <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Center%>" ID="CenterColumn" Orientation="Vertical" />
                 &#160;
             </td>
             <td>&#160;</td>
