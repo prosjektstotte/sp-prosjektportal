@@ -52,6 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Features\WebSiteAssets\WebSiteAssets.feature">
+      <FeatureId>{183e9372-efbb-40d6-b5ee-0b5a05e7b249}</FeatureId>
+    </None>
     <None Include="Features\SiteSearchSettings\SiteSearchSettings.feature">
       <FeatureId>{67ce64ae-3931-4a84-ac39-ad77a93f5b28}</FeatureId>
     </None>
@@ -90,11 +93,19 @@
     <None Include="SPI\Modules\SearchConfig\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cdfc3114-1f0d-4a1b-955a-d118b3d21794}</SharePointProjectItemId>
     </None>
+    <Content Include="SPI\Modules\SiteAssets\css\gt.style.css" />
+    <Content Include="SPI\Modules\SiteAssets\javascript\gt.provisioning.js" />
+    <None Include="SPI\Modules\SiteAssets\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f490f26c-843e-4186-9952-e873c4124e07}</SharePointProjectItemId>
+    </None>
     <None Include="SPI\Modules\SitePages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2a91b212-5e42-4f63-a48b-59c173e8fe33}</SharePointProjectItemId>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Features\WebSiteAssets\WebSiteAssets.Template.xml">
+      <DependentUpon>WebSiteAssets.feature</DependentUpon>
+    </Content>
     <Content Include="Features\SiteSearchSettings\SiteSearchSettings.Template.xml">
       <DependentUpon>SiteSearchSettings.feature</DependentUpon>
     </Content>
@@ -107,6 +118,9 @@
     <Content Include="SPI\Modules\SearchConfig\SearchSettings.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="SPI\Modules\SiteAssets\Elements.xml" />
+    <Content Include="SPI\Modules\SiteAssets\javascript\jquery-2.1.1.min.js" />
+    <Content Include="SPI\Modules\SitePages\OpprettProsjekt.aspx" />
     <Content Include="SPI\Modules\SitePages\Elements.xml" />
     <Content Include="SPI\Modules\SitePages\Portefolje.aspx" />
   </ItemGroup>

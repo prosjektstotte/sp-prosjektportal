@@ -4,13 +4,10 @@
     <File Path="Portefolje.aspx" Url="Portefolje.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE">
       <Property Name="title" Value="Prosjektportal - porteføljeoversikt" ></Property>
       <AllUsersWebPart WebPartOrder="1" WebPartZoneID="LeftColumn">
-
-      </AllUsersWebPart>
-      <AllUsersWebPart WebPartOrder="1" WebPartZoneID="LeftColumn">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="Microsoft.Office.Server.Search.WebControls.RefinementScriptWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <type name="Microsoft.Office.Server.Search.WebControls.RefinementScriptWebPart, Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
       <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
     </metaData>
     <data>
@@ -88,7 +85,7 @@
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="Microsoft.Office.Server.Search.WebControls.SearchBoxScriptWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <type name="Microsoft.Office.Server.Search.WebControls.SearchBoxScriptWebPart, Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
       <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
     </metaData>
     <data>
@@ -152,7 +149,7 @@
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
       <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
     </metaData>
     <data>
@@ -260,7 +257,7 @@
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
       <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
     </metaData>
     <data>
@@ -330,6 +327,9 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
+    </File>
+    <File Path="OpprettProsjekt.aspx" Url="OpprettProsjekt.aspx" Type="GhostableInLibrary" >
+      <Property Name="title" Value="Prosjektportal - opprett nytt prosjekt" ></Property>
     </File>
   </Module>
 </Elements>
