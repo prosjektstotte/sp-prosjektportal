@@ -4,5 +4,8 @@
     <File Path="Portefolje.aspx" Url="Portefolje.aspx" Type="GhostableInLibrary" >
       <Property Name="title" Value="Prosjektportal - porteføljeoversikt" ></Property>
     </File>
+    <File Path="OpprettProsjekt.aspx" Url="OpprettProsjekt.aspx" Type="GhostableInLibrary" >
+      <Property Name="title" Value="Prosjektportal - opprett nytt prosjekt" ></Property>
+    </File>
   </Module>
 </Elements>
