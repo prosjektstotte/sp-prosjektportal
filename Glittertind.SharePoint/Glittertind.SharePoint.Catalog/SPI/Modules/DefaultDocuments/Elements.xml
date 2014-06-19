@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="DefaultDocuments" Path="DefaultDocuments" Url="Lists/Standarddokumenter" List="101">
+    <File Path="Gevinstrealiseringsplan.docx" Url="Gevinstrealiseringsplan.docx" Type="GhostableInLibrary" ReplaceContent="FALSE" IgnoreIfAlreadyExists="TRUE" />
+    <File Path="Prosjektforslag.docx" Url="Prosjektforslag.docx" Type="GhostableInLibrary" ReplaceContent="FALSE" IgnoreIfAlreadyExists="TRUE" />
+    <File Path="Prosjektmandat.docx" Url="Prosjektmandat.docx" Type="GhostableInLibrary" ReplaceContent="FALSE" IgnoreIfAlreadyExists="TRUE" />
+    <File Path="Sluttrapport.docx" Url="Sluttrapport.docx" Type="GhostableInLibrary" ReplaceContent="FALSE" IgnoreIfAlreadyExists="TRUE" />
+    <File Path="Styringsdokumentasjon.docx" Url="Styringsdokumentasjon.docx" Type="GhostableInLibrary" ReplaceContent="FALSE" IgnoreIfAlreadyExists="TRUE" />
+  </Module>
+</Elements>

@@ -79,6 +79,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="SPI\Modules\DefaultDocuments\Gevinstrealiseringsplan.docx" />
+    <None Include="SPI\Modules\DefaultDocuments\Prosjektforslag.docx" />
+    <None Include="SPI\Modules\DefaultDocuments\Prosjektmandat.docx" />
+    <None Include="SPI\Modules\DefaultDocuments\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e9afb12f-7344-4716-8c81-f637d12e009d}</SharePointProjectItemId>
+    </None>
+    <None Include="SPI\Modules\DefaultDocuments\Sluttrapport.docx" />
+    <None Include="SPI\Modules\DefaultDocuments\Styringsdokumentasjon.docx" />
     <None Include="SPI\Modules\SearchConfig\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cdfc3114-1f0d-4a1b-955a-d118b3d21794}</SharePointProjectItemId>
     </None>
@@ -94,6 +102,7 @@
       <DependentUpon>WebCatalogSitePages.feature</DependentUpon>
     </Content>
     <Content Include="SPI\ContentTypeBindings\CatalogBindings\Elements.xml" />
+    <Content Include="SPI\Modules\DefaultDocuments\Elements.xml" />
     <Content Include="SPI\Modules\SearchConfig\Elements.xml" />
     <Content Include="SPI\Modules\SearchConfig\SearchConfig.xml">
       <SubType>Designer</SubType>
