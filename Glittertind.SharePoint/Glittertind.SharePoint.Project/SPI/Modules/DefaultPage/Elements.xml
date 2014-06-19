@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="DefaultPage" Url="SitePages" Path="DefaultPage" List="119">
+    <File Path="Forside.aspx" Url="Forside.aspx" Type="GhostableInLibrary" >
+      <Property Name="ContentType" Value="Prosjektforside" />
+    </File>
+  </Module>
+</Elements>

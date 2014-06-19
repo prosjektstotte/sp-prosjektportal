@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Title="$Resources:onet_TeamWebSite;" Revision="3" ListDir="$Resources:core,lists_Folder;" xmlns:ows="Microsoft SharePoint" UIVersion="15" HideSiteContentsLink="true" >
+  <NavBars>
+    <NavBar Name="$Resources:core,category_Top;" Separator="&amp;nbsp;&amp;nbsp;&amp;nbsp;" Body="&lt;a ID='onettopnavbar#LABEL_ID#' href='#URL#' accesskey='J'&gt;#LABEL#&lt;/a&gt;" ID="1002" />
+    <NavBar Name="$Resources:core,category_NavHome;" Prefix="&lt;table border='0' cellpadding='4' cellspacing='0'&gt;" Body="&lt;tr&gt;&lt;td&gt;&lt;table border='0' cellpadding='0' cellspacing='0'&gt;&lt;tr&gt;&lt;td&gt;&lt;img src='/_layouts/15/images/blank.gif' id='100' alt='' border='0'&gt;&amp;nbsp;&lt;/td&gt;&lt;td valign='top'&gt;&lt;a id='onetleftnavbar#LABEL_ID#' href='#URL#'&gt;#LABEL#&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;" Suffix="&lt;/table&gt;" ID="1031" />
+    <NavBar Name="$Resources:core,category_SiteContents;" Prefix="&lt;table border='0' cellpadding='4' cellspacing='0'&gt;" Body="&lt;tr&gt;&lt;td&gt;&lt;table border='0' cellpadding='0' cellspacing='0'&gt;&lt;tr&gt;&lt;td&gt;&lt;img src='/_layouts/15/images/blank.gif' id='100' alt='' border='0'&gt;&amp;nbsp;&lt;/td&gt;&lt;td valign='top'&gt;&lt;a id='onetleftnavbar#LABEL_ID#' href='#URL#'&gt;#LABEL#&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;" Suffix="&lt;/table&gt;" ID="1034" />
+    <NavBar Name="$Resources:core,SiteSettings_SearchNav_Title;" Separator="&amp;nbsp;&amp;nbsp;&amp;nbsp;" Body="&lt;a ID='onettopnavbar#LABEL_ID#' href='#URL#' accesskey='J'&gt;#LABEL#&lt;/a&gt;" ID="1040" />
+  </NavBars>
+  <ListTemplates>
+  </ListTemplates>
+  <Configurations>
+    <Configuration ID="-1" Name="NewWeb" MasterUrl="_catalogs/masterpage/seattle.master" />
+    <Configuration ID="0" Name="Default" MasterUrl="_catalogs/masterpage/seattle.master" >
+      <Lists></Lists>
+      <Modules>
+      </Modules>
+      <SiteFeatures>
+        <!-- BasicWebParts Feature -->
+        <Feature ID="00BFEA71-1C5E-4A24-B310-BA51C3EB7A57" />
+        <!-- OOTB: Taxonomy -->
+        <Feature ID="73EF14B1-13A9-416b-A9B5-ECECA2B0604C" />
+      </SiteFeatures>
+      <WebFeatures>
+        <!--OOB FEATURES-->
+        <!-- TeamCollab Feature -->
+        <Feature ID="00BFEA71-4EA5-48D4-A4AD-7EA5C011ABE5" />
+        <!-- WikiPageHomePage Feature -->
+        <Feature ID="00BFEA71-D8FE-4FEC-8DAD-01C19A6E4053" />
+        <!-- SiteNotebook Feature -->
+        <Feature ID="F151BB39-7C3B-414F-BB36-6BF18872052F" />
+        <!-- Getting Started List instance -->
+        <Feature ID="4AEC7207-0D02-4f4f-AA07-B370199CD0C7" />
+        <!-- MDS -->
+        <Feature ID="87294C72-F260-42f3-A41B-981A2FFCE37A" />
+        <!-- Site feed (for the comments web part) -->
+        <Feature ID="15a572c6-e545-4d32-897a-bab6f5846e18" />
+        <!-- Following content -->
+        <Feature ID="a7a2793e-67cd-4dc1-9fd0-43f61581207a" />
+        <!-- CUSTOM FEATURES-->
+        <!-- Content type binding -->
+        <Feature ID="c6acf269-fa5c-4821-8b40-3bb58f0b9fb8" />
+        <!-- Frontpage -->
+        <Feature ID="0afd3c78-c2b0-4f96-a787-78c2f75f8f92" />
+      </WebFeatures>
+    </Configuration>
+  </Configurations>
+  <Modules>
+  </Modules>
+  <ServerEmailFooter>$Resources:ServerEmailFooter;</ServerEmailFooter>
+</Project>

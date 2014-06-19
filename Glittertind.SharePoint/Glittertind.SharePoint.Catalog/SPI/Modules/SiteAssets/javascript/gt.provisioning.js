@@ -33,8 +33,7 @@ GT.Provisioning.CreateWebFromCustomForm = function () {
 };
 
 GT.Provisioning.CreateWeb = function (webTitle, webUrl, webDescription) {
-	// Just insert your reference to your feature and webtemplate here
-	var webTemplate = 'STS#0'; //'{4a110786-9683-4734-97ca-f2eca95ca377}#WTProject';
+    var webTemplate = '{9CA326D3-723F-4E65-B8F9-DB7E18802AC4}#ProjectWebTemplate';
 	var webLanguage = 1044;
 
 	var clientContext = SP.ClientContext.get_current();

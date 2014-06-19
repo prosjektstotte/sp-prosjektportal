@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <WebTemplate
+           Name="ProjectWebTemplate"
+           BaseTemplateName="STS"
+           BaseTemplateID="1"
+           BaseConfigurationID="0"
+           Title="Prosjektområde"
+           Description=""
+           DisplayCategory="Glittertind"/>
+</Elements>

@@ -52,6 +52,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Features\WebProjectFrontPage\WebProjectFrontPage.feature">
+      <FeatureId>{febaf00e-518a-4fe4-a685-edfa07dafb99}</FeatureId>
+    </None>
+    <None Include="Features\WebContentTypeBindings\WebContentTypeBindings.feature">
+      <FeatureId>{69159289-f11f-4be5-b957-d2e40e3d966a}</FeatureId>
+    </None>
+    <None Include="Features\SiteProjectWebTemplate\SiteProjectWebTemplate.feature">
+      <FeatureId>{e1328cd5-ddcf-486e-a8d0-d8f7446c7220}</FeatureId>
+    </None>
     <None Include="key.snk" />
     <None Include="Package\Package.package">
       <PackageId>{1ed8092a-891d-44a5-a8bc-ea5af0817ccb}</PackageId>
@@ -59,9 +68,36 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="SPI\Modules\ContentTypeBindings\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{435fcf98-2f03-46af-a751-f5c8a7c174dd}</SharePointProjectItemId>
+    </None>
+    <None Include="SPI\Modules\DefaultPage\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{162bc79e-9156-42c0-b87b-ce37db39e48f}</SharePointProjectItemId>
+    </None>
+    <None Include="SPI\Modules\ProjectWebTemplate\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{43ae03b5-e9f1-4e0e-b6d2-8dc8b0770f01}</SharePointProjectItemId>
+    </None>
+    <None Include="SPI\Modules\PropertyBag\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5d90b9e2-28ce-472a-9b78-10afb6158b97}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Features\" />
+    <Content Include="Features\WebProjectFrontPage\WebProjectFrontPage.Template.xml">
+      <DependentUpon>WebProjectFrontPage.feature</DependentUpon>
+    </Content>
+    <Content Include="Features\WebContentTypeBindings\WebContentTypeBindings.Template.xml">
+      <DependentUpon>WebContentTypeBindings.feature</DependentUpon>
+    </Content>
+    <Content Include="Features\SiteProjectWebTemplate\SiteProjectWebTemplate.Template.xml">
+      <DependentUpon>SiteProjectWebTemplate.feature</DependentUpon>
+    </Content>
+    <Content Include="SPI\Modules\ContentTypeBindings\Elements.xml" />
+    <Content Include="SPI\Modules\DefaultPage\Elements.xml" />
+    <Content Include="SPI\Modules\DefaultPage\Forside.aspx" />
+    <Content Include="SPI\Modules\ProjectWebTemplate\Elements.xml" />
+    <Content Include="SPI\Modules\ProjectWebTemplate\Onet.xml" />
+    <Content Include="SPI\Modules\PropertyBag\Elements.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
