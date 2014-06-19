@@ -95,7 +95,7 @@
     </Content>
     <Content Include="SPI\ContentTypeBindings\CatalogBindings\Elements.xml" />
     <Content Include="SPI\Modules\SearchConfig\Elements.xml" />
-    <Content Include="SPI\Modules\SearchConfig\SearchConfig.xml">
+    <Content Include="SPI\Modules\SearchConfig\SearchSettings.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="SPI\Modules\SitePages\Elements.xml" />
