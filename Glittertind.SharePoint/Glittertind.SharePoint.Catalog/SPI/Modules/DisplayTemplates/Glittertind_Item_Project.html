@@ -5,13 +5,13 @@
 <!--[if gte mso 9]><xml>
 <mso:CustomDocumentProperties>
 <mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
-<mso:ManagedPropertyMapping msdt:dt="string">'Path':'Path','Title':'Title', 'ProjectManager':'GtProjectManagerOWSUSER','ProjectOwner':'GtProjectOwnerOWSUSER'</mso:ManagedPropertyMapping>
+<mso:ManagedPropertyMapping msdt:dt="string">'Path':'Path','Title':'Title', 'ProjectManager':'GtProjectManagerOWSUSER','ProjectOwner':'GtProjectOwnerOWSUSER','ProjectPhase':'owstaxIdGtProjectPhase'</mso:ManagedPropertyMapping>
 <mso:MasterPageDescription msdt:dt="string">Glittertind visningsmal for å vise prosjekter</mso:MasterPageDescription>
 <mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106603</mso:ContentTypeId>
 <mso:TargetControlType msdt:dt="string">;#Content Web Parts;#SearchResults;#</mso:TargetControlType>
 <mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
 <mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
-<mso:HtmlDesignStatusAndPreview msdt:dt="string">https://pzlcloud.sharepoint.com/sites/dev-akpp-olekms/_catalogs/masterpage/Display Templates/Search/Glittertind_Item_Project.html, Konverteringen er fullført.</mso:HtmlDesignStatusAndPreview>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">https://pzlcloud.sharepoint.com/sites/dev-tormodguldvog/_catalogs/masterpage/Display Templates/Search/Glittertind_Item_Project.html, Konverteringen er fullført.</mso:HtmlDesignStatusAndPreview>
 </mso:CustomDocumentProperties>
 </xml><![endif]-->
 </head>
@@ -43,9 +43,18 @@ var url = $getItemValue(ctx, "Path");
 var title = $getItemValue(ctx, "Title");
 var projectManager = $getItemValue(ctx, "ProjectManager");
 var projectOwner = $getItemValue(ctx, "ProjectOwner");
+var projectPhase = $getItemValue(ctx, "ProjectPhase");
+if (projectPhase.isEmpty) {
+	projectPhase = "Realisere";
+} else {
+	projectPhase = projectPhase.inputValue;
+}
+var phaseLetter = projectPhase.substr(0,1);
 _#-->
-             <div class="cbs-Item">
-                <div class="gt-image">                    
+             <div class="gt-projectItem">
+                <div class="phaseIcon">
+					<span class="phaseLetter">_#= phaseLetter =#_</span>
+					<span class="projectPhase">_#= projectPhase =#_</span>
                 </div>
                 <h2><a href="_#= url =#_">_#= title =#_</a></h2>
                 <div>Prosjektleder: _#= projectManager =#_</div>

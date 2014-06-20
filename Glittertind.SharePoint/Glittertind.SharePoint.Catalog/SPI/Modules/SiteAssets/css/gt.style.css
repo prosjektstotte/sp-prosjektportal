@@ -14,4 +14,7 @@
 .projectFrontPage .missingMetadataWarning { display: none; margin: 10px 0 10px 0; color: red;}
 .projectFrontPage .projectMetadata #editPageMetaLink, .projectFrontPage .projectMetadata #editPageMetaLink:visited, .projectFrontPage .projectMetadata #editPageMetaLink:active {color: #666;font-size:0.9em;text-decoration:none;}
 ul.gt-List {list-style-type: none; padding-left: 0;}
-ul.gt-List .gt-image{width: 72px;height: 72px;background-color: lightgray;float: left;margin-right: 20px;}
+ul.gt-List .gt-projectItem {display: block; margin-bottom: 20px;}
+ul.gt-List .gt-projectItem  .phaseIcon {display: block; width: 72px;height: 72px;float: left;margin-right: 20px;}
+ul.gt-List .gt-projectItem  .phaseIcon .phaseLetter {display: block; font-size: 33px; text-align: center;}
+ul.gt-List .gt-projectItem  .phaseIcon .projectPhase {display: block; font-size: 12px; text-transform:uppercase; text-align: center;}
