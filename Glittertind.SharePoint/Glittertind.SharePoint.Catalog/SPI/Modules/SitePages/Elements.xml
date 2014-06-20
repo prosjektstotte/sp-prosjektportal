@@ -149,7 +149,7 @@
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
       <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
     </metaData>
     <data>
@@ -159,14 +159,14 @@
         <property name="ShowViewDuplicates" type="bool">False</property>
         <property name="Height" type="string" />
         <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
-        <property name="DataProviderJSON" type="string">{"QueryGroupName":"Default","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"a {searchboxquery}","FallbackSort":null,"FallbackSortJson":"null","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":true,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":false,"ScopeResultsToCurrentSite":false,"TrimDuplicates":true,"Properties":{"ListId":"0905470c-83c4-4cb1-9857-4d4a9c983a53","ListItemId":4},"PropertiesJson":"{\"ListId\":\"0905470c-83c4-4cb1-9857-4d4a9c983a53\",\"ListItemId\":4}","ClientType":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
+        <property name="DataProviderJSON" type="string">{"QueryGroupName":"Default","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"{searchboxquery} ContentTypeId:0x010109010058561f86d956412b9dd7957bbcd67aae0008786aa052d6437293ead66d77ceba8200*","FallbackSort":null,"FallbackSortJson":"null","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":true,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":false,"ScopeResultsToCurrentSite":false,"TrimDuplicates":true,"Properties":{"ListId":"c7beb3f4-eaf8-4215-85fc-1f8c655de961","ListItemId":8},"PropertiesJson":"{\"ListId\":\"c7beb3f4-eaf8-4215-85fc-1f8c655de961\",\"ListItemId\":8}","ClientType":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
         <property name="AllowZoneChange" type="bool">True</property>
         <property name="UseSharedDataProvider" type="bool">False</property>
         <property name="ShowPreferencesLink" type="bool">False</property>
         <property name="EmptyMessage" type="string" />
         <property name="ScrollToTopOnRedraw" type="bool">False</property>
         <property name="ShowDefinitions" type="bool">True</property>
-        <property name="SelectedPropertiesJson" type="string">null</property>
+        <property name="SelectedPropertiesJson" type="string">["Path","Title","GtProjectManagerOWSUSER","GtProjectOwnerOWSUSER"]</property>
         <property name="CatalogIconImageUrl" type="string" />
         <property name="RepositionLanguageDropDown" type="bool">False</property>
         <property name="PreloadedItemTemplateIdsJson" type="string">["~sitecollection/_catalogs/masterpage/Display Templates/Search/Group_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Site.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Word.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_PowerPoint.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Person_CompactHorizontal.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_BestBet.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_WebPage.js"]</property>
@@ -183,8 +183,8 @@
         <property name="MaxPagesAfterCurrent" type="int">1</property>
         <property name="ShowResultCount" type="bool">True</property>
         <property name="Hidden" type="bool">False</property>
-        <property name="ItemTemplateId" type="string" null="true" />
-        <property name="ItemBodyTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_CommonItem_Body.js</property>
+        <property name="ItemTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Item_Project.js</property>
+        <property name="ItemBodyTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Item_CommonItem_Body.js</property>
         <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
         <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
         <property name="AvailableSortsJson" type="string">[{"name":"Relevans","sorts":[]},{"name":"Dato (nyeste)","sorts":[{"p":"Write","d":1}]},{"name":"Dato (eldste)","sorts":[{"p":"Write","d":0}]},{"name":"Visninger for levetid","sorts":[{"p":"ViewsLifeTime","d":1}]},{"name":"Siste visninger","sorts":[{"p":"ViewsRecent","d":1}]}]</property>
@@ -192,7 +192,7 @@
         <property name="AllowHide" type="bool">True</property>
         <property name="AllowEdit" type="bool">True</property>
         <property name="StatesJson" type="string">{}</property>
-        <property name="RenderTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Search/Control_SearchResults.js</property>
+        <property name="RenderTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Control_List.js</property>
         <property name="ShowPersonalFavorites" type="bool">False</property>
         <property name="ShowSortOptions" type="bool">False</property>
         <property name="ChromeType" type="chrometype">None</property>
@@ -203,14 +203,14 @@
         <property name="ServerIncludeScriptsJson" type="string">null</property>
         <property name="TitleUrl" type="string" />
         <property name="AlternateErrorMessage" type="string" null="true" />
-        <property name="ShowAlertMe" type="bool">False</property>
+        <property name="ShowAlertMe" type="bool">True</property>
         <property name="ShowDidYouMean" type="bool">False</property>
         <property name="QueryGroupName" type="string">Default</property>
         <property name="Width" type="string" />
         <property name="ShowAdvancedLink" type="bool">False</property>
         <property name="ExportMode" type="exportmode">All</property>
         <property name="Direction" type="direction">NotSet</property>
-        <property name="BypassResultTypes" type="bool">False</property>
+        <property name="BypassResultTypes" type="bool">True</property>
         <property name="GroupTemplateId" type="string" />
         <property name="TitleIconImageUrl" type="string" />
         <property name="MissingAssembly" type="string">Kan ikke importere denne webdelen.</property>
@@ -257,7 +257,7 @@
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
       <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
     </metaData>
     <data>
@@ -267,14 +267,14 @@
         <property name="ShowViewDuplicates" type="bool">False</property>
         <property name="Height" type="string" />
         <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
-        <property name="DataProviderJSON" type="string">{"QueryGroupName":"fe125bd9-678f-49b2-8bd3-dcb2559e7726","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"{searchboxquery}","FallbackSort":null,"FallbackSortJson":"null","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":true,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":false,"ScopeResultsToCurrentSite":false,"TrimDuplicates":true,"Properties":{"ListId":"0905470c-83c4-4cb1-9857-4d4a9c983a53","ListItemId":4},"PropertiesJson":"{\"ListId\":\"0905470c-83c4-4cb1-9857-4d4a9c983a53\",\"ListItemId\":4}","ClientType":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
+        <property name="DataProviderJSON" type="string">{"QueryGroupName":"fe125bd9-678f-49b2-8bd3-dcb2559e7726","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"{searchboxquery} ContentTypeId:0x010109010058561f86d956412b9dd7957bbcd67aae0008786aa052d6437293ead66d77ceba8200*","FallbackSort":[{"p":"Created","d":1}],"FallbackSortJson":"[{\"p\":\"Created\",\"d\":1}]","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":true,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":false,"ScopeResultsToCurrentSite":false,"TrimDuplicates":true,"Properties":{"ListId":"c7beb3f4-eaf8-4215-85fc-1f8c655de961","ListItemId":8},"PropertiesJson":"{\"ListId\":\"c7beb3f4-eaf8-4215-85fc-1f8c655de961\",\"ListItemId\":8}","ClientType":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
         <property name="AllowZoneChange" type="bool">True</property>
         <property name="UseSharedDataProvider" type="bool">False</property>
         <property name="ShowPreferencesLink" type="bool">False</property>
         <property name="EmptyMessage" type="string" />
         <property name="ScrollToTopOnRedraw" type="bool">False</property>
         <property name="ShowDefinitions" type="bool">True</property>
-        <property name="SelectedPropertiesJson" type="string">["Title","Path","Description","EditorOWSUSER","LastModifiedTime","CollapsingStatus","DocId","HitHighlightedSummary","HitHighlightedProperties","FileExtension","ViewsLifeTime","ParentLink","FileType","IsContainer","SecondaryFileExtension","DisplayAuthor"]</property>
+        <property name="SelectedPropertiesJson" type="string">["Path","Title","GtProjectManagerOWSUSER","GtProjectOwnerOWSUSER"]</property>
         <property name="CatalogIconImageUrl" type="string" />
         <property name="RepositionLanguageDropDown" type="bool">False</property>
         <property name="PreloadedItemTemplateIdsJson" type="string">["~sitecollection/_catalogs/masterpage/Display Templates/Search/Group_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Site.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Word.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_PowerPoint.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Person_CompactHorizontal.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_BestBet.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_WebPage.js"]</property>
@@ -289,10 +289,10 @@
         <property name="Title" type="string">Nye prosjekter</property>
         <property name="ShowResults" type="bool">True</property>
         <property name="MaxPagesAfterCurrent" type="int">1</property>
-        <property name="ShowResultCount" type="bool">True</property>
+        <property name="ShowResultCount" type="bool">False</property>
         <property name="Hidden" type="bool">False</property>
-        <property name="ItemTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js</property>
-        <property name="ItemBodyTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_CommonItem_Body.js</property>
+        <property name="ItemTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Item_Project.js</property>
+        <property name="ItemBodyTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Item_CommonItem_Body.js</property>
         <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
         <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
         <property name="AvailableSortsJson" type="string">[{"name":"Relevans","sorts":[]},{"name":"Dato (nyeste)","sorts":[{"p":"Write","d":1}]},{"name":"Dato (eldste)","sorts":[{"p":"Write","d":0}]},{"name":"Visninger for levetid","sorts":[{"p":"ViewsLifeTime","d":1}]},{"name":"Siste visninger","sorts":[{"p":"ViewsRecent","d":1}]}]</property>
@@ -300,7 +300,7 @@
         <property name="AllowHide" type="bool">True</property>
         <property name="AllowEdit" type="bool">True</property>
         <property name="StatesJson" type="string">{}</property>
-        <property name="RenderTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Search/Control_SearchResults.js</property>
+        <property name="RenderTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Control_List.js</property>
         <property name="ShowPersonalFavorites" type="bool">False</property>
         <property name="ShowSortOptions" type="bool">False</property>
         <property name="ChromeType" type="chrometype">TitleOnly</property>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="DisplayTemplates" Url="_catalogs/masterpage/Display Templates/Content Web Parts" Path="DisplayTemplates">
+    <File Path="Glittertind_Control_List.js" Url="Glittertind_Control_List.js" Type="GhostableInLibrary" Level="Published" ReplaceContent="TRUE" >
+      <Property Name="Title" Type="string" Value="Glittertind Liste" />
+      <Property Name="MasterPageDescription" Type="string" Value="" />
+      <Property Name="ContentType" Value="0x0101002039C03B61C64EC4A04F5361F385106601" />
+      <Property Name="DisplayTemplateLevel" Value="Control" />
+      <Property Name="TemplateHidden" Type="int" Value="0" />
+      <Property Name="TargetControlType" Type="string" Value=";#Content Web Parts;#SearchResults;#" />
+      <Property Name="HtmlDesignLockedFile" Value="FALSE" />
+    </File>
+    <File Path="Glittertind_Item_Project.js" Url="Glittertind_Item_Project.js" Type="GhostableInLibrary" Level="Published" ReplaceContent="TRUE" >
+      <Property Name="Title" Type="string" Value="Glittertind Prosjekt" />
+      <Property Name="MasterPageDescription" Type="string" Value="" />
+      <Property Name="ContentType" Value="0x0101002039C03B61C64EC4A04F5361F385106603" />
+      <Property Name="DisplayTemplateLevel" Type="string" Value="Item" />
+      <Property Name="TemplateHidden" Type="int" Value="0" />
+      <Property Name="TargetControlType" Type="string" Value=";#Content Web Parts;#SearchResults;#" />
+      <Property Name="ManagedPropertyMapping" Type="string" Value="'Path':'Path','Title':'Title', 'ProjectManager':'GtProjectManagerOWSUSER','ProjectOwner':'GtProjectOwnerOWSUSER'" />
+      <Property Name="HtmlDesignLockedFile" Value="FALSE" />
+    </File>
+    <File Url="Glittertind_Control_List.html" Type="GhostableInLibrary" ReplaceContent="TRUE" />
+    <File Url="Glittertind_Item_Project.html" Type="GhostableInLibrary" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

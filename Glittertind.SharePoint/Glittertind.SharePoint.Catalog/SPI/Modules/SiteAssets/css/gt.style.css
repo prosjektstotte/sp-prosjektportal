@@ -11,3 +11,5 @@
 .projectFrontPage .projectMetadata table tr td:first-child{ width: 120px;}
 .projectFrontPage .projectMetadata table tr:nth-child(odd) td{background-color: #efefef;}
 .projectFrontPage .missingMetadataWarning { display: none; margin: 10px 0 10px 0; color: red;}
+ul.gt-List {list-style-type: none; padding-left: 0;}
+ul.gt-List .gt-image{width: 72px;height: 72px;background-color: lightgray;float: left;margin-right: 20px;}

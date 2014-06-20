@@ -90,9 +90,17 @@
     </None>
     <None Include="SPI\Modules\DefaultDocuments\Sluttrapport.docx" />
     <None Include="SPI\Modules\DefaultDocuments\Styringsdokumentasjon.docx" />
+    <None Include="SPI\Modules\DisplayTemplates\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{1ba5f944-d13c-4375-8436-1c263db2347d}</SharePointProjectItemId>
+    </None>
     <None Include="SPI\Modules\SearchConfig\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cdfc3114-1f0d-4a1b-955a-d118b3d21794}</SharePointProjectItemId>
     </None>
+    <Content Include="SPI\Modules\DisplayTemplates\Elements.xml" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_List.html" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_List.js" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project.html" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project.js" />
     <Content Include="SPI\Modules\SiteAssets\css\gt.style.css" />
     <Content Include="SPI\Modules\SiteAssets\javascript\gt.provisioning.js" />
     <None Include="SPI\Modules\SiteAssets\SharePointProjectItem.spdata">

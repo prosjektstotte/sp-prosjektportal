@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="DisplayTemplates\" Type="ElementManifest" />
+    <ProjectItemFile Source="Glittertind_Control_List.html" Target="DisplayTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="Glittertind_Control_List.js" Target="DisplayTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="Glittertind_Item_Project.html" Target="DisplayTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="Glittertind_Item_Project.js" Target="DisplayTemplates\" Type="ElementFile" />
+  </Files>
+</ProjectItem>
