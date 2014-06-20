@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <PropertyBag ParentType="Web">
+    <Property Name="glittertind_version" Value="1.0.0.0" Type="string" />
+  </PropertyBag>
+  <PropertyBag Url="" ParentType="Folder" RootWebOnly="FALSE">
+    <Property Name="vti_welcomepage" Value="SitePages/Portefolje.aspx" Type="string" />
+  </PropertyBag>
+</Elements>

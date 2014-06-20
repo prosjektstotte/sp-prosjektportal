@@ -61,14 +61,6 @@
                         <table>
                             <tr>
                                 <td>
-                                    <SharePoint:FieldLabel runat="server" FieldName="Title" />
-                                </td>
-                                <td class="fieldValue">
-                                    <SharePoint:TextField FieldName="Title" ControlMode="Display" runat="server" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtProjectNumber" />
                                 </td>
                                 <td class="fieldValue">

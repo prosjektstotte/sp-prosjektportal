@@ -82,6 +82,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="SPI\Modules\PropertyBag\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{07ef7ea5-6e7a-42e1-b29f-6f4ae59e3cda}</SharePointProjectItemId>
+    </None>
     <None Include="SPI\Modules\DefaultDocuments\Gevinstrealiseringsplan.docx" />
     <None Include="SPI\Modules\DefaultDocuments\Prosjektforslag.docx" />
     <None Include="SPI\Modules\DefaultDocuments\Prosjektmandat.docx" />
@@ -96,6 +99,7 @@
     <None Include="SPI\Modules\SearchConfig\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{cdfc3114-1f0d-4a1b-955a-d118b3d21794}</SharePointProjectItemId>
     </None>
+    <Content Include="SPI\Modules\PropertyBag\Elements.xml" />
     <Content Include="SPI\Modules\DisplayTemplates\Elements.xml" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_List.html" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_List.js" />

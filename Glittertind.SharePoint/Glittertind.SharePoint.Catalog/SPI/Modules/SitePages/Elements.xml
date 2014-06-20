@@ -219,38 +219,72 @@
   </webPart>
 </webParts>]]>
       </AllUsersWebPart>
+      <AllUsersWebPart WebPartOrder="0" WebPartZoneID="RightColumn">
+        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+        <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+          <Title>Kontakt/FAQ</Title>
+          <FrameType>None</FrameType>
+          <Description>Gjør at forfattere kan skrive inn innhold i rik tekst.</Description>
+          <IsIncluded>true</IsIncluded>
+          <ZoneID>RightColumn</ZoneID>
+          <PartOrder>0</PartOrder>
+          <FrameState>Normal</FrameState>
+          <Height />
+          <Width />
+          <AllowRemove>true</AllowRemove>
+          <AllowZoneChange>true</AllowZoneChange>
+          <AllowMinimize>true</AllowMinimize>
+          <AllowConnect>true</AllowConnect>
+          <AllowEdit>true</AllowEdit>
+          <AllowHide>true</AllowHide>
+          <IsVisible>true</IsVisible>
+          <DetailLink />
+          <HelpLink />
+          <HelpMode>Modeless</HelpMode>
+          <Dir>Default</Dir>
+          <PartImageSmall />
+          <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
+          <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
+          <IsIncludedFilter />
+          <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
+          <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+          <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">&lt;a class=&quot;newProjectLink&quot; href=&quot;/sites/dev-akpp/SitePages/OpprettProsjekt.aspx&quot;&gt;Opprett prosjektomr&#229;de&lt;/a&gt;</Content>
+          <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+        </WebPart>]]>
+      </AllUsersWebPart>
       <AllUsersWebPart WebPartOrder="1" WebPartZoneID="RightColumn">
         <![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
-  <Title>Kontakt/FAQ</Title>
-  <FrameType>TitleBarOnly</FrameType>
-  <Description>Gjør at forfattere kan skrive inn innhold i rik tekst.</Description>
-  <IsIncluded>true</IsIncluded>
-  <ZoneID>RightColumn</ZoneID>
-  <PartOrder>1</PartOrder>
-  <FrameState>Normal</FrameState>
-  <Height />
-  <Width />
-  <AllowRemove>true</AllowRemove>
-  <AllowZoneChange>true</AllowZoneChange>
-  <AllowMinimize>true</AllowMinimize>
-  <AllowConnect>true</AllowConnect>
-  <AllowEdit>true</AllowEdit>
-  <AllowHide>true</AllowHide>
-  <IsVisible>true</IsVisible>
-  <DetailLink />
-  <HelpLink />
-  <HelpMode>Modeless</HelpMode>
-  <Dir>Default</Dir>
-  <PartImageSmall />
-  <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
-  <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
-  <IsIncludedFilter />
-  <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
-  <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
-  <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
-  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor"><ul><li>Denne Webdelen inneholder tekst du selv kan definere<br/></li><li>Du kan fjerne webdelen om du ønsker det<br/></li><li>Bilder kan brukes om man ønsker dette​<br/></li></ul><br/></Content>
-  <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+        <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+          <Title>Kontakt/FAQ</Title>
+          <FrameType>TitleBarOnly</FrameType>
+          <Description>Gjør at forfattere kan skrive inn innhold i rik tekst.</Description>
+          <IsIncluded>true</IsIncluded>
+          <ZoneID>RightColumn</ZoneID>
+          <PartOrder>1</PartOrder>
+          <FrameState>Normal</FrameState>
+          <Height />
+          <Width />
+          <AllowRemove>true</AllowRemove>
+          <AllowZoneChange>true</AllowZoneChange>
+          <AllowMinimize>true</AllowMinimize>
+          <AllowConnect>true</AllowConnect>
+          <AllowEdit>true</AllowEdit>
+          <AllowHide>true</AllowHide>
+          <IsVisible>true</IsVisible>
+          <DetailLink />
+          <HelpLink />
+          <HelpMode>Modeless</HelpMode>
+          <Dir>Default</Dir>
+          <PartImageSmall />
+          <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
+          <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
+          <IsIncludedFilter />
+          <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
+          <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+          <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">&lt;ul&gt;&lt;li&gt;Denne Webdelen inneholder tekst du selv kan definere&lt;/li&gt;&lt;li&gt;Du kan fjerne webdelen om du &#248;nsker det&lt;/li&gt;&lt;li&gt;Bilder kan brukes om man &#248;nsker dette​&lt;/li&gt;&lt;/ul&gt;</Content>
+          <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
         </WebPart>]]>
       </AllUsersWebPart>
       <AllUsersWebPart WebPartOrder="2" WebPartZoneID="RightColumn">
