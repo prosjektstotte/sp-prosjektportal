@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <Module Name="DisplayTemplates" Url="_catalogs/masterpage/Display Templates/Content Web Parts" Path="DisplayTemplates">
+  <Module Name="DisplayTemplates" Url="_catalogs/masterpage/Display Templates/Search" Path="DisplayTemplates">
     <File Path="Glittertind_Control_List.js" Url="Glittertind_Control_List.js" Type="GhostableInLibrary" Level="Published" ReplaceContent="TRUE" >
       <Property Name="Title" Type="string" Value="Glittertind Liste" />
       <Property Name="MasterPageDescription" Type="string" Value="" />
