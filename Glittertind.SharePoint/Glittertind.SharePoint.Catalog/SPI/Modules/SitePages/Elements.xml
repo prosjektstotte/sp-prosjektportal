@@ -249,7 +249,7 @@
           <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
           <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
           <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
-          <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">&lt;a class=&quot;newProjectLink&quot; href=&quot;/sites/dev-akpp/SitePages/OpprettProsjekt.aspx&quot;&gt;Opprett prosjektomr&#229;de&lt;/a&gt;</Content>
+          <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">&lt;a class=&quot;newProjectLink&quot; href=&quot;OpprettProsjekt.aspx&quot;&gt;Opprett prosjektomr&#229;de&lt;/a&gt;</Content>
           <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
         </WebPart>]]>
       </AllUsersWebPart>
