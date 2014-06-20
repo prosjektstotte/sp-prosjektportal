@@ -166,7 +166,7 @@
                         </table>
 						<SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AuthenticatedUsersOnly" Permissions="AddAndCustomizePages" PermissionContext="CurrentItem">
 							<div class="missingMetadataWarning">Viktig informasjon om prosjektet er ikke satt. Du bør sette disse egenskapene snarest.</div>
-							<a id="editPageMetaLink" href="#">Rediger egenskapene over</a>
+							<a id="editPageMetaLink" class="ms-navedit-editLinksText" href="#"><span class="ms-navedit-editLinksIconWrapper ms-verticalAlignMiddle"><img class="ms-navedit-editLinksIcon" src="/_layouts/15/images/spcommon.png?rev=23"></span>Rediger egenskapene over</a>
 							<script type="text/javascript">
 							    jQuery(document).ready(function () {
 							        var pageItemId = _spPageContextInfo.pageItemId;

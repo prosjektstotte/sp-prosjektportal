@@ -7,9 +7,11 @@
 .newProjectPage .projectInputForm textarea#projectDescriptionInput {height:70px; overflow:auto;}
 .newProjectPage .validationMessage {color: red;margin-bottom: 10px;}
 .projectFrontPage .projectMetadata {width: 300px;}
-.projectFrontPage .projectMetadata table { width: 100%;}
+.projectFrontPage .projectMetadata table { width: 100%; margin-bottom: 10px;}
+.projectFrontPage .projectMetadata table td{ padding: 3px;}
 .projectFrontPage .projectMetadata table tr td:first-child{ width: 120px;}
-.projectFrontPage .projectMetadata table tr:nth-child(odd) td{background-color: #efefef;}
+.projectFrontPage .projectMetadata table tr:nth-child(odd) td{background-color: rgba( 239,239,239,0.78 );}
 .projectFrontPage .missingMetadataWarning { display: none; margin: 10px 0 10px 0; color: red;}
+.projectFrontPage .projectMetadata #editPageMetaLink, .projectFrontPage .projectMetadata #editPageMetaLink:visited, .projectFrontPage .projectMetadata #editPageMetaLink:active {color: #666;font-size:0.9em;text-decoration:none;}
 ul.gt-List {list-style-type: none; padding-left: 0;}
 ul.gt-List .gt-image{width: 72px;height: 72px;background-color: lightgray;float: left;margin-right: 20px;}
