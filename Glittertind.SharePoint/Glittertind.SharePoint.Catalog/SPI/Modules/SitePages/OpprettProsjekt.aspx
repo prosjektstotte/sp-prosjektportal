@@ -17,7 +17,7 @@
 	<SharePoint:ProjectProperty Property="Title" runat="server"/>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
-    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/javascript/jquery-2.1.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/javascript/jquery-1.11.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/javascript/gt.provisioning.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/css/gt.style.css %&gt;" runat="server" ></SharePoint:CssRegistration>
 </asp:Content>

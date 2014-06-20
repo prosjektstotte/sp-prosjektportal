@@ -26,7 +26,7 @@
     <sharepoint:scriptblock runat="server">
 	var navBarHelpOverrideKey = "WSSEndUser";
 	</sharepoint:scriptblock>
-    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/javascript/jquery-2.1.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/javascript/jquery-1.11.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/css/gt.style.css %&gt;" runat="server" ></SharePoint:CssRegistration>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderSearchArea" runat="server">

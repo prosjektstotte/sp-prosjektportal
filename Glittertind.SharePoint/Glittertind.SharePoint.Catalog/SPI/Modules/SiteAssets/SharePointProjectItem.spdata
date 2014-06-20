@@ -4,6 +4,6 @@
     <ProjectItemFile Source="Elements.xml" Target="SiteAssets\" Type="ElementManifest" />
     <ProjectItemFile Source="javascript\gt.provisioning.js" Target="SiteAssets\javascript\" Type="ElementFile" />
     <ProjectItemFile Source="css\gt.style.css" Target="SiteAssets\css\" Type="ElementFile" />
-    <ProjectItemFile Source="javascript\jquery-2.1.1.min.js" Target="SiteAssets\javascript\" Type="ElementFile" />
+    <ProjectItemFile Source="javascript\jquery-1.11.1.min.js" Target="SiteAssets\javascript\" Type="ElementFile" />
   </Files>
 </ProjectItem>

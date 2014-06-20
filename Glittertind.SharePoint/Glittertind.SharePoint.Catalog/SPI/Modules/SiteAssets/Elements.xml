@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="SiteAssets" Path="SiteAssets" Url="SiteAssets">
     <File Path="javascript\gt.provisioning.js" Url="javascript/gt.provisioning.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
-    <File Path="javascript\jquery-2.1.1.min.js" Url="javascript/jquery-2.1.1.min.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
+    <File Path="javascript\jquery-1.11.1.min.js" Url="javascript/jquery-1.11.1.min.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
     <File Path="css\gt.style.css" Url="css/gt.style.css" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
   </Module>
 </Elements>
