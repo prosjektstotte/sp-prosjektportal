@@ -78,5 +78,11 @@ namespace Glittertind.Sherpa.Installer
             var featureManager = new FeatureManager(_urlToSite, _credentials, featureActivationPersister);
             featureManager.ActivateFeatures();
         }
+
+        public void ForceReCrawl()
+        {
+            var deployManager = new DeployManager(_urlToSite, _credentials);
+            deployManager.ForceRecrawl();
+        }
     }
 }

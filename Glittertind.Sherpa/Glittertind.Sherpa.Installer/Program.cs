@@ -97,6 +97,12 @@ namespace Glittertind.Sherpa.Installer
                     installationManager.DeleteAllGlittertindSiteColumnsAndContentTypes();
                     break;
                 }
+                case 1337:
+                {
+                    Console.WriteLine("(Hidden feature) Forcing recrawl of "+UrlToSite +"and all subsites");
+                    installationManager.ForceReCrawl();
+                    break;
+                }
                 case 0:
                 {
                     Environment.Exit(0);

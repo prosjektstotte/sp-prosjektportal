@@ -26,7 +26,7 @@ namespace Glittertind.Sherpa.Library.Deploy
         {
             var fileName = Path.GetFileName(localFilePath);
             var extension = Path.GetExtension(fileName);
-            if (extension != null && extension.ToLower() != ".wsp") throw new NotSupportedException("Only WSPs can be uploaded into the SharePoint solution store. "+localFilePath + " is not a wsp");
+            if (extension != null && extension.ToLower() != ".wsp") throw new NotSupportedException("Only WSPs can be uploaded into the SharePoint solution store. " + localFilePath + " is not a wsp");
             if (string.IsNullOrEmpty(fileName) || _urlToWeb == null || string.IsNullOrEmpty(siteRelativeUrlToLibrary))
             {
                 throw new Exception("Could not create path to solution package!");
@@ -97,11 +97,11 @@ namespace Glittertind.Sherpa.Library.Deploy
                 context.Load(context.Site);
                 context.Load(context.Web);
                 context.ExecuteQuery();
-                var fileUrl = UriUtilities.CombineServerRelativeUri(context.Site.ServerRelativeUrl, siteRelativeUrlToLibrary, nameOfPackage +".wsp");
+                var fileUrl = UriUtilities.CombineServerRelativeUri(context.Site.ServerRelativeUrl, siteRelativeUrlToLibrary, nameOfPackage + ".wsp");
 
                 Console.WriteLine("Installing solution package " + nameOfPackage);
                 Console.WriteLine("This could take a minute");
-                DesignPackage.Install(context, context.Site, packageInfo,fileUrl);
+                DesignPackage.Install(context, context.Site, packageInfo, fileUrl);
                 context.ExecuteQuery();
                 var web = context.Web;
                 var file = web.GetFileByServerRelativeUrl(fileUrl);
@@ -111,5 +111,51 @@ namespace Glittertind.Sherpa.Library.Deploy
                 Console.WriteLine("Activated package " + nameOfPackage);
             }
         }
+
+        public void ForceRecrawl()
+        {
+            using (var context = new ClientContext(_urlToWeb))
+            {
+                context.Credentials = _credentials;
+
+                context.Load(context.Web);
+                context.ExecuteQuery();
+                Console.WriteLine("");
+                ForceRecrawlOf(context.Web, context);
+                Console.WriteLine("");
+
+            }
+
+        }
+
+        private void ForceRecrawlOf(Web web, ClientContext context)
+        {
+
+            Console.WriteLine("Processing web: "+web.Url);
+            context.Credentials = _credentials;
+
+            context.Load(web, x => x.AllProperties, x => x.Webs);
+            context.ExecuteQuery();
+            var version = 0;
+            var subWebs = web.Webs;
+
+            var allProperties = web.AllProperties;
+            if (allProperties.FieldValues.ContainsKey("vti_searchversion"))
+            {
+                version = (int)allProperties["vti_searchversion"];
+            }
+            Console.WriteLine("Current search version: " + version);
+            version++;
+            allProperties["vti_searchversion"] = version;
+            Console.WriteLine("Updated search version: " + version);
+            web.Update();
+            foreach (var subWeb in subWebs)
+            {
+                ForceRecrawlOf(subWeb, context);
+            }
+
+        }
+
     }
+
 }
