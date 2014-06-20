@@ -1,7 +1,9 @@
 ﻿.newProjectPage h1 {margin-left: 10px;}
 .newProjectPage .projectInputForm {width: 263px; margin-left: 20px;}
 .newProjectPage .projectInputForm label {display: inline-table;	width: 250px; margin: 0;}
-.newProjectPage .projectInputForm input,.projectInputForm textarea {display: inline-table;width: 250px;margin: 3px 0 10px 0;}
+.newProjectPage .projectInputForm label span{color: red;}
+.newProjectPage .projectInputForm input,.newProjectPage .projectInputForm textarea {width: 250px;margin: 3px 0 10px 0;}
 .newProjectPage .projectInputForm button {margin: 0;float:right}
-.newProjectPage #projectValidation {color: red;margin-bottom: 10px;}
+.newProjectPage .projectInputForm textarea#projectDescriptionInput {height:70px; overflow:auto;}
+.newProjectPage .validationMessage {color: red;margin-bottom: 10px;}
 .projectFrontPage .projectMetadata {}

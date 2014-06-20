@@ -18,7 +18,7 @@ GT.Provisioning.CreateWebFromCustomForm = function () {
     var descField = document.getElementById('projectDescriptionInput');
 
     if (!nameField.checkValidity() || !urlField.checkValidity() || !descField.checkValidity()) {
-        document.getElementById('projectFormValidation').innerHTML = "Navn og URL er obligatoriske felter";
+        document.getElementById('projectFormValidation').innerHTML = "Navn og URL-kortnavn er obligatoriske felter";
         return;
     }
     var urlToNewWeb = _spPageContextInfo.webServerRelativeUrl + "/" + urlField.value;
@@ -98,7 +98,7 @@ GT.Provisioning.DoesWebExist = function (serverRelativeUrlOrFullUrl) {
             deferred.promise();
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus + " " + errorThrown);
+            alert(textStatus);
         }
     });
     return deferred;

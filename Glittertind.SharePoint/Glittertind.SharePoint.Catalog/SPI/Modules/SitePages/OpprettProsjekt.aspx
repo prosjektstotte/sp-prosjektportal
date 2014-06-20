@@ -33,13 +33,13 @@
 	<div class="newProjectPage">
 		<h1>Opprett nytt prosjektområde</h1>
 	    <div class="projectInputForm">
-	        <label for="projectNameInput">Navn</label>
+	        <label for="projectNameInput">Navn <span>*</span></label>
             <input id="projectNameInput" type="text" placeholder="Prosjektets navn" autofocus required />
-	        <label for="projectUrlInput">URL-kortnavn</label>
+	        <label for="projectUrlInput">URL-kortnavn <span>*</span></label>
             <input id="projectUrlInput" type="text" placeholder="Kortnavn som brukes i URL" required pattern="[a-zA-Z-\d]{3,20}" />
 			<div id="projectUrlInputValidation" class="validationMessage" style="display:none">URL-kortnavnet kan bare inneholde bokstaver (utenom æøå), tall og bindestrek og må være mellom 3 og 20 tegn langt.</div>
 	        <label for="projectDescriptionInput">Beskrivelse</label>
-            <textarea id="projectDescriptionInput" type="text" cols="40" rows="3" placeholder="Beskrivelse av prosjektområdet"></textarea>
+            <textarea id="projectDescriptionInput" type="text" placeholder="Beskrivelse av prosjektområdet"></textarea>
 	        <div id="projectFormValidation" class="validationMessage"></div>
 	        <button id="createProjectBtn" onclick="GT.Provisioning.CreateWebFromCustomForm(); return false;">Opprett prosjektområde</button>
 	    </div>
