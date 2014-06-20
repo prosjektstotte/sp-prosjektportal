@@ -55,7 +55,7 @@
 		    </td>
 		    <td>&#160;</td>
 		    <td valign="top" width="30%">
-		        <div>
+		        <div class="rightColumnStatic">
 			        <h2 style="text-align:justify;" class="ms-webpart-titleText"><nobr><span>Om prosjektet</span><span id="WebPartCaptionWPQ2"></span></nobr></h2>
                     <div class="projectMetadata">
                         <table>
@@ -63,7 +63,7 @@
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="Title" />
                                 </td>
-                                <td>
+                                <td class="fieldValue">
                                     <SharePoint:TextField FieldName="Title" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
@@ -71,7 +71,7 @@
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtProjectNumber" />
                                 </td>
-                                <td>
+                                <td class="fieldValue">
                                     <SharePoint:TextField FieldName="GtProjectNumber" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
@@ -79,7 +79,7 @@
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtProjectServiceArea" />
                                 </td>
-                                <td>
+                                <td class="fieldValue">
                                     <Taxonomy:TaxonomyFieldControl FieldName="GtProjectServiceArea" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
@@ -87,23 +87,23 @@
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtProjectType" />
                                 </td>
-                                <td>
+                                <td class="fieldValue">
                                     <Taxonomy:TaxonomyFieldControl FieldName="GtProjectType" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="GtProjectPhase">
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtProjectPhase" />
                                 </td>
-                                <td>
+                                <td class="fieldValue">
                                     <Taxonomy:TaxonomyFieldControl FieldName="GtProjectPhase" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="GtProjectManager">
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtProjectManager" />
                                 </td>
-                                <td>
+                                <td class="fieldValue">
                                     <SharePoint:UserField FieldName="GtProjectManager" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
@@ -111,7 +111,7 @@
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtProjectOwner" />
                                 </td>
-                                <td>
+                                <td class="fieldValue">
                                     <SharePoint:UserField FieldName="GtProjectOwner" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
@@ -119,7 +119,7 @@
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtStartDate" />
                                 </td>
-                                <td>
+                                <td class="fieldValue">
                                     <SharePoint:DateTimeField FieldName="GtStartDate" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
@@ -127,7 +127,7 @@
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtEndDate" />
                                 </td>
-                                <td>
+                                <td class="fieldValue">
                                     <SharePoint:DateTimeField FieldName="GtEndDate" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
@@ -135,7 +135,7 @@
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtStatusRisk" />
                                 </td>
-                                <td>
+                                <td class="fieldValue">
                                     <SharePoint:CheckBoxChoiceField FieldName="GtStatusRisk" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
@@ -143,7 +143,7 @@
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtStatusTime" />
                                 </td>
-                                <td>
+                                <td class="fieldValue">
                                     <SharePoint:CheckBoxChoiceField FieldName="GtStatusTime" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
@@ -151,30 +151,40 @@
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtStatusBudget" />
                                 </td>
-                                <td>
+                                <td class="fieldValue">
                                     <SharePoint:CheckBoxChoiceField FieldName="GtStatusBudget" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="GtProjectGoals">
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtProjectGoals" />
                                 </td>
-                                <td>
+                                <td class="fieldValue">
                                     <SharePoint:NoteField FieldName="GtProjectGoals" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
                         </table>
+						<SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AuthenticatedUsersOnly" Permissions="AddAndCustomizePages" PermissionContext="CurrentItem">
+							<div class="missingMetadataWarning">Viktig informasjon om prosjektet er ikke satt. Du bør sette disse egenskapene snarest.</div>
+							<a id="editPageMetaLink" href="#">Rediger egenskapene over</a>
+							<script type="text/javascript">
+							    jQuery(document).ready(function () {
+							        var pageItemId = _spPageContextInfo.pageItemId;
+							        var editMetaUrl = 'Forms/EditForm.aspx?ID=' + pageItemId;
+							        jQuery('#editPageMetaLink').attr('href', editMetaUrl);
+							        DisplayMissingMetadataMessage();
+							    });
+
+							    function DisplayMissingMetadataMessage() {
+							        if (jQuery('.projectFrontPage .projectMetadata table tr.GtProjectPhase td.fieldValue').text().trim() == '' ||
+										jQuery('.projectFrontPage .projectMetadata table tr.GtProjectManager td.fieldValue').text().trim() == '' ||
+										jQuery('.projectFrontPage .projectMetadata table tr.GtProjectGoals td.fieldValue').text().trim() == '') {
+							            jQuery('.projectFrontPage .missingMetadataWarning').show();
+							        }
+							    }
+							</script>
+						</SharePoint:SPSecurityTrimmedControl>
 		            </div>
-			        <SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AuthenticatedUsersOnly" Permissions="AddAndCustomizePages" PermissionContext="CurrentItem">
-				        <a id="editPageMetaLink" href="#">Rediger egenskapene over</a>
-                        <script type="text/javascript">
-                            jQuery(document).ready(function() {
-                                var pageItemId = _spPageContextInfo.pageItemId;
-                                var editMetaUrl = 'Forms/EditForm.aspx?ID=' + pageItemId;
-                                jQuery('#editPageMetaLink').attr('href', editMetaUrl);
-                            });
-                        </script>
-			        </SharePoint:SPSecurityTrimmedControl>
 		        </div>
 			    <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Right%>" ID="RightColumn" Orientation="Vertical" />
 			    &#160;

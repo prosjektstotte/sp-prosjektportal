@@ -6,4 +6,8 @@
 .newProjectPage .projectInputForm button {margin: 0;float:right}
 .newProjectPage .projectInputForm textarea#projectDescriptionInput {height:70px; overflow:auto;}
 .newProjectPage .validationMessage {color: red;margin-bottom: 10px;}
-.projectFrontPage .projectMetadata {}
+.projectFrontPage .projectMetadata {width: 300px;}
+.projectFrontPage .projectMetadata table { width: 100%;}
+.projectFrontPage .projectMetadata table tr td:first-child{ width: 120px;}
+.projectFrontPage .projectMetadata table tr:nth-child(odd) td{background-color: #efefef;}
+.projectFrontPage .missingMetadataWarning { display: none; margin: 10px 0 10px 0; color: red;}
