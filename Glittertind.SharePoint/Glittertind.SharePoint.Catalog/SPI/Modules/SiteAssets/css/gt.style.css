@@ -4,3 +4,4 @@
 .newProjectPage .projectInputForm input,.projectInputForm textarea {display: inline-table;width: 250px;margin: 3px 0 10px 0;}
 .newProjectPage .projectInputForm button {margin: 0;float:right}
 .newProjectPage #projectValidation {color: red;margin-bottom: 10px;}
+.projectFrontPage .projectMetadata {}

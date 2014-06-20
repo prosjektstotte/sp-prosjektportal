@@ -26,6 +26,8 @@
     <sharepoint:scriptblock runat="server">
 	var navBarHelpOverrideKey = "WSSEndUser";
 	</sharepoint:scriptblock>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/javascript/jquery-2.1.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/css/gt.style.css %&gt;" runat="server" ></SharePoint:CssRegistration>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderSearchArea" runat="server">
 	<SharePoint:DelegateControl runat="server" ControlId="SmallSearchInputBox" />
@@ -45,7 +47,7 @@
             border: none;
         }
     </style>
-    <table width="100%" cellpadding="0" cellspacing="0" style="padding: 5px 10px 10px 10px;">
+    <table class="projectFrontPage" width="100%" cellpadding="0" cellspacing="0" style="padding: 5px 10px 10px 10px;">
 	    <tr>
 		    <td valign="top" width="70%">
 			    <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Left%>" ID="LeftColumn" Orientation="Vertical" />
@@ -53,15 +55,117 @@
 		    </td>
 		    <td>&#160;</td>
 		    <td valign="top" width="30%">
-		        <div id="workSpaceMeta">
+		        <div>
 			        <h2 style="text-align:justify;" class="ms-webpart-titleText"><nobr><span>Om prosjektet</span><span id="WebPartCaptionWPQ2"></span></nobr></h2>
-                    <div>
-                        <Taxonomy:TaxonomyFieldControl FieldName="GtProjectServiceArea" ControlMode="Display" runat="server" />
-		                <Taxonomy:TaxonomyFieldControl FieldName="GtProjectType" ControlMode="Display" runat="server" />
-                        <Taxonomy:TaxonomyFieldControl FieldName="GtProjectPhase" ControlMode="Display" runat="server" />
+                    <div class="projectMetadata">
+                        <table>
+                            <tr>
+                                <td>
+                                    <SharePoint:FieldLabel runat="server" FieldName="Title" />
+                                </td>
+                                <td>
+                                    <SharePoint:TextField FieldName="Title" ControlMode="Display" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <SharePoint:FieldLabel runat="server" FieldName="GtProjectNumber" />
+                                </td>
+                                <td>
+                                    <SharePoint:TextField FieldName="GtProjectNumber" ControlMode="Display" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <SharePoint:FieldLabel runat="server" FieldName="GtProjectServiceArea" />
+                                </td>
+                                <td>
+                                    <Taxonomy:TaxonomyFieldControl FieldName="GtProjectServiceArea" ControlMode="Display" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <SharePoint:FieldLabel runat="server" FieldName="GtProjectType" />
+                                </td>
+                                <td>
+                                    <Taxonomy:TaxonomyFieldControl FieldName="GtProjectType" ControlMode="Display" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <SharePoint:FieldLabel runat="server" FieldName="GtProjectPhase" />
+                                </td>
+                                <td>
+                                    <Taxonomy:TaxonomyFieldControl FieldName="GtProjectPhase" ControlMode="Display" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <SharePoint:FieldLabel runat="server" FieldName="GtProjectManager" />
+                                </td>
+                                <td>
+                                    <SharePoint:UserField FieldName="GtProjectManager" ControlMode="Display" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <SharePoint:FieldLabel runat="server" FieldName="GtProjectOwner" />
+                                </td>
+                                <td>
+                                    <SharePoint:UserField FieldName="GtProjectOwner" ControlMode="Display" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <SharePoint:FieldLabel runat="server" FieldName="GtStartDate" />
+                                </td>
+                                <td>
+                                    <SharePoint:DateTimeField FieldName="GtStartDate" ControlMode="Display" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <SharePoint:FieldLabel runat="server" FieldName="GtEndDate" />
+                                </td>
+                                <td>
+                                    <SharePoint:DateTimeField FieldName="GtEndDate" ControlMode="Display" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <SharePoint:FieldLabel runat="server" FieldName="GtStatusRisk" />
+                                </td>
+                                <td>
+                                    <SharePoint:CheckBoxChoiceField FieldName="GtStatusRisk" ControlMode="Display" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <SharePoint:FieldLabel runat="server" FieldName="GtStatusTime" />
+                                </td>
+                                <td>
+                                    <SharePoint:CheckBoxChoiceField FieldName="GtStatusTime" ControlMode="Display" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <SharePoint:FieldLabel runat="server" FieldName="GtStatusBudget" />
+                                </td>
+                                <td>
+                                    <SharePoint:CheckBoxChoiceField FieldName="GtStatusBudget" ControlMode="Display" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <SharePoint:FieldLabel runat="server" FieldName="GtProjectGoals" />
+                                </td>
+                                <td>
+                                    <SharePoint:NoteField FieldName="GtProjectGoals" ControlMode="Display" runat="server" />
+                                </td>
+                            </tr>
+                        </table>
 		            </div>
 			        <SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AuthenticatedUsersOnly" Permissions="AddAndCustomizePages" PermissionContext="CurrentItem">
-                        <script type="text/javascript" src="../../SiteAssets/javascript/jquery-2.1.1.min.js"></script>
 				        <a id="editPageMetaLink" href="#">Rediger egenskapene over</a>
                         <script type="text/javascript">
                             jQuery(document).ready(function() {

@@ -52,7 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\WebSiteAssets\WebSiteAssets.feature">
+    <None Include="Features\SiteSiteAssetsArtefacts\SiteSiteAssetsArtefacts.feature">
       <FeatureId>{183e9372-efbb-40d6-b5ee-0b5a05e7b249}</FeatureId>
     </None>
     <None Include="Features\SiteSearchSettings\SiteSearchSettings.feature">
@@ -103,8 +103,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Features\WebSiteAssets\WebSiteAssets.Template.xml">
-      <DependentUpon>WebSiteAssets.feature</DependentUpon>
+    <Content Include="Features\SiteSiteAssetsArtefacts\SiteSiteAssetsArtefacts.Template.xml">
+      <DependentUpon>SiteSiteAssetsArtefacts.feature</DependentUpon>
     </Content>
     <Content Include="Features\SiteSearchSettings\SiteSearchSettings.Template.xml">
       <DependentUpon>SiteSearchSettings.feature</DependentUpon>

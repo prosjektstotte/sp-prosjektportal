@@ -13,26 +13,32 @@
    },
    {
       FeatureId: "8a49d7c1-7477-4ec4-b124-4513e6c294fd",
-      FeatureName: "SiteSearchSettings",
+      FeatureName: "Glittertind.SharePoint.Catalog_SiteSearchSettings",
       Scope: "Site",
       Url: "/"
    },
    {
       FeatureId: "3753e6d4-b343-4d70-b62f-729e698f692b",
-      FeatureName: "WebCatalogLists",
+      FeatureName: "Glittertind.SharePoint.Catalog_WebCatalogLists",
       Scope: "Web",
       Url: "/"
    },
    {
       FeatureId: "333d6b99-5713-41e0-aeeb-4e3e86143b3e",
-      FeatureName: "WebCatalogSitePages",
+      FeatureName: "Glittertind.SharePoint.Catalog_WebCatalogSitePages",
       Scope: "Web",
       Url: "/"
    },
     {
     FeatureId: "97f310cf-bc74-494f-8fc0-b6a3dd3bf42a",
-    FeatureName: "WebSiteAssets",
-    Scope: "Web",
+    FeatureName: "Glittertind.SharePoint.Catalog_SiteSiteAssetsArtefacts",
+    Scope: "Site",
     Url: "/"
-}
+	},
+    {
+    FeatureId: "9ca326d3-723f-4e65-b8f9-db7e18802ac4",
+    FeatureName: "Glittertind.SharePoint.Project_SiteProjectWebTemplate",
+    Scope: "Site",
+    Url: "/"
+	}
 ]
