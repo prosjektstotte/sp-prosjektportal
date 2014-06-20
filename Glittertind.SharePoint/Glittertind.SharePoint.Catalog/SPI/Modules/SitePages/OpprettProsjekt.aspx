@@ -17,6 +17,9 @@
 	<SharePoint:ProjectProperty Property="Title" runat="server"/>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/javascript/jquery-2.1.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/javascript/gt.provisioning.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/css/gt.style.css %&gt;" runat="server" ></SharePoint:CssRegistration>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderSearchArea" runat="server">
 	<SharePoint:DelegateControl runat="server" ControlId="SmallSearchInputBox"/>
@@ -30,14 +33,24 @@
 	<div class="newProjectPage">
 		<h1>Opprett nytt prosjektområde</h1>
 	    <div class="projectInputForm">
-	        <label for="projectNameInput">Navn</label><input id="projectNameInput" type="text" placeholder="Prosjektets navn" autofocus required />
-	        <label for="projectUrlInput">URL-kortnavn</label><input id="projectUrlInput" type="text" placeholder="Kortnavn som brukes i URL" required />
-	        <label for="projectDescriptionInput">Beskrivelse</label><textarea id="projectDescriptionInput" type="text" cols="40" rows="3" placeholder="Beskrivelse av prosjektområdet"></textarea>
-	        <div id="projectValidation" ></div>
+	        <label for="projectNameInput">Navn</label>
+            <input id="projectNameInput" type="text" placeholder="Prosjektets navn" autofocus required />
+	        <label for="projectUrlInput">URL-kortnavn</label>
+            <input id="projectUrlInput" type="text" placeholder="Kortnavn som brukes i URL" required pattern="[a-zA-Z-\d]{3,20}" />
+			<div id="projectUrlInputValidation" class="validationMessage" style="display:none">URL-kortnavnet kan bare inneholde bokstaver (utenom æøå), tall og bindestrek og må være mellom 3 og 20 tegn langt.</div>
+	        <label for="projectDescriptionInput">Beskrivelse</label>
+            <textarea id="projectDescriptionInput" type="text" cols="40" rows="3" placeholder="Beskrivelse av prosjektområdet"></textarea>
+	        <div id="projectFormValidation" class="validationMessage"></div>
 	        <button id="createProjectBtn" onclick="GT.Provisioning.CreateWebFromCustomForm(); return false;">Opprett prosjektområde</button>
 	    </div>
     </div>
-    <link type="text/css" rel="stylesheet" href="../SiteAssets/css/gt.style.css"/>
-    <script type="text/javascript" src="../SiteAssets/javascript/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="../SiteAssets/javascript/gt.provisioning.js"></script>
+	<script type="text/javascript">
+	    document.getElementById('projectUrlInput').addEventListener('change', function (event) {
+	        if (event.target.validity.valid) {
+	            document.getElementById('projectUrlInputValidation').style.display = 'none';
+	        } else {
+	            document.getElementById('projectUrlInputValidation').style.display = 'block';
+	        }
+	    }, false);
+	</script>
 </asp:Content>
