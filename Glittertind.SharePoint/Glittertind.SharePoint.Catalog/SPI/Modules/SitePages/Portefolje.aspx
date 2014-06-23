@@ -19,16 +19,17 @@
 <asp:Content ContentPlaceHolderID="PlaceHolderTitleAreaClass" runat="server">
     <SharePoint:ProjectProperty Property="Title" runat="server" />
 </asp:Content>
-<asp:Content ID="Content5" ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
+<asp:Content ID="Content5" ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">    
+    <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/gt/css/gt.style.css %&gt;" runat="server" ></SharePoint:CssRegistration>
     <meta name="CollaborationServer" content="SharePoint Team Web Site" />
     <SharePoint:styleblock runat="server">
-.s4-nothome {
-        display:none;
-}
-</SharePoint:styleblock>
+        .s4-nothome {
+            display:none;
+        }
+    </SharePoint:styleblock>
     <SharePoint:scriptblock runat="server">
         var navBarHelpOverrideKey = "WSSEndUser";
-        </SharePoint:scriptblock>
+    </SharePoint:scriptblock>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderSearchArea" runat="server">
     <SharePoint:DelegateControl runat="server"

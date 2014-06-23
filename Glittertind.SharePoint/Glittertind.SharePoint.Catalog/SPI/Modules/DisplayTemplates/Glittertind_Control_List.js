@@ -54,17 +54,13 @@ ms_outHtml.push(''
   return ms_outHtml.join('');
 }
 function RegisterTemplate_10f0539daa1845b9a7b0a88d9c7c2cbb() {
+    if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
+      Srch.U.registerRenderTemplateByName("Control_List", DisplayTemplate_10f0539daa1845b9a7b0a88d9c7c2cbb);
+    }
 
-if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
-  Srch.U.registerRenderTemplateByName("Control_List", DisplayTemplate_10f0539daa1845b9a7b0a88d9c7c2cbb);
-}
-
-if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
-  Srch.U.registerRenderTemplateByName("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fSearch\u002fGlittertind_Control_List.js", DisplayTemplate_10f0539daa1845b9a7b0a88d9c7c2cbb);
-}
-//
-        $includeCSS("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fSearch\u002fGlittertind_Control_List.js", "~sitecollection/SiteAssets/css/gt.style.css");
-    //
+    if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
+      Srch.U.registerRenderTemplateByName("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fSearch\u002fGlittertind_Control_List.js", DisplayTemplate_10f0539daa1845b9a7b0a88d9c7c2cbb);
+    }
 }
 RegisterTemplate_10f0539daa1845b9a7b0a88d9c7c2cbb();
 if (typeof(RegisterModuleInit) == "function" && typeof(Srch.U.replaceUrlTokens) == "function") {
