@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="SiteAssets" Path="SiteAssets" Url="SiteAssets/gt">
+    <File Path="css\gt.style.css" Url="css/gt.style.css" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
+    <File Path="js\gt.common.js" Url="js/gt.common.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
     <File Path="js\gt.provisioning.js" Url="js/gt.provisioning.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
     <File Path="js\jquery-1.11.1.min.js" Url="js/jquery-1.11.1.min.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
-    <File Path="css\gt.style.css" Url="css/gt.style.css" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
   </Module>
 </Elements>

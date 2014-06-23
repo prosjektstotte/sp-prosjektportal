@@ -106,6 +106,7 @@
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project.html" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project.js" />
     <Content Include="SPI\Modules\SiteAssets\css\gt.style.css" />
+    <Content Include="SPI\Modules\SiteAssets\js\gt.common.js" />
     <Content Include="SPI\Modules\SiteAssets\js\gt.provisioning.js" />
     <None Include="SPI\Modules\SiteAssets\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f490f26c-843e-4186-9952-e873c4124e07}</SharePointProjectItemId>

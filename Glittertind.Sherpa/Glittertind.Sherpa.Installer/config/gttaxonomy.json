@@ -3,107 +3,62 @@
     {
       "Terms": [
         {
-          "Terms": [
-            
-          ],
           "Title": "Arbeid",
           "Id": "46475d37-c854-439e-b04b-2433f2dc2566"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "Barn og familie",
           "Id": "88058353-ac05-4652-a4fc-690b649ab03a"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "Bolig og eiendom",
           "Id": "ab3dd407-a44b-4783-aa45-481fb9f564ba"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "Forbrukersp\u00f8rsm\u00e5l",
           "Id": "6479faf1-3141-46ef-94d6-fc65e8f51448"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "Helse",
           "Id": "8b3870f8-59a2-4cef-a281-19228b286bbf"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "Individ og samfunn",
           "Id": "e302dff1-4fb3-4d86-894a-f3bd769f4764"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "Innvandring og integrering",
           "Id": "8d1082d0-a44d-452d-baef-212b938c5102"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "Kultur, idrett og fritid",
           "Id": "27805ae3-5749-44d9-94a7-146eedb06cfb"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "N\u00e6ring",
           "Id": "40191080-4a2a-4b8f-9c76-c31be95ae5d4"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "Natur og milj\u00f8",
           "Id": "b81d2835-beae-41ae-a810-89cf1bea480f"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "Omsorg, trygd og sosiale tjenester",
           "Id": "1d2c7635-142c-48b9-a218-1107dae02478"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "Rettslige sp\u00f8rsm\u00e5l",
           "Id": "f0cd3add-0115-4f3d-9971-2b7e1215a059"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "Skatter og avgifter",
           "Id": "1cc62a1d-2bc2-4b0f-ba14-8f3fe6fd25fc"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "Skole og utdanning",
           "Id": "adbf99fa-a7b2-492e-bfbf-23c8d0b7b2a1"
         },
         {
-          "Terms": [
-            
-          ],
           "Title": "Trafikk, reiser og samferdsel",
           "Id": "486fc975-9717-4ced-a905-559f88fc5424"
         }
@@ -153,11 +108,11 @@
         },
         {
           "Title": "Organisasjonsutvikling",
-          "Id": "d93ceaad-18ef-452f-b39a-5b176354e814"
+          "Id": "682706ae-a2d7-47ed-81d7-f8b6f30e0340"
         }
       ],
       "Title": "Prosjekttype",
-      "Id": "d93ceaad-18ef-452f-b39a-5b176354e814"
+      "Id": "3930cddb-fa4d-496f-b314-03ecabb91de1"
     }
   ],
   "Title": "Glittertind",

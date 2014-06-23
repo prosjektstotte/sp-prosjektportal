@@ -5,5 +5,6 @@
     <ProjectItemFile Source="js\gt.provisioning.js" Target="SiteAssets\js\" Type="ElementFile" />
     <ProjectItemFile Source="css\gt.style.css" Target="SiteAssets\css\" Type="ElementFile" />
     <ProjectItemFile Source="js\jquery-1.11.1.min.js" Target="SiteAssets\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\gt.common.js" Target="SiteAssets\js\" Type="ElementFile" />
   </Files>
 </ProjectItem>

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Glittertind.Sherpa.Library.Taxonomy.Model;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.Taxonomy;
+using Term = Glittertind.Sherpa.Library.Taxonomy.Model.Term;
 
 namespace Glittertind.Sherpa.Library.Taxonomy
 {
@@ -23,6 +25,9 @@ namespace Glittertind.Sherpa.Library.Taxonomy
         public void WriteTaxonomyToTermStore()
         {
             var group = Provider.Load();
+
+            ValidateTaxonomyConfiguration(group);
+
             using (var context = new ClientContext(_urlToSite))
             {
                 // user must be termstore admin
@@ -86,6 +91,37 @@ namespace Glittertind.Sherpa.Library.Taxonomy
                 var termStore = GetTermStore(context);
 
                 return termStore.Id;
+            }
+        }
+
+        /// <summary>
+        /// Checks that no ID's in the configuration file contains duplicate Ids. 
+        /// Also checks that no terms at the same level have duplicate names.
+        /// Both scenarios will lead to problems with 'rogue' terms and term sets
+        /// </summary>
+        /// <param name="termGroup"></param>
+        /// <returns></returns>
+        private void ValidateTaxonomyConfiguration(Model.TermSetGroup termGroup)
+        {
+            var termIdsForEnsuringUniqueness = new List<Guid> {termGroup.Id};
+
+            foreach (Model.TermSet termSet in termGroup.TermSets)
+            {
+                if (termIdsForEnsuringUniqueness.Contains(termSet.Id)) 
+                    throw new NotSupportedException("One or more term items has the same Id which is not supported. Termset Id " + termSet.Id);
+                
+                termIdsForEnsuringUniqueness.Add(termSet.Id);
+                foreach (Model.Term term in termSet.Terms)
+                {
+                    if (termIdsForEnsuringUniqueness.Contains(term.Id))
+                        throw new NotSupportedException("One or more term items has the same Id which is not supported. Term Id " + term.Id);
+
+                    termIdsForEnsuringUniqueness.Add(term.Id);
+                    // Terms at the same level cannot have duplicate names
+                    string currentTermTitle = term.Title;
+                    if (termSet.Terms.Count(t => t.Title.Equals(currentTermTitle)) != 1) 
+                        throw new NotSupportedException("Found duplicate term names at the same level which is not supported. Term name " + term.Title);
+                }
             }
         }
     }
