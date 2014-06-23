@@ -25,7 +25,7 @@ namespace Glittertind.Sherpa.Library.Taxonomy
         {
             var group = Provider.Load();
 
-            ValidateTaxonomyConfiguration(group);
+            ValidateConfiguration(group);
 
             using (var context = new ClientContext(_urlToSite))
             {
@@ -100,17 +100,17 @@ namespace Glittertind.Sherpa.Library.Taxonomy
         /// </summary>
         /// <param name="gtTermGroup"></param>
         /// <returns></returns>
-        private void ValidateTaxonomyConfiguration(Model.GtTermSetGroup gtTermGroup)
+        public void ValidateConfiguration(GtTermSetGroup gtTermGroup)
         {
             var termIdsForEnsuringUniqueness = new List<Guid> {gtTermGroup.Id};
 
-            foreach (Model.GtTermSet termSet in gtTermGroup.TermSets)
+            foreach (var termSet in gtTermGroup.TermSets)
             {
                 if (termIdsForEnsuringUniqueness.Contains(termSet.Id)) 
                     throw new NotSupportedException("One or more term items has the same Id which is not supported. Termset Id " + termSet.Id);
                 
                 termIdsForEnsuringUniqueness.Add(termSet.Id);
-                foreach (Model.GtTerm term in termSet.Terms)
+                foreach (var term in termSet.Terms)
                 {
                     if (termIdsForEnsuringUniqueness.Contains(term.Id))
                         throw new NotSupportedException("One or more term items has the same Id which is not supported. Term Id " + term.Id);

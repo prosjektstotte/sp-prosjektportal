@@ -34,6 +34,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes
 
             LoadFields(fieldProvider);
             LoadContentTypes(contentTypeProvider);
+            ValidateConfiguration();
         }
         /// <summary>
         /// Cannot be used for setup
@@ -226,6 +227,35 @@ namespace Glittertind.Sherpa.Library.ContentTypes
             if (ClientContext != null)
             {
                 ClientContext.Dispose();
+            }
+        }
+
+        public void ValidateConfiguration()
+        {
+            var fieldIdsForEnsuringUniqueness = new List<Guid>();
+            var fieldNamesForEnsuringUniqueness = new List<string>();
+            foreach (var field in Fields)
+            {
+                if (fieldIdsForEnsuringUniqueness.Contains(field.ID))
+                    throw new NotSupportedException("One or more fields have the same Id which is not supported. Field Id " + field.ID);
+                if (fieldNamesForEnsuringUniqueness.Contains(field.InternalName))
+                    throw new NotSupportedException("One or more fields have the same InternalName which is not supported. Field Id " + field.InternalName);
+
+                fieldIdsForEnsuringUniqueness.Add(field.ID);
+                fieldNamesForEnsuringUniqueness.Add(field.InternalName);
+            }
+            
+            var contentTypeIdsForEnsuringUniqueness = new List<string>();
+            var contentTypeInternalNamesForEnsuringUniqueness = new List<string>();
+            foreach (var contentType in ContentTypes)
+            {
+                if (contentTypeIdsForEnsuringUniqueness.Contains(contentType.ID))
+                    throw new NotSupportedException("One or more content types have the same Id which is not supported. Content Type Id " + contentType.ID);
+                if (contentTypeInternalNamesForEnsuringUniqueness.Contains(contentType.InternalName))
+                    throw new NotSupportedException("One or more content types have the same InternalName which is not supported. Content Type Id " + contentType.InternalName);
+
+                contentTypeIdsForEnsuringUniqueness.Add(contentType.ID);
+                contentTypeInternalNamesForEnsuringUniqueness.Add(contentType.InternalName);
             }
         }
     }

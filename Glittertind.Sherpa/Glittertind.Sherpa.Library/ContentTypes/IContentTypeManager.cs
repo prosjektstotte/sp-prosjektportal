@@ -4,5 +4,6 @@
     {
         void CreateContentTypes();
         void CreateSiteColumns();
+        void ValidateConfiguration();
     }
 }
