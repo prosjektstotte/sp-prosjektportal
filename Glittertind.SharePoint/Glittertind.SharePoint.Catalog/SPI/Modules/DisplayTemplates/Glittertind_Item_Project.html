@@ -44,22 +44,13 @@ var title = $getItemValue(ctx, "Title");
 var projectManager = $getItemValue(ctx, "ProjectManager");
 var projectOwner = $getItemValue(ctx, "ProjectOwner");
 var projectPhase = $getItemValue(ctx, "ProjectPhase");
-if (projectPhase.isEmpty) {
-	projectPhase = "Realisere";
-} else {
-	projectPhase = projectPhase.inputValue;
-}
-var phaseLetter = projectPhase.substr(0,1);
+var projectPhaseDisplayMarkup = GT.Common.GetPhaseLogoMarkup(projectPhase);
 _#-->
              <div class="gt-projectItem">
-                <div class="gt-phaseIcon">
-					<span class="phaseLetter">_#= phaseLetter =#_</span>
-					<span class="projectPhase">_#= projectPhase =#_</span>
-                </div>
+                _#= projectPhaseDisplayMarkup =#_
                 <h2><a href="_#= url =#_">_#= title =#_</a></h2>
                 <div>Prosjektleder: _#= projectManager =#_</div>
                 <div>Prosjekteier: _#= projectOwner =#_</div>
-
             </div>
     </div>
 </body>

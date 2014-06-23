@@ -24,9 +24,10 @@
         }
     </sharepoint:styleblock>
     <sharepoint:scriptblock runat="server">
-	var navBarHelpOverrideKey = "WSSEndUser";
+	    var navBarHelpOverrideKey = "WSSEndUser";
 	</sharepoint:scriptblock>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/jquery-1.11.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.common.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/gt/css/gt.style.css %&gt;" runat="server" ></SharePoint:CssRegistration>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderSearchArea" runat="server">
@@ -50,6 +51,10 @@
     <table class="projectFrontPage" width="100%" cellpadding="0" cellspacing="0" style="padding: 5px 10px 10px 10px;">
 	    <tr>
 		    <td valign="top" width="70%">
+		        <div class="projectPhaseSection">
+		            <div class="projectPhases"></div>
+                    <button class="changeProjectPhaseBtn" onclick="GT.Project.ChangePhase();">Endre fase</button>
+		        </div>
 			    <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Left%>" ID="LeftColumn" Orientation="Vertical" />
 			    &#160;
 		    </td>

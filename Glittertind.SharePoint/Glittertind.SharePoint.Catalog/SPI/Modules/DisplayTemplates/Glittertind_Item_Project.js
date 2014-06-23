@@ -25,18 +25,10 @@ var title = $getItemValue(ctx, "Title");
 var projectManager = $getItemValue(ctx, "ProjectManager");
 var projectOwner = $getItemValue(ctx, "ProjectOwner");
 var projectPhase = $getItemValue(ctx, "ProjectPhase");
-if (projectPhase.isEmpty) {
-	projectPhase = "Realisere";
-} else {
-	projectPhase = projectPhase.inputValue;
-}
-var phaseLetter = projectPhase.substr(0,1);
+var projectPhaseDisplayMarkup = GT.Common.GetPhaseLogoMarkup(projectPhase);
 ms_outHtml.push(''
 ,'             <div class="gt-projectItem">'
-,'                <div class="phaseIcon">'
-,'					<span class="phaseLetter">', phaseLetter ,'</span>'
-,'					<span class="projectPhase">', projectPhase ,'</span>'
-,'                </div>'
+,'                ',projectPhaseDisplayMarkup,''
 ,'                <h2><a href="', url ,'">', title ,'</a></h2>'
 ,'                <div>Prosjektleder: ', projectManager ,'</div>'
 ,'                <div>Prosjekteier: ', projectOwner ,'</div>'
