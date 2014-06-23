@@ -5,7 +5,6 @@ using System.Net;
 using Glittertind.Sherpa.Library.Taxonomy.Model;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.Taxonomy;
-using Term = Glittertind.Sherpa.Library.Taxonomy.Model.Term;
 
 namespace Glittertind.Sherpa.Library.Taxonomy
 {
@@ -13,9 +12,9 @@ namespace Glittertind.Sherpa.Library.Taxonomy
     {
         private readonly ICredentials _credentials;
         private readonly Uri _urlToSite;
-        private IPersistanceProvider<TermSetGroup> Provider { get; set; }
+        private IPersistanceProvider<GtTermSetGroup> Provider { get; set; }
 
-        public TaxonomyManager(Uri urlToSite, ICredentials credentials, IPersistanceProvider<TermSetGroup> provider)
+        public TaxonomyManager(Uri urlToSite, ICredentials credentials, IPersistanceProvider<GtTermSetGroup> provider)
         {
             Provider = provider;
             _urlToSite = urlToSite;
@@ -99,19 +98,19 @@ namespace Glittertind.Sherpa.Library.Taxonomy
         /// Also checks that no terms at the same level have duplicate names.
         /// Both scenarios will lead to problems with 'rogue' terms and term sets
         /// </summary>
-        /// <param name="termGroup"></param>
+        /// <param name="gtTermGroup"></param>
         /// <returns></returns>
-        private void ValidateTaxonomyConfiguration(Model.TermSetGroup termGroup)
+        private void ValidateTaxonomyConfiguration(Model.GtTermSetGroup gtTermGroup)
         {
-            var termIdsForEnsuringUniqueness = new List<Guid> {termGroup.Id};
+            var termIdsForEnsuringUniqueness = new List<Guid> {gtTermGroup.Id};
 
-            foreach (Model.TermSet termSet in termGroup.TermSets)
+            foreach (Model.GtTermSet termSet in gtTermGroup.TermSets)
             {
                 if (termIdsForEnsuringUniqueness.Contains(termSet.Id)) 
                     throw new NotSupportedException("One or more term items has the same Id which is not supported. Termset Id " + termSet.Id);
                 
                 termIdsForEnsuringUniqueness.Add(termSet.Id);
-                foreach (Model.Term term in termSet.Terms)
+                foreach (Model.GtTerm term in termSet.Terms)
                 {
                     if (termIdsForEnsuringUniqueness.Contains(term.Id))
                         throw new NotSupportedException("One or more term items has the same Id which is not supported. Term Id " + term.Id);

@@ -28,7 +28,7 @@ namespace Glittertind.Sherpa.Installer
         {
             Console.WriteLine("Starting installation of term groups, term sets and terms");
             var path = Path.Combine(Environment.CurrentDirectory, @"config\gttaxonomy.json");
-            var taxPersistanceProvider = new FilePersistanceProvider<TermSetGroup>(path);
+            var taxPersistanceProvider = new FilePersistanceProvider<GtTermSetGroup>(path);
             var taxonomyManager = new TaxonomyManager(_urlToSite, _credentials, taxPersistanceProvider);
             taxonomyManager.WriteTaxonomyToTermStore();
         }

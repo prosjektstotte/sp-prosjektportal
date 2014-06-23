@@ -64,10 +64,10 @@
     <Compile Include="FilePersistanceProvider.cs" />
     <Compile Include="IPersistanceProvider.cs" />
     <Compile Include="Taxonomy\ITaxonomyManager.cs" />
-    <Compile Include="Taxonomy\Model\Term.cs" />
-    <Compile Include="Taxonomy\Model\TermItemBase.cs" />
-    <Compile Include="Taxonomy\Model\TermSet.cs" />
-    <Compile Include="Taxonomy\Model\TermSetGroup.cs" />
+    <Compile Include="Taxonomy\Model\GtTerm.cs" />
+    <Compile Include="Taxonomy\Model\GtTermItemBase.cs" />
+    <Compile Include="Taxonomy\Model\GtTermSet.cs" />
+    <Compile Include="Taxonomy\Model\GtTermSetGroup.cs" />
     <Compile Include="Taxonomy\TaxonomyManager.cs" />
     <Compile Include="UriUtilities.cs" />
   </ItemGroup>
