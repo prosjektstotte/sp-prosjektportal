@@ -41,8 +41,12 @@ GT.Common.GetPhaseFromCurrentItem = function () {
     var deferred = jQuery.Deferred();
     context.executeQueryAsync(Function.createDelegate(this, function () {
         var currentPhaseItem = pageItem.get_item(pageFieldNameVar);
-        var currentPhaseName = currentPhaseItem.Label;
-        deferred.resolve(currentPhaseName);
+        if (currentPhaseItem != '' && currentPhaseItem != undefined) {
+            var currentPhaseName = currentPhaseItem.Label;
+            deferred.resolve(currentPhaseName);
+        } else {
+            deferred.resolve('');
+        }
         deferred.promise();
     }), Function.createDelegate(this, function (sender, args) {
         deferred.resolve('');

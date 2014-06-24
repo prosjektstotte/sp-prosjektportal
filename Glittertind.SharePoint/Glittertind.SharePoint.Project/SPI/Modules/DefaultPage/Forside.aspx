@@ -53,8 +53,9 @@
 	    <tr>
 		    <td valign="top" width="70%">
 		        <div class="projectPhaseSection">
-		            <ul class="projectPhases"></ul>
+		            <h2 style="text-align:justify;" class="ms-webpart-titleText gt-phaseHeading"><nobr><span>Prosjektets faser</span><span id="WebPartCaptionWPQ2"></span></nobr></h2>
                     <a id="changeProjectPhaseLink" href="javascript:void(0);">Endre fase</a>
+		            <ul class="projectPhases"></ul>
 		        </div>
 			    <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Left%>" ID="LeftColumn" Orientation="Vertical" />
 			    &#160;
