@@ -15,6 +15,11 @@
 .projectFrontPage .projectMetadata #editPageMetaLink, .projectFrontPage .projectMetadata #editPageMetaLink:visited, .projectFrontPage .projectMetadata #editPageMetaLink:active {color: #666;font-size:0.9em;text-decoration:none;}
 ul.gt-List {list-style-type: none; padding-left: 0;}
 ul.gt-List .gt-projectItem {display: block; margin-bottom: 20px;}
-.gt-phaseIcon {display: block; width: 72px;height: 72px;float: left;margin-right: 20px;}
+.gt-phaseIcon {display: block; width: 92px;height: 72px;float: left;margin-right: 20px;}
 .gt-phaseIcon .phaseLetter {display: block; font-size: 33px; text-align: center;}
 .gt-phaseIcon .projectPhase {display: block; font-size: 12px; text-transform:uppercase; text-align: center;}
+.projectFrontPage .projectPhaseSection {height: 130px; width: 560px;}
+.projectFrontPage .projectPhaseSection ul.projectPhases {width: 100%;list-style: none;height: 72px; margin: 0; padding: 10px;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li {display: inline-block;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li .selected {color: #009500;}
+.projectFrontPage .projectPhaseSection button {float: right; margin-right: 20px;}

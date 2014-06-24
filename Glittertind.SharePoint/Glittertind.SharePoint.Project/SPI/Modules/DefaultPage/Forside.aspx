@@ -52,7 +52,7 @@
 	    <tr>
 		    <td valign="top" width="70%">
 		        <div class="projectPhaseSection">
-		            <div class="projectPhases"></div>
+		            <ul class="projectPhases"></ul>
                     <button class="changeProjectPhaseBtn" onclick="GT.Project.ChangePhase();">Endre fase</button>
 		        </div>
 			    <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Left%>" ID="LeftColumn" Orientation="Vertical" />
@@ -174,8 +174,8 @@
 
 							    function DisplayMissingMetadataMessage() {
 							        if (jQuery('.projectFrontPage .projectMetadata table tr.GtProjectPhase td.fieldValue').text().trim() == '' ||
-										jQuery('.projectFrontPage .projectMetadata table tr.GtProjectManager td.fieldValue').text().trim() == '' ||
-										jQuery('.projectFrontPage .projectMetadata table tr.GtProjectGoals td.fieldValue').text().trim() == '') {
+							            jQuery('.projectFrontPage .projectMetadata table tr.GtProjectManager td.fieldValue').text().trim() == '' ||
+							            jQuery('.projectFrontPage .projectMetadata table tr.GtProjectGoals td.fieldValue').text().trim() == '') {
 							            jQuery('.projectFrontPage .missingMetadataWarning').show();
 							        }
 							    }
@@ -190,4 +190,9 @@
 	    </tr>
     </table>
 	<SharePoint:ScriptBlock runat="server">if(typeof(MSOLayout_MakeInvisibleIfEmpty) == "function") {MSOLayout_MakeInvisibleIfEmpty();}</SharePoint:ScriptBlock>
+    <script type="text/javascript" language="javascript">
+        jQuery(document).ready(function() {
+            GT.Common.PopulateProjectPhasePart();
+        });
+    </script>
 </asp:Content>

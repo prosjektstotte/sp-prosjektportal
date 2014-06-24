@@ -1,14 +1,20 @@
 ﻿var GT = GT || {};
 GT.Common = GT.Common || {};
+GT.Project = GT.Project || {};
 
 GT.Common.GetPhaseLogoMarkup = function (phaseName) {
+    GT.Common.GetPhaseLogoMarkup(phaseName, false);
+};
+
+GT.Common.GetPhaseLogoMarkup = function (phaseName, selected) {
     var phaseDisplayName = "Ingen fase";
     var phaseLetter = 'X';
+    var selectedClass = selected ? "selected" : '';
     if (phaseName != '' && phaseName != undefined) {
         phaseDisplayName = phaseName;
         phaseLetter = phaseName.substr(0, 1);
     }
-    return '<div class="gt-phaseIcon">' +
+    return '<div class="gt-phaseIcon ' + selectedClass + '">' +
         '<span class="phaseLetter">' + phaseLetter + '</span>' +
         '<span class="projectPhase">' + phaseDisplayName + '</span>' +
         '</div>';
@@ -40,7 +46,7 @@ GT.Common.GetPhaseFromCurrentItem = function () {
         deferred.resolve(currentPhaseName);
         deferred.promise();
     }), Function.createDelegate(this, function (sender, args) {
-        deferred.resolve('Ingen fase');
+        deferred.resolve('');
         deferred.promise();
         console.log('error when getting page field' + sender + " " + args);
     }));
@@ -48,7 +54,16 @@ GT.Common.GetPhaseFromCurrentItem = function () {
 };
 
 GT.Common.PopulateProjectPhasePart = function () {
-    jQuery.when(GT.Common.GetPhaseFromCurrentItem()).then(function (phaseName) {
-        console.log(phaseName);
+    SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
+        jQuery.when(GT.Common.GetPhaseFromCurrentItem()).then(function (phaseName) {
+            var phases = ['Konsept', 'Planlegge', 'Gjennomføre', 'Avslutte', 'Realisere'];
+            for (var ix = 0; ix < phases.length; ix++) {
+                jQuery('.projectPhases').append('<li>' + GT.Common.GetPhaseLogoMarkup(phases[ix], phases[ix] == phaseName) + '</li>');
+            }
+        });
     });
+};
+
+GT.Project.ChangePhase = function () {
+    alert('not implemented');
 };
