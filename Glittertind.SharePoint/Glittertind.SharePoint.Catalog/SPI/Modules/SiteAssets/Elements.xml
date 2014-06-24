@@ -5,5 +5,8 @@
     <File Path="js\gt.common.js" Url="js/gt.common.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
     <File Path="js\gt.provisioning.js" Url="js/gt.provisioning.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
     <File Path="js\jquery-1.11.1.min.js" Url="js/jquery-1.11.1.min.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
+    <File Path="js\gt.project.js" Url="js/gt.project.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
+    <File Path="js\gt.generics.js" Url="js/gt.generics.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
+    <File Path="html\gt.phaseform.html" Url="html/gt.phaseform.html" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
   </Module>
 </Elements>

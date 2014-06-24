@@ -28,6 +28,7 @@
 	</sharepoint:scriptblock>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/jquery-1.11.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.common.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/gt/css/gt.style.css %&gt;" runat="server" ></SharePoint:CssRegistration>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderSearchArea" runat="server">
@@ -53,7 +54,7 @@
 		    <td valign="top" width="70%">
 		        <div class="projectPhaseSection">
 		            <ul class="projectPhases"></ul>
-                    <button class="changeProjectPhaseBtn" onclick="GT.Project.ChangePhase();">Endre fase</button>
+                    <a id="changeProjectPhaseLink" href="javascript:void(0);">Endre fase</a>
 		        </div>
 			    <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Left%>" ID="LeftColumn" Orientation="Vertical" />
 			    &#160;
@@ -164,22 +165,6 @@
 						<SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AuthenticatedUsersOnly" Permissions="AddAndCustomizePages" PermissionContext="CurrentItem">
 							<div class="missingMetadataWarning">Viktig informasjon om prosjektet er ikke satt. Du bør sette disse egenskapene snarest.</div>
 							<a id="editPageMetaLink" class="ms-navedit-editLinksText" href="#"><span class="ms-navedit-editLinksIconWrapper ms-verticalAlignMiddle"><img class="ms-navedit-editLinksIcon" src="/_layouts/15/images/spcommon.png?rev=23"></span>Rediger egenskapene over</a>
-							<script type="text/javascript">
-							    jQuery(document).ready(function () {
-							        var pageItemId = _spPageContextInfo.pageItemId;
-							        var editMetaUrl = 'Forms/EditForm.aspx?ID=' + pageItemId;
-							        jQuery('#editPageMetaLink').attr('href', editMetaUrl);
-							        DisplayMissingMetadataMessage();
-							    });
-
-							    function DisplayMissingMetadataMessage() {
-							        if (jQuery('.projectFrontPage .projectMetadata table tr.GtProjectPhase td.fieldValue').text().trim() == '' ||
-							            jQuery('.projectFrontPage .projectMetadata table tr.GtProjectManager td.fieldValue').text().trim() == '' ||
-							            jQuery('.projectFrontPage .projectMetadata table tr.GtProjectGoals td.fieldValue').text().trim() == '') {
-							            jQuery('.projectFrontPage .missingMetadataWarning').show();
-							        }
-							    }
-							</script>
 						</SharePoint:SPSecurityTrimmedControl>
 		            </div>
 		        </div>
@@ -195,4 +180,25 @@
             GT.Common.PopulateProjectPhasePart();
         });
     </script>
+    <SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AuthenticatedUsersOnly" Permissions="AddAndCustomizePages" PermissionContext="CurrentItem">
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+    	        var editMetaUrl = 'Forms/EditForm.aspx?EditMode=Project&ID=' + _spPageContextInfo.pageItemId;
+    	        jQuery('#editPageMetaLink').attr('href', editMetaUrl);
+
+                var editPhaseUrl = editMetaUrl.replace('Project', 'PhaseOnly');
+                jQuery('#changeProjectPhaseLink').attr('href', editPhaseUrl);
+                jQuery('#changeProjectPhaseLink').show();
+    	        DisplayMissingMetadataMessage();
+            });
+
+            function DisplayMissingMetadataMessage() {
+    	        if (jQuery('.projectFrontPage .projectMetadata table tr.GtProjectPhase td.fieldValue').text().trim() == '' ||
+                    jQuery('.projectFrontPage .projectMetadata table tr.GtProjectManager td.fieldValue').text().trim() == '' ||
+                    jQuery('.projectFrontPage .projectMetadata table tr.GtProjectGoals td.fieldValue').text().trim() == '') {
+    		        jQuery('.projectFrontPage .missingMetadataWarning').show();
+    	        }
+            }
+        </script>
+    </SharePoint:SPSecurityTrimmedControl>
 </asp:Content>

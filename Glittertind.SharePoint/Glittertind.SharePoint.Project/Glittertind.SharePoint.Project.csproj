@@ -74,6 +74,9 @@
     <None Include="SPI\Modules\DefaultPage\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{162bc79e-9156-42c0-b87b-ce37db39e48f}</SharePointProjectItemId>
     </None>
+    <None Include="SPI\Modules\FormWebparts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{48500f2b-1fe0-41ae-bc96-1200210dd05e}</SharePointProjectItemId>
+    </None>
     <None Include="SPI\Modules\ProjectWebTemplate\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{43ae03b5-e9f1-4e0e-b6d2-8dc8b0770f01}</SharePointProjectItemId>
     </None>
@@ -95,6 +98,8 @@
     <Content Include="SPI\Modules\ContentTypeBindings\Elements.xml" />
     <Content Include="SPI\Modules\DefaultPage\Elements.xml" />
     <Content Include="SPI\Modules\DefaultPage\Forside.aspx" />
+    <Content Include="SPI\Modules\FormWebparts\Elements.xml" />
+    <Content Include="SPI\Modules\FormWebparts\EditFormCustom.aspx" />
     <Content Include="SPI\Modules\ProjectWebTemplate\Elements.xml" />
     <Content Include="SPI\Modules\ProjectWebTemplate\Onet.xml" />
     <Content Include="SPI\Modules\PropertyBag\Elements.xml" />

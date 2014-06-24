@@ -6,5 +6,8 @@
     <ProjectItemFile Source="css\gt.style.css" Target="SiteAssets\css\" Type="ElementFile" />
     <ProjectItemFile Source="js\jquery-1.11.1.min.js" Target="SiteAssets\js\" Type="ElementFile" />
     <ProjectItemFile Source="js\gt.common.js" Target="SiteAssets\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\gt.project.js" Target="SiteAssets\js\" Type="ElementFile" />
+    <ProjectItemFile Source="html\gt.phaseform.html" Target="SiteAssets\html\" Type="ElementFile" />
+    <ProjectItemFile Source="js\gt.generics.js" Target="SiteAssets\js\" Type="ElementFile" />
   </Files>
 </ProjectItem>

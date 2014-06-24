@@ -1,6 +1,5 @@
 ﻿var GT = GT || {};
 GT.Common = GT.Common || {};
-GT.Project = GT.Project || {};
 
 GT.Common.GetPhaseLogoMarkup = function (phaseName) {
     GT.Common.GetPhaseLogoMarkup(phaseName, false);
@@ -62,8 +61,4 @@ GT.Common.PopulateProjectPhasePart = function () {
             }
         });
     });
-};
-
-GT.Project.ChangePhase = function () {
-    alert('not implemented');
 };
