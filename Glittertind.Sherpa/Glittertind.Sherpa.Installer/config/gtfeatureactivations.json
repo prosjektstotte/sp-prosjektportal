@@ -32,6 +32,7 @@
     {
     FeatureId: "97f310cf-bc74-494f-8fc0-b6a3dd3bf42a",
     FeatureName: "Glittertind.SharePoint.Catalog_SiteSiteAssetsArtefacts",
+    ReactivateOnUpgrade: "true",
     Scope: "Site",
     Url: "/"
 	},

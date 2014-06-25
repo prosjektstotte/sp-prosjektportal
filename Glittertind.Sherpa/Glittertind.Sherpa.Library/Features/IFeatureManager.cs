@@ -3,5 +3,6 @@
     interface IFeatureManager
     {
         void ActivateFeatures();
+        void ReActivateFeaturesAfterUpgrade();
     }
 }

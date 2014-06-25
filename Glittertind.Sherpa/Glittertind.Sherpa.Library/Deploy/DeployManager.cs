@@ -86,30 +86,74 @@ namespace Glittertind.Sherpa.Library.Deploy
             using (var context = new ClientContext(_urlToWeb))
             {
                 context.Credentials = _credentials;
-
-                var packageInfo = new DesignPackageInfo
-                {
-                    PackageName = nameOfPackage,
-                    MajorVersion = 1,
-                    MinorVersion = 0
-                };
-
                 context.Load(context.Site);
                 context.Load(context.Web);
                 context.ExecuteQuery();
-                var fileUrl = UriUtilities.CombineServerRelativeUri(context.Site.ServerRelativeUrl, siteRelativeUrlToLibrary, nameOfPackage + ".wsp");
 
-                Console.WriteLine("Installing solution package " + nameOfPackage);
-                Console.WriteLine("This could take a minute");
-                DesignPackage.Install(context, context.Site, packageInfo, fileUrl);
+                var stagedFileUrl = UriUtilities.CombineServerRelativeUri(context.Site.ServerRelativeUrl, siteRelativeUrlToLibrary, nameOfPackage + ".wsp");
+                var packageInfo = GetPackageInfoWithLatestVersion(context, nameOfPackage, stagedFileUrl);
+
+                Console.WriteLine("Installing solution package " + GetFileNameFromPackageInfo(packageInfo));
+                DesignPackage.Install(context, context.Site, packageInfo, stagedFileUrl);
                 context.ExecuteQuery();
-                var web = context.Web;
-                var file = web.GetFileByServerRelativeUrl(fileUrl);
-                context.Load(file);
-                file.DeleteObject();
-                context.ExecuteQuery();
-                Console.WriteLine("Activated package " + nameOfPackage);
+
+                DeleteFile(context, stagedFileUrl);
             }
+        }
+
+        private DesignPackageInfo GetPackageInfoWithLatestVersion(ClientContext context, string nameOfPackage, string fileUrl)
+        {
+            var web = context.Web;
+            var stagedFile = web.GetFileByServerRelativeUrl(fileUrl);
+            context.Load(stagedFile, f => f.Exists, f => f.Name);
+            context.ExecuteQuery();
+            if (stagedFile.Exists)
+            {
+                return GetPackageInfoWithFirstAvailableMinorVersion(context, nameOfPackage, 1, 0);
+            }
+            return null;
+        }
+
+        private DesignPackageInfo GetPackageInfoWithFirstAvailableMinorVersion(ClientContext context, string nameOfPackage, int majorVersion, int minorVersion)
+        {
+            var newVersionPackageInfo = GetPackageInfo(nameOfPackage, majorVersion, minorVersion);
+
+            var nameInSolutionGallery = GetFileNameFromPackageInfo(newVersionPackageInfo);
+            var fileInSolutionGallery =
+                context.Web.GetFileByServerRelativeUrl(context.Site.ServerRelativeUrl + "/_catalogs/solutions/" + nameInSolutionGallery);
+            context.Load(fileInSolutionGallery, f => f.Exists);
+            context.ExecuteQuery();
+
+            return !fileInSolutionGallery.Exists ? newVersionPackageInfo : GetPackageInfoWithFirstAvailableMinorVersion(context, nameOfPackage, majorVersion, minorVersion+1);
+        }
+
+        private DesignPackageInfo GetPackageInfo(string nameOfPackage, int majorVersion, int minorVersion)
+        {
+            return new DesignPackageInfo
+            {
+                PackageName = nameOfPackage,
+                MajorVersion = majorVersion,
+                MinorVersion = minorVersion
+            };
+        }
+
+        /// <summary>
+        /// This is how SharePoint creates the name of the package that is installed
+        /// </summary>
+        /// <param name="packageInfo"></param>
+        /// <returns></returns>
+        private static string GetFileNameFromPackageInfo(DesignPackageInfo packageInfo)
+        {
+            return string.Format("{0}-v{1}.{2}.wsp", packageInfo.PackageName, packageInfo.MajorVersion, packageInfo.MinorVersion);
+        }
+
+        private static void DeleteFile(ClientContext context, string fileUrl)
+        {
+            var web = context.Web;
+            var file = web.GetFileByServerRelativeUrl(fileUrl);
+            context.Load(file);
+            file.DeleteObject();
+            context.ExecuteQuery();
         }
 
         public void ForceRecrawl()
@@ -117,12 +161,9 @@ namespace Glittertind.Sherpa.Library.Deploy
             using (var context = new ClientContext(_urlToWeb))
             {
                 context.Credentials = _credentials;
-
                 context.Load(context.Web);
                 context.ExecuteQuery();
-                Console.WriteLine("");
                 ForceRecrawlOf(context.Web, context);
-                Console.WriteLine("");
 
             }
 
@@ -130,8 +171,7 @@ namespace Glittertind.Sherpa.Library.Deploy
 
         private void ForceRecrawlOf(Web web, ClientContext context)
         {
-
-            Console.WriteLine("Processing web: "+web.Url);
+            Console.WriteLine("Forcing recrawl of web: " + web.Url);
             context.Credentials = _credentials;
 
             context.Load(web, x => x.AllProperties, x => x.Webs);
@@ -144,16 +184,13 @@ namespace Glittertind.Sherpa.Library.Deploy
             {
                 version = (int)allProperties["vti_searchversion"];
             }
-            Console.WriteLine("Current search version: " + version);
             version++;
             allProperties["vti_searchversion"] = version;
-            Console.WriteLine("Updated search version: " + version);
             web.Update();
             foreach (var subWeb in subWebs)
             {
                 ForceRecrawlOf(subWeb, context);
             }
-
         }
 
     }
