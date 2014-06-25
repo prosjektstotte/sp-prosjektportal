@@ -59,7 +59,7 @@ GT.Provisioning.OnCreateWebSuccess = function (sender, args) {
     //1. Stop long running operation
     //2. Close modal dialog (if existing)
     //3. Redirect to new site's '_layouts/15/permsetup.aspx?HideCancel=1'
-    var newUrl = this.newWeb.get_url()
+    var newUrl = this.newWeb.get_url();
     closeWaitMessage();
 
     var setupPermissionsUrl = newUrl + '/_layouts/15/permsetup.aspx?HideCancel=1';

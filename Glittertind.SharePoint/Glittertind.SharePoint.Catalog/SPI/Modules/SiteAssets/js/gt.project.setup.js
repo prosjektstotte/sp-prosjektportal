@@ -3,108 +3,115 @@ GT.Project = GT.Project || {};
 GT.Project.Setup = GT.Project.Setup || {};
 GT.Project.Setup.Model = GT.Project.Setup.Model || {}
 
+var console = window.console || {};
+console.log = console.log || function () { };
+console.warn = console.warn || function () { };
+console.error = console.error || function () { };
+console.info = console.info || function () { };
+
 GT.Project.Setup.Model.step = function (name, callback, properties) {
     var self = this;
     self.name = name;
     self.properties = properties;
     self.callback = callback;
     self.execute = function () {
-        self.callback(properties);
+        return self.callback(properties);
     };
 };
 
 GT.Project.Setup.InheritNavigation = function () {
+    var deferred = $.Deferred();
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
     clientContext.load(web);
     var navigation = web.get_navigation();
     navigation.set_useShared(true);
-    clientContext.executeQueryAsync();
+    clientContext.executeQueryAsync(function () { deferred.resolve() }, function () { deferred.reject() });
+    return deferred.promise();
 };
 
+// [start] utility methods
 
 GT.Project.Setup.resolveProperties = function (properties) {
-    var deferred = new $.Deferred();
+    var deferred = $.Deferred();
 
     var context = SP.ClientContext.get_current();
-
     var web = context.get_web();
     var props = web.get_allProperties();
     context.load(props);
 
     context.executeQueryAsync(
-		function () {
-		    for (var property in properties) {
-		        var spPropertyValue = props.get_fieldValues()[properties[property].key];
-		        if (spPropertyValue != undefined) {
-		            properties[property].value = spPropertyValue;
-		        }
+        function () {
+            for (var property in properties) {
+                var spPropertyValue = props.get_fieldValues()[properties[property].key];
+                if (spPropertyValue != undefined) {
+                    properties[property].value = spPropertyValue;
+                }
 
-		    }
-		    deferred.resolve(properties);
-		    deferred.promise();
-		}, function () {
-		    deferred.fail();
-		}
-	);
-    return deferred;
+            }
+            deferred.resolve(properties);
+        }, function () {
+            deferred.reject();
+        }
+    );
+    return deferred.promise();
 };
 
 GT.Project.Setup.persistsProperties = function (properties) {
-    var self = this;
-    self.properties = properties;
-    var deferred = new $.Deferred();
+
+    var deferred = $.Deferred();
     var context = SP.ClientContext.get_current();
     var web = context.get_web();
-    context.load(web);
-    var props = web.get_allProperties();
-    context.load(props);
-    context.executeQueryAsync(
-		function () {
-		    for (var property in self.properties) {
-		        props.set_item(properties[property].key, properties[property].value);
-		    }
-		    context.executeQueryAsync(function () {
-		        deferred.promise();
-		    }, function () {
-		        deferred.fail();
-		    });
+    var propBag = web.get_allProperties();
 
-		}, function () {
-		    deferred.fail();
-		}
-	);
+    for (var property in properties) {
+        var key = properties[property].key;
+        var value = properties[property].value;
+        propBag.set_item(key, value);
+    }
+    context.load(web);
+    web.update();
+    context.executeQueryAsync(
+    function (sender, args) { console.log("saved properties!"); deferred.resolve(); },
+    function (sender, args) {
+        console.log('Request failed: ' + args.get_message());
+        console.log(args.get_stackTrace());
+        deferred.reject();
+    });
+
+    return deferred.promise();
 };
 
+GT.Project.Setup.Utility = GT.Project.Setup.Utility || {};
+GT.Project.Setup.Debug = GT.Project.Setup.Debug || {};
 
-GT.Project.Setup.execute = function (properties, steps) {
-    // 1. should i run configure? No - > stop
-    // 2. All right i will run configure!
-    // 3. spin over all the steps configured 
-    // 4. set configured
-    var self = this;
-    self.steps = steps;
-    $.when(GT.Project.Setup.resolveProperties(properties))
-	.then(function (properties) {
-	    var deferred = new $.Deferred();
-	    if (properties.configured.value === "0") {
-	        var version = properties.version.value;
-	        var steps = self.steps[version];
-	        if (!steps) return;
-	        var currentStep = parseInt(properties.currentStep.value);
-	        while (steps[currentStep] != undefined) {
-	            steps[currentStep].execute();
-	            currentStep++;
-	        }
-	        properties.currentStep.value = currentStep;
-	        GT.Project.Setup.persistsProperties(properties);
-	    }
-	    else {
-	        deferred.fail();
-	    }
-	    return deferred;
-	});
-}
+GT.Project.Setup.Debug.listAllProperties = function () {
+
+    var context = SP.ClientContext.get_current();
+    var props = context.get_web().get_allProperties();
+    context.load(props);
+
+    context.executeQueryAsync(
+        function (sender, args) {
+            console.log(props.get_fieldValues());
+        }, function (sender, args) {
+            console.log('Request failed: ' + args.get_message());
+            console.log(args.get_stackTrace());
+        }
+    );
+};
+
+GT.Project.Setup.Debug.setProperty = function (key, value) {
+
+    var context = SP.ClientContext.get_current();
+    var web = context.get_web();
+    var propBag = web.get_allProperties();
+    propBag.set_item(key, value);
+    context.load(web);
+    web.update();
+    context.executeQueryAsync();
+};
+
 
 GT.Project.Setup.showWaitMessage = function () {
     window.parent.eval("window.waitDialog = SP.UI.ModalDialog.showWaitScreenWithNoClose('<div style=\"text-align: left;display: inline-table;margin-top: 13px;\">Vent litt mens vi konfigurerer <br />prosjektområdet</div>', '', 140, 500);");
@@ -115,10 +122,56 @@ GT.Project.Setup.closeWaitMessage = function () {
         window.parent.waitDialog.close();
     }
 };
+// [end] utility methods
+
+GT.Project.Setup.execute = function (properties, steps) {
+    // 1. should i run configure? No - > stop
+    // 2. All right i will run configure!
+    // 3. spin over all the steps configured 
+    // 4. set configured
+    console.log("execute: firing");
+    var self = this;
+    self.steps = steps;
+
+    $.when(GT.Project.Setup.resolveProperties(properties))
+    .then(function (properties) {
+        console.log("execute: using these settings :" + JSON.stringify(properties));
+        var deferred = $.Deferred();
+        console.log("execute: value of 'configured' :" + properties.configured.value);
+        if (properties.configured.value === "0") {
+            console.log("execute: not configured, showing long running ops message");
+            GT.Project.Setup.showWaitMessage();
+            var version = properties.version.value;
+            var steps = self.steps[version];
+            if (!steps) return;
+            var currentStep = parseInt(properties.currentStep.value);
+            console.log("execute: current step is " + currentStep);
+            var promises = [];
+
+            while (steps[currentStep] != undefined) {
+                console.log("execute: running step '" + steps[currentStep].name + "'");
+                promises.push(steps[currentStep].execute());
+                currentStep++;
+            }
+
+            $.when.apply($, promises).done(function () {
+                properties.currentStep.value = currentStep;
+                properties.configured.value = "1";
+                GT.Project.Setup.persistsProperties(properties);
+                GT.Project.Setup.closeWaitMessage();
+                console.log("execute: persisted properties and wrapping up");
+                deferred.resolve();
+            });
+
+
+        }
+        return deferred.promise();
+    });
+};
 
 GT.Project.Setup.copyFiles = function (properties) {
+    var deferred = $.Deferred();
 
-    if (properties === undefined) return;
     var srcWeb = properties.srcWeb;
     var srcLib = properties.srcLib;
     var dstWeb = properties.dstWeb;
@@ -126,17 +179,22 @@ GT.Project.Setup.copyFiles = function (properties) {
 
     $.when(GT.Project.Setup.getFiles(srcWeb, srcLib))
 
-	.then(function (files) {
-	    for (var i = 0; i < files.length; i++) {
-	        GT.Project.Setup.copyFile(files[i], srcWeb, dstWeb, dstLib);
-	    }
-	    var promise = new $.Deferred().promise();
-	})
+    .then(function (files) {
+        var promises = [];
+        for (var i = 0; i < files.length; i++) {
+            promises.push(GT.Project.Setup.copyFile(files[i], srcWeb, dstWeb, dstLib));
+        }
+        $.when.apply($, promises)
+        .done(function () {
+            console.log("all done copying files"); deferred.resolve();
+        });
 
+    });
+    return deferred.promise();
 };
-
+// [start] helper methods for copying files
 GT.Project.Setup.getFiles = function (srcWeb, lib) {
-    var deferred = new $.Deferred();
+    var deferred = $.Deferred();
     var srcFolderQuery = "_api/web/GetFolderByServerRelativeUrl('" + srcWeb + "/" + lib + "')/Files";
     var executor = new SP.RequestExecutor(srcWeb);
     var info = {
@@ -151,18 +209,19 @@ GT.Project.Setup.getFiles = function (srcWeb, lib) {
         success: function (data) {
             var result = JSON.parse(data.body).d.results;
             deferred.resolve(result);
-            deferred.promise();
 
         },
         error: function (err) {
-
+            deferred.reject();
         }
     };
     executor.executeAsync(info);
-    return deferred;
-}
+    return deferred.promise();
+};
 
 GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
+    var deferred = $.Deferred();
+
     var executor = new SP.RequestExecutor(srcWeb);
     var info = {
         url: file.__metadata.uri + "/$value",
@@ -185,21 +244,24 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
                 body: result,
                 success: function (data2) {
                     console.log("Success! Your file was uploaded to SharePoint.");
+                    deferred.resolve();
                 },
                 error: function (err2) {
                     console.log("Oooooops... it looks like something went wrong uploading your file.");
+                    deferred.reject();
                 }
             }
             executor2.executeAsync(info2)
         },
         error: function (err) {
-            alert(JSON.stringify(err));
+            console.error(JSON.stringify(err));
+            deferred.reject();
         }
     };
     executor.executeAsync(info);
-
-
+    return deferred.promise();
 };
+// [end] helper methods for copying files
 
 GT.Project.Setup.PatchRequestExecutor = function () {
     return $.getScript(_spPageContextInfo.webAbsoluteUrl + "/_layouts/15/SP.RequestExecutor.js", function () {
@@ -292,39 +354,39 @@ GT.Project.Setup.PatchRequestExecutor = function () {
 jQuery(document).ready(function () {
 
     $.when(GT.Project.Setup.PatchRequestExecutor())
-	.done(function () {
-	    var latestVersion = '1.0.0.0';
+    .done(function () {
+        var latestVersion = '1.0.0.0';
 
-	    var properties = {
-	        currentStep: {
-	            'key': 'glittertind_currentsetupstep',
-	            'value': '0'
-	        },
-	        configured: {
-	            'key': 'glittertind_configured',
-	            'value': '0'
-	        },
-	        version: {
-	            'key': 'glittertind_version',
-	            'value': latestVersion
-	        },
-	        webTemplate: {
-	            'key': 'glittertind_webtemplateid',
-	            'value': 'ProjectWebTemplate'
-	        }
-	    };
+        var properties = {
+            currentStep: {
+                'key': 'glittertind_currentsetupstep',
+                'value': '0'
+            },
+            configured: {
+                'key': 'glittertind_configured',
+                'value': '0'
+            },
+            version: {
+                'key': 'glittertind_version',
+                'value': latestVersion
+            },
+            webTemplate: {
+                'key': 'glittertind_webtemplateid',
+                'value': 'ProjectWebTemplate'
+            }
+        };
 
-	    var steps = {
-	        '1.0.0.0': {
-	            0: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" }),
-	            1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {})
+        var steps = {
+            '1.0.0.0': {
+                0: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" }),
+                1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {})
 
-	        }
-	    };
+            }
+        };
 
-	    ExecuteOrDelayUntilScriptLoaded(function () { GT.Project.Setup.execute(properties, steps); }, "sp.js");
+        ExecuteOrDelayUntilScriptLoaded(function () { GT.Project.Setup.execute(properties, steps); }, "sp.js");
 
-	});
+    });
 });
 
 
