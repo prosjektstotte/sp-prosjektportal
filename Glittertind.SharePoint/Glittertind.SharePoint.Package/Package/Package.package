@@ -8,5 +8,6 @@
     <featureReference itemId="e1328cd5-ddcf-486e-a8d0-d8f7446c7220" projectPath="..\Glittertind.SharePoint.Project\Glittertind.SharePoint.Project.csproj" />
     <featureReference itemId="69159289-f11f-4be5-b957-d2e40e3d966a" projectPath="..\Glittertind.SharePoint.Project\Glittertind.SharePoint.Project.csproj" />
     <featureReference itemId="febaf00e-518a-4fe4-a685-edfa07dafb99" projectPath="..\Glittertind.SharePoint.Project\Glittertind.SharePoint.Project.csproj" />
+    <featureReference itemId="5c79da09-b006-4c05-a3ea-ea0900b13482" projectPath="..\Glittertind.SharePoint.Project\Glittertind.SharePoint.Project.csproj" />
   </features>
 </package>

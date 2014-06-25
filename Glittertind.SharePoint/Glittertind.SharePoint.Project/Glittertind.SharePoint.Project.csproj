@@ -52,6 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Features\WebProjectLists\WebProjectLists.feature">
+      <FeatureId>{5c79da09-b006-4c05-a3ea-ea0900b13482}</FeatureId>
+    </None>
     <None Include="Features\WebProjectFrontPage\WebProjectFrontPage.feature">
       <FeatureId>{febaf00e-518a-4fe4-a685-edfa07dafb99}</FeatureId>
     </None>
@@ -67,6 +70,12 @@
     </None>
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
+    </None>
+    <None Include="SPI\ContentTypeBindings\DokumenterBindings\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f10c35dc-6807-447d-8a7c-b16eac4b8f59}</SharePointProjectItemId>
+    </None>
+    <None Include="SPI\Lists\Dokumenter\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f5cac30f-950d-4a6a-8175-c17156ba3193}</SharePointProjectItemId>
     </None>
     <None Include="SPI\Modules\ContentTypeBindings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{435fcf98-2f03-46af-a751-f5c8a7c174dd}</SharePointProjectItemId>
@@ -86,6 +95,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Features\WebProjectLists\WebProjectLists.Template.xml">
+      <DependentUpon>WebProjectLists.feature</DependentUpon>
+    </Content>
     <Content Include="Features\WebProjectFrontPage\WebProjectFrontPage.Template.xml">
       <DependentUpon>WebProjectFrontPage.feature</DependentUpon>
     </Content>
@@ -95,6 +107,8 @@
     <Content Include="Features\SiteProjectWebTemplate\SiteProjectWebTemplate.Template.xml">
       <DependentUpon>SiteProjectWebTemplate.feature</DependentUpon>
     </Content>
+    <Content Include="SPI\ContentTypeBindings\DokumenterBindings\Elements.xml" />
+    <Content Include="SPI\Lists\Dokumenter\Elements.xml" />
     <Content Include="SPI\Modules\ContentTypeBindings\Elements.xml" />
     <Content Include="SPI\Modules\DefaultPage\Elements.xml" />
     <Content Include="SPI\Modules\DefaultPage\Forside.aspx" />

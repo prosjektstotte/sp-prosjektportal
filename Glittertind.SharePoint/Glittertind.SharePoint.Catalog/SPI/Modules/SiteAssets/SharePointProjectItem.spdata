@@ -9,5 +9,6 @@
     <ProjectItemFile Source="js\gt.project.js" Target="SiteAssets\js\" Type="ElementFile" />
     <ProjectItemFile Source="html\gt.phaseform.html" Target="SiteAssets\html\" Type="ElementFile" />
     <ProjectItemFile Source="js\gt.generics.js" Target="SiteAssets\js\" Type="ElementFile" />
+    <ProjectItemFile Source="js\gt.project.setup.js" Target="SiteAssets\js\" Type="ElementFile" />
   </Files>
 </ProjectItem>

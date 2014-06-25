@@ -60,8 +60,6 @@ GT.Provisioning.OnCreateWebSuccess = function (sender, args) {
     //2. Close modal dialog (if existing)
     //3. Redirect to new site's '_layouts/15/permsetup.aspx?HideCancel=1'
     var newUrl = this.newWeb.get_url()
-    GT.Provisioning.ModifyNavigationOfNewWeb(this.newWeb)
-
     closeWaitMessage();
 
     var setupPermissionsUrl = newUrl + '/_layouts/15/permsetup.aspx?HideCancel=1';
@@ -75,12 +73,6 @@ GT.Provisioning.OnCreateWebFailure = function (sender, args) {
     //2. Show error message
 };
 
-GT.Provisioning.ModifyNavigationOfNewWeb = function (web) {
-    var clientContext = SP.ClientContext.get_current();
-    var navigation = web.get_navigation();
-    navigation.set_useShared(true);
-    clientContext.executeQueryAsync();
-};
 
 GT.Provisioning.DoesWebExist = function (serverRelativeUrlOrFullUrl) {
     var deferred = jQuery.Deferred();

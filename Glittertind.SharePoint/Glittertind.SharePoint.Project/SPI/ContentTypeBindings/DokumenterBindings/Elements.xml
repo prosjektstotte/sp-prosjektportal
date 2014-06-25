@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentTypeBinding ListUrl="Dokumenter" ContentTypeId="0x010100293fde3fcada480b9a77bbdad7dfa28c000259931568f149e8ae665768c3880bf3" />
+</Elements>
