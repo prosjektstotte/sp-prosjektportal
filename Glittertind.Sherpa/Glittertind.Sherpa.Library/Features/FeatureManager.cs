@@ -26,14 +26,48 @@ namespace Glittertind.Sherpa.Library.Features
             }
         }
 
+        public void ReActivateFeaturesAfterUpgrade()
+        {
+            foreach (GtFeatureActivation featureActivation in _featureActivations)
+            {
+                if (!featureActivation.ReactivateOnUpgrade) continue;
+
+                var absoluteUrlToFeatureActivationScope = GetUrlToFeatureActivationScope(featureActivation.Url);
+                using (var clientContext = new ClientContext(absoluteUrlToFeatureActivationScope))
+                {
+                    clientContext.Credentials = _credentials;
+
+                    switch (featureActivation.Scope)
+                    {
+                        case FeatureDefinitionScope.Web:
+                        {
+                            var web = clientContext.Web;
+                            var featureCollection = web.Features;
+                            DeActivateFeatureInCollection(clientContext, featureActivation, featureCollection);
+                            ActivateFeatureInCollection(clientContext, featureActivation, featureCollection);
+
+                            break;
+                        }
+                        case FeatureDefinitionScope.Site:
+                        {
+                            var siteCollection = clientContext.Site;
+                            var featureCollection = siteCollection.Features;
+                            DeActivateFeatureInCollection(clientContext, featureActivation, featureCollection);
+                            ActivateFeatureInCollection(clientContext, featureActivation, featureCollection);
+
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         private void ActivateFeature(GtFeatureActivation featureActivation)
         {
             var absoluteUrlToFeatureActivationScope = GetUrlToFeatureActivationScope(featureActivation.Url);
-            using (var clientContext = new ClientContext(absoluteUrlToFeatureActivationScope)
+            using (var clientContext = new ClientContext(absoluteUrlToFeatureActivationScope))
             {
-                Credentials = _credentials
-            })
-            {
+                clientContext.Credentials = _credentials;
 
                 switch (featureActivation.Scope)
                 {
@@ -66,9 +100,27 @@ namespace Glittertind.Sherpa.Library.Features
             clientContext.Load(feature);
             clientContext.ExecuteQuery();
 
-            if (feature.ServerObjectIsNull != null && (bool) feature.ServerObjectIsNull)
+            if (feature.ServerObjectIsNull != null && (bool)feature.ServerObjectIsNull)
             {
+                Console.WriteLine("Activating feature " + featureActivation.FeatureName);
                 featureCollection.Add(featureActivation.FeatureId, true, FeatureDefinitionScope.Site);
+                clientContext.ExecuteQuery();
+            }
+        }
+
+        private static void DeActivateFeatureInCollection(ClientContext clientContext, GtFeatureActivation featureActivation, FeatureCollection featureCollection)
+        {
+            clientContext.Load(featureCollection);
+            clientContext.ExecuteQuery();
+
+            var feature = featureCollection.GetById(featureActivation.FeatureId);
+            clientContext.Load(feature);
+            clientContext.ExecuteQuery();
+
+            if (feature.ServerObjectIsNull != null && !(bool)feature.ServerObjectIsNull)
+            {
+                Console.WriteLine("Deactivating feature " + featureActivation.FeatureName);
+                featureCollection.Remove(featureActivation.FeatureId, true);
                 clientContext.ExecuteQuery();
             }
         }

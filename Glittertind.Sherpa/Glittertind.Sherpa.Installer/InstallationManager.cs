@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using Glittertind.Sherpa.Library;
 using Glittertind.Sherpa.Library.ContentTypes;
@@ -47,7 +48,7 @@ namespace Glittertind.Sherpa.Installer
             var pathToSandboxedSolution = Path.Combine(Environment.CurrentDirectory, "solutions");
             var files = Directory.GetFiles(pathToSandboxedSolution);
             var deployManager = new DeployManager(_urlToSite, _credentials);
-            foreach (var file in files)
+            foreach (var file in files.Where(f => Path.GetExtension(f).ToLower() == ".wsp"))
             {
                 deployManager.UploadDesignPackage(file, "SiteAssets");
                 deployManager.ActivateDesignPackage(file, "SiteAssets");
@@ -77,6 +78,16 @@ namespace Glittertind.Sherpa.Installer
 
             var featureManager = new FeatureManager(_urlToSite, _credentials, featureActivationPersister);
             featureManager.ActivateFeatures();
+        }
+
+        public void ReactivateFeautures()
+        {
+            Console.WriteLine("Reactivating features with flag 'ReactivateOnUpgrade'");
+            var pathToFeatureActivations = Path.Combine(Environment.CurrentDirectory, @"config\gtfeatureactivations.json");
+            var featureActivationPersister = new FilePersistanceProvider<List<GtFeatureActivation>>(pathToFeatureActivations);
+
+            var featureManager = new FeatureManager(_urlToSite, _credentials, featureActivationPersister);
+            featureManager.ReActivateFeaturesAfterUpgrade();
         }
 
         public void ForceReCrawl()

@@ -16,7 +16,7 @@
 ul.gt-List{list-style-type:none;padding-left:0;}
 ul.gt-List .gt-projectItem{display:block;margin-bottom:20px;}
 ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
-.gt-phaseIcon{display:block;width:92px;height:72px;float:left;}
+.gt-phaseIcon{display:block;width:92px;height:62px;float:left;}
 .gt-phaseIcon .phaseLetter{display:block;font-size:33px;text-align:center;}
 .gt-phaseIcon .projectPhase{display:block;font-size:12px;text-transform:uppercase;text-align:center;}
 .projectFrontPage .projectPhaseSection{height:130px;max-width:690px;}
@@ -24,7 +24,7 @@ ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
 .projectFrontPage .projectPhaseSection a#changeProjectPhaseLink{float:left;display:none;border:1px solid #ccc;text-transform:none;text-decoration:none;padding:5px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases{width:100%;list-style:none;overflow:hidden;margin:0;padding:0;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .selected{color:#FF1493;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li{color:#1B8600;text-decoration:none;background:#DFEED5;position:relative;display:block;float:left;padding:10px 0 10px 46px;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li{color:#1B8600;text-decoration:none;background:#DFEED5;position:relative;display:block;float:left;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:after{content:" ";display:block;width:0;height:0;border-top:50px solid transparent;border-bottom:50px solid transparent;border-left:30px solid #DFEED5;position:absolute;top:50%;margin-top:-50px;left:100%;z-index:2;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:before{content:" ";display:block;width:0;height:0;border-top:50px solid transparent;border-bottom:50px solid transparent;border-left:30px solid #1B8600;position:absolute;top:50%;margin-top:-50px;margin-left:1px;left:100%;z-index:1;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:first-child{padding-left:10px;background-color:#EDF4F4;color:#00527F;}
@@ -32,25 +32,25 @@ ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:after,.projectFrontPage .projectPhaseSection ul.projectPhases li:nth-child(5):after{border-left-color:#EDF4F4;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:before,.projectFrontPage .projectPhaseSection ul.projectPhases li:nth-child(5):before{border-left-color:#00527F;}
 @media(max-width: 1049px) {
-.projectFrontPage .projectPhaseSection ul.projectPhases li{padding-left:42px;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 42px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:20px;height:32px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:20px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{display:none;}
 }
 @media(min-width: 1050px) {
-.projectFrontPage .projectPhaseSection ul.projectPhases li{padding-left:34px;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 34px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:56px;height:42px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:20px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:8px;}
 }
 @media(min-width: 1180px) {
-.projectFrontPage .projectPhaseSection ul.projectPhases li{padding-left:42px;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 42px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:72px;height:52px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:26px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:10px;}
 }
 @media(min-width: 1300px) {
-.projectFrontPage .projectPhaseSection ul.projectPhases li{padding-left:46px;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 46px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:92px;height:62px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:33px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:12px;}

@@ -9,5 +9,6 @@ namespace Glittertind.Sherpa.Library.Features.Model
         public string FeatureName { get; set; }
         public FeatureDefinitionScope Scope { get; set; }
         public string Url { get; set; }
+        public bool ReactivateOnUpgrade { get; set; }
     }
 }

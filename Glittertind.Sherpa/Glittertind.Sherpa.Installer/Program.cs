@@ -50,6 +50,7 @@ namespace Glittertind.Sherpa.Installer
             Console.WriteLine("Press 2 to upload and activate sandboxed solution.");
             Console.WriteLine("Press 3 to setup site columns and content types.");
             Console.WriteLine("Press 4 to activate features.");
+            Console.WriteLine("Press 5 to reactivate features (usually after upgrade).");
             Console.WriteLine("Press 9 to DELETE all Glittertind site columns and content types.");
             Console.WriteLine("Press 0 to exit application.");
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -90,6 +91,11 @@ namespace Glittertind.Sherpa.Installer
                 case 4:
                 {
                     installationManager.ActivateFeatures();
+                    break;
+                }
+                case 5:
+                {
+                    installationManager.ReactivateFeautures();
                     break;
                 }
                 case 9:
