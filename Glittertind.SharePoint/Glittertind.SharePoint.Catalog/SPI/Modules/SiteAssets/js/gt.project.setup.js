@@ -83,7 +83,7 @@ GT.Project.Setup.execute = function (properties, steps) {
     // 3. spin over all the steps configured 
     // 4. set configured
     var self = this;
-
+    self.steps = steps;
     $.when(GT.Project.Setup.resolveProperties(properties))
 	.then(function (properties) {
 	    var deferred = new $.Deferred();
@@ -184,10 +184,10 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
                 binaryStringRequestBody: true,
                 body: result,
                 success: function (data2) {
-                    alert("Success! Your file was uploaded to SharePoint.");
+                    console.log("Success! Your file was uploaded to SharePoint.");
                 },
                 error: function (err2) {
-                    alert("Oooooops... it looks like something went wrong uploading your file.");
+                    console.log("Oooooops... it looks like something went wrong uploading your file.");
                 }
             }
             executor2.executeAsync(info2)
@@ -201,126 +201,130 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
 
 };
 
+GT.Project.Setup.PatchRequestExecutor = function () {
+    return $.getScript(_spPageContextInfo.webAbsoluteUrl + "/_layouts/15/SP.RequestExecutor.js", function () {
+        SP.RequestExecutorInternalSharedUtility.BinaryDecode = function SP_RequestExecutorInternalSharedUtility$BinaryDecode(data) {
+            var ret = '';
 
-$.getScript(_spPageContextInfo.webAbsoluteUrl + "/_layouts/15/SP.RequestExecutor.js", function () {
-    SP.RequestExecutorInternalSharedUtility.BinaryDecode = function SP_RequestExecutorInternalSharedUtility$BinaryDecode(data) {
-        var ret = '';
+            if (data) {
+                var byteArray = new Uint8Array(data);
 
-        if (data) {
-            var byteArray = new Uint8Array(data);
-
-            for (var i = 0; i < data.byteLength; i++) {
-                ret = ret + String.fromCharCode(byteArray[i]);
-            }
-        }
-        ;
-        return ret;
-    };
-
-    SP.RequestExecutorUtility.IsDefined = function SP_RequestExecutorUtility$$1(data) {
-        var nullValue = null;
-
-        return data === nullValue || typeof data === 'undefined' || !data.length;
-    };
-
-    SP.RequestExecutor.ParseHeaders = function SP_RequestExecutor$ParseHeaders(headers) {
-        if (SP.RequestExecutorUtility.IsDefined(headers)) {
-            return null;
-        }
-        var result = {};
-        var reSplit = new RegExp('\r?\n');
-        var headerArray = headers.split(reSplit);
-
-        for (var i = 0; i < headerArray.length; i++) {
-            var currentHeader = headerArray[i];
-
-            if (!SP.RequestExecutorUtility.IsDefined(currentHeader)) {
-                var splitPos = currentHeader.indexOf(':');
-
-                if (splitPos > 0) {
-                    var key = currentHeader.substr(0, splitPos);
-                    var value = currentHeader.substr(splitPos + 1);
-
-                    key = SP.RequestExecutorNative.trim(key);
-                    value = SP.RequestExecutorNative.trim(value);
-                    result[key.toUpperCase()] = value;
+                for (var i = 0; i < data.byteLength; i++) {
+                    ret = ret + String.fromCharCode(byteArray[i]);
                 }
             }
-        }
-        return result;
-    };
+            ;
+            return ret;
+        };
 
-    SP.RequestExecutor.internalProcessXMLHttpRequestOnreadystatechange = function SP_RequestExecutor$internalProcessXMLHttpRequestOnreadystatechange(xhr, requestInfo, timeoutId) {
-        if (xhr.readyState === 4) {
-            if (timeoutId) {
-                window.clearTimeout(timeoutId);
-            }
-            xhr.onreadystatechange = SP.RequestExecutorNative.emptyCallback;
-            var responseInfo = new SP.ResponseInfo();
+        SP.RequestExecutorUtility.IsDefined = function SP_RequestExecutorUtility$$1(data) {
+            var nullValue = null;
 
-            responseInfo.state = requestInfo.state;
-            responseInfo.responseAvailable = true;
-            if (requestInfo.binaryStringResponseBody) {
-                responseInfo.body = SP.RequestExecutorInternalSharedUtility.BinaryDecode(xhr.response);
+            return data === nullValue || typeof data === 'undefined' || !data.length;
+        };
+
+        SP.RequestExecutor.ParseHeaders = function SP_RequestExecutor$ParseHeaders(headers) {
+            if (SP.RequestExecutorUtility.IsDefined(headers)) {
+                return null;
             }
-            else {
-                responseInfo.body = xhr.responseText;
-            }
-            responseInfo.statusCode = xhr.status;
-            responseInfo.statusText = xhr.statusText;
-            responseInfo.contentType = xhr.getResponseHeader('content-type');
-            responseInfo.allResponseHeaders = xhr.getAllResponseHeaders();
-            responseInfo.headers = SP.RequestExecutor.ParseHeaders(responseInfo.allResponseHeaders);
-            if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 1223) {
-                if (requestInfo.success) {
-                    requestInfo.success(responseInfo);
+            var result = {};
+            var reSplit = new RegExp('\r?\n');
+            var headerArray = headers.split(reSplit);
+
+            for (var i = 0; i < headerArray.length; i++) {
+                var currentHeader = headerArray[i];
+
+                if (!SP.RequestExecutorUtility.IsDefined(currentHeader)) {
+                    var splitPos = currentHeader.indexOf(':');
+
+                    if (splitPos > 0) {
+                        var key = currentHeader.substr(0, splitPos);
+                        var value = currentHeader.substr(splitPos + 1);
+
+                        key = SP.RequestExecutorNative.trim(key);
+                        value = SP.RequestExecutorNative.trim(value);
+                        result[key.toUpperCase()] = value;
+                    }
                 }
             }
-            else {
-                var error = SP.RequestExecutorErrors.httpError;
-                var statusText = xhr.statusText;
+            return result;
+        };
 
-                if (requestInfo.error) {
-                    requestInfo.error(responseInfo, error, statusText);
+        SP.RequestExecutor.internalProcessXMLHttpRequestOnreadystatechange = function SP_RequestExecutor$internalProcessXMLHttpRequestOnreadystatechange(xhr, requestInfo, timeoutId) {
+            if (xhr.readyState === 4) {
+                if (timeoutId) {
+                    window.clearTimeout(timeoutId);
+                }
+                xhr.onreadystatechange = SP.RequestExecutorNative.emptyCallback;
+                var responseInfo = new SP.ResponseInfo();
+
+                responseInfo.state = requestInfo.state;
+                responseInfo.responseAvailable = true;
+                if (requestInfo.binaryStringResponseBody) {
+                    responseInfo.body = SP.RequestExecutorInternalSharedUtility.BinaryDecode(xhr.response);
+                }
+                else {
+                    responseInfo.body = xhr.responseText;
+                }
+                responseInfo.statusCode = xhr.status;
+                responseInfo.statusText = xhr.statusText;
+                responseInfo.contentType = xhr.getResponseHeader('content-type');
+                responseInfo.allResponseHeaders = xhr.getAllResponseHeaders();
+                responseInfo.headers = SP.RequestExecutor.ParseHeaders(responseInfo.allResponseHeaders);
+                if (xhr.status >= 200 && xhr.status < 300 || xhr.status === 1223) {
+                    if (requestInfo.success) {
+                        requestInfo.success(responseInfo);
+                    }
+                }
+                else {
+                    var error = SP.RequestExecutorErrors.httpError;
+                    var statusText = xhr.statusText;
+
+                    if (requestInfo.error) {
+                        requestInfo.error(responseInfo, error, statusText);
+                    }
                 }
             }
-        }
-    };
+        };
+    });
+};
+
+jQuery(document).ready(function () {
+
+    $.when(GT.Project.Setup.PatchRequestExecutor())
+	.done(function () {
+	    var latestVersion = '1.0.0.0';
+
+	    var properties = {
+	        currentStep: {
+	            'key': 'glittertind_currentsetupstep',
+	            'value': '0'
+	        },
+	        configured: {
+	            'key': 'glittertind_configured',
+	            'value': '0'
+	        },
+	        version: {
+	            'key': 'glittertind_version',
+	            'value': latestVersion
+	        },
+	        webTemplate: {
+	            'key': 'glittertind_webtemplateid',
+	            'value': 'ProjectWebTemplate'
+	        }
+	    };
+
+	    var steps = {
+	        '1.0.0.0': {
+	            0: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" }),
+	            1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {})
+
+	        }
+	    };
+
+	    ExecuteOrDelayUntilScriptLoaded(function () { GT.Project.Setup.execute(properties, steps); }, "sp.js");
+
+	});
 });
-
-(function() {
-    
-    var latestVersion = '1.0.0.0';
-
-    var properties = {
-        currentStep: {
-            'key': 'glittertind_currentsetupstep',
-            'value': '0'
-        },
-        configured: {
-            'key': 'glittertind_configured',
-            'value': '0'
-        },
-        version: {
-            'key': 'glittertind_version',
-            'value': latestVersion
-        },
-        webTemplate: {
-            'key': 'glittertind_webtemplateid',
-            'value': 'ProjectWebTemplate'
-        }
-    };
-
-    var steps = {
-        '1.0.0.0': {
-            0: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" }),
-            1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {})
-
-        }
-    };
-
-    ExecuteOrDelayUntilScriptLoaded(function () { GT.Project.Setup.execute( properties, steps); }, "sp.js");
-
-})();
 
 
