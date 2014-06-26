@@ -171,7 +171,7 @@ namespace Glittertind.Sherpa.Library.Deploy
 
         private void ForceRecrawlOf(Web web, ClientContext context)
         {
-            Console.WriteLine("Forcing recrawl of web: " + web.Url);
+            Console.WriteLine("Scheduling full recrawl of: " + web.Url);
             context.Credentials = _credentials;
 
             context.Load(web, x => x.AllProperties, x => x.Webs);
@@ -187,6 +187,7 @@ namespace Glittertind.Sherpa.Library.Deploy
             version++;
             allProperties["vti_searchversion"] = version;
             web.Update();
+            context.ExecuteQuery();
             foreach (var subWeb in subWebs)
             {
                 ForceRecrawlOf(subWeb, context);
