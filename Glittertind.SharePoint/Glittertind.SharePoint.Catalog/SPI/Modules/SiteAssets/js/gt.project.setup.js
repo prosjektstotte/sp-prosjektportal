@@ -154,7 +154,7 @@ GT.Project.Setup.execute = function (properties, steps) {
                 currentStep++;
             }
 
-            $.when.apply($, promises).done(function () {
+            $.when.apply($, promises).always(function () {
                 properties.currentStep.value = currentStep;
                 properties.configured.value = "1";
                 GT.Project.Setup.persistsProperties(properties);
@@ -185,7 +185,7 @@ GT.Project.Setup.copyFiles = function (properties) {
             promises.push(GT.Project.Setup.copyFile(files[i], srcWeb, dstWeb, dstLib));
         }
         $.when.apply($, promises)
-        .done(function () {
+        .always(function () {
             console.log("all done copying files"); deferred.resolve();
         });
 
@@ -233,7 +233,7 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
             var result = data.body;
             var digest = $("#__REQUESTDIGEST").val();
             var info2 = {
-                url: "_api/web/GetFolderByServerRelativeUrl('" + dstWeb + "/" + dstLib + "')/Files/Add(url='" + file.Name + "', overwrite=true)",
+                url: "_api/web/GetFolderByServerRelativeUrl('" + dstWeb + "/" + dstLib + "')/Files/Add(url='" + file.Name + "')",
                 method: "POST",
                 headers: {
                     "Accept": "application/json; odata=verbose",
@@ -247,7 +247,8 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
                     deferred.resolve();
                 },
                 error: function (err2) {
-                    console.log("Oooooops... it looks like something went wrong uploading your file.");
+                    var d = JSON.parse(err2.body);
+                    console.log("Did not upload file due to: " + d.error.message.value);
                     deferred.reject();
                 }
             }
