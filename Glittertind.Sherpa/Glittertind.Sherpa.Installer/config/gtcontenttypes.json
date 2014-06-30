@@ -67,12 +67,8 @@
       Group       : "Glittertind Innholdstyper",
       ID          : "0x010088578e7470cc4aa68d56634648310702",
       InternalName: "GtBaseItem",
-      Fields : [
-         "GtProjectPhase"
-      ],
-      RequiredFields : [
-         "GtProjectPhase"
-      ]
+      Fields : [],
+      RequiredFields : []
    },
    {
       Description : "",

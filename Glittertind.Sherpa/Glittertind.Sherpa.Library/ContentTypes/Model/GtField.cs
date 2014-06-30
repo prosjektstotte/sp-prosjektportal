@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Microsoft.SharePoint.Client;
 
 namespace Glittertind.Sherpa.Library.ContentTypes.Model
 {
@@ -12,6 +13,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes.Model
         public string Group { get; set; }
         public string Type { get; set; }
         public string[] Choices { get; set; }
+        public GtCalculatedProps CalculatedProps { get; set; }
         public string Format { get; set; }
         public string Default { get; set; }
         
@@ -48,13 +50,31 @@ namespace Glittertind.Sherpa.Library.ContentTypes.Model
                 }
                 case ("Choice") :
                 {
-                    return GetFieldWithContentXml(true, string.Empty, GetChoiceFieldXmlContent());
+                    return GetFieldWithContentXml(required, string.Empty, GetChoiceFieldXmlContent());
+                }
+                case ("Calculated"):
+                {
+                    return GetFieldWithContentXml(required, string.Format("ResultType=\"{0}\"",CalculatedProps.ResultType), GetCalculatedFieldXmlContent());
                 }
                 default:
                 {
                     return GetSelfClosingFieldXml(required, string.Empty);
                 }
             }
+        }
+
+        private string GetCalculatedFieldXmlContent()
+        {
+            var c = new StringBuilder();
+            c.Append("<Formula>").Append(CalculatedProps.Formula).Append("</Formula>");
+            c.Append("<FieldRefs>");
+            foreach (var fieldRef in CalculatedProps.FieldRefs)
+            {
+                c.AppendFormat("<FieldRef Name=\"{0}\" ID=\"{{{1}}}\" />", fieldRef.Name, fieldRef.ID);
+            }
+            c.Append("</FieldRefs>");
+            return c.ToString();
+
         }
 
         private string GetChoiceFieldXmlContent()
