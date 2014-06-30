@@ -59,7 +59,7 @@ GT.Provisioning.OnCreateWebSuccess = function (sender, args) {
     //1. Stop long running operation
     //2. Close modal dialog (if existing)
     //3. Redirect to new site's '_layouts/15/permsetup.aspx?HideCancel=1'
-    var newUrl = this.newWeb.get_url();
+    var newUrl = this.newWeb.get_url()
     closeWaitMessage();
 
     var setupPermissionsUrl = newUrl + '/_layouts/15/permsetup.aspx?HideCancel=1';
@@ -94,4 +94,30 @@ GT.Provisioning.DoesWebExist = function (serverRelativeUrlOrFullUrl) {
         }
     });
     return deferred;
+};
+
+GT.Provisioning.SetupUrlPreviewAndValidation = function () {
+    jQuery('#projectUrlPreview').text(_spPageContextInfo.siteAbsoluteUrl + "/");
+    jQuery('#projectUrlInput').on('keyup', function (event) {
+        var previewUrl = _spPageContextInfo.siteAbsoluteUrl + "/" + jQuery('#projectUrlInput').val();
+        jQuery('#projectUrlPreview').text(previewUrl);
+
+        if (jQuery('#projectUrlInput').val().length > 2) {
+            if (event.target.validity.valid) {
+                document.getElementById('projectUrlInputValidation').style.display = 'none';
+            } else {
+                document.getElementById('projectUrlInputValidation').style.display = 'block';
+            }
+        }
+    });
+    jQuery('#projectUrlInput').on('change', function (event) {
+        var previewUrl = _spPageContextInfo.siteAbsoluteUrl + "/" + jQuery('#projectUrlInput').val();
+        jQuery('#projectUrlPreview').text(previewUrl);
+
+        if (event.target.validity.valid) {
+            document.getElementById('projectUrlInputValidation').style.display = 'none';
+        } else {
+            document.getElementById('projectUrlInputValidation').style.display = 'block';
+        }
+    });
 };

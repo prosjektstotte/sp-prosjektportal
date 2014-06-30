@@ -6,6 +6,7 @@
 .newProjectPage .projectInputForm button{float:right;margin:0;}
 .newProjectPage .projectInputForm textarea#projectDescriptionInput{height:70px;overflow:auto;}
 .newProjectPage .validationMessage{color:red;margin-bottom:10px;}
+.newProjectPage #projectUrlPreview { margin-bottom: 10px;}
 .projectFrontPage .projectMetadata{width:300px;}
 .projectFrontPage .projectMetadata table{width:100%;margin-bottom:10px;}
 .projectFrontPage .projectMetadata table td{padding:3px;}
