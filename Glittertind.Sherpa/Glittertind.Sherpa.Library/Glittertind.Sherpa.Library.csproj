@@ -50,8 +50,11 @@
   <ItemGroup>
     <Compile Include="ContentTypes\ContentTypeManager.cs" />
     <Compile Include="ContentTypes\IContentTypeManager.cs" />
+    <Compile Include="ContentTypes\Model\GtCalculatedProps.cs" />
     <Compile Include="ContentTypes\Model\GtContentType.cs" />
     <Compile Include="ContentTypes\Model\GtField.cs" />
+    <Compile Include="ContentTypes\Model\GtFieldRefs.cs" />
+    <Compile Include="ContentTypes\Model\GtResultType.cs" />
     <Compile Include="Deploy\DeployManager.cs" />
     <Compile Include="Deploy\IDeployManager.cs" />
     <Compile Include="Deploy\SPWebClient.cs">

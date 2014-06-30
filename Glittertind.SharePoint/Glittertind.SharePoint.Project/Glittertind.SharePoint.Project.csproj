@@ -77,6 +77,9 @@
     <None Include="SPI\Lists\Dokumenter\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f5cac30f-950d-4a6a-8175-c17156ba3193}</SharePointProjectItemId>
     </None>
+    <None Include="SPI\Lists\Usikkerhet\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ffa64d13-9348-4e16-8fd0-1a593e703790}</SharePointProjectItemId>
+    </None>
     <None Include="SPI\Modules\ContentTypeBindings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{435fcf98-2f03-46af-a751-f5c8a7c174dd}</SharePointProjectItemId>
     </None>
@@ -109,6 +112,7 @@
     </Content>
     <Content Include="SPI\ContentTypeBindings\DokumenterBindings\Elements.xml" />
     <Content Include="SPI\Lists\Dokumenter\Elements.xml" />
+    <Content Include="SPI\Lists\Usikkerhet\Elements.xml" />
     <Content Include="SPI\Modules\ContentTypeBindings\Elements.xml" />
     <Content Include="SPI\Modules\DefaultPage\Elements.xml" />
     <Content Include="SPI\Modules\DefaultPage\Forside.aspx" />

@@ -121,23 +121,25 @@ namespace Glittertind.Sherpa.Library.ContentTypes
 
             foreach (GtContentType contentType in ContentTypes)
             {
-                if (existingContentTypes.Any(item => item.Id.ToString().Equals(contentType.ID.ToString(CultureInfo.InvariantCulture))))
+                if ( existingContentTypes.Any( item => item.Id.ToString().Equals(contentType.ID.ToString(CultureInfo.InvariantCulture)) ) )
                 {
                     // We want to add fields even if the content type exists (?)
                     AddSiteColumnsToContentType(contentType);
-                    continue;
+                }
+                else
+                {
+                    var contentTypeCreationInformation = contentType.GetContentTypeCreationInformation();
+                    var newContentType = existingContentTypes.Add(contentTypeCreationInformation);
+                    ClientContext.ExecuteQuery();
+
+                    // Update display name (internal name will not be changed)
+                    newContentType.Name = contentType.DisplayName;
+                    newContentType.Update(true);
+                    ClientContext.ExecuteQuery();
+
+                    AddSiteColumnsToContentType(contentType);
                 }
 
-                var contentTypeCreationInformation = contentType.GetContentTypeCreationInformation();
-                var newContentType = existingContentTypes.Add(contentTypeCreationInformation);
-                ClientContext.ExecuteQuery();
-
-                // Update display name (internal name will not be changed)
-                newContentType.Name = contentType.DisplayName;
-                newContentType.Update(true);
-                ClientContext.ExecuteQuery();
-
-                AddSiteColumnsToContentType(contentType);
             }
         }
 
@@ -205,7 +207,15 @@ namespace Glittertind.Sherpa.Library.ContentTypes
             for (int i = contentTypes.Count - 1; i >= 0; i--)
             {
                 contentTypes[i].DeleteObject();
-                ClientContext.ExecuteQuery();
+                try
+                {
+                    ClientContext.ExecuteQuery();
+                }
+                catch
+                {
+                    Console.WriteLine("Could not delete content type '" + contentTypes[i].DisplayFormTemplateName + "' (internal name: " + contentTypes[i].Name + " , Id: " + contentTypes[i].Id + "). This is most probably due to it being in use");
+                }
+
             }
 
             FieldCollection webFieldCollection = web.Fields;
@@ -217,7 +227,14 @@ namespace Glittertind.Sherpa.Library.ContentTypes
                 if (webFieldCollection[i].Group.Contains(groupName))
                 {
                     webFieldCollection[i].DeleteObject();
-                    ClientContext.ExecuteQuery();
+                    try
+                    {
+                        ClientContext.ExecuteQuery();
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Could not delete site column '" + webFieldCollection[i].Title + "' (internal name: " + webFieldCollection[i].InternalName + " , Id: " + webFieldCollection[i].Id + "). This is most probably due to it being in use");
+                    }
                 }
             }
         }
@@ -244,7 +261,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes
                 fieldIdsForEnsuringUniqueness.Add(field.ID);
                 fieldNamesForEnsuringUniqueness.Add(field.InternalName);
             }
-            
+
             var contentTypeIdsForEnsuringUniqueness = new List<string>();
             var contentTypeInternalNamesForEnsuringUniqueness = new List<string>();
             foreach (var contentType in ContentTypes)
