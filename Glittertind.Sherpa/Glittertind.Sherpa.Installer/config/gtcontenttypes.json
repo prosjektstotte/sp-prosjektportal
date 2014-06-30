@@ -63,7 +63,7 @@
    },
    {
       Description : "",
-      DisplayName : "Prosjektelement",
+      DisplayName : "Glittertind element",
       Group       : "Glittertind Innholdstyper",
       ID          : "0x010088578e7470cc4aa68d56634648310702",
       InternalName: "GtBaseItem",
@@ -73,5 +73,41 @@
       RequiredFields : [
          "GtProjectPhase"
       ]
+   },
+   {
+      Description : "",
+      DisplayName : "Usikkerhet",
+      Group       : "Glittertind Innholdstyper",
+      ID          : "0x010088578e7470cc4aa68d5663464831070201",
+      InternalName: "GtProjectUncertainty",
+      Fields : [
+         "GtRiskProbability",
+         "GtRiskConsequence", 
+         "GtRiskProximity",
+         "GtRiskFactor",
+         "GtRiskAction",
+         "GtRiskProbabilityPostAction",
+         "GtRiskConsequencePostAction",
+         "GtRiskFactiorPostAction"
+      ],
+      RequiredFields : []
+   },
+   {
+      Description : "",
+      DisplayName : "Risiko",
+      Group       : "Glittertind Innholdstyper",
+      ID          : "0x010088578e7470cc4aa68d566346483107020101",
+      InternalName: "GtProjectRisk",
+      Fields : [],
+      RequiredFields : []
+   },
+   {
+      Description : "",
+      DisplayName : "Mulighet",
+      Group       : "Glittertind Innholdstyper",
+      ID          : "0x010088578e7470cc4aa68d566346483107020102",
+      InternalName: "GtProjectOpportunity",
+      Fields : [],
+      RequiredFields : []
    }
 ]
