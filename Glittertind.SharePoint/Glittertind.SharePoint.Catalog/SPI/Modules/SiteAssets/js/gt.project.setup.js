@@ -2,6 +2,7 @@
 GT.Project = GT.Project || {};
 GT.Project.Setup = GT.Project.Setup || {};
 GT.Project.Setup.Model = GT.Project.Setup.Model || {}
+GT.Project.Setup.ContentTypes = GT.Project.Setup.ContentTypes || {}
 
 var console = window.console || {};
 console.log = console.log || function () { };
@@ -72,7 +73,10 @@ GT.Project.Setup.persistsProperties = function (properties) {
     context.load(web);
     web.update();
     context.executeQueryAsync(
-    function (sender, args) { console.log("saved properties!"); deferred.resolve(); },
+    function (sender, args) {
+        console.log("saved properties!");
+        deferred.resolve();
+    },
     function (sender, args) {
         console.log('Request failed: ' + args.get_message());
         console.log(args.get_stackTrace());
@@ -352,6 +356,12 @@ GT.Project.Setup.PatchRequestExecutor = function () {
     });
 };
 
+GT.Project.Setup.CreateWebContentTypes = function () {
+    $.when(GT.Project.Setup.ContentTypes.CreateSiteColumn("Min kolonne", "MyCol"))
+        .then(GT.Project.Setup.ContentTypes.CreateContentType("Min innholdstype", "MyContentType", "In it for the lulz", "0x010100293fde3fcada480b9a77bbdad7dfa28c0222"))
+        .then(GT.Project.Setup.ContentTypes.LinkFieldToContentType("MyContentType", "MyCol"));
+};
+
 jQuery(document).ready(function () {
 
     $.when(GT.Project.Setup.PatchRequestExecutor())
@@ -380,14 +390,12 @@ jQuery(document).ready(function () {
         var steps = {
             '1.0.0.0': {
                 0: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" }),
-                1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {})
+                1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {}),
+                2: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {})
 
             }
         };
 
         ExecuteOrDelayUntilScriptLoaded(function () { GT.Project.Setup.execute(properties, steps); }, "sp.js");
-
     });
 });
-
-

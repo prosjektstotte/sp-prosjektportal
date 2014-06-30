@@ -110,6 +110,7 @@
     <Content Include="SPI\Modules\SiteAssets\js\gt.generics.js" />
     <Content Include="SPI\Modules\SiteAssets\js\gt.common.js" />
     <Content Include="SPI\Modules\SiteAssets\js\gt.project.js" />
+    <Content Include="SPI\Modules\SiteAssets\js\gt.project.setup.contenttypes.js" />
     <Content Include="SPI\Modules\SiteAssets\js\gt.project.setup.js" />
     <Content Include="SPI\Modules\SiteAssets\js\gt.provisioning.js" />
     <None Include="SPI\Modules\SiteAssets\SharePointProjectItem.spdata">

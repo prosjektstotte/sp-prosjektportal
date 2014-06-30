@@ -30,6 +30,7 @@
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.common.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.setup.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.setup.contenttypes.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/gt/css/gt.style.css %&gt;" runat="server" ></SharePoint:CssRegistration>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderSearchArea" runat="server">
