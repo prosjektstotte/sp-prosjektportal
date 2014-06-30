@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~masterurl/default.master" Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage, Microsoft.SharePoint,Version=15.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" meta:webpartpageexpansion="full" meta:progid="SharePoint.WebPartPage.Document" %>
+﻿<%@ Page Language="C#" MasterPageFile="~masterurl/default.master" Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage, Microsoft.SharePoint,Version=15.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" meta:progid="SharePoint.WebPartPage.Document" %>
 <%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 
@@ -37,6 +37,7 @@
             <input id="projectNameInput" type="text" placeholder="Prosjektets navn" autofocus required />
 	        <label for="projectUrlInput">URL-kortnavn <span>*</span></label>
             <input id="projectUrlInput" type="text" placeholder="Kortnavn som brukes i URL" required pattern="[a-zA-Z-\d]{3,20}" />
+            <label id="projectUrlPreview"></label>
 			<div id="projectUrlInputValidation" class="validationMessage" style="display:none">URL-kortnavnet kan bare inneholde bokstaver (utenom æøå), tall og bindestrek og må være mellom 3 og 20 tegn langt.</div>
 	        <label for="projectDescriptionInput">Beskrivelse</label>
             <textarea id="projectDescriptionInput" type="text" placeholder="Beskrivelse av prosjektområdet"></textarea>
@@ -45,12 +46,8 @@
 	    </div>
     </div>
 	<script type="text/javascript">
-	    document.getElementById('projectUrlInput').addEventListener('change', function (event) {
-	        if (event.target.validity.valid) {
-	            document.getElementById('projectUrlInputValidation').style.display = 'none';
-	        } else {
-	            document.getElementById('projectUrlInputValidation').style.display = 'block';
-	        }
-	    }, false);
+	    jQuery(document).ready(function () {
+	        GT.Provisioning.SetupUrlPreviewAndValidation();
+	    });
 	</script>
 </asp:Content>
