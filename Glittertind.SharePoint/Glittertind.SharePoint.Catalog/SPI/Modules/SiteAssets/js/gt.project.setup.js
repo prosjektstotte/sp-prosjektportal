@@ -357,9 +357,9 @@ GT.Project.Setup.PatchRequestExecutor = function () {
 };
 
 GT.Project.Setup.CreateWebContentTypes = function () {
-    $.when(GT.Project.Setup.ContentTypes.CreateSiteColumn("Min kolonne", "MyCol"))
-        .then(GT.Project.Setup.ContentTypes.CreateContentType("Min innholdstype", "MyContentType", "In it for the lulz", "0x010100293fde3fcada480b9a77bbdad7dfa28c0222"))
-        .then(GT.Project.Setup.ContentTypes.LinkFieldToContentType("MyContentType", "MyCol"));
+    $.when(GT.Project.Setup.ContentTypes.CreateSiteColumn("Min kolonne", "MyCol2"))
+        .then(GT.Project.Setup.ContentTypes.CreateContentType("Min innholdstype", "MyContentType", "In it for the lulz", "0x010088578e7470cc4aa68d56634648310705"))
+        .then(GT.Project.Setup.ContentTypes.LinkFieldToContentType("MyContentType", "MyCol2"));
 };
 
 jQuery(document).ready(function () {

@@ -1,4 +1,5 @@
 ﻿GT.Project.Setup.ContentTypes.CreateSiteColumn = function (displayName, internalName) {
+    console.log('CreateSiteColumn');
     var deferred = $.Deferred();
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
@@ -21,6 +22,7 @@
 };
 
 GT.Project.Setup.ContentTypes.CreateContentType = function (displayName, internalName, description, id) {
+    console.log('CreateContentType');
     var deferred = $.Deferred();
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
@@ -46,6 +48,7 @@ GT.Project.Setup.ContentTypes.CreateContentType = function (displayName, interna
     return deferred.promise();
 };
 GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName, fieldName) {
+    console.log('LinkFieldToContentType');
     var deferred = $.Deferred();
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
