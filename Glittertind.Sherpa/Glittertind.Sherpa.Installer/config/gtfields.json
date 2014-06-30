@@ -137,7 +137,9 @@
         Group: "Glittertind Områdekolonner",
         ID: "0e1b295d-2bfb-4ef6-ae92-e72068e56111",
         InternalName: "GtRiskProbability",
-        Type: "Number"
+        Type: "Number",
+        Min:  0,
+        Max:  5
     },
     {
         Description: "",
@@ -145,7 +147,9 @@
         Group: "Glittertind Områdekolonner",
         ID: "554d32a0-0148-4b3c-bfc4-f101232ee501",
         InternalName: "GtRiskConsequence",
-        Type: "Number"
+        Type: "Number",
+        Min:  0,
+        Max:  5
     },
     {
         Description: "",
@@ -197,7 +201,9 @@
         Group: "Glittertind Områdekolonner",
         ID: "f81ebcb7-8791-44b0-9919-08ed5524b11d",
         InternalName: "GtRiskProbabilityPostAction",
-        Type: "Number"
+        Type: "Number",
+        Min:  0,
+        Max:  5
     },
     {
         Description: "",
@@ -205,7 +211,9 @@
         Group: "Glittertind Områdekolonner",
         ID: "00f17233-d4c0-49d0-aebd-5004552abb17",
         InternalName: "GtRiskConsequencePostAction",
-        Type: "Number"
+        Type: "Number",
+        Min:  0,
+        Max:  5
     },
     {
         Description: "",

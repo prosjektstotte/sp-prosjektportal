@@ -16,6 +16,8 @@ namespace Glittertind.Sherpa.Library.ContentTypes.Model
         public GtCalculatedProps CalculatedProps { get; set; }
         public string Format { get; set; }
         public string Default { get; set; }
+        public int? Min { get; set; }
+        public int? Max { get; set; }
         
         public bool Required { get; set; }
         public bool Hidden { get; set; }
@@ -56,6 +58,12 @@ namespace Glittertind.Sherpa.Library.ContentTypes.Model
                 {
                     return GetFieldWithContentXml(required, string.Format("ResultType=\"{0}\"",CalculatedProps.ResultType), GetCalculatedFieldXmlContent());
                 }
+                case("Number"):
+                {
+                    var options = (Min != null ? "Min=\"" + Min +"\"" : "") + (Max != null ? " Max=\"" + Max +"\"" : "");
+                    return GetSelfClosingFieldXml(required, options);
+                }
+
                 default:
                 {
                     return GetSelfClosingFieldXml(required, string.Empty);
