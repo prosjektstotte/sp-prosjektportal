@@ -91,7 +91,11 @@
         {
           "Title": "Flere faser",
           "Id": "777cc6ac-4639-4633-85b9-f1ef61197c4d"
-        }
+        },
+		{
+		  "Title": "Ingen fase",
+		  "Id": "6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+		}
       ],
       "Title": "Fase",
       "Id": "abcfc9d9-a263-4abb-8234-be973c46258a"

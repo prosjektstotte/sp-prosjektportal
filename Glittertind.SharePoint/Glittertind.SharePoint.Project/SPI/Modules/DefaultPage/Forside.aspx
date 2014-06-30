@@ -179,7 +179,7 @@
 	<SharePoint:ScriptBlock runat="server">if(typeof(MSOLayout_MakeInvisibleIfEmpty) == "function") {MSOLayout_MakeInvisibleIfEmpty();}</SharePoint:ScriptBlock>
     <script type="text/javascript" language="javascript">
         jQuery(document).ready(function() {
-            GT.Common.PopulateProjectPhasePart();
+            GT.Project.PopulateProjectPhasePart();
         });
     </script>
     <SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AuthenticatedUsersOnly" Permissions="AddAndCustomizePages" PermissionContext="CurrentItem">
@@ -190,16 +190,18 @@
 
                 var editPhaseUrl = editMetaUrl.replace('Project', 'PhaseOnly');
                 jQuery('#changeProjectPhaseLink').attr('href', editPhaseUrl);
-                jQuery('#changeProjectPhaseLink').show();
-    	        DisplayMissingMetadataMessage();
+    	        HandleMissingMetadata();
             });
 
-            function DisplayMissingMetadataMessage() {
+            function HandleMissingMetadata() {
     	        if (jQuery('.projectFrontPage .projectMetadata table tr.GtProjectPhase td.fieldValue').text().trim() == '' ||
-                    jQuery('.projectFrontPage .projectMetadata table tr.GtProjectManager td.fieldValue').text().trim() == '' ||
-                    jQuery('.projectFrontPage .projectMetadata table tr.GtProjectGoals td.fieldValue').text().trim() == '') {
-    		        jQuery('.projectFrontPage .missingMetadataWarning').show();
-    	        }
+	                jQuery('.projectFrontPage .projectMetadata table tr.GtProjectManager td.fieldValue').text().trim() == '' ||
+	                jQuery('.projectFrontPage .projectMetadata table tr.GtProjectGoals td.fieldValue').text().trim() == '') {
+	                jQuery('.projectFrontPage .missingMetadataWarning').show();
+	                jQuery('#changeProjectPhaseLink').hide();
+	            } else {
+    	            jQuery('#changeProjectPhaseLink').show();
+	            }
             }
         </script>
     </SharePoint:SPSecurityTrimmedControl>

@@ -1,11 +1,29 @@
 ﻿var GT = GT || {};
 GT.Common = GT.Common || {};
 
+GT.Common.DetectEditMode = function () {
+    var webPartPageForm = document.forms[MSOWebPartPageFormName];
+    if (webPartPageForm) {
+        var inDesignModeElement = webPartPageForm.MSOLayout_InDesignMode;
+        if (inDesignModeElement) {
+            var inDesignMode = inDesignModeElement.value;
+            if (inDesignMode == 1) {
+                document.documentElement.className += " designmode";
+            }
+        }
+    }
+};
+
+GT.Common.IsEditMode = function () {
+    if (jQuery('html').hasClass('designmode')) return true;
+    return false;
+};
+
 GT.Common.GetPhaseLogoMarkup = function (phaseName) {
     GT.Common.GetPhaseLogoMarkup(phaseName, false);
 };
 
-GT.Common.GetPhaseLogoMarkup = function (phaseName, selected) {
+GT.Common.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMarkup) {
     var phaseDisplayName = "Ingen fase";
     var phaseLetter = 'X';
     var selectedClass = selected ? "selected" : '';
@@ -13,10 +31,13 @@ GT.Common.GetPhaseLogoMarkup = function (phaseName, selected) {
         phaseDisplayName = phaseName;
         phaseLetter = phaseName.substr(0, 1);
     }
-    return '<div class="gt-phaseIcon ' + selectedClass + '">' +
+    var markup = '<div class="gt-phaseIcon ' + selectedClass + '">' +
         '<span class="phaseLetter">' + phaseLetter + '</span>' +
         '<span class="projectPhase">' + phaseDisplayName + '</span>' +
         '</div>';
+    if (wrapInListItemMarkup)
+        return '<li class="' + selectedClass + '">' + markup + '</li>';
+    return markup;
 };
 
 GT.Common.GetPhaseFromCurrentItem = function () {
@@ -56,13 +77,6 @@ GT.Common.GetPhaseFromCurrentItem = function () {
     return deferred;
 };
 
-GT.Common.PopulateProjectPhasePart = function () {
-    SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
-        jQuery.when(GT.Common.GetPhaseFromCurrentItem()).then(function (phaseName) {
-            var phases = ['Konsept', 'Planlegge', 'Gjennomføre', 'Avslutte', 'Realisere'];
-            for (var ix = 0; ix < phases.length; ix++) {
-                jQuery('.projectPhases').append('<li>' + GT.Common.GetPhaseLogoMarkup(phases[ix], phases[ix] == phaseName) + '</li>');
-            }
-        });
-    });
-};
+jQuery(function() {
+    GT.Common.DetectEditMode();
+});

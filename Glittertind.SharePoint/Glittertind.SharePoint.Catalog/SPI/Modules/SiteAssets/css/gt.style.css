@@ -6,7 +6,6 @@
 .newProjectPage .projectInputForm button{float:right;margin:0;}
 .newProjectPage .projectInputForm textarea#projectDescriptionInput{height:70px;overflow:auto;}
 .newProjectPage .validationMessage{color:red;margin-bottom:10px;}
-.newProjectPage #projectUrlPreview { margin-bottom: 10px;}
 .projectFrontPage .projectMetadata{width:300px;}
 .projectFrontPage .projectMetadata table{width:100%;margin-bottom:10px;}
 .projectFrontPage .projectMetadata table td{padding:3px;}
@@ -21,10 +20,14 @@ ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
 .gt-phaseIcon .phaseLetter{display:block;font-size:33px;text-align:center;}
 .gt-phaseIcon .projectPhase{display:block;font-size:12px;text-transform:uppercase;text-align:center;}
 .projectFrontPage .projectPhaseSection{height:130px;max-width:690px;}
+.designmode .projectFrontPage .projectPhaseSection { display: none;}
 .projectFrontPage .projectPhaseSection h2.gt-phaseHeading{width:137px;float:left;margin:0 10px 10px 0;}
 .projectFrontPage .projectPhaseSection a#changeProjectPhaseLink{float:left;display:none;border:1px solid #ccc;text-transform:none;text-decoration:none;padding:5px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases{width:100%;list-style:none;overflow:hidden;margin:0;padding:0;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .selected{color:#FF1493;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected{background-color:#1B8600; color:#DFEED5;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:nth-child(5),.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child{background-color:#00527F; color:#EDF4F4;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:before,.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:after {border-left-color:#1B8600;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child:before, .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child:after, .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:nth-child(5):before,.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:nth-child(5):after{border-left-color:#00527F;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li{color:#1B8600;text-decoration:none;background:#DFEED5;position:relative;display:block;float:left;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:after{content:" ";display:block;width:0;height:0;border-top:50px solid transparent;border-bottom:50px solid transparent;border-left:30px solid #DFEED5;position:absolute;top:50%;margin-top:-50px;left:100%;z-index:2;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:before{content:" ";display:block;width:0;height:0;border-top:50px solid transparent;border-bottom:50px solid transparent;border-left:30px solid #1B8600;position:absolute;top:50%;margin-top:-50px;margin-left:1px;left:100%;z-index:1;}
