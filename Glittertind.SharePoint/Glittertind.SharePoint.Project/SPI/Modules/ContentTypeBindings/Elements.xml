@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ContentTypeBinding ListUrl="SitePages" ContentTypeId="0x010109010058561f86d956412b9dd7957bbcd67aae0008786aa052d6437293ead66d77ceba82"/>
+  <ContentTypeBinding ListUrl="SitePages" ContentTypeId="0x010109010058561f86d956412b9dd7957bbcd67aae01"/>
 </Elements>
