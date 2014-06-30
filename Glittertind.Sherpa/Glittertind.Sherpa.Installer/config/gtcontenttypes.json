@@ -10,7 +10,7 @@
       Description : "",
       DisplayName : "Prosjektdokument",
       Group       : "Glittertind Innholdstyper",
-      ID          : "0x010100293fde3fcada480b9a77bbdad7dfa28c000259931568f149e8ae665768c3880bf3",
+      ID          : "0x010100293fde3fcada480b9a77bbdad7dfa28c01",
       InternalName: "GtProjectDocument",
       Fields : [
          "GtProjectPhase"
@@ -30,7 +30,7 @@
       Description : "",
       DisplayName : "Prosjektforside",
       Group       : "Glittertind Innholdstyper",
-      ID          : "0x010109010058561f86d956412b9dd7957bbcd67aae0008786aa052d6437293ead66d77ceba82",
+      ID          : "0x010109010058561f86d956412b9dd7957bbcd67aae01",
       InternalName: "GtProjectFrontPage",
       Fields : [
          "GtProjectNumber",
@@ -59,6 +59,19 @@
          "GtStatusTime",
          "GtStatusBudget",
          "GtProjectGoals"
+      ]
+   },
+   {
+      Description : "",
+      DisplayName : "Prosjektelement",
+      Group       : "Glittertind Innholdstyper",
+      ID          : "0x010088578e7470cc4aa68d56634648310702",
+      InternalName: "GtBaseItem",
+      Fields : [
+         "GtProjectPhase"
+      ],
+      RequiredFields : [
+         "GtProjectPhase"
       ]
    }
 ]
