@@ -58,7 +58,7 @@
     <None Include="Features\WebProjectFrontPage\WebProjectFrontPage.feature">
       <FeatureId>{febaf00e-518a-4fe4-a685-edfa07dafb99}</FeatureId>
     </None>
-    <None Include="Features\WebContentTypeBindings\WebContentTypeBindings.feature">
+    <None Include="Features\WebSiteDefaultArtifacts\WebSiteDefaultArtifacts.feature">
       <FeatureId>{69159289-f11f-4be5-b957-d2e40e3d966a}</FeatureId>
     </None>
     <None Include="Features\SiteProjectWebTemplate\SiteProjectWebTemplate.feature">
@@ -70,9 +70,6 @@
     </None>
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
-    </None>
-    <None Include="SPI\ContentTypeBindings\ProjectBindings\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{f10c35dc-6807-447d-8a7c-b16eac4b8f59}</SharePointProjectItemId>
     </None>
     <None Include="SPI\Lists\Dokumenter\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f5cac30f-950d-4a6a-8175-c17156ba3193}</SharePointProjectItemId>
@@ -113,13 +110,12 @@
     <Content Include="Features\WebProjectFrontPage\WebProjectFrontPage.Template.xml">
       <DependentUpon>WebProjectFrontPage.feature</DependentUpon>
     </Content>
-    <Content Include="Features\WebContentTypeBindings\WebContentTypeBindings.Template.xml">
-      <DependentUpon>WebContentTypeBindings.feature</DependentUpon>
+    <Content Include="Features\WebSiteDefaultArtifacts\WebSiteDefaultArtifacts.Template.xml">
+      <DependentUpon>WebSiteDefaultArtifacts.feature</DependentUpon>
     </Content>
     <Content Include="Features\SiteProjectWebTemplate\SiteProjectWebTemplate.Template.xml">
       <DependentUpon>SiteProjectWebTemplate.feature</DependentUpon>
     </Content>
-    <Content Include="SPI\ContentTypeBindings\ProjectBindings\Elements.xml" />
     <Content Include="SPI\Lists\Dokumenter\Elements.xml" />
     <Content Include="SPI\Lists\Interessenter\Elements.xml" />
     <Content Include="SPI\Lists\Kommunikasjonsplan\Elements.xml" />

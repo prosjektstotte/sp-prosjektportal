@@ -360,20 +360,20 @@ GT.Project.Setup.CreateWebContentTypes = function () {
     var deferred = $.Deferred();
     var dependentPromises = $.when(
         GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Målgruppe", "GtCommunicationTarget", "Interessenter", "Title", "FALSE", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e4}"),
-        GT.Project.Setup.ContentTypes.CreateContentType("Kommunikasjonselement", "GtProjectCommunicationElement", "", "0x010088578e7470cc4aa68d56634648310702031")
+        GT.Project.Setup.ContentTypes.CreateContentType("Kommunikasjonselement", "GtProjectCommunicationElement", "", "0x010088578e7470cc4aa68d5663464831070203")
     );
 
-    dependentPromises.done(function(){ 
+    dependentPromises.done(function () {
         $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("GtProjectCommunicationElement", "GtCommunicationTarget"))
-        .then(function() {
+        .then(function () {
             deferred.resolve();
         });
     });
-    
+
     return deferred.promise();
 };
 
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 
     $.when(GT.Project.Setup.PatchRequestExecutor())
     .done(function () {
