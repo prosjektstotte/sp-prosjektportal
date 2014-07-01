@@ -359,12 +359,12 @@ GT.Project.Setup.PatchRequestExecutor = function () {
 GT.Project.Setup.CreateWebContentTypes = function () {
     var deferred = $.Deferred();
     var dependentPromises = $.when(
-        GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Dokument Link 4", "DocLinkLookup4", "{6DC2EB85-1E95-4583-98B8-A8746A851459}", "Title", "FALSE", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e6}"),
+        GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Dokument Link 5", "DocLinkLookup5", "Dokumenter", "Title", "FALSE", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e5}"),
         GT.Project.Setup.ContentTypes.CreateContentType("Min tulletype 4", "MyStupidContentType4", "In it for the lulz 2", "0x010088578e7470cc4aa68d5663464831070214")
     );
 
     dependentPromises.done(function(){ 
-        $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("MyStupidContentType4", "DocLinkLookup4"))
+        $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("MyStupidContentType4", "DocLinkLookup5"))
         .then(function() {
             deferred.resolve();
         });

@@ -1,4 +1,4 @@
-GT.Project.Setup.ContentTypes.CreateLookupSiteColumn = function (displayName, internalName, targetList, showField, required, id) {
+﻿GT.Project.Setup.ContentTypes.CreateLookupSiteColumn = function (displayName, internalName, targetList, showField, required, id) {
     var deferred = $.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
@@ -8,32 +8,41 @@ GT.Project.Setup.ContentTypes.CreateLookupSiteColumn = function (displayName, in
 
     clientContext.load(field);
     //Will go into error handler if the field doesn't exist
-    clientContext.executeQueryAsync(function() {
+    clientContext.executeQueryAsync(function () {
         console.log('Field ' + displayName + ' already exists');
         deferred.resolve();
     }, function (sender, args) {
-        var fieldDeclaration = [];
-        fieldDeclaration.push('<Field Type="Lookup" Group="Glittertind Områdekolonner" PrependId="TRUE" ');
-        fieldDeclaration.push(' DisplayName="' + displayName + '" Name="' + internalName + '"');
-        fieldDeclaration.push(' List="' + targetList + '" ShowField="' + showField + '"');
-        fieldDeclaration.push(' Required="' + required + '" ID="' + id + '" ');
-        fieldDeclaration.push('></Field>');
+        var list = web.get_lists().getByTitle(targetList);
+        clientContext.load(list);
+        clientContext.executeQueryAsync(function () {
+            var fieldDeclaration = [];
+            fieldDeclaration.push('<Field Type="Lookup" Group="Glittertind Områdekolonner" PrependId="TRUE" ');
+            fieldDeclaration.push(' DisplayName="' + displayName + '" Name="' + internalName + '"');
+            fieldDeclaration.push(' List="' + list.get_id() + '" ShowField="' + showField + '"');
+            fieldDeclaration.push(' Required="' + required + '" ID="' + id + '" ');
+            fieldDeclaration.push('></Field>');
 
-        var fieldXml = fieldDeclaration.join("");
-        siteColumnsCollection.addFieldAsXml(fieldXml, false, SP.AddFieldOptions.AddFieldInternalNameHint);
+            var fieldXml = fieldDeclaration.join("");
+            siteColumnsCollection.addFieldAsXml(fieldXml, false, SP.AddFieldOptions.AddFieldInternalNameHint);
 
-        clientContext.load(siteColumnsCollection);
-        clientContext.executeQueryAsync(function() {
-            console.log('Successfully created site column');
-            deferred.resolve();
+            clientContext.load(siteColumnsCollection);
+            clientContext.executeQueryAsync(function () {
+                console.log('Successfully created site column');
+                deferred.resolve();
+            }, function (sender, args) {
+                console.log('Request failed: ' + args.get_message());
+                console.log(args.get_stackTrace());
+                console.log('Failed while creating site column');
+                deferred.reject();
+            });
         }, function (sender, args) {
             console.log('Request failed: ' + args.get_message());
             console.log(args.get_stackTrace());
-            console.log('Failed while creating site column');
+            console.log('Failed while getting list ' + targetList);
             deferred.reject();
         });
     });
-   
+
     return deferred.promise();
 };
 
@@ -98,7 +107,7 @@ GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName
 
     clientContext.load(contentTypeCollection);
     clientContext.load(field);
-    clientContext.executeQueryAsync(function() {
+    clientContext.executeQueryAsync(function () {
         var contentTypeEnumerator = contentTypeCollection.getEnumerator();
         var newContentType;
         // Find the previously created content type
@@ -113,7 +122,7 @@ GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName
         if (newContentType != null) {
             var fieldLinkCollection = newContentType.get_fieldLinks();
             clientContext.load(fieldLinkCollection);
-            clientContext.executeQueryAsync(function() {
+            clientContext.executeQueryAsync(function () {
                 var fieldAttached = false;
                 var enumerator = newContentType.get_fieldLinks().getEnumerator();
                 while (enumerator.moveNext()) {
@@ -143,7 +152,7 @@ GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName
                         deferred.reject();
                     });
                 }
-            }, function() {
+            }, function () {
                 console.log("Can't find fieldlink collection");
                 deferred.reject();
             });
