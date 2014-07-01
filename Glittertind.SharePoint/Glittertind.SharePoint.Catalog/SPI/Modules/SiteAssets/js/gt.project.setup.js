@@ -4,12 +4,6 @@ GT.Project.Setup = GT.Project.Setup || {};
 GT.Project.Setup.Model = GT.Project.Setup.Model || {}
 GT.Project.Setup.ContentTypes = GT.Project.Setup.ContentTypes || {}
 
-var console = window.console || {};
-console.log = console.log || function () { };
-console.warn = console.warn || function () { };
-console.error = console.error || function () { };
-console.info = console.info || function () { };
-
 GT.Project.Setup.Model.step = function (name, callback, properties) {
     var self = this;
     self.name = name;
@@ -364,7 +358,7 @@ GT.Project.Setup.CreateWebContentTypes = function () {
     );
 
     dependentPromises.done(function () {
-        $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("GtProjectCommunicationElement", "GtCommunicationTarget"))
+        $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("Kommunikasjonselement", "GtCommunicationTarget"))
         .then(function () {
             deferred.resolve();
         });
