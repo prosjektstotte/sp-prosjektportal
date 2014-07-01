@@ -71,11 +71,14 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
-    <None Include="SPI\ContentTypeBindings\DokumenterBindings\SharePointProjectItem.spdata">
+    <None Include="SPI\ContentTypeBindings\ProjectBindings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f10c35dc-6807-447d-8a7c-b16eac4b8f59}</SharePointProjectItemId>
     </None>
     <None Include="SPI\Lists\Dokumenter\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f5cac30f-950d-4a6a-8175-c17156ba3193}</SharePointProjectItemId>
+    </None>
+    <None Include="SPI\Lists\Interessenter\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6688b6fe-3009-4e93-9ded-27877e5a0981}</SharePointProjectItemId>
     </None>
     <None Include="SPI\Lists\Usikkerhet\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ffa64d13-9348-4e16-8fd0-1a593e703790}</SharePointProjectItemId>
@@ -110,8 +113,9 @@
     <Content Include="Features\SiteProjectWebTemplate\SiteProjectWebTemplate.Template.xml">
       <DependentUpon>SiteProjectWebTemplate.feature</DependentUpon>
     </Content>
-    <Content Include="SPI\ContentTypeBindings\DokumenterBindings\Elements.xml" />
+    <Content Include="SPI\ContentTypeBindings\ProjectBindings\Elements.xml" />
     <Content Include="SPI\Lists\Dokumenter\Elements.xml" />
+    <Content Include="SPI\Lists\Interessenter\Elements.xml" />
     <Content Include="SPI\Lists\Usikkerhet\Elements.xml" />
     <Content Include="SPI\Modules\ContentTypeBindings\Elements.xml" />
     <Content Include="SPI\Modules\DefaultPage\Elements.xml" />
