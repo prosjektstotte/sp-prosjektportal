@@ -18,7 +18,7 @@
             var fieldDeclaration = [];
             fieldDeclaration.push('<Field Type="Lookup" Group="Glittertind Områdekolonner" PrependId="TRUE" ');
             fieldDeclaration.push(' DisplayName="' + displayName + '" Name="' + internalName + '"');
-            fieldDeclaration.push(' List="' + list.get_id() + '" ShowField="' + showField + '"');
+            fieldDeclaration.push(' List="{' + list.get_id() + '}" ShowField="' + showField + '"');
             fieldDeclaration.push(' Required="' + required + '" ID="' + id + '" ');
             fieldDeclaration.push('></Field>');
 
@@ -46,46 +46,70 @@
     return deferred.promise();
 };
 
-GT.Project.Setup.ContentTypes.CreateContentType = function (displayName, internalName, description, id) {
+GT.Project.Setup.ContentTypes.CreateContentType = function (displayName, internalName, description, parentContentTypeId) {
     var deferred = $.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
     var contentTypeCollection = web.get_contentTypes();
+    var siteCol = clientContext.get_site();
+    var siteColContentTypeCollection = siteCol.get_rootWeb().get_contentTypes();
 
     clientContext.load(contentTypeCollection);
+    clientContext.load(siteColContentTypeCollection);
     clientContext.executeQueryAsync(function () {
         var contentTypeEnumerator = contentTypeCollection.getEnumerator();
         var contentTypeExists = false;
         // Find the previously created content type
         while (contentTypeEnumerator.moveNext()) {
             var ct = contentTypeEnumerator.get_current();
-            if (ct.get_id().toString().toLowerCase() === id.toLowerCase()) {
+            if (ct.get_name().toString().toLowerCase() === internalName.toLowerCase()) {
                 contentTypeExists = true;
                 break;
             }
         }
 
         if (!contentTypeExists) {
-            var newContentType = new SP.ContentTypeCreationInformation();
-            newContentType.set_name(internalName);
-            newContentType.set_id(id);
-            newContentType.set_description(description);
-            newContentType.set_group("Glittertind Innholdstyper");
+            var rootWebContentTypesEnumerator = siteColContentTypeCollection.getEnumerator();
+            var existingContentType = null;
+            // Find the previously created content type
+            while (rootWebContentTypesEnumerator.moveNext()) {
+                var ct = rootWebContentTypesEnumerator.get_current();
+                if (ct.get_id().toString().toLowerCase() === parentContentTypeId.toLowerCase()) {
+                    existingContentType = ct;
+                    break;
+                }
+            }
+            if (existingContentType != null) {
+                var contentTypeInfo = new SP.ContentTypeCreationInformation();
+                contentTypeInfo.set_name(internalName);
+                contentTypeInfo.set_parentContentType(existingContentType);
+                contentTypeInfo.set_description(description);
+                contentTypeInfo.set_group("Glittertind Innholdstyper");
 
-            contentTypeCollection.add(newContentType);
-            clientContext.executeQueryAsync(function () {
-                console.log('Successfully created content type');
-                deferred.resolve();
-                //TODO: Set display name
-            }, function (sender, args) {
-                console.log('Request failed: ' + args.get_message());
-                console.log(args.get_stackTrace());
-                console.log('Failed while creating content type');
+                var newContentType = contentTypeCollection.add(contentTypeInfo);
+                clientContext.executeQueryAsync(function () {
+                    newContentType.set_name(displayName);
+                    newContentType.update(true);
+                    clientContext.executeQueryAsync(function () {
+                        console.log('Successfully created content type');
+                        deferred.resolve();
+                    }, function () {
+                        console.log('Created content type, but couldnt set displayname');
+                        deferred.resolve();
+                    });
+                }, function (sender, args) {
+                    console.log('Request failed: ' + args.get_message());
+                    console.log(args.get_stackTrace());
+                    console.log('Failed while creating content type');
+                    deferred.reject();
+                });
+            } else {
+                console.log('Failed while creating content type - couldnt find parent content type');
                 deferred.reject();
-            });
+            }
         } else {
-            console.log('Content type ' + displayName + ' already exists')
+            console.log('Content type ' + displayName + ' already exists');
             deferred.resolve();
         }
     }, function (sender, args) {
@@ -110,7 +134,6 @@ GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName
     clientContext.executeQueryAsync(function () {
         var contentTypeEnumerator = contentTypeCollection.getEnumerator();
         var newContentType;
-        // Find the previously created content type
         while (contentTypeEnumerator.moveNext()) {
             var ct = contentTypeEnumerator.get_current();
             if (ct.get_name() === contentTypeName) {

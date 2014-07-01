@@ -58,7 +58,7 @@
     <None Include="Features\WebProjectFrontPage\WebProjectFrontPage.feature">
       <FeatureId>{febaf00e-518a-4fe4-a685-edfa07dafb99}</FeatureId>
     </None>
-    <None Include="Features\WebContentTypeBindings\WebContentTypeBindings.feature">
+    <None Include="Features\WebSiteDefaultArtifacts\WebSiteDefaultArtifacts.feature">
       <FeatureId>{69159289-f11f-4be5-b957-d2e40e3d966a}</FeatureId>
     </None>
     <None Include="Features\SiteProjectWebTemplate\SiteProjectWebTemplate.feature">
@@ -110,8 +110,8 @@
     <Content Include="Features\WebProjectFrontPage\WebProjectFrontPage.Template.xml">
       <DependentUpon>WebProjectFrontPage.feature</DependentUpon>
     </Content>
-    <Content Include="Features\WebContentTypeBindings\WebContentTypeBindings.Template.xml">
-      <DependentUpon>WebContentTypeBindings.feature</DependentUpon>
+    <Content Include="Features\WebSiteDefaultArtifacts\WebSiteDefaultArtifacts.Template.xml">
+      <DependentUpon>WebSiteDefaultArtifacts.feature</DependentUpon>
     </Content>
     <Content Include="Features\SiteProjectWebTemplate\SiteProjectWebTemplate.Template.xml">
       <DependentUpon>SiteProjectWebTemplate.feature</DependentUpon>
