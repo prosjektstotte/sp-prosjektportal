@@ -80,6 +80,9 @@
     <None Include="SPI\Lists\Interessenter\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6688b6fe-3009-4e93-9ded-27877e5a0981}</SharePointProjectItemId>
     </None>
+    <None Include="SPI\Lists\MeetingCalendar\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9da20a34-e51e-484f-aa0d-c4656c1ce4d4}</SharePointProjectItemId>
+    </None>
     <None Include="SPI\Lists\Usikkerhet\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ffa64d13-9348-4e16-8fd0-1a593e703790}</SharePointProjectItemId>
     </None>
@@ -116,6 +119,7 @@
     <Content Include="SPI\ContentTypeBindings\ProjectBindings\Elements.xml" />
     <Content Include="SPI\Lists\Dokumenter\Elements.xml" />
     <Content Include="SPI\Lists\Interessenter\Elements.xml" />
+    <Content Include="SPI\Lists\MeetingCalendar\Elements.xml" />
     <Content Include="SPI\Lists\Usikkerhet\Elements.xml" />
     <Content Include="SPI\Modules\ContentTypeBindings\Elements.xml" />
     <Content Include="SPI\Modules\DefaultPage\Elements.xml" />
