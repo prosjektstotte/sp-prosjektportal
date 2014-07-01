@@ -3,4 +3,5 @@
   <ContentTypeBinding ListUrl="Dokumenter" ContentTypeId="0x010100293fde3fcada480b9a77bbdad7dfa28c01" />
   <ContentTypeBinding ListUrl="Lists/Usikkerhet" ContentTypeId="0x010088578e7470cc4aa68d566346483107020101" />
   <ContentTypeBinding ListUrl="Lists/Usikkerhet" ContentTypeId="0x010088578e7470cc4aa68d566346483107020102" />
+  <ContentTypeBinding ListUrl="Lists/Interessenter" ContentTypeId="0x010088578e7470cc4aa68d5663464831070202" />
 </Elements>

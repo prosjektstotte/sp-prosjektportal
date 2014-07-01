@@ -236,5 +236,90 @@
                 }
             ]
         }
+    },
+    {
+        Description: "",
+        DisplayName: "Interessentgruppe",
+        Group: "Glittertind Områdekolonner",
+        ID: "2847b3b0-ed22-4c47-b7c0-3ebfc83dae4a",
+        InternalName: "GtStakeholderGroup",
+        Type: "Choice",
+        Choices: [
+            "Medarbeidere",
+            "Ledelse",
+            "Innbyggere",
+            "Næringsliv",
+            "Frivillighet/Organisasjon",
+            "Fagforening",
+            "Andre offentlige aktører",
+            "Akademia",
+            "Virkemiddelapparat"
+        ]
+    },
+    {
+        Description: "",
+        DisplayName: "Arena/Møteplass/Nettverk",
+        Group: "Glittertind Områdekolonner",
+        ID: "970ed1b2-9e71-45aa-8f8d-c391a15f067f",
+        InternalName: "GtStakeholderContext",
+        Type: "Text"
+    },
+    {
+        Description: "",
+        DisplayName: "Plan/strategi/prosjekt",
+        Group: "Glittertind Områdekolonner",
+        ID: "1150d6bd-c9ba-4014-bd74-7d559110841d",
+        InternalName: "GtStakeholderStrategy",
+        Type: "Text"
+    },
+    {
+        Description: "",
+        DisplayName: "Interessent",
+        Group: "Glittertind Områdekolonner",
+        ID: "bcaa2999-66b8-4baf-954e-4b2a529ae08d",
+        InternalName: "GtStakeholder",
+        Type: "Text"
+    },
+    {
+        Description: "",
+        DisplayName: "Interesse",
+        Group: "Glittertind Områdekolonner",
+        ID: "748ae9b5-223d-4daa-b8f8-dc14284b59db",
+        InternalName: "GtStakeholderInterest",
+        Type: "Note"
+    },
+    {
+        Description: "",
+        DisplayName: "Påvirkes i hvilken grad",
+        Group: "Glittertind Områdekolonner",
+        ID: "475d2ca1-5b8e-4479-96ae-81c0a89354f3",
+        InternalName: "GtStakeholderInfluence",
+        Type: "Choice",
+        Choices: [
+            "Stor",
+            "Middels",
+            "Ingen"
+        ]
+    },
+    {
+        Description: "",
+        DisplayName: "Mulighet til påvirkning",
+        Group: "Glittertind Områdekolonner",
+        ID: "2bb7e155-3af4-4353-a460-8da404c4e748",
+        InternalName: "GtStakeholderInfluencePossibilty",
+        Type: "Choice",
+        Choices: [
+            "Stor",
+            "Middels",
+            "Ingen"
+        ]
+    },
+    {
+        Description: "Mulige strategier for å oppnå støtte eller redusere hindringer",
+        DisplayName: "Tiltak",
+        Group: "Glittertind Områdekolonner",
+        ID: "45d5b378-67ce-4f21-b622-fe54b27c83a6",
+        InternalName: "GtStakholderActions",
+        Type: "Note"
     }
 ]

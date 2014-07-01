@@ -105,5 +105,23 @@
       InternalName: "GtProjectOpportunity",
       Fields : [],
       RequiredFields : []
+   },
+   {
+      Description : "",
+      DisplayName : "Interessent",
+      Group       : "Glittertind Innholdstyper",
+      ID          : "0x010088578e7470cc4aa68d5663464831070202",
+      InternalName: "GtProjectStakeholder",
+      Fields : [
+        "GtStakeholderGroup",
+        "GtStakeholderContext",
+        "GtStakeholderStrategy",
+        "GtStakeholder",
+        "GtStakeholderInterest",
+        "GtStakeholderInfluence",
+        "GtStakeholderInfluencePossibilty",
+        "GtStakholderActions"
+      ],
+      RequiredFields : []
    }
 ]
