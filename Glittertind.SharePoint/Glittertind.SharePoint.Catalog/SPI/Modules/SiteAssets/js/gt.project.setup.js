@@ -357,12 +357,23 @@ GT.Project.Setup.PatchRequestExecutor = function () {
 };
 
 GT.Project.Setup.CreateWebContentTypes = function () {
-    $.when(GT.Project.Setup.ContentTypes.CreateSiteColumn("Min kolonne", "MyCol2"))
-        .then(GT.Project.Setup.ContentTypes.CreateContentType("Min innholdstype", "MyContentType", "In it for the lulz", "0x010088578e7470cc4aa68d56634648310705"))
-        .then(GT.Project.Setup.ContentTypes.LinkFieldToContentType("MyContentType", "MyCol2"));
+    var deferred = $.Deferred();
+    var dependentPromises = $.when(
+        GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Dokument Link 4", "DocLinkLookup4", "{6DC2EB85-1E95-4583-98B8-A8746A851459}", "Title", "FALSE", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e6}"),
+        GT.Project.Setup.ContentTypes.CreateContentType("Min tulletype 4", "MyStupidContentType4", "In it for the lulz 2", "0x010088578e7470cc4aa68d5663464831070214")
+    );
+
+    dependentPromises.done(function(){ 
+        $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("MyStupidContentType4", "DocLinkLookup4"))
+        .then(function() {
+            deferred.resolve();
+        });
+    });
+    
+    return deferred.promise();
 };
 
-jQuery(document).ready(function () {
+jQuery(document).ready(function () { 
 
     $.when(GT.Project.Setup.PatchRequestExecutor())
     .done(function () {
