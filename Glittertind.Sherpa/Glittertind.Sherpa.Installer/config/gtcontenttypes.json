@@ -136,5 +136,18 @@
           "GtActionResponsible"
       ],
       RequiredFields : []
+   },
+   {
+      Description : "",
+      DisplayName : "Sjekkpunkt",
+      Group       : "Glittertind Innholdstyper",
+      ID          : "0x010088578e7470cc4aa68d5663464831070204",
+      InternalName: "GtProjectChecklistElement",
+      Fields : [
+          "GtProjectPhase",
+          "GtChecklistStatus",
+          "GtComment"
+      ],
+      RequiredFields : []
    }
 ]

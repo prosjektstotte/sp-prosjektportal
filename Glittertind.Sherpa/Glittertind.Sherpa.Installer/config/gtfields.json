@@ -338,5 +338,26 @@
         ID: "2ae541a5-5ecc-481d-afb6-c03a6f1e71b4",
         InternalName: "GtActionResponsible",
         Type: "User"
+    },
+    {
+        Description: "",
+        DisplayName: "Status",
+        Group: "Glittertind Områdekolonner",
+        ID: "249527a3-c7f9-4ea5-9c33-f942c06c9215",
+        InternalName: "GtChecklistStatus",
+        Type: "Choice",
+        Choices: [
+            "Ja",
+            "Nei",
+            "Ignorert"
+        ]
+    },
+    {
+        Description: "",
+        DisplayName: "Kommentar",
+        Group: "Glittertind Områdekolonner",
+        ID: "509a6bfe-004e-41f9-bd73-9a0e02d5c4a7",
+        InternalName: "GtComment",
+        Type: "Note"
     }
 ]
