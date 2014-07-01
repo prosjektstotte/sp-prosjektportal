@@ -121,7 +121,7 @@ GT.Project.Setup.ContentTypes.CreateContentType = function (displayName, interna
 
     return deferred.promise();
 };
-GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName, fieldName) {
+GT.Project.Setup.ContentTypes.LinkFieldToContentType = function(contentTypeName, fieldName) {
     var deferred = $.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
@@ -131,7 +131,7 @@ GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName
 
     clientContext.load(contentTypeCollection);
     clientContext.load(field);
-    clientContext.executeQueryAsync(function () {
+    clientContext.executeQueryAsync(function() {
         var contentTypeEnumerator = contentTypeCollection.getEnumerator();
         var newContentType;
         while (contentTypeEnumerator.moveNext()) {
@@ -145,7 +145,7 @@ GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName
         if (newContentType != null) {
             var fieldLinkCollection = newContentType.get_fieldLinks();
             clientContext.load(fieldLinkCollection);
-            clientContext.executeQueryAsync(function () {
+            clientContext.executeQueryAsync(function() {
                 var fieldAttached = false;
                 var enumerator = newContentType.get_fieldLinks().getEnumerator();
                 while (enumerator.moveNext()) {
@@ -165,17 +165,17 @@ GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName
                     newContentType.update(true);
 
                     clientContext.load(newContentType);
-                    clientContext.executeQueryAsync(function () {
+                    clientContext.executeQueryAsync(function() {
                         console.log('Successfully linked site column to CT');
                         deferred.resolve();
-                    }, function (sender, args) {
+                    }, function(sender, args) {
                         console.log('Request failed: ' + args.get_message());
                         console.log(args.get_stackTrace());
                         console.log('Failed while linking site column to CT');
                         deferred.reject();
                     });
                 }
-            }, function () {
+            }, function() {
                 console.log("Can't find fieldlink collection");
                 deferred.reject();
             });
@@ -183,11 +183,58 @@ GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName
             console.log("Can't find content type " + contentTypeName);
             deferred.reject();
         }
-    }, function (sender, args) {
+    }, function(sender, args) {
         console.log('Request failed: ' + args.get_message());
         console.log(args.get_stackTrace());
         console.log('Error while getting fields for linking');
         deferred.reject();
     });
     return deferred.promise();
-}
+};
+
+GT.Project.Setup.ContentTypes.AddWebContentTypeToList = function(listName, contentTypeName) {
+    var deferred = $.Deferred();
+
+    var clientContext = SP.ClientContext.get_current();
+    var web = clientContext.get_web();
+    var contentTypeCollection = web.get_contentTypes();
+    var list = web.get_lists().getByTitle(listName);
+
+    clientContext.load(contentTypeCollection);
+    clientContext.load(list);
+    clientContext.executeQueryAsync(function() {
+        var contentTypeEnumerator = contentTypeCollection.getEnumerator();
+        var newContentType;
+        while (contentTypeEnumerator.moveNext()) {
+            var ct = contentTypeEnumerator.get_current();
+            if (ct.get_name() === contentTypeName) {
+                newContentType = ct;
+                break;
+            }
+        }
+
+        if (newContentType != null) {
+            var listContentTypes = list.get_contentTypes();
+            listContentTypes.add(newContentType);
+            clientContext.executeQueryAsync(function() {
+                console.log('Successfully attached content type to list ' + listName);
+                deferred.resolve();
+            }, function(sender, args) {
+                console.log('Request failed: ' + args.get_message());
+                console.log(args.get_stackTrace());
+                console.log('Failed attaching content type ' + contentTypeName + 'to list ' + listName);
+                deferred.reject();
+            });
+        } else {
+            console.log('Failed getting content type ' + contentTypeName);
+            deferred.reject();
+        }
+    }, function(sender, args) {
+        console.log('Request failed: ' + args.get_message());
+        console.log(args.get_stackTrace());
+        console.log('Failed while loading content types and list during attaching to list');
+        deferred.reject();
+    });
+
+    return deferred.promise();
+};
