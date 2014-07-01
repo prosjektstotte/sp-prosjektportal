@@ -130,7 +130,11 @@
       Group       : "Glittertind Innholdstyper",
       ID          : "0x010088578e7470cc4aa68d5663464831070203",
       InternalName: "GtProjectCommunicationBase",
-      Fields : [],
+      Fields : [
+          "GtProjectPhase",
+          "GtActionDate",
+          "GtActionResponsible"
+      ],
       RequiredFields : []
    }
 ]
