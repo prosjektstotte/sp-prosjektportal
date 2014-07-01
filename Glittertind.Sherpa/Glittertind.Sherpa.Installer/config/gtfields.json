@@ -321,5 +321,22 @@
         ID: "45d5b378-67ce-4f21-b622-fe54b27c83a6",
         InternalName: "GtStakholderActions",
         Type: "Note"
+    },
+    {
+        Description: "",
+        DisplayName: "Tiltaksdato",
+        Format: "DateOnly",
+        Group: "Glittertind Områdekolonner",
+        ID: "77450582-a061-4416-af17-6dfb99fa9036",
+        InternalName: "GtActionDate",
+        Type: "DateTime"
+    },
+    {
+        Description: "",
+        DisplayName: "Tiltaksansvarlig",
+        Group: "Glittertind Områdekolonner",
+        ID: "2ae541a5-5ecc-481d-afb6-c03a6f1e71b4",
+        InternalName: "GtActionResponsible",
+        Type: "User"
     }
 ]
