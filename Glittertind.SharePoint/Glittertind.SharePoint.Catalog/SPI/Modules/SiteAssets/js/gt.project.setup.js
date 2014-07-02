@@ -260,6 +260,49 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
     executor.executeAsync(info);
     return deferred.promise();
 };
+
+// [start] Default artifacts for Sjekkliste
+GT.Project.Setup.copyDefaultItems = function () {
+    var deferred = $.Deferred();
+    var currentSiteColl = _spPageContextInfo.siteAbsoluteUrl;
+    var url = currentSiteColl + "/SiteAssets/gt/data/checklist.defaultitems.json";
+    console.log(url);
+    $.when($.getJSON(url)).done(function(data) {
+
+        var clientContext = SP.ClientContext.get_current();
+        var oList = clientContext.get_web().get_lists().getByTitle('Sjekkliste');
+
+        console.log(data.Data.Rows);
+        var rows = data.Data.Rows
+        var listItems = [];
+        for (var i = 0; i < rows.length; i++) {
+
+            var itemCreateInfo = new SP.ListItemCreationInformation();
+            var oListItem = oList.addItem(itemCreateInfo);
+
+            for (var y = 0; y < rows[i].Fields.length; y++) {
+                var name = rows[i].Fields[y].Name;
+                var value = rows[i].Fields[y].Value;
+                oListItem.set_item(name, value);
+            }
+            oListItem.update();
+            clientContext.load(oListItem);
+
+        }
+        clientContext.executeQueryAsync(function (sender, args) {
+            deferred.resolve();
+            console.log("Copied default items to Sjekkliste");
+        }, function(sender, args) {
+            deferred.reject();
+            console.error('Request failed. ' + args.get_message());
+        });
+    });
+    return deferred.promise();
+};
+
+// [end]Default artifacts for Sjekkliste
+
+
 // [end] helper methods for copying files
 
 GT.Project.Setup.PatchRequestExecutor = function () {
@@ -399,7 +442,8 @@ jQuery(document).ready(function () {
             '1.0.0.0': {
                 0: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" }),
                 1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {}),
-                2: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {})
+                2: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
+                3: new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste",GT.Project.Setup.copyDefaultItems, {})
 
             }
         };
