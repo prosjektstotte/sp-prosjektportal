@@ -1,0 +1,1040 @@
+﻿{
+  "Data": {
+    "Rows": {
+      "Row": [
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Beslutte utredning av idéen"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Ingen fase"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Definere en tydelig problemstilling som synliggjør behovet for nærmere utredning"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Ingen fase"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Gjøre det tydelig hvordan eller av hvem utredningen skal finansieres"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Ingen fase"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Vurdere om det er mest riktig å gjennomføre tiltaket som et prosjekt eller som en linjeoppgave"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Ingen fase"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Vurdere om tiltaket er i henhold til virksomhetsstrategien"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Ingen fase"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Vurdere om det er behov for mer informasjon før det kan fattes en beslutning"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Ingen fase"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Vurdere om det finnes noen føringer (IT -politiske eller andre) som gjelder og må tas hensyn til i utredningen"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Ingen fase"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Vurdere om vi skal gå videre til konseptfasen og utrede ulike konsepter for et mulig prosjekt"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Ingen fase"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Hvis vi går videre til konseptfasen, utnevne en utredningsleder for konseptfasen"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Ingen fase"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Vurdere om det skal startes opp et prosjekt og gå videre med planlegging"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Konsept"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Vurdere om prosjektet er realistisk og gjennomførbart"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Konsept"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Hvis det etableres et prosjekt, utnevne en prosjekteier"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Konsept"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Vurdere om det skal etableres et prosjektstyre"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Konsept"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Etablere rollebeskrivelse for prosjekteier"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Konsept"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Vurdere om prosjektforslaget støtter opp under virksomhetens mål og strategier"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Konsept"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Vurdere om det er gjort en tilstrekkelig vurdering av ulike alternative investeringer for å sikre at prosjektforslaget representerer et riktig valg å gå videre med, inklusive kvantitative og kvalitative gevinstanalyser og sammenligninger av kost/nytte for"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Konsept"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Utpeke en prosjektleder og sette sammen en prosjektgruppe"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Konsept"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Etablere rollebeskrivelse for prosjektleder"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Konsept"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Allokere nøkkelressurser for prosjektet og gjøre nødvendige avtaler for å sikre ressurstilgang"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Konsept"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er prosjektet fortsatt ønskelig og i tråd med virksomhetens strategiske mål?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Planlegge"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er det utarbeidet en helhetlig og konsistent plan som bryter prosjektet ned i håndterbare faser?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Planlegge"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er det utarbeidet nødvendige strategier for gjennomføring, for eksempel implementeringsstrategi, kvalitetsstrategi og Planleggingsfasen?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Planlegge"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er det gjennomført interessentanalyse?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Planlegge"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er prosjektorganisasjonen tydelig definert med roller og ansvar, og er det ressurser til å gjennomføre prosjektet?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Planlegge"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er usikkerhetsanalyse blitt uført og er usikkerheten akseptabel?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Planlegge"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er kritiske suksessfaktorer identifisert?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Planlegge"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er det utarbeidet en gevinstrealiseringsplan og er linjeorganisasjonens kapasitet til å realisere gevinstene blitt vurdert?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Planlegge"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er prosjektets leveranser i overensstemmelse med definerte resultatmål?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Gjennomføre"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er leveranser dokumentert og levert i henhold til plan?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Gjennomføre"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er det noe utestående arbeid som prosjektet skal ha ansvar for å avslutte?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Gjennomføre"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er linjeorganisasjonen klar til å ta i bruk leveransene fra prosjektet og er nødvendig opplæring, brukerdokumentasjon, driftsrutiner osv utarbeidet og gjennomført?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Gjennomføre"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er det klart hvem som skal følge opp og rapportere effekter (i henhold til gevinstrealiseringsplan), og til hvem?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Gjennomføre"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er det klart hvem som har ansvar for forvaltning og drift, og er nødvendige avtaler inngått?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Gjennomføre"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er utestående arbeid tilfredsstillende lukket og eventuelt akseptert overført til linjen?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Avslutte"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er prosjektets hovedresultat (produkt, kost, tid, kvalitet, ressursbruk) dokumentert?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Avslutte"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er positive og negative erfaringer dokumentert for erfaringsoverføring?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Avslutte"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er prosjektdokumentene forsvarlig arkivert?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Avslutte"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er alle prosjektkontrakter avsluttet?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Avslutte"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er alle relevante interessenter blitt informert om avslutning av prosjektet?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Avslutte"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er gevinstrealiseringsplanen oppdatert?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Avslutte"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er Erfaringslogg oppdatert,avsluttet og lagret?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Avslutte"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er planlagte målinger og tiltak gjennomført?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Realisere"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        },
+        {
+          "Fields": [
+            {
+              "Name": "ContentTypeId",
+              "Value": "0x010088578E7470CC4AA68D5663464831070204"
+            },
+            {
+              "Name": "Title",
+              "Value": "Er forventede gevinster oppnådd eller er det behov for ytterligere tiltak? I så fall er det utarbeidet en tiltaksplan?"
+            },
+            {
+              "Name": "j25543a5815d485da9a5e0773ad762e9",
+              "Value": "Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
+            },
+            {
+              "Name": "GtProjectPhase",
+              "Value": "Realisere"
+            },
+            {
+              "Name": "ContentType",
+              "Value": "Sjekkpunkt"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

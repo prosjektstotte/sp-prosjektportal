@@ -11,5 +11,6 @@
     <ProjectItemFile Source="js\gt.generics.js" Target="SiteAssets\js\" Type="ElementFile" />
     <ProjectItemFile Source="js\gt.project.setup.js" Target="SiteAssets\js\" Type="ElementFile" />
     <ProjectItemFile Source="js\gt.project.setup.contenttypes.js" Target="SiteAssets\js\" Type="ElementFile" />
+    <ProjectItemFile Source="data\checklist.defaultitems.json" Target="SiteAssets\data\" Type="ElementFile" />
   </Files>
 </ProjectItem>
