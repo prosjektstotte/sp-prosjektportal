@@ -176,6 +176,10 @@ GT.Project.Setup.ContentTypes.AddWebContentTypeToList = function (listName, cont
     clientContext.executeQueryAsync(function () {
         var webContentType = GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(contentTypeCollection, contentTypeName);
         if (webContentType != null) {
+            if (!list.get_contentTypesEnabled()) {
+                list.set_contentTypesEnabled(true);
+                list.update();
+            }
             var listContentTypes = list.get_contentTypes();
             clientContext.load(listContentTypes);
             clientContext.executeQueryAsync(function () {
