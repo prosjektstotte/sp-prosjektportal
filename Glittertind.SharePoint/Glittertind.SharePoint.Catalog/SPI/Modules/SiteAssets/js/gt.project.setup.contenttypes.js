@@ -161,53 +161,108 @@ GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName
         deferred.reject();
     });
     return deferred.promise();
-}
+};
 
-GT.Project.Setup.ContentTypes.AddWebContentTypeToList = function (listName, contentTypeName) {
+GT.Project.Setup.ContentTypes.AddContentTypeToList = function (clientContext, contentType, listContentTypes, list) {
     var deferred = $.Deferred();
 
-    var clientContext = SP.ClientContext.get_current();
-    var web = clientContext.get_web();
-    var contentTypeCollection = web.get_contentTypes();
-    var list = web.get_lists().getByTitle(listName);
+    var contentTypeName = contentType.get_name();
+    var listName = list.get_title();
+    if (GT.Project.Setup.ContentTypes.DoesContentTypeExistInCollection(listContentTypes, contentTypeName)) {
+        console.log('Content type ' + contentTypeName + ' is already added to the list ' + listName);
+        deferred.resolve();
+    } else {
+        var newListContentType = listContentTypes.addExistingContentType(contentType);
+        clientContext.executeQueryAsync(function () {
+            console.log('Successfully attached content type to list ' + listName);
+            deferred.resolve();
+        }, function (sender, args) {
+            console.log('Request failed: ' + args.get_message());
+            console.log(args.get_stackTrace());
+            console.log('Failed attaching content type ' + contentTypeName + 'to list ' + listName);
+            deferred.reject();
+        });
+    }
+    return deferred.promise();
+};
 
-    clientContext.load(contentTypeCollection);
-    clientContext.load(list);
-    clientContext.executeQueryAsync(function () {
-        var webContentType = GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(contentTypeCollection, contentTypeName);
-        if (webContentType != null) {
-            if (!list.get_contentTypesEnabled()) {
-                list.set_contentTypesEnabled(true);
-                list.update();
-            }
-            var listContentTypes = list.get_contentTypes();
-            clientContext.load(listContentTypes);
-            clientContext.executeQueryAsync(function () {
-                if (GT.Project.Setup.ContentTypes.DoesContentTypeExistInCollection(listContentTypes, contentTypeName)) {
-                    console.log('Content type ' + contentTypeName + ' is already added to the list ' + listName);
-                    deferred.resolve();
-                } else {
-                    var newListContentType = listContentTypes.addExistingContentType(webContentType);
-                    clientContext.executeQueryAsync(function () {
-                        console.log('Successfully attached content type to list ' + listName);
-                        deferred.resolve();
-                    }, function (sender, args) {
-                        console.log('Request failed: ' + args.get_message());
-                        console.log(args.get_stackTrace());
-                        console.log('Failed attaching content type ' + contentTypeName + 'to list ' + listName);
-                        deferred.reject();
-                    });
-                }
-            }, function (sender, args) {
-                console.log('Request failed: ' + args.get_message());
-                console.log(args.get_stackTrace());
-                console.log('Failed getting list content type collection for list ' + listName);
-                deferred.reject();
-            });
+GT.Project.Setup.ContentTypes.AddContentTypeToListByName = function (clientContext, siteContentTypeCollection, webContentTypeCollection, listContentTypes, list, contentTypeName) {
+    var deferred = $.Deferred();
+
+    var webContentType = GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(webContentTypeCollection, contentTypeName);
+    if (webContentType != null) {
+        GT.Project.Setup.ContentTypes.AddContentTypeToList(clientContext, webContentType, listContentTypes, list);
+    } else {
+        var siteContentType = GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(siteContentTypeCollection, contentTypeName);
+        if (siteContentType != null) {
+            GT.Project.Setup.ContentTypes.AddContentTypeToList(clientContext, siteContentType, listContentTypes, list);
         } else {
             console.log('Failed getting content type ' + contentTypeName);
             deferred.reject();
         }
+    }
+
+    return deferred.promise();
+};
+
+GT.Project.Setup.ContentTypes.UpdateListContentTypes = function (listName, contentTypeNames) {
+    var deferred = $.Deferred();
+
+    var clientContext = SP.ClientContext.get_current();
+    var web = clientContext.get_web();
+    var site = clientContext.get_site();
+    var webContentTypeCollection = web.get_contentTypes();
+    var siteContentTypeCollection = site.get_rootWeb().get_contentTypes();
+    var list = web.get_lists().getByTitle(listName);
+    var listContentTypes = list.get_contentTypes();
+
+    clientContext.load(webContentTypeCollection);
+    clientContext.load(siteContentTypeCollection);
+    clientContext.load(list);
+    clientContext.load(listContentTypes);
+    clientContext.executeQueryAsync(function () {
+        if (!list.get_contentTypesEnabled()) {
+            list.set_contentTypesEnabled(true);
+            list.set_foldersEnabled(true);
+            list.update();
+        }
+        for (var i = 0; i < contentTypeNames.length; i++) {
+            //TODO: This will fire async and may happen after the deletion phase
+            GT.Project.Setup.ContentTypes.AddContentTypeToListByName(clientContext, siteContentTypeCollection, webContentTypeCollection, listContentTypes, list, contentTypeNames[i]);
+        }
+        clientContext.executeQueryAsync(function () {
+            var contentTypesToRemove = [];
+            var contentTypeEnumerator = listContentTypes.getEnumerator();
+            while (contentTypeEnumerator.moveNext()) {
+                var ct = contentTypeEnumerator.get_current();
+                if (!IsInCollection(ct.get_name(), contentTypeNames)) {
+                    contentTypesToRemove.push(ct);
+                }
+            }
+            if (contentTypesToRemove.length > 0) {
+                for (var h = 0; h < contentTypesToRemove.length; h++) {
+                    contentTypesToRemove[h].deleteObject();
+                }
+                list.update();
+                clientContext.executeQueryAsync(function () {
+                    console.log('Successfully removed content types from list ' + listName);
+                    deferred.resolve();
+                }, function (sender, args) {
+                    console.log('Request failed: ' + args.get_message());
+                    console.log(args.get_stackTrace());
+                    console.log('Failed deleting content type for list ' + listName);
+                    deferred.reject();
+                });
+            } else {
+                console.log('Found no content types to remove from the list ' + listName);
+                deferred.resolve();
+            }
+        }, function (sender, args) {
+            console.log('Request failed: ' + args.get_message());
+            console.log(args.get_stackTrace());
+            console.log('Failed getting list content type collection for list ' + listName);
+            deferred.reject();
+        });
     }, function (sender, args) {
         console.log('Request failed: ' + args.get_message());
         console.log(args.get_stackTrace());
@@ -218,11 +273,11 @@ GT.Project.Setup.ContentTypes.AddWebContentTypeToList = function (listName, cont
     return deferred.promise();
 };
 
-GT.Project.Setup.ContentTypes.DoesContentTypeExistInCollection = function(contentTypeCollection, internalName) {
+GT.Project.Setup.ContentTypes.DoesContentTypeExistInCollection = function (contentTypeCollection, internalName) {
     return GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(contentTypeCollection, internalName) != null;
 };
 
-GT.Project.Setup.ContentTypes.GetContentTypeFromCollection = function(contentTypeCollection, internalName) {
+GT.Project.Setup.ContentTypes.GetContentTypeFromCollection = function (contentTypeCollection, internalName) {
     var contentTypeEnumerator = contentTypeCollection.getEnumerator();
     while (contentTypeEnumerator.moveNext()) {
         var ct = contentTypeEnumerator.get_current();
@@ -243,3 +298,7 @@ GT.Project.Setup.ContentTypes.GetContentTypeFromCollectionById = function (conte
     }
     return null;
 };
+
+function IsInCollection(stringVal, array) {
+    return ($.inArray(stringVal, array) > -1);
+}

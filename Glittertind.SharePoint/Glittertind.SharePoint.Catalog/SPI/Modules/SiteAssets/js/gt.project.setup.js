@@ -359,9 +359,12 @@ GT.Project.Setup.CreateWebContentTypes = function () {
 
     dependentPromises.done(function () {
         $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("Kommunikasjonselement", "GtCommunicationTarget"))
-            .then(GT.Project.Setup.ContentTypes.AddWebContentTypeToList("Kommunikasjonsplan", "Kommunikasjonselement"))
-            .done(function() { deferred.resolve(); })
-            .fail(function() { deferred.reject(); });
+            .then(GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]))
+            .then(GT.Project.Setup.ContentTypes.UpdateListContentTypes("Interessenter", ["Interessent"]))
+            .then(GT.Project.Setup.ContentTypes.UpdateListContentTypes("Usikkerhet", ["Risiko", "Mulighet"]))
+            .then(GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"]))
+            .done(function () { deferred.resolve(); })
+            .fail(function () { deferred.reject(); });
     });
 
     return deferred.promise();
