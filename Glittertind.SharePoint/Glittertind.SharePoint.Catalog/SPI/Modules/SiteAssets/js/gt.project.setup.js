@@ -4,12 +4,6 @@ GT.Project.Setup = GT.Project.Setup || {};
 GT.Project.Setup.Model = GT.Project.Setup.Model || {}
 GT.Project.Setup.ContentTypes = GT.Project.Setup.ContentTypes || {}
 
-var console = window.console || {};
-console.log = console.log || function () { };
-console.warn = console.warn || function () { };
-console.error = console.error || function () { };
-console.info = console.info || function () { };
-
 GT.Project.Setup.Model.step = function (name, callback, properties) {
     var self = this;
     self.name = name;
@@ -359,15 +353,15 @@ GT.Project.Setup.PatchRequestExecutor = function () {
 GT.Project.Setup.CreateWebContentTypes = function () {
     var deferred = $.Deferred();
     var dependentPromises = $.when(
-        GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Målgruppe", "GtCommunicationTarget", "Interessenter", "Title", "FALSE", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e4}"),
-        GT.Project.Setup.ContentTypes.CreateContentType("Kommunikasjonselement", "GtProjectCommunicationElement", "", "0x010088578e7470cc4aa68d5663464831070203")
-    );
+            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Målgruppe", "GtCommunicationTarget", "Interessenter", "Title", "FALSE", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e4}"),
+            GT.Project.Setup.ContentTypes.CreateContentType("Kommunikasjonselement", "GtProjectCommunicationElement", "", "0x010088578e7470cc4aa68d5663464831070203")
+        );
 
     dependentPromises.done(function () {
-        $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("GtProjectCommunicationElement", "GtCommunicationTarget"))
-        .then(function () {
-            deferred.resolve();
-        });
+        $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("Kommunikasjonselement", "GtCommunicationTarget"))
+            .then(GT.Project.Setup.ContentTypes.AddWebContentTypeToList("Kommunikasjonsplan", "Kommunikasjonselement"))
+            .done(function() { deferred.resolve(); })
+            .fail(function() { deferred.reject(); });
     });
 
     return deferred.promise();

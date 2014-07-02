@@ -191,3 +191,72 @@ GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName
     });
     return deferred.promise();
 }
+
+GT.Project.Setup.ContentTypes.AddWebContentTypeToList = function (listName, contentTypeName) {
+    var deferred = $.Deferred();
+
+    var clientContext = SP.ClientContext.get_current();
+    var web = clientContext.get_web();
+    var contentTypeCollection = web.get_contentTypes();
+    var list = web.get_lists().getByTitle(listName);
+
+    clientContext.load(contentTypeCollection);
+    clientContext.load(list);
+    clientContext.executeQueryAsync(function () {
+        var contentTypeEnumerator = contentTypeCollection.getEnumerator();
+        var webContentType;
+        while (contentTypeEnumerator.moveNext()) {
+            var ct = contentTypeEnumerator.get_current();
+            if (ct.get_name() === contentTypeName) {
+                webContentType = ct;
+                break;
+            }
+        }
+
+        if (webContentType != null) {
+            var listContentTypes = list.get_contentTypes();
+            clientContext.load(listContentTypes);
+            clientContext.executeQueryAsync(function () {
+                var listContentTypeEnumerator = listContentTypes.getEnumerator();
+                var alreadyAddedToList = false;
+                while (listContentTypeEnumerator.moveNext()) {
+                    var ct = listContentTypeEnumerator.get_current();
+                    if (ct.get_name() === contentTypeName) {
+                        alreadyAddedToList = true;
+                        break;
+                    }
+                }
+                if (alreadyAddedToList) {
+                    console.log('Content type ' + contentTypeName + ' is already added to the list ' + listName);
+                    deferred.resolve();
+                } else {
+                    var newListContentType = listContentTypes.addExistingContentType(webContentType);
+                    clientContext.executeQueryAsync(function () {
+                        console.log('Successfully attached content type to list ' + listName);
+                        deferred.resolve();
+                    }, function (sender, args) {
+                        console.log('Request failed: ' + args.get_message());
+                        console.log(args.get_stackTrace());
+                        console.log('Failed attaching content type ' + contentTypeName + 'to list ' + listName);
+                        deferred.reject();
+                    });
+                }
+            }, function (sender, args) {
+                console.log('Request failed: ' + args.get_message());
+                console.log(args.get_stackTrace());
+                console.log('Failed getting list content type collection for list ' + listName);
+                deferred.reject();
+            });
+        } else {
+            console.log('Failed getting content type ' + contentTypeName);
+            deferred.reject();
+        }
+    }, function (sender, args) {
+        console.log('Request failed: ' + args.get_message());
+        console.log(args.get_stackTrace());
+        console.log('Failed while loading content types and list during attaching to list');
+        deferred.reject();
+    });
+
+    return deferred.promise();
+};
