@@ -58,32 +58,12 @@ GT.Project.Setup.ContentTypes.CreateContentType = function (displayName, interna
     clientContext.load(contentTypeCollection);
     clientContext.load(siteColContentTypeCollection);
     clientContext.executeQueryAsync(function () {
-        var contentTypeEnumerator = contentTypeCollection.getEnumerator();
-        var contentTypeExists = false;
-        // Find the previously created content type
-        while (contentTypeEnumerator.moveNext()) {
-            var ct = contentTypeEnumerator.get_current();
-            if (ct.get_name().toString().toLowerCase() === internalName.toLowerCase()) {
-                contentTypeExists = true;
-                break;
-            }
-        }
-
-        if (!contentTypeExists) {
-            var rootWebContentTypesEnumerator = siteColContentTypeCollection.getEnumerator();
-            var existingContentType = null;
-            // Find the previously created content type
-            while (rootWebContentTypesEnumerator.moveNext()) {
-                var ct = rootWebContentTypesEnumerator.get_current();
-                if (ct.get_id().toString().toLowerCase() === parentContentTypeId.toLowerCase()) {
-                    existingContentType = ct;
-                    break;
-                }
-            }
-            if (existingContentType != null) {
+        if (!GT.Project.Setup.ContentTypes.DoesContentTypeExistInCollection(contentTypeCollection, internalName)) {
+            var parentContentType = GT.Project.Setup.ContentTypes.GetContentTypeFromCollectionById(siteColContentTypeCollection, parentContentTypeId);
+            if (parentContentType != null) {
                 var contentTypeInfo = new SP.ContentTypeCreationInformation();
                 contentTypeInfo.set_name(internalName);
-                contentTypeInfo.set_parentContentType(existingContentType);
+                contentTypeInfo.set_parentContentType(parentContentType);
                 contentTypeInfo.set_description(description);
                 contentTypeInfo.set_group("Glittertind Innholdstyper");
 
@@ -132,16 +112,7 @@ GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName
     clientContext.load(contentTypeCollection);
     clientContext.load(field);
     clientContext.executeQueryAsync(function () {
-        var contentTypeEnumerator = contentTypeCollection.getEnumerator();
-        var newContentType;
-        while (contentTypeEnumerator.moveNext()) {
-            var ct = contentTypeEnumerator.get_current();
-            if (ct.get_name() === contentTypeName) {
-                newContentType = ct;
-                break;
-            }
-        }
-
+        var newContentType = GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(contentTypeCollection, contentTypeName);
         if (newContentType != null) {
             var fieldLinkCollection = newContentType.get_fieldLinks();
             clientContext.load(fieldLinkCollection);
@@ -203,30 +174,12 @@ GT.Project.Setup.ContentTypes.AddWebContentTypeToList = function (listName, cont
     clientContext.load(contentTypeCollection);
     clientContext.load(list);
     clientContext.executeQueryAsync(function () {
-        var contentTypeEnumerator = contentTypeCollection.getEnumerator();
-        var webContentType;
-        while (contentTypeEnumerator.moveNext()) {
-            var ct = contentTypeEnumerator.get_current();
-            if (ct.get_name() === contentTypeName) {
-                webContentType = ct;
-                break;
-            }
-        }
-
+        var webContentType = GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(contentTypeCollection, contentTypeName);
         if (webContentType != null) {
             var listContentTypes = list.get_contentTypes();
             clientContext.load(listContentTypes);
             clientContext.executeQueryAsync(function () {
-                var listContentTypeEnumerator = listContentTypes.getEnumerator();
-                var alreadyAddedToList = false;
-                while (listContentTypeEnumerator.moveNext()) {
-                    var ct = listContentTypeEnumerator.get_current();
-                    if (ct.get_name() === contentTypeName) {
-                        alreadyAddedToList = true;
-                        break;
-                    }
-                }
-                if (alreadyAddedToList) {
+                if (GT.Project.Setup.ContentTypes.DoesContentTypeExistInCollection(listContentTypes, contentTypeName)) {
                     console.log('Content type ' + contentTypeName + ' is already added to the list ' + listName);
                     deferred.resolve();
                 } else {
@@ -259,4 +212,30 @@ GT.Project.Setup.ContentTypes.AddWebContentTypeToList = function (listName, cont
     });
 
     return deferred.promise();
+};
+
+GT.Project.Setup.ContentTypes.DoesContentTypeExistInCollection = function(contentTypeCollection, internalName) {
+    return GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(contentTypeCollection, internalName) != null;
+};
+
+GT.Project.Setup.ContentTypes.GetContentTypeFromCollection = function(contentTypeCollection, internalName) {
+    var contentTypeEnumerator = contentTypeCollection.getEnumerator();
+    while (contentTypeEnumerator.moveNext()) {
+        var ct = contentTypeEnumerator.get_current();
+        if (ct.get_name().toString().toLowerCase() === internalName.toLowerCase()) {
+            return ct;
+        }
+    }
+    return null;
+};
+
+GT.Project.Setup.ContentTypes.GetContentTypeFromCollectionById = function (contentTypeCollection, id) {
+    var contentTypeEnumerator = contentTypeCollection.getEnumerator();
+    while (contentTypeEnumerator.moveNext()) {
+        var ct = contentTypeEnumerator.get_current();
+        if (ct.get_id().toString().toLowerCase() === id.toLowerCase()) {
+            return ct;
+        }
+    }
+    return null;
 };
