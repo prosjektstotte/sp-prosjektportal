@@ -223,7 +223,6 @@ GT.Project.Setup.ContentTypes.UpdateListContentTypes = function (listName, conte
     clientContext.executeQueryAsync(function () {
         if (!list.get_contentTypesEnabled()) {
             list.set_contentTypesEnabled(true);
-            list.set_foldersEnabled(true);
             list.update();
         }
         for (var i = 0; i < contentTypeNames.length; i++) {
@@ -235,6 +234,7 @@ GT.Project.Setup.ContentTypes.UpdateListContentTypes = function (listName, conte
             var contentTypeEnumerator = listContentTypes.getEnumerator();
             while (contentTypeEnumerator.moveNext()) {
                 var ct = contentTypeEnumerator.get_current();
+                //TODO: The first time the web is created it will complain that ct.get_name() is not initialized
                 if (!IsInCollection(ct.get_name(), contentTypeNames)) {
                     contentTypesToRemove.push(ct);
                 }
