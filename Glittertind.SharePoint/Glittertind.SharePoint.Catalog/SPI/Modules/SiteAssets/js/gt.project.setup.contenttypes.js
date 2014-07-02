@@ -217,16 +217,30 @@ GT.Project.Setup.ContentTypes.AddWebContentTypeToList = function (listName, cont
             var listContentTypes = list.get_contentTypes();
             clientContext.load(listContentTypes);
             clientContext.executeQueryAsync(function () {
-                var newListContentType = listContentTypes.addExistingContentType(webContentType);
-                clientContext.executeQueryAsync(function () {
-                    console.log('Successfully attached content type to list ' + listName);
+                var listContentTypeEnumerator = listContentTypes.getEnumerator();
+                var alreadyAddedToList = false;
+                while (listContentTypeEnumerator.moveNext()) {
+                    var ct = listContentTypeEnumerator.get_current();
+                    if (ct.get_name() === contentTypeName) {
+                        alreadyAddedToList = true;
+                        break;
+                    }
+                }
+                if (alreadyAddedToList) {
+                    console.log('Content type ' + contentTypeName + ' is already added to the list ' + listName);
                     deferred.resolve();
-                }, function (sender, args) {
-                    console.log('Request failed: ' + args.get_message());
-                    console.log(args.get_stackTrace());
-                    console.log('Failed attaching content type ' + contentTypeName + 'to list ' + listName);
-                    deferred.reject();
-                });
+                } else {
+                    var newListContentType = listContentTypes.addExistingContentType(webContentType);
+                    clientContext.executeQueryAsync(function () {
+                        console.log('Successfully attached content type to list ' + listName);
+                        deferred.resolve();
+                    }, function (sender, args) {
+                        console.log('Request failed: ' + args.get_message());
+                        console.log(args.get_stackTrace());
+                        console.log('Failed attaching content type ' + contentTypeName + 'to list ' + listName);
+                        deferred.reject();
+                    });
+                }
             }, function (sender, args) {
                 console.log('Request failed: ' + args.get_message());
                 console.log(args.get_stackTrace());
