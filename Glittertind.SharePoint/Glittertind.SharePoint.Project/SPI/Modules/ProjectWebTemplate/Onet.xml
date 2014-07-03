@@ -39,10 +39,10 @@
         <!-- CUSTOM FEATURES-->
         <!-- WebProjectLists -->
         <Feature ID="08b639ca-146c-44ae-a539-5112fe62d550" />
-        <!-- WebProjectFrontPage -->
-        <Feature ID="0afd3c78-c2b0-4f96-a787-78c2f75f8f92" />
         <!-- WebSiteDefaultArtifacts -->
         <Feature ID="c6acf269-fa5c-4821-8b40-3bb58f0b9fb8" />
+        <!-- WebProjectFrontPage -->
+        <Feature ID="0afd3c78-c2b0-4f96-a787-78c2f75f8f92" />
       </WebFeatures>
     </Configuration>
   </Configurations>

@@ -3,6 +3,7 @@
   <Module Name="DefaultPage" Url="SitePages" Path="DefaultPage" List="119">
     <File Path="Forside.aspx" Url="Forside.aspx" Type="GhostableInLibrary" >
       <Property Name="ContentType" Value="Prosjektforside" />
+      <Property Name="ContentTypeId" Value="0x010109010058561f86d956412b9dd7957bbcd67aae01" />
     </File>
   </Module>
 </Elements>
