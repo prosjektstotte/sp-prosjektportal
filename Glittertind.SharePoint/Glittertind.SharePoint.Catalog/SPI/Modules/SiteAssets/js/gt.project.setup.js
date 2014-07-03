@@ -441,8 +441,8 @@ jQuery(document).ready(function () {
             '1.0.0.0': {
                 0: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" }),
                 1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {}),
-                2: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
-                3: new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste",GT.Project.Setup.copyDefaultItems, {})
+                //2: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
+                2: new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste",GT.Project.Setup.copyDefaultItems, {})
 
             }
         };
