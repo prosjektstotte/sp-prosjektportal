@@ -21,7 +21,7 @@ GT.Project.Setup.InheritNavigation = function () {
     clientContext.load(web);
     var navigation = web.get_navigation();
     navigation.set_useShared(true);
-    clientContext.executeQueryAsync(function () { deferred.resolve() }, function () { deferred.reject() });
+    clientContext.executeQueryAsync(function () { deferred.resolve(); }, function () { deferred.reject(); });
     return deferred.promise();
 };
 
@@ -226,7 +226,7 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
         method: "GET",
         binaryStringResponseBody: true,
         success: function (data) {
-            var executor2 = new SP.RequestExecutor(dstWeb)
+            var executor2 = new SP.RequestExecutor(dstWeb);
             //binary data available in data.body
             var result = data.body;
             var digest = $("#__REQUESTDIGEST").val();
@@ -265,16 +265,15 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
 GT.Project.Setup.copyDefaultItems = function () {
     var deferred = $.Deferred();
     var currentSiteColl = _spPageContextInfo.siteAbsoluteUrl;
-    var url = currentSiteColl + "/SiteAssets/gt/data/checklist.defaultitems.json";
+    // why .txt and not .json? You cannot create or provision a .json file to SiteAssets
+    var url = currentSiteColl + "/SiteAssets/gt/data/checklist.defaultitems.txt";
     console.log(url);
     $.when($.getJSON(url)).done(function(data) {
 
         var clientContext = SP.ClientContext.get_current();
         var oList = clientContext.get_web().get_lists().getByTitle('Sjekkliste');
 
-        console.log(data.Data.Rows);
-        var rows = data.Data.Rows
-        var listItems = [];
+        var rows = data.Data.Rows;
         for (var i = 0; i < rows.length; i++) {
 
             var itemCreateInfo = new SP.ListItemCreationInformation();

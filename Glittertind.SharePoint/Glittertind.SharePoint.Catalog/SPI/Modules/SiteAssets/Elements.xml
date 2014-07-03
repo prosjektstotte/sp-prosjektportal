@@ -10,6 +10,6 @@
     <File Path="js\gt.generics.js" Url="js/gt.generics.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="html\gt.phaseform.html" Url="html/gt.phaseform.html" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="js\gt.project.setup.contenttypes.js" Url="js/gt.project.setup.contenttypes.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
-    <File Path="data\checklist.defaultitems.json" Url="data/checklist.defaultitems.json" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
+    <File Path="data\checklist.defaultitems.json" Url="data/checklist.defaultitems.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
   </Module>
 </Elements>
