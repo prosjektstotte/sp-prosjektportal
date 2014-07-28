@@ -268,7 +268,7 @@ GT.Project.Setup.copyDefaultItems = function () {
     // why .txt and not .json? You cannot create or provision a .json file to SiteAssets
     var url = currentSiteColl + "/SiteAssets/gt/data/checklist.defaultitems.txt";
     console.log(url);
-    $.when($.getJSON(url)).done(function(data) {
+    $.when($.getJSON(url)).done(function (data) {
 
         var clientContext = SP.ClientContext.get_current();
         var oList = clientContext.get_web().get_lists().getByTitle('Sjekkliste');
@@ -291,7 +291,7 @@ GT.Project.Setup.copyDefaultItems = function () {
         clientContext.executeQueryAsync(function (sender, args) {
             deferred.resolve();
             console.log("Copied default items to Sjekkliste");
-        }, function(sender, args) {
+        }, function (sender, args) {
             deferred.reject();
             console.error('Request failed. ' + args.get_message());
         });
@@ -402,9 +402,6 @@ GT.Project.Setup.CreateWebContentTypes = function () {
     dependentPromises.done(function () {
         $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("Kommunikasjonselement", "GtCommunicationTarget"))
             .then(GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]))
-            .then(GT.Project.Setup.ContentTypes.UpdateListContentTypes("Interessenter", ["Interessent"]))
-            .then(GT.Project.Setup.ContentTypes.UpdateListContentTypes("Usikkerhet", ["Risiko", "Mulighet"]))
-            .then(GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"]))
             .done(function () { deferred.resolve(); })
             .fail(function () { deferred.reject(); });
     });
@@ -441,8 +438,8 @@ jQuery(document).ready(function () {
             '1.0.0.0': {
                 0: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" }),
                 1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {}),
-                //2: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
-                2: new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste",GT.Project.Setup.copyDefaultItems, {})
+                2: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
+                3: new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", GT.Project.Setup.copyDefaultItems, {})
 
             }
         };

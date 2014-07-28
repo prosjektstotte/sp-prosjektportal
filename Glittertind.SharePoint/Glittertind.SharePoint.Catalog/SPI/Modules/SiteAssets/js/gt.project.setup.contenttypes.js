@@ -191,11 +191,11 @@ GT.Project.Setup.ContentTypes.AddContentTypeToListByName = function (clientConte
 
     var webContentType = GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(webContentTypeCollection, contentTypeName);
     if (webContentType != null) {
-        GT.Project.Setup.ContentTypes.AddContentTypeToList(clientContext, webContentType, listContentTypes, list);
+        return GT.Project.Setup.ContentTypes.AddContentTypeToList(clientContext, webContentType, listContentTypes, list);
     } else {
         var siteContentType = GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(siteContentTypeCollection, contentTypeName);
         if (siteContentType != null) {
-            GT.Project.Setup.ContentTypes.AddContentTypeToList(clientContext, siteContentType, listContentTypes, list);
+            return GT.Project.Setup.ContentTypes.AddContentTypeToList(clientContext, siteContentType, listContentTypes, list);
         } else {
             console.log('Failed getting content type ' + contentTypeName);
             deferred.reject();
@@ -219,49 +219,56 @@ GT.Project.Setup.ContentTypes.UpdateListContentTypes = function (listName, conte
     clientContext.load(webContentTypeCollection);
     clientContext.load(siteContentTypeCollection);
     clientContext.load(list);
-    clientContext.load(listContentTypes);
+    clientContext.load(listContentTypes, 'Include(Name,Id)');
     clientContext.executeQueryAsync(function () {
         if (!list.get_contentTypesEnabled()) {
             list.set_contentTypesEnabled(true);
             list.update();
         }
+
+        //Making sure that all our custom content types are added before removing defaults
+        var promises = [];
         for (var i = 0; i < contentTypeNames.length; i++) {
-            //TODO: This will fire async and may happen after the deletion phase
-            GT.Project.Setup.ContentTypes.AddContentTypeToListByName(clientContext, siteContentTypeCollection, webContentTypeCollection, listContentTypes, list, contentTypeNames[i]);
+            promises.push(GT.Project.Setup.ContentTypes.AddContentTypeToListByName(clientContext, siteContentTypeCollection, webContentTypeCollection, listContentTypes, list, contentTypeNames[i]));
         }
-        clientContext.executeQueryAsync(function () {
-            var contentTypesToRemove = [];
-            var contentTypeEnumerator = listContentTypes.getEnumerator();
-            while (contentTypeEnumerator.moveNext()) {
-                var ct = contentTypeEnumerator.get_current();
-                //TODO: The first time the web is created it will complain that ct.get_name() is not initialized
-                if (!IsInCollection(ct.get_name(), contentTypeNames)) {
-                    contentTypesToRemove.push(ct);
+
+        $.when.apply($, promises).always(function () {
+            list = web.get_lists().getByTitle(listName);
+            listContentTypes = list.get_contentTypes();
+            clientContext.load(list);
+            clientContext.load(listContentTypes, 'Include(Name,Id)');
+            clientContext.executeQueryAsync(function () {
+                var contentTypesToRemove = [];
+                var contentTypeEnumerator = listContentTypes.getEnumerator();
+                while (contentTypeEnumerator.moveNext()) {
+                    var ct = contentTypeEnumerator.get_current();
+                    if (!IsInCollection(ct.get_name(), contentTypeNames)) {
+                        contentTypesToRemove.push(ct);
+                    }
                 }
-            }
-            if (contentTypesToRemove.length > 0) {
-                for (var h = 0; h < contentTypesToRemove.length; h++) {
-                    contentTypesToRemove[h].deleteObject();
-                }
-                list.update();
-                clientContext.executeQueryAsync(function () {
-                    console.log('Successfully removed content types from list ' + listName);
+                if (contentTypesToRemove.length > 0) {
+                    for (var h = 0; h < contentTypesToRemove.length; h++) {
+                        contentTypesToRemove[h].deleteObject();
+                    }
+                    list.update();
+                    clientContext.executeQueryAsync(function () {
+                        console.log('Successfully removed content types from list ' + listName);
+                        deferred.resolve();
+                    }, function (sender, args) {
+                        console.log('Request failed: ' + args.get_message());
+                        console.log('Failed deleting content type for list ' + listName);
+                        deferred.reject();
+                    });
+                } else {
+                    console.log('Found no content types to remove from the list ' + listName);
                     deferred.resolve();
-                }, function (sender, args) {
-                    console.log('Request failed: ' + args.get_message());
-                    console.log(args.get_stackTrace());
-                    console.log('Failed deleting content type for list ' + listName);
-                    deferred.reject();
-                });
-            } else {
-                console.log('Found no content types to remove from the list ' + listName);
-                deferred.resolve();
-            }
-        }, function (sender, args) {
-            console.log('Request failed: ' + args.get_message());
-            console.log(args.get_stackTrace());
-            console.log('Failed getting list content type collection for list ' + listName);
-            deferred.reject();
+                }
+            }, function (sender, args) {
+                console.log('Request failed: ' + args.get_message());
+                console.log(args.get_stackTrace());
+                console.log('Failed getting list content type collection for list ' + listName);
+                deferred.reject();
+            });
         });
     }, function (sender, args) {
         console.log('Request failed: ' + args.get_message());
