@@ -144,15 +144,9 @@ GT.Project.Setup.execute = function (properties, steps) {
             if (!steps) return;
             var currentStep = parseInt(properties.currentStep.value);
             console.log("execute: current step is " + currentStep);
-            var promises = [];
 
-            while (steps[currentStep] != undefined) {
-                console.log("execute: running step '" + steps[currentStep].name + "'");
-                promises.push(steps[currentStep].execute());
-                currentStep++;
-            }
-
-            $.when.apply($, promises).always(function () {
+            GT.Project.Setup.executeStepsSequentially(steps)
+            .then(function () {
                 properties.currentStep.value = currentStep;
                 properties.configured.value = "1";
                 GT.Project.Setup.persistsProperties(properties);
@@ -160,13 +154,41 @@ GT.Project.Setup.execute = function (properties, steps) {
                 console.log("execute: persisted properties and wrapping up");
                 deferred.resolve();
             });
+            // var promises = [];
+            // while (steps[currentStep] != undefined) {
+            //     console.log("execute: running step '" + steps[currentStep].name + "'");
+            //     promises.push(steps[currentStep].execute());
+            //     currentStep++;
+            // }
 
-
+            // $.when.apply($, promises).always(function () {
+            //     properties.currentStep.value = currentStep;
+            //     properties.configured.value = "1";
+            //     GT.Project.Setup.persistsProperties(properties);
+            //     GT.Project.Setup.closeWaitMessage();
+            //     console.log("execute: persisted properties and wrapping up");
+            //     deferred.resolve();
+            // });
         }
         return deferred.promise();
     });
 };
+GT.Project.Setup.executeStepsSequentially = function (steps) {
+    var stepsArray = jQuery(jQuery.map(steps, function (el) { return el; }));
+    var deferred = $.Deferred();
 
+    deferred.resolve();
+    var promise = deferred.promise();
+
+    stepsArray.each(function (value) {
+        console.log(value);
+        promise = promise.then(function () {
+            return stepsArray[value].execute();
+        });
+    });
+
+    return promise;
+}
 GT.Project.Setup.copyFiles = function (properties) {
     var deferred = $.Deferred();
 
