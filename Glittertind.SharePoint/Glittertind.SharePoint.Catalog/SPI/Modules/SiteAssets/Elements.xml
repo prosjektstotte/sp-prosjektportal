@@ -10,7 +10,7 @@
     <File Path="js\gt.generics.js" Url="js/gt.generics.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="html\gt.phaseform.html" Url="html/gt.phaseform.html" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="js\gt.project.setup.contenttypes.js" Url="js/gt.project.setup.contenttypes.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
-    <File Path="config\data\list.sjekkliste.data.json" Url="config/data/list.sjekkliste.data.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
+    <File Path="config\data\sjekkliste.data.json" Url="config/data/sjekkliste.data.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\dokumenter.json" Url="config/lists/dokumenter.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\sjekkliste.json" Url="config/lists/sjekkliste.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\usikkerhet.json" Url="config/lists/usikkerhet.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />

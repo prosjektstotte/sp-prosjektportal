@@ -21,7 +21,14 @@ GT.Project.Setup.InheritNavigation = function () {
     clientContext.load(web);
     var navigation = web.get_navigation();
     navigation.set_useShared(true);
-    clientContext.executeQueryAsync(function () { deferred.resolve(); }, function () { deferred.reject(); });
+    clientContext.executeQueryAsync(
+        function () {
+            deferred.resolve();
+        },
+        function () {
+            deferred.reject();
+        }
+    );
     return deferred.promise();
 };
 
@@ -42,7 +49,6 @@ GT.Project.Setup.resolveProperties = function (properties) {
                 if (spPropertyValue != undefined) {
                     properties[property].value = spPropertyValue;
                 }
-
             }
             deferred.resolve(properties);
         }, function () {
@@ -121,50 +127,6 @@ GT.Project.Setup.closeWaitMessage = function () {
     }
 };
 // [end] utility methods
-
-GT.Project.Setup.execute = function (properties, steps) {
-    // 1. should i run configure? No - > stop
-    // 2. All right i will run configure!
-    // 3. spin over all the steps configured 
-    // 4. set configured
-    console.log("execute: firing");
-    var self = this;
-    self.steps = steps;
-
-    $.when(GT.Project.Setup.resolveProperties(properties))
-    .then(function (properties) {
-        console.log("execute: using these settings :" + JSON.stringify(properties));
-        var deferred = $.Deferred();
-        console.log("execute: value of 'configured' :" + properties.configured.value);
-        if (properties.configured.value === "0") {
-            console.log("execute: not configured, showing long running ops message");
-            GT.Project.Setup.showWaitMessage();
-            var version = properties.version.value;
-            var steps = self.steps[version];
-            if (!steps) return;
-            var currentStep = parseInt(properties.currentStep.value);
-            console.log("execute: current step is " + currentStep);
-
-            //TODO: This should fire sequentially. Currently firing in parallell. 
-            var promises = [];
-            while (steps[currentStep] != undefined) {
-                console.log("execute: running step '" + steps[currentStep].name + "'");
-                promises.push(steps[currentStep].execute());
-                currentStep++;
-            }
-
-            $.when.apply($, promises).always(function () {
-                properties.currentStep.value = currentStep;
-                properties.configured.value = "1";
-                GT.Project.Setup.persistsProperties(properties);
-                GT.Project.Setup.closeWaitMessage();
-                console.log("execute: persisted properties and wrapping up");
-                deferred.resolve();
-            });
-        }
-        return deferred.promise();
-    });
-};
 
 GT.Project.Setup.copyFiles = function (properties) {
     var deferred = $.Deferred();
@@ -316,13 +278,20 @@ GT.Project.Setup.CreateWebContentTypes = function () {
 
     dependentPromises.done(function () {
         $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("Kommunikasjonselement", "GtCommunicationTarget"))
-            .then(
+        .then(function () {
+            $.when(
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Interessenter", ["Interessent"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Usikkerhet", ["Risiko", "Mulighet"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"]))
-            .done(function () { deferred.resolve(); })
-            .fail(function () { deferred.reject(); });
+                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"])
+            )
+            .done(function () {
+                deferred.resolve();
+            })
+            .fail(function () {
+                deferred.reject();
+            });
+        });
     });
 
     return deferred.promise();
@@ -372,6 +341,52 @@ GT.Project.Setup.UpdateDefaultListView = function (listName, columns, rowLimit) 
     return deferred.promise();
 };
 
+GT.Project.Setup.execute = function (properties, steps) {
+    // 1. should i run configure? No - > stop
+    // 2. All right i will run configure!
+    // 3. spin over all the steps configured 
+    // 4. set configured
+    console.log("execute: firing");
+    var self = this;
+    self.steps = steps;
+
+    $.when(GT.Project.Setup.resolveProperties(properties))
+    .then(function (properties) {
+        console.log("execute: using these settings :" + JSON.stringify(properties));
+        var deferred = $.Deferred();
+        console.log("execute: value of 'configured' :" + properties.configured.value);
+        if (properties.configured.value === "0") {
+            console.log("execute: not configured, showing long running ops message");
+            GT.Project.Setup.showWaitMessage();
+            var version = properties.version.value;
+            var steps = self.steps[version];
+            if (!steps) return;
+            var currentStep = parseInt(properties.currentStep.value);
+            console.log("execute: current step is " + currentStep);
+
+            //TODO: This should fire sequentially but this is terrible and will not work in most cases. Refactor
+            var dependentPromise1 = $.when(steps[0].execute());
+
+            dependentPromise1.done(function () {
+                $.when(
+                    steps[1].execute(),
+                    steps[2].execute(),
+                    steps[3].execute(),
+                    steps[4].execute()
+                ).then(function () {
+                    properties.currentStep.value = currentStep;
+                    properties.configured.value = "1";
+                    GT.Project.Setup.persistsProperties(properties);
+                    GT.Project.Setup.closeWaitMessage();
+                    console.log("execute: persisted properties and wrapping up");
+                    deferred.resolve();
+                });
+            });
+        }
+        return deferred.promise();
+    });
+};
+
 jQuery(document).ready(function () {
 
     $.when(GT.Project.Setup.PatchRequestExecutor())
@@ -399,8 +414,8 @@ jQuery(document).ready(function () {
 
         var steps = {
             '1.0.0.0': {
-                0: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {}),
-                1: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
+                0: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
+                1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {}),
                 2: new GT.Project.Setup.Model.step("Oppdater lister basert på konfigurasjonsfiler", GT.Project.Setup.UpdateListsFromConfig, {}),
                 3: new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", GT.Project.Setup.copyDefaultItems, {}),
                 4: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
