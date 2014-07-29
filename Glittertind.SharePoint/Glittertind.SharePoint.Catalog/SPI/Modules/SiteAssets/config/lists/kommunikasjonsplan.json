@@ -1,0 +1,7 @@
+﻿{
+    "Name": "Kommunikasjonsplan",
+    "DefaultView": {
+        "ViewFields": ["Title", "GtProjectPhase", "GtActionDate", "GtActionResponsible", "GtCommunicationTarget"],
+        "RowLimit": "100"
+    }
+}

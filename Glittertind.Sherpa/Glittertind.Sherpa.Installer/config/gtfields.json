@@ -319,7 +319,7 @@
         DisplayName: "Tiltak",
         Group: "Glittertind Områdekolonner",
         ID: "45d5b378-67ce-4f21-b622-fe54b27c83a6",
-        InternalName: "GtStakholderActions",
+        InternalName: "GtStakeholderActions",
         Type: "Note"
     },
     {

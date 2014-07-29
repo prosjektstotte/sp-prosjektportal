@@ -1,0 +1,7 @@
+﻿{
+    "Name": "Interessenter",
+    "DefaultView": {
+        "ViewFields": ["Title", "GtStakeholderGroup", "GtStakeholderContext", "GtStakeholderStrategy", "GtStakeholder", "GtStakeholderInterest", "GtStakeholderInfluence", "GtStakeholderInfluencePossibilty", "GtStakeholderActions"],
+        "RowLimit": "100"
+    }
+}

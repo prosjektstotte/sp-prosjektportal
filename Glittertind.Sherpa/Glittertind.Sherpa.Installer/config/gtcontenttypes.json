@@ -120,7 +120,7 @@
         "GtStakeholderInterest",
         "GtStakeholderInfluence",
         "GtStakeholderInfluencePossibilty",
-        "GtStakholderActions"
+        "GtStakeholderActions"
       ],
       RequiredFields : []
    },

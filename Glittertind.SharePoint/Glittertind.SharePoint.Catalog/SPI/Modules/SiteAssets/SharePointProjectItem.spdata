@@ -15,5 +15,7 @@
     <ProjectItemFile Source="config\lists\dokumenter.json" Target="SiteAssets\config\lists\" Type="ElementFile" />
     <ProjectItemFile Source="config\lists\sjekkliste.json" Target="SiteAssets\config\lists\" Type="ElementFile" />
     <ProjectItemFile Source="config\lists\usikkerhet.json" Target="SiteAssets\config\lists\" Type="ElementFile" />
+    <ProjectItemFile Source="config\lists\interessenter.json" Target="SiteAssets\config\lists\" Type="ElementFile" />
+    <ProjectItemFile Source="config\lists\kommunikasjonsplan.json" Target="SiteAssets\config\lists\" Type="ElementFile" />
   </Files>
 </ProjectItem>

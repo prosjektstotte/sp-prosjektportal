@@ -190,7 +190,7 @@ GT.Project.Setup.copyFiles = function (properties) {
     });
     return deferred.promise();
 };
-// [start] helper methods for copying files
+
 GT.Project.Setup.getFiles = function (srcWeb, lib, folderPath) {
     var deferred = $.Deferred();
     if (folderPath == undefined) {
@@ -307,7 +307,6 @@ GT.Project.Setup.copyDefaultItems = function () {
     return deferred.promise();
 };
 
-// [end] helper methods for copying files
 GT.Project.Setup.CreateWebContentTypes = function () {
     var deferred = $.Deferred();
     var dependentPromises = $.when(
@@ -317,7 +316,11 @@ GT.Project.Setup.CreateWebContentTypes = function () {
 
     dependentPromises.done(function () {
         $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("Kommunikasjonselement", "GtCommunicationTarget"))
-            .then(GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]))
+            .then(
+                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]),
+                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Interessenter", ["Interessent"]),
+                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Usikkerhet", ["Risiko", "Mulighet"]),
+                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"]))
             .done(function () { deferred.resolve(); })
             .fail(function () { deferred.reject(); });
     });

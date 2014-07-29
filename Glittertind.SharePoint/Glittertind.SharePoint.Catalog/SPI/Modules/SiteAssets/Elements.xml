@@ -14,5 +14,7 @@
     <File Path="config\lists\dokumenter.json" Url="config/lists/dokumenter.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\sjekkliste.json" Url="config/lists/sjekkliste.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\usikkerhet.json" Url="config/lists/usikkerhet.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
+    <File Path="config\lists\interessenter.json" Url="config/lists/interessenter.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
+    <File Path="config\lists\kommunikasjonsplan.json" Url="config/lists/kommunikasjonsplan.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
   </Module>
 </Elements>
