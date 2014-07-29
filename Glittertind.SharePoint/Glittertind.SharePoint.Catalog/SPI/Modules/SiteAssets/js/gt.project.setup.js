@@ -265,43 +265,47 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
     return deferred.promise();
 };
 
-// [start] Default artifacts for Sjekkliste
 GT.Project.Setup.copyDefaultItems = function () {
     var deferred = $.Deferred();
-    var currentSiteColl = _spPageContextInfo.siteAbsoluteUrl;
-    // why .txt and not .json? You cannot create or provision a .json file to SiteAssets
-    var url = currentSiteColl + "/SiteAssets/gt/data/checklist.defaultitems.txt";
-    $.when($.getJSON(url)).done(function (data) {
 
-        var clientContext = SP.ClientContext.get_current();
-        var oList = clientContext.get_web().get_lists().getByTitle('Sjekkliste');
+    $.when(GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/data"))
+    .then(function (files) {
+        for (var i = 0; i < files.length; i++) {
+            $.getJSON(files[i].ServerRelativeUrl).then(function (data) {
+                var clientContext = SP.ClientContext.get_current();
+                var oList = clientContext.get_web().get_lists().getByTitle(data.Name);
 
-        var rows = data.Data.Rows;
-        for (var i = 0; i < rows.length; i++) {
+                var rows = data.Data.Rows;
+                for (var i = 0; i < rows.length; i++) {
 
-            var itemCreateInfo = new SP.ListItemCreationInformation();
-            var oListItem = oList.addItem(itemCreateInfo);
+                    var itemCreateInfo = new SP.ListItemCreationInformation();
+                    var oListItem = oList.addItem(itemCreateInfo);
 
-            for (var y = 0; y < rows[i].Fields.length; y++) {
-                var name = rows[i].Fields[y].Name;
-                var value = rows[i].Fields[y].Value;
-                oListItem.set_item(name, value);
-            }
-            oListItem.update();
-            clientContext.load(oListItem);
-
+                    for (var y = 0; y < rows[i].Fields.length; y++) {
+                        var name = rows[i].Fields[y].Name;
+                        var value = rows[i].Fields[y].Value;
+                        oListItem.set_item(name, value);
+                    }
+                    oListItem.update();
+                    clientContext.load(oListItem);
+                }
+                clientContext.executeQueryAsync(function (sender, args) {
+                    console.log("Copied default items to " + data.Name);
+                }, function (sender, args) {
+                    console.error('Request failed. ' + args.get_message());
+                });
+            });
         }
-        clientContext.executeQueryAsync(function (sender, args) {
-            deferred.resolve();
-            console.log("Copied default items to Sjekkliste");
-        }, function (sender, args) {
-            deferred.reject();
-            console.error('Request failed. ' + args.get_message());
-        });
+    })
+    .fail(function () {
+        console.log("Could not find path {site collection root}/SiteAssets/gt/config/data");
+    })
+    .always(function () {
+        deferred.resolve();
     });
+
     return deferred.promise();
 };
-// [end]Default artifacts for Sjekkliste
 
 // [end] helper methods for copying files
 GT.Project.Setup.CreateWebContentTypes = function () {
