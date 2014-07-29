@@ -12,5 +12,8 @@
     <ProjectItemFile Source="js\gt.project.setup.js" Target="SiteAssets\js\" Type="ElementFile" />
     <ProjectItemFile Source="js\gt.project.setup.contenttypes.js" Target="SiteAssets\js\" Type="ElementFile" />
     <ProjectItemFile Source="data\checklist.defaultitems.json" Target="SiteAssets\data\" Type="ElementFile" />
+    <ProjectItemFile Source="config\lists\dokumenter.json" Target="SiteAssets\config\lists\" Type="ElementFile" />
+    <ProjectItemFile Source="config\lists\sjekkliste.json" Target="SiteAssets\config\lists\" Type="ElementFile" />
+    <ProjectItemFile Source="config\lists\usikkerhet.json" Target="SiteAssets\config\lists\" Type="ElementFile" />
   </Files>
 </ProjectItem>

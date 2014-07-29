@@ -1,0 +1,7 @@
+﻿{
+    "Name": "Dokumenter",
+    "DefaultView": {
+        "ViewFields": ["LinkFilename", "GtProjectPhase", "Modified", "Editor"],
+        "RowLimit": "30"
+    }
+}

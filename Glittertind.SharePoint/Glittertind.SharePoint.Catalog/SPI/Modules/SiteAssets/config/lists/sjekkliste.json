@@ -1,0 +1,7 @@
+﻿{
+    "Name": "Sjekkliste",
+    "DefaultView": {
+        "ViewFields": ["Title", "GtChecklistStatus", "GtComment"],
+        "RowLimit": "100"
+    }
+}

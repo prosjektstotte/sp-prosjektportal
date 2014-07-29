@@ -145,8 +145,15 @@ GT.Project.Setup.execute = function (properties, steps) {
             var currentStep = parseInt(properties.currentStep.value);
             console.log("execute: current step is " + currentStep);
 
-            GT.Project.Setup.executeStepsSequentially(steps)
-            .then(function () {
+            //TODO: This should fire sequentially. Currently firing in parallell. 
+            var promises = [];
+            while (steps[currentStep] != undefined) {
+                console.log("execute: running step '" + steps[currentStep].name + "'");
+                promises.push(steps[currentStep].execute());
+                currentStep++;
+            }
+
+            $.when.apply($, promises).always(function () {
                 properties.currentStep.value = currentStep;
                 properties.configured.value = "1";
                 GT.Project.Setup.persistsProperties(properties);
@@ -154,41 +161,11 @@ GT.Project.Setup.execute = function (properties, steps) {
                 console.log("execute: persisted properties and wrapping up");
                 deferred.resolve();
             });
-            // var promises = [];
-            // while (steps[currentStep] != undefined) {
-            //     console.log("execute: running step '" + steps[currentStep].name + "'");
-            //     promises.push(steps[currentStep].execute());
-            //     currentStep++;
-            // }
-
-            // $.when.apply($, promises).always(function () {
-            //     properties.currentStep.value = currentStep;
-            //     properties.configured.value = "1";
-            //     GT.Project.Setup.persistsProperties(properties);
-            //     GT.Project.Setup.closeWaitMessage();
-            //     console.log("execute: persisted properties and wrapping up");
-            //     deferred.resolve();
-            // });
         }
         return deferred.promise();
     });
 };
-GT.Project.Setup.executeStepsSequentially = function (steps) {
-    var stepsArray = jQuery(jQuery.map(steps, function (el) { return el; }));
-    var deferred = $.Deferred();
 
-    deferred.resolve();
-    var promise = deferred.promise();
-
-    stepsArray.each(function (value) {
-        console.log(value);
-        promise = promise.then(function () {
-            return stepsArray[value].execute();
-        });
-    });
-
-    return promise;
-}
 GT.Project.Setup.copyFiles = function (properties) {
     var deferred = $.Deferred();
 
@@ -206,16 +183,21 @@ GT.Project.Setup.copyFiles = function (properties) {
         }
         $.when.apply($, promises)
         .always(function () {
-            console.log("all done copying files"); deferred.resolve();
+            console.log("all done copying files");
+            deferred.resolve();
         });
 
     });
     return deferred.promise();
 };
 // [start] helper methods for copying files
-GT.Project.Setup.getFiles = function (srcWeb, lib) {
+GT.Project.Setup.getFiles = function (srcWeb, lib, folderPath) {
     var deferred = $.Deferred();
-    var srcFolderQuery = "_api/web/GetFolderByServerRelativeUrl('" + srcWeb + "/" + lib + "')/Files";
+    if (folderPath == undefined) {
+        var srcFolderQuery = "_api/web/GetFolderByServerRelativeUrl('" + srcWeb + "/" + lib + "')/Files";
+    } else {
+        var srcFolderQuery = "_api/web/GetFolderByServerRelativeUrl('" + srcWeb + "/" + lib + "/" + folderPath + "')/Files";
+    }
     var executor = new SP.RequestExecutor(srcWeb);
     var info = {
         url: srcFolderQuery,
@@ -289,7 +271,6 @@ GT.Project.Setup.copyDefaultItems = function () {
     var currentSiteColl = _spPageContextInfo.siteAbsoluteUrl;
     // why .txt and not .json? You cannot create or provision a .json file to SiteAssets
     var url = currentSiteColl + "/SiteAssets/gt/data/checklist.defaultitems.txt";
-    console.log(url);
     $.when($.getJSON(url)).done(function (data) {
 
         var clientContext = SP.ClientContext.get_current();
@@ -320,11 +301,110 @@ GT.Project.Setup.copyDefaultItems = function () {
     });
     return deferred.promise();
 };
-
 // [end]Default artifacts for Sjekkliste
 
-
 // [end] helper methods for copying files
+GT.Project.Setup.CreateWebContentTypes = function () {
+    var deferred = $.Deferred();
+    var dependentPromises = $.when(
+            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Målgruppe", "GtCommunicationTarget", "Interessenter", "Title", "FALSE", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e4}"),
+            GT.Project.Setup.ContentTypes.CreateContentType("Kommunikasjonselement", "GtProjectCommunicationElement", "", "0x010088578e7470cc4aa68d5663464831070203")
+        );
+
+    dependentPromises.done(function () {
+        $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("Kommunikasjonselement", "GtCommunicationTarget"))
+            .then(GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]))
+            .done(function () { deferred.resolve(); })
+            .fail(function () { deferred.reject(); });
+    });
+
+    return deferred.promise();
+};
+
+GT.Project.Setup.UpdateListsFromConfig = function () {
+    var deferred = $.Deferred();
+
+    $.when(GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/lists"))
+    .then(function (files) {
+        for (var i = 0; i < files.length; i++) {
+            $.getJSON(files[i].ServerRelativeUrl).then(function (data) {
+                GT.Project.Setup.UpdateDefaultListView(data.Name, data.DefaultView.ViewFields, data.DefaultView.RowLimit);
+            });
+        }
+    })
+    .always(function () {
+        deferred.resolve();
+    });
+
+    return deferred.promise();
+};
+
+GT.Project.Setup.UpdateDefaultListView = function (listName, columns, rowLimit) {
+    var deferred = $.Deferred();
+
+    var clientContext = SP.ClientContext.get_current();
+    var list = clientContext.get_web().get_lists().getByTitle(listName);
+    var defaultView = list.get_defaultView();
+    var defaultColumns = defaultView.get_viewFields();
+
+    defaultColumns.removeAll();
+    for (var index = 0; index < columns.length; index++) {
+        defaultColumns.add(columns[index]);
+    };
+
+    defaultView.set_rowLimit(rowLimit);
+    defaultView.update();
+
+    clientContext.executeQueryAsync(function () {
+        deferred.resolve();
+        console.log("Modified list view of " + listName);
+    }, function (sender, args) {
+        deferred.reject();
+        console.error('Request failed. ' + args.get_message());
+    });
+    return deferred.promise();
+};
+
+jQuery(document).ready(function () {
+
+    $.when(GT.Project.Setup.PatchRequestExecutor())
+    .done(function () {
+        var latestVersion = '1.0.0.0';
+
+        var properties = {
+            currentStep: {
+                'key': 'glittertind_currentsetupstep',
+                'value': '0'
+            },
+            configured: {
+                'key': 'glittertind_configured',
+                'value': '0'
+            },
+            version: {
+                'key': 'glittertind_version',
+                'value': latestVersion
+            },
+            webTemplate: {
+                'key': 'glittertind_webtemplateid',
+                'value': 'ProjectWebTemplate'
+            }
+        };
+
+        var steps = {
+            '1.0.0.0': {
+                0: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {}),
+                1: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
+                2: new GT.Project.Setup.Model.step("Oppdater lister basert på konfigurasjonsfiler", GT.Project.Setup.UpdateListsFromConfig, {}),
+                3: new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", GT.Project.Setup.copyDefaultItems, {}),
+                4: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
+
+            }
+        };
+
+        ExecuteOrDelayUntilScriptLoaded(function () { GT.Project.Setup.execute(properties, steps); }, "sp.js");
+    });
+});
+
 
 GT.Project.Setup.PatchRequestExecutor = function () {
     return $.getScript(_spPageContextInfo.webAbsoluteUrl + "/_layouts/15/SP.RequestExecutor.js", function () {
@@ -413,59 +493,3 @@ GT.Project.Setup.PatchRequestExecutor = function () {
         };
     });
 };
-
-GT.Project.Setup.CreateWebContentTypes = function () {
-    var deferred = $.Deferred();
-    var dependentPromises = $.when(
-            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Målgruppe", "GtCommunicationTarget", "Interessenter", "Title", "FALSE", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e4}"),
-            GT.Project.Setup.ContentTypes.CreateContentType("Kommunikasjonselement", "GtProjectCommunicationElement", "", "0x010088578e7470cc4aa68d5663464831070203")
-        );
-
-    dependentPromises.done(function () {
-        $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("Kommunikasjonselement", "GtCommunicationTarget"))
-            .then(GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]))
-            .done(function () { deferred.resolve(); })
-            .fail(function () { deferred.reject(); });
-    });
-
-    return deferred.promise();
-};
-
-jQuery(document).ready(function () {
-
-    $.when(GT.Project.Setup.PatchRequestExecutor())
-    .done(function () {
-        var latestVersion = '1.0.0.0';
-
-        var properties = {
-            currentStep: {
-                'key': 'glittertind_currentsetupstep',
-                'value': '0'
-            },
-            configured: {
-                'key': 'glittertind_configured',
-                'value': '0'
-            },
-            version: {
-                'key': 'glittertind_version',
-                'value': latestVersion
-            },
-            webTemplate: {
-                'key': 'glittertind_webtemplateid',
-                'value': 'ProjectWebTemplate'
-            }
-        };
-
-        var steps = {
-            '1.0.0.0': {
-                0: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" }),
-                1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {}),
-                2: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
-                3: new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", GT.Project.Setup.copyDefaultItems, {})
-
-            }
-        };
-
-        ExecuteOrDelayUntilScriptLoaded(function () { GT.Project.Setup.execute(properties, steps); }, "sp.js");
-    });
-});

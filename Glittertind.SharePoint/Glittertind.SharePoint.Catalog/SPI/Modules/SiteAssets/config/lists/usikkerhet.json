@@ -1,0 +1,7 @@
+﻿{
+    "Name": "Usikkerhet",
+    "DefaultView": {
+        "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
+        "RowLimit": "100"
+    }
+}
