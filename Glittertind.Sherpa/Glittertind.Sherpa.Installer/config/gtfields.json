@@ -425,5 +425,70 @@
         ID: "ce9474dd-407b-4480-951a-5381857fad6a",
         InternalName: "GtProductAcceptanceDate",
         Type: "DateTime"
+    },
+    {
+        Description: "",
+        DisplayName: "Loggelement",
+        Group: "Glittertind Områdekolonner",
+        ID: "2391d165-5d13-46b7-87d2-e32040293210",
+        InternalName: "GtProjectLogType",
+        Type: "Choice",
+        Choices: [
+            "Kommentar/Bekymring/Hendelse",
+            "Endringsforespørsel",
+            "Avvik fra spesifikasjon"
+        ]
+    },
+    {
+        Description: "Oppgi den personen som meldte saken. Det er prosjektleders ansvar å opprette en Emnerapport på basis av emnet som er valgt etter prosedyrene valgt for dette prosjektet.",
+        DisplayName: "Meldt av",
+        Group: "Glittertind Områdekolonner",
+        ID: "49b0ba6b-d1ec-4644-91b7-691a33524c90",
+        InternalName: "GtProjectLogReporter",
+        Type: "User"
+    },
+    {
+        Description: "Hva handler dette om?",
+        DisplayName: "Loggbeskrivelse",
+        Group: "Glittertind Områdekolonner",
+        ID: "a3462545-ac76-4681-96b4-f883fea4b2ba",
+        InternalName: "GtProjectLogDescription",
+        Type: "Note"
+    },
+    {
+        Description: "Hvem er ansvarlig for dette?",
+        DisplayName: "Status",
+        Group: "Glittertind Områdekolonner",
+        ID: "7838332a-cf7f-47d5-924f-8c6d134935ea",
+        InternalName: "GtProjectLogResponsible",
+        Type: "Choice",
+        FillInChoice: "true",
+        Choices: [
+            "Prosjekteier", "Linjeorganisasjon", "Prosjektleder", "Prosjektgruppe", "Leverandør", "Referansegrupper", "Andre"
+        ]
+    },
+    {
+        Description: "Beskriv mer utfyllende hva dette kan føre til.",
+        DisplayName: "Konsekvens",
+        Group: "Glittertind Områdekolonner",
+        ID: "7b424ee7-bcc8-490a-8c4c-01637da03347",
+        InternalName: "GtProjectLogConsequence",
+        Type: "Note"
+    },
+    {
+        Description: "Hva bør gjøres og hvorfor?",
+        DisplayName: "Anbefaling",
+        Group: "Glittertind Områdekolonner",
+        ID: "6aad1f97-ba6f-4865-b325-9deea7bd0564",
+        InternalName: "GtProjectLogRecommendation",
+        Type: "Note"
+    },
+    {
+        Description: "Huk av dersom dette skal vises i prosjektets erfaringslogg.",
+        DisplayName: "Til erfaringslogg",
+        Group: "Glittertind Områdekolonner",
+        ID: "832a2eeb-5709-40b4-9f7c-04ae67ddd86b",
+        InternalName: "GtProjectLogExperience",
+        Type: "Boolean"
     }
 ]

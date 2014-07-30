@@ -1,4 +1,4 @@
-﻿GT.Project.Setup.ContentTypes.CreateLookupSiteColumn = function (displayName, internalName, targetList, showField, required, id) {
+﻿GT.Project.Setup.ContentTypes.CreateLookupSiteColumn = function (displayName, internalName, targetList, showField, id, required, multiSelect) {
     var deferred = $.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
@@ -15,11 +15,13 @@
         var list = web.get_lists().getByTitle(targetList);
         clientContext.load(list);
         clientContext.executeQueryAsync(function () {
+            var fieldType = multiSelect ? "LookupMulti" : "Lookup";
             var fieldDeclaration = [];
-            fieldDeclaration.push('<Field Type="Lookup" Group="Glittertind Områdekolonner" PrependId="TRUE" ');
+            fieldDeclaration.push('<Field Type="' + fieldType + '" Group="Glittertind Områdekolonner" PrependId="TRUE" ');
             fieldDeclaration.push(' DisplayName="' + displayName + '" Name="' + internalName + '"');
             fieldDeclaration.push(' List="{' + list.get_id() + '}" ShowField="' + showField + '"');
-            fieldDeclaration.push(' Required="' + required + '" ID="' + id + '" ');
+            fieldDeclaration.push(' Mult="' + multiSelect.toString().toUpperCase() + '"');
+            fieldDeclaration.push(' Required="' + required.toString().toUpperCase() + '" ID="' + id + '" ');
             fieldDeclaration.push('></Field>');
 
             var fieldXml = fieldDeclaration.join("");
@@ -27,12 +29,12 @@
 
             clientContext.load(siteColumnsCollection);
             clientContext.executeQueryAsync(function () {
-                console.log('Successfully created site column');
+                console.log('Successfully created site column ' + displayName);
                 deferred.resolve();
             }, function (sender, args) {
                 console.log('Request failed: ' + args.get_message());
                 console.log(args.get_stackTrace());
-                console.log('Failed while creating site column');
+                console.log('Failed while creating site column ' + displayName);
                 deferred.reject();
             });
         }, function (sender, args) {
@@ -72,20 +74,20 @@ GT.Project.Setup.ContentTypes.CreateContentType = function (displayName, interna
                     newContentType.set_name(displayName);
                     newContentType.update(true);
                     clientContext.executeQueryAsync(function () {
-                        console.log('Successfully created content type');
+                        console.log('Successfully created content type ' + displayName);
                         deferred.resolve();
                     }, function () {
-                        console.log('Created content type, but couldnt set displayname');
+                        console.log('Created content type, but couldnt set displayname for ' + internalName);
                         deferred.resolve();
                     });
                 }, function (sender, args) {
                     console.log('Request failed: ' + args.get_message());
                     console.log(args.get_stackTrace());
-                    console.log('Failed while creating content type');
+                    console.log('Failed while creating content type ' + internalName);
                     deferred.reject();
                 });
             } else {
-                console.log('Failed while creating content type - couldnt find parent content type');
+                console.log('Failed while creating content type - couldnt find parent content type ' + parentContentType);
                 deferred.reject();
             }
         } else {
@@ -137,7 +139,7 @@ GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName
 
                     clientContext.load(newContentType);
                     clientContext.executeQueryAsync(function () {
-                        console.log('Successfully linked site column to CT');
+                        console.log('Successfully linked site column ' + fieldName + ' to CT ' + contentTypeName);
                         deferred.resolve();
                     }, function (sender, args) {
                         console.log('Request failed: ' + args.get_message());

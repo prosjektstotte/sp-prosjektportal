@@ -1,0 +1,7 @@
+﻿{
+    "Name": "Prosjektlogg",
+    "DefaultView": {
+        "ViewFields": ["Title", "GtProjectLogType", "GtProjectLogReporter", "GtProjectLogResponsible", "GtProjectLogConsequence", "GtProjectLogRecommendation", "GtProjectLogExperience", "GtProjectLogProductLookup", "GtProjectLogEventLookup"],
+        "RowLimit": "100"
+    }
+}

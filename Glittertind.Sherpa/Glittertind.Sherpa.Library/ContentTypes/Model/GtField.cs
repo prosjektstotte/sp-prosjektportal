@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using Microsoft.SharePoint.Client;
 
 namespace Glittertind.Sherpa.Library.ContentTypes.Model
 {
@@ -13,6 +12,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes.Model
         public string Group { get; set; }
         public string Type { get; set; }
         public string[] Choices { get; set; }
+        public bool FillInChoice { get; set; }
         public GtCalculatedProps CalculatedProps { get; set; }
         public string Format { get; set; }
         public string Default { get; set; }
@@ -52,7 +52,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes.Model
                 }
                 case ("Choice") :
                 {
-                    return GetFieldWithContentXml(required, string.Empty, GetChoiceFieldXmlContent());
+                    return GetFieldWithContentXml(required, "FillInChoice=\"" + FillInChoice.ToString().ToUpper() + "\"", GetChoiceFieldXmlContent());
                 }
                 case ("Calculated"):
                 {

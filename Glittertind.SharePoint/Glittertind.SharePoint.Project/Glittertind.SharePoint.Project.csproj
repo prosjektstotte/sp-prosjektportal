@@ -74,6 +74,9 @@
     <None Include="SPI\Lists\Dokumenter\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f5cac30f-950d-4a6a-8175-c17156ba3193}</SharePointProjectItemId>
     </None>
+    <None Include="SPI\Lists\Prosjektlogg\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9fe1d65a-6d76-40e8-acfb-b626852ead7f}</SharePointProjectItemId>
+    </None>
     <None Include="SPI\Lists\Prosjektprodukter\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d17cdc07-5b99-4c1a-8923-da74f5405a01}</SharePointProjectItemId>
     </None>
@@ -123,6 +126,7 @@
       <DependentUpon>SiteProjectWebTemplate.feature</DependentUpon>
     </Content>
     <Content Include="SPI\Lists\Dokumenter\Elements.xml" />
+    <Content Include="SPI\Lists\Prosjektlogg\Elements.xml" />
     <Content Include="SPI\Lists\Prosjektprodukter\Elements.xml" />
     <Content Include="SPI\Lists\Interessenter\Elements.xml" />
     <Content Include="SPI\Lists\Kommunikasjonsplan\Elements.xml" />

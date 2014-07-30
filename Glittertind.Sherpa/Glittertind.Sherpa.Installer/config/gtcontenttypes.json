@@ -167,5 +167,22 @@
           "GtProductAcceptanceDate"
       ],
       RequiredFields : []
+   },
+      {
+      Description : "",
+      DisplayName : "Prosjektloggbaseelement",
+      Group       : "Glittertind Innholdstyper",
+      ID          : "0x010088578e7470cc4aa68d5663464831070206",
+      InternalName: "GtProjectLogBase",
+      Fields : [
+          "GtProjectLogType",
+          "GtProjectLogReporter",
+          "GtProjectLogDescription",
+          "GtProjectLogResponsible",
+          "GtProjectLogConsequence",
+          "GtProjectLogRecommendation",
+          "GtProjectLogExperience"
+      ],
+      RequiredFields : []
    }
 ]
