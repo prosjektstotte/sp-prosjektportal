@@ -359,5 +359,71 @@
         ID: "509a6bfe-004e-41f9-bd73-9a0e02d5c4a7",
         InternalName: "GtComment",
         Type: "Note"
+    },
+    {
+        Description: "",
+        DisplayName: "Produksjonsfase",
+        Group: "Glittertind Områdekolonner",
+        ID: "5563056f-533f-4333-bd29-85a2f94a37d0",
+        InternalName: "GtProductPhase",
+        TermSetId: "abcfc9d9-a263-4abb-8234-be973c46258a",
+        Type: "TaxonomyFieldType"
+    },
+    {
+        Description: "Hvilke forventninger er uttalt til produktkvaliteten?",
+        DisplayName: "Kvalitetsforventninger",
+        Group: "Glittertind Områdekolonner",
+        ID: "c8e260c2-6887-4f9e-a713-7200246c3b1c",
+        InternalName: "GtProductQualityExpectations",
+        Type: "Note"
+    },
+    {
+        Description: "Målbare definisjoner av kravene produktet må møte før det kan aksepteres av interessentene",
+        DisplayName: "Akseptansekriterier",
+        Group: "Glittertind Områdekolonner",
+        ID: "149a30c2-056d-44f0-9cb5-29bfc632ca25",
+        InternalName: "GtProductAcceptanceCriteria",
+        Type: "Note"
+    },
+    {
+        Description: "Hvilke toleranser (slingringsmonn) gjelder for akseptansekriteriene?",
+        DisplayName: "Kvalitetstoleranse",
+        Group: "Glittertind Områdekolonner",
+        ID: "3dd7058b-0ba1-46e5-b40a-4f2f542638ea",
+        InternalName: "GtProductQualityTolerance",
+        Type: "Note"
+    },
+    {
+        Description: "Hvem er ansvarlig for å levere kvaliteten på produktet?",
+        DisplayName: "Kvalitetsansvar",
+        Group: "Glittertind Områdekolonner",
+        ID: "c845028e-3395-49d4-86fe-6d94992c38c2",
+        InternalName: "GtProductQualityResponsible",
+        Type: "User"
+    },
+    {
+        Description: "Hvordan blir godkjenningen av produktet bekreftet (test, brukerundersøkelse, demo, muntlig, skriftlig)?",
+        DisplayName: "Godkjenningsmetode",
+        Group: "Glittertind Områdekolonner",
+        ID: "3bcfaa2c-e9bd-4a22-bf65-af4d68c308e7",
+        InternalName: "GtProductAcceptanceMethod",
+        Type: "Note"
+    },
+    {
+        Description: "Hvem har ansvaret for å godkjenne produktet?",
+        DisplayName: "Godkjenningsansvar",
+        Group: "Glittertind Områdekolonner",
+        ID: "dc856c1d-0b98-4d38-9918-d7068f74bd8b",
+        InternalName: "GtProductAcceptanceResponsible",
+        Type: "User"
+    },
+    {
+        Description: "",
+        DisplayName: "Godkjent dato",
+        Format: "DateOnly",
+        Group: "Glittertind Områdekolonner",
+        ID: "ce9474dd-407b-4480-951a-5381857fad6a",
+        InternalName: "GtProductAcceptanceDate",
+        Type: "DateTime"
     }
 ]

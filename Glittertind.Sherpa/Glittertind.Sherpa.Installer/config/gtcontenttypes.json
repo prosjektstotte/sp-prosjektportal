@@ -149,5 +149,23 @@
           "GtComment"
       ],
       RequiredFields : []
+   },
+      {
+      Description : "",
+      DisplayName : "Prosjektproduktbase",
+      Group       : "Glittertind Innholdstyper",
+      ID          : "0x010088578e7470cc4aa68d5663464831070205",
+      InternalName: "GtProjectProductBase",
+      Fields : [
+          "GtProductPhase",
+          "GtProductQualityExpectations",
+          "GtProductAcceptanceCriteria",
+          "GtProductQualityTolerance",
+          "GtProductQualityResponsible",
+          "GtProductAcceptanceMethod",
+          "GtProductAcceptanceResponsible",
+          "GtProductAcceptanceDate"
+      ],
+      RequiredFields : []
    }
 ]

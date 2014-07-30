@@ -273,14 +273,20 @@ GT.Project.Setup.CreateWebContentTypes = function () {
     var deferred = $.Deferred();
     var dependentPromises = $.when(
             GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Målgruppe", "GtCommunicationTarget", "Interessenter", "Title", "FALSE", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e4}"),
-            GT.Project.Setup.ContentTypes.CreateContentType("Kommunikasjonselement", "GtProjectCommunicationElement", "", "0x010088578e7470cc4aa68d5663464831070203")
+            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Interessent(er)", "GtProductInteressent", "Interessenter", "Title", "FALSE", "{6d90e0b6-73e6-48fb-aa1e-b897b214f934}"),
+            GT.Project.Setup.ContentTypes.CreateContentType("Kommunikasjonselement", "GtProjectCommunicationElement", "", "0x010088578e7470cc4aa68d5663464831070203"),
+            GT.Project.Setup.ContentTypes.CreateContentType("Prosjektprodukt", "GtProjectProduct", "", "0x010088578e7470cc4aa68d5663464831070205")
         );
 
     dependentPromises.done(function () {
-        $.when(GT.Project.Setup.ContentTypes.LinkFieldToContentType("Kommunikasjonselement", "GtCommunicationTarget"))
+        $.when(
+            GT.Project.Setup.ContentTypes.LinkFieldToContentType("Kommunikasjonselement", "GtCommunicationTarget"),
+            GT.Project.Setup.ContentTypes.LinkFieldToContentType("Prosjektprodukt", "GtProductInteressent")
+        )
         .then(function () {
             $.when(
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]),
+                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektprodukter", ["Prosjektprodukt"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Interessenter", ["Interessent"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Usikkerhet", ["Risiko", "Mulighet"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"])
@@ -308,8 +314,11 @@ GT.Project.Setup.UpdateListsFromConfig = function () {
             });
         }
     })
-    .always(function () {
+    .done(function () {
         deferred.resolve();
+    })
+    .fail(function () {
+        deferred.reject();
     });
 
     return deferred.promise();
