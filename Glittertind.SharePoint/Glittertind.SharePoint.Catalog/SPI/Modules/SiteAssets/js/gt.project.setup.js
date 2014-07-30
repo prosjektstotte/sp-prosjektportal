@@ -261,8 +261,9 @@ GT.Project.Setup.copyDefaultItems = function () {
     })
     .fail(function () {
         console.log("Could not find path {site collection root}/SiteAssets/gt/config/data");
+        deferred.reject();
     })
-    .always(function () {
+    .done(function () {
         deferred.resolve();
     });
 
@@ -272,10 +273,10 @@ GT.Project.Setup.copyDefaultItems = function () {
 GT.Project.Setup.CreateWebContentTypes = function () {
     var deferred = $.Deferred();
     var dependentPromises = $.when(
-            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Målgruppe", "GtCommunicationTarget", "Interessenter", "Title", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e4}", false, false),
-            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Interessent(er)", "GtProductInteressent", "Interessenter", "Title", "{6d90e0b6-73e6-48fb-aa1e-b897b214f934}", false, false),
-            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Påvirker produkt", "GtProjectLogProductLookup", "Prosjektprodukter", "Title", "{022cc93f-13df-4420-bd47-55e4fdae5d18}", false, true),
-            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Til prosjektstyre", "GtProjectLogEventLookup", "Møtekalender", "Title", "{20731fb1-e98e-4fdc-b3d6-941b41b8fd6e}", false, false),
+            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Målgruppe", "GtCommunicationTarget", "Interessenter", "Title", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e4}", false, true, ""),
+            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Interessent(er)", "GtProductInteressent", "Interessenter", "Title", "{6d90e0b6-73e6-48fb-aa1e-b897b214f934}", false, true, ""),
+            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Påvirker produkt", "GtProjectLogProductLookup", "Prosjektprodukter", "Title", "{022cc93f-13df-4420-bd47-55e4fdae5d18}", false, true, "Velg hvilke(t) prosjektprodukt som blir påvirket av dette."),
+            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Til prosjektstyre", "GtProjectLogEventLookup", "Møtekalender", "Title", "{20731fb1-e98e-4fdc-b3d6-941b41b8fd6e}", false, false, "Dersom dette skal opp i prosjektstyret velger du dato for styringsgruppemøtet her."),
             GT.Project.Setup.ContentTypes.CreateContentType("Kommunikasjonselement", "GtProjectCommunicationElement", "", "0x010088578e7470cc4aa68d5663464831070203"),
             GT.Project.Setup.ContentTypes.CreateContentType("Prosjektprodukt", "GtProjectProduct", "", "0x010088578e7470cc4aa68d5663464831070205"),
             GT.Project.Setup.ContentTypes.CreateContentType("Prosjektloggelement", "GtProjectLog", "", "0x010088578e7470cc4aa68d5663464831070206")

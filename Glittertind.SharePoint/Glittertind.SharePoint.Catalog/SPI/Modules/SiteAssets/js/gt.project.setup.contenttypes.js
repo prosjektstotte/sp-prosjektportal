@@ -1,4 +1,4 @@
-﻿GT.Project.Setup.ContentTypes.CreateLookupSiteColumn = function (displayName, internalName, targetList, showField, id, required, multiSelect) {
+﻿GT.Project.Setup.ContentTypes.CreateLookupSiteColumn = function (displayName, internalName, targetList, showField, id, required, multiSelect, description) {
     var deferred = $.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
@@ -21,6 +21,7 @@
             fieldDeclaration.push(' DisplayName="' + displayName + '" Name="' + internalName + '"');
             fieldDeclaration.push(' List="{' + list.get_id() + '}" ShowField="' + showField + '"');
             fieldDeclaration.push(' Mult="' + multiSelect.toString().toUpperCase() + '"');
+            fieldDeclaration.push(' Description="' + description+ '"');
             fieldDeclaration.push(' Required="' + required.toString().toUpperCase() + '" ID="' + id + '" ');
             fieldDeclaration.push('></Field>');
 
