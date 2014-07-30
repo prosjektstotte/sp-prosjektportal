@@ -1,5 +1,8 @@
 ﻿{
     "Name": "Usikkerhet",
+    "OnQuickLaunch": "true",
+    "VersioningEnabled":  "true",
+    "Description": "",
     "DefaultView": {
         "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
         "RowLimit": "100"

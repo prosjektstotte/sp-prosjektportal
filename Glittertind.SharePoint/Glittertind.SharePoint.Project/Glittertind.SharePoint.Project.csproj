@@ -71,6 +71,9 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="SPI\Lists\Oppgaver\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a6e6cf82-8ee4-4f89-ace1-f2e1efabed78}</SharePointProjectItemId>
+    </None>
     <None Include="SPI\Lists\Dokumenter\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f5cac30f-950d-4a6a-8175-c17156ba3193}</SharePointProjectItemId>
     </None>
@@ -125,6 +128,7 @@
     <Content Include="Features\SiteProjectWebTemplate\SiteProjectWebTemplate.Template.xml">
       <DependentUpon>SiteProjectWebTemplate.feature</DependentUpon>
     </Content>
+    <Content Include="SPI\Lists\Oppgaver\Elements.xml" />
     <Content Include="SPI\Lists\Dokumenter\Elements.xml" />
     <Content Include="SPI\Lists\Prosjektlogg\Elements.xml" />
     <Content Include="SPI\Lists\Prosjektprodukter\Elements.xml" />

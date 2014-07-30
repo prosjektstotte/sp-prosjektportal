@@ -1,5 +1,8 @@
 ﻿{
     "Name": "Dokumenter",
+    "OnQuickLaunch": "true",
+    "VersioningEnabled":  "true",
+    "Description": "",
     "DefaultView": {
         "ViewFields": ["DocIcon", "LinkFilename", "GtProjectPhase", "Modified", "Editor"],
         "RowLimit": "30"

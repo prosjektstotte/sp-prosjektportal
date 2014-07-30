@@ -1,0 +1,10 @@
+﻿{
+    "Name": "Oppgaver",
+    "OnQuickLaunch": "true",
+    "VersioningEnabled":  "true",
+    "Description": "",
+    "DefaultView": {
+        "ViewFields": [],
+        "RowLimit": ""
+    }
+}

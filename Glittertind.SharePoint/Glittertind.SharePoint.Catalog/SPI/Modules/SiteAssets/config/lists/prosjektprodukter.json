@@ -1,5 +1,8 @@
 ﻿{
     "Name": "Prosjektprodukter",
+    "OnQuickLaunch": "true",
+    "VersioningEnabled":  "true",
+    "Description": "",
     "DefaultView": {
         "ViewFields": ["Title", "GtProductPhase", "GtProductInteressent", "GtProductQualityResponsible", "GtProductAcceptanceMethod", "GtProductAcceptanceResponsible", "GtProductAcceptanceDate"],
         "RowLimit": "100"

@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Prosjektlogg" OnQuickLaunch="TRUE" TemplateType="100" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Url="Lists/Prosjektlogg" Description="" VersioningEnabled="TRUE" ></ListInstance>
+  <ListInstance Title="Prosjektlogg" TemplateType="100" FeatureId="00bfea71-de22-43b2-a848-c05709900100" Url="Lists/Prosjektlogg" ></ListInstance>
 </Elements>

@@ -1,5 +1,8 @@
 ﻿{
     "Name": "Kommunikasjonsplan",
+    "OnQuickLaunch": "true",
+    "VersioningEnabled":  "true",
+    "Description": "",
     "DefaultView": {
         "ViewFields": ["Title", "GtProjectPhase", "GtActionDate", "GtActionResponsible", "GtCommunicationTarget"],
         "RowLimit": "100"

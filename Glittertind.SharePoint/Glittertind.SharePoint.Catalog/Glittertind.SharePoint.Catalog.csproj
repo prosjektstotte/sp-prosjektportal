@@ -106,9 +106,11 @@
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project.html" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project.js" />
     <None Include="SPI\Modules\SiteAssets\config\lists\dokumenter.json" />
+    <None Include="SPI\Modules\SiteAssets\config\lists\oppgaver.json" />
     <None Include="SPI\Modules\SiteAssets\config\lists\prosjektlogg.json" />
     <None Include="SPI\Modules\SiteAssets\config\lists\prosjektprodukter.json" />
     <None Include="SPI\Modules\SiteAssets\config\lists\sjekkliste.json" />
+    <None Include="SPI\Modules\SiteAssets\config\lists\motekalender.json" />
     <None Include="SPI\Modules\SiteAssets\config\lists\usikkerhet.json" />
     <None Include="SPI\Modules\SiteAssets\config\lists\interessenter.json" />
     <None Include="SPI\Modules\SiteAssets\config\lists\kommunikasjonsplan.json" />

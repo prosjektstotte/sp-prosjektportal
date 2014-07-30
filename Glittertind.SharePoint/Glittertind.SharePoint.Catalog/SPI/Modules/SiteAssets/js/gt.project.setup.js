@@ -318,6 +318,7 @@ GT.Project.Setup.UpdateListsFromConfig = function () {
         for (var i = 0; i < files.length; i++) {
             $.getJSON(files[i].ServerRelativeUrl).then(function (data) {
                 GT.Project.Setup.UpdateDefaultListView(data.Name, data.DefaultView.ViewFields, data.DefaultView.RowLimit);
+                GT.Project.Setup.UpdateListProperties(data);
             });
         }
     })
@@ -330,7 +331,25 @@ GT.Project.Setup.UpdateListsFromConfig = function () {
 
     return deferred.promise();
 };
+GT.Project.Setup.UpdateListProperties = function (configData) {
+    var deferred = $.Deferred();
 
+    var clientContext = SP.ClientContext.get_current();
+    var list = clientContext.get_web().get_lists().getByTitle(configData.Name);
+    list.set_onQuickLaunch(configData.OnQuickLaunch);
+    list.set_enableVersioning(configData.VersioningEnabled);
+    list.set_description(configData.Description);
+    list.update();
+
+    clientContext.executeQueryAsync(function () {
+        deferred.resolve();
+        console.log("Modified list properties of " + configData.Name);
+    }, function (sender, args) {
+        deferred.reject();
+        console.error('Request failed. ' + args.get_message());
+    });
+    return deferred.promise();
+};
 GT.Project.Setup.UpdateDefaultListView = function (listName, columns, rowLimit) {
     var deferred = $.Deferred();
 
@@ -339,12 +358,16 @@ GT.Project.Setup.UpdateDefaultListView = function (listName, columns, rowLimit) 
     var defaultView = list.get_defaultView();
     var defaultColumns = defaultView.get_viewFields();
 
-    defaultColumns.removeAll();
-    for (var index = 0; index < columns.length; index++) {
-        defaultColumns.add(columns[index]);
-    };
+    if (columns != undefined && columns.length > 0) {
+        defaultColumns.removeAll();
+        for (var index = 0; index < columns.length; index++) {
+            defaultColumns.add(columns[index]);
+        };
+    }
+    if (rowLimit != undefined && !rowLimit.match(/\S/) && rowLimit > 0) {
+        defaultView.set_rowLimit(rowLimit);
+    }
 
-    defaultView.set_rowLimit(rowLimit);
     defaultView.update();
 
     clientContext.executeQueryAsync(function () {

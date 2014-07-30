@@ -1,5 +1,8 @@
 ﻿{
     "Name": "Sjekkliste",
+    "OnQuickLaunch": "true",
+    "VersioningEnabled":  "true",
+    "Description": "",
     "DefaultView": {
         "ViewFields": ["Title", "GtProjectPhase", "GtChecklistStatus", "GtComment"],
         "RowLimit": "100"
