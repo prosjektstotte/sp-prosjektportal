@@ -1,4 +1,9 @@
-﻿GT.Project.Setup.ContentTypes.CreateLookupSiteColumn = function (displayName, internalName, targetList, showField, id, required, multiSelect, description) {
+﻿var GT = GT || {};
+GT.Project = GT.Project || {};
+GT.Project.Setup = GT.Project.Setup || {};
+GT.Project.Setup.ContentTypes = GT.Project.Setup.ContentTypes || {}
+
+GT.Project.Setup.ContentTypes.CreateLookupSiteColumn = function (displayName, internalName, targetList, showField, id, required, multiSelect, description) {
     var deferred = $.Deferred();
 
     var clientContext = SP.ClientContext.get_current();

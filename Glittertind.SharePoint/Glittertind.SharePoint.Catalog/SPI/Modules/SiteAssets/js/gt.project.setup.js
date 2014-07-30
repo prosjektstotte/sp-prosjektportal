@@ -207,7 +207,7 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
                 binaryStringRequestBody: true,
                 body: result,
                 success: function (data2) {
-                    console.log("Success! Your file was uploaded to SharePoint.");
+                    console.log("Success! " + file.Name + " was uploaded to SharePoint.");
                     deferred.resolve();
                 },
                 error: function (err2) {
@@ -273,11 +273,14 @@ GT.Project.Setup.copyDefaultItems = function () {
 GT.Project.Setup.CreateWebContentTypes = function () {
     var deferred = $.Deferred();
     var dependentPromises = $.when(
-            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Målgruppe", "GtCommunicationTarget", "Interessenter", "Title", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e4}", false, true, ""),
-            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Interessent(er)", "GtProductInteressent", "Interessenter", "Title", "{6d90e0b6-73e6-48fb-aa1e-b897b214f934}", false, true, ""),
+            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Målgruppe", "GtCommunicationTarget", "Interessentregister", "Title", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e4}", false, true, ""),
+            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Interessent(er)", "GtProductInteressent", "Interessentregister", "Title", "{6d90e0b6-73e6-48fb-aa1e-b897b214f934}", false, true, ""),
             GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Påvirker produkt", "GtProjectLogProductLookup", "Prosjektprodukter", "Title", "{022cc93f-13df-4420-bd47-55e4fdae5d18}", false, true, "Velg hvilke(t) prosjektprodukt som blir påvirket av dette."),
             GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Til prosjektstyre", "GtProjectLogEventLookup", "Møtekalender", "Title", "{20731fb1-e98e-4fdc-b3d6-941b41b8fd6e}", false, false, "Dersom dette skal opp i prosjektstyret velger du dato for styringsgruppemøtet her."),
+            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Relevant usikkerhet", "GtProjectTaskRisk", "Usikkerhet", "Title", "{920b385c-756f-49eb-98e7-4c3ebf15b7f4}", false, false, ""),
+            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Relevant kommunikasjonselement", "GtProjectTaskComElement", "Kommunikasjonsplan", "Title", "{087dae25-b007-4e58-91b4-347dde464840}", false, false, ""),
             GT.Project.Setup.ContentTypes.CreateContentType("Kommunikasjonselement", "GtProjectCommunicationElement", "", "0x010088578e7470cc4aa68d5663464831070203"),
+            GT.Project.Setup.ContentTypes.CreateContentType("Prosjektoppgave", "GtProjectTask", "", "0x010800233b015f95174c9a8eb505493841de8d"),
             GT.Project.Setup.ContentTypes.CreateContentType("Prosjektprodukt", "GtProjectProduct", "", "0x010088578e7470cc4aa68d5663464831070205"),
             GT.Project.Setup.ContentTypes.CreateContentType("Prosjektloggelement", "GtProjectLog", "", "0x010088578e7470cc4aa68d5663464831070206")
         );
@@ -286,6 +289,8 @@ GT.Project.Setup.CreateWebContentTypes = function () {
         $.when(
             GT.Project.Setup.ContentTypes.LinkFieldToContentType("Prosjektloggelement", "GtProjectLogProductLookup"),
             GT.Project.Setup.ContentTypes.LinkFieldToContentType("Prosjektloggelement", "GtProjectLogEventLookup"),
+            GT.Project.Setup.ContentTypes.LinkFieldToContentType("Prosjektoppgave", "GtProjectTaskRisk"),
+            GT.Project.Setup.ContentTypes.LinkFieldToContentType("Prosjektoppgave", "GtProjectTaskComElement"),
             GT.Project.Setup.ContentTypes.LinkFieldToContentType("Kommunikasjonselement", "GtCommunicationTarget"),
             GT.Project.Setup.ContentTypes.LinkFieldToContentType("Prosjektprodukt", "GtProductInteressent")
         )
@@ -294,8 +299,9 @@ GT.Project.Setup.CreateWebContentTypes = function () {
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektprodukter", ["Prosjektprodukt"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektlogg", ["Prosjektloggelement"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Interessenter", ["Interessent"]),
+                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Interessentregister", ["Interessent"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Usikkerhet", ["Risiko", "Mulighet"]),
+                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Oppgaver", ["Prosjektoppgave"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"])
             )
             .done(function () {
@@ -403,7 +409,8 @@ GT.Project.Setup.execute = function (properties, steps) {
             var currentStep = parseInt(properties.currentStep.value);
             console.log("execute: current step is " + currentStep);
 
-            //TODO: This should fire sequentially but this is terrible and will not work in most cases. Refactor
+            //TODO: This should fire sequentially but this is terrible and will not work in most cases. 
+            //Plus, it currently does not take into account currentstep
             var dependentPromise1 = $.when(steps[0].execute());
 
             dependentPromise1.done(function () {
@@ -420,6 +427,7 @@ GT.Project.Setup.execute = function (properties, steps) {
                     console.log("execute: persisted properties and wrapping up");
                     deferred.resolve();
                 });
+                //TODO: Then reload page to show new items on quicklaunch?
             });
         }
         return deferred.promise();

@@ -83,7 +83,7 @@
     <None Include="SPI\Lists\Prosjektprodukter\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{d17cdc07-5b99-4c1a-8923-da74f5405a01}</SharePointProjectItemId>
     </None>
-    <None Include="SPI\Lists\Interessenter\SharePointProjectItem.spdata">
+    <None Include="SPI\Lists\Interessentregister\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6688b6fe-3009-4e93-9ded-27877e5a0981}</SharePointProjectItemId>
     </None>
     <None Include="SPI\Lists\Kommunikasjonsplan\SharePointProjectItem.spdata">
@@ -132,7 +132,7 @@
     <Content Include="SPI\Lists\Dokumenter\Elements.xml" />
     <Content Include="SPI\Lists\Prosjektlogg\Elements.xml" />
     <Content Include="SPI\Lists\Prosjektprodukter\Elements.xml" />
-    <Content Include="SPI\Lists\Interessenter\Elements.xml" />
+    <Content Include="SPI\Lists\Interessentregister\Elements.xml" />
     <Content Include="SPI\Lists\Kommunikasjonsplan\Elements.xml" />
     <Content Include="SPI\Lists\MeetingCalendar\Elements.xml" />
     <Content Include="SPI\Lists\Sjekkliste\Elements.xml" />

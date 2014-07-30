@@ -184,5 +184,16 @@
           "GtProjectLogExperience"
       ],
       RequiredFields : []
+   },
+    {
+      Description : "",
+      DisplayName : "Glittertind baseoppgave",
+      Group       : "Glittertind Innholdstyper",
+      ID          : "0x010800233b015f95174c9a8eb505493841de8d",
+      InternalName: "GtTaskBase",
+      Fields : [
+          "GtProjectPhase"
+      ],
+      RequiredFields : []
    }
 ]

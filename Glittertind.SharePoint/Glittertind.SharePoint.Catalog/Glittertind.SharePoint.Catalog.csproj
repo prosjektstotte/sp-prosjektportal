@@ -112,7 +112,7 @@
     <None Include="SPI\Modules\SiteAssets\config\lists\sjekkliste.json" />
     <None Include="SPI\Modules\SiteAssets\config\lists\motekalender.json" />
     <None Include="SPI\Modules\SiteAssets\config\lists\usikkerhet.json" />
-    <None Include="SPI\Modules\SiteAssets\config\lists\interessenter.json" />
+    <None Include="SPI\Modules\SiteAssets\config\lists\Interessentregister.json" />
     <None Include="SPI\Modules\SiteAssets\config\lists\kommunikasjonsplan.json" />
     <Content Include="SPI\Modules\SiteAssets\css\gt.style.css" />
     <Content Include="SPI\Modules\SiteAssets\html\gt.phaseform.html" />

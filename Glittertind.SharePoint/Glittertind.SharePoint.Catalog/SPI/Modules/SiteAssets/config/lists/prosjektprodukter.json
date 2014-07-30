@@ -1,6 +1,6 @@
 ﻿{
     "Name": "Prosjektprodukter",
-    "OnQuickLaunch": "true",
+    "OnQuickLaunch": "false",
     "VersioningEnabled":  "true",
     "Description": "",
     "DefaultView": {
