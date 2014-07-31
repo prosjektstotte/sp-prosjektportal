@@ -104,7 +104,7 @@
     <None Include="SPI\Modules\ContentTypeBindings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{435fcf98-2f03-46af-a751-f5c8a7c174dd}</SharePointProjectItemId>
     </None>
-    <None Include="SPI\Modules\DefaultPage\SharePointProjectItem.spdata">
+    <None Include="SPI\Modules\SitePages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{162bc79e-9156-42c0-b87b-ce37db39e48f}</SharePointProjectItemId>
     </None>
     <None Include="SPI\Modules\FormWebparts\SharePointProjectItem.spdata">
@@ -142,13 +142,14 @@
     <Content Include="SPI\Lists\Sjekkliste\Elements.xml" />
     <Content Include="SPI\Lists\Usikkerhet\Elements.xml" />
     <Content Include="SPI\Modules\ContentTypeBindings\Elements.xml" />
-    <Content Include="SPI\Modules\DefaultPage\Elements.xml" />
-    <Content Include="SPI\Modules\DefaultPage\Forside.aspx" />
+    <Content Include="SPI\Modules\SitePages\Elements.xml" />
+    <Content Include="SPI\Modules\SitePages\Forside.aspx" />
     <Content Include="SPI\Modules\FormWebparts\Elements.xml" />
     <Content Include="SPI\Modules\FormWebparts\EditFormCustom.aspx" />
     <Content Include="SPI\Modules\ProjectWebTemplate\Elements.xml" />
     <Content Include="SPI\Modules\ProjectWebTemplate\Onet.xml" />
     <Content Include="SPI\Modules\PropertyBag\Elements.xml" />
+    <Content Include="SPI\Modules\SitePages\VisMotereferat.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
