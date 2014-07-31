@@ -328,8 +328,8 @@ GT.Project.Setup.UpdateListsFromConfig = function () {
     .then(function (files) {
         for (var i = 0; i < files.length; i++) {
             $.getJSON(files[i].ServerRelativeUrl).then(function (data) {
-                GT.Project.Setup.UpdateDefaultListView(data.Name, data.DefaultView.ViewFields, data.DefaultView.RowLimit);
                 GT.Project.Setup.UpdateListProperties(data);
+                GT.Project.Setup.UpdateListViews(data);
             });
         }
     })
@@ -361,34 +361,72 @@ GT.Project.Setup.UpdateListProperties = function (configData) {
     });
     return deferred.promise();
 };
-GT.Project.Setup.UpdateDefaultListView = function (listName, columns, rowLimit) {
+GT.Project.Setup.UpdateListViews = function (data) {
     var deferred = $.Deferred();
+
+    var listName = data.Name;
+    var listViewsToConfigure = data.Views;
 
     var clientContext = SP.ClientContext.get_current();
     var list = clientContext.get_web().get_lists().getByTitle(listName);
-    var defaultView = list.get_defaultView();
-    var defaultColumns = defaultView.get_viewFields();
+    var viewCollection = list.get_views();
 
-    if (columns != undefined && columns.length > 0) {
-        defaultColumns.removeAll();
-        for (var index = 0; index < columns.length; index++) {
-            defaultColumns.add(columns[index]);
-        };
-    }
-    if (rowLimit != undefined && !rowLimit.match(/\S/) && rowLimit > 0) {
-        defaultView.set_rowLimit(rowLimit);
-    }
-
-    defaultView.update();
-
+    clientContext.load(viewCollection);
     clientContext.executeQueryAsync(function () {
-        deferred.resolve();
-        console.log("Modified list view of " + listName);
+        for (var i = 0; i < listViewsToConfigure.length; i++) {
+            var viewName = listViewsToConfigure[i].Name;
+            var rowLimit = listViewsToConfigure[i].RowLimit;
+            var query = listViewsToConfigure[i].Query;
+            var outOfTheBoxView = listViewsToConfigure[i].OutOfTheBoxView;
+            var viewFieldsData = listViewsToConfigure[i].ViewFields;
+
+            var view = GT.Project.Setup.GetViewFromCollectionByName(viewCollection, viewName);
+            if (view != null) {
+                if (viewFieldsData != undefined && viewFieldsData.length > 0) {
+                    var columns = view.get_viewFields();
+                    columns.removeAll();
+                    for (var index = 0; index < viewFieldsData.length; index++) {
+                        columns.add(viewFieldsData[index]);
+                    };
+                }
+                if (rowLimit != undefined && rowLimit != "" && rowLimit > 0) {
+                    view.set_rowLimit(rowLimit);
+                }
+                view.update();
+            } else {
+                var viewInfo = new SP.ViewCreationInformation();
+                viewInfo.set_title(viewName);
+                viewInfo.set_rowLimit(rowLimit);
+                viewInfo.set_query(query);
+                viewInfo.set_viewFields(viewFieldsData);
+                viewCollection.add(viewInfo);
+            }
+        };
+
+        clientContext.load(viewCollection);
+        clientContext.executeQueryAsync(function () {
+            deferred.resolve();
+            console.log("Modified list view(s) of " + listName);
+        }, function (sender, args) {
+            deferred.reject();
+            console.error('Request failed. ' + args.get_message());
+        });
     }, function (sender, args) {
         deferred.reject();
         console.error('Request failed. ' + args.get_message());
     });
     return deferred.promise();
+};
+
+GT.Project.Setup.GetViewFromCollectionByName = function (viewCollection, name) {
+    var viewCollectionEnumerator = viewCollection.getEnumerator();
+    while (viewCollectionEnumerator.moveNext()) {
+        var view = viewCollectionEnumerator.get_current();
+        if (view.get_title().toString().toLowerCase() === name.toLowerCase()) {
+            return view;
+        }
+    }
+    return null;
 };
 
 GT.Project.Setup.execute = function (properties, steps) {
