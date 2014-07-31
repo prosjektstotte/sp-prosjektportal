@@ -293,12 +293,10 @@ GT.Project.Setup.CreateWebContentTypes = function () {
 
     dependentPromises.done(function () {
         $.when(
-            GT.Project.Setup.ContentTypes.LinkFieldToContentType("Prosjektloggelement", "GtProjectLogProductLookup"),
-            GT.Project.Setup.ContentTypes.LinkFieldToContentType("Prosjektloggelement", "GtProjectLogEventLookup"),
-            GT.Project.Setup.ContentTypes.LinkFieldToContentType("Prosjektoppgave", "GtProjectTaskRisk"),
-            GT.Project.Setup.ContentTypes.LinkFieldToContentType("Prosjektoppgave", "GtProjectTaskComElement"),
-            GT.Project.Setup.ContentTypes.LinkFieldToContentType("Kommunikasjonselement", "GtCommunicationTarget"),
-            GT.Project.Setup.ContentTypes.LinkFieldToContentType("Prosjektprodukt", "GtProductInteressent")
+            GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektloggelement", ["GtProjectLogProductLookup", "GtProjectLogEventLookup"]),
+            GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektoppgave", ["GtProjectTaskRisk", "GtProjectTaskComElement"]),
+            GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Kommunikasjonselement", ["GtCommunicationTarget"]),
+            GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektprodukt", ["GtProductInteressent"])
         )
         .then(function () {
             $.when(
@@ -431,6 +429,9 @@ GT.Project.Setup.execute = function (properties, steps) {
                 GT.Project.Setup.closeWaitMessage();
                 console.log("execute: persisted properties and wrapping up");
                 deferred.resolve();
+            })
+            .then(function () {
+                location.reload();
             });
         }
 

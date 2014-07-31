@@ -26,7 +26,7 @@ GT.Project.Setup.ContentTypes.CreateLookupSiteColumn = function (displayName, in
             fieldDeclaration.push(' DisplayName="' + displayName + '" Name="' + internalName + '"');
             fieldDeclaration.push(' List="{' + list.get_id() + '}" ShowField="' + showField + '"');
             fieldDeclaration.push(' Mult="' + multiSelect.toString().toUpperCase() + '"');
-            fieldDeclaration.push(' Description="' + description+ '"');
+            fieldDeclaration.push(' Description="' + description + '"');
             fieldDeclaration.push(' Required="' + required.toString().toUpperCase() + '" ID="' + id + '" ');
             fieldDeclaration.push('></Field>');
 
@@ -109,51 +109,61 @@ GT.Project.Setup.ContentTypes.CreateContentType = function (displayName, interna
 
     return deferred.promise();
 };
-GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName, fieldName) {
+GT.Project.Setup.ContentTypes.LinkFieldsToContentType = function (contentTypeName, fields) {
     var deferred = $.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
     var contentTypeCollection = web.get_contentTypes();
-    var field = web.get_fields().getByInternalNameOrTitle(fieldName);
+    var fieldCollection = web.get_fields();
 
+    clientContext.load(fieldCollection);
     clientContext.load(contentTypeCollection);
-    clientContext.load(field);
     clientContext.executeQueryAsync(function () {
-        var newContentType = GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(contentTypeCollection, contentTypeName);
-        if (newContentType != null) {
-            var fieldLinkCollection = newContentType.get_fieldLinks();
+        var contentType = GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(contentTypeCollection, contentTypeName);
+        if (contentType != null) {
+            var fieldLinkCollection = contentType.get_fieldLinks();
             clientContext.load(fieldLinkCollection);
             clientContext.executeQueryAsync(function () {
-                var fieldAttached = false;
-                var enumerator = newContentType.get_fieldLinks().getEnumerator();
-                while (enumerator.moveNext()) {
-                    var current = enumerator.get_current();
-                    if (current.get_name() === fieldName) {
-                        fieldAttached = true;
-                        break;
+                var fieldsToAttach = [];
+                for (var i = 0; i < fields.length; i++) {
+                    var fieldName = fields[i];
+                    if (GT.Project.Setup.ContentTypes.IsFieldAttached(fieldLinkCollection, fieldName)) {
+                        console.log('Field ' + fieldName + ' already attached to content type ' + contentTypeName);
+                    } else {
+                        fieldsToAttach.push(fieldName);
+                        clientContext.load(fieldCollection.getByInternalNameOrTitle(fieldName));
                     }
                 }
-                if (fieldAttached) {
-                    console.log('Field ' + fieldName + ' already attached to content type ' + contentTypeName);
-                    deferred.resolve();
-                } else {
-                    var fieldLink = new SP.FieldLinkCreationInformation();
-                    fieldLink.set_field(field);
-                    newContentType.get_fieldLinks().add(fieldLink);
-                    newContentType.update(true);
-
-                    clientContext.load(newContentType);
-                    clientContext.executeQueryAsync(function () {
-                        console.log('Successfully linked site column ' + fieldName + ' to CT ' + contentTypeName);
+                clientContext.executeQueryAsync(function () {
+                    if (fieldsToAttach.length > 0) {
+                        for (var i = 0; i < fieldsToAttach.length; i++) {
+                            var fieldName = fieldsToAttach[i];
+                            var field = fieldCollection.getByInternalNameOrTitle(fieldName);
+                            var fieldLink = new SP.FieldLinkCreationInformation();
+                            fieldLink.set_field(field);
+                            fieldLinkCollection.add(fieldLink);
+                            didAddFields = true;
+                        }
+                        contentType.update(true);
+                        clientContext.load(contentType);
+                        clientContext.executeQueryAsync(function () {
+                            console.log('Successfully linked site columns to CT ' + contentTypeName);
+                            deferred.resolve();
+                        }, function (sender, args) {
+                            console.log('Request failed: ' + args.get_message());
+                            console.log('Failed while linking site columns to CT ' + contentTypeName);
+                            deferred.reject();
+                        });
+                    } else {
+                        console.log('All fields were already linked to CT ' + contentTypeName);
                         deferred.resolve();
-                    }, function (sender, args) {
-                        console.log('Request failed: ' + args.get_message());
-                        console.log(args.get_stackTrace());
-                        console.log('Failed while linking site column to CT');
-                        deferred.reject();
-                    });
-                }
+                    }
+                }, function (sender, args) {
+                    console.log('Request failed: ' + args.get_message());
+                    console.log('Failed while loading fields');
+                    deferred.reject();
+                });
             }, function () {
                 console.log("Can't find fieldlink collection");
                 deferred.reject();
@@ -169,6 +179,16 @@ GT.Project.Setup.ContentTypes.LinkFieldToContentType = function (contentTypeName
         deferred.reject();
     });
     return deferred.promise();
+};
+GT.Project.Setup.ContentTypes.IsFieldAttached = function (fieldLinkCollection, fieldName) {
+    var enumerator = fieldLinkCollection.getEnumerator();
+    while (enumerator.moveNext()) {
+        var current = enumerator.get_current();
+        if (current.get_name() === fieldName) {
+            return true;
+        }
+    }
+    return false;
 };
 
 GT.Project.Setup.ContentTypes.AddContentTypeToList = function (clientContext, contentType, listContentTypes, list) {
