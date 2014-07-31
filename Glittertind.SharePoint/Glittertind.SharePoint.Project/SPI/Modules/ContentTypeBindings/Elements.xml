@@ -6,4 +6,5 @@
   <ContentTypeBinding ListUrl="Lists/Usikkerhet" ContentTypeId="0x010088578e7470cc4aa68d566346483107020102" />
   <ContentTypeBinding ListUrl="Lists/Interessentregister" ContentTypeId="0x010088578e7470cc4aa68d5663464831070202" />
   <ContentTypeBinding ListUrl="Lists/Sjekkliste" ContentTypeId="0x010088578e7470cc4aa68d5663464831070204" />
+  <ContentTypeBinding ListUrl="Lists/Informasjon" ContentTypeId="0x010088578e7470cc4aa68d5663464831070207" />
 </Elements>

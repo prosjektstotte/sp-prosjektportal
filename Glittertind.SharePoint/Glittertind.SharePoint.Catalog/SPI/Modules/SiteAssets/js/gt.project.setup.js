@@ -12,6 +12,12 @@ GT.Project.Setup.Model.step = function (name, callback, properties) {
     self.execute = function () {
         return self.callback(properties);
     };
+    self.execute = function (dependentPromise) {
+        return $.when(dependentPromise)
+            .then(function () {
+                return self.callback(properties);
+            });
+    };
 };
 
 GT.Project.Setup.InheritNavigation = function () {
@@ -300,6 +306,7 @@ GT.Project.Setup.CreateWebContentTypes = function () {
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektprodukter", ["Prosjektprodukt"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektlogg", ["Prosjektloggelement"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Interessentregister", ["Interessent"]),
+                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Informasjon", ["Infoelement"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Usikkerhet", ["Risiko", "Mulighet"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Oppgaver", ["Prosjektoppgave"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"])
@@ -399,7 +406,6 @@ GT.Project.Setup.execute = function (properties, steps) {
     .then(function (properties) {
         console.log("execute: using these settings :" + JSON.stringify(properties));
         var deferred = $.Deferred();
-        console.log("execute: value of 'configured' :" + properties.configured.value);
         if (properties.configured.value === "0") {
             console.log("execute: not configured, showing long running ops message");
             GT.Project.Setup.showWaitMessage();
@@ -409,27 +415,25 @@ GT.Project.Setup.execute = function (properties, steps) {
             var currentStep = parseInt(properties.currentStep.value);
             console.log("execute: current step is " + currentStep);
 
-            //TODO: This should fire sequentially but this is terrible and will not work in most cases. 
-            //Plus, it currently does not take into account currentstep
-            var dependentPromise1 = $.when(steps[0].execute());
+            var dependentPromise = null;
+            while (steps[currentStep] != undefined) {
+                console.log("execute: queuing step '" + steps[currentStep].name + "'");
+                dependentPromise = steps[currentStep].execute(dependentPromise);
 
-            dependentPromise1.done(function () {
-                $.when(
-                    steps[1].execute(),
-                    steps[2].execute(),
-                    steps[3].execute(),
-                    steps[4].execute()
-                ).then(function () {
-                    properties.currentStep.value = currentStep;
-                    properties.configured.value = "1";
-                    GT.Project.Setup.persistsProperties(properties);
-                    GT.Project.Setup.closeWaitMessage();
-                    console.log("execute: persisted properties and wrapping up");
-                    deferred.resolve();
-                });
-                //TODO: Then reload page to show new items on quicklaunch?
+                currentStep++;
+            }
+
+            $.when(dependentPromise)
+            .always(function () {
+                properties.currentStep.value = currentStep;
+                properties.configured.value = "1";
+                GT.Project.Setup.persistsProperties(properties);
+                GT.Project.Setup.closeWaitMessage();
+                console.log("execute: persisted properties and wrapping up");
+                deferred.resolve();
             });
         }
+
         return deferred.promise();
     });
 };

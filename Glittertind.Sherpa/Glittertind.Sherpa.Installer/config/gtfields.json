@@ -490,5 +490,13 @@
         ID: "832a2eeb-5709-40b4-9f7c-04ae67ddd86b",
         InternalName: "GtProjectLogExperience",
         Type: "Boolean"
+    },
+    {
+        Description: "",
+        DisplayName: "Beskrivelse",
+        Group: "Glittertind Områdekolonner",
+        ID: "a3038ecc-69db-4179-b23b-5fdb0535b38c",
+        InternalName: "GtProjectInfoDescription",
+        Type: "Note"
     }
 ]

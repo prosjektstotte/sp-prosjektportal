@@ -1,0 +1,10 @@
+﻿{
+    "Name": "Informasjon",
+    "OnQuickLaunch": "true",
+    "VersioningEnabled":  "true",
+    "Description": "",
+    "DefaultView": {
+        "ViewFields": ["Title", "GtProjectInfoDescription"],
+        "RowLimit": "100"
+    }
+}

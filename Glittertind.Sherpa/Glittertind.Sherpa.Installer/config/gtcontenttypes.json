@@ -195,5 +195,18 @@
           "GtProjectPhase"
       ],
       RequiredFields : []
+   },
+    {
+      Description : "",
+      DisplayName : "Infoelement",
+      Group       : "Glittertind Innholdstyper",
+      ID          : "0x010088578e7470cc4aa68d5663464831070207",
+      InternalName: "GtInfoElement",
+      Fields : [
+          "GtProjectInfoDescription"
+      ],
+      RequiredFields : [
+          "GtProjectInfoDescription"
+      ]
    }
 ]
