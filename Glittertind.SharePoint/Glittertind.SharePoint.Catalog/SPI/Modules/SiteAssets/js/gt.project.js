@@ -91,6 +91,12 @@ GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMar
 };
 
 GT.Project.GetPhaseFromCurrentItem = function () {
+    var defer = $.Deferred();
+    $.when(GT.Project.GetPhaseTermFromCurrentItem()).done(function (term) { defer.resolve(term.Label); });
+    return defer.promise();
+};
+
+GT.Project.GetPhaseTermFromCurrentItem = function () {
     var pageItem;
     var pageFieldNameVar = 'GtProjectPhase';
     var context = SP.ClientContext.get_current();
@@ -113,16 +119,13 @@ GT.Project.GetPhaseFromCurrentItem = function () {
     context.executeQueryAsync(Function.createDelegate(this, function () {
         var currentPhaseItem = pageItem.get_item(pageFieldNameVar);
         if (currentPhaseItem != '' && currentPhaseItem != undefined) {
-            var currentPhaseName = currentPhaseItem.Label;
-            deferred.resolve(currentPhaseName);
+            deferred.resolve(currentPhaseItem);
         } else {
             deferred.resolve('');
         }
-        deferred.promise();
     }), Function.createDelegate(this, function (sender, args) {
         deferred.resolve('');
-        deferred.promise();
         console.log('error when getting page field' + sender + " " + args);
     }));
-    return deferred;
+    return deferred.promise();
 };

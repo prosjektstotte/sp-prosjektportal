@@ -134,6 +134,51 @@ GT.Project.Setup.closeWaitMessage = function () {
 };
 // [end] utility methods
 
+GT.Project.Setup.SetPhaseDefaults = function (lib) {
+    var currentPhasePromise = GT.Project.GetPhaseTermFromCurrentItem();
+    currentPhasePromise.done(function (term) {
+        GT.Project.Setup.MetaDataDefaults("Dokumenter", "GtProjectPhase", term);
+    });
+};
+
+GT.Project.Setup.MetaDataDefaults = function (lib, field, term) {
+    // GtProjectPhase
+    var defer = $.Deferred();
+    var termString = term.WssId + ';#' + term.Label + '|' + term.TermGuid;
+    var siteCollRelativeUrl = _spPageContextInfo.webServerRelativeUrl + '/' + lib;
+    var template = '<MetadataDefaults><a href="{siteCollRelativeUrl}"><DefaultValue FieldName="{field}">{term}</DefaultValue></a></MetadataDefaults>';
+    var result = template.split("{siteCollRelativeUrl}").join(siteCollRelativeUrl);
+    result = result.split("{field}").join(field);
+    result = result.split("{term}").join(termString);
+    console.log(result);
+
+    var ctx = new SP.ClientContext.get_current();
+    var web = ctx.get_web();
+    // fragile, will not handle things living under "/lists"
+    var list = web.get_lists().getByTitle(lib);
+    var fileCreateInfo = new SP.FileCreationInformation();
+    fileCreateInfo.set_url(siteCollRelativeUrl + "/Forms/client_LocationBasedDefaults.html");
+    fileCreateInfo.set_content(new SP.Base64EncodedByteArray());
+    fileCreateInfo.set_overwrite(true);
+    var fileContent = result;
+
+    for (var i = 0; i < fileContent.length; i++) {
+        fileCreateInfo.get_content().append(fileContent.charCodeAt(i));
+    }
+
+    var existingFile = list.get_rootFolder().get_files().add(fileCreateInfo);
+    ctx.executeQueryAsync(function (sender, args) {
+        console.log("works!");
+        defer.resolve();
+    },
+       function (sender, args) {
+           console.log("fail: " + args.get_message());
+           defer.reject();
+       });
+    return defer.promise();
+
+};
+
 GT.Project.Setup.copyFiles = function (properties) {
     var deferred = $.Deferred();
 
