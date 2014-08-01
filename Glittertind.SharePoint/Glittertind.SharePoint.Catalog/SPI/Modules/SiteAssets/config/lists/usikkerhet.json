@@ -1,10 +1,44 @@
 ﻿{
     "Name": "Usikkerhet",
-    "OnQuickLaunch": "true",
-    "VersioningEnabled":  "true",
+    "OnQuickLaunch": true,
+    "VersioningEnabled":  true,
     "Description": "",
-    "DefaultView": {
-        "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
-        "RowLimit": "100"
-    }
+    "Views": [
+	    {
+	    	"Name": "Alle elementer",
+            "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
+	        "RowLimit": 0,
+	        "Query": ""
+	    },
+	    {
+	    	"Name": "Konsept-fasen",
+            "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
+	        "RowLimit": 30,
+	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Konsept</Value></Eq></Where>"
+	    },
+	    {
+	    	"Name": "Planlegge-fasen",
+            "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
+	        "RowLimit": 30,
+	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Planlegge</Value></Eq></Where>"
+	    },
+	    {
+	    	"Name": "Gjennomføre-fasen",
+            "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
+	        "RowLimit": 30,
+	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Gjennomføre</Value></Eq></Where>"
+	    },
+	    {
+	    	"Name": "Avslutte-fasen",
+            "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
+	        "RowLimit": 30,
+	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Avslutte</Value></Eq></Where>"
+	    },
+	    {
+	    	"Name": "Realisere-fasen",
+            "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
+	        "RowLimit": 30,
+	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Realisere</Value></Eq></Where>"
+	    }
+    ]
 }

@@ -3,8 +3,12 @@
     "OnQuickLaunch": "false",
     "VersioningEnabled":  "true",
     "Description": "",
-    "DefaultView": {
-        "ViewFields": ["Title", "GtProductPhase", "GtProductInteressent", "GtProductQualityResponsible", "GtProductAcceptanceMethod", "GtProductAcceptanceResponsible", "GtProductAcceptanceDate"],
-        "RowLimit": "100"
-    }
+    "Views": [
+	    {
+	        "Name": "Alle elementer",
+	        "ViewFields": ["Title", "GtProductPhase", "GtProductInteressent", "GtProductQualityResponsible", "GtProductAcceptanceMethod", "GtProductAcceptanceResponsible", "GtProductAcceptanceDate"],
+	        "RowLimit": 0,
+	        "Query": ""
+	    }
+    ]
 }

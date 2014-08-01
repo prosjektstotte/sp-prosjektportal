@@ -3,8 +3,12 @@
     "OnQuickLaunch": "true",
     "VersioningEnabled":  "true",
     "Description": "",
-    "DefaultView": {
-        "ViewFields": ["Title", "GtStakeholderGroup", "GtStakeholderContext", "GtStakeholderStrategy", "GtStakeholder", "GtStakeholderInterest", "GtStakeholderInfluence", "GtStakeholderInfluencePossibilty", "GtStakeholderActions"],
-        "RowLimit": "100"
-    }
+    "Views": [
+	    {
+	    	"Name": "Alle elementer",
+	        "ViewFields": ["Title", "GtStakeholderGroup", "GtStakeholderContext", "GtStakeholderStrategy", "GtStakeholder", "GtStakeholderInterest", "GtStakeholderInfluence", "GtStakeholderInfluencePossibilty", "GtStakeholderActions"],
+	        "RowLimit": 0,
+	        "Query": ""
+	    }
+    ]
 }

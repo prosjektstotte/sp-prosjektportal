@@ -3,8 +3,12 @@
     "OnQuickLaunch": "true",
     "VersioningEnabled":  "true",
     "Description": "",
-    "DefaultView": {
-        "ViewFields": [],
-        "RowLimit": ""
-    }
+    "Views": [
+	    {
+	        "Name": "Kalender",
+	        "ViewFields": [],
+	        "RowLimit": 0,
+	        "Query": ""
+	    }
+    ]
 }

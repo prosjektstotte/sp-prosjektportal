@@ -1,10 +1,44 @@
 ﻿{
     "Name": "Oppgaver",
-    "OnQuickLaunch": "true",
-    "VersioningEnabled":  "true",
+    "OnQuickLaunch": true,
+    "VersioningEnabled":  true,
     "Description": "",
-    "DefaultView": {
-        "ViewFields": [],
-        "RowLimit": ""
-    }
+    "Views": [
+	    {
+	    	"Name": "Alle oppgaver",
+	        "ViewFields": [],
+	        "RowLimit": 0,
+	        "Query": ""
+	    },
+	    {
+	    	"Name": "Konsept-fasen",
+	        "ViewFields": ["Checkmark", "LinkTitle", "DueDate", "AssignedTo"],
+	        "RowLimit": 30,
+	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Konsept</Value></Eq></Where>"
+	    },
+	    {
+	    	"Name": "Planlegge-fasen",
+	        "ViewFields": ["Checkmark", "LinkTitle", "DueDate", "AssignedTo"],
+	        "RowLimit": 30,
+	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Planlegge</Value></Eq></Where>"
+	    },
+	    {
+	    	"Name": "Gjennomføre-fasen",
+	        "ViewFields": ["Checkmark", "LinkTitle", "DueDate", "AssignedTo"],
+	        "RowLimit": 30,
+	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Gjennomføre</Value></Eq></Where>"
+	    },
+	    {
+	    	"Name": "Avslutte-fasen",
+	        "ViewFields": ["Checkmark", "LinkTitle", "DueDate", "AssignedTo"],
+	        "RowLimit": 30,
+	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Avslutte</Value></Eq></Where>"
+	    },
+	    {
+	    	"Name": "Realisere-fasen",
+	        "ViewFields": ["Checkmark", "LinkTitle", "DueDate", "AssignedTo"],
+	        "RowLimit": 30,
+	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Realisere</Value></Eq></Where>"
+	    }
+    ]
 }
