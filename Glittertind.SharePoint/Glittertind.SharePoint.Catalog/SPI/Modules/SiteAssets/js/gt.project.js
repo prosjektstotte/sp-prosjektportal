@@ -5,7 +5,7 @@ GT.Project.ChangePhase = function (phaseName) {
     GT.Project.ChangeQueryOfListViewsOnFrontPage(phaseName);
 };
 
-GT.Project.ChangeQueryOfListViewsOnFrontPage = function(phaseName) {
+GT.Project.ChangeQueryOfListViewsOnFrontPage = function (phaseName) {
     var deferred = $.Deferred();
 
     var listsToUpdate = ["Dokumenter", "Oppgaver", "Usikkerhet"];
@@ -19,21 +19,21 @@ GT.Project.ChangeQueryOfListViewsOnFrontPage = function(phaseName) {
 
         clientContext.load(viewCollection);
         clientContext.executeQueryAsync(function () {
-            var view = GT.Project.Setup.GetViewFromCollectionByUrl(viewCollection, viewUrl);
+            var view = GT.Project.GetViewFromCollectionByUrl(viewCollection, viewUrl);
             if (view != null) {
                 view.set_query("<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>" + phaseName + "</Value></Eq></Where>");
                 view.update();
 
-                clientContext.executeQueryAsync(function() {
+                clientContext.executeQueryAsync(function () {
                     deferred.resolve();
                     console.log("Modified list view(s) of " + listName);
-                }, function(sender, args) {
+                }, function (sender, args) {
                     deferred.reject();
                     console.error('Request failed. ' + args.get_message());
                 });
             } else {
                 deferred.reject();
-                console.error('Could not find any view with url ' + viewUrl +' for list ' + listName);
+                console.error('Could not find any view with url ' + viewUrl + ' for list ' + listName);
             }
         }, function (sender, args) {
             deferred.reject();
@@ -43,7 +43,7 @@ GT.Project.ChangeQueryOfListViewsOnFrontPage = function(phaseName) {
     return deferred.promise();
 };
 
-GT.Project.Setup.GetViewFromCollectionByUrl = function (viewCollection, url) {
+GT.Project.GetViewFromCollectionByUrl = function (viewCollection, url) {
     var serverRelativeUrl = _spPageContextInfo.webServerRelativeUrl + "/" + url;
     var viewCollectionEnumerator = viewCollection.getEnumerator();
     while (viewCollectionEnumerator.moveNext()) {
@@ -54,7 +54,7 @@ GT.Project.Setup.GetViewFromCollectionByUrl = function (viewCollection, url) {
     }
     return null;
 };
-GT.Project.ChangeMetadataDefaultPhaseValueOfLists = function(phaseName) {
+GT.Project.ChangeMetadataDefaultPhaseValueOfLists = function (phaseName) {
     alert('ole k has not implemented this');
 };
 

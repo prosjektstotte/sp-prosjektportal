@@ -1,9 +1,8 @@
 ﻿<script type="text/javascript" src="../../../SiteAssets/gt/js/gt.generics.js"></script>
+<script type="text/javascript" src="../../../SiteAssets/gt/js/gt.project.js"></script>
 <script type="text/javascript" src="../../../SiteAssets/gt/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" language="javascript">
-    this.previousPhase = "";
     jQuery(document).ready(function () {
-        this.previousPhase = jQuery('#onetIDListForm div[id^="GtProjectPhase"] .ms-taxonomy-control-holder .ms-taxonomy-fieldeditor span.valid-text').text();
         var editMode = getParameterByName('EditMode');
         if (editMode != '' && editMode != undefined) {
             if (editMode == "Project") {
@@ -23,17 +22,4 @@
             }
         }
     });
-    function PreSaveAction() {
-        var newPhase = jQuery('#onetIDListForm div[id^="GtProjectPhase"] .ms-taxonomy-control-holder .ms-taxonomy-fieldeditor span.valid-text').text();
-        var oldPhase = this.previousPhase;
-
-        if (newPhase != oldPhase) {
-            $.when(GT.Project.ChangePhase(newPhase)).then(
-                function() {
-                    return true;
-                });
-        } else {
-            return true; // if you want to execute save functionality of the form.
-        }
-    }
 </script>
