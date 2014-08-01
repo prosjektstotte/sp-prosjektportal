@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="SitePages" Url="SitePages" List="119">
+    <File Path="SitePages\Forside.aspx" Url="Forside.aspx" Type="GhostableInLibrary" >
+      <Property Name="ContentType" Value="Prosjektforside" />
+      <Property Name="ContentTypeId" Value="0x010109010058561f86d956412b9dd7957bbcd67aae01" />
+      <AllUsersWebPart ID="Sitefeed" WebPartZoneID="LeftColumn" WebPartOrder="0" >
+        <![CDATA[
+          <?xml version="1.0" encoding="utf-8"?>
+          <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+            <Title>Områdefeed</Title>
+            <FrameType>None</FrameType>
+            <Description>Områdefeed inneholder mikrobloggingsdiskusjoner på et gruppeområde.</Description>
+            <IsIncluded>true</IsIncluded>
+            <ZoneID>LeftColumn</ZoneID>
+            <PartOrder>0</PartOrder>
+            <FrameState>Normal</FrameState>
+            <Height />
+            <Width />
+            <AllowRemove>true</AllowRemove>
+            <AllowZoneChange>true</AllowZoneChange>
+            <AllowMinimize>true</AllowMinimize>
+            <AllowConnect>true</AllowConnect>
+            <AllowEdit>true</AllowEdit>
+            <AllowHide>true</AllowHide>
+            <IsVisible>true</IsVisible>
+            <DetailLink />
+            <HelpLink />
+            <HelpMode>Modeless</HelpMode>
+            <Dir>Default</Dir>
+            <PartImageSmall />
+            <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
+            <PartImageLarge>/_layouts/15/images/wp_pers.gif</PartImageLarge>
+            <IsIncludedFilter />
+            <Assembly>Microsoft.SharePoint.Portal, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+            <TypeName>Microsoft.SharePoint.Portal.WebControls.SiteFeedWebPart</TypeName>
+          </WebPart>
+        ]]>
+      </AllUsersWebPart>
+    </File>
+    <File Path="SitePages\VisMotereferat.aspx" Url="VisMotereferat.aspx" Type="GhostableInLibrary" >
+      <Property Name="ContentType" Value="WebPartPage" />
+      <Property Name="ContentTypeId" Value="0x01010901" />
+      <AllUsersWebPart WebPartOrder="1" WebPartZoneID="Left">
+        <![CDATA[
+          <webParts>
+            <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+              <metaData>
+                <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+                <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+              </metaData>
+              <data>
+                <properties>
+                  <property name="ListUrl" type="string">Lists/Oppgaver</property>
+                  <property name="ExportMode" type="exportmode">All</property>
+                  <property name="AllowZoneChange" type="bool">True</property>
+                  <property name="ExportMode" type="exportmode">All</property>
+                  <property name="HelpUrl" type="string" />
+                  <property name="Hidden" type="bool">False</property>
+                  <property name="TitleUrl" type="string" />
+                  <property name="Description" type="string"></property>
+                  <property name="AllowHide" type="bool">True</property>
+                  <property name="AllowMinimize" type="bool">True</property>
+                  <property name="ChromeType" type="chrometype">Default</property>
+                  <property name="AllowConnect" type="bool">True</property>
+                  <property name="Width" type="unit" />
+                  <property name="Height" type="unit" />
+                  <property name="HelpMode" type="helpmode">Navigate</property>
+                  <property name="CatalogIconImageUrl" type="string" />
+                  <property name="AllowEdit" type="bool">True</property>
+                  <property name="TitleIconImageUrl" type="string" />
+                  <property name="Direction" type="direction">NotSet</property>
+                  <property name="AllowClose" type="bool">True</property>
+                  <property name="ChromeState" type="chromestate">Normal</property>
+                  <property name="ShowTimelineIfAvailable" type="bool">False</property>
+                </properties>
+              </data>
+            </webPart>
+          </webParts>
+        ]]>
+      </AllUsersWebPart>
+        <AllUsersWebPart WebPartOrder="2" WebPartZoneID="Left">
+        <![CDATA[
+          <webParts>
+            <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+              <metaData>
+                <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+                <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+              </metaData>
+              <data>
+                <properties>
+                  <property name="ListUrl" type="string">Lists/Informasjon</property>
+                  <property name="ExportMode" type="exportmode">All</property>
+                  <property name="AllowZoneChange" type="bool">True</property>
+                  <property name="ExportMode" type="exportmode">All</property>
+                  <property name="HelpUrl" type="string" />
+                  <property name="Hidden" type="bool">False</property>
+                  <property name="TitleUrl" type="string" />
+                  <property name="Description" type="string"></property>
+                  <property name="AllowHide" type="bool">True</property>
+                  <property name="AllowMinimize" type="bool">True</property>
+                  <property name="ChromeType" type="chrometype">Default</property>
+                  <property name="AllowConnect" type="bool">True</property>
+                  <property name="Width" type="unit" />
+                  <property name="Height" type="unit" />
+                  <property name="HelpMode" type="helpmode">Navigate</property>
+                  <property name="CatalogIconImageUrl" type="string" />
+                  <property name="AllowEdit" type="bool">True</property>
+                  <property name="TitleIconImageUrl" type="string" />
+                  <property name="Direction" type="direction">NotSet</property>
+                  <property name="AllowClose" type="bool">True</property>
+                  <property name="ChromeState" type="chromestate">Normal</property>
+                </properties>
+              </data>
+            </webPart>
+          </webParts>
+        ]]>
+      </AllUsersWebPart>
+    </File>
+  </Module>
+</Elements>
