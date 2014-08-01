@@ -37,6 +37,9 @@
           </WebPart>
         ]]>
       </AllUsersWebPart>
+      <View List="Lists/Oppgaver" BaseViewID="0" WebPartZoneID="LeftColumn" WebPartOrder="1" />
+      <View List="Dokumenter" BaseViewID="0" WebPartZoneID="LeftColumn" WebPartOrder="2" />
+      <View List="Lists/Usikkerhet" BaseViewID="0" WebPartZoneID="LeftColumn" WebPartOrder="3" />
     </File>
     <File Path="SitePages\VisMotereferat.aspx" Url="VisMotereferat.aspx" Type="GhostableInLibrary" >
       <Property Name="ContentType" Value="WebPartPage" />

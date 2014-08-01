@@ -68,7 +68,8 @@ GT.Provisioning.OnCreateWebSuccess = function (sender, args) {
 
 GT.Provisioning.OnCreateWebFailure = function (sender, args) {
     closeWaitMessage();
-    console.log('En feil oppstod: ' + args.get_message() + '\n' + args.get_stackTrace());
+    console.log('En feil oppstod: ' + args.get_message());
+    console.log("raw response data: \n" + args.get_webRequestExecutor().get_responseData());
     //1. Stop long running operation
     //2. Show error message
 };
