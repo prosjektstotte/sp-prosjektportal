@@ -1,5 +1,6 @@
 ﻿var GT = GT || {};
 GT.Project = GT.Project || {};
+GT.Project.CurrentItemPhase = null;
 
 GT.Project.ChangePhase = function (phaseName) {
     GT.Project.ChangeQueryOfListViewsOnFrontPage(phaseName);
@@ -115,7 +116,6 @@ GT.Project.GetPhaseTermFromCurrentItem = function () {
     //explicitly requesting to load the field Name for the page item
     context.load(pageItem, pageFieldNameVar);
 
-    var deferred = jQuery.Deferred();
     context.executeQueryAsync(Function.createDelegate(this, function () {
         var currentPhaseItem = pageItem.get_item(pageFieldNameVar);
         if (currentPhaseItem != '' && currentPhaseItem != undefined) {
