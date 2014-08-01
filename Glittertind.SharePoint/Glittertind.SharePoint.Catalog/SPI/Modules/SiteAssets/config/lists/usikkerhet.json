@@ -9,6 +9,13 @@
             "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
 	        "RowLimit": 0,
 	        "Query": ""
+	    },	    
+        {
+	    	"Name": "",
+	    	"Url": "SitePages/Forside.aspx",
+            "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
+	        "RowLimit": 10,
+	        "Query": "<OrderBy><FieldRef Name='Title' /></OrderBy>"
 	    },
 	    {
 	    	"Name": "Konsept-fasen",

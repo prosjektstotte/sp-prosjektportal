@@ -9,6 +9,13 @@
 	        "ViewFields": ["Title", "GtProjectInfoDescription"],
 	        "RowLimit": 0,
 	        "Query": ""
+	    },
+        {
+	    	"Name": "",
+            "Url": "SitePages/VisMotereferat.aspx",
+	        "ViewFields": ["Title", "GtProjectInfoDescription"],
+	        "RowLimit": 30,
+	        "Query": ""
 	    }
     ]
 }

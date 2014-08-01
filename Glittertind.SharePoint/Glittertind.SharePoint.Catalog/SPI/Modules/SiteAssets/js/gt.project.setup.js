@@ -425,10 +425,11 @@ GT.Project.Setup.UpdateListViews = function (data) {
 };
 
 GT.Project.Setup.GetViewFromCollectionByUrl = function (viewCollection, url) {
+    var serverRelativeUrl = _spPageContextInfo.webServerRelativeUrl + "/" + url;
     var viewCollectionEnumerator = viewCollection.getEnumerator();
     while (viewCollectionEnumerator.moveNext()) {
         var view = viewCollectionEnumerator.get_current();
-        if (view.get_url().toString().toLowerCase() === name.toLowerCase()) {
+        if (view.get_serverRelativeUrl().toString().toLowerCase() === serverRelativeUrl.toLowerCase()) {
             return view;
         }
     }

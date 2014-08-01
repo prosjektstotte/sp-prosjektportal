@@ -25,7 +25,7 @@ var title = $getItemValue(ctx, "Title");
 var projectManager = $getItemValue(ctx, "ProjectManager");
 var projectOwner = $getItemValue(ctx, "ProjectOwner");
 var projectPhase = $getItemValue(ctx, "ProjectPhase");
-var projectPhaseDisplayMarkup = GT.Common.GetPhaseLogoMarkup(projectPhase.toString());
+var projectPhaseDisplayMarkup = GT.Project.GetPhaseLogoMarkup(projectPhase.toString());
 ms_outHtml.push(''
 ,'             <div class="gt-projectItem">'
 ,'                ',projectPhaseDisplayMarkup,''
