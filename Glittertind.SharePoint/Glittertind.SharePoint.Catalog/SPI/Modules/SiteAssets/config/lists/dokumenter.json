@@ -6,7 +6,7 @@
     "Views": [
 	    {
 	    	"Name": "Alle dokumenter",
-	        "ViewFields": [],
+	        "ViewFields": ["DocIcon", "LinkFilename", "GtProjectPhase", "Modified", "Editor"],
 	        "RowLimit": 0,
 	        "Query": ""
 	    },

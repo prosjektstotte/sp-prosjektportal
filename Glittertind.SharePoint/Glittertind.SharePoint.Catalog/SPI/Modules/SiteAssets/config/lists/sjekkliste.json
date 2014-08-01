@@ -7,8 +7,8 @@
 	    {
 	        "Name": "Alle elementer",
 	        "ViewFields": ["Title", "GtProjectPhase", "GtChecklistStatus", "GtComment"],
-	        "RowLimit": 0,
-	        "Query": ""
+	        "RowLimit": 50,
+	        "Query": "<OrderBy><FieldRef Name='GtProjectPhase' /></OrderBy>"
 	    }
     ]
 }
