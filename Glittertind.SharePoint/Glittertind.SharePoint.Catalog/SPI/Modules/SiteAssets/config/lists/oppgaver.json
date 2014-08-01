@@ -10,6 +10,13 @@
 	        "RowLimit": 0,
 	        "Query": ""
 	    },
+        {
+	    	"Name": "",
+            "Url": "SitePages/VisMotereferat.aspx",
+	        "ViewFields": ["LinkTitle", "StartDate", "DueDate", "AssignedTo"],
+	        "RowLimit": 30,
+	        "Query": ""
+	    },
 	    {
 	    	"Name": "Konsept-fasen",
 	        "ViewFields": ["Checkmark", "LinkTitle", "DueDate", "AssignedTo"],

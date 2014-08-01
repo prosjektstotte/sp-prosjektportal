@@ -307,6 +307,7 @@ GT.Project.Setup.CreateWebContentTypes = function () {
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Informasjon", ["Infoelement"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Usikkerhet", ["Risiko", "Mulighet"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Oppgaver", ["Prosjektoppgave"]),
+                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Sjekkliste", ["Sjekkpunkt"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"])
             )
             .done(function () {
@@ -377,10 +378,15 @@ GT.Project.Setup.UpdateListViews = function (data) {
             var viewName = listViewsToConfigure[i].Name;
             var rowLimit = listViewsToConfigure[i].RowLimit;
             var query = listViewsToConfigure[i].Query;
-            var outOfTheBoxView = listViewsToConfigure[i].OutOfTheBoxView;
             var viewFieldsData = listViewsToConfigure[i].ViewFields;
+            var viewUrl = listViewsToConfigure[i].Url;
 
-            var view = GT.Project.Setup.GetViewFromCollectionByName(viewCollection, viewName);
+            var view = null;
+            if (viewName != "") {
+                view = GT.Project.Setup.GetViewFromCollectionByName(viewCollection, viewName);
+            } else if (viewUrl != undefined && viewUrl != "") {
+                view = GT.Project.Setup.GetViewFromCollectionByUrl(viewCollection, viewUrl);
+            }
             if (view != null) {
                 if (viewFieldsData != undefined && viewFieldsData.length > 0) {
                     var columns = view.get_viewFields();
@@ -418,6 +424,16 @@ GT.Project.Setup.UpdateListViews = function (data) {
     return deferred.promise();
 };
 
+GT.Project.Setup.GetViewFromCollectionByUrl = function (viewCollection, url) {
+    var viewCollectionEnumerator = viewCollection.getEnumerator();
+    while (viewCollectionEnumerator.moveNext()) {
+        var view = viewCollectionEnumerator.get_current();
+        if (view.get_url().toString().toLowerCase() === name.toLowerCase()) {
+            return view;
+        }
+    }
+    return null;
+};
 GT.Project.Setup.GetViewFromCollectionByName = function (viewCollection, name) {
     var viewCollectionEnumerator = viewCollection.getEnumerator();
     while (viewCollectionEnumerator.moveNext()) {
