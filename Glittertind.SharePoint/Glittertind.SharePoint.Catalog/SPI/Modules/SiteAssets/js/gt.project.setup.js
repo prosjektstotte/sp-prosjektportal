@@ -446,6 +446,24 @@ GT.Project.Setup.GetViewFromCollectionByName = function (viewCollection, name) {
     return null;
 };
 
+GT.Project.Setup.HandleOnTheFlyConfiguration = function (properties) {
+    var deferred = $.Deferred();
+    $.when(GT.Project.Setup.resolveProperties(properties))
+    .then(function (properties) {
+        $.when(GT.Project.GetPhaseFromCurrentItem())
+        .then(function (currentPhase) {
+            // Persist change of phase
+            if (properties.persistedPhase.value != currentPhase) {
+                GT.Project.ChangePhase();
+                properties.persistedPhase = currentPhase;
+            }
+            deferred.resolve();
+
+        });
+    });
+    return deferred.promise();
+};
+
 GT.Project.Setup.execute = function (properties, steps) {
     // 1. should i run configure? No - > stop
     // 2. All right i will run configure!
@@ -454,11 +472,11 @@ GT.Project.Setup.execute = function (properties, steps) {
     console.log("execute: firing");
     var self = this;
     self.steps = steps;
+    var deferred = $.Deferred();
 
     $.when(GT.Project.Setup.resolveProperties(properties))
     .then(function (properties) {
         console.log("execute: using these settings :" + JSON.stringify(properties));
-        var deferred = $.Deferred();
         if (properties.configured.value === "0") {
             console.log("execute: not configured, showing long running ops message");
             GT.Project.Setup.showWaitMessage();
@@ -484,40 +502,38 @@ GT.Project.Setup.execute = function (properties, steps) {
                 GT.Project.Setup.closeWaitMessage();
                 console.log("execute: persisted properties and wrapping up");
                 deferred.resolve();
-            })
-            .then(function () {
-                location.reload();
             });
         }
-
-        return deferred.promise();
     });
+    return deferred.promise();
 };
 
 jQuery(document).ready(function () {
-
+    var properties = {
+        currentStep: {
+            'key': 'glittertind_currentsetupstep',
+            'value': '0'
+        },
+        configured: {
+            'key': 'glittertind_configured',
+            'value': '0'
+        },
+        version: {
+            'key': 'glittertind_version',
+            'value': '1.0.0.0'
+        },
+        webTemplate: {
+            'key': 'glittertind_webtemplateid',
+            'value': 'ProjectWebTemplate'
+        },
+        persistedPhase: {
+            'key': 'glittertind_persistedPhase',
+            'value': 'NA'
+        }
+    };
     $.when(GT.Project.Setup.PatchRequestExecutor())
     .done(function () {
-        var latestVersion = '1.0.0.0';
 
-        var properties = {
-            currentStep: {
-                'key': 'glittertind_currentsetupstep',
-                'value': '0'
-            },
-            configured: {
-                'key': 'glittertind_configured',
-                'value': '0'
-            },
-            version: {
-                'key': 'glittertind_version',
-                'value': latestVersion
-            },
-            webTemplate: {
-                'key': 'glittertind_webtemplateid',
-                'value': 'ProjectWebTemplate'
-            }
-        };
 
         var steps = {
             '1.0.0.0': {
@@ -530,8 +546,8 @@ jQuery(document).ready(function () {
             }
         };
 
-        ExecuteOrDelayUntilScriptLoaded(function () { GT.Project.Setup.execute(properties, steps); }, "sp.js");
-    });
+        ExecuteOrDelayUntilScriptLoaded(function () { GT.Project.Setup.execute(properties, steps).then(GT.Project.Setup.HandleOnTheFlyConfiguration(properties)); }, "sp.js");
+    })
 });
 
 
