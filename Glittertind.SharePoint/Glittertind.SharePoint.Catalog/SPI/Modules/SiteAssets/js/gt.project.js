@@ -97,9 +97,51 @@ GT.Project.SetMetaDataDefaultsForLib = function (lib, field, term) {
            console.log("fail: " + args.get_message());
            deferred.reject();
        });
+    GT.Project.EnsureMetaDataDefaultsEventReceiver(lib);
     return deferred.promise();
 
 };
+
+
+GT.Project.EnsureMetaDataDefaultsEventReceiver = function (lib) {
+
+    var ctx = new SP.ClientContext.get_current();
+    var web = ctx.get_web();
+    var eventReceivers = web.get_lists().getByTitle(lib).get_eventReceivers();
+    ctx.load(eventReceivers);
+
+    ctx.executeQueryAsync(function (sender, args) {
+        var eventReceiversEnumerator = eventReceivers.getEnumerator();
+        console.log(eventReceiversEnumerator);
+        var eventReceiverExists = false;
+        while (eventReceiversEnumerator.moveNext()) {
+            var eventReceiver = eventReceiversEnumerator.get_current();
+            var name = eventReceiver.get_receiverName();
+            console.log(name);
+            if (name === 'LocationBasedMetadataDefaultsReceiver ItemAdded') {
+                console.log('Event Receiver exists, noop');
+                eventReceiverExists = true;
+            }
+        }
+        if (!eventReceiverExists) {
+            var eventRecCreationInfo = new SP.EventReceiverDefinitionCreationInformation();
+            eventRecCreationInfo.set_receiverName('LocationBasedMetadataDefaultsReceiver ItemAdded');
+            eventRecCreationInfo.set_synchronization(1);
+            eventRecCreationInfo.set_sequenceNumber(1000);
+            eventRecCreationInfo.set_receiverAssembly('Microsoft.Office.DocumentManagement, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c');
+            eventRecCreationInfo.set_receiverClass('Microsoft.Office.DocumentManagement.LocationBasedMetadataDefaultsReceiver');
+            eventRecCreationInfo.set_eventType(SP.EventReceiverType.itemAdded);
+
+            eventReceivers.add(eventRecCreationInfo);
+            console.log('Added eventreceiver');
+
+        }
+    },
+       function (sender, args) {
+           console.log("fail: " + args.get_message());
+       });
+}
+
 
 GT.Project.PopulateProjectPhasePart = function () {
     SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {

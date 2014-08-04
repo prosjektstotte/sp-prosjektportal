@@ -105,6 +105,7 @@
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_List.js" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project.html" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project.js" />
+    <None Include="SPI\Modules\SiteAssets\config\data\oppgaver.data.json" />
     <None Include="SPI\Modules\SiteAssets\config\lists\dokumenter.json" />
     <None Include="SPI\Modules\SiteAssets\config\lists\oppgaver.json" />
     <None Include="SPI\Modules\SiteAssets\config\lists\informasjon.json" />
