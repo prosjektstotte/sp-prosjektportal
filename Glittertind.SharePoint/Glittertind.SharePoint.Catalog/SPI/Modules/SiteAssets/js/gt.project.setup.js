@@ -134,51 +134,6 @@ GT.Project.Setup.closeWaitMessage = function () {
 };
 // [end] utility methods
 
-GT.Project.Setup.SetPhaseDefaults = function (lib) {
-    var currentPhasePromise = GT.Project.GetPhaseTermFromCurrentItem();
-    currentPhasePromise.done(function (term) {
-        GT.Project.Setup.MetaDataDefaults("Dokumenter", "GtProjectPhase", term);
-    });
-};
-
-GT.Project.Setup.MetaDataDefaults = function (lib, field, term) {
-    // GtProjectPhase
-    var defer = $.Deferred();
-    var termString = term.WssId + ';#' + term.Label + '|' + term.TermGuid;
-    var siteCollRelativeUrl = _spPageContextInfo.webServerRelativeUrl + '/' + lib;
-    var template = '<MetadataDefaults><a href="{siteCollRelativeUrl}"><DefaultValue FieldName="{field}">{term}</DefaultValue></a></MetadataDefaults>';
-    var result = template.split("{siteCollRelativeUrl}").join(siteCollRelativeUrl);
-    result = result.split("{field}").join(field);
-    result = result.split("{term}").join(termString);
-    console.log(result);
-
-    var ctx = new SP.ClientContext.get_current();
-    var web = ctx.get_web();
-    // fragile, will not handle things living under "/lists"
-    var list = web.get_lists().getByTitle(lib);
-    var fileCreateInfo = new SP.FileCreationInformation();
-    fileCreateInfo.set_url(siteCollRelativeUrl + "/Forms/client_LocationBasedDefaults.html");
-    fileCreateInfo.set_content(new SP.Base64EncodedByteArray());
-    fileCreateInfo.set_overwrite(true);
-    var fileContent = result;
-
-    for (var i = 0; i < fileContent.length; i++) {
-        fileCreateInfo.get_content().append(fileContent.charCodeAt(i));
-    }
-
-    var existingFile = list.get_rootFolder().get_files().add(fileCreateInfo);
-    ctx.executeQueryAsync(function (sender, args) {
-        console.log("works!");
-        defer.resolve();
-    },
-       function (sender, args) {
-           console.log("fail: " + args.get_message());
-           defer.reject();
-       });
-    return defer.promise();
-
-};
-
 GT.Project.Setup.copyFiles = function (properties) {
     var deferred = $.Deferred();
 
@@ -491,35 +446,41 @@ GT.Project.Setup.GetViewFromCollectionByName = function (viewCollection, name) {
     return null;
 };
 
-GT.Project.Setup.HandleOnTheFlyConfiguration = function (properties) {
+GT.Project.Setup.HandleOnTheFlyConfiguration = function (defaultProperties) {
     var deferred = $.Deferred();
-    $.when(GT.Project.Setup.resolveProperties(properties))
+    $.when(GT.Project.Setup.resolveProperties(defaultProperties))
     .then(function (properties) {
-        $.when(GT.Project.GetPhaseFromCurrentItem())
+        $.when(GT.Project.GetPhaseNameFromCurrentItem())
         .then(function (currentPhase) {
             // Persist change of phase
-            if (properties.persistedPhase.value != currentPhase) {
-                GT.Project.ChangePhase();
-                properties.persistedPhase = currentPhase;
+            if (currentPhase != undefined && properties.persistedPhase.value != currentPhase) {
+                $.when(
+                    GT.Project.ChangeProjectPhase()
+                ).then(function () {
+                    properties.persistedPhase.value = currentPhase;
+                    GT.Project.Setup.persistsProperties(properties)
+                    .then(function () {
+                        deferred.resolve(true);
+                    });
+                });
+            } else {
+                deferred.resolve(false);
             }
-            deferred.resolve();
-
         });
     });
     return deferred.promise();
 };
 
-GT.Project.Setup.execute = function (properties, steps) {
+GT.Project.Setup.execute = function (defaultProperties, steps) {
     // 1. should i run configure? No - > stop
     // 2. All right i will run configure!
     // 3. spin over all the steps configured 
     // 4. set configured
-    console.log("execute: firing");
     var self = this;
     self.steps = steps;
     var deferred = $.Deferred();
 
-    $.when(GT.Project.Setup.resolveProperties(properties))
+    $.when(GT.Project.Setup.resolveProperties(defaultProperties))
     .then(function (properties) {
         console.log("execute: using these settings :" + JSON.stringify(properties));
         if (properties.configured.value === "0") {
@@ -546,8 +507,10 @@ GT.Project.Setup.execute = function (properties, steps) {
                 GT.Project.Setup.persistsProperties(properties);
                 GT.Project.Setup.closeWaitMessage();
                 console.log("execute: persisted properties and wrapping up");
-                deferred.resolve();
+                deferred.resolve(true);
             });
+        } else {
+            deferred.resolve(false);
         }
     });
     return deferred.promise();
@@ -577,22 +540,31 @@ jQuery(document).ready(function () {
         }
     };
     $.when(GT.Project.Setup.PatchRequestExecutor())
-    .done(function () {
-
-
-        var steps = {
-            '1.0.0.0': {
-                0: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
-                1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {}),
-                2: new GT.Project.Setup.Model.step("Oppdater lister basert på konfigurasjonsfiler", GT.Project.Setup.UpdateListsFromConfig, {}),
-                3: new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", GT.Project.Setup.copyDefaultItems, {}),
-                4: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
-
-            }
-        };
-
-        ExecuteOrDelayUntilScriptLoaded(function () { GT.Project.Setup.execute(properties, steps).then(GT.Project.Setup.HandleOnTheFlyConfiguration(properties)); }, "sp.js");
-    })
+        .done(function () {
+            var steps = {
+                '1.0.0.0': {
+                    0: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
+                    1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {}),
+                    2: new GT.Project.Setup.Model.step("Oppdater lister basert på konfigurasjonsfiler", GT.Project.Setup.UpdateListsFromConfig, {}),
+                    3: new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", GT.Project.Setup.copyDefaultItems, {}),
+                    4: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
+                }
+            };
+            ExecuteOrDelayUntilScriptLoaded(function () {
+                GT.Project.Setup.execute(properties, steps)
+                .done(function (shouldReload) {
+                    if (shouldReload) {
+                        location.reload();
+                    }
+                    GT.Project.Setup.HandleOnTheFlyConfiguration(properties)
+                    .done(function (shouldReload) {
+                        if (shouldReload) {
+                            location.reload();
+                        }
+                    });
+                });
+            }, "sp.js");
+        });
 });
 
 
