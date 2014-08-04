@@ -22,5 +22,6 @@
     <ProjectItemFile Source="config\lists\motekalender.json" Target="SiteAssets\config\lists\" Type="ElementFile" />
     <ProjectItemFile Source="config\lists\oppgaver.json" Target="SiteAssets\config\lists\" Type="ElementFile" />
     <ProjectItemFile Source="config\lists\informasjon.json" Target="SiteAssets\config\lists\" Type="ElementFile" />
+    <ProjectItemFile Source="config\data\oppgaver.data.json" Target="SiteAssets\config\data\" Type="ElementFile" />
   </Files>
 </ProjectItem>
