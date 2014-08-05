@@ -52,7 +52,7 @@ namespace Glittertind.Sherpa.Installer
             var deployManager = new DeployManager(_urlToSite, _credentials, _isSharePointOnline);
             foreach (var file in files.Where(f => Path.GetExtension(f).ToLower() == ".wsp"))
             {
-                deployManager.UploadDesignPackage(file, "SiteAssets");
+                deployManager.UploadDesignPackageToSiteAssets(file);
                 deployManager.ActivateDesignPackage(file, "SiteAssets");
             }
         }
