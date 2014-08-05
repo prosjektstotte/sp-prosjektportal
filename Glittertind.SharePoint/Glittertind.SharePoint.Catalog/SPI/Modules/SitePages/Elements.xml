@@ -115,7 +115,7 @@
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
       <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
     </metaData>
     <data>
@@ -245,7 +245,7 @@
           <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
           <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
           <IsIncludedFilter />
-          <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
           <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
           <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
           <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">&lt;ul&gt;&lt;li&gt;Denne Webdelen inneholder tekst du selv kan definere&lt;/li&gt;&lt;li&gt;Du kan fjerne webdelen om du &#248;nsker det&lt;/li&gt;&lt;li&gt;Bilder kan brukes om man &#248;nsker dette​&lt;/li&gt;&lt;/ul&gt;</Content>
@@ -256,7 +256,7 @@
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
       <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
     </metaData>
     <data>

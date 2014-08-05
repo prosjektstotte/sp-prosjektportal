@@ -12,8 +12,15 @@
 	    },
         {
 	    	"Name": "",
+	    	"Url": "SitePages/Forside.aspx",
+	        "ViewFields": ["Checkmark", "LinkTitle", "StartDate", "DueDate", "AssignedTo"],
+	        "RowLimit": 10,
+	        "Query": "<OrderBy><FieldRef Name='Modified' /></OrderBy>"
+	    },
+        {
+	    	"Name": "",
             "Url": "SitePages/VisMotereferat.aspx",
-	        "ViewFields": ["LinkTitle", "StartDate", "DueDate", "AssignedTo"],
+	        "ViewFields": ["Checkmark", "LinkTitle", "StartDate", "DueDate", "AssignedTo"],
 	        "RowLimit": 30,
 	        "Query": ""
 	    },

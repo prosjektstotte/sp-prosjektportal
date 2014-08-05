@@ -2,7 +2,7 @@
 {
     interface IDeployManager
     {
-        void UploadDesignPackage(string localFilePath, string siteRelativeUrlToLibrary);
+        void UploadDesignPackageToSiteAssets(string localFilePath);
         void ActivateDesignPackage(string nameOfPackage, string siteRelativeUrlToLibrary);
     }
 }

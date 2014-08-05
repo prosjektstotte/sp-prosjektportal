@@ -4,8 +4,8 @@
     <File Path="SitePages\Forside.aspx" Url="Forside.aspx" Type="GhostableInLibrary" >
       <Property Name="ContentType" Value="Prosjektforside" />
       <Property Name="ContentTypeId" Value="0x010109010058561f86d956412b9dd7957bbcd67aae01" />
-      <View List="Lists/Oppgaver" BaseViewID="0" WebPartZoneID="LeftColumn" WebPartOrder="0" />
-      <View List="Dokumenter" BaseViewID="0" WebPartZoneID="LeftColumn" WebPartOrder="1" />
+      <View List="Lists/Oppgaver" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="0" />
+      <View List="Dokumenter" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="1" />
       <AllUsersWebPart ID="Sitefeed" WebPartZoneID="RightColumn" WebPartOrder="0" >
         <![CDATA[
           <?xml version="1.0" encoding="utf-8"?>
@@ -39,7 +39,7 @@
           </WebPart>
         ]]>
       </AllUsersWebPart>
-      <View List="Lists/Usikkerhet" BaseViewID="0" WebPartZoneID="RightColumn" WebPartOrder="1" />
+      <View List="Lists/Usikkerhet" BaseViewID="1" WebPartZoneID="RightColumn" WebPartOrder="1" />
     </File>
     <File Path="SitePages\VisMotereferat.aspx" Url="VisMotereferat.aspx" Type="GhostableInLibrary" >
       <Property Name="ContentType" Value="WebPartPage" />

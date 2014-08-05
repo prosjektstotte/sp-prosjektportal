@@ -10,6 +10,7 @@ namespace Glittertind.Sherpa.Installer
     {
         public static ICredentials Credentials { get; set; }
         public static Uri UrlToSite { get; set; }
+        public static bool IsSharePointOnline { get; set; }
 
         static void Main(string[] args)
         {
@@ -21,6 +22,7 @@ namespace Glittertind.Sherpa.Installer
                 Environment.Exit(1);
             }
             UrlToSite = new Uri(options.UrlToSite);
+            IsSharePointOnline = options.SharePointOnline;
             
             PrintLogo();
             Console.WriteLine("Glittertind Sherpa Initiated");
@@ -35,7 +37,7 @@ namespace Glittertind.Sherpa.Installer
             {
                 Credentials = CredentialCache.DefaultCredentials;
 
-                using (var context = new ClientContext(options.UrlToSite) { Credentials = Credentials})
+                using (new ClientContext(options.UrlToSite) { Credentials = Credentials})
                 {
                     Console.WriteLine("Authenticated with default credentials");
                 }
@@ -70,7 +72,7 @@ namespace Glittertind.Sherpa.Installer
                 Console.WriteLine("Invalid input");
                 ShowStartScreenAndExecuteCommand();
             }
-            var installationManager = new InstallationManager(UrlToSite, Credentials);
+            var installationManager = new InstallationManager(UrlToSite, Credentials, IsSharePointOnline);
             switch (inputNum)
             {
                 case 1:
