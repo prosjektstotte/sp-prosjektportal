@@ -26,6 +26,7 @@
     <sharepoint:scriptblock runat="server">
 	    var navBarHelpOverrideKey = "WSSEndUser";
 	</sharepoint:scriptblock>
+    <SharePoint:ScriptLink Name="~sitecollection/_layouts/15/sp.taxonomy.js" runat="server" Language="javascript"  OnDemand="true"></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/jquery-1.11.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.common.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>

@@ -9,9 +9,9 @@ GT.Project.ChangeProjectPhase = function () {
     currentPhasePromise.done(function (term) {
         console.log('Changing phase to ' + term.Label);
         $.when(
-            GT.Project.ChangeQueryOfListViewOnPage(term.Label, "Dokumenter", "SitePages/Forside.aspx"),
-            GT.Project.ChangeQueryOfListViewOnPage(term.Label, "Oppgaver", "SitePages/Forside.aspx"),
-            GT.Project.ChangeQueryOfListViewOnPage(term.Label, "Usikkerhet", "SitePages/Forside.aspx"),
+            GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Dokumenter", "SitePages/Forside.aspx"),
+            GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Oppgaver", "SitePages/Forside.aspx"),
+            GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Usikkerhet", "SitePages/Forside.aspx"),
             GT.Project.SetMetaDataDefaultsForLib("Dokumenter", "GtProjectPhase", term)
             ).then(function () {
                 deferred.resolve();
@@ -67,7 +67,7 @@ GT.Project.GetViewFromCollectionByUrl = function (viewCollection, url) {
 GT.Project.SetMetaDataDefaultsForLib = function (lib, field, term) {
     // GtProjectPhase
     var deferred = $.Deferred();
-    var termString = term.WssId + ';#' + term.Label + '|' + term.TermGuid;
+    var termString = term.get_wssId() + ';#' + term.get_label() + '|' + term.get_termGuid();
     var siteCollRelativeUrl = _spPageContextInfo.webServerRelativeUrl + '/' + lib;
     var template = '<MetadataDefaults><a href="{siteCollRelativeUrl}"><DefaultValue FieldName="{field}">{term}</DefaultValue></a></MetadataDefaults>';
     var result = template.split("{siteCollRelativeUrl}").join(siteCollRelativeUrl);
@@ -177,7 +177,7 @@ GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMar
 
 GT.Project.GetPhaseNameFromCurrentItem = function () {
     var defer = $.Deferred();
-    $.when(GT.Project.GetPhaseTermFromCurrentItem()).done(function (term) { defer.resolve(term.Label); });
+    $.when(GT.Project.GetPhaseTermFromCurrentItem()).done(function (term) { defer.resolve(term.get_label()); });
     return defer.promise();
 };
 
