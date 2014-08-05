@@ -1,5 +1,6 @@
 ﻿var GT = GT || {};
 GT.Provisioning = GT.Provisioning || {};
+if (GT.jQuery === undefined) GT.jQuery = jQuery.noConflict(true);
 
 function waitMessage() {
     window.parent.eval("window.waitDialog = SP.UI.ModalDialog.showWaitScreenWithNoClose('Oppretter prosjektområde', '', 80, 450);");
@@ -22,7 +23,7 @@ GT.Provisioning.CreateWebFromCustomForm = function () {
         return;
     }
     var urlToNewWeb = _spPageContextInfo.webServerRelativeUrl + "/" + urlField.value;
-    jQuery.when(GT.Provisioning.DoesWebExist(urlToNewWeb)).then(function (doesWebExist) {
+    GT.jQuery.when(GT.Provisioning.DoesWebExist(urlToNewWeb)).then(function (doesWebExist) {
         if (doesWebExist) {
             document.getElementById('projectFormValidation').innerHTML = "Det finnes allerede et område med denne URLen";
         } else {
@@ -76,8 +77,8 @@ GT.Provisioning.OnCreateWebFailure = function (sender, args) {
 
 
 GT.Provisioning.DoesWebExist = function (serverRelativeUrlOrFullUrl) {
-    var deferred = jQuery.Deferred();
-    jQuery.ajax({
+    var deferred = GT.jQuery.Deferred();
+    GT.jQuery.ajax({
         url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/webinfos?$filter=ServerRelativeUrl eq '" + serverRelativeUrlOrFullUrl + "'",
         type: "GET",
         headers: { "Accept": "application/json; odata=verbose" },
@@ -98,12 +99,12 @@ GT.Provisioning.DoesWebExist = function (serverRelativeUrlOrFullUrl) {
 };
 
 GT.Provisioning.SetupUrlPreviewAndValidation = function () {
-    jQuery('#projectUrlPreview').text(_spPageContextInfo.siteAbsoluteUrl + "/");
-    jQuery('#projectUrlInput').on('keyup', function (event) {
-        var previewUrl = _spPageContextInfo.siteAbsoluteUrl + "/" + jQuery('#projectUrlInput').val();
-        jQuery('#projectUrlPreview').text(previewUrl);
+    GT.jQuery('#projectUrlPreview').text(_spPageContextInfo.siteAbsoluteUrl + "/");
+    GT.jQuery('#projectUrlInput').on('keyup', function (event) {
+        var previewUrl = _spPageContextInfo.siteAbsoluteUrl + "/" + GT.jQuery('#projectUrlInput').val();
+        GT.jQuery('#projectUrlPreview').text(previewUrl);
 
-        if (jQuery('#projectUrlInput').val().length > 2) {
+        if (GT.jQuery('#projectUrlInput').val().length > 2) {
             if (event.target.validity.valid) {
                 document.getElementById('projectUrlInputValidation').style.display = 'none';
             } else {
@@ -111,9 +112,9 @@ GT.Provisioning.SetupUrlPreviewAndValidation = function () {
             }
         }
     });
-    jQuery('#projectUrlInput').on('change', function (event) {
-        var previewUrl = _spPageContextInfo.siteAbsoluteUrl + "/" + jQuery('#projectUrlInput').val();
-        jQuery('#projectUrlPreview').text(previewUrl);
+    GT.jQuery('#projectUrlInput').on('change', function (event) {
+        var previewUrl = _spPageContextInfo.siteAbsoluteUrl + "/" + GT.jQuery('#projectUrlInput').val();
+        GT.jQuery('#projectUrlPreview').text(previewUrl);
 
         if (event.target.validity.valid) {
             document.getElementById('projectUrlInputValidation').style.display = 'none';

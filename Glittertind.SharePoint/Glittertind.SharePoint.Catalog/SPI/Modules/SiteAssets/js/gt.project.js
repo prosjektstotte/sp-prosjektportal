@@ -1,27 +1,29 @@
 ﻿var GT = GT || {};
 GT.Project = GT.Project || {};
-GT.Project.CurrentItemPhase = null;
+if (GT.jQuery === undefined) GT.jQuery = jQuery.noConflict(true);
 
 GT.Project.ChangeProjectPhase = function () {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
     var currentPhasePromise = GT.Project.GetPhaseTermFromCurrentItem();
     currentPhasePromise.done(function (term) {
-        console.log('Changing phase to ' + term.Label);
-        $.when(
-            GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Dokumenter", "SitePages/Forside.aspx"),
-            GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Oppgaver", "SitePages/Forside.aspx"),
-            GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Usikkerhet", "SitePages/Forside.aspx"),
-            GT.Project.SetMetaDataDefaultsForLib("Dokumenter", "GtProjectPhase", term)
-            ).then(function () {
+        if (term != "" && term.get_label != undefined) {
+            console.log('Changing phase to ' + term.get_label());
+            GT.jQuery.when(
+                GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Dokumenter", "SitePages/Forside.aspx"),
+                GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Oppgaver", "SitePages/Forside.aspx"),
+                GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Usikkerhet", "SitePages/Forside.aspx"),
+                GT.Project.SetMetaDataDefaultsForLib("Dokumenter", "GtProjectPhase", term)
+            ).then(function() {
                 deferred.resolve();
             });
+        }
     });
     return deferred.promise();
 };
 
 GT.Project.ChangeQueryOfListViewOnPage = function (phaseName, listName, pageRelativeUrl) {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
     var viewUrl = pageRelativeUrl;
 
     var clientContext = SP.ClientContext.get_current();
@@ -66,7 +68,7 @@ GT.Project.GetViewFromCollectionByUrl = function (viewCollection, url) {
 
 GT.Project.SetMetaDataDefaultsForLib = function (lib, field, term) {
     // GtProjectPhase
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
     var termString = term.get_wssId() + ';#' + term.get_label() + '|' + term.get_termGuid();
     var siteCollRelativeUrl = _spPageContextInfo.webServerRelativeUrl + '/' + lib;
     var template = '<MetadataDefaults><a href="{siteCollRelativeUrl}"><DefaultValue FieldName="{field}">{term}</DefaultValue></a></MetadataDefaults>';
@@ -145,10 +147,10 @@ GT.Project.EnsureMetaDataDefaultsEventReceiver = function (lib) {
 
 GT.Project.PopulateProjectPhasePart = function () {
     SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
-        jQuery.when(GT.Project.GetPhaseNameFromCurrentItem()).then(function (phaseName) {
+        GT.jQuery.when(GT.Project.GetPhaseNameFromCurrentItem()).then(function (phaseName) {
             var phases = ['Konsept', 'Planlegge', 'Gjennomføre', 'Avslutte', 'Realisere'];
             for (var ix = 0; ix < phases.length; ix++) {
-                jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(phases[ix], phases[ix] == phaseName, true));
+                GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(phases[ix], phases[ix] == phaseName, true));
             }
         });
     });
@@ -176,13 +178,19 @@ GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMar
 };
 
 GT.Project.GetPhaseNameFromCurrentItem = function () {
-    var defer = $.Deferred();
-    $.when(GT.Project.GetPhaseTermFromCurrentItem()).done(function (term) { defer.resolve(term.get_label()); });
+    var defer = GT.jQuery.Deferred();
+    GT.jQuery.when(GT.Project.GetPhaseTermFromCurrentItem()).done(function(term) {
+        if (term != undefined && term != "" && term.get_label != undefined) {
+            defer.resolve(term.get_label());
+        } else {
+            defer.resolve("");
+        }
+    });
     return defer.promise();
 };
 
 GT.Project.GetPhaseTermFromCurrentItem = function () {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
     var pageFieldNameVar = 'GtProjectPhase';
     var context = SP.ClientContext.get_current();
     var web = context.get_web();

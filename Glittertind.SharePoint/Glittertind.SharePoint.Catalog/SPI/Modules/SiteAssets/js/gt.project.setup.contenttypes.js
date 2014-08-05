@@ -1,10 +1,11 @@
 ﻿var GT = GT || {};
+if (GT.jQuery === undefined) GT.jQuery = jQuery.noConflict(true);
 GT.Project = GT.Project || {};
 GT.Project.Setup = GT.Project.Setup || {};
 GT.Project.Setup.ContentTypes = GT.Project.Setup.ContentTypes || {}
 
 GT.Project.Setup.ContentTypes.CreateLookupSiteColumn = function (displayName, internalName, targetList, showField, id, required, multiSelect, description) {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
@@ -55,7 +56,7 @@ GT.Project.Setup.ContentTypes.CreateLookupSiteColumn = function (displayName, in
 };
 
 GT.Project.Setup.ContentTypes.CreateContentType = function (displayName, internalName, description, parentContentTypeId) {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
@@ -110,7 +111,7 @@ GT.Project.Setup.ContentTypes.CreateContentType = function (displayName, interna
     return deferred.promise();
 };
 GT.Project.Setup.ContentTypes.LinkFieldsToContentType = function (contentTypeName, fields) {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
@@ -192,7 +193,7 @@ GT.Project.Setup.ContentTypes.IsFieldAttached = function (fieldLinkCollection, f
 };
 
 GT.Project.Setup.ContentTypes.AddContentTypeToList = function (clientContext, contentType, listContentTypes, list) {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
     var contentTypeName = contentType.get_name();
     var listName = list.get_title();
@@ -215,7 +216,7 @@ GT.Project.Setup.ContentTypes.AddContentTypeToList = function (clientContext, co
 };
 
 GT.Project.Setup.ContentTypes.AddContentTypeToListByName = function (clientContext, siteContentTypeCollection, webContentTypeCollection, listContentTypes, list, contentTypeName) {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
     var webContentType = GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(webContentTypeCollection, contentTypeName);
     if (webContentType != null) {
@@ -234,7 +235,7 @@ GT.Project.Setup.ContentTypes.AddContentTypeToListByName = function (clientConte
 };
 
 GT.Project.Setup.ContentTypes.UpdateListContentTypes = function (listName, contentTypeNames) {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
@@ -260,7 +261,7 @@ GT.Project.Setup.ContentTypes.UpdateListContentTypes = function (listName, conte
             promises.push(GT.Project.Setup.ContentTypes.AddContentTypeToListByName(clientContext, siteContentTypeCollection, webContentTypeCollection, listContentTypes, list, contentTypeNames[i]));
         }
 
-        $.when.apply($, promises).always(function () {
+        GT.jQuery.when.apply(GT.jQuery, promises).always(function () {
             list = web.get_lists().getByTitle(listName);
             listContentTypes = list.get_contentTypes();
             clientContext.load(list);
@@ -335,5 +336,5 @@ GT.Project.Setup.ContentTypes.GetContentTypeFromCollectionById = function (conte
 };
 
 function IsInCollection(stringVal, array) {
-    return ($.inArray(stringVal, array) > -1);
+    return (GT.jQuery.inArray(stringVal, array) > -1);
 }

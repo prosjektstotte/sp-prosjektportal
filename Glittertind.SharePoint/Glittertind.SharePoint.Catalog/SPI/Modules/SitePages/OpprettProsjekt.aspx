@@ -46,7 +46,7 @@
 	    </div>
     </div>
 	<script type="text/javascript">
-	    jQuery(document).ready(function () {
+	    GT.jQuery(document).ready(function () {
 	        GT.Provisioning.SetupUrlPreviewAndValidation();
 	    });
 	</script>

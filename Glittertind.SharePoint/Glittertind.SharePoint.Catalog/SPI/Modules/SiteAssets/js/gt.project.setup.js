@@ -1,4 +1,5 @@
 ﻿var GT = GT || {};
+if (GT.jQuery === undefined) GT.jQuery = jQuery.noConflict(true);
 GT.Project = GT.Project || {};
 GT.Project.Setup = GT.Project.Setup || {};
 GT.Project.Setup.Model = GT.Project.Setup.Model || {}
@@ -13,7 +14,7 @@ GT.Project.Setup.Model.step = function (name, callback, properties) {
         return self.callback(properties);
     };
     self.execute = function (dependentPromise) {
-        return $.when(dependentPromise)
+        return GT.jQuery.when(dependentPromise)
             .then(function () {
                 return self.callback(properties);
             });
@@ -21,7 +22,7 @@ GT.Project.Setup.Model.step = function (name, callback, properties) {
 };
 
 GT.Project.Setup.InheritNavigation = function () {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
     clientContext.load(web);
@@ -41,7 +42,7 @@ GT.Project.Setup.InheritNavigation = function () {
 // [start] utility methods
 
 GT.Project.Setup.resolveProperties = function (properties) {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
     var context = SP.ClientContext.get_current();
     var web = context.get_web();
@@ -66,7 +67,7 @@ GT.Project.Setup.resolveProperties = function (properties) {
 
 GT.Project.Setup.persistsProperties = function (properties) {
 
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
     var context = SP.ClientContext.get_current();
     var web = context.get_web();
     var propBag = web.get_allProperties();
@@ -135,21 +136,21 @@ GT.Project.Setup.closeWaitMessage = function () {
 // [end] utility methods
 
 GT.Project.Setup.copyFiles = function (properties) {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
     var srcWeb = properties.srcWeb;
     var srcLib = properties.srcLib;
     var dstWeb = properties.dstWeb;
     var dstLib = properties.dstLib;
 
-    $.when(GT.Project.Setup.getFiles(srcWeb, srcLib))
+    GT.jQuery.when(GT.Project.Setup.getFiles(srcWeb, srcLib))
 
     .then(function (files) {
         var promises = [];
         for (var i = 0; i < files.length; i++) {
             promises.push(GT.Project.Setup.copyFile(files[i], srcWeb, dstWeb, dstLib));
         }
-        $.when.apply($, promises)
+        GT.jQuery.when.apply(GT.jQuery, promises)
         .always(function () {
             console.log("all done copying files");
             deferred.resolve();
@@ -160,7 +161,7 @@ GT.Project.Setup.copyFiles = function (properties) {
 };
 
 GT.Project.Setup.getFiles = function (srcWeb, lib, folderPath) {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
     if (folderPath == undefined) {
         var srcFolderQuery = "_api/web/GetFolderByServerRelativeUrl('" + srcWeb + "/" + lib + "')/Files";
     } else {
@@ -174,7 +175,7 @@ GT.Project.Setup.getFiles = function (srcWeb, lib, folderPath) {
         binaryStringResponseBody: true,
         headers: {
             "Accept": "application/json; odata=verbose",
-            "X-RequestDigest": $("#__REQUESTDIGEST").val()
+            "X-RequestDigest": GT.jQuery("#__REQUESTDIGEST").val()
         },
         success: function (data) {
             var result = JSON.parse(data.body).d.results;
@@ -190,7 +191,7 @@ GT.Project.Setup.getFiles = function (srcWeb, lib, folderPath) {
 };
 
 GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
     var executor = new SP.RequestExecutor(srcWeb);
     var info = {
@@ -201,7 +202,7 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
             var executor2 = new SP.RequestExecutor(dstWeb);
             //binary data available in data.body
             var result = data.body;
-            var digest = $("#__REQUESTDIGEST").val();
+            var digest = GT.jQuery("#__REQUESTDIGEST").val();
             var info2 = {
                 url: "_api/web/GetFolderByServerRelativeUrl('" + dstWeb + "/" + dstLib + "')/Files/Add(url='" + file.Name + "')",
                 method: "POST",
@@ -234,12 +235,12 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
 };
 
 GT.Project.Setup.copyDefaultItems = function () {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
-    $.when(GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/data"))
+    GT.jQuery.when(GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/data"))
     .then(function (files) {
         for (var i = 0; i < files.length; i++) {
-            $.getJSON(files[i].ServerRelativeUrl).then(function (data) {
+            GT.jQuery.getJSON(files[i].ServerRelativeUrl).then(function (data) {
                 var clientContext = SP.ClientContext.get_current();
                 var oList = clientContext.get_web().get_lists().getByTitle(data.Name);
 
@@ -277,8 +278,8 @@ GT.Project.Setup.copyDefaultItems = function () {
 };
 
 GT.Project.Setup.CreateWebContentTypes = function () {
-    var deferred = $.Deferred();
-    var dependentPromises = $.when(
+    var deferred = GT.jQuery.Deferred();
+    var dependentPromises = GT.jQuery.when(
             GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Målgruppe", "GtCommunicationTarget", "Interessentregister", "Title", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e4}", false, true, ""),
             GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Interessent(er)", "GtProductInteressent", "Interessentregister", "Title", "{6d90e0b6-73e6-48fb-aa1e-b897b214f934}", false, true, ""),
             GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Påvirker produkt", "GtProjectLogProductLookup", "Prosjektprodukter", "Title", "{022cc93f-13df-4420-bd47-55e4fdae5d18}", false, true, "Velg hvilke(t) prosjektprodukt som blir påvirket av dette."),
@@ -292,14 +293,14 @@ GT.Project.Setup.CreateWebContentTypes = function () {
         );
 
     dependentPromises.done(function () {
-        $.when(
+        GT.jQuery.when(
             GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektloggelement", ["GtProjectLogProductLookup", "GtProjectLogEventLookup"]),
             GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektoppgave", ["GtProjectTaskRisk", "GtProjectTaskComElement"]),
             GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Kommunikasjonselement", ["GtCommunicationTarget"]),
             GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektprodukt", ["GtProductInteressent"])
         )
         .then(function () {
-            $.when(
+            GT.jQuery.when(
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektprodukter", ["Prosjektprodukt"]),
                 GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektlogg", ["Prosjektloggelement"]),
@@ -323,12 +324,12 @@ GT.Project.Setup.CreateWebContentTypes = function () {
 };
 
 GT.Project.Setup.UpdateListsFromConfig = function () {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
-    $.when(GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/lists"))
+    GT.jQuery.when(GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/lists"))
     .then(function (files) {
         for (var i = 0; i < files.length; i++) {
-            $.getJSON(files[i].ServerRelativeUrl).then(function (data) {
+            GT.jQuery.getJSON(files[i].ServerRelativeUrl).then(function (data) {
                 GT.Project.Setup.UpdateListProperties(data);
                 GT.Project.Setup.UpdateListViews(data);
             });
@@ -344,7 +345,7 @@ GT.Project.Setup.UpdateListsFromConfig = function () {
     return deferred.promise();
 };
 GT.Project.Setup.UpdateListProperties = function (configData) {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
     var list = clientContext.get_web().get_lists().getByTitle(configData.Name);
@@ -363,7 +364,7 @@ GT.Project.Setup.UpdateListProperties = function (configData) {
     return deferred.promise();
 };
 GT.Project.Setup.UpdateListViews = function (data) {
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
     var listName = data.Name;
     var listViewsToConfigure = data.Views;
@@ -447,14 +448,14 @@ GT.Project.Setup.GetViewFromCollectionByName = function (viewCollection, name) {
 };
 
 GT.Project.Setup.HandleOnTheFlyConfiguration = function (defaultProperties) {
-    var deferred = $.Deferred();
-    $.when(GT.Project.Setup.resolveProperties(defaultProperties))
+    var deferred = GT.jQuery.Deferred();
+    GT.jQuery.when(GT.Project.Setup.resolveProperties(defaultProperties))
     .then(function (properties) {
-        $.when(GT.Project.GetPhaseNameFromCurrentItem())
+        GT.jQuery.when(GT.Project.GetPhaseNameFromCurrentItem())
         .then(function (currentPhase) {
             // Persist change of phase
-            if (currentPhase != undefined && properties.persistedPhase.value != currentPhase) {
-                $.when(
+            if (currentPhase != undefined && currentPhase != "" && properties.persistedPhase.value != currentPhase) {
+                GT.jQuery.when(
                     GT.Project.ChangeProjectPhase()
                 ).then(function () {
                     properties.persistedPhase.value = currentPhase;
@@ -478,9 +479,9 @@ GT.Project.Setup.execute = function (defaultProperties, steps) {
     // 4. set configured
     var self = this;
     self.steps = steps;
-    var deferred = $.Deferred();
+    var deferred = GT.jQuery.Deferred();
 
-    $.when(GT.Project.Setup.resolveProperties(defaultProperties))
+    GT.jQuery.when(GT.Project.Setup.resolveProperties(defaultProperties))
     .then(function (properties) {
         console.log("execute: using these settings :" + JSON.stringify(properties));
         if (properties.configured.value === "0") {
@@ -500,7 +501,7 @@ GT.Project.Setup.execute = function (defaultProperties, steps) {
                 currentStep++;
             }
 
-            $.when(dependentPromise)
+            GT.jQuery.when(dependentPromise)
             .always(function () {
                 properties.currentStep.value = currentStep;
                 properties.configured.value = "1";
@@ -516,7 +517,7 @@ GT.Project.Setup.execute = function (defaultProperties, steps) {
     return deferred.promise();
 };
 
-jQuery(document).ready(function () {
+GT.jQuery(document).ready(function () {
     var properties = {
         currentStep: {
             'key': 'glittertind_currentsetupstep',
@@ -539,7 +540,7 @@ jQuery(document).ready(function () {
             'value': 'NA'
         }
     };
-    $.when(GT.Project.Setup.PatchRequestExecutor())
+    GT.jQuery.when(GT.Project.Setup.PatchRequestExecutor())
         .done(function () {
             var steps = {
                 '1.0.0.0': {
@@ -551,8 +552,8 @@ jQuery(document).ready(function () {
                 }
             };
             var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
-            $.getScript(scriptbase + "SP.js", function () {
-                $.getScript(scriptbase + "SP.Taxonomy.js", function () {
+            GT.jQuery.getScript(scriptbase + "SP.js", function () {
+                GT.jQuery.getScript(scriptbase + "SP.Taxonomy.js", function () {
                     GT.Project.Setup.execute(properties, steps)
                     .done(function (shouldReload) {
                         if (shouldReload) {
@@ -572,7 +573,7 @@ jQuery(document).ready(function () {
 
 
 GT.Project.Setup.PatchRequestExecutor = function () {
-    return $.getScript(_spPageContextInfo.webAbsoluteUrl + "/_layouts/15/SP.RequestExecutor.js", function () {
+    return GT.jQuery.getScript(_spPageContextInfo.webAbsoluteUrl + "/_layouts/15/SP.RequestExecutor.js", function () {
         SP.RequestExecutorInternalSharedUtility.BinaryDecode = function SP_RequestExecutorInternalSharedUtility$BinaryDecode(data) {
             var ret = '';
 

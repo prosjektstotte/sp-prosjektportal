@@ -1,4 +1,7 @@
-﻿String.prototype.trimStart = function (c) {
+﻿var GT = GT || {};
+if (GT.jQuery === undefined) GT.jQuery = jQuery.noConflict(true);
+
+String.prototype.trimStart = function (c) {
     if (this.length == 0)
         return this;
     c = c ? c : ' ';
@@ -55,5 +58,5 @@ function getParameterByName(name) {
 };
 
 function IsInCollection(stringVal, array) {
-    return ($.inArray(stringVal, array) > -1);
+    return (GT.jQuery.inArray(stringVal, array) > -1);
 };

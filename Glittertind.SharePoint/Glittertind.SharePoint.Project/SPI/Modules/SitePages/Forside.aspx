@@ -179,30 +179,30 @@
     </table>
 	<SharePoint:ScriptBlock runat="server">if(typeof(MSOLayout_MakeInvisibleIfEmpty) == "function") {MSOLayout_MakeInvisibleIfEmpty();}</SharePoint:ScriptBlock>
     <script type="text/javascript" language="javascript">
-        jQuery(document).ready(function() {
+        GT.jQuery(document).ready(function() {
             GT.Project.PopulateProjectPhasePart();
         });
     </script>
     <SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AuthenticatedUsersOnly" Permissions="AddAndCustomizePages" PermissionContext="CurrentItem">
         <script type="text/javascript">
-            jQuery(document).ready(function () {
-    	        var editMetaUrl = 'Forms/EditForm.aspx?EditMode=Project&ID=' + _spPageContextInfo.pageItemId;
-    	        jQuery('#editPageMetaLink').attr('href', editMetaUrl);
+            GT.jQuery(document).ready(function () {
+                var editMetaUrl = 'Forms/EditForm.aspx?EditMode=Project&ID=' + _spPageContextInfo.pageItemId;
+                GT.jQuery('#editPageMetaLink').attr('href', editMetaUrl);
 
                 var editPhaseUrl = editMetaUrl.replace('Project', 'PhaseOnly');
-                jQuery('#changeProjectPhaseLink').attr('href', editPhaseUrl);
-    	        HandleMissingMetadata();
+                GT.jQuery('#changeProjectPhaseLink').attr('href', editPhaseUrl);
+                HandleMissingMetadata();
             });
 
             function HandleMissingMetadata() {
-    	        if (jQuery('.projectFrontPage .projectMetadata table tr.GtProjectPhase td.fieldValue').text().trim() == '' ||
-	                jQuery('.projectFrontPage .projectMetadata table tr.GtProjectManager td.fieldValue').text().trim() == '' ||
-	                jQuery('.projectFrontPage .projectMetadata table tr.GtProjectGoals td.fieldValue').text().trim() == '') {
-	                jQuery('.projectFrontPage .missingMetadataWarning').show();
-	                jQuery('#changeProjectPhaseLink').hide();
-	            } else {
-    	            jQuery('#changeProjectPhaseLink').show();
-	            }
+                if (GT.jQuery('.projectFrontPage .projectMetadata table tr.GtProjectPhase td.fieldValue').text().trim() == '' ||
+                    GT.jQuery('.projectFrontPage .projectMetadata table tr.GtProjectManager td.fieldValue').text().trim() == '' ||
+                    GT.jQuery('.projectFrontPage .projectMetadata table tr.GtProjectGoals td.fieldValue').text().trim() == '') {
+                    GT.jQuery('.projectFrontPage .missingMetadataWarning').show();
+                    GT.jQuery('#changeProjectPhaseLink').hide();
+                } else {
+                    GT.jQuery('#changeProjectPhaseLink').show();
+                }
             }
         </script>
     </SharePoint:SPSecurityTrimmedControl>

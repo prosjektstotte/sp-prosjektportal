@@ -1,5 +1,6 @@
 ﻿var GT = GT || {};
 GT.Common = GT.Common || {};
+if (GT.jQuery === undefined) GT.jQuery = jQuery.noConflict(true);
 
 GT.Common.DetectEditMode = function () {
     var webPartPageForm = document.forms[MSOWebPartPageFormName];
@@ -15,10 +16,10 @@ GT.Common.DetectEditMode = function () {
 };
 
 GT.Common.IsEditMode = function () {
-    if (jQuery('html').hasClass('designmode')) return true;
+    if (GT.jQuery('html').hasClass('designmode')) return true;
     return false;
 };
 
-jQuery(function() {
+GT.jQuery(function () {
     GT.Common.DetectEditMode();
 });
