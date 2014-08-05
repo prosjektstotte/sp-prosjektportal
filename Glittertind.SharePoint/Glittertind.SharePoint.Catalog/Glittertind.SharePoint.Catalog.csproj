@@ -117,6 +117,7 @@
     <None Include="SPI\Modules\SiteAssets\config\lists\Interessentregister.json" />
     <None Include="SPI\Modules\SiteAssets\config\lists\kommunikasjonsplan.json" />
     <Content Include="SPI\Modules\SiteAssets\css\gt.style.css" />
+    <Content Include="SPI\Modules\SiteAssets\html\gt.newprojectlink.html" />
     <Content Include="SPI\Modules\SiteAssets\html\gt.phaseform.html" />
     <Content Include="SPI\Modules\SiteAssets\js\gt.generics.js" />
     <Content Include="SPI\Modules\SiteAssets\js\gt.common.js" />

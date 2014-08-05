@@ -1,0 +1,50 @@
+﻿<style type="text/css">
+    #newProjectLink {
+        display: none;
+    }
+</style>
+
+<div id="newProjectLink">
+    <h2 style="text-align:justify;" class="ms-webpart-titleText">Nytt prosjektområde</h2>
+    <a href="/sites/test-glittertind/SitePages/OpprettProsjekt.aspx">Opprett prosjektområde</a>
+</div>
+
+<script type="text/javascript">
+var GT = GT || {};
+GT.NewProjectLink = GT.NewProjectLink || {};
+
+
+GT.NewProjectLink.canManageWeb = function() {
+	var self = this;
+	self.defer = $.Deferred();
+    var clientContext = new SP.ClientContext.get_current();
+    self.oWeb = clientContext.get_web();
+    clientContext.load(self.oWeb);
+	clientContext.load(self.oWeb,'EffectiveBasePermissions');
+
+	var permissionMask = new SP.BasePermissions();
+	permissionMask.set(SP.PermissionKind.manageWeb);
+	self.shouldShowLink = self.oWeb.doesUserHavePermissions(permissionMask);
+
+	clientContext.executeQueryAsync(Function.createDelegate(self, GT.NewProjectLink.onQuerySucceededUser), Function.createDelegate(self, GT.NewProjectLink.onQueryFailedUser));
+	return self.defer.promise();
+};
+GT.NewProjectLink.onQuerySucceededUser = function() {
+	var self = this;
+	self.defer.resolve(self.shouldShowLink.get_value());
+};
+
+GT.NewProjectLink.onQueryFailedUser = function() {
+	this.defer.reject();
+};
+
+GT.NewProjectLink.showLink = function(){
+	GT.NewProjectLink.canManageWeb().done(function(shouldShowLink){
+		if(shouldShowLink) $('#newProjectLink').show();
+	});
+};
+
+SP.SOD.executeOrDelayUntilScriptLoaded(GT.NewProjectLink.showLink, "sp.js");
+
+
+</script>
