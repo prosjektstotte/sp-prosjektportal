@@ -18,11 +18,13 @@ namespace Glittertind.Sherpa.Installer
     {
         private readonly ICredentials _credentials;
         private readonly Uri _urlToSite;
+        private readonly bool _isSharePointOnline;
 
-        public InstallationManager(Uri urlToSite, ICredentials credentials)
+        public InstallationManager(Uri urlToSite, ICredentials credentials, bool isSharePointOnline)
         {
             _urlToSite = urlToSite;
             _credentials = credentials;
+            _isSharePointOnline = isSharePointOnline;
         }
 
         public void SetupTaxonomy()
@@ -47,7 +49,7 @@ namespace Glittertind.Sherpa.Installer
             Console.WriteLine("Uploading and activating sandboxed solution(s)");
             var pathToSandboxedSolution = Path.Combine(Environment.CurrentDirectory, "solutions");
             var files = Directory.GetFiles(pathToSandboxedSolution);
-            var deployManager = new DeployManager(_urlToSite, _credentials);
+            var deployManager = new DeployManager(_urlToSite, _credentials, _isSharePointOnline);
             foreach (var file in files.Where(f => Path.GetExtension(f).ToLower() == ".wsp"))
             {
                 deployManager.UploadDesignPackage(file, "SiteAssets");
@@ -92,7 +94,7 @@ namespace Glittertind.Sherpa.Installer
 
         public void ForceReCrawl()
         {
-            var deployManager = new DeployManager(_urlToSite, _credentials);
+            var deployManager = new DeployManager(_urlToSite, _credentials, _isSharePointOnline);
             deployManager.ForceRecrawl();
         }
     }

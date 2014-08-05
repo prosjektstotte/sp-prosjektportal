@@ -4,6 +4,7 @@ using System.Net;
 using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint.Client.Publishing;
 using File = System.IO.File;
+using SPFile = Microsoft.SharePoint.Client.File;
 
 namespace Glittertind.Sherpa.Library.Deploy
 {
@@ -11,29 +12,65 @@ namespace Glittertind.Sherpa.Library.Deploy
     {
         private readonly ICredentials _credentials;
         private readonly Uri _urlToWeb;
+        private readonly bool _isSharePointOnline;
 
-        public DeployManager(Uri urlToWeb, ICredentials credentials)
+        public DeployManager(Uri urlToWeb, ICredentials credentials, bool isSharePointOnline)
         {
             _urlToWeb = urlToWeb;
             _credentials = credentials;
+            _isSharePointOnline = isSharePointOnline;
         }
         /// <summary>
         /// Uploads a design package to a library. Can be used for uploading sandboxed solutions to solution gallery.
         /// </summary>
         /// <param name="localFilePath">Path to package (wsp)</param>
-        /// <param name="siteRelativeUrlToLibrary">Site relative URL to SharePoint Library</param>
-        public void UploadDesignPackage(string localFilePath, string siteRelativeUrlToLibrary)
+        /// <param name="libraryName">Name of SharePoint Library</param>
+        public void UploadDesignPackage(string localFilePath, string libraryName)
         {
             var fileName = Path.GetFileName(localFilePath);
             var extension = Path.GetExtension(fileName);
             if (extension != null && extension.ToLower() != ".wsp") throw new NotSupportedException("Only WSPs can be uploaded into the SharePoint solution store. " + localFilePath + " is not a wsp");
-            if (string.IsNullOrEmpty(fileName) || _urlToWeb == null || string.IsNullOrEmpty(siteRelativeUrlToLibrary))
+            if (string.IsNullOrEmpty(fileName) || _urlToWeb == null || string.IsNullOrEmpty(libraryName))
             {
                 throw new Exception("Could not create path to solution package!");
             }
 
-            var fileUrl = UriUtilities.CombineAbsoluteUri(_urlToWeb.AbsoluteUri, siteRelativeUrlToLibrary, fileName);
-            UploadFileToSharePointOnline(_urlToWeb.AbsoluteUri, fileUrl, localFilePath);
+            var fileUrl = UriUtilities.CombineAbsoluteUri(_urlToWeb.AbsoluteUri, libraryName, fileName);
+            if (_isSharePointOnline)
+            {
+                UploadFileToSharePointOnline(_urlToWeb.AbsoluteUri, fileUrl, localFilePath);
+            }
+            else
+            {
+                UploadFileToSharePointOnPrem(localFilePath, libraryName, fileName);
+            }
+        }
+
+        private void UploadFileToSharePointOnPrem(string localFilePath, string targetLibraryName, string fileName)
+        {
+            Console.WriteLine("Uploading package {0} to library ", Path.GetFileName(localFilePath));
+            try
+            {
+                using (var context = new ClientContext(_urlToWeb))
+                {
+                    context.Credentials = _credentials;
+
+                    using (var fs = new FileStream(localFilePath, FileMode.Open))
+                    {
+                        var fi = new FileInfo(fileName);
+                        var list = context.Web.Lists.GetByTitle(targetLibraryName);
+                        context.Load(list.RootFolder);
+                        context.ExecuteQuery();
+                        var fileUrl = String.Format("{0}/{1}", list.RootFolder.ServerRelativeUrl, fi.Name);
+
+                        Microsoft.SharePoint.Client.File.SaveBinaryDirect(context, fileUrl, fs, true);
+                    }
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine("Unauthorized to access " + localFilePath);
+            }
         }
 
         /// <summary>
