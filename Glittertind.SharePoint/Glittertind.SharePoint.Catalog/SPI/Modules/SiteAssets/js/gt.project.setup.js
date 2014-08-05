@@ -550,20 +550,23 @@ jQuery(document).ready(function () {
                     4: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
                 }
             };
-            ExecuteOrDelayUntilScriptLoaded(function () {
-                GT.Project.Setup.execute(properties, steps)
-                .done(function (shouldReload) {
-                    if (shouldReload) {
-                        location.reload();
-                    }
-                    GT.Project.Setup.HandleOnTheFlyConfiguration(properties)
+            var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
+            $.getScript(scriptbase + "SP.js", function () {
+                $.getScript(scriptbase + "SP.Taxonomy.js", function () {
+                    GT.Project.Setup.execute(properties, steps)
                     .done(function (shouldReload) {
                         if (shouldReload) {
                             location.reload();
                         }
+                        GT.Project.Setup.HandleOnTheFlyConfiguration(properties)
+                        .done(function (shouldReload) {
+                            if (shouldReload) {
+                                location.reload();
+                            }
+                        });
                     });
                 });
-            }, "sp.js");
+            });
         });
 });
 
