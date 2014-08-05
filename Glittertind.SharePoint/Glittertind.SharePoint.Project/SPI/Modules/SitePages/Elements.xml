@@ -41,7 +41,8 @@
       </AllUsersWebPart>
       <View List="Lists/Usikkerhet" BaseViewID="1" WebPartZoneID="RightColumn" WebPartOrder="1" />
     </File>
-    <File Path="SitePages\VisMotereferat.aspx" Url="VisMotereferat.aspx" Type="GhostableInLibrary" >
+    <File Path="SitePages\Motereferat.aspx" Url="Motereferat.aspx" Type="GhostableInLibrary" >
+      <Property Name="Title" Value="Møtereferat" />
       <Property Name="ContentType" Value="WebPartPage" />
       <Property Name="ContentTypeId" Value="0x01010901" />
       <AllUsersWebPart WebPartOrder="1" WebPartZoneID="Left">
@@ -120,5 +121,6 @@
         ]]>
       </AllUsersWebPart>
     </File>
+    
   </Module>
 </Elements>

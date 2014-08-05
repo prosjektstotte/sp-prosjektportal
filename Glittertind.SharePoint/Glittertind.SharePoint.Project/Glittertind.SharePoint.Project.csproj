@@ -149,6 +149,7 @@
     <Content Include="SPI\Modules\ProjectWebTemplate\Elements.xml" />
     <Content Include="SPI\Modules\ProjectWebTemplate\Onet.xml" />
     <Content Include="SPI\Modules\PropertyBag\Elements.xml" />
+    <Content Include="SPI\Modules\SitePages\SkrivMotereferat.aspx" />
     <Content Include="SPI\Modules\SitePages\VisMotereferat.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
