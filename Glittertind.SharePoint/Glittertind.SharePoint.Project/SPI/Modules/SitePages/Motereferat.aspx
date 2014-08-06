@@ -26,11 +26,14 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderId="PlaceHolderAdditionalPageHead" runat="server">
 	<meta name="CollaborationServer" content="SharePoint Team Web Site" />
-<SharePoint:StyleBlock runat="server">
-.s4-nothome {
-	display:none;
-}
-</SharePoint:StyleBlock>
+    <SharePoint:StyleBlock runat="server">
+        .s4-nothome {
+	        display:none;
+        }
+        td.leftWebPartZone .ms-webpartzone-cell .ms-wpContentDivSpace > span[istimelineparent="1"] {
+            display: none !important;
+        }
+    </SharePoint:StyleBlock>
 	<SharePoint:ScriptBlock runat="server">
 	var navBarHelpOverrideKey = "WSSEndUser";
 	</SharePoint:ScriptBlock>
@@ -51,48 +54,46 @@
 <asp:Content ContentPlaceHolderId="PlaceHolderMain" runat="server">
 	
 	<table cellspacing="0" border="0" width="100%">
-		<td>
-
-		<div> 
-		<!-- dis be where the field goes -->
-		<script type="text/javascript">
-		var modalDialog;
-		function ShowActionItemDialog(title, list) {
-			var options = {
-				url: _spPageContextInfo.webServerRelativeUrl+'/' + list+ '/NewForm.aspx',
-				title: title,
-				allowMaximize: false,
-				showClose: true,
-				width: 800,
-				args: {
-					title: title,
-				},
-				height: 600,
-				dialogReturnValueCallback : Function.createDelegate(null, function(){window.location.reload();})
-			};
-			modalDialog = SP.UI.ModalDialog.showModalDialog(options);
-		};
-</script>
-		
-		<button name="gtnewinfobutton" onclick="ShowActionItemDialog('Ny informasjon','Lists/Informasjon'); return false;">Ny informasjon</button>
-		<button name="gtnewtaskbutton" onclick="ShowActionItemDialog('Ny oppgave','Lists/Oppgaver'); return false;">Ny oppgave</button>
-		</div>
-		
-		<table width="100%" cellpadding="0" cellspacing="0" style="padding: 5px 10px 10px 10px;">
-		  <tr>
-		   <td valign="top" width="60%">
-			   <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" ID="Left" Title="loc:Left" />
-			   &#160;
-		   </td>
-		   <td>&#160;</td>
-		   <td valign="top" width="40%">
-			   <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" ID="Right" Title="loc:Right" />
-			   &#160;
-		   </td>
-		   <td>&#160;</td>
-		  </tr>
-		 </table>
-		</td>
-	  </tr>
+        <tr>
+		    <td>
+		        <div> 
+		        <!-- dis be where the field goes -->
+		        <script type="text/javascript">
+		            var modalDialog;
+		            function ShowActionItemDialog(title, list) {
+			            var options = {
+				            url: _spPageContextInfo.webServerRelativeUrl+'/' + list+ '/NewForm.aspx',
+				            title: title,
+				            allowMaximize: false,
+				            showClose: true,
+				            width: 800,
+				            args: {
+					            title: title,
+				            },
+				            height: 600,
+				            dialogReturnValueCallback : Function.createDelegate(null, function(){window.location.reload();})
+			            };
+			            modalDialog = SP.UI.ModalDialog.showModalDialog(options);
+		            };
+                </script>
+		        <button name="gtnewtaskbutton" onclick="ShowActionItemDialog('Ny oppgave','Lists/Oppgaver'); return false;">Ny oppgave</button>
+		        <button name="gtnewinfobutton" onclick="ShowActionItemDialog('Ny informasjon','Lists/Informasjon'); return false;">Ny informasjon</button>
+		    </div>
+                <table width="100%" cellpadding="0" cellspacing="0" style="padding: 5px 10px 10px 10px;">
+                    <tr>
+                        <td valign="top" width="60%" class="leftWebPartZone">
+                            <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" ID="Left" Title="loc:Left" />
+                            &#160;
+                        </td>
+                        <td>&#160;</td>
+                        <td valign="top" width="40%" class="rightWebPartZone">
+                            <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" ID="Right" Title="loc:Right" />
+                            &#160;
+                        </td>
+                        <td>&#160;</td>
+                    </tr>
+                </table>
+		    </td>
+        </tr>
 	</table>
 </asp:Content>

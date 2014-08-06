@@ -15,37 +15,7 @@
 	    	"Url": "SitePages/Forside.aspx",
             "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
 	        "RowLimit": 10,
-	        "Query": "<OrderBy><FieldRef Name='Title' /></OrderBy>"
-	    },
-	    {
-	    	"Name": "Konsept-fasen",
-            "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
-	        "RowLimit": 30,
-	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Konsept</Value></Eq></Where>"
-	    },
-	    {
-	    	"Name": "Planlegge-fasen",
-            "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
-	        "RowLimit": 30,
-	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Planlegge</Value></Eq></Where>"
-	    },
-	    {
-	    	"Name": "Gjennomføre-fasen",
-            "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
-	        "RowLimit": 30,
-	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Gjennomføre</Value></Eq></Where>"
-	    },
-	    {
-	    	"Name": "Avslutte-fasen",
-            "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
-	        "RowLimit": 30,
-	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Avslutte</Value></Eq></Where>"
-	    },
-	    {
-	    	"Name": "Realisere-fasen",
-            "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
-	        "RowLimit": 30,
-	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Realisere</Value></Eq></Where>"
+	        "Query": "<OrderBy><FieldRef Name='Modified' /></OrderBy>"
 	    }
     ]
 }

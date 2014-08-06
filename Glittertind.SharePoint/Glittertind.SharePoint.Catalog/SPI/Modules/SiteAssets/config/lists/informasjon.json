@@ -12,10 +12,10 @@
 	    },
         {
 	    	"Name": "",
-            "Url": "SitePages/VisMotereferat.aspx",
+            "Url": "SitePages/Motereferat.aspx",
 	        "ViewFields": ["Title", "GtProjectInfoDescription"],
 	        "RowLimit": 30,
-	        "Query": ""
+	        "Query": "<OrderBy><FieldRef Name='Created' Ascending='FALSE' /></OrderBy>"
 	    }
     ]
 }

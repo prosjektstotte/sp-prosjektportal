@@ -16,36 +16,6 @@
 	        "ViewFields": ["DocIcon", "LinkFilename", "GtProjectPhase", "Modified", "Editor"],
 	        "RowLimit": 10,
 	        "Query": "<OrderBy><FieldRef Name='Modified' /></OrderBy>"
-	    },
-	    {
-	    	"Name": "Konsept-fasen",
-	        "ViewFields": ["DocIcon", "LinkFilename", "Modified", "Editor"],
-	        "RowLimit": 30,
-	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Konsept</Value></Eq></Where>"
-	    },
-	    {
-	    	"Name": "Planlegge-fasen",
-	        "ViewFields": ["DocIcon", "LinkFilename", "Modified", "Editor"],
-	        "RowLimit": 30,
-	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Planlegge</Value></Eq></Where>"
-	    },
-	    {
-	    	"Name": "Gjennomføre-fasen",
-	        "ViewFields": ["DocIcon", "LinkFilename", "Modified", "Editor"],
-	        "RowLimit": 30,
-	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Gjennomføre</Value></Eq></Where>"
-	    },
-	    {
-	    	"Name": "Avslutte-fasen",
-	        "ViewFields": ["DocIcon", "LinkFilename", "Modified", "Editor"],
-	        "RowLimit": 30,
-	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Avslutte</Value></Eq></Where>"
-	    },
-	    {
-	    	"Name": "Realisere-fasen",
-	        "ViewFields": ["DocIcon", "LinkFilename", "Modified", "Editor"],
-	        "RowLimit": 30,
-	        "Query": "<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>Realisere</Value></Eq></Where>"
 	    }
     ]
 }
