@@ -23,19 +23,59 @@ GT.Project.Setup.Model.step = function (name, callback, properties) {
 
 GT.Project.Setup.InheritNavigation = function () {
     var deferred = GT.jQuery.Deferred();
+
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
-    clientContext.load(web);
     var navigation = web.get_navigation();
     navigation.set_useShared(true);
-    clientContext.executeQueryAsync(
-        function () {
-            deferred.resolve();
-        },
-        function () {
-            deferred.reject();
-        }
+
+    clientContext.executeQueryAsync(function () {
+        deferred.resolve();
+    }, function () {
+        deferred.reject();
+    }
     );
+
+    return deferred.promise();
+}
+GT.Project.Setup.ConfigureQuickLaunch = function () {
+    var deferred = GT.jQuery.Deferred();
+
+    var clientContext = SP.ClientContext.get_current();
+    var web = clientContext.get_web();
+    var quickLaunchNodeCollection = web.get_navigation().get_quickLaunch();
+
+    GT.jQuery.when(GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/quicklaunch"))
+    .then(function (files) {
+        for (var i = 0; i < files.length; i++) {
+            GT.jQuery.getJSON(files[i].ServerRelativeUrl)
+            .then(function (data) {
+                for (var i = 0; i < data.Nodes.length; i++) {
+                    var linkNode = data.Nodes[i];
+                    // Set properties for a new navigation node.
+                    var newNode = new SP.NavigationNodeCreationInformation();
+                    newNode.set_title(linkNode.Title);
+                    newNode.set_url(linkNode.Url);
+                    // Create node as the last node in the collection.
+                    newNode.set_asLastNode(true);
+                    quickLaunchNodeCollection.add(newNode);
+                    console.log('Adding the link node ' + linkNode.Title + ' to the quicklaunch');
+                };
+                clientContext.executeQueryAsync(function () { }, function () { });
+            })
+            .done(function () {
+                deferred.resolve();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log('Error ' + errorThrown);
+                deferred.reject();
+            });
+        }
+    })
+    .fail(function () {
+        deferred.reject();
+    });
+
     return deferred.promise();
 };
 
@@ -399,6 +439,9 @@ GT.Project.Setup.UpdateListViews = function (data) {
                 if (rowLimit != undefined && rowLimit != "" && rowLimit > 0) {
                     view.set_rowLimit(rowLimit);
                 }
+                if (query != undefined && query != "") {
+                    view.set_viewQuery(query);
+                }
                 view.update();
             } else {
                 var viewInfo = new SP.ViewCreationInformation();
@@ -546,9 +589,10 @@ GT.jQuery(document).ready(function () {
                 '1.0.0.0': {
                     0: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
                     1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {}),
-                    2: new GT.Project.Setup.Model.step("Oppdater lister basert på konfigurasjonsfiler", GT.Project.Setup.UpdateListsFromConfig, {}),
-                    3: new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", GT.Project.Setup.copyDefaultItems, {}),
-                    4: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
+                    2: new GT.Project.Setup.Model.step("Konfigurer quicklaunch", GT.Project.Setup.ConfigureQuickLaunch, {}),
+                    3: new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", GT.Project.Setup.UpdateListsFromConfig, {}),
+                    4: new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", GT.Project.Setup.copyDefaultItems, {}),
+                    5: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
                 }
             };
             var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";

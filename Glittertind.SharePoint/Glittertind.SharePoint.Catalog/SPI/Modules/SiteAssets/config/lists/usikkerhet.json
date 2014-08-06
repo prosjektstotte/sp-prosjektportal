@@ -15,7 +15,7 @@
 	    	"Url": "SitePages/Forside.aspx",
             "ViewFields": ["Title", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
 	        "RowLimit": 10,
-	        "Query": "<OrderBy><FieldRef Name='Modified' /></OrderBy>"
+	        "Query": "<OrderBy><FieldRef Name='Created' Ascending='FALSE' /></OrderBy>"
 	    }
     ]
 }
