@@ -4,8 +4,24 @@
     <File Path="SitePages\Forside.aspx" Url="Forside.aspx" Type="GhostableInLibrary" >
       <Property Name="ContentType" Value="Prosjektforside" />
       <Property Name="ContentTypeId" Value="0x010109010058561f86d956412b9dd7957bbcd67aae01" />
-      <View List="Lists/Oppgaver" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="0" />
-      <View List="Dokumenter" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="1" />
+      <View List="Lists/Oppgaver" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="0" >
+        <![CDATA[
+         <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <TypeName>Microsoft.SharePoint.WebPartPages.XsltListViewWebPart</TypeName>
+          <Title>Oppgaver (gjeldende fase)</Title>
+         </WebPart>
+         ]]>
+      </View>
+      <View List="Dokumenter" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="1" >
+        <![CDATA[
+         <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <TypeName>Microsoft.SharePoint.WebPartPages.XsltListViewWebPart</TypeName>
+          <Title>Dokumenter (gjeldende fase)</Title>
+         </WebPart>
+         ]]>
+      </View>
       <AllUsersWebPart ID="Sitefeed" WebPartZoneID="RightColumn" WebPartOrder="0" >
         <![CDATA[
           <?xml version="1.0" encoding="utf-8"?>
@@ -39,50 +55,38 @@
           </WebPart>
         ]]>
       </AllUsersWebPart>
-      <View List="Lists/Usikkerhet" BaseViewID="1" WebPartZoneID="RightColumn" WebPartOrder="1" />
+      <View List="Lists/Usikkerhet" BaseViewID="1" WebPartZoneID="RightColumn" WebPartOrder="1" >
+        <![CDATA[
+         <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <TypeName>Microsoft.SharePoint.WebPartPages.XsltListViewWebPart</TypeName>
+          <Title>Usikkerhet (gjeldende fase)</Title>
+         </WebPart>
+         ]]>
+      </View>        
     </File>
     <File Path="SitePages\VisMotereferat.aspx" Url="VisMotereferat.aspx" Type="GhostableInLibrary" >
       <Property Name="ContentType" Value="WebPartPage" />
       <Property Name="ContentTypeId" Value="0x01010901" />
-      <AllUsersWebPart WebPartOrder="0" WebPartZoneID="Left">
+      <View List="Lists/Oppgaver" BaseViewID="1" WebPartZoneID="Left" WebPartOrder="0" >
         <![CDATA[
-          <webParts>
-            <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-              <metaData>
-                <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
-                <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
-              </metaData>
-              <data>
-                <properties>
-                  <property name="ListUrl" type="string">Lists/Oppgaver</property>
-                  <property name="ExportMode" type="exportmode">All</property>
-                  <property name="AllowZoneChange" type="bool">True</property>
-                  <property name="ExportMode" type="exportmode">All</property>
-                  <property name="HelpUrl" type="string" />
-                  <property name="Hidden" type="bool">False</property>
-                  <property name="TitleUrl" type="string" />
-                  <property name="Description" type="string"></property>
-                  <property name="AllowHide" type="bool">True</property>
-                  <property name="AllowMinimize" type="bool">True</property>
-                  <property name="ChromeType" type="chrometype">Default</property>
-                  <property name="AllowConnect" type="bool">True</property>
-                  <property name="Width" type="unit" />
-                  <property name="Height" type="unit" />
-                  <property name="HelpMode" type="helpmode">Navigate</property>
-                  <property name="CatalogIconImageUrl" type="string" />
-                  <property name="AllowEdit" type="bool">True</property>
-                  <property name="TitleIconImageUrl" type="string" />
-                  <property name="Direction" type="direction">NotSet</property>
-                  <property name="AllowClose" type="bool">True</property>
-                  <property name="ChromeState" type="chromestate">Normal</property>
-                  <property name="ShowTimelineIfAvailable" type="bool">False</property>
-                </properties>
-              </data>
-            </webPart>
-          </webParts>
-        ]]>
-      </AllUsersWebPart>
-      <View List="Lists/Informasjon" BaseViewID="1" WebPartZoneID="Right" WebPartOrder="0" />
+         <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <TypeName>Microsoft.SharePoint.WebPartPages.XsltListViewWebPart</TypeName>
+          <Title>Siste oppgaver</Title>
+          <ShowTimelineIfAvailable>False</ShowTimelineIfAvailable>
+         </WebPart>
+         ]]>
+      </View>
+      <View List="Lists/Informasjon" BaseViewID="1" WebPartZoneID="Right" WebPartOrder="0" >
+        <![CDATA[
+         <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <TypeName>Microsoft.SharePoint.WebPartPages.XsltListViewWebPart</TypeName>
+          <Title>Siste informasjonselementer</Title>
+         </WebPart>
+         ]]>
+      </View>        
     </File>
   </Module>
 </Elements>
