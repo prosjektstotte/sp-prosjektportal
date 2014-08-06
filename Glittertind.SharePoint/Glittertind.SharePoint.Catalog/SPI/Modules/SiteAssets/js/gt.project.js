@@ -14,7 +14,7 @@ GT.Project.ChangeProjectPhase = function () {
                 GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Oppgaver", "SitePages/Forside.aspx"),
                 GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Usikkerhet", "SitePages/Forside.aspx"),
                 GT.Project.SetMetaDataDefaultsForLib("Dokumenter", "GtProjectPhase", term)
-            ).then(function() {
+            ).then(function () {
                 deferred.resolve();
             });
         }
@@ -179,7 +179,7 @@ GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMar
 
 GT.Project.GetPhaseNameFromCurrentItem = function () {
     var defer = GT.jQuery.Deferred();
-    GT.jQuery.when(GT.Project.GetPhaseTermFromCurrentItem()).done(function(term) {
+    GT.jQuery.when(GT.Project.GetPhaseTermFromCurrentItem()).done(function (term) {
         if (term != undefined && term != "" && term.get_label != undefined) {
             defer.resolve(term.get_label());
         } else {
@@ -220,4 +220,139 @@ GT.Project.GetPhaseTermFromCurrentItem = function () {
         console.log('error when getting page field' + sender + " " + args);
     }));
     return deferred.promise();
+};
+
+GT.Project.NewProjectLink = GT.Project.NewProjectLink || {};
+
+GT.Project.NewProjectLink.canManageWeb = function () {
+    var self = this;
+    self.defer = GT.jQuery.Deferred();
+    var clientContext = new SP.ClientContext.get_current();
+    self.oWeb = clientContext.get_web();
+    clientContext.load(self.oWeb);
+    clientContext.load(self.oWeb, 'EffectiveBasePermissions');
+
+    var permissionMask = new SP.BasePermissions();
+    permissionMask.set(SP.PermissionKind.manageWeb);
+    self.shouldShowLink = self.oWeb.doesUserHavePermissions(permissionMask);
+
+    clientContext.executeQueryAsync(Function.createDelegate(self, GT.Project.NewProjectLink.onQuerySucceededUser), Function.createDelegate(self, GT.Project.NewProjectLink.onQueryFailedUser));
+    return self.defer.promise();
+};
+GT.Project.NewProjectLink.onQuerySucceededUser = function () {
+    var self = this;
+    self.defer.resolve(self.shouldShowLink.get_value());
+};
+
+GT.Project.NewProjectLink.onQueryFailedUser = function () {
+    this.defer.reject();
+};
+
+GT.Project.NewProjectLink.showLink = function () {
+    GT.Project.NewProjectLink.canManageWeb().done(function (shouldShowLink) {
+        if (shouldShowLink) GT.jQuery('#newProjectLink').show();
+    });
+};
+
+
+GT.Project.PhaseForm = GT.Project.PhaseForm || {};
+GT.Project.PhaseForm.CheckList = GT.Project.PhaseForm.CheckList || {};
+
+GT.Project.PhaseForm.CheckList.render = function () {
+    // 
+    var promise = GT.Project.PhaseForm.CheckList.getData();
+
+    promise.done(function (items) {
+        var outHtml = [];
+        outHtml.push('<ul id="gtchecklist">');
+        for (var i = 0; i < items.length; i++) {
+            outHtml.push('<li>',
+							'<span class="gt-icon ', items[i].get_statusCssClass(), '" title="', items[i].Status, '"></span>',
+							'<span><a href="', items[i].get_editItemUrl(window.location.toString()), '" >', items[i].Title, '</a><span>',
+						'</li>');
+        }
+        GT.jQuery(".ms-webpart-zone.ms-fullWidth").append(outHtml.join(""));
+
+    });
+
+};
+
+GT.Project.GetCurrentPhase = function () {
+    var defer = GT.jQuery.Deferred();
+    var ctx = new SP.ClientContext.get_current();
+    var web = ctx.get_web();
+    var props = web.get_allProperties();
+    ctx.load(web);
+    ctx.load(props); //need to load the properties explicitly 		
+    ctx.executeQueryAsync(function () {
+        var phase = props.get_fieldValues()['glittertind_persistedPhase'];
+        console.log(phase);
+        defer.resolve(phase);
+    }, function () {
+        defer.reject();
+    });
+    return defer.promise();
+};
+
+
+
+GT.Project.PhaseForm.CheckList.getData = function () {
+    var currentPhasePromise = GT.Project.GetCurrentPhase();
+    var scriptPromise = GT.jQuery.getScript(_spPageContextInfo.siteServerRelativeUrl + "/_layouts/15/SP.RequestExecutor.js");
+
+    var promise = GT.jQuery
+	.when(currentPhasePromise, scriptPromise)
+	.then(function (phase) {
+	    var defer = GT.jQuery.Deferred();
+	    var ctx = new SP.ClientContext.get_current();
+	    var list = ctx.get_web().get_lists().getByTitle('Sjekkliste');
+	    var camlQuery = new SP.CamlQuery();
+	    camlQuery.set_viewXml("<View><Query><Where><Eq><FieldRef Name='GtProjectPhase'/><Value Type='TaxonomyFieldType'>" + phase + "</Value></Eq></Where></Query></View>");
+	    var listItems = list.getItems(camlQuery);
+	    ctx.load(listItems);
+	    ctx.executeQueryAsync(function () {
+	        var listItemEnumerator = listItems.getEnumerator();
+	        var checkListItems = [];
+	        while (listItemEnumerator.moveNext()) {
+	            var item = listItemEnumerator.get_current();
+	            var title = item.get_item('Title');
+	            var id = item.get_item('ID');
+	            var status = item.get_item('GtChecklistStatus');
+	            var checkListItem = new GT.Project.PhaseForm.CheckList.checkListItem(title, id, status);
+	            checkListItems.push(checkListItem);
+	        }
+	        defer.resolve(checkListItems);
+	    }, function (sender, args) {
+	        console.log(args.get_message());
+	        defer.reject();
+	    });
+	    return defer.promise();
+
+	});
+
+    return promise;
+
+};
+
+GT.Project.PhaseForm.CheckList.checkListItem = function (title, id, status) {
+    var self = this;
+    self.Title = title;
+    self.Id = id;
+    self.Status = status;
+    self.get_statusCssClass = function () {
+        if (self.Status === 'Ja' || self.Status === 'Ignorert') {
+            return 'gt-completed';
+        }
+        if (self.Status === 'Nei') {
+            return 'gt-failed';
+        }
+        return 'gt-nostatus';
+    };
+    self.get_editItemUrl = function (sourceUrl) {
+        var editElmLink = _spPageContextInfo.webServerRelativeUrl + "/Lists/Sjekkliste/EditForm.aspx?ID=" + self.Id;
+        if (sourceUrl) {
+            editElmLink += "&Source=" + encodeURIComponent(sourceUrl);
+        }
+        return editElmLink;
+    };
 };
