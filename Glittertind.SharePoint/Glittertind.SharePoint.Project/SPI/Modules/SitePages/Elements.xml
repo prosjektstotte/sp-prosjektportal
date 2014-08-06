@@ -65,7 +65,8 @@
          ]]>
       </View>        
     </File>
-    <File Path="SitePages\VisMotereferat.aspx" Url="VisMotereferat.aspx" Type="GhostableInLibrary" >
+    <File Path="SitePages\Motereferat.aspx" Url="Motereferat.aspx" Type="GhostableInLibrary" >
+      <Property Name="Title" Value="Møtereferat" />
       <Property Name="ContentType" Value="WebPartPage" />
       <Property Name="ContentTypeId" Value="0x01010901" />
       <View List="Lists/Oppgaver" BaseViewID="1" WebPartZoneID="Left" WebPartOrder="0" >
@@ -88,5 +89,6 @@
          ]]>
       </View>        
     </File>
+    
   </Module>
 </Elements>
