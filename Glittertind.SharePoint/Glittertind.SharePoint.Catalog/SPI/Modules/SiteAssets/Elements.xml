@@ -10,6 +10,7 @@
     <File Path="js\gt.project.setup.contenttypes.js" Url="js/gt.project.setup.contenttypes.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="js\gt.generics.js" Url="js/gt.generics.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="html\gt.phaseform.html" Url="html/gt.phaseform.html" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
+    <File Path="html\gt.newprojectlink.html" Url="html/gt.newprojectlink.html" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\data\sjekkliste.data.json" Url="config/data/sjekkliste.data.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\data\oppgaver.data.json" Url="config/data/oppgaver.data.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\dokumenter.json" Url="config/lists/dokumenter.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
@@ -22,6 +23,6 @@
     <File Path="config\lists\motekalender.json" Url="config/lists/motekalender.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\oppgaver.json" Url="config/lists/oppgaver.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\informasjon.json" Url="config/lists/informasjon.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
-    <File Path="html\gt.newprojectlink.html" Url="html/gt.newprojectlink.html" />
+    <File Path="config\quicklaunch\quicklaunch.json" Url="config/quicklaunch/quicklaunch.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
   </Module>
 </Elements>

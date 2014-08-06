@@ -24,5 +24,6 @@
     <ProjectItemFile Source="config\lists\informasjon.json" Target="SiteAssets\config\lists\" Type="ElementFile" />
     <ProjectItemFile Source="config\data\oppgaver.data.json" Target="SiteAssets\config\data\" Type="ElementFile" />
     <ProjectItemFile Source="html\gt.newprojectlink.html" Target="SiteAssets\html\" Type="ElementFile" />
+    <ProjectItemFile Source="config\quicklaunch\quicklaunch.json" Target="SiteAssets\config\quicklaunch\" Type="ElementFile" />
   </Files>
 </ProjectItem>
