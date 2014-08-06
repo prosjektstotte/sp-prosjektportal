@@ -399,6 +399,9 @@ GT.Project.Setup.UpdateListViews = function (data) {
                 if (rowLimit != undefined && rowLimit != "" && rowLimit > 0) {
                     view.set_rowLimit(rowLimit);
                 }
+                if (query != undefined && query != "") {
+                    view.set_viewQuery(query);
+                }
                 view.update();
             } else {
                 var viewInfo = new SP.ViewCreationInformation();
