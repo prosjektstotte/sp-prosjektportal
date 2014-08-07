@@ -130,13 +130,13 @@ namespace Glittertind.Sherpa.Installer
         private static void PrintLogo()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(@"     _______. __    __   _______ .______      .______      ___      ");
-            Console.WriteLine(@"    /       ||  |  |  | |   ____||   _  \     |   _  \    /   \     ");
-            Console.WriteLine(@"   |   (----`|  |__|  | |  |__   |  |_)  |    |  |_)  |  /  ^  \    ");
-            Console.WriteLine(@"    \   \    |   __   | |   __|  |      /     |   ___/  /  /_\  \   ");
-            Console.WriteLine(@".----)   |   |  |  |  | |  |____ |  |\  \----.|  |     /  _____  \  ");
-            Console.WriteLine(@"|_______/    |__|  |__| |_______|| _| `._____|| _|    /__/     \__\ ");
-            Console.WriteLine(@"                                                                    ");
+            Console.WriteLine(@"     _______. __    __   _______ .______   .______     ___      ");
+            Console.WriteLine(@"    /       ||  |  |  | |   ____||   _  \  |   _  \   /   \     ");
+            Console.WriteLine(@"   |   (----`|  |__|  | |  |__   |  |_)  | |  |_)  | /  ^  \    ");
+            Console.WriteLine(@"    \   \    |   __   | |   __|  |      /  |   ___/ /  /_\  \   ");
+            Console.WriteLine(@".----)   |   |  |  |  | |  |____ |  |\  \_ |  |    /   ___   \  ");
+            Console.WriteLine(@"|_______/    |__|  |__| |_______|| _| `.__|| _|   /__/     \__\ ");
+            Console.WriteLine(@"                                                                ");
             Console.ForegroundColor = ConsoleColor.White;
         }
     }
