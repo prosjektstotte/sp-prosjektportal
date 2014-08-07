@@ -4,30 +4,77 @@
 
 <style type="text/css">
     #gtchecklist {
+        width: 514px;
     }
+
+        #gtchecklist ul {
+            padding-left: 10px;
+        }
 
         #gtchecklist li {
             list-style: none;
+            margin-bottom: 10px;
+        }
+
+        #gtchecklist .gt-checklist-title {
+            display: inline-block;
+            width: 80%;
+            vertical-align: middle;
         }
 
         #gtchecklist .gt-icon {
             width: 25px;
             height: 25px;
             display: inline-block;
-            border: 1px dashed;
+            margin-right: 7px;
+            border-radius: 5px;
+            vertical-align: top;
         }
+
+            #gtchecklist .gt-icon:after {
+                font-size: 17px;
+                padding-left: auto;
+                margin-left: 7px;
+                margin-right: auto;
+                margin-top: 1px;
+                display: inline-block;
+                color: white;
+            }
 
             #gtchecklist .gt-icon.gt-completed {
                 background-color: green;
             }
 
+                #gtchecklist .gt-icon.gt-completed:after {
+                    content: "\2713 ";
+                }
+
+            #gtchecklist .gt-icon.gt-ignored {
+                background-color: #E8C900;
+            }
+
+                #gtchecklist .gt-icon.gt-ignored:after {
+                    content: "\2713 ";
+                }
+
             #gtchecklist .gt-icon.gt-failed {
                 background-color: red;
             }
 
+                #gtchecklist .gt-icon.gt-failed:after {
+                    content: "\2717";
+                    margin-top: 0;
+                }
+
             #gtchecklist .gt-icon.gt-nostatus {
                 background-color: gray;
             }
+
+                #gtchecklist .gt-icon.gt-nostatus:after {
+                    content: "?";
+                    font-weight: bold;
+                    margin-left: 9px;
+                }
 </style>
 
 <script type="text/javascript" language="javascript">
@@ -50,9 +97,10 @@
                     jQuery('#onetIDListForm .ms-webpart-chrome.ms-webpart-chrome-vertical.ms-webpart-chrome-fullWidth > div > table > tbody > tr > td> table:nth-child(2)').hide();
                     // Hide all rows but the phase picker
                     jQuery('#onetIDListForm table.ms-formtable > tbody > tr').hide();
+                    jQuery('#onetIDListForm table.ms-formtoolbar td.ms-toolbar:nth-of-type(1)').hide();
                     jQuery('#onetIDListForm div[id^="GtProjectPhase"]').closest('tr').show();
+                    GT.Project.PhaseForm.CheckList.render();
                 }
-                GT.Project.PhaseForm.CheckList.render();
             }
         });
     })();

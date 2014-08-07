@@ -264,13 +264,19 @@ GT.Project.PhaseForm.CheckList.render = function () {
 
     promise.done(function (items) {
         var outHtml = [];
-        outHtml.push('<ul id="gtchecklist">');
+        outHtml.push('<div id="gtchecklist">',
+						'<h2 class="ms-h2">Fasesjekkliste</h2>',
+						'<ul>');
         for (var i = 0; i < items.length; i++) {
             outHtml.push('<li>',
-							'<span class="gt-icon ', items[i].get_statusCssClass(), '" title="', items[i].Status, '"></span>',
-							'<span><a href="', items[i].get_editItemUrl(window.location.toString()), '" >', items[i].Title, '</a><span>',
+							'<a href="', items[i].get_editItemUrl(window.location.toString()), '" >',
+								'<span class="gt-icon ', items[i].get_statusCssClass(), '" title="', items[i].Status, '"></span>',
+								'<span class="gt-checklist-title">', items[i].Title, '</span></a>',
 						'</li>');
         }
+        outHtml.push('</ul>',
+				'<div>Sjekklisten er basert på beslutningspunkt fra <a href="http://prosjektveiviseren.no/" target="_blank">Prosjektveiviseren</a></div>',
+		        '</div>');
         GT.jQuery(".ms-webpart-zone.ms-fullWidth").append(outHtml.join(""));
 
     });
@@ -307,7 +313,7 @@ GT.Project.PhaseForm.CheckList.getData = function () {
 	    var ctx = new SP.ClientContext.get_current();
 	    var list = ctx.get_web().get_lists().getByTitle('Sjekkliste');
 	    var camlQuery = new SP.CamlQuery();
-	    camlQuery.set_viewXml("<View><Query><Where><Eq><FieldRef Name='GtProjectPhase'/><Value Type='TaxonomyFieldType'>" + phase + "</Value></Eq></Where></Query></View>");
+	    camlQuery.set_viewXml("<View><Query><Where><Eq><FieldRef Name='GtProjectPhase'/><Value Type='TaxonomyFieldType'>" + phase + "</Value></Eq></Where><OrderBy><FieldRef Name='Title' /></OrderBy></Query></View>");
 	    var listItems = list.getItems(camlQuery);
 	    ctx.load(listItems);
 	    ctx.executeQueryAsync(function () {
@@ -340,8 +346,11 @@ GT.Project.PhaseForm.CheckList.checkListItem = function (title, id, status) {
     self.Id = id;
     self.Status = status;
     self.get_statusCssClass = function () {
-        if (self.Status === 'Ja' || self.Status === 'Ignorert') {
+        if (self.Status === 'Ja') {
             return 'gt-completed';
+        }
+        if (self.Status === 'Ignorert') {
+            return 'gt-ignored';
         }
         if (self.Status === 'Nei') {
             return 'gt-failed';
