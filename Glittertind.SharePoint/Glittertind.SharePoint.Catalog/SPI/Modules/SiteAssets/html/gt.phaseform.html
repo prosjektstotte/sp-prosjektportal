@@ -1,25 +1,107 @@
-﻿<script type="text/javascript" src="../../../SiteAssets/gt/js/gt.generics.js"></script>
+﻿<script type="text/javascript" src="../../../SiteAssets/gt/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../../../SiteAssets/gt/js/gt.generics.js"></script>
 <script type="text/javascript" src="../../../SiteAssets/gt/js/gt.project.js"></script>
-<script type="text/javascript" src="../../../SiteAssets/gt/js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" language="javascript">
-    jQuery(document).ready(function () {
-        var editMode = getParameterByName('EditMode');
-        if (editMode != '' && editMode != undefined) {
-            if (editMode == "Project") {
-                // Jesus chist :D Hiding the "Open this web part page"-text
-                jQuery('#onetIDListForm .ms-webpart-chrome.ms-webpart-chrome-vertical.ms-webpart-chrome-fullWidth > div > table > tbody > tr > td> table:nth-child(2)').hide();
-                //Hide content type picker and name and title field (as it's applicable for the page, not the web
-                jQuery('#onetIDListForm input[id^="FileLeafRef"]').closest('tr').hide();
-                jQuery('#onetIDListForm select[title="Innholdstype"]').closest('tr').hide();
-                jQuery('#onetIDListForm input[title="Tittel"]').closest('tr').hide();
-            }
-            else if (editMode == "PhaseOnly") {
-                // Jesus chist :D Hiding the "Open this web part page"-text
-                jQuery('#onetIDListForm .ms-webpart-chrome.ms-webpart-chrome-vertical.ms-webpart-chrome-fullWidth > div > table > tbody > tr > td> table:nth-child(2)').hide();
-                // Hide all rows but the phase picker
-                jQuery('#onetIDListForm table.ms-formtable > tbody > tr').hide();
-                jQuery('#onetIDListForm div[id^="GtProjectPhase"]').closest('tr').show();
-            }
+
+<style type="text/css">
+    #gtchecklist {
+        width: 514px;
+    }
+
+        #gtchecklist ul {
+            padding-left: 10px;
         }
-    });
+
+        #gtchecklist li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        #gtchecklist .gt-checklist-title {
+            display: inline-block;
+            width: 80%;
+            vertical-align: middle;
+        }
+
+        #gtchecklist .gt-icon {
+            width: 25px;
+            height: 25px;
+            display: inline-block;
+            margin-right: 7px;
+            border-radius: 5px;
+            vertical-align: top;
+        }
+
+            #gtchecklist .gt-icon:after {
+                font-size: 17px;
+                padding-left: auto;
+                margin-left: 7px;
+                margin-right: auto;
+                margin-top: 1px;
+                display: inline-block;
+                color: white;
+            }
+
+            #gtchecklist .gt-icon.gt-completed {
+                background-color: green;
+            }
+
+                #gtchecklist .gt-icon.gt-completed:after {
+                    content: "\2713 ";
+                }
+
+            #gtchecklist .gt-icon.gt-ignored {
+                background-color: #E8C900;
+            }
+
+                #gtchecklist .gt-icon.gt-ignored:after {
+                    content: "\2713 ";
+                }
+
+            #gtchecklist .gt-icon.gt-failed {
+                background-color: red;
+            }
+
+                #gtchecklist .gt-icon.gt-failed:after {
+                    content: "\2717";
+                    margin-top: 0;
+                }
+
+            #gtchecklist .gt-icon.gt-nostatus {
+                background-color: gray;
+            }
+
+                #gtchecklist .gt-icon.gt-nostatus:after {
+                    content: "?";
+                    font-weight: bold;
+                    margin-left: 9px;
+                }
+</style>
+
+<script type="text/javascript" language="javascript">
+    (function () {
+        var jQuery = GT.jQuery;
+
+        jQuery(document).ready(function () {
+            var editMode = getParameterByName('EditMode');
+            if (editMode != '' && editMode != undefined) {
+                if (editMode == "Project") {
+                    // Jesus chist :D Hiding the "Open this web part page"-text
+                    jQuery('#onetIDListForm .ms-webpart-chrome.ms-webpart-chrome-vertical.ms-webpart-chrome-fullWidth > div > table > tbody > tr > td> table:nth-child(2)').hide();
+                    //Hide content type picker and name and title field (as it's applicable for the page, not the web
+                    jQuery('#onetIDListForm input[id^="FileLeafRef"]').closest('tr').hide();
+                    jQuery('#onetIDListForm select[title="Innholdstype"]').closest('tr').hide();
+                    jQuery('#onetIDListForm input[title="Tittel"]').closest('tr').hide();
+                }
+                else if (editMode == "PhaseOnly") {
+                    // Jesus chist :D Hiding the "Open this web part page"-text
+                    jQuery('#onetIDListForm .ms-webpart-chrome.ms-webpart-chrome-vertical.ms-webpart-chrome-fullWidth > div > table > tbody > tr > td> table:nth-child(2)').hide();
+                    // Hide all rows but the phase picker
+                    jQuery('#onetIDListForm table.ms-formtable > tbody > tr').hide();
+                    jQuery('#onetIDListForm table.ms-formtoolbar td.ms-toolbar:nth-of-type(1)').hide();
+                    jQuery('#onetIDListForm div[id^="GtProjectPhase"]').closest('tr').show();
+                    GT.Project.PhaseForm.CheckList.render();
+                }
+            }
+        });
+    })();
 </script>
