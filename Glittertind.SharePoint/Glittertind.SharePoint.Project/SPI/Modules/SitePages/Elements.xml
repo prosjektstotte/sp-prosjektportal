@@ -65,6 +65,46 @@
          ]]>
       </View>        
     </File>
+    <File Path="SitePages\Forside.aspx" Url="ForsideUfiltrert.aspx" Type="GhostableInLibrary" >
+      <Property Name="ContentType" Value="Prosjektforside" />
+      <Property Name="ContentTypeId" Value="0x010109010058561f86d956412b9dd7957bbcd67aae01" />
+      <View List="Lists/Oppgaver" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="0" />
+      <View List="Dokumenter" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="1" />
+      <AllUsersWebPart ID="Sitefeed" WebPartZoneID="RightColumn" WebPartOrder="0" >
+        <![CDATA[
+          <?xml version="1.0" encoding="utf-8"?>
+          <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+            <Title>Områdefeed</Title>
+            <FrameType>None</FrameType>
+            <Description>Områdefeed inneholder mikrobloggingsdiskusjoner på et gruppeområde.</Description>
+            <IsIncluded>true</IsIncluded>
+            <ZoneID>LeftColumn</ZoneID>
+            <PartOrder>0</PartOrder>
+            <FrameState>Normal</FrameState>
+            <Height />
+            <Width />
+            <AllowRemove>true</AllowRemove>
+            <AllowZoneChange>true</AllowZoneChange>
+            <AllowMinimize>true</AllowMinimize>
+            <AllowConnect>true</AllowConnect>
+            <AllowEdit>true</AllowEdit>
+            <AllowHide>true</AllowHide>
+            <IsVisible>true</IsVisible>
+            <DetailLink />
+            <HelpLink />
+            <HelpMode>Modeless</HelpMode>
+            <Dir>Default</Dir>
+            <PartImageSmall />
+            <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
+            <PartImageLarge>/_layouts/15/images/wp_pers.gif</PartImageLarge>
+            <IsIncludedFilter />
+            <Assembly>Microsoft.SharePoint.Portal, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+            <TypeName>Microsoft.SharePoint.Portal.WebControls.SiteFeedWebPart</TypeName>
+          </WebPart>
+        ]]>
+      </AllUsersWebPart>
+      <View List="Lists/Usikkerhet" BaseViewID="1" WebPartZoneID="RightColumn" WebPartOrder="1" />
+    </File>
     <File Path="SitePages\Motereferat.aspx" Url="Motereferat.aspx" Type="GhostableInLibrary" >
       <Property Name="Title" Value="Møtereferat" />
       <Property Name="ContentType" Value="WebPartPage" />
