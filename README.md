@@ -23,13 +23,13 @@ Dette prosjektet består i dag av to ulike løsninger, Sherpa og Glittertind.
   * Konsollapplikasjonen har et enkelt brukergrensesnitt for å utføre de ulike funksjonene Sherpa kan gjøre. 
 
 ### Hvordan komme i gang?
-* Last ned Sherpa fra Github (foreløpig kun mulig å laste ned som en Visual Studio solution). 
-* Endre konfigurasjonsfilene til ditt behov 
-* Bygg løsningen og naviger til output-mappen til applikasjonen (typisk ‘rot/sp-prosjektportal\Glittertind.Sherpa\Glittertind.Sherpa.Installer\bin\Debug') 
-* Legg evt. SharePoint sandbox-løsninger i en mappe som heter solutions i samme mappe som applikasjonen ligger
-* Start Sherpa.exe applikasjonen i et kommandolinjevindu og angi parameterne url, username og om applikasjonen skal koble seg til SharePoint Online
+1. Last ned Sherpa fra Github (foreløpig kun mulig å laste ned som en Visual Studio solution). 
+2. Endre konfigurasjonsfilene til ditt behov 
+3. Bygg løsningen og naviger til output-mappen til applikasjonen (typisk ‘rot/sp-prosjektportal\Glittertind.Sherpa\Glittertind.Sherpa.Installer\bin\Debug') 
+4. Legg evt. SharePoint sandbox-løsninger i en mappe som heter solutions i samme mappe som applikasjonen ligger
+5. Start Sherpa.exe applikasjonen i et kommandolinjevindu og angi parameterne url, username og om applikasjonen skal koble seg til SharePoint Online
   * Sherpa.exe --help for hjelpetekst
-* Sherpa autentiserer brukeren og dersom vellykket velger en hvilke funksjoner som skal utføres
+6. Sherpa autentiserer brukeren og dersom vellykket velger en hvilke funksjoner som skal utføres
 
 ### Kjente begrensninger
 * For On-Premises installasjon må applikasjonen kjøre på samme server som SharePoint
