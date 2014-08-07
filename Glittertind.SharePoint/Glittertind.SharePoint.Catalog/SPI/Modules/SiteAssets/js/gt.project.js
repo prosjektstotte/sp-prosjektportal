@@ -150,7 +150,7 @@ GT.Project.PopulateProjectPhasePart = function () {
         GT.jQuery.when(GT.Project.GetPhaseNameFromCurrentItem()).then(function (phaseName) {
             var phases = ['Konsept', 'Planlegge', 'Gjennomføre', 'Avslutte', 'Realisere'];
             for (var ix = 0; ix < phases.length; ix++) {
-                GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(phases[ix], phases[ix] == phaseName, true));
+                GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(phases[ix], phases[ix] == phaseName, true, true));
             }
         });
     });
@@ -160,7 +160,7 @@ GT.Project.GetPhaseLogoMarkup = function (phaseName) {
     GT.Project.GetPhaseLogoMarkup(phaseName, false);
 };
 
-GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMarkup) {
+GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMarkup, linkToDocumentLibrary) {
     var phaseDisplayName = "Ingen fase";
     var phaseLetter = 'X';
     var selectedClass = selected ? "selected" : '';
@@ -172,8 +172,11 @@ GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMar
         '<span class="phaseLetter">' + phaseLetter + '</span>' +
         '<span class="projectPhase">' + phaseDisplayName + '</span>' +
         '</div>';
+    if (linkToDocumentLibrary)
+        markup = '<a href="../Dokumenter/Forms/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1=' + phaseDisplayName + '">' + markup + '</a>';
     if (wrapInListItemMarkup)
-        return '<li class="' + selectedClass + '">' + markup + '</li>';
+        markup = '<li class="' + selectedClass + '">' + markup + '</li>';
+
     return markup;
 };
 
