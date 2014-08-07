@@ -3,6 +3,10 @@
         {
             "Url": "SitePages/Motereferat.aspx",
             "Title": "Møtereferat"
+        },
+        {
+            "Url": "SitePages/ForsideUfiltrert.aspx",
+            "Title": "Forside Ufiltrert"
         }
     ]
 }
