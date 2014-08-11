@@ -498,12 +498,14 @@ GT.Project.Setup.HandleOnTheFlyConfiguration = function (defaultProperties) {
         .then(function (currentPhase) {
             // Persist change of phase
             if (currentPhase != undefined && currentPhase != "" && properties.persistedPhase.value != currentPhase) {
+                GT.Project.Setup.showWaitMessage();
                 GT.jQuery.when(
                     GT.Project.ChangeProjectPhase()
                 ).then(function () {
                     properties.persistedPhase.value = currentPhase;
                     GT.Project.Setup.persistsProperties(properties)
                     .then(function () {
+                        GT.Project.Setup.closeWaitMessage();
                         deferred.resolve(true);
                     });
                 });
