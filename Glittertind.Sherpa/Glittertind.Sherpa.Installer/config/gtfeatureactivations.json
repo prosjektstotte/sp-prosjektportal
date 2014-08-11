@@ -13,8 +13,8 @@
    },
    {
       FeatureId: "8a49d7c1-7477-4ec4-b124-4513e6c294fd",
-      FeatureName: "Glittertind.SharePoint.Catalog_SiteSearchSettings",
-      Scope: "Site",
+      FeatureName: "Glittertind.SharePoint.Catalog_WebSearchSettings",
+      Scope: "Web",
       Url: "/"
    },
    {
