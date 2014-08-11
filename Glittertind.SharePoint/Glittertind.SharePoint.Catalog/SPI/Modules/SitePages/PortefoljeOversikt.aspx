@@ -54,19 +54,14 @@
             border: none;
         }
     </style>
-    <table width="100%" cellpadding="0" cellspacing="0" style="padding: 5px 10px 10px 10px;" id="gtcontenttable">
+    <table width="100%" cellpadding="0" cellspacing="0" style="padding: 5px 10px 10px 10px;">
         <tr>
-            <td valign="top" width="20%" class="gt-left">
+            <td valign="top" width="20%">
                 <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Left%>" ID="LeftColumn" Orientation="Vertical" />
                 &#160;
             </td>
-            <td valign="top" width="60%" class="gt-center">
+            <td valign="top" width="80%">
                 <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Center%>" ID="CenterColumn" Orientation="Vertical" />
-                &#160;
-            </td>
-            <td>&#160;</td>
-            <td valign="top" width="20%" class="gt-right">
-                <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Right%>" ID="RightColumn" Orientation="Vertical" />
                 &#160;
             </td>
             <td>&#160;</td>
