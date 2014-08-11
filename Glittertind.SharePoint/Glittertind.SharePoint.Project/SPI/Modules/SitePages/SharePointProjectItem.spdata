@@ -4,5 +4,6 @@
     <ProjectItemFile Source="Elements.xml" Target="SitePages\" Type="ElementManifest" />
     <ProjectItemFile Source="Forside.aspx" Target="SitePages\" Type="ElementFile" />
     <ProjectItemFile Source="Motereferat.aspx" Target="SitePages\" Type="ElementFile" />
+    <ProjectItemFile Source="Ufiltrert.aspx" Target="SitePages\" Type="ElementFile" />
   </Files>
 </ProjectItem>

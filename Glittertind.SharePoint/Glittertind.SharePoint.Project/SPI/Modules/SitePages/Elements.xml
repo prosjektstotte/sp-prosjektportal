@@ -65,9 +65,10 @@
          ]]>
       </View>        
     </File>
-    <File Path="SitePages\Forside.aspx" Url="Ufiltrert.aspx" Type="GhostableInLibrary" >
-      <Property Name="ContentType" Value="Prosjektforside" />
-      <Property Name="ContentTypeId" Value="0x010109010058561f86d956412b9dd7957bbcd67aae01" />
+    <File Path="SitePages\Ufiltrert.aspx" Url="Ufiltrert.aspx" Type="GhostableInLibrary" >
+      <Property Name="Title" Value="Ufiltrert prosjektvisning" />
+      <Property Name="ContentType" Value="WebPartPage" />
+      <Property Name="ContentTypeId" Value="0x01010901" />
       <View List="Lists/Oppgaver" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="0" />
       <View List="Dokumenter" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="1" />
       <AllUsersWebPart ID="Sitefeed" WebPartZoneID="RightColumn" WebPartOrder="0" >

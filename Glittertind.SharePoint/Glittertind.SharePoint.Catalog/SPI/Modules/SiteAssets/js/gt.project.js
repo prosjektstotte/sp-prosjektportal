@@ -30,13 +30,14 @@ GT.Project.ChangeProjectPhase = function () {
 
     var currentPhasePromise = GT.Project.GetPhaseTermFromCurrentItem();
     currentPhasePromise.done(function (term) {
-        if (term != "" && term.get_label != undefined) {
-            console.log('Changing phase to ' + term.get_label());
+        var safeTerm = GT.Project.GetSafeTerm(term);
+        if (safeTerm != "" && safeTerm.get_label != undefined) {
+            console.log('Changing phase to ' + safeTerm.get_label());
             GT.jQuery.when(
-                GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Dokumenter", "SitePages/Forside.aspx"),
-                GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Oppgaver", "SitePages/Forside.aspx"),
-                GT.Project.ChangeQueryOfListViewOnPage(term.get_label(), "Usikkerhet", "SitePages/Forside.aspx"),
-                GT.Project.SetMetaDataDefaultsForLib("Dokumenter", "GtProjectPhase", term)
+                GT.Project.ChangeQueryOfListViewOnPage(safeTerm.get_label(), "Dokumenter", "SitePages/Forside.aspx"),
+                GT.Project.ChangeQueryOfListViewOnPage(safeTerm.get_label(), "Oppgaver", "SitePages/Forside.aspx"),
+                GT.Project.ChangeQueryOfListViewOnPage(safeTerm.get_label(), "Usikkerhet", "SitePages/Forside.aspx"),
+                GT.Project.SetMetaDataDefaultsForLib("Dokumenter", "GtProjectPhase", safeTerm)
             ).then(function () {
                 deferred.resolve();
             });
@@ -104,9 +105,11 @@ GT.Project.GetViewFromCollectionByUrl = function (viewCollection, url) {
 };
 
 GT.Project.SetMetaDataDefaultsForLib = function (lib, field, term) {
-    // GtProjectPhase
     var deferred = GT.jQuery.Deferred();
-    var termString = term.get_wssId() + ';#' + term.get_label() + '|' + term.get_termGuid();
+
+    var safeTermObject = GT.Project.GetSafeTerm(term);
+
+    var termString = term.WssId + ';#' + term.Label + '|' + term.TermGuid;
     var siteCollRelativeUrl = _spPageContextInfo.webServerRelativeUrl + '/' + lib;
     var template = '<MetadataDefaults><a href="{siteCollRelativeUrl}"><DefaultValue FieldName="{field}">{term}</DefaultValue></a></MetadataDefaults>';
     var result = template.split("{siteCollRelativeUrl}").join(siteCollRelativeUrl);
@@ -141,6 +144,21 @@ GT.Project.SetMetaDataDefaultsForLib = function (lib, field, term) {
 
 };
 
+GT.Project.GetSafeTerm = function (term) {
+    var safeTermObject = term;
+    if (safeTermObject != undefined) {
+        if (safeTermObject.Label == undefined && safeTermObject.TermGuid == undefined && safeTermObject.WssId == undefined && safeTermObject.get_label != undefined) {
+            safeTermObject.Label = safeTermObject.get_label();
+            safeTermObject.TermGuid = safeTermObject.get_termGuid();
+            safeTermObject.WssId = safeTermObject.get_wssId();
+        } else if (safeTermObject.get_label == undefined && safeTermObject.get_termGuid == undefined && safeTermObject.get_wssId == undefined) {
+            safeTermObject.get_label = function () { return safeTermObject.Label; }
+            safeTermObject.get_termGuid = function() { return safeTermObject.TermGuid; }
+            safeTermObject.get_wssId = function() { return safeTermObject.WssId; }
+        }
+    }
+    return safeTermObject;
+};
 
 GT.Project.EnsureMetaDataDefaultsEventReceiver = function (lib) {
 
@@ -220,8 +238,9 @@ GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMar
 GT.Project.GetPhaseNameFromCurrentItem = function () {
     var defer = GT.jQuery.Deferred();
     GT.jQuery.when(GT.Project.GetPhaseTermFromCurrentItem()).done(function (term) {
-        if (term != undefined && term != "" && term.get_label != undefined) {
-            defer.resolve(term.get_label());
+        var safeTerm = GT.Project.GetSafeTerm(term);
+        if (safeTerm != undefined && safeTerm != "") {
+            defer.resolve(safeTerm.get_label());
         } else {
             defer.resolve("");
         }

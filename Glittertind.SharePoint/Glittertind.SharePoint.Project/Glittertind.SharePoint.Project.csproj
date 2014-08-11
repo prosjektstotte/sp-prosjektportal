@@ -143,6 +143,7 @@
     <Content Include="SPI\Lists\Usikkerhet\Elements.xml" />
     <Content Include="SPI\Modules\ContentTypeBindings\Elements.xml" />
     <Content Include="SPI\Modules\SitePages\Elements.xml" />
+    <Content Include="SPI\Modules\SitePages\Ufiltrert.aspx" />
     <Content Include="SPI\Modules\SitePages\Forside.aspx" />
     <Content Include="SPI\Modules\FormWebparts\Elements.xml" />
     <Content Include="SPI\Modules\FormWebparts\EditFormCustom.aspx" />
