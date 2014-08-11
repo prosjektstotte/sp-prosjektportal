@@ -274,14 +274,6 @@
     },
     {
         Description: "",
-        DisplayName: "Interessent",
-        Group: "Glittertind Områdekolonner",
-        ID: "bcaa2999-66b8-4baf-954e-4b2a529ae08d",
-        InternalName: "GtStakeholder",
-        Type: "Text"
-    },
-    {
-        Description: "",
         DisplayName: "Interesse",
         Group: "Glittertind Områdekolonner",
         ID: "748ae9b5-223d-4daa-b8f8-dc14284b59db",
@@ -457,7 +449,7 @@
     },
     {
         Description: "Hvem er ansvarlig for dette?",
-        DisplayName: "Status",
+        DisplayName: "Ansvarlig",
         Group: "Glittertind Områdekolonner",
         ID: "7838332a-cf7f-47d5-924f-8c6d134935ea",
         InternalName: "GtProjectLogResponsible",

@@ -6,7 +6,7 @@
     "Views": [
 	    {
 	        "Name": "Alle elementer",
-	        "ViewFields": ["Title", "GtProductPhase", "GtProductInteressent", "GtProductQualityResponsible", "GtProductAcceptanceMethod", "GtProductAcceptanceResponsible", "GtProductAcceptanceDate"],
+	        "ViewFields": ["LinkTitle", "GtProductPhase", "GtProductInteressent", "GtProductQualityResponsible", "GtProductAcceptanceMethod", "GtProductAcceptanceResponsible", "GtProductAcceptanceDate"],
 	        "RowLimit": 0,
 	        "Query": ""
 	    }

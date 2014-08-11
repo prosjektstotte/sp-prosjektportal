@@ -6,7 +6,7 @@
     "Views": [
 	    {
 	    	"Name": "Alle elementer",
-	        "ViewFields": ["Title", "GtStakeholderGroup", "GtStakeholderContext", "GtStakeholderStrategy", "GtStakeholder", "GtStakeholderInterest", "GtStakeholderInfluence", "GtStakeholderInfluencePossibilty", "GtStakeholderActions"],
+	        "ViewFields": ["LinkTitle", "GtStakeholderGroup", "GtStakeholderContext", "GtStakeholderStrategy", "GtStakeholder", "GtStakeholderInterest", "GtStakeholderInfluence", "GtStakeholderInfluencePossibilty", "GtStakeholderActions"],
 	        "RowLimit": 0,
 	        "Query": ""
 	    }

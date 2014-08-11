@@ -6,7 +6,7 @@
     "Views": [
 	    {
 	        "Name": "Alle elementer",
-	        "ViewFields": ["Title", "GtProjectPhase", "GtActionDate", "GtActionResponsible", "GtCommunicationTarget"],
+	        "ViewFields": ["LinkTitle", "GtProjectPhase", "GtActionDate", "GtActionResponsible", "GtCommunicationTarget"],
 	        "RowLimit": 0,
 	        "Query": ""
 	    }

@@ -35,6 +35,12 @@ Dette prosjektet består i dag av to ulike løsninger, Sherpa og Glittertind.
 * For On-Premises installasjon må applikasjonen kjøre på samme server som SharePoint
 * For On-Premises installasjon kjører applikasjonen utelukkende i kontekst av innlogget bruker
 
+### Sherpa Feature Requests
+* Mulighet for flere term-nivåer
+* Mulighet for å opprette termobjekter uten å måtte spesifisere GUID
+* Mulighet for å opprette områder og områdehierarki fra json-konfig
+* Separer Sherpa og Glittertind på Github
+
 ## Glittertind
 Glittertind er kodenavnet for prosjektportalen for SharePoint som er bygget på bestilling for Asker Kommune. Glittertind inneholder SharePoint-artefakter som til sammen utgjør et prosjektstyringsverktøy. Det blir satt opp en portefølgeside der en får en oversikt over eksisterende prosjekter og kan opprette nye prosjektrom. Hvert prosjekt oppretter en del lister, en del standardelementer og logikk for å gjennomføre et prosjekt etter prosjektveiviserens modell. Prosjektveiviseren er Difis anbefalte prosjektmodell for gjennomføring av digitaliseringsprosjekter i offentlige virksomheter.
 
