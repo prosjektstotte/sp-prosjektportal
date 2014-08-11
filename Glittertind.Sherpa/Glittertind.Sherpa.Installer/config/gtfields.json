@@ -484,6 +484,22 @@
         Type: "Boolean"
     },
     {
+        Choices: [
+            "Leverandører", 
+            "Prosjektstyre", 
+            "Prosjektgruppe", 
+            "Referansegruppe", 
+            "Andre interessenter"
+        ],
+        Description: "",
+        DisplayName: "Aktører",
+        FillInChoice: "TRUE",
+        Group: "Glittertind Områdekolonner",
+        ID: "6539658a-b186-402c-b224-9fb41cb48596",
+        InternalName: "GtProjectLogActors",
+        Type: "MultiChoice"
+    },
+    {
         Description: "",
         DisplayName: "Beskrivelse",
         Group: "Glittertind Områdekolonner",

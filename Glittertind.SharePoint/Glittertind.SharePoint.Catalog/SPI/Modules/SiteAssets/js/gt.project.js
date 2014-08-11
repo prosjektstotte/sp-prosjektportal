@@ -2,6 +2,29 @@
 GT.Project = GT.Project || {};
 if (GT.jQuery === undefined) GT.jQuery = jQuery.noConflict(true);
 
+
+GT.Project.ShowMetadataIfIsWelcomePage = function(selector) {
+    SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function() {
+        var ctx = SP.ClientContext.get_current();
+        var web = ctx.get_web();
+        var rootFolder = web.get_rootFolder();
+
+        ctx.load(rootFolder);
+        ctx.executeQueryAsync(function() {
+            var welcomePage = rootFolder.get_welcomePage();
+            if (_spPageContextInfo.serverRequestPath.endsWith(welcomePage)) {
+                GT.jQuery(selector).show();
+            } else {
+                GT.jQuery(selector).html('<p>Informasjon om prosjektet er kun tilgjengelig fra <a href="../' + welcomePage + '">forsiden</a></p>').show();
+            }
+
+        }, function() {
+            console.log('An error has accured. Showing metadata to avoid hiding it in fault.');
+            GT.jQuery(selector).show();
+        });
+    });
+};
+
 GT.Project.ChangeProjectPhase = function () {
     var deferred = GT.jQuery.Deferred();
 
@@ -33,7 +56,21 @@ GT.Project.ChangeQueryOfListViewOnPage = function (phaseName, listName, pageRela
     clientContext.executeQueryAsync(function () {
         var view = GT.Project.GetViewFromCollectionByUrl(viewCollection, viewUrl);
         if (view != null) {
-            view.set_viewQuery("<Where><Eq><FieldRef Name='GtProjectPhase' /><Value Type='TaxonomyFieldType'>" + phaseName + "</Value></Eq></Where>");
+            var camlArray = [];
+            camlArray.push(
+                "<Where>",
+                    "<Or>",
+                        "<Eq>",
+                            "<FieldRef Name='GtProjectPhase' />",
+                            "<Value Type='TaxonomyFieldType'>" + phaseName + "</Value>",
+                        "</Eq>",
+                        "<Eq>",
+                            "<FieldRef Name='GtProjectPhase' />",
+                            "<Value Type='TaxonomyFieldType'>Flere faser</Value>",
+                        "</Eq>",
+                    "</Or>",
+                "</Where>");
+            view.set_viewQuery(camlArray.join(""));
             view.update();
 
             clientContext.executeQueryAsync(function () {

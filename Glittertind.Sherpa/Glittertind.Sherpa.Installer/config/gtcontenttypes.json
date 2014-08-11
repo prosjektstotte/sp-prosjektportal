@@ -181,7 +181,8 @@
           "GtProjectLogResponsible",
           "GtProjectLogConsequence",
           "GtProjectLogRecommendation",
-          "GtProjectLogExperience"
+          "GtProjectLogExperience",
+          "GtProjectLogActors"
       ],
       RequiredFields : []
    },

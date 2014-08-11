@@ -65,7 +65,7 @@
          ]]>
       </View>        
     </File>
-    <File Path="SitePages\Forside.aspx" Url="ForsideUfiltrert.aspx" Type="GhostableInLibrary" >
+    <File Path="SitePages\Forside.aspx" Url="Ufiltrert.aspx" Type="GhostableInLibrary" >
       <Property Name="ContentType" Value="Prosjektforside" />
       <Property Name="ContentTypeId" Value="0x010109010058561f86d956412b9dd7957bbcd67aae01" />
       <View List="Lists/Oppgaver" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="0" />

@@ -5,8 +5,8 @@
             "Title": "Møtereferat"
         },
         {
-            "Url": "SitePages/ForsideUfiltrert.aspx",
-            "Title": "Forside Ufiltrert"
+            "Url": "SitePages/Ufiltrert.aspx",
+            "Title": "Ufiltrert prosjektvisning"
         }
     ]
 }
