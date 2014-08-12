@@ -10,7 +10,7 @@
 <mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106603</mso:ContentTypeId>
 <mso:TargetControlType msdt:dt="string">;#Content Web Parts;#SearchResults;#</mso:TargetControlType>
 <mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
-<mso:HtmlDesignStatusAndPreview msdt:dt="string">https://glittertind.sharepoint.com/sites/asker/_catalogs/masterpage/Display Templates/Search/Glittertind_Item_Project_details.html, Konverteringen er fullført.</mso:HtmlDesignStatusAndPreview>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">https://glittertind.sharepoint.com/sites/newholland/_catalogs/masterpage/Display Templates/Search/Glittertind_Item_Project_details.html, Konverteringen er fullført.</mso:HtmlDesignStatusAndPreview>
 <mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
 </mso:CustomDocumentProperties>
 </xml><![endif]-->
@@ -46,7 +46,7 @@ var projectOwner = $getItemValue(ctx, "ProjectOwner");
 var projectPhase = $getItemValue(ctx, "ProjectPhase").toString();
 var created = new Date($getItemValue(ctx, "Created").inputValue).format("dd MMM yyyy");
 var createdTime = new Date($getItemValue(ctx, "Created").inputValue).format("dd MMM yyyy kl HH:mm:ss");
-var projectGoals = $getItemValue(ctx, "GtProjectGoalsOWSMTXT").inputValue
+var projectGoals = $getItemValue(ctx, "GtProjectGoalsOWSMTXT").inputValue;
 var projectGoalsTrimmed = Srch.U.getTrimmedString( projectGoals , 20);
 var statusTime = $getItemValue(ctx, "GtStatusTimeOWSCHCS");
 var statusRisk = $getItemValue(ctx, "GtStatusRiskOWSCHCS");
@@ -59,7 +59,7 @@ _#-->
 				<a href="_#= url =#_">_#= title =#_</a>
 			</td>
 			<td title="_#= projectGoals =#_">
-				_#= projectGoalsTrimmed =#_
+				_#= projectGoalsTrimmed =#_ 
 			</td>
 			<td>
 				_#= projectOwner =#_
