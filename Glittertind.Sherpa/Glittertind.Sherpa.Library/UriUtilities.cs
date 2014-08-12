@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 
 namespace Glittertind.Sherpa.Library
 {
@@ -7,7 +8,7 @@ namespace Glittertind.Sherpa.Library
         public static string CombineServerRelativeUri(params string[] args)
         {
             var sb = new StringBuilder();
-            foreach (string arg in args)
+            foreach (string arg in args.Where(snip => snip != "/"))
             {
                 sb.Append("/" + arg.Trim('/'));
             }
