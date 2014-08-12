@@ -77,11 +77,15 @@
     <None Include="SPI\Lists\Kunngjoringer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4deb663b-e46c-4fb6-aab4-71ca5dadc2c8}</SharePointProjectItemId>
     </None>
+    <None Include="SPI\Lists\Lenker\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b8e1b27f-f360-41a8-9abb-20d4d8199a2a}</SharePointProjectItemId>
+    </None>
     <None Include="SPI\Lists\Standarddokumenter\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{72a7d104-c204-4428-a15c-55ebd4f7c8e7}</SharePointProjectItemId>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SPI\Lists\Lenker\Elements.xml" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_Table.html" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_Table.js" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_NewProject.html" />
