@@ -21,7 +21,7 @@ GT.Project.Setup.Model.step = function (name, callback, properties) {
     };
 };
 
-GT.Project.Setup.InheritNavigation = function () {
+GT.Project.Setup.InheritNavigation = function() {
     var deferred = GT.jQuery.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
@@ -29,15 +29,38 @@ GT.Project.Setup.InheritNavigation = function () {
     var navigation = web.get_navigation();
     navigation.set_useShared(true);
 
-    clientContext.executeQueryAsync(function () {
-        deferred.resolve();
-    }, function () {
-        deferred.reject();
-    }
+    clientContext.executeQueryAsync(function() {
+            deferred.resolve();
+        }, function() {
+            deferred.reject();
+        }
     );
 
     return deferred.promise();
-}
+};
+
+GT.Project.Setup.ApplyTheme = function (colorPaletteName, fontSchemeName, backgroundImageUrl, shareGenerated) {
+    var deferred = GT.jQuery.Deferred();
+
+    var clientContext = SP.ClientContext.get_current();
+    var web = clientContext.get_web();
+
+    var colorPaletteUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + colorPaletteName; 
+    var fontSchemeUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + fontSchemeName;
+
+    web.applyTheme(colorPaletteUrl, fontSchemeUrl, backgroundImageUrl, shareGenerated);
+    web.update();
+
+    clientContext.executeQueryAsync(function () {
+        console.log('Changed theme for web');
+        deferred.resolve();
+    }, function(jqXHR, textStatus, errorThrown) {
+        console.log('Error ' + errorThrown);
+        deferred.reject();
+    });
+    return deferred.promise();
+};
+
 GT.Project.Setup.ConfigureQuickLaunch = function () {
     var deferred = GT.jQuery.Deferred();
 
@@ -588,14 +611,17 @@ GT.jQuery(document).ready(function () {
     GT.jQuery.when(GT.Project.Setup.PatchRequestExecutor())
         .done(function () {
             var steps = {
-                '1.0.0.0': {
-                    0: new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
-                    1: new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {}),
-                    2: new GT.Project.Setup.Model.step("Konfigurer quicklaunch", GT.Project.Setup.ConfigureQuickLaunch, {}),
-                    3: new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", GT.Project.Setup.UpdateListsFromConfig, {}),
-                    4: new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", GT.Project.Setup.copyDefaultItems, {}),
-                    5: new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
-                }
+                '1.0.0.0': [
+                    new GT.Project.Setup.Model.step("Setter områdets temafarger", GT.Project.Setup.ApplyTheme, 
+                        {colorPaletteName: "palette013.spcolor", fontSchemeName: "SharePointPersonality.spfont", backgroundImageUrl:"", shareGenerated:true}),
+                    new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", GT.Project.Setup.CreateWebContentTypes, {}),
+                    new GT.Project.Setup.Model.step("Sett arving av navigasjon", GT.Project.Setup.InheritNavigation, {}),
+                    new GT.Project.Setup.Model.step("Konfigurer quicklaunch", GT.Project.Setup.ConfigureQuickLaunch, {}),
+                    new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", GT.Project.Setup.UpdateListsFromConfig, {}),
+                    new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", GT.Project.Setup.copyDefaultItems, {}),
+                    new GT.Project.Setup.Model.step("Kopier dokumenter", GT.Project.Setup.copyFiles, 
+                        { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
+                ]
             };
             var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
             GT.jQuery.getScript(scriptbase + "SP.js", function () {
