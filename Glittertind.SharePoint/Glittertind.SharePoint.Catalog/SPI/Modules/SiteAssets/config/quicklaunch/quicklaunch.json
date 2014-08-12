@@ -7,6 +7,10 @@
         {
             "Url": "SitePages/Ufiltrert.aspx",
             "Title": "Ufiltrert prosjektvisning"
+        },
+        {
+            "Url": "SitePages/Tilordnet.aspx",
+            "Title": "Mine prosjektelementer"
         }
     ]
 }
