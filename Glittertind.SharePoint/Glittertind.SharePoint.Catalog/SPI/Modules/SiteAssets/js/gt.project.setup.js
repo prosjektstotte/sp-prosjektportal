@@ -70,17 +70,18 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
 
     GT.jQuery.when(GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/quicklaunch"))
     .then(function (files) {
-        for (var i = 0; i < files.length; i++) {
-            GT.jQuery.getJSON(files[i].ServerRelativeUrl)
+        for (var fileIndex = 0; fileIndex < files.length; fileIndex++) {
+            GT.jQuery.getJSON(files[fileIndex].ServerRelativeUrl)
             .then(function (data) {
-                for (var i = 0; i < data.Nodes.length; i++) {
-                    var linkNode = data.Nodes[i];
-                    // Set properties for a new navigation node.
+                for (var i = 0; i < data.length; i++) {
+                    var linkNode = data[i];
+                    var linkUrl = GT.Project.Setup.GetUrlWithoutTokens(linkNode.Url);
+
                     var newNode = new SP.NavigationNodeCreationInformation();
                     newNode.set_title(linkNode.Title);
-                    newNode.set_url(linkNode.Url);
-                    // Create node as the last node in the collection.
+                    newNode.set_url(linkUrl);
                     newNode.set_asLastNode(true);
+
                     quickLaunchNodeCollection.add(newNode);
                     console.log('Adding the link node ' + linkNode.Title + ' to the quicklaunch');
                 };
@@ -102,8 +103,16 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
     return deferred.promise();
 };
 
-// [start] utility methods
+// See tokens here: http://msdn.microsoft.com/en-us/library/office/ms431831%28v=office.15%29.aspx
+GT.Project.Setup.GetUrlWithoutTokens = function(url) {
+    return url.replace('{Site}', _spPageContextInfo.webAbsoluteUrl)
+              .replace('{SiteUrl}', _spPageContextInfo.webAbsoluteUrl)
+              .replace('{SiteUrlEncoded}', encodeURIComponent(_spPageContextInfo.webAbsoluteUrl))
+              .replace('{SiteCollection}', _spPageContextInfo.siteAbsoluteUrl)
+              .replace('{SiteCollectionEncoded}', encodeURIComponent(_spPageContextInfo.siteAbsoluteUrl));
+};
 
+// [start] utility methods
 GT.Project.Setup.resolveProperties = function (properties) {
     var deferred = GT.jQuery.Deferred();
 
