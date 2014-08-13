@@ -39,16 +39,16 @@ GT.Project.Setup.InheritNavigation = function() {
     return deferred.promise();
 };
 
-GT.Project.Setup.ApplyTheme = function (colorPaletteName, fontSchemeName, backgroundImageUrl, shareGenerated) {
+GT.Project.Setup.ApplyTheme = function (properties) {
     var deferred = GT.jQuery.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
 
-    var colorPaletteUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + colorPaletteName; 
-    var fontSchemeUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + fontSchemeName;
+    var colorPaletteUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + properties.colorPaletteName;
+    var fontSchemeUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + properties.fontSchemeName;
 
-    web.applyTheme(colorPaletteUrl, fontSchemeUrl, backgroundImageUrl, shareGenerated);
+    web.applyTheme(colorPaletteUrl, fontSchemeUrl, properties.backgroundImageUrl, properties.shareGenerated);
     web.update();
 
     clientContext.executeQueryAsync(function () {
@@ -364,22 +364,25 @@ GT.Project.Setup.CreateWebContentTypes = function () {
         )
         .then(function () {
             GT.jQuery.when(
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektprodukter", ["Prosjektprodukt"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektlogg", ["Prosjektloggelement"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Interessentregister", ["Interessent"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Informasjon", ["Infoelement"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Usikkerhet", ["Risiko", "Mulighet"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Oppgaver", ["Prosjektoppgave"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Sjekkliste", ["Sjekkpunkt"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"])
-            )
-            .done(function () {
-                deferred.resolve();
-            })
-            .fail(function () {
-                deferred.reject();
-            });
+                    GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]),
+                    GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektprodukter", ["Prosjektprodukt"]),
+                    GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektlogg", ["Prosjektloggelement"]),
+                    GT.Project.Setup.ContentTypes.UpdateListContentTypes("Interessentregister", ["Interessent"]),
+                    GT.Project.Setup.ContentTypes.UpdateListContentTypes("Informasjon", ["Infoelement"]),
+                    GT.Project.Setup.ContentTypes.UpdateListContentTypes("Usikkerhet", ["Risiko", "Mulighet"]),
+                    GT.Project.Setup.ContentTypes.UpdateListContentTypes("Oppgaver", ["Prosjektoppgave"]),
+                    GT.Project.Setup.ContentTypes.UpdateListContentTypes("Sjekkliste", ["Sjekkpunkt"]),
+                    GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"])
+                )
+                .then(function() {
+                    GT.jQuery.when(
+                        GT.Project.Setup.ContentTypes.SetFieldDescriptionsOfList("Interessentregister", [{ "key": "Title", "value": "Navnet på interessenten" }])
+                    ).done(function() {
+                        deferred.resolve();
+                    }).fail(function() {
+                        deferred.reject();
+                    });
+                });
         });
     });
 

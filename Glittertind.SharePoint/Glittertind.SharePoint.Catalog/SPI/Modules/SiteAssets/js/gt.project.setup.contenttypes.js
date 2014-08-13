@@ -309,6 +309,41 @@ GT.Project.Setup.ContentTypes.UpdateListContentTypes = function (listName, conte
     return deferred.promise();
 };
 
+GT.Project.Setup.ContentTypes.SetFieldDescriptionsOfList = function(listName, fieldDescriptions) {
+    var deferred = GT.jQuery.Deferred();
+
+    if (fieldDescriptions != undefined && fieldDescriptions.length > 0) {
+        var clientContext = SP.ClientContext.get_current();
+        var web = clientContext.get_web();
+        var list = web.get_lists().getByTitle(listName);
+        var listFields = list.get_fields();
+
+        for (var i = 0; i < fieldDescriptions.length; i++) {
+            var fieldName = fieldDescriptions[i]['key'];
+            var fieldDesc = fieldDescriptions[i]['value'];
+            var currentField = listFields.getByInternalNameOrTitle(fieldName);
+            currentField.set_description(fieldDesc);
+            currentField.update();
+            clientContext.load(currentField);
+        }
+        
+        clientContext.load(listFields);
+        clientContext.executeQueryAsync(function() {
+            console.log('Successfully updated field descriptions of list ' + listName);
+            deferred.resolve();
+        }, function(sender, args) {
+            console.log('Request failed: ' + args.get_message());
+            console.log(args.get_stackTrace());
+            console.log('Failed while updating field descriptions of list ' + listName);
+            deferred.reject();
+        });
+    } else {
+        deferred.resolve();
+    }
+
+    return deferred.promise();
+};
+
 GT.Project.Setup.ContentTypes.DoesContentTypeExistInCollection = function (contentTypeCollection, internalName) {
     return GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(contentTypeCollection, internalName) != null;
 };
