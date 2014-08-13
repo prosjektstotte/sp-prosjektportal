@@ -1,10 +1,10 @@
 /* Denne filen er knyttet til en HTML-fil med samme navn, og henter innhold fra den. Du kan ikke flytte, slette, gi nytt navn til eller gjør andre endringer i denne filen før tilknytningen mellom filene er fjernet. */
 
-function DisplayTemplate_938b62db24e346c1a9f5feff8c3d0d8b(ctx) {
+function DisplayTemplate_7e35f76bd2de4fc283fdc36eaed756a0(ctx) {
   var ms_outHtml=[];
   var cachePreviousTemplateData = ctx['DisplayTemplateData'];
   ctx['DisplayTemplateData'] = new Object();
-  DisplayTemplate_938b62db24e346c1a9f5feff8c3d0d8b.DisplayTemplateData = ctx['DisplayTemplateData'];
+  DisplayTemplate_7e35f76bd2de4fc283fdc36eaed756a0.DisplayTemplateData = ctx['DisplayTemplateData'];
 
   ctx['DisplayTemplateData']['TemplateUrl']='~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fSearch\u002fGlittertind_Item_Project_details.js';
   ctx['DisplayTemplateData']['TemplateType']='Item';
@@ -27,7 +27,7 @@ var projectOwner = $getItemValue(ctx, "ProjectOwner");
 var projectPhase = $getItemValue(ctx, "ProjectPhase").toString();
 var created = new Date($getItemValue(ctx, "Created").inputValue).format("dd MMM yyyy");
 var createdTime = new Date($getItemValue(ctx, "Created").inputValue).format("dd MMM yyyy kl HH:mm:ss");
-var projectGoals = $getItemValue(ctx, "GtProjectGoalsOWSMTXT").inputValue
+var projectGoals = $getItemValue(ctx, "GtProjectGoalsOWSMTXT").inputValue;
 var projectGoalsTrimmed = Srch.U.getTrimmedString( projectGoals , 20);
 var statusTime = $getItemValue(ctx, "GtStatusTimeOWSCHCS");
 var statusRisk = $getItemValue(ctx, "GtStatusRiskOWSCHCS");
@@ -40,7 +40,7 @@ ms_outHtml.push(''
 ,'				<a href="', url ,'">', title ,'</a>'
 ,'			</td>'
 ,'			<td title="', projectGoals ,'">'
-,'				', projectGoalsTrimmed ,''
+,'				', projectGoalsTrimmed ,' '
 ,'			</td>'
 ,'			<td>'
 ,'				', projectOwner ,''
@@ -70,20 +70,20 @@ ms_outHtml.push(''
   ctx['DisplayTemplateData'] = cachePreviousTemplateData;
   return ms_outHtml.join('');
 }
-function RegisterTemplate_938b62db24e346c1a9f5feff8c3d0d8b() {
+function RegisterTemplate_7e35f76bd2de4fc283fdc36eaed756a0() {
 
 if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
-  Srch.U.registerRenderTemplateByName("TwoLines", DisplayTemplate_938b62db24e346c1a9f5feff8c3d0d8b);
+  Srch.U.registerRenderTemplateByName("TwoLines", DisplayTemplate_7e35f76bd2de4fc283fdc36eaed756a0);
 }
 
 if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
-  Srch.U.registerRenderTemplateByName("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fSearch\u002fGlittertind_Item_Project_details.js", DisplayTemplate_938b62db24e346c1a9f5feff8c3d0d8b);
+  Srch.U.registerRenderTemplateByName("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fSearch\u002fGlittertind_Item_Project_details.js", DisplayTemplate_7e35f76bd2de4fc283fdc36eaed756a0);
 }
 //
 
     //
 }
-RegisterTemplate_938b62db24e346c1a9f5feff8c3d0d8b();
+RegisterTemplate_7e35f76bd2de4fc283fdc36eaed756a0();
 if (typeof(RegisterModuleInit) == "function" && typeof(Srch.U.replaceUrlTokens) == "function") {
-  RegisterModuleInit(Srch.U.replaceUrlTokens("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fSearch\u002fGlittertind_Item_Project_details.js"), RegisterTemplate_938b62db24e346c1a9f5feff8c3d0d8b);
+  RegisterModuleInit(Srch.U.replaceUrlTokens("~sitecollection\u002f_catalogs\u002fmasterpage\u002fDisplay Templates\u002fSearch\u002fGlittertind_Item_Project_details.js"), RegisterTemplate_7e35f76bd2de4fc283fdc36eaed756a0);
 }
