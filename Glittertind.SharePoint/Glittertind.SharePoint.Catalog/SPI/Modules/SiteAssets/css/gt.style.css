@@ -50,12 +50,12 @@ ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:before,.projectFrontPage .projectPhaseSection ul.projectPhases li:nth-child(5):before{border-left-color:rgb(0, 114, 198);}
 
 @media(max-width: 1299px) {
-.projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 42px;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 35px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:72px;height:52px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:26px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:10px;}
 }
-@media(min-width: 1300px) {
+@media(min-width: 1380px) {
 .projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 34px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:91px;height:62px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:33px;}
