@@ -92,6 +92,7 @@
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_NewProject.js" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project_details.html" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project_details.js" />
+    <Content Include="SPI\Modules\SiteAssets\html\gt.projectlogform.html" />
     <Content Include="SPI\Modules\SitePages\PortefoljeOversikt.aspx" />
     <None Include="SPI\Modules\PropertyBag\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{07ef7ea5-6e7a-42e1-b29f-6f4ae59e3cda}</SharePointProjectItemId>

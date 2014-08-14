@@ -2,6 +2,20 @@
 GT.Project = GT.Project || {};
 if (GT.jQuery === undefined) GT.jQuery = jQuery.noConflict(true);
 
+GT.Project.FilterEventLookup = function () {
+    SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
+        var eventLookup = GT.jQuery('#onetIDListForm .ms-webpart-chrome.ms-webpart-chrome-vertical.ms-webpart-chrome-fullWidth > div > table > tbody > tr > td > #part1 table.ms-formtable select[id^="GtProjectLogEventLookup"]');
+        var options = eventLookup.find('option').clone();
+        eventLookup.empty();
+
+        var now = new Date();
+        options.filter(function (idx, el) {
+            var eventName = el.text;
+            var eventDate = new Date(eventName.substr(0, 10));
+            return (eventDate >= now || eventName === "" || eventName === "(Ingen)");
+        }).appendTo(eventLookup);
+    });
+};
 
 GT.Project.ShowMetadataIfIsWelcomePage = function(selector) {
     SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function() {
