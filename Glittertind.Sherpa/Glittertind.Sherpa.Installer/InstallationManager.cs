@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web.Script.Serialization;
 using Glittertind.Sherpa.Library;
 using Glittertind.Sherpa.Library.ContentTypes;
 using Glittertind.Sherpa.Library.ContentTypes.Model;
 using Glittertind.Sherpa.Library.Deploy;
 using Glittertind.Sherpa.Library.Features;
 using Glittertind.Sherpa.Library.Features.Model;
+using Glittertind.Sherpa.Library.Quicklaunch;
 using Glittertind.Sherpa.Library.Taxonomy;
 using Glittertind.Sherpa.Library.Taxonomy.Model;
 
@@ -92,6 +94,15 @@ namespace Glittertind.Sherpa.Installer
             featureManager.ReActivateFeaturesAfterUpgrade();
         }
 
+        public void ConfigureQuicklaunch()
+        {
+            Console.WriteLine("Configuring quicklaunch at top level");
+            var pathToQuicklaunchConfig = Path.Combine(Environment.CurrentDirectory, @"config\gtquicklaunch.json");
+            var quickLaunchConfig = new FilePersistanceProvider<Dictionary<string, string>>(pathToQuicklaunchConfig);
+
+            var quicklaunchManager = new QuicklaunchManager(_urlToSite, _credentials, quickLaunchConfig);
+            quicklaunchManager.CreateQuicklaunchNodes();
+        }
         public void ForceReCrawl()
         {
             var deployManager = new DeployManager(_urlToSite, _credentials, _isSharePointOnline);

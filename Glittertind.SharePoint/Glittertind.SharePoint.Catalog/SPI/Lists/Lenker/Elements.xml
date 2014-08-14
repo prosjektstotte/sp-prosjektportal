@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ListInstance Title="Lenker" OnQuickLaunch="FALSE" TemplateType="103" FeatureId="00bfea71-d1ce-42de-9c63-a44004ce0103" Url="Lists/Lenker" Description="">
+  <ListInstance Title="Lenker" OnQuickLaunch="FALSE" TemplateType="103" FeatureId="00bfea71-2062-426c-90bf-714c59600103" Url="Lists/Lenker" Description="">
     <Data>
       <Rows>
         <Row>
