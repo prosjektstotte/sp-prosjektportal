@@ -430,10 +430,11 @@ GT.Project.get_allProjectsUnderCurrent = function () {
     var clientContext = SP.ClientContext.get_current();
     var get_allProjectsUnderCurrentDeferred = GT.jQuery.Deferred();
 
-    var webModel = function (title, url, properties) {
+    var webModel = function (title, url, lastChanged, properties) {
         var _this = this;
         _this.title = title;
         _this.url = url;
+        _this.lastChanged = lastChanged;
         _this.properties = properties;
     };
 
@@ -495,8 +496,11 @@ GT.Project.get_allProjectsUnderCurrent = function () {
                 var web = webs[i];
                 var title = web.get_title();
                 var url = web.get_serverRelativeUrl();
+
                 var fetchedFile = webs[i].get_objectData().get_methodReturnObjects().GetFileByServerRelativeUrl;
                 var fieldValues = fetchedFile[Object.keys(fetchedFile)[0]].get_objectData().get_clientObjectProperties().ListItemAllFields.get_fieldValues();
+
+                var lastChanged = new Date(fieldValues.Last_x0020_Modified).format("dd. MMM yyyy kl HH:mm");
 
                 var contentTypeId = fieldValues.ContentTypeId.get_stringValue();
                 if (!contentTypeId.startsWith('0x010109010058561F86D956412B9DD7957BBCD67AAE01')) continue;
@@ -508,7 +512,7 @@ GT.Project.get_allProjectsUnderCurrent = function () {
                     }
                 }
 
-                var model = new webModel(title, url, props);
+                var model = new webModel(title, url, lastChanged, props);
                 models.push(model);
             }
             get_webDataDeferred.resolve(models);
@@ -532,9 +536,78 @@ GT.Project.get_allProjectsUnderCurrent = function () {
 };
 
 GT.Project.render_Portefolje_data = null;
-GT.Project.render_Portefolje = function (filter) {
-    var $ = GT.jQuery;
+GT.Project.render_PortefoljeOversikt = function (filter) {
 
+    var render = function (webs) {
+        var outHtml = [];
+        outHtml.push(
+                    '<table class="gt-result-table">',
+                        '<thead>',
+                            '<tr>',
+                                '<th>Tittel</th>',
+                                '<th>Effektmål</th>',
+                                '<th>Prosjekteier</th>',
+                                '<th>Prosjektleder</th>',
+                                '<th>Status tid</th>',
+                                '<th>Status risiko</th>',
+                                '<th>Status budsjett</th>',
+                                '<th>Sist endret</th>',
+                                '<th>Fase</th>',
+                            '</tr>',
+                        '</thead>',
+                        '<tbody>');
+
+
+        for (var i = 0; i < webs.length; i++) {
+            var web = webs[i];
+            // our "search" function
+            if (filter != undefined && web.title.toLowerCase().indexOf(filter.toLowerCase().trim()) === -1) continue;
+            var title = web.title;
+            var projectGoal = web.properties.GtProjectGoals ? web.properties.GtProjectGoals : '';
+            var projectManager = web.properties.GtProjectManager ? web.properties.GtProjectManager.get_lookupValue() : 'ikke satt';
+            var projectOwner = web.properties.GtProjectOwner ? web.properties.GtProjectOwner.get_lookupValue() : 'ikke satt';
+            var statusTime = web.properties.GtStatusTime ? web.properties.GtStatusTime : '';
+            var statusRisk = web.properties.GtStatusRisk ? web.properties.GtStatusRisk : '';
+            var statusBudget = web.properties.GtStatusBudget ? web.properties.GtStatusBudget : '';
+            var lastChanged = web.lastChanged ? web.lastChanged : '';
+            var phase = web.properties.GtProjectPhase ? web.properties.GtProjectPhase.Label : '';
+
+            outHtml.push(
+                    '<tr>',
+                        '<td><a href="', web.url, '">', title, '</a></td>',
+                        '<td title="', projectGoal, '">',
+                        projectGoal.substr(0, 20) + '...',
+                        '</td>',
+                        '<td>', projectOwner, '</td>',
+                        '<td>', projectManager, '</td>',
+                        '<td>', statusTime, '</td>',
+                        '<td>', statusRisk, '</td>',
+                        '<td>', statusBudget, '</td>',
+                        '<td>', lastChanged, '</td>',
+                        '<td>', phase, '</td>',
+                    '</tr>'
+                );
+        }
+
+        var elm = document.getElementById("gt-csomprojectdir-out");
+        elm.innerHTML = outHtml.join('');
+    };
+
+
+    if (!GT.Project.render_Portefolje_data) {
+        GT.Project.get_allProjectsUnderCurrent().done(function (webs) {
+            GT.Project.render_Portefolje_data = webs;
+            render(GT.Project.render_Portefolje_data);
+        });
+    } else {
+        render(GT.Project.render_Portefolje_data);
+    }
+
+
+
+};
+
+GT.Project.render_Portefolje = function (filter) {
     var render = function (webs) {
         var outHtml = [];
         outHtml.push('<ul class="gt-List">');

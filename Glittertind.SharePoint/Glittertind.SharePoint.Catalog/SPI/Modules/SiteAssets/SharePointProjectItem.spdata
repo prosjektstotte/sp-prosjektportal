@@ -26,5 +26,6 @@
     <ProjectItemFile Source="html\gt.newprojectlink.html" Target="SiteAssets\html\" Type="ElementFile" />
     <ProjectItemFile Source="config\quicklaunch\quicklaunch.json" Target="SiteAssets\config\quicklaunch\" Type="ElementFile" />
     <ProjectItemFile Source="html\gt.csomprojectdir.html" Target="SiteAssets\html\" Type="ElementFile" />
+    <ProjectItemFile Source="html\gt.csomprojectoverview.html" Target="SiteAssets\html\" Type="ElementFile" />
   </Files>
 </ProjectItem>
