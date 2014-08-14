@@ -1,17 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <ListInstance Title="Standarddokumenter" OnQuickLaunch="TRUE" TemplateType="101" FeatureId="00bfea71-e717-4e80-aa17-d0c71b360101" Url="Standarddokumenter" Description="">
-    <Data>
-         <Rows>
-            <Row>
-               <Field Name="Title">Prosjektveiviseren</Field>
-               <Field Name="Description">Specify the SMTP e-mail server to use for alerts and administrator notifications.</Field>
-               <Field Name="Title">Outgoing e-mail settings</Field>
-               <Field Name="SystemTask">True</Field>
-               <Field Name="Priority">01</Field>
-               <Field Name="Service">SMTP</Field>
-            </Row>
-         </Rows>
-      </Data>
   </ListInstance>
 </Elements>

@@ -3,14 +3,14 @@ GT.Project = GT.Project || {};
 if (GT.jQuery === undefined) GT.jQuery = jQuery.noConflict(true);
 
 
-GT.Project.ShowMetadataIfIsWelcomePage = function(selector) {
-    SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function() {
+GT.Project.ShowMetadataIfIsWelcomePage = function (selector) {
+    SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
         var ctx = SP.ClientContext.get_current();
         var web = ctx.get_web();
         var rootFolder = web.get_rootFolder();
 
         ctx.load(rootFolder);
-        ctx.executeQueryAsync(function() {
+        ctx.executeQueryAsync(function () {
             var welcomePage = rootFolder.get_welcomePage();
             if (_spPageContextInfo.serverRequestPath.endsWith(welcomePage)) {
                 GT.jQuery(selector).show();
@@ -18,7 +18,7 @@ GT.Project.ShowMetadataIfIsWelcomePage = function(selector) {
                 GT.jQuery(selector).html('<p>Informasjon om prosjektet er kun tilgjengelig fra <a href="../' + welcomePage + '">forsiden</a></p>').show();
             }
 
-        }, function() {
+        }, function () {
             console.log('An error has accured. Showing metadata to avoid hiding it in fault.');
             GT.jQuery(selector).show();
         });
@@ -153,8 +153,8 @@ GT.Project.GetSafeTerm = function (term) {
             safeTermObject.WssId = safeTermObject.get_wssId();
         } else if (safeTermObject.get_label == undefined && safeTermObject.get_termGuid == undefined && safeTermObject.get_wssId == undefined) {
             safeTermObject.get_label = function () { return safeTermObject.Label; }
-            safeTermObject.get_termGuid = function() { return safeTermObject.TermGuid; }
-            safeTermObject.get_wssId = function() { return safeTermObject.WssId; }
+            safeTermObject.get_termGuid = function () { return safeTermObject.TermGuid; }
+            safeTermObject.get_wssId = function () { return safeTermObject.WssId; }
         }
     }
     return safeTermObject;
@@ -424,3 +424,165 @@ GT.Project.PhaseForm.CheckList.checkListItem = function (title, id, status) {
         return editElmLink;
     };
 };
+
+GT.Project.get_allProjectsUnderCurrent = function () {
+
+    var clientContext = SP.ClientContext.get_current();
+    var get_allProjectsUnderCurrentDeferred = GT.jQuery.Deferred();
+
+    var webModel = function (title, url, properties) {
+        var _this = this;
+        _this.title = title;
+        _this.url = url;
+        _this.properties = properties;
+    };
+
+    var get_allWebs = function () {
+        var defer = GT.jQuery.Deferred();
+        var webCollection = clientContext.get_web().getSubwebsForCurrentUser(null);
+        clientContext.load(webCollection, 'Include(RootFolder, ServerRelativeUrl)');
+
+        clientContext.executeQueryAsync(
+			function () {
+			    if (webCollection !== null && webCollection.get_areItemsAvailable()) {
+			        defer.resolve(webCollection);
+			    } else { defer.reject(); }
+			}, defer.reject);
+
+        return defer.promise();
+    }
+
+    var get_webData = function (webCollection) {
+        var get_webDataDeferred = GT.jQuery.Deferred();
+
+        var get_pageProperties = function (pagedWebs) {
+            var defer = GT.jQuery.Deferred();
+            var welcomePages = [];
+            for (var i = 0; i < pagedWebs.length; i++) {
+                var web = pagedWebs[i];
+                var welcomePageUrl = web.get_serverRelativeUrl() + "/" + web.get_rootFolder().get_welcomePage();
+                var welcomePage = web.getFileByServerRelativeUrl(welcomePageUrl);
+                clientContext.load(web);
+                clientContext.load(welcomePage, 'ListItemAllFields');
+                welcomePages.push(welcomePage);
+            }
+
+            clientContext.executeQueryAsync(
+			function () {
+			    defer.resolve(welcomePages);
+			},
+			function () {
+			    defer.reject();
+			});
+
+            return defer.promise();
+        };
+
+        var webs = [], promises = [];
+
+        for (var i = 0; i < webCollection.get_count() ; i++) {
+            webs.push(webCollection.itemAt(i));
+        }
+        var pagedArrays = splitArray(webs, 14);
+
+        for (var i = 0; i < pagedArrays.length; i++) {
+            promises.push(get_pageProperties(pagedArrays[i]));
+        }
+
+        GT.jQuery.when.apply(GT.jQuery, promises).done(function (result) {
+            var models = [];
+            for (var i = 0; i < webs.length; i++) {
+                var web = webs[i];
+                var title = web.get_title();
+                var url = web.get_serverRelativeUrl();
+                var fetchedFile = webs[i].get_objectData().get_methodReturnObjects().GetFileByServerRelativeUrl;
+                var fieldValues = fetchedFile[Object.keys(fetchedFile)[0]].get_objectData().get_clientObjectProperties().ListItemAllFields.get_fieldValues();
+
+                var contentTypeId = fieldValues.ContentTypeId.get_stringValue();
+                if (!contentTypeId.startsWith('0x010109010058561F86D956412B9DD7957BBCD67AAE01')) continue;
+
+                var props = {};
+                for (var value in fieldValues) {
+                    if (value.startsWith("Gt")) {
+                        props[value] = fieldValues[value];
+                    }
+                }
+
+                var model = new webModel(title, url, props);
+                models.push(model);
+            }
+            get_webDataDeferred.resolve(models);
+
+        });
+
+        return get_webDataDeferred.promise();
+    };
+
+    get_allWebs().then(function (webCollection) {
+        console.log("get_allWebs.done subwebs: " + webCollection.get_count());
+        return get_webData(webCollection)
+    })
+	.then(function (model) {
+	    console.log(model);
+	    get_allProjectsUnderCurrentDeferred.resolve(model);
+	});
+
+    return get_allProjectsUnderCurrentDeferred.promise();
+
+};
+
+GT.Project.render_Portefolje_data = null;
+GT.Project.render_Portefolje = function (filter) {
+    var $ = GT.jQuery;
+
+    var render = function (webs) {
+        var outHtml = [];
+        outHtml.push('<ul class="gt-List">');
+        for (var i = 0; i < webs.length; i++) {
+            var web = webs[i];
+            // our "search" function
+            if (filter != undefined && web.title.toLowerCase().indexOf(filter.toLowerCase().trim()) === -1) continue;
+            var phase = web.properties.GtProjectPhase ? web.properties.GtProjectPhase.Label : '';
+            var projectManager = web.properties.GtProjectManager ? web.properties.GtProjectManager.get_lookupValue() : 'ikke satt';
+            var projectOwner = web.properties.GtProjectOwner ? web.properties.GtProjectOwner.get_lookupValue() : 'ikke satt';
+            outHtml.push('<li>',
+							'<div class="gt-projectItem">',
+								GT.Project.GetPhaseLogoMarkup(phase),
+								'<h2>',
+									'<a href="', web.url, '">', web.title, '</a>',
+								'</h2>',
+								'<div>Prosjektleder: ', projectManager, '</div>',
+								'<div>Prosjekteier: ', projectOwner, '</div>',
+							'</div>',
+						'</li>');
+        }
+        outHtml.push('</ul>');
+        var elm = document.getElementById("gt-csomprojectdir-out");
+        elm.innerHTML = outHtml.join('');
+    };
+
+
+    if (!GT.Project.render_Portefolje_data) {
+        GT.Project.get_allProjectsUnderCurrent().done(function (webs) {
+            GT.Project.render_Portefolje_data = webs;
+            render(GT.Project.render_Portefolje_data);
+        });
+    } else {
+        render(GT.Project.render_Portefolje_data);
+    }
+
+
+
+};
+
+
+// loosely based on http://stackoverflow.com/questions/8188548/splitting-a-js-array-into-n-arrays
+function splitArray(a, maxCapacity) {
+    var len = a.length, out = [], i = 0;
+    while (i < len) {
+        var size = maxCapacity;
+        out.push(a.slice(i, i + maxCapacity < len ? i + maxCapacity : len));
+        i += size;
+    }
+    return out;
+}
