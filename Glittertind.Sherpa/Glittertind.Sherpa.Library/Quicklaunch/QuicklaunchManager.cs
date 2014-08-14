@@ -49,7 +49,8 @@ namespace Glittertind.Sherpa.Library.Quicklaunch
                     {
                         Title = newNode.Key,
                         Url = newNode.Value,
-                        AsLastNode = true
+                        AsLastNode = true,
+                        IsExternal = true
                     });
                 }
             }
