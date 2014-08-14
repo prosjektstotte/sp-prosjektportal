@@ -11,6 +11,7 @@
     <File Path="js\gt.generics.js" Url="js/gt.generics.js" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="html\gt.phaseform.html" Url="html/gt.phaseform.html" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="html\gt.newprojectlink.html" Url="html/gt.newprojectlink.html" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
+    <File Path="html\gt.projectlogform.html" Url="html/gt.projectlogform.html" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="html\gt.csomprojectdir.html" Url="html/gt.csomprojectdir.html" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="html\gt.csomprojectoverview.html" Url="html/gt.csomprojectoverview.html"  Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\data\sjekkliste.data.json" Url="config/data/sjekkliste.data.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />

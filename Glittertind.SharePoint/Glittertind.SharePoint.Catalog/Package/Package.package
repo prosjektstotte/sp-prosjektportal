@@ -1,6 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="1af74622-c035-4433-b0b4-89334ad333bb" solutionId="1af74622-c035-4433-b0b4-89334ad333bb" resetWebServer="false" sharePointProductVersion="15.0" name="Glittertind.SharePoint.Catalog" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
-  <features>
-    <featureReference itemId="183e9372-efbb-40d6-b5ee-0b5a05e7b249" />
-  </features>
-</package>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="1af74622-c035-4433-b0b4-89334ad333bb" solutionId="1af74622-c035-4433-b0b4-89334ad333bb" resetWebServer="false" sharePointProductVersion="15.0" name="Glittertind.SharePoint.Catalog" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" />

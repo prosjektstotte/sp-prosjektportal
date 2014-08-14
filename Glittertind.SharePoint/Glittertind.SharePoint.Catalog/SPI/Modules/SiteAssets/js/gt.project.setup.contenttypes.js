@@ -309,7 +309,7 @@ GT.Project.Setup.ContentTypes.UpdateListContentTypes = function (listName, conte
     return deferred.promise();
 };
 
-GT.Project.Setup.ContentTypes.SetFieldDescriptionsOfList = function(listName, fieldDescriptions) {
+GT.Project.Setup.ContentTypes.SetFieldDescriptionsOfList = function (listName, fieldDescriptions) {
     var deferred = GT.jQuery.Deferred();
 
     if (fieldDescriptions != undefined && fieldDescriptions.length > 0) {
@@ -326,12 +326,12 @@ GT.Project.Setup.ContentTypes.SetFieldDescriptionsOfList = function(listName, fi
             currentField.update();
             clientContext.load(currentField);
         }
-        
+
         clientContext.load(listFields);
-        clientContext.executeQueryAsync(function() {
+        clientContext.executeQueryAsync(function () {
             console.log('Successfully updated field descriptions of list ' + listName);
             deferred.resolve();
-        }, function(sender, args) {
+        }, function (sender, args) {
             console.log('Request failed: ' + args.get_message());
             console.log(args.get_stackTrace());
             console.log('Failed while updating field descriptions of list ' + listName);
@@ -344,25 +344,37 @@ GT.Project.Setup.ContentTypes.SetFieldDescriptionsOfList = function(listName, fi
     return deferred.promise();
 };
 
-GT.Project.Setup.ContentTypes.AddFieldToListFromXml = function(listName, fieldXml) {
+GT.Project.Setup.ContentTypes.AddFieldToListFromXml = function (listName, fieldInternalName, fieldXml) {
     var deferred = GT.jQuery.Deferred();
 
-        var clientContext = SP.ClientContext.get_current();
-        var web = clientContext.get_web();
-        var list = web.get_lists().getByTitle(listName);
-        var listFields = list.get_fields();
-        listFields.addFieldAsXml(fieldXml, true, SP.AddFieldOptions.addFieldInternalNameHint);
+    var clientContext = SP.ClientContext.get_current();
+    var web = clientContext.get_web();
+    var list = web.get_lists().getByTitle(listName);
+    var listFields = list.get_fields();
 
-        clientContext.load(listFields);
-        clientContext.executeQueryAsync(function () {
-            console.log('Successfully added field from Xml to list ' + listName);
+    clientContext.load(listFields);
+    clientContext.executeQueryAsync(function () {
+        if (GT.Project.Setup.ContentTypes.GetFieldFromCollection(listFields, fieldInternalName) == null) {
+            listFields.addFieldAsXml(fieldXml, true, SP.AddFieldOptions.addFieldInternalNameHint);
+            clientContext.executeQueryAsync(function () {
+                console.log('Successfully added field from Xml to list ' + listName);
+                deferred.resolve();
+            }, function (sender, args) {
+                console.log('Request failed: ' + args.get_message());
+                console.log(args.get_stackTrace());
+                console.log('Failed while adding field from xml to list ' + listName);
+                deferred.reject();
+            });
+        } else {
+            console.log('Field ' + fieldInternalName + ' already exists at list ' + listName);
             deferred.resolve();
-        }, function (sender, args) {
-            console.log('Request failed: ' + args.get_message());
-            console.log(args.get_stackTrace());
-            console.log('Failed while adding field from xml to list ' + listName);
-            deferred.reject();
-        });
+        }
+    }, function (sender, args) {
+        console.log('Request failed: ' + args.get_message());
+        console.log(args.get_stackTrace());
+        console.log('Failed while loading fields for list ' + listName);
+        deferred.reject();
+    });
 
     return deferred.promise();
 };
@@ -377,6 +389,16 @@ GT.Project.Setup.ContentTypes.GetContentTypeFromCollection = function (contentTy
         var ct = contentTypeEnumerator.get_current();
         if (ct.get_name().toString().toLowerCase() === internalName.toLowerCase()) {
             return ct;
+        }
+    }
+    return null;
+};
+GT.Project.Setup.ContentTypes.GetFieldFromCollection = function (fieldCollection, internalName) {
+    var fieldEnumerator = fieldCollection.getEnumerator();
+    while (fieldEnumerator.moveNext()) {
+        var field = fieldEnumerator.get_current();
+        if (field.get_internalName().toString().toLowerCase() === internalName.toLowerCase()) {
+            return field;
         }
     }
     return null;

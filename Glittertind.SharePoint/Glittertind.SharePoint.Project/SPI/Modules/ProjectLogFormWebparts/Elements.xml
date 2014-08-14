@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-<Module Name="FormWebparts" Url="SitePages/Forms" List="119">
-  <File Path="FormWebparts\EditFormCustom.aspx" Url="EditForm.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="TRUE" ReplaceContent="FALSE">
-    <AllUsersWebPart WebPartOrder="0" WebPartZoneID="Main">
-      <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+  <Module Name="ProjectLogFormWebparts" Url="Lists/Prosjektlogg">
+    <File Path="ProjectLogFormWebparts\FormPlaceholder.aspx" Url="NewForm.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="TRUE" ReplaceContent="FALSE">
+      <AllUsersWebPart WebPartOrder="0" WebPartZoneID="Main">
+        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
         <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
-          <Title>Javascript - gt.phaseform.js</Title>
+          <Title>See file gt.projectlogform.html</Title>
           <FrameType>None</FrameType>
           <Description>Gjør at forfattere kan skrive inn innhold i rik tekst.</Description>
           <IsIncluded>true</IsIncluded>
@@ -29,9 +29,9 @@
           <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
           <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
           <IsIncludedFilter />
-          <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
           <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
-          <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">../../../SiteAssets/gt/html/gt.phaseform.html</ContentLink>
+          <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">../../../SiteAssets/gt/html/gt.projectlogform.html</ContentLink>
           <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor"></Content>
           <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
         </WebPart>]]>
