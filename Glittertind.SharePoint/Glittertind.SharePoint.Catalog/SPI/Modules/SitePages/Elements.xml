@@ -433,7 +433,7 @@
       </properties>
     </data>
   </webPart>
-</webParts>]]>
+      </webParts>]]>
       </AllUsersWebPart>
       <AllUsersWebPart WebPartOrder="0" WebPartZoneID="CenterColumn">
         <![CDATA[<webParts>
@@ -507,7 +507,7 @@
       </properties>
     </data>
   </webPart>
-</webParts>]]>
+        </webParts>]]>
       </AllUsersWebPart>
       <AllUsersWebPart WebPartOrder="1" WebPartZoneID="CenterColumn">
         <![CDATA[<webParts>
@@ -581,11 +581,11 @@
       </properties>
     </data>
   </webPart>
-</webParts>]]>
+        </webParts>]]>
       </AllUsersWebPart>
     </File>
-    <File Path="OpprettProsjekt.aspx" Url="OpprettProsjekt.aspx" Type="GhostableInLibrary" >
-      <Property Name="title" Value="Prosjektportal - opprett nytt prosjekt" ></Property>
+    <File Path="OpprettProsjekt.aspx" Url="OpprettProsjekt.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE" >
+      <Property Name="Title" Value="Opprett prosjektområde" ></Property>
     </File>
     <File Path="Portefolje.aspx" Url="PortefoljeAlternativ.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE">
       <Property Name="title" Value="Prosjektportal - porteføljeoversikt" ></Property>
