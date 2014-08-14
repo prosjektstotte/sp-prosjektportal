@@ -211,5 +211,23 @@
       RequiredFields : [
           "GtProjectInfoDescription"
       ]
+   },
+    {
+      Description : "",
+      DisplayName : "Glittertind basehendelse",
+      Group       : "Glittertind Innholdstyper",
+      ID          : "0x010200a2b2ac17a2244b8590398a9d1e7e3e37",
+      InternalName: "GtProjectEventBase",
+      Fields : [],
+      RequiredFields : []
+   },
+    {
+      Description : "",
+      DisplayName : "Prosjekthendelse",
+      Group       : "Glittertind Innholdstyper",
+      ID          : "0x010200a2b2ac17a2244b8590398a9d1e7e3e3701",
+      InternalName: "GtProjectEvent",
+      Fields : [],
+      RequiredFields : []
    }
 ]

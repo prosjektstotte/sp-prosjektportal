@@ -344,6 +344,29 @@ GT.Project.Setup.ContentTypes.SetFieldDescriptionsOfList = function(listName, fi
     return deferred.promise();
 };
 
+GT.Project.Setup.ContentTypes.AddFieldToListFromXml = function(listName, fieldXml) {
+    var deferred = GT.jQuery.Deferred();
+
+        var clientContext = SP.ClientContext.get_current();
+        var web = clientContext.get_web();
+        var list = web.get_lists().getByTitle(listName);
+        var listFields = list.get_fields();
+        listFields.addFieldAsXml(fieldXml, true, SP.AddFieldOptions.addFieldInternalNameHint);
+
+        clientContext.load(listFields);
+        clientContext.executeQueryAsync(function () {
+            console.log('Successfully added field from Xml to list ' + listName);
+            deferred.resolve();
+        }, function (sender, args) {
+            console.log('Request failed: ' + args.get_message());
+            console.log(args.get_stackTrace());
+            console.log('Failed while adding field from xml to list ' + listName);
+            deferred.reject();
+        });
+
+    return deferred.promise();
+};
+
 GT.Project.Setup.ContentTypes.DoesContentTypeExistInCollection = function (contentTypeCollection, internalName) {
     return GT.Project.Setup.ContentTypes.GetContentTypeFromCollection(contentTypeCollection, internalName) != null;
 };
@@ -373,3 +396,20 @@ GT.Project.Setup.ContentTypes.GetContentTypeFromCollectionById = function (conte
 function IsInCollection(stringVal, array) {
     return (GT.jQuery.inArray(stringVal, array) > -1);
 }
+
+// For debugging
+GT.Project.Setup.ContentTypes.PrintFieldXml = function (listName, fieldName) {
+    var clientContext = SP.ClientContext.get_current();
+    var web = clientContext.get_web();
+    var list = web.get_lists().getByTitle(listName);
+    var listFields = list.get_fields();
+    var currentField = listFields.getByInternalNameOrTitle(fieldName);
+    clientContext.load(currentField);
+    clientContext.executeQueryAsync(function () {
+        console.log(currentField);
+        console.log(currentField.get_schemaXml());
+    }, function (sender, args) {
+        console.log('Request failed: ' + args.get_message());
+        console.log(args.get_stackTrace());
+    });
+};
