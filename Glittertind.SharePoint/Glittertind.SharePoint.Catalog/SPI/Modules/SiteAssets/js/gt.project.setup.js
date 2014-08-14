@@ -39,16 +39,16 @@ GT.Project.Setup.InheritNavigation = function() {
     return deferred.promise();
 };
 
-GT.Project.Setup.ApplyTheme = function (colorPaletteName, fontSchemeName, backgroundImageUrl, shareGenerated) {
+GT.Project.Setup.ApplyTheme = function (properties) {
     var deferred = GT.jQuery.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
 
-    var colorPaletteUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + colorPaletteName; 
-    var fontSchemeUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + fontSchemeName;
+    var colorPaletteUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + properties.colorPaletteName;
+    var fontSchemeUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + properties.fontSchemeName;
 
-    web.applyTheme(colorPaletteUrl, fontSchemeUrl, backgroundImageUrl, shareGenerated);
+    web.applyTheme(colorPaletteUrl, fontSchemeUrl, properties.backgroundImageUrl, properties.shareGenerated);
     web.update();
 
     clientContext.executeQueryAsync(function () {
@@ -70,17 +70,18 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
 
     GT.jQuery.when(GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/quicklaunch"))
     .then(function (files) {
-        for (var i = 0; i < files.length; i++) {
-            GT.jQuery.getJSON(files[i].ServerRelativeUrl)
+        for (var fileIndex = 0; fileIndex < files.length; fileIndex++) {
+            GT.jQuery.getJSON(files[fileIndex].ServerRelativeUrl)
             .then(function (data) {
-                for (var i = 0; i < data.Nodes.length; i++) {
-                    var linkNode = data.Nodes[i];
-                    // Set properties for a new navigation node.
+                for (var i = 0; i < data.length; i++) {
+                    var linkNode = data[i];
+                    var linkUrl = GT.Project.Setup.GetUrlWithoutTokens(linkNode.Url);
+
                     var newNode = new SP.NavigationNodeCreationInformation();
                     newNode.set_title(linkNode.Title);
-                    newNode.set_url(linkNode.Url);
-                    // Create node as the last node in the collection.
+                    newNode.set_url(linkUrl);
                     newNode.set_asLastNode(true);
+
                     quickLaunchNodeCollection.add(newNode);
                     console.log('Adding the link node ' + linkNode.Title + ' to the quicklaunch');
                 };
@@ -102,8 +103,16 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
     return deferred.promise();
 };
 
-// [start] utility methods
+// See tokens here: http://msdn.microsoft.com/en-us/library/office/ms431831%28v=office.15%29.aspx
+GT.Project.Setup.GetUrlWithoutTokens = function(url) {
+    return url.replace('{Site}', _spPageContextInfo.webAbsoluteUrl)
+              .replace('{SiteUrl}', _spPageContextInfo.webAbsoluteUrl)
+              .replace('{SiteUrlEncoded}', encodeURIComponent(_spPageContextInfo.webAbsoluteUrl))
+              .replace('{SiteCollection}', _spPageContextInfo.siteAbsoluteUrl)
+              .replace('{SiteCollectionEncoded}', encodeURIComponent(_spPageContextInfo.siteAbsoluteUrl));
+};
 
+// [start] utility methods
 GT.Project.Setup.resolveProperties = function (properties) {
     var deferred = GT.jQuery.Deferred();
 
@@ -340,45 +349,54 @@ GT.Project.Setup.copyDefaultItems = function () {
     return deferred.promise();
 };
 
+// TODO; At some point refactor this to be configured in json-files
 GT.Project.Setup.CreateWebContentTypes = function () {
     var deferred = GT.jQuery.Deferred();
-    var dependentPromises = GT.jQuery.when(
-            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Målgruppe", "GtCommunicationTarget", "Interessentregister", "Title", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e4}", false, true, ""),
-            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Interessent(er)", "GtProductInteressent", "Interessentregister", "Title", "{6d90e0b6-73e6-48fb-aa1e-b897b214f934}", false, true, ""),
-            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Påvirker produkt", "GtProjectLogProductLookup", "Prosjektprodukter", "Title", "{022cc93f-13df-4420-bd47-55e4fdae5d18}", false, true, "Velg hvilke(t) prosjektprodukt som blir påvirket av dette."),
-            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Til prosjektstyre", "GtProjectLogEventLookup", "Møtekalender", "Title", "{20731fb1-e98e-4fdc-b3d6-941b41b8fd6e}", false, false, "Dersom dette skal opp i prosjektstyret velger du dato for styringsgruppemøtet her."),
-            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Relevant usikkerhet", "GtProjectTaskRisk", "Usikkerhet", "Title", "{920b385c-756f-49eb-98e7-4c3ebf15b7f4}", false, false, ""),
-            GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Relevant kommunikasjonselement", "GtProjectTaskComElement", "Kommunikasjonsplan", "Title", "{087dae25-b007-4e58-91b4-347dde464840}", false, false, ""),
-            GT.Project.Setup.ContentTypes.CreateContentType("Kommunikasjonselement", "GtProjectCommunicationElement", "", "0x010088578e7470cc4aa68d5663464831070203"),
-            GT.Project.Setup.ContentTypes.CreateContentType("Prosjektoppgave", "GtProjectTask", "", "0x010800233b015f95174c9a8eb505493841de8d"),
-            GT.Project.Setup.ContentTypes.CreateContentType("Prosjektprodukt", "GtProjectProduct", "", "0x010088578e7470cc4aa68d5663464831070205"),
-            GT.Project.Setup.ContentTypes.CreateContentType("Prosjektloggelement", "GtProjectLog", "", "0x010088578e7470cc4aa68d5663464831070206")
-        );
 
-    dependentPromises.done(function () {
+    GT.jQuery.when(
+        GT.Project.Setup.ContentTypes.CreateContentType("Kommunikasjonselement", "GtProjectCommunicationElement", "", "0x010088578e7470cc4aa68d5663464831070203"),
+        GT.Project.Setup.ContentTypes.CreateContentType("Prosjektoppgave", "GtProjectTask", "", "0x010800233b015f95174c9a8eb505493841de8d"),
+        GT.Project.Setup.ContentTypes.CreateContentType("Prosjektprodukt", "GtProjectProduct", "", "0x010088578e7470cc4aa68d5663464831070205"),
+        GT.Project.Setup.ContentTypes.CreateContentType("Prosjektloggelement", "GtProjectLog", "", "0x010088578e7470cc4aa68d5663464831070206")
+    ).then(function() {
         GT.jQuery.when(
-            GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektloggelement", ["GtProjectLogProductLookup", "GtProjectLogEventLookup"]),
-            GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektoppgave", ["GtProjectTaskRisk", "GtProjectTaskComElement"]),
-            GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Kommunikasjonselement", ["GtCommunicationTarget"]),
-            GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektprodukt", ["GtProductInteressent"])
-        )
-        .then(function () {
+            GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]),
+            GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektprodukter", ["Prosjektprodukt"]),
+            GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektlogg", ["Prosjektloggelement"]),
+            GT.Project.Setup.ContentTypes.UpdateListContentTypes("Interessentregister", ["Interessent"]),
+            GT.Project.Setup.ContentTypes.UpdateListContentTypes("Informasjon", ["Infoelement"]),
+            GT.Project.Setup.ContentTypes.UpdateListContentTypes("Usikkerhet", ["Risiko", "Mulighet"]),
+            GT.Project.Setup.ContentTypes.UpdateListContentTypes("Oppgaver", ["Prosjektoppgave"]),
+            GT.Project.Setup.ContentTypes.UpdateListContentTypes("Møtekalender", ["Prosjekthendelse"]),
+            GT.Project.Setup.ContentTypes.UpdateListContentTypes("Sjekkliste", ["Sjekkpunkt"]),
+            GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"])
+        ).then(function () {
             GT.jQuery.when(
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Kommunikasjonsplan", ["Kommunikasjonselement"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektprodukter", ["Prosjektprodukt"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Prosjektlogg", ["Prosjektloggelement"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Interessentregister", ["Interessent"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Informasjon", ["Infoelement"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Usikkerhet", ["Risiko", "Mulighet"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Oppgaver", ["Prosjektoppgave"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Sjekkliste", ["Sjekkpunkt"]),
-                GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"])
-            )
-            .done(function () {
-                deferred.resolve();
-            })
-            .fail(function () {
-                deferred.reject();
+                GT.Project.Setup.ContentTypes.AddFieldToListFromXml('Møtekalender', '<Field ID="{7604dadc-d8e3-4f35-bc58-890d33d908b9}" Name="GtProjectEventDateAndTitle" DisplayName="Dato og tittel" Type="Calculated" Hidden="False" Group="Glittertind Områdekolonner" Description="" Required="FALSE" ResultType="Text" ReadOnly="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" Percentage="FALSE"><Formula>=TEXT(Starttidspunkt,"yyyy-mm-dd")&amp;" "&amp;Tittel</Formula><FieldRefs><FieldRef Name="Tittel" /><FieldRef Name="Starttidspunkt" /></FieldRefs></Field>')
+            ).then(function () {
+                GT.jQuery.when(
+                    GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Målgruppe", "GtCommunicationTarget", "Interessentregister", "Title", "{d685f33f-51b5-4e9f-a314-4b3d9467a7e4}", false, true, ""),
+                    GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Interessent(er)", "GtProductInteressent", "Interessentregister", "Title", "{6d90e0b6-73e6-48fb-aa1e-b897b214f934}", false, true, ""),
+                    GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Påvirker produkt", "GtProjectLogProductLookup", "Prosjektprodukter", "Title", "{022cc93f-13df-4420-bd47-55e4fdae5d18}", false, true, "Velg hvilke(t) prosjektprodukt som blir påvirket av dette."),
+                    GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Til prosjektstyre", "GtProjectLogEventLookup", "Møtekalender", "GtProjectEventDateAndTitle", "{20731fb1-e98e-4fdc-b3d6-941b41b8fd6e}", false, false, "Dersom dette skal opp i prosjektstyret velger du dato for styringsgruppemøtet her."),
+                    GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Relevant usikkerhet", "GtProjectTaskRisk", "Usikkerhet", "Title", "{920b385c-756f-49eb-98e7-4c3ebf15b7f4}", false, false, ""),
+                    GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Relevant kommunikasjonselement", "GtProjectTaskComElement", "Kommunikasjonsplan", "Title", "{087dae25-b007-4e58-91b4-347dde464840}", false, false, "")
+                ).then(function() {
+                    GT.jQuery.when(
+                        GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektloggelement", ["GtProjectLogProductLookup", "GtProjectLogEventLookup"]),
+                        GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektoppgave", ["GtProjectTaskRisk", "GtProjectTaskComElement"]),
+                        GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Kommunikasjonselement", ["GtCommunicationTarget"]),
+                        GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektprodukt", ["GtProductInteressent"])
+                    ).then(function() {
+                        GT.jQuery.when(
+                            GT.Project.Setup.ContentTypes.SetFieldDescriptionsOfList("Interessentregister", [{ "key": "Title", "value": "Navnet på interessenten" }])
+                        ).done(function() {
+                            deferred.resolve();
+                        }).fail(function() {
+                            deferred.reject();
+                        });
+                    });
+                });
             });
         });
     });
