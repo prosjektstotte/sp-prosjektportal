@@ -393,199 +393,366 @@
     <File Path="PortefoljeOversikt.aspx" Url="PortefoljeOversikt.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE">
       <AllUsersWebPart WebPartOrder="0" WebPartZoneID="LeftColumn">
         <![CDATA[<webParts>
-          <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-          <metaData>
-            <type name="Microsoft.Office.Server.Search.WebControls.RefinementScriptWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
-            <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
-          </metaData>
-          <data>
-            <properties>
-              <property name="HelpUrl" type="string" />
-              <property name="UseManagedNavigationRefiners" type="bool">False</property>
-              <property name="TitleUrl" type="string" />
-              <property name="Hidden" type="bool">False</property>
-              <property name="ChromeType" type="chrometype">TitleOnly</property>
-              <property name="AllowClose" type="bool">True</property>
-              <property name="TitleIconImageUrl" type="string" />
-              <property name="AllowMinimize" type="bool">True</property>
-              <property name="AllowEdit" type="bool">True</property>
-              <property name="Direction" type="direction">NotSet</property>
-              <property name="Height" type="string" />
-              <property name="AllowConnect" type="bool">True</property>
-              <property name="MissingAssembly" type="string">Kan ikke importere denne webdelen.</property>
-              <property name="AllowHide" type="bool">True</property>
-              <property name="Description" type="string">Denne webdelen hjelper brukerne med å begrense søkeresultatene</property>
-              <property name="StatesJson" type="string">{}</property>
-              <property name="QueryGroupName" type="string">Default</property>
-              <property name="ChromeState" type="chromestate">Normal</property>
-              <property name="ExportMode" type="exportmode">All</property>
-              <property name="AllowZoneChange" type="bool">True</property>
-              <property name="RenderTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Filters/Control_Refinement.js</property>
-              <property name="CatalogIconImageUrl" type="string" />
-              <property name="EmitStyleReference" type="bool">True</property>
-              <property name="HelpMode" type="helpmode">Modeless</property>
-              <property name="Title" type="string">Presisering</property>
-              <property name="AlternateErrorMessage" type="string" null="true" />
-              <property name="Width" type="string" />
-              <property name="EmptyMessage" type="string" />
-              <property name="ServerIncludeScriptsJson" type="string">null</property>
-              <property name="SelectedRefinementControlsJson" type="string">{"refinerConfigurations":[{"propertyName":"RefinableString50","type":"Text","sortOrder":0,"displayTemplate":"~sitecollection/_catalogs/masterpage/Display Templates/Filters/Filter_Default.js","sortBy":0,"maxNumberRefinementOptions":15,"displayName":"Prosjekteier","useDefaultDateIntervals":false,"aliases":["GtProjectOwner"],"refinerSpecStringOverride":"","intervals":null},{"propertyName":"RefinableString51","type":"Text","sortOrder":0,"displayTemplate":"~sitecollection/_catalogs/masterpage/Display Templates/Filters/Filter_Default.js","sortBy":0,"maxNumberRefinementOptions":15,"displayName":"Prosjektleder","useDefaultDateIntervals":false,"aliases":["GtProjectManager"],"refinerSpecStringOverride":"","intervals":null},{"propertyName":"RefinableString52","type":"Text","sortOrder":0,"displayTemplate":"~sitecollection/_catalogs/masterpage/Display Templates/Filters/Filter_Default.js","sortBy":0,"maxNumberRefinementOptions":15,"displayName":"Fase","useDefaultDateIntervals":false,"aliases":["GtProjectPhase"],"refinerSpecStringOverride":"","intervals":null},{"propertyName":"RefinableString53","type":"Text","sortOrder":0,"displayTemplate":"~sitecollection/_catalogs/masterpage/Display Templates/Filters/Filter_Default.js","sortBy":0,"maxNumberRefinementOptions":15,"displayName":"Tjenesteområde","useDefaultDateIntervals":false,"aliases":["GtProjectServiceArea"],"refinerSpecStringOverride":"","intervals":null}]}</property>
-            </properties>
-          </data>
-        </webPart>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Microsoft.Office.Server.Search.WebControls.RefinementScriptWebPart, Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="HelpUrl" type="string" />
+        <property name="UseManagedNavigationRefiners" type="bool">False</property>
+        <property name="TitleUrl" type="string" />
+        <property name="Hidden" type="bool">False</property>
+        <property name="ChromeType" type="chrometype">TitleOnly</property>
+        <property name="AllowClose" type="bool">True</property>
+        <property name="TitleIconImageUrl" type="string" />
+        <property name="AllowMinimize" type="bool">True</property>
+        <property name="AllowEdit" type="bool">True</property>
+        <property name="Direction" type="direction">NotSet</property>
+        <property name="Height" type="string" />
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="MissingAssembly" type="string">Kan ikke importere denne webdelen.</property>
+        <property name="AllowHide" type="bool">True</property>
+        <property name="Description" type="string">Denne webdelen hjelper brukerne med å begrense søkeresultatene</property>
+        <property name="StatesJson" type="string">{}</property>
+        <property name="QueryGroupName" type="string">Default</property>
+        <property name="ChromeState" type="chromestate">Normal</property>
+        <property name="ExportMode" type="exportmode">All</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="RenderTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Filters/Control_Refinement.js</property>
+        <property name="CatalogIconImageUrl" type="string" />
+        <property name="EmitStyleReference" type="bool">True</property>
+        <property name="HelpMode" type="helpmode">Modeless</property>
+        <property name="Title" type="string">Presisering</property>
+        <property name="AlternateErrorMessage" type="string" null="true" />
+        <property name="Width" type="string" />
+        <property name="EmptyMessage" type="string" />
+        <property name="ServerIncludeScriptsJson" type="string">null</property>
+        <property name="SelectedRefinementControlsJson" type="string">{"refinerConfigurations":[{"propertyName":"RefinableString50","type":"Text","sortOrder":0,"displayTemplate":"~sitecollection/_catalogs/masterpage/Display Templates/Filters/Filter_Default.js","sortBy":0,"maxNumberRefinementOptions":15,"displayName":"Prosjekteier","useDefaultDateIntervals":false,"aliases":["GtProjectOwner"],"refinerSpecStringOverride":"","intervals":null},{"propertyName":"RefinableString51","type":"Text","sortOrder":0,"displayTemplate":"~sitecollection/_catalogs/masterpage/Display Templates/Filters/Filter_Default.js","sortBy":0,"maxNumberRefinementOptions":15,"displayName":"Prosjektleder","useDefaultDateIntervals":false,"aliases":["GtProjectManager"],"refinerSpecStringOverride":"","intervals":null},{"propertyName":"RefinableString52","type":"Text","sortOrder":0,"displayTemplate":"~sitecollection/_catalogs/masterpage/Display Templates/Filters/Filter_Default.js","sortBy":0,"maxNumberRefinementOptions":15,"displayName":"Fase","useDefaultDateIntervals":false,"aliases":["GtProjectPhase"],"refinerSpecStringOverride":"","intervals":null},{"propertyName":"RefinableString53","type":"Text","sortOrder":0,"displayTemplate":"~sitecollection/_catalogs/masterpage/Display Templates/Filters/Filter_Default.js","sortBy":0,"maxNumberRefinementOptions":15,"displayName":"Tjenesteområde","useDefaultDateIntervals":false,"aliases":["GtProjectServiceArea"],"refinerSpecStringOverride":"","intervals":null}]}</property>
+      </properties>
+    </data>
+  </webPart>
       </webParts>]]>
       </AllUsersWebPart>
       <AllUsersWebPart WebPartOrder="0" WebPartZoneID="CenterColumn">
         <![CDATA[<webParts>
-          <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-            <metaData>
-              <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
-              <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
-            </metaData>
-            <data>
-              <properties>
-                <property name="MaxPagesBeforeCurrent" type="int">4</property>
-                <property name="ShowBestBets" type="bool">False</property>
-                <property name="ShowViewDuplicates" type="bool">False</property>
-                <property name="Height" type="string" />
-                <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
-                <property name="DataProviderJSON" type="string">{"QueryGroupName":"cf0dc769-f2ff-45ac-a1bb-3659037c05fb","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"{searchboxquery} ContentTypeId:0x010109010058561f86d956412b9dd7957bbcd67aae0100* Path:{Site.URL} contentclass:STS_Web (GtStatusRiskOWSCHCS:\"Høy\" OR GtStatusBudgetOWSCHCS:\"Over budsjett\" OR GtStatusBudgetOWSCHCS:\"Vet ikke\" OR LastModifiedTime\u003c{Today-60}) ","FallbackSort":null,"FallbackSortJson":"null","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":true,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":false,"ScopeResultsToCurrentSite":false,"TrimDuplicates":true,"Properties":{},"PropertiesJson":"{}","ClientType":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
-                <property name="AllowZoneChange" type="bool">True</property>
-                <property name="UseSharedDataProvider" type="bool">False</property>
-                <property name="ShowPreferencesLink" type="bool">False</property>
-                <property name="EmptyMessage" type="string" />
-                <property name="ScrollToTopOnRedraw" type="bool">False</property>
-                <property name="ShowDefinitions" type="bool">True</property>
-                <property name="SelectedPropertiesJson" type="string">["Path","Title","GtProjectManagerOWSUSER","GtProjectOwnerOWSUSER","owstaxIdGtProjectPhase","Created","GtProjectGoalsOWSMTXT","GtStatusTimeOWSCHCS","GtStatusRiskOWSCHCS","GtStatusBudgetOWSCHCS","LastModifiedTime"]</property>
-                <property name="CatalogIconImageUrl" type="string" />
-                <property name="RepositionLanguageDropDown" type="bool">False</property>
-                <property name="PreloadedItemTemplateIdsJson" type="string">["~sitecollection/_catalogs/masterpage/Display Templates/Search/Group_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Site.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Word.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_PowerPoint.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Person_CompactHorizontal.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_BestBet.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_WebPage.js"]</property>
-                <property name="ResultsPerPage" type="int">10</property>
-                <property name="EmitStyleReference" type="bool">True</property>
-                <property name="ShowPaging" type="bool">True</property>
-                <property name="ResultTypeId" type="string" null="true" />
-                <property name="ShowUpScopeMessage" type="bool">False</property>
-                <property name="AllowMinimize" type="bool">True</property>
-                <property name="AllowClose" type="bool">True</property>
-                <property name="HelpMode" type="helpmode">Modeless</property>
-                <property name="Title" type="string">Prosjekter som krever tilsyn</property>
-                <property name="ShowResults" type="bool">True</property>
-                <property name="MaxPagesAfterCurrent" type="int">1</property>
-                <property name="ShowResultCount" type="bool">True</property>
-                <property name="Hidden" type="bool">False</property>
-                <property name="ItemTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Item_Project_details.js</property>
-                <property name="ItemBodyTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Item_CommonItem_Body.js</property>
-                <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
-                <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
-                <property name="AvailableSortsJson" type="string">[{"name":"Relevans","sorts":[]},{"name":"Dato (nyeste)","sorts":[{"p":"Write","d":1}]},{"name":"Dato (eldste)","sorts":[{"p":"Write","d":0}]},{"name":"Visninger for levetid","sorts":[{"p":"ViewsLifeTime","d":1}]},{"name":"Siste visninger","sorts":[{"p":"ViewsRecent","d":1}]}]</property>
-                <property name="ChromeState" type="chromestate">Normal</property>
-                <property name="AllowHide" type="bool">True</property>
-                <property name="AllowEdit" type="bool">True</property>
-                <property name="StatesJson" type="string">{}</property>
-                <property name="RenderTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Control_Table.js</property>
-                <property name="ShowPersonalFavorites" type="bool">False</property>
-                <property name="ShowSortOptions" type="bool">False</property>
-                <property name="ChromeType" type="chrometype">TitleOnly</property>
-                <property name="AllowConnect" type="bool">True</property>
-                <property name="HelpUrl" type="string" />
-                <property name="ShowLanguageOptions" type="bool">False</property>
-                <property name="Description" type="string">Viser søkeresultatene og tilknyttede egenskaper.</property>
-                <property name="ServerIncludeScriptsJson" type="string">null</property>
-                <property name="TitleUrl" type="string" />
-                <property name="AlternateErrorMessage" type="string" null="true" />
-                <property name="ShowAlertMe" type="bool">True</property>
-                <property name="ShowDidYouMean" type="bool">False</property>
-                <property name="QueryGroupName" type="string">cf0dc769-f2ff-45ac-a1bb-3659037c05fb</property>
-                <property name="Width" type="string" />
-                <property name="ShowAdvancedLink" type="bool">False</property>
-                <property name="ExportMode" type="exportmode">All</property>
-                <property name="Direction" type="direction">NotSet</property>
-                <property name="BypassResultTypes" type="bool">True</property>
-                <property name="GroupTemplateId" type="string" />
-                <property name="TitleIconImageUrl" type="string" />
-                <property name="MissingAssembly" type="string">Kan ikke importere denne webdelen.</property>
-              </properties>
-            </data>
-          </webPart>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="MaxPagesBeforeCurrent" type="int">4</property>
+        <property name="ShowBestBets" type="bool">False</property>
+        <property name="ShowViewDuplicates" type="bool">False</property>
+        <property name="Height" type="string" />
+        <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
+        <property name="DataProviderJSON" type="string">{"QueryGroupName":"cf0dc769-f2ff-45ac-a1bb-3659037c05fb","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"{searchboxquery} ContentTypeId:0x010109010058561f86d956412b9dd7957bbcd67aae0100* Path:{Site.URL} contentclass:STS_Web (GtStatusRiskOWSCHCS:\"Høy\" OR GtStatusBudgetOWSCHCS:\"Over budsjett\" OR GtStatusBudgetOWSCHCS:\"Vet ikke\" OR LastModifiedTime\u003c{Today-60}) ","FallbackSort":null,"FallbackSortJson":"null","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":true,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":false,"ScopeResultsToCurrentSite":false,"TrimDuplicates":true,"Properties":{},"PropertiesJson":"{}","ClientType":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="UseSharedDataProvider" type="bool">False</property>
+        <property name="ShowPreferencesLink" type="bool">False</property>
+        <property name="EmptyMessage" type="string" />
+        <property name="ScrollToTopOnRedraw" type="bool">False</property>
+        <property name="ShowDefinitions" type="bool">True</property>
+        <property name="SelectedPropertiesJson" type="string">["Path","Title","GtProjectManagerOWSUSER","GtProjectOwnerOWSUSER","owstaxIdGtProjectPhase","Created","GtProjectGoalsOWSMTXT","GtStatusTimeOWSCHCS","GtStatusRiskOWSCHCS","GtStatusBudgetOWSCHCS","LastModifiedTime"]</property>
+        <property name="CatalogIconImageUrl" type="string" />
+        <property name="RepositionLanguageDropDown" type="bool">False</property>
+        <property name="PreloadedItemTemplateIdsJson" type="string">["~sitecollection/_catalogs/masterpage/Display Templates/Search/Group_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Site.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Word.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_PowerPoint.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Person_CompactHorizontal.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_BestBet.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_WebPage.js"]</property>
+        <property name="ResultsPerPage" type="int">10</property>
+        <property name="EmitStyleReference" type="bool">True</property>
+        <property name="ShowPaging" type="bool">True</property>
+        <property name="ResultTypeId" type="string" null="true" />
+        <property name="ShowUpScopeMessage" type="bool">False</property>
+        <property name="AllowMinimize" type="bool">True</property>
+        <property name="AllowClose" type="bool">True</property>
+        <property name="HelpMode" type="helpmode">Modeless</property>
+        <property name="Title" type="string">Prosjekter som krever tilsyn</property>
+        <property name="ShowResults" type="bool">True</property>
+        <property name="MaxPagesAfterCurrent" type="int">1</property>
+        <property name="ShowResultCount" type="bool">True</property>
+        <property name="Hidden" type="bool">False</property>
+        <property name="ItemTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Item_Project_details.js</property>
+        <property name="ItemBodyTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Item_CommonItem_Body.js</property>
+        <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
+        <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
+        <property name="AvailableSortsJson" type="string">[{"name":"Relevans","sorts":[]},{"name":"Dato (nyeste)","sorts":[{"p":"Write","d":1}]},{"name":"Dato (eldste)","sorts":[{"p":"Write","d":0}]},{"name":"Visninger for levetid","sorts":[{"p":"ViewsLifeTime","d":1}]},{"name":"Siste visninger","sorts":[{"p":"ViewsRecent","d":1}]}]</property>
+        <property name="ChromeState" type="chromestate">Normal</property>
+        <property name="AllowHide" type="bool">True</property>
+        <property name="AllowEdit" type="bool">True</property>
+        <property name="StatesJson" type="string">{}</property>
+        <property name="RenderTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Control_Table.js</property>
+        <property name="ShowPersonalFavorites" type="bool">False</property>
+        <property name="ShowSortOptions" type="bool">False</property>
+        <property name="ChromeType" type="chrometype">TitleOnly</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="HelpUrl" type="string" />
+        <property name="ShowLanguageOptions" type="bool">False</property>
+        <property name="Description" type="string">Viser søkeresultatene og tilknyttede egenskaper.</property>
+        <property name="ServerIncludeScriptsJson" type="string">null</property>
+        <property name="TitleUrl" type="string" />
+        <property name="AlternateErrorMessage" type="string" null="true" />
+        <property name="ShowAlertMe" type="bool">True</property>
+        <property name="ShowDidYouMean" type="bool">False</property>
+        <property name="QueryGroupName" type="string">cf0dc769-f2ff-45ac-a1bb-3659037c05fb</property>
+        <property name="Width" type="string" />
+        <property name="ShowAdvancedLink" type="bool">False</property>
+        <property name="ExportMode" type="exportmode">All</property>
+        <property name="Direction" type="direction">NotSet</property>
+        <property name="BypassResultTypes" type="bool">True</property>
+        <property name="GroupTemplateId" type="string" />
+        <property name="TitleIconImageUrl" type="string" />
+        <property name="MissingAssembly" type="string">Kan ikke importere denne webdelen.</property>
+      </properties>
+    </data>
+  </webPart>
         </webParts>]]>
       </AllUsersWebPart>
       <AllUsersWebPart WebPartOrder="1" WebPartZoneID="CenterColumn">
         <![CDATA[<webParts>
-          <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-            <metaData>
-              <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
-              <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
-            </metaData>
-            <data>
-              <properties>
-                <property name="MaxPagesBeforeCurrent" type="int">4</property>
-                <property name="ShowBestBets" type="bool">False</property>
-                <property name="ShowViewDuplicates" type="bool">False</property>
-                <property name="Height" type="string" />
-                <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
-                <property name="DataProviderJSON" type="string">{"QueryGroupName":"Default","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"{searchboxquery} ContentTypeId:0x010109010058561f86d956412b9dd7957bbcd67aae0100* Path:{Site.URL}  contentclass:STS_Web","FallbackSort":null,"FallbackSortJson":"null","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":true,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":false,"ScopeResultsToCurrentSite":false,"TrimDuplicates":false,"Properties":{"ListId":"323445e5-3ae4-46db-aace-bfcaa1d72b65","ListItemId":4},"PropertiesJson":"{\"ListId\":\"323445e5-3ae4-46db-aace-bfcaa1d72b65\",\"ListItemId\":4}","ClientType":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
-                <property name="AllowZoneChange" type="bool">True</property>
-                <property name="UseSharedDataProvider" type="bool">False</property>
-                <property name="ShowPreferencesLink" type="bool">False</property>
-                <property name="EmptyMessage" type="string" />
-                <property name="ScrollToTopOnRedraw" type="bool">False</property>
-                <property name="ShowDefinitions" type="bool">True</property>
-                <property name="SelectedPropertiesJson" type="string">["Path","Title","GtProjectManagerOWSUSER","GtProjectOwnerOWSUSER","owstaxIdGtProjectPhase","Created","GtProjectGoalsOWSMTXT","GtStatusTimeOWSCHCS","GtStatusRiskOWSCHCS","GtStatusBudgetOWSCHCS","LastModifiedTime"]</property>
-                <property name="CatalogIconImageUrl" type="string" />
-                <property name="RepositionLanguageDropDown" type="bool">False</property>
-                <property name="PreloadedItemTemplateIdsJson" type="string">["~sitecollection/_catalogs/masterpage/Display Templates/Search/Group_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Site.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Word.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_PowerPoint.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Person_CompactHorizontal.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_BestBet.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_WebPage.js"]</property>
-                <property name="ResultsPerPage" type="int">10</property>
-                <property name="EmitStyleReference" type="bool">True</property>
-                <property name="ShowPaging" type="bool">True</property>
-                <property name="ResultTypeId" type="string" null="true" />
-                <property name="ShowUpScopeMessage" type="bool">False</property>
-                <property name="AllowMinimize" type="bool">True</property>
-                <property name="AllowClose" type="bool">True</property>
-                <property name="HelpMode" type="helpmode">Modeless</property>
-                <property name="Title" type="string">Porteføljeoversikt</property>
-                <property name="ShowResults" type="bool">True</property>
-                <property name="MaxPagesAfterCurrent" type="int">1</property>
-                <property name="ShowResultCount" type="bool">True</property>
-                <property name="Hidden" type="bool">False</property>
-                <property name="ItemTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Item_Project_details.js</property>
-                <property name="ItemBodyTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Item_CommonItem_Body.js</property>
-                <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
-                <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
-                <property name="AvailableSortsJson" type="string">[{"name":"Relevans","sorts":[]},{"name":"Dato (nyeste)","sorts":[{"p":"Write","d":1}]},{"name":"Dato (eldste)","sorts":[{"p":"Write","d":0}]},{"name":"Visninger for levetid","sorts":[{"p":"ViewsLifeTime","d":1}]},{"name":"Siste visninger","sorts":[{"p":"ViewsRecent","d":1}]}]</property>
-                <property name="ChromeState" type="chromestate">Normal</property>
-                <property name="AllowHide" type="bool">True</property>
-                <property name="AllowEdit" type="bool">True</property>
-                <property name="StatesJson" type="string">{}</property>
-                <property name="RenderTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Control_Table.js</property>
-                <property name="ShowPersonalFavorites" type="bool">False</property>
-                <property name="ShowSortOptions" type="bool">False</property>
-                <property name="ChromeType" type="chrometype">TitleOnly</property>
-                <property name="AllowConnect" type="bool">True</property>
-                <property name="HelpUrl" type="string" />
-                <property name="ShowLanguageOptions" type="bool">False</property>
-                <property name="Description" type="string">Viser søkeresultatene og tilknyttede egenskaper.</property>
-                <property name="ServerIncludeScriptsJson" type="string">null</property>
-                <property name="TitleUrl" type="string" />
-                <property name="AlternateErrorMessage" type="string" null="true" />
-                <property name="ShowAlertMe" type="bool">True</property>
-                <property name="ShowDidYouMean" type="bool">False</property>
-                <property name="QueryGroupName" type="string">Default</property>
-                <property name="Width" type="string" />
-                <property name="ShowAdvancedLink" type="bool">False</property>
-                <property name="ExportMode" type="exportmode">All</property>
-                <property name="Direction" type="direction">NotSet</property>
-                <property name="BypassResultTypes" type="bool">True</property>
-                <property name="GroupTemplateId" type="string" />
-                <property name="TitleIconImageUrl" type="string" />
-                <property name="MissingAssembly" type="string">Kan ikke importere denne webdelen.</property>
-              </properties>
-            </data>
-          </webPart>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="MaxPagesBeforeCurrent" type="int">4</property>
+        <property name="ShowBestBets" type="bool">False</property>
+        <property name="ShowViewDuplicates" type="bool">False</property>
+        <property name="Height" type="string" />
+        <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
+        <property name="DataProviderJSON" type="string">{"QueryGroupName":"Default","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"{searchboxquery} ContentTypeId:0x010109010058561f86d956412b9dd7957bbcd67aae0100* Path:{Site.URL}  contentclass:STS_Web","FallbackSort":null,"FallbackSortJson":"null","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":true,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":false,"ScopeResultsToCurrentSite":false,"TrimDuplicates":false,"Properties":{"ListId":"323445e5-3ae4-46db-aace-bfcaa1d72b65","ListItemId":4},"PropertiesJson":"{\"ListId\":\"323445e5-3ae4-46db-aace-bfcaa1d72b65\",\"ListItemId\":4}","ClientType":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="UseSharedDataProvider" type="bool">False</property>
+        <property name="ShowPreferencesLink" type="bool">False</property>
+        <property name="EmptyMessage" type="string" />
+        <property name="ScrollToTopOnRedraw" type="bool">False</property>
+        <property name="ShowDefinitions" type="bool">True</property>
+        <property name="SelectedPropertiesJson" type="string">["Path","Title","GtProjectManagerOWSUSER","GtProjectOwnerOWSUSER","owstaxIdGtProjectPhase","Created","GtProjectGoalsOWSMTXT","GtStatusTimeOWSCHCS","GtStatusRiskOWSCHCS","GtStatusBudgetOWSCHCS","LastModifiedTime"]</property>
+        <property name="CatalogIconImageUrl" type="string" />
+        <property name="RepositionLanguageDropDown" type="bool">False</property>
+        <property name="PreloadedItemTemplateIdsJson" type="string">["~sitecollection/_catalogs/masterpage/Display Templates/Search/Group_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Site.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Word.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_PowerPoint.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Person_CompactHorizontal.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_BestBet.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_WebPage.js"]</property>
+        <property name="ResultsPerPage" type="int">10</property>
+        <property name="EmitStyleReference" type="bool">True</property>
+        <property name="ShowPaging" type="bool">True</property>
+        <property name="ResultTypeId" type="string" null="true" />
+        <property name="ShowUpScopeMessage" type="bool">False</property>
+        <property name="AllowMinimize" type="bool">True</property>
+        <property name="AllowClose" type="bool">True</property>
+        <property name="HelpMode" type="helpmode">Modeless</property>
+        <property name="Title" type="string">Porteføljeoversikt</property>
+        <property name="ShowResults" type="bool">True</property>
+        <property name="MaxPagesAfterCurrent" type="int">1</property>
+        <property name="ShowResultCount" type="bool">True</property>
+        <property name="Hidden" type="bool">False</property>
+        <property name="ItemTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Item_Project_details.js</property>
+        <property name="ItemBodyTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Item_CommonItem_Body.js</property>
+        <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
+        <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
+        <property name="AvailableSortsJson" type="string">[{"name":"Relevans","sorts":[]},{"name":"Dato (nyeste)","sorts":[{"p":"Write","d":1}]},{"name":"Dato (eldste)","sorts":[{"p":"Write","d":0}]},{"name":"Visninger for levetid","sorts":[{"p":"ViewsLifeTime","d":1}]},{"name":"Siste visninger","sorts":[{"p":"ViewsRecent","d":1}]}]</property>
+        <property name="ChromeState" type="chromestate">Normal</property>
+        <property name="AllowHide" type="bool">True</property>
+        <property name="AllowEdit" type="bool">True</property>
+        <property name="StatesJson" type="string">{}</property>
+        <property name="RenderTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Control_Table.js</property>
+        <property name="ShowPersonalFavorites" type="bool">False</property>
+        <property name="ShowSortOptions" type="bool">False</property>
+        <property name="ChromeType" type="chrometype">TitleOnly</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="HelpUrl" type="string" />
+        <property name="ShowLanguageOptions" type="bool">False</property>
+        <property name="Description" type="string">Viser søkeresultatene og tilknyttede egenskaper.</property>
+        <property name="ServerIncludeScriptsJson" type="string">null</property>
+        <property name="TitleUrl" type="string" />
+        <property name="AlternateErrorMessage" type="string" null="true" />
+        <property name="ShowAlertMe" type="bool">True</property>
+        <property name="ShowDidYouMean" type="bool">False</property>
+        <property name="QueryGroupName" type="string">Default</property>
+        <property name="Width" type="string" />
+        <property name="ShowAdvancedLink" type="bool">False</property>
+        <property name="ExportMode" type="exportmode">All</property>
+        <property name="Direction" type="direction">NotSet</property>
+        <property name="BypassResultTypes" type="bool">True</property>
+        <property name="GroupTemplateId" type="string" />
+        <property name="TitleIconImageUrl" type="string" />
+        <property name="MissingAssembly" type="string">Kan ikke importere denne webdelen.</property>
+      </properties>
+    </data>
+  </webPart>
         </webParts>]]>
       </AllUsersWebPart>
     </File>
     <File Path="OpprettProsjekt.aspx" Url="OpprettProsjekt.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE" >
       <Property Name="Title" Value="Opprett prosjektområde" ></Property>
+    </File>
+    <File Path="Portefolje.aspx" Url="PortefoljeAlternativ.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE">
+      <Property Name="title" Value="Prosjektportal - porteføljeoversikt" ></Property>
+      <AllUsersWebPart WebPartOrder="1" WebPartZoneID="CenterColumn">
+        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+  <Title>Innholdsredigering</Title>
+  <FrameType>None</FrameType>
+  <Description>Gjør at forfattere kan skrive inn innhold i rik tekst.</Description>
+  <IsIncluded>true</IsIncluded>
+  <ZoneID>CenterColumn</ZoneID>
+  <PartOrder>0</PartOrder>
+  <FrameState>Normal</FrameState>
+  <Height />
+  <Width />
+  <AllowRemove>true</AllowRemove>
+  <AllowZoneChange>true</AllowZoneChange>
+  <AllowMinimize>true</AllowMinimize>
+  <AllowConnect>true</AllowConnect>
+  <AllowEdit>true</AllowEdit>
+  <AllowHide>true</AllowHide>
+  <IsVisible>true</IsVisible>
+  <DetailLink />
+  <HelpLink />
+  <HelpMode>Modeless</HelpMode>
+  <Dir>Default</Dir>
+  <PartImageSmall />
+  <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
+  <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
+  <IsIncludedFilter />
+  <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+  <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
+  <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">../SiteAssets/gt/html/gt.csomprojectdir.html</ContentLink>
+  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+  <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+</WebPart>]]>
+      </AllUsersWebPart>
+      <AllUsersWebPart WebPartOrder="0" WebPartZoneID="RightColumn">
+        <![CDATA[<WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+  <Title>Nytt prosjektområde</Title>
+  <FrameType>None</FrameType>
+  <Description>Gjør at forfattere kan skrive inn innhold i rik tekst.</Description>
+  <IsIncluded>true</IsIncluded>
+  <ZoneID>RightColumn</ZoneID>
+  <PartOrder>0</PartOrder>
+  <FrameState>Normal</FrameState>
+  <Height />
+  <Width />
+  <AllowRemove>true</AllowRemove>
+  <AllowZoneChange>true</AllowZoneChange>
+  <AllowMinimize>true</AllowMinimize>
+  <AllowConnect>true</AllowConnect>
+  <AllowEdit>true</AllowEdit>
+  <AllowHide>true</AllowHide>
+  <IsVisible>true</IsVisible>
+  <DetailLink />
+  <HelpLink />
+  <HelpMode>Modeless</HelpMode>
+  <Dir>Default</Dir>
+  <PartImageSmall />
+  <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
+  <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
+  <IsIncludedFilter />
+  <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+  <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
+  <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">../SiteAssets/gt/html/gt.newprojectlink.html</ContentLink>
+  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+  <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+</WebPart>]]>
+      </AllUsersWebPart>
+      <AllUsersWebPart WebPartOrder="2" WebPartZoneID="RightColumn">
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="NoDefaultStyle" type="string" />
+        <property name="ListUrl" type="string" >Lists/Lenker</property>
+        <property name="TitleUrl" type="string">~sitecollection/Lists/Lenker</property>
+        <property name="EnableOriginalValue" type="bool">False</property>
+        <property name="ViewFlags" type="Microsoft.SharePoint.SPViewFlags, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">Html, Hidden, Ordered, Mobile</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="ListDisplayName" type="string" null="true" />
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="ChromeState" type="chromestate">Normal</property>
+        <property name="DisableSaveAsNewViewButton" type="bool">False</property>
+        <property name="ViewFlag" type="string" />
+        <property name="DataSourceID" type="string" />
+        <property name="ExportMode" type="exportmode">All</property>
+        <property name="AutoRefresh" type="bool">False</property>
+        <property name="FireInitialRow" type="bool">True</property>
+        <property name="AllowEdit" type="bool">True</property>
+        <property name="Description" type="string" />
+        <property name="HelpMode" type="helpmode">Modeless</property>
+        <property name="BaseXsltHashKey" type="string" null="true" />
+        <property name="AllowMinimize" type="bool">True</property>
+        <property name="CacheXslTimeOut" type="int">86400</property>
+        <property name="ChromeType" type="chrometype">Default</property>
+        <property name="CatalogIconImageUrl" type="string">/_layouts/15/images/itlink.png?rev=38</property>
+        <property name="TitleIconImageUrl" type="string" />
+        <property name="PageSize" type="int">-1</property>
+        <property name="ShowTimelineIfAvailable" type="bool">True</property>
+        <property name="PageType" type="Microsoft.SharePoint.PAGETYPE, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">PAGE_NORMALVIEW</property>
+        <property name="DataSourcesString" type="string" />
+        <property name="InplaceSearchEnabled" type="bool">True</property>
+        <property name="WebId" type="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">00000000-0000-0000-0000-000000000000</property>
+        <property name="Height" type="string" />
+        <property name="GhostedXslLink" type="string">main.xsl</property>
+        <property name="DisableViewSelectorMenu" type="bool">False</property>
+        <property name="DisplayName" type="string" />
+        <property name="IsClientRender" type="bool">False</property>
+        <property name="XmlDefinition" type="string">&lt;View Name="{EA34FA92-3BBA-4578-AB22-78F48B7ED754}" MobileView="TRUE" Type="HTML" Hidden="TRUE" TabularView="FALSE" OrderedView="TRUE" DisplayName="" Url="/sites/spikkestad/SitePages/Portefolje.aspx" Level="1" BaseViewID="0" ContentTypeID="0x" &gt;&lt;Query&gt;&lt;OrderBy&gt;&lt;FieldRef Name="Order" Ascending="TRUE"/&gt;&lt;/OrderBy&gt;&lt;/Query&gt;&lt;ViewFields&gt;&lt;FieldRef Name="URL" Explicit="TRUE"/&gt;&lt;FieldRef Name="URLNoMenu"/&gt;&lt;/ViewFields&gt;&lt;RowLimit&gt;20&lt;/RowLimit&gt;&lt;XslLink&gt;main.xsl&lt;/XslLink&gt;&lt;Toolbar Type="None"/&gt;&lt;/View&gt;</property>
+        <property name="InitialAsyncDataFetch" type="bool">False</property>
+        <property name="AllowHide" type="bool">True</property>
+        <property name="ParameterBindings" type="string">&lt;ParameterBinding Name="dvt_sortdir" Location="Postback;Connection" /&gt;&lt;ParameterBinding Name="dvt_sortfield" Location="Postback;Connection" /&gt;&lt;ParameterBinding Name="dvt_startposition" Location="Postback" DefaultValue="" /&gt;&lt;ParameterBinding Name="dvt_firstrow" Location="Postback;Connection" /&gt;&lt;ParameterBinding Name="OpenMenuKeyAccessible" Location="Resource(wss,OpenMenuKeyAccessible)" /&gt;&lt;ParameterBinding Name="open_menu" Location="Resource(wss,open_menu)" /&gt;&lt;ParameterBinding Name="select_deselect_all" Location="Resource(wss,select_deselect_all)" /&gt;&lt;ParameterBinding Name="idPresEnabled" Location="Resource(wss,idPresEnabled)" /&gt;&lt;ParameterBinding Name="NoAnnouncements" Location="Resource(wss,nofavlinks_toaddlinkclickaddnewlink)" /&gt;&lt;ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,nofavlinks_toaddlinkclickaddnewlink_howto)" /&gt;&lt;ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,AddNewLink)" /&gt;&lt;ParameterBinding Name="MoreAnnouncements" Location="Resource(wss,morelinks_ellipses)" /&gt;</property>
+        <property name="DataSourceMode" type="Microsoft.SharePoint.WebControls.SPDataSourceMode, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">List</property>
+        <property name="AutoRefreshInterval" type="int">60</property>
+        <property name="HelpUrl" type="string" />
+        <property name="MissingAssembly" type="string">Kan ikke importere denne webdelen.</property>
+        <property name="XslLink" type="string" null="true" />
+        <property name="SelectParameters" type="string" />
+        <property name="HasClientDataSource" type="bool">False</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
+      <AllUsersWebPart WebPartOrder="1" WebPartZoneID="RightColumn">
+        <![CDATA[
+          <webParts>
+            <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+              <metaData>
+                <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+                <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+              </metaData>
+              <data>
+                <properties>
+                  <property name="ListUrl" type="string">Lists/Kunngjoringer</property>
+                  <property name="ExportMode" type="exportmode">All</property>
+                  <property name="AllowZoneChange" type="bool">True</property>
+                  <property name="ExportMode" type="exportmode">All</property>
+                  <property name="HelpUrl" type="string" />
+                  <property name="Hidden" type="bool">False</property>
+                  <property name="TitleUrl" type="string" />
+                  <property name="Description" type="string"></property>
+                  <property name="AllowHide" type="bool">True</property>
+                  <property name="AllowMinimize" type="bool">True</property>
+                  <property name="ChromeType" type="chrometype">Default</property>
+                  <property name="AllowConnect" type="bool">True</property>
+                  <property name="Width" type="unit" />
+                  <property name="Height" type="unit" />
+                  <property name="HelpMode" type="helpmode">Navigate</property>
+                  <property name="CatalogIconImageUrl" type="string" />
+                  <property name="AllowEdit" type="bool">True</property>
+                  <property name="TitleIconImageUrl" type="string" />
+                  <property name="Direction" type="direction">NotSet</property>
+                  <property name="AllowClose" type="bool">True</property>
+                  <property name="ChromeState" type="chromestate">Normal</property>
+                </properties>
+              </data>
+            </webPart>
+          </webParts>
+        ]]>
+      </AllUsersWebPart>
     </File>
   </Module>
 </Elements>

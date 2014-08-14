@@ -1,0 +1,24 @@
+﻿<link rel="stylesheet" type="text/css" href="../_layouts/15/1044/styles/Themable/searchv15.css">
+<style type="text/css"></style>
+<script type="text/javascript" language="javascript">
+    (function () {
+        var jQuery = GT.jQuery;
+
+        jQuery(document).ready(function () {
+			SP.SOD.executeOrDelayUntilScriptLoaded(GT.Project.render_Portefolje, "sp.js");
+        });
+    })();
+
+
+</script>
+
+<div id="SearchBox" name="Control" class="">
+    <div class="ms-srch-sbLarge ms-srch-sb-border" id="">
+        <input type="text" maxlength="2048" accesskey="S" title="Søk..." id="gt-searchbox" class="ms-textLarge ms-srch-sbLarge-fullWidth ms-srch-sb-prompt ms-helperText" onkeyup="GT.Project.render_Portefolje(GT.jQuery('#gt-searchbox').val());">
+        <a title="Søk" class="ms-srch-sb-searchLink" id="" onclick="GT.Project.render_Portefolje(GT.jQuery('#gt-searchbox').val());" href="javascript: {}">
+            <img src="/_layouts/15/images/searchresultui.png?rev=38" class="ms-srch-sbLarge-searchImg" id="searchImg" alt="Søk">
+        </a>
+    </div>
+</div>
+
+<div id="gt-csomprojectdir-out"></div>
