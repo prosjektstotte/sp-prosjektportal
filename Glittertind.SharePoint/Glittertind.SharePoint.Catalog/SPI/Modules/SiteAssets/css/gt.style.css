@@ -73,7 +73,8 @@ table.gt-result-table, table.gt-result-table th{border-collapse: collapse;border
 table.gt-result-table tr:nth-child(even){background-color: #ddd;}
 
 #gtloglist {max-width: 700px;}
-#gtloglist table tr th {text-align: left;}
+#gtloglist h2 {margin-bottom: 10px;}
+#gtloglist table tr th {font-weight: normal;font-size: 0.85em;color: rgb(119, 119, 119);text-align: left;text-decoration: none;vertical-align: middle;white-space: nowrap;padding:0 5px;}
 #gtloglist table tr td {padding: 5px;}
 #gtloglist table tr:nth-child(odd) td {background-color:#E0F5E0;}
 
