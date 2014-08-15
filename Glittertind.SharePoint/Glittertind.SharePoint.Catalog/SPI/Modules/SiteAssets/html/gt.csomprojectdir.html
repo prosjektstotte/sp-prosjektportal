@@ -1,11 +1,15 @@
 ﻿<link rel="stylesheet" type="text/css" href="../_layouts/15/1044/styles/Themable/searchv15.css">
+<script type="text/javascript" src="../SiteAssets/gt/js/knockout-3.1.0.js"></script>
 <style type="text/css"></style>
 <script type="text/javascript" language="javascript">
     (function () {
         var jQuery = GT.jQuery;
 
         jQuery(document).ready(function () {
-			SP.SOD.executeOrDelayUntilScriptLoaded(GT.Project.render_Portefolje, "sp.js");
+            SP.SOD.executeOrDelayUntilScriptLoaded(function(){
+                GT.Project.get_allProjectsUnderCurrent();
+                ko.applyBindings(GT.Project.Model.appViewModel);
+            } , "sp.js");
         });
     })();
 
@@ -21,4 +25,20 @@
     </div>
 </div>
 
-<div id="gt-csomprojectdir-out"></div>
+<div id="gt-csomprojectdir-out">
+    <ul class="gt-List" data-bind="foreach: projects(), visible: loaded()" style="display: none;">
+        <li>
+            <div class="gt-projectItem">
+
+                <div data-bind="html: GT.Project.GetPhaseLogoMarkup(phase())"></div>
+
+                <h2>
+                    <a href="" data-bind="text: title(), attr: {href: url() }">title</a>
+                </h2>
+
+                <div data-bind="text:'Prosjektleder: ' +projectManager()">project manager</div>
+                <div data-bind="text:'Prosjekteier: ' +projectOwner()">project owner</div>
+            </div>
+        </li>
+    </ul>
+</div>

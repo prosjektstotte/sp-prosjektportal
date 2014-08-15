@@ -28,5 +28,6 @@
     <ProjectItemFile Source="html\gt.projectlogform.html" Target="SiteAssets\html\" Type="ElementFile" />
     <ProjectItemFile Source="html\gt.csomprojectdir.html" Target="SiteAssets\html\" Type="ElementFile" />
     <ProjectItemFile Source="html\gt.csomprojectoverview.html" Target="SiteAssets\html\" Type="ElementFile" />
+    <ProjectItemFile Source="js\knockout-3.1.0.js" Target="SiteAssets\js\" Type="ElementFile" />
   </Files>
 </ProjectItem>

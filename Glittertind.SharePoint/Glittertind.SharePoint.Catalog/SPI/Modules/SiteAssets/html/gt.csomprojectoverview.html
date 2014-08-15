@@ -1,5 +1,7 @@
 ﻿
 <link rel="stylesheet" type="text/css" href="../_layouts/15/1044/styles/Themable/searchv15.css">
+<script type="text/javascript" src="../SiteAssets/gt/js/knockout-3.1.0.js"></script>
+
 <style type="text/css"></style>
 
 <script type="text/javascript" language="javascript">
@@ -7,7 +9,10 @@
         var jQuery = GT.jQuery;
 
         jQuery(document).ready(function () {
-			SP.SOD.executeOrDelayUntilScriptLoaded(GT.Project.render_PortefoljeOversikt, "sp.js");
+			SP.SOD.executeOrDelayUntilScriptLoaded(function(){
+				GT.Project.get_allProjectsUnderCurrent();
+				ko.applyBindings(GT.Project.Model.appViewModel);
+			} , "sp.js");
         });
     })();
 
@@ -23,4 +28,38 @@
     </div>
 </div>
 
-<div id="gt-csomprojectdir-out"></div>
+
+<div id="gt-csomprojectdir-out">
+    <table class="gt-result-table">
+        <thead>
+            <tr>
+                <th>Tittel</th>
+                <th>Effektmål</th>
+                <th>Prosjekteier</th>
+                <th>Prosjektleder</th>
+                <th>Status tid</th>
+                <th>Status risiko</th>
+                <th>Status budsjett</th>
+                <th>Sist endret</th>
+                <th>Fase</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: projects(), visible: loaded()" style="display: none;">
+            <tr>
+                <td data-bind="text: title()"></td>
+                <td data-bind="text: projectGoal()"></td>
+                <td data-bind="text: projectOwner()"></td>
+                <td data-bind="text: projectManager()"></td>
+                <td data-bind="text: statusTime()"></td>
+                <td data-bind="text: statusRisk()"></td>
+                <td data-bind="text: statusBudget()"></td>
+                <td data-bind="text: lastChanged()"></td>
+                <td data-bind="text: phase()"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div data-bind="visible: !loaded()" style="display: none;">
+        <img src="/_layouts/15/images/gears_anv4.gif?rev=38" /> vent litt mens vi laster inn data ...
+    </div>
+</div>
+

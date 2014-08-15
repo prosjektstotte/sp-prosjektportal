@@ -27,5 +27,6 @@
     <File Path="config\lists\oppgaver.json" Url="config/lists/oppgaver.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\informasjon.json" Url="config/lists/informasjon.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\quicklaunch\quicklaunch.json" Url="config/quicklaunch/quicklaunch.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
+    <File Path="js\knockout-3.1.0.js" Url="js/knockout-3.1.0.js" />
   </Module>
 </Elements>

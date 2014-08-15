@@ -2,20 +2,6 @@
 GT.Project = GT.Project || {};
 if (GT.jQuery === undefined) GT.jQuery = jQuery.noConflict(true);
 
-GT.Project.FilterEventLookup = function () {
-    SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
-        var eventLookup = GT.jQuery('#onetIDListForm .ms-webpart-chrome.ms-webpart-chrome-vertical.ms-webpart-chrome-fullWidth > div > table > tbody > tr > td > #part1 table.ms-formtable select[id^="GtProjectLogEventLookup"]');
-        var options = eventLookup.find('option').clone();
-        eventLookup.empty();
-
-        var now = new Date();
-        options.filter(function (idx, el) {
-            var eventName = el.text;
-            var eventDate = new Date(eventName.substr(0, 10));
-            return (eventDate >= now || eventName === "" || eventName === "(Ingen)");
-        }).appendTo(eventLookup);
-    });
-};
 
 GT.Project.ShowMetadataIfIsWelcomePage = function (selector) {
     SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
@@ -439,19 +425,31 @@ GT.Project.PhaseForm.CheckList.checkListItem = function (title, id, status) {
     };
 };
 
+
+// dependency on knokcout.js
+GT.Project.Model = GT.Project.Model || {};
+GT.Project.Model.webModel = function () {
+    var _this = this;
+    _this.title = ko.observable();
+    _this.url = ko.observable();
+    _this.lastChanged = ko.observable();
+    _this.projectGoal = ko.observable();
+    _this.projectManager = ko.observable();
+    _this.projectOwner = ko.observable();
+    _this.statusTime = ko.observable();
+    _this.statusRisk = ko.observable();
+    _this.statusBudget = ko.observable();
+    _this.lastChanged = ko.observable();
+    _this.phase = ko.observable();
+};
+
+GT.Project.Model.appViewModel = GT.Project.Model.appViewModel || {};
 GT.Project.get_allProjectsUnderCurrent = function () {
+    GT.Project.Model.appViewModel.projects = ko.observableArray([]);
+    GT.Project.Model.appViewModel.loaded = ko.observable(false);
+    GT.Project.Model.filter = ko.compu
 
     var clientContext = SP.ClientContext.get_current();
-    var get_allProjectsUnderCurrentDeferred = GT.jQuery.Deferred();
-
-    var webModel = function (title, url, lastChanged, properties) {
-        var _this = this;
-        _this.title = title;
-        _this.url = url;
-        _this.lastChanged = lastChanged;
-        _this.properties = properties;
-    };
-
     var get_allWebs = function () {
         var defer = GT.jQuery.Deferred();
         var webCollection = clientContext.get_web().getSubwebsForCurrentUser(null);
@@ -505,163 +503,46 @@ GT.Project.get_allProjectsUnderCurrent = function () {
         }
 
         GT.jQuery.when.apply(GT.jQuery, promises).done(function (result) {
-            var models = [];
+            GT.Project.Model.appViewModel.projects([]);
+
             for (var i = 0; i < webs.length; i++) {
                 var web = webs[i];
-                var title = web.get_title();
-                var url = web.get_serverRelativeUrl();
+
 
                 var fetchedFile = webs[i].get_objectData().get_methodReturnObjects().GetFileByServerRelativeUrl;
                 var fieldValues = fetchedFile[Object.keys(fetchedFile)[0]].get_objectData().get_clientObjectProperties().ListItemAllFields.get_fieldValues();
 
-                var lastChanged = new Date(fieldValues.Last_x0020_Modified).format("dd. MMM yyyy kl HH:mm");
-
                 var contentTypeId = fieldValues.ContentTypeId.get_stringValue();
                 if (!contentTypeId.startsWith('0x010109010058561F86D956412B9DD7957BBCD67AAE01')) continue;
 
-                var props = {};
-                for (var value in fieldValues) {
-                    if (value.startsWith("Gt")) {
-                        props[value] = fieldValues[value];
-                    }
-                }
+                var model = new GT.Project.Model.webModel();
 
-                var model = new webModel(title, url, lastChanged, props);
-                models.push(model);
+                model.title(web.get_title());
+                model.url(web.get_serverRelativeUrl());
+                model.projectGoal(fieldValues.GtProjectGoals ? fieldValues.GtProjectGoals : '');
+                model.projectManager(fieldValues.GtProjectManager ? fieldValues.GtProjectManager.get_lookupValue() : 'ikke satt');
+                model.projectOwner(fieldValues.GtProjectOwner ? fieldValues.GtProjectOwner.get_lookupValue() : 'ikke satt');
+                model.statusTime(fieldValues.GtStatusTime ? fieldValues.GtStatusTime : '');
+                model.statusRisk(fieldValues.GtStatusRisk ? fieldValues.GtStatusRisk : '');
+                model.statusBudget(fieldValues.GtStatusBudget ? fieldValues.GtStatusBudget : '');
+                model.lastChanged(new Date(fieldValues.Last_x0020_Modified).format("dd. MMM yyyy kl HH:mm"));
+                model.phase(fieldValues.GtProjectPhase ? fieldValues.GtProjectPhase.Label : '');
+                GT.Project.Model.appViewModel.projects.push(model);
             }
-            get_webDataDeferred.resolve(models);
+            GT.Project.Model.appViewModel.loaded(true);
+            get_webDataDeferred.resolve(GT.Project.Model.appViewModel);
 
         });
 
         return get_webDataDeferred.promise();
     };
 
-    get_allWebs().then(function (webCollection) {
+    get_allWebs().done(function (webCollection) {
         console.log("get_allWebs.done subwebs: " + webCollection.get_count());
-        return get_webData(webCollection)
+        get_webData(webCollection);
     })
-	.then(function (model) {
-	    console.log(model);
-	    get_allProjectsUnderCurrentDeferred.resolve(model);
-	});
-
-    return get_allProjectsUnderCurrentDeferred.promise();
 
 };
-
-GT.Project.render_Portefolje_data = null;
-GT.Project.render_PortefoljeOversikt = function (filter) {
-
-    var render = function (webs) {
-        var outHtml = [];
-        outHtml.push(
-                    '<table class="gt-result-table">',
-                        '<thead>',
-                            '<tr>',
-                                '<th>Tittel</th>',
-                                '<th>Effektmål</th>',
-                                '<th>Prosjekteier</th>',
-                                '<th>Prosjektleder</th>',
-                                '<th>Status tid</th>',
-                                '<th>Status risiko</th>',
-                                '<th>Status budsjett</th>',
-                                '<th>Sist endret</th>',
-                                '<th>Fase</th>',
-                            '</tr>',
-                        '</thead>',
-                        '<tbody>');
-
-
-        for (var i = 0; i < webs.length; i++) {
-            var web = webs[i];
-            // our "search" function
-            if (filter != undefined && web.title.toLowerCase().indexOf(filter.toLowerCase().trim()) === -1) continue;
-            var title = web.title;
-            var projectGoal = web.properties.GtProjectGoals ? web.properties.GtProjectGoals : '';
-            var projectManager = web.properties.GtProjectManager ? web.properties.GtProjectManager.get_lookupValue() : 'ikke satt';
-            var projectOwner = web.properties.GtProjectOwner ? web.properties.GtProjectOwner.get_lookupValue() : 'ikke satt';
-            var statusTime = web.properties.GtStatusTime ? web.properties.GtStatusTime : '';
-            var statusRisk = web.properties.GtStatusRisk ? web.properties.GtStatusRisk : '';
-            var statusBudget = web.properties.GtStatusBudget ? web.properties.GtStatusBudget : '';
-            var lastChanged = web.lastChanged ? web.lastChanged : '';
-            var phase = web.properties.GtProjectPhase ? web.properties.GtProjectPhase.Label : '';
-
-            outHtml.push(
-                    '<tr>',
-                        '<td><a href="', web.url, '">', title, '</a></td>',
-                        '<td title="', projectGoal, '">',
-                        projectGoal.substr(0, 20) + '...',
-                        '</td>',
-                        '<td>', projectOwner, '</td>',
-                        '<td>', projectManager, '</td>',
-                        '<td>', statusTime, '</td>',
-                        '<td>', statusRisk, '</td>',
-                        '<td>', statusBudget, '</td>',
-                        '<td>', lastChanged, '</td>',
-                        '<td>', phase, '</td>',
-                    '</tr>'
-                );
-        }
-
-        var elm = document.getElementById("gt-csomprojectdir-out");
-        elm.innerHTML = outHtml.join('');
-    };
-
-
-    if (!GT.Project.render_Portefolje_data) {
-        GT.Project.get_allProjectsUnderCurrent().done(function (webs) {
-            GT.Project.render_Portefolje_data = webs;
-            render(GT.Project.render_Portefolje_data);
-        });
-    } else {
-        render(GT.Project.render_Portefolje_data);
-    }
-
-
-
-};
-
-GT.Project.render_Portefolje = function (filter) {
-    var render = function (webs) {
-        var outHtml = [];
-        outHtml.push('<ul class="gt-List">');
-        for (var i = 0; i < webs.length; i++) {
-            var web = webs[i];
-            // our "search" function
-            if (filter != undefined && web.title.toLowerCase().indexOf(filter.toLowerCase().trim()) === -1) continue;
-            var phase = web.properties.GtProjectPhase ? web.properties.GtProjectPhase.Label : '';
-            var projectManager = web.properties.GtProjectManager ? web.properties.GtProjectManager.get_lookupValue() : 'ikke satt';
-            var projectOwner = web.properties.GtProjectOwner ? web.properties.GtProjectOwner.get_lookupValue() : 'ikke satt';
-            outHtml.push('<li>',
-							'<div class="gt-projectItem">',
-								GT.Project.GetPhaseLogoMarkup(phase),
-								'<h2>',
-									'<a href="', web.url, '">', web.title, '</a>',
-								'</h2>',
-								'<div>Prosjektleder: ', projectManager, '</div>',
-								'<div>Prosjekteier: ', projectOwner, '</div>',
-							'</div>',
-						'</li>');
-        }
-        outHtml.push('</ul>');
-        var elm = document.getElementById("gt-csomprojectdir-out");
-        elm.innerHTML = outHtml.join('');
-    };
-
-
-    if (!GT.Project.render_Portefolje_data) {
-        GT.Project.get_allProjectsUnderCurrent().done(function (webs) {
-            GT.Project.render_Portefolje_data = webs;
-            render(GT.Project.render_Portefolje_data);
-        });
-    } else {
-        render(GT.Project.render_Portefolje_data);
-    }
-
-
-
-};
-
 
 // loosely based on http://stackoverflow.com/questions/8188548/splitting-a-js-array-into-n-arrays
 function splitArray(a, maxCapacity) {
