@@ -12,35 +12,32 @@ namespace Glittertind.Sherpa.Library.Taxonomy
     {
         private readonly ICredentials _credentials;
         private readonly Uri _urlToSite;
-        private IPersistanceProvider<GtTermSetGroup> Provider { get; set; }
+        private readonly GtTermSetGroup _termSetGroup;
 
-        public TaxonomyManager(Uri urlToSite, ICredentials credentials, IPersistanceProvider<GtTermSetGroup> provider)
+        public TaxonomyManager(Uri urlToSite, ICredentials credentials, GtTermSetGroup termSetGroup)
         {
-            Provider = provider;
             _urlToSite = urlToSite;
             _credentials = credentials;
+            _termSetGroup = termSetGroup;
         }
 
         public void WriteTaxonomyToTermStore()
         {
-            var group = Provider.Load();
-
-            ValidateConfiguration(group);
-
+            ValidateConfiguration(_termSetGroup);
             using (var context = new ClientContext(_urlToSite))
             {
                 // user must be termstore admin
                 context.Credentials = _credentials;
                 var termStore = GetTermStore(context);
 
-                var termGroup = termStore.Groups.ToList().FirstOrDefault(g => g.Id == @group.Id) ??
-                                termStore.CreateGroup(@group.Title, @group.Id);
+                var termGroup = termStore.Groups.ToList().FirstOrDefault(g => g.Id == _termSetGroup.Id) ??
+                                termStore.CreateGroup(_termSetGroup.Title, _termSetGroup.Id);
                 
                 context.Load(termGroup, x => x.TermSets);
                 context.ExecuteQuery();
 
                 var language = termStore.DefaultLanguage;
-                foreach (var termSet in group.TermSets)
+                foreach (var termSet in _termSetGroup.TermSets)
                 {
                     var spTermSet = termStore.GetTermSet(termSet.Id);
                     context.Load(spTermSet,x=>x.Terms);

@@ -11,6 +11,7 @@ using Glittertind.Sherpa.Library.SiteHierarchy.Model;
 using Glittertind.Sherpa.Library.Deploy;
 using Glittertind.Sherpa.Library.Taxonomy;
 using Glittertind.Sherpa.Library.Taxonomy.Model;
+using Microsoft.SharePoint.Client;
 
 namespace Glittertind.Sherpa.Installer
 {
@@ -32,8 +33,9 @@ namespace Glittertind.Sherpa.Installer
             Console.WriteLine("Starting installation of term groups, term sets and terms");
             var path = Path.Combine(Environment.CurrentDirectory, @"config\gttaxonomy.json");
             var taxPersistanceProvider = new FilePersistanceProvider<GtTermSetGroup>(path);
-            var taxonomyManager = new TaxonomyManager(_urlToSite, _credentials, taxPersistanceProvider);
+            var taxonomyManager = new TaxonomyManager(_urlToSite, _credentials, taxPersistanceProvider.Load());
             taxonomyManager.WriteTaxonomyToTermStore();
+            Console.WriteLine("Done installation of term groups, term sets and terms");
         }
 
         public void UploadAndActivateSandboxSolution()
@@ -47,6 +49,7 @@ namespace Glittertind.Sherpa.Installer
                 deployManager.UploadDesignPackageToSiteAssets(file);
                 deployManager.ActivateDesignPackage(file, "SiteAssets");
             }
+            Console.WriteLine("Done uploading and activating sandboxed solution(s)");
         }
 
         public void CreateSiteColumnsAndContentTypes()
@@ -58,10 +61,11 @@ namespace Glittertind.Sherpa.Installer
             var pathToContentTypesJson = Path.Combine(Environment.CurrentDirectory, @"config\gtcontenttypes.json");
             var contentTypePersister = new FilePersistanceProvider<List<GtContentType>>(pathToContentTypesJson);
 
-            var contentTypeManager = new ContentTypeManager(_urlToSite, _credentials, contentTypePersister, siteColumnPersister);
+            var contentTypeManager = new ContentTypeManager(_urlToSite, _credentials, contentTypePersister.Load(), siteColumnPersister.Load());
             contentTypeManager.CreateSiteColumns();
             contentTypeManager.CreateContentTypes();
             contentTypeManager.DisposeContext();
+            Console.WriteLine("Done setup of site columns and content types");
         }
 
         public void ConfigureSites()
@@ -69,17 +73,42 @@ namespace Glittertind.Sherpa.Installer
             Console.WriteLine("Starting configuring sites");
             var pathToSiteSetup = Path.Combine(Environment.CurrentDirectory, @"config\gtsitehierarchy.json");
             var sitePersister = new FilePersistanceProvider<GtWeb>(pathToSiteSetup);
+            
+            using (var clientContext = new ClientContext(_urlToSite) { Credentials = _credentials })
+            {
+                var siteManager = new SiteSetupManager(clientContext, sitePersister.Load());
+                siteManager.SetupSites();
+            }
+            Console.WriteLine("Done configuring sites");
+        }
 
-            var siteManager = new SiteSetupManager(_urlToSite, _credentials, sitePersister.Load());
-            siteManager.SetupSites();
+        public void TeardownSites()
+        {
+            Console.WriteLine("Starting teardown of sites");
+            var pathToSiteSetup = Path.Combine(Environment.CurrentDirectory, @"config\gtsitehierarchy.json");
+            var sitePersister = new FilePersistanceProvider<GtWeb>(pathToSiteSetup);
+
+            using (var clientContext = new ClientContext(_urlToSite) {Credentials = _credentials})
+            {
+                var siteManager = new SiteSetupManager(clientContext, sitePersister.Load());
+                siteManager.DeleteSites();
+            }
+            Console.WriteLine("Done teardown of sites");
         }
 
         public void DeleteAllGlittertindSiteColumnsAndContentTypes()
         {
             Console.WriteLine("Deleting all Glitterind columns and content types");
-            var contentTypeManager = new ContentTypeManager(_urlToSite, _credentials);
-            contentTypeManager.DeleteAllGlittertindSiteColumnsAndContentTypes("Glittertind");
+            var pathToSiteColumnJson = Path.Combine(Environment.CurrentDirectory, @"config\gtfields.json");
+            var siteColumnPersister = new FilePersistanceProvider<List<GtField>>(pathToSiteColumnJson);
+
+            var pathToContentTypesJson = Path.Combine(Environment.CurrentDirectory, @"config\gtcontenttypes.json");
+            var contentTypePersister = new FilePersistanceProvider<List<GtContentType>>(pathToContentTypesJson);
+
+            var contentTypeManager = new ContentTypeManager(_urlToSite, _credentials, contentTypePersister.Load(), siteColumnPersister.Load());
+            contentTypeManager.DeleteAllCustomFieldsAndContentTypes();
             contentTypeManager.DisposeContext();
+            Console.WriteLine("Done deleting all Glitterind columns and content types");
         }
 
         public void ForceReCrawl()

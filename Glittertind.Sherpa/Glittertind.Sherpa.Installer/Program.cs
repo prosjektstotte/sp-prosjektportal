@@ -53,8 +53,9 @@ namespace Glittertind.Sherpa.Installer
             Console.WriteLine("Press 1 to install managed metadata groups and term sets.");
             Console.WriteLine("Press 2 to upload and activate sandboxed solution.");
             Console.WriteLine("Press 3 to setup site columns and content types.");
-            Console.WriteLine("Press 4 to setup sites.");
-            Console.WriteLine("Press 9 to DELETE all Glittertind site columns and content types.");
+            Console.WriteLine("Press 4 to setup sites and features.");
+            Console.WriteLine("Press 8 to DELETE all sites (except root site).");
+            Console.WriteLine("Press 9 to DELETE all custom site columns and content types.");
             Console.WriteLine("Press 0 to exit application.");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("Select a number to perform an operation: ");
@@ -95,6 +96,11 @@ namespace Glittertind.Sherpa.Installer
                     InstallationManager.ConfigureSites();
                     break;
                 }
+                case 8:
+                {
+                    InstallationManager.TeardownSites();
+                    break;
+                }
                 case 9:
                 {
                     InstallationManager.DeleteAllGlittertindSiteColumnsAndContentTypes();
@@ -113,11 +119,10 @@ namespace Glittertind.Sherpa.Installer
                 }
                 default:
                 {
-                    Environment.Exit(1);
+                    Console.WriteLine("Invalid input");
                     break;
                 }
             }
-            Console.WriteLine("Operation done");
             ShowStartScreenAndExecuteCommand();
         }
 

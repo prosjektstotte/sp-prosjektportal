@@ -20,11 +20,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes
         /// <summary>
         /// For creating fields and content types
         /// </summary>
-        /// <param name="urlToSite"></param>
-        /// <param name="credentials"></param>
-        /// <param name="contentTypeProvider"></param>
-        /// <param name="fieldProvider"></param>
-        public ContentTypeManager(Uri urlToSite, ICredentials credentials, IPersistanceProvider<List<GtContentType>> contentTypeProvider, IPersistanceProvider<List<GtField>> fieldProvider)
+        public ContentTypeManager(Uri urlToSite, ICredentials credentials, List<GtContentType> contentTypes, List<GtField> fields)
         {
             ClientContext = new ClientContext(urlToSite)
             {
@@ -32,39 +28,20 @@ namespace Glittertind.Sherpa.Library.ContentTypes
                 Credentials = credentials
             };
 
-            LoadFields(fieldProvider);
-            LoadContentTypes(contentTypeProvider);
+            Fields = fields;
+            SetTaxonomyFieldConfig();
+
+            ContentTypes = contentTypes;
             ValidateConfiguration();
         }
-        /// <summary>
-        /// Cannot be used for setup
-        /// Only used for basic operations like deleting content types and fields
-        /// </summary>
-        /// <param name="urlToSite"></param>
-        /// <param name="credentials"></param>
-        public ContentTypeManager(Uri urlToSite, ICredentials credentials)
-        {
-            ClientContext = new ClientContext(urlToSite)
-            {
-                AuthenticationMode = ClientAuthenticationMode.Default,
-                Credentials = credentials
-            };
-        }
 
-        public void LoadFields(IPersistanceProvider<List<GtField>> fieldProvider)
+        private void SetTaxonomyFieldConfig()
         {
-            Fields = fieldProvider.Load();
-
             var termStoreId = new TaxonomyManager(new Uri(ClientContext.Url), ClientContext.Credentials, null).GetTermStoreId();
             foreach (GtField field in Fields.Where(column => column.Type.StartsWith("TaxonomyFieldType")))
             {
                 field.InitializeTaxonomyProperties(termStoreId);
             }
-        }
-
-        public void LoadContentTypes(IPersistanceProvider<List<GtContentType>> contentTypeProvider)
-        {
-            ContentTypes = contentTypeProvider.Load();
         }
 
         public void CreateSiteColumns()
@@ -195,14 +172,19 @@ namespace Glittertind.Sherpa.Library.ContentTypes
             }
         }
 
-        public void DeleteAllGlittertindSiteColumnsAndContentTypes(string groupName)
+        public void DeleteAllCustomFieldsAndContentTypes()
         {
             Web web = ClientContext.Web;
             ContentTypeCollection existingContentTypes = web.ContentTypes;
             ClientContext.Load(existingContentTypes);
             ClientContext.ExecuteQuery();
 
-            List<ContentType> contentTypes = existingContentTypes.ToList().OrderBy(ct => ct.Id.ToString()).Where(ct => ct.Group.Contains(groupName)).ToList();
+            var contentTypeGroups = new List<string>();
+            foreach (GtContentType contentType in ContentTypes.Where(contentType => !contentTypeGroups.Contains(contentType.Group)))
+            {
+                contentTypeGroups.Add(contentType.Group);
+            }
+            List<ContentType> contentTypes = existingContentTypes.ToList().OrderBy(ct => ct.Id.ToString()).Where(ct => contentTypeGroups.Contains(ct.Group)).ToList();
 
             for (int i = contentTypes.Count - 1; i >= 0; i--)
             {
@@ -222,9 +204,14 @@ namespace Glittertind.Sherpa.Library.ContentTypes
             ClientContext.Load(webFieldCollection);
             ClientContext.ExecuteQuery();
 
+            var fieldGroups = new List<string>();
+            foreach (GtField field in Fields.Where(f => !fieldGroups.Contains(f.Group)))
+            {
+                fieldGroups.Add(field.Group);
+            }
             for (int i = webFieldCollection.Count - 1; i >= 0; i--)
             {
-                if (webFieldCollection[i].Group.Contains(groupName))
+                if (fieldGroups.Contains(webFieldCollection[i].Group))
                 {
                     webFieldCollection[i].DeleteObject();
                     try
@@ -233,7 +220,7 @@ namespace Glittertind.Sherpa.Library.ContentTypes
                     }
                     catch
                     {
-                        Console.WriteLine("Could not delete site column '" + webFieldCollection[i].Title + "' (internal name: " + webFieldCollection[i].InternalName + " , Id: " + webFieldCollection[i].Id + "). This is most probably due to it being in use");
+                        Console.WriteLine("Could not delete site column '" + webFieldCollection[i].Title + "' (" + webFieldCollection[i].InternalName + "). This is most probably due to it being in use");
                     }
                 }
             }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
 using Glittertind.Sherpa.Library.SiteHierarchy.Model;
 using Microsoft.SharePoint.Client;
 
@@ -8,29 +7,22 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
 {
     public class SiteSetupManager : ISiteSetupManager
     {
-        private readonly Uri _urlToSite;
-        private readonly ICredentials _credentials;
         private readonly GtWeb _configurationWeb;
+        private ClientContext ClientContext { get; set; }
         private FeatureManager FeatureManager { get; set; }
         private QuicklaunchManager QuicklaunchManager { get; set; }
 
-        public SiteSetupManager(Uri urlToSite, ICredentials credentials, GtWeb configurationWeb)
+        public SiteSetupManager(ClientContext clientContext, GtWeb configurationWeb)
         {
-            _urlToSite = urlToSite;
-            _credentials = credentials;
             _configurationWeb = configurationWeb;
+            ClientContext = clientContext;
 
             FeatureManager = new FeatureManager();
             QuicklaunchManager = new QuicklaunchManager();
         }
         public void SetupSites()
         {
-            using (var clientContext = new ClientContext(_urlToSite.AbsoluteUri))
-            {
-                clientContext.Credentials = _credentials;
-
-                EnsureAndConfigureWebAndActivateFeatures(clientContext, null, _configurationWeb);
-            }
+                EnsureAndConfigureWebAndActivateFeatures(ClientContext, null, _configurationWeb);
         }
 
         /// <summary>
@@ -83,11 +75,28 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
                 };
         }
 
-        private string GetAbsoluteUrl(string relativeOrAbsoluteUrl)
+        public void DeleteSites()
         {
-            if (relativeOrAbsoluteUrl.StartsWith("/"))
-                return UriUtilities.CombineAbsoluteUri(_urlToSite.AbsoluteUri, relativeOrAbsoluteUrl);
-            return relativeOrAbsoluteUrl;
+            ClientContext.Load(ClientContext.Site.RootWeb.Webs);
+            ClientContext.ExecuteQuery();
+
+            foreach (var web in ClientContext.Site.RootWeb.Webs)
+            {
+                DeleteWeb(web);
+            }
+        }
+
+        private void DeleteWeb(Web web)
+        {
+            ClientContext.Load(web.Webs);
+            ClientContext.ExecuteQuery();
+
+            foreach (Web subWeb in web.Webs)
+            {
+                DeleteWeb(subWeb);
+            }
+            web.DeleteObject();
+            ClientContext.ExecuteQuery();
         }
 
         private Web GetSubWeb(ClientContext context, Web parentWeb, string webUrl)
