@@ -16,6 +16,11 @@ GT.Project.FilterEventLookup = function () {
         }).appendTo(eventLookup);
     });
 };
+GT.Project.RenderRelatedLogElements = function() {
+    SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
+        console.log('pip');
+    });
+};
 
 GT.Project.ShowMetadataIfIsWelcomePage = function (selector) {
     SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
