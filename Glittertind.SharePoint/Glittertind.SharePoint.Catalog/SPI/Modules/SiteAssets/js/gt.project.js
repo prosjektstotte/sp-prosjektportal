@@ -16,6 +16,7 @@ GT.Project.FilterEventLookup = function () {
         }).appendTo(eventLookup);
     });
 };
+
 GT.Project.RenderRelatedLogElements = function() {
     SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
         console.log('pip');
@@ -444,18 +445,31 @@ GT.Project.PhaseForm.CheckList.checkListItem = function (title, id, status) {
     };
 };
 
+
+// dependency on knokcout.js
+GT.Project.Model = GT.Project.Model || {};
+GT.Project.Model.webModel = function () {
+    var _this = this;
+    _this.title = ko.observable();
+    _this.url = ko.observable();
+    _this.lastChanged = ko.observable();
+    _this.projectGoal = ko.observable();
+    _this.projectManager = ko.observable();
+    _this.projectOwner = ko.observable();
+    _this.statusTime = ko.observable();
+    _this.statusRisk = ko.observable();
+    _this.statusBudget = ko.observable();
+    _this.lastChanged = ko.observable();
+    _this.phase = ko.observable();
+};
+
+GT.Project.Model.appViewModel = GT.Project.Model.appViewModel || {};
 GT.Project.get_allProjectsUnderCurrent = function () {
+    GT.Project.Model.appViewModel.projects = ko.observableArray([]);
+    GT.Project.Model.appViewModel.loaded = ko.observable(false);
+    GT.Project.Model.filter = ko.compu
 
     var clientContext = SP.ClientContext.get_current();
-    var get_allProjectsUnderCurrentDeferred = GT.jQuery.Deferred();
-
-    var webModel = function (title, url, properties) {
-        var _this = this;
-        _this.title = title;
-        _this.url = url;
-        _this.properties = properties;
-    };
-
     var get_allWebs = function () {
         var defer = GT.jQuery.Deferred();
         var webCollection = clientContext.get_web().getSubwebsForCurrentUser(null);
@@ -509,91 +523,46 @@ GT.Project.get_allProjectsUnderCurrent = function () {
         }
 
         GT.jQuery.when.apply(GT.jQuery, promises).done(function (result) {
-            var models = [];
+            GT.Project.Model.appViewModel.projects([]);
+
             for (var i = 0; i < webs.length; i++) {
                 var web = webs[i];
-                var title = web.get_title();
-                var url = web.get_serverRelativeUrl();
+
+
                 var fetchedFile = webs[i].get_objectData().get_methodReturnObjects().GetFileByServerRelativeUrl;
                 var fieldValues = fetchedFile[Object.keys(fetchedFile)[0]].get_objectData().get_clientObjectProperties().ListItemAllFields.get_fieldValues();
 
                 var contentTypeId = fieldValues.ContentTypeId.get_stringValue();
                 if (!contentTypeId.startsWith('0x010109010058561F86D956412B9DD7957BBCD67AAE01')) continue;
 
-                var props = {};
-                for (var value in fieldValues) {
-                    if (value.startsWith("Gt")) {
-                        props[value] = fieldValues[value];
-                    }
-                }
+                var model = new GT.Project.Model.webModel();
 
-                var model = new webModel(title, url, props);
-                models.push(model);
+                model.title(web.get_title());
+                model.url(web.get_serverRelativeUrl());
+                model.projectGoal(fieldValues.GtProjectGoals ? fieldValues.GtProjectGoals : '');
+                model.projectManager(fieldValues.GtProjectManager ? fieldValues.GtProjectManager.get_lookupValue() : 'ikke satt');
+                model.projectOwner(fieldValues.GtProjectOwner ? fieldValues.GtProjectOwner.get_lookupValue() : 'ikke satt');
+                model.statusTime(fieldValues.GtStatusTime ? fieldValues.GtStatusTime : '');
+                model.statusRisk(fieldValues.GtStatusRisk ? fieldValues.GtStatusRisk : '');
+                model.statusBudget(fieldValues.GtStatusBudget ? fieldValues.GtStatusBudget : '');
+                model.lastChanged(new Date(fieldValues.Last_x0020_Modified).format("dd. MMM yyyy kl HH:mm"));
+                model.phase(fieldValues.GtProjectPhase ? fieldValues.GtProjectPhase.Label : '');
+                GT.Project.Model.appViewModel.projects.push(model);
             }
-            get_webDataDeferred.resolve(models);
+            GT.Project.Model.appViewModel.loaded(true);
+            get_webDataDeferred.resolve(GT.Project.Model.appViewModel);
 
         });
 
         return get_webDataDeferred.promise();
     };
 
-    get_allWebs().then(function (webCollection) {
+    get_allWebs().done(function (webCollection) {
         console.log("get_allWebs.done subwebs: " + webCollection.get_count());
-        return get_webData(webCollection)
+        get_webData(webCollection);
     })
-	.then(function (model) {
-	    console.log(model);
-	    get_allProjectsUnderCurrentDeferred.resolve(model);
-	});
-
-    return get_allProjectsUnderCurrentDeferred.promise();
 
 };
-
-GT.Project.render_Portefolje_data = null;
-GT.Project.render_Portefolje = function (filter) {
-    var $ = GT.jQuery;
-
-    var render = function (webs) {
-        var outHtml = [];
-        outHtml.push('<ul class="gt-List">');
-        for (var i = 0; i < webs.length; i++) {
-            var web = webs[i];
-            // our "search" function
-            if (filter != undefined && web.title.toLowerCase().indexOf(filter.toLowerCase().trim()) === -1) continue;
-            var phase = web.properties.GtProjectPhase ? web.properties.GtProjectPhase.Label : '';
-            var projectManager = web.properties.GtProjectManager ? web.properties.GtProjectManager.get_lookupValue() : 'ikke satt';
-            var projectOwner = web.properties.GtProjectOwner ? web.properties.GtProjectOwner.get_lookupValue() : 'ikke satt';
-            outHtml.push('<li>',
-							'<div class="gt-projectItem">',
-								GT.Project.GetPhaseLogoMarkup(phase),
-								'<h2>',
-									'<a href="', web.url, '">', web.title, '</a>',
-								'</h2>',
-								'<div>Prosjektleder: ', projectManager, '</div>',
-								'<div>Prosjekteier: ', projectOwner, '</div>',
-							'</div>',
-						'</li>');
-        }
-        outHtml.push('</ul>');
-        var elm = document.getElementById("gt-csomprojectdir-out");
-        elm.innerHTML = outHtml.join('');
-    };
-
-
-    if (!GT.Project.render_Portefolje_data) {
-        GT.Project.get_allProjectsUnderCurrent().done(function (webs) {
-            GT.Project.render_Portefolje_data = webs;
-            render(GT.Project.render_Portefolje_data);
-        });
-    } else {
-        render(GT.Project.render_Portefolje_data);
-    }
-
-
-
-};
-
 
 // loosely based on http://stackoverflow.com/questions/8188548/splitting-a-js-array-into-n-arrays
 function splitArray(a, maxCapacity) {

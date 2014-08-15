@@ -25,10 +25,9 @@
     <ProjectItemFile Source="config\data\oppgaver.data.json" Target="SiteAssets\config\data\" Type="ElementFile" />
     <ProjectItemFile Source="html\gt.newprojectlink.html" Target="SiteAssets\html\" Type="ElementFile" />
     <ProjectItemFile Source="config\quicklaunch\quicklaunch.json" Target="SiteAssets\config\quicklaunch\" Type="ElementFile" />
-<<<<<<< HEAD
     <ProjectItemFile Source="html\gt.projectlogform.html" Target="SiteAssets\html\" Type="ElementFile" />
-=======
     <ProjectItemFile Source="html\gt.csomprojectdir.html" Target="SiteAssets\html\" Type="ElementFile" />
->>>>>>> c4621ab30040587c0ee6216a08348fb83e9eac82
+    <ProjectItemFile Source="html\gt.csomprojectoverview.html" Target="SiteAssets\html\" Type="ElementFile" />
+    <ProjectItemFile Source="js\knockout-3.1.0.js" Target="SiteAssets\js\" Type="ElementFile" />
   </Files>
 </ProjectItem>
