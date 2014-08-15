@@ -104,6 +104,9 @@
     <None Include="SPI\Modules\ContentTypeBindings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{435fcf98-2f03-46af-a751-f5c8a7c174dd}</SharePointProjectItemId>
     </None>
+    <None Include="SPI\Modules\MeetingCalendarFormWebparts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d1773e0f-43c5-445e-a101-47feca9efc6d}</SharePointProjectItemId>
+    </None>
     <None Include="SPI\Modules\ProjectLogFormWebparts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1fb1e8a4-29f0-43e8-a5d3-6199abdb489c}</SharePointProjectItemId>
     </None>
@@ -145,6 +148,8 @@
     <Content Include="SPI\Lists\Sjekkliste\Elements.xml" />
     <Content Include="SPI\Lists\Usikkerhet\Elements.xml" />
     <Content Include="SPI\Modules\ContentTypeBindings\Elements.xml" />
+    <Content Include="SPI\Modules\MeetingCalendarFormWebparts\Elements.xml" />
+    <Content Include="SPI\Modules\MeetingCalendarFormWebparts\FormPlaceholder.aspx" />
     <Content Include="SPI\Modules\ProjectLogFormWebparts\FormPlaceholder.aspx" />
     <Content Include="SPI\Modules\ProjectLogFormWebparts\Elements.xml" />
     <Content Include="SPI\Modules\SitePages\Elements.xml" />

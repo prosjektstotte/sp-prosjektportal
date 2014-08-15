@@ -92,6 +92,7 @@
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_NewProject.js" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project_details.html" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project_details.js" />
+    <Content Include="SPI\Modules\SiteAssets\html\gt.calendarform.html" />
     <Content Include="SPI\Modules\SiteAssets\html\gt.projectlogform.html" />
     <Content Include="SPI\Modules\SiteAssets\html\gt.csomprojectdir.html" />
     <Content Include="SPI\Modules\SiteAssets\html\gt.csomprojectoverview.html" />
