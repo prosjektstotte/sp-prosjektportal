@@ -124,12 +124,5 @@ namespace Glittertind.Sherpa.Library.Features
                 clientContext.ExecuteQuery();
             }
         }
-
-        private string GetUrlToFeatureActivationScope(string relativeOrAbsoluteUrl)
-        {
-            if (relativeOrAbsoluteUrl.StartsWith("/"))
-                return UriUtilities.CombineAbsoluteUri(_urlToSite.AbsoluteUri, relativeOrAbsoluteUrl);
-            return relativeOrAbsoluteUrl;
-        }
     }
 }

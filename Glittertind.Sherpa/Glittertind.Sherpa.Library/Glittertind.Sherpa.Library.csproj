@@ -66,6 +66,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FilePersistanceProvider.cs" />
     <Compile Include="IPersistanceProvider.cs" />
+    <Compile Include="SiteHierarchy\ISiteHierarchyManager.cs" />
+    <Compile Include="SiteHierarchy\Model\GtWeb.cs" />
+    <Compile Include="SiteHierarchy\SiteHierarchyManager.cs" />
     <Compile Include="Taxonomy\ITaxonomyManager.cs" />
     <Compile Include="Taxonomy\Model\GtTerm.cs" />
     <Compile Include="Taxonomy\Model\GtTermItemBase.cs" />

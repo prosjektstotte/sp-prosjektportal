@@ -11,6 +11,7 @@ namespace Glittertind.Sherpa.Installer
         public static ICredentials Credentials { get; set; }
         public static Uri UrlToSite { get; set; }
         public static bool IsSharePointOnline { get; set; }
+        public static InstallationManager installationManager { get; set; }
 
         static void Main(string[] args)
         {
@@ -42,6 +43,7 @@ namespace Glittertind.Sherpa.Installer
                     Console.WriteLine("Authenticated with default credentials");
                 }
             }
+            installationManager = new InstallationManager(UrlToSite, Credentials, IsSharePointOnline);
             ShowStartScreenAndExecuteCommand();
         }
 
@@ -72,7 +74,6 @@ namespace Glittertind.Sherpa.Installer
                 Console.WriteLine("Invalid input");
                 ShowStartScreenAndExecuteCommand();
             }
-            var installationManager = new InstallationManager(UrlToSite, Credentials, IsSharePointOnline);
             switch (inputNum)
             {
                 case 1:
@@ -107,7 +108,7 @@ namespace Glittertind.Sherpa.Installer
                 }
                 case 1337:
                 {
-                    Console.WriteLine("(Hidden feature) Forcing recrawl of "+UrlToSite +"and all subsites");
+                    Console.WriteLine("(Hidden feature) Forcing recrawl of "+UrlToSite +" and all subsites");
                     installationManager.ForceReCrawl();
                     break;
                 }
