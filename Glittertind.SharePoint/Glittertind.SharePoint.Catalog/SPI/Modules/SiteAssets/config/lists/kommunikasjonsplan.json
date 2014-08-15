@@ -1,14 +1,21 @@
 ﻿{
     "Name": "Kommunikasjonsplan",
-    "OnQuickLaunch": "true",
-    "VersioningEnabled":  "true",
+    "OnQuickLaunch": true,
+    "VersioningEnabled":  true,
     "Description": "",
     "Views": [
 	    {
 	        "Name": "Alle elementer",
-	        "ViewFields": ["Title", "GtProjectPhase", "GtActionDate", "GtActionResponsible", "GtCommunicationTarget"],
+	        "ViewFields": ["LinkTitle", "GtProjectPhase", "GtActionDate", "GtActionResponsible", "GtCommunicationTarget"],
 	        "RowLimit": 0,
 	        "Query": ""
+	    },
+        {
+	        "Name": "",
+            "Url": "SitePages/Tilordnet.aspx",
+	        "ViewFields": ["LinkTitle", "GtProjectPhase", "GtActionDate", "GtCommunicationTarget"],
+	        "RowLimit": 30,
+	        "Query": "<Where><Eq><FieldRef Name='GtActionResponsible' /><Value Type='Integer'><UserID Type='Integer' /></Value></Eq></Where>"
 	    }
     ]
 }

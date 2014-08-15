@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="Lenker" OnQuickLaunch="FALSE" TemplateType="103" FeatureId="00bfea71-2062-426c-90bf-714c59600103" Url="Lists/Lenker" Description="">
+    <Data>
+      <Rows>
+        <Row>
+          <Field Name='URL'>http://prosjektveiviseren.no/, prosjektveiviseren</Field>
+          <Field Name='Comments'>Prosjektveiviseren er Difis anbefalte prosjektmodell for gjennomføring av digitaliseringsprosjekter i offentlige virksomheter</Field>
+        </Row>
+      </Rows>
+    </Data>
+  </ListInstance>
+</Elements>

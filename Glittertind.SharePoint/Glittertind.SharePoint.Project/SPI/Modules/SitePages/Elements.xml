@@ -65,9 +65,10 @@
          ]]>
       </View>        
     </File>
-    <File Path="SitePages\Forside.aspx" Url="ForsideUfiltrert.aspx" Type="GhostableInLibrary" >
-      <Property Name="ContentType" Value="Prosjektforside" />
-      <Property Name="ContentTypeId" Value="0x010109010058561f86d956412b9dd7957bbcd67aae01" />
+    <File Path="SitePages\Ufiltrert.aspx" Url="Ufiltrert.aspx" Type="GhostableInLibrary" >
+      <Property Name="Title" Value="Ufiltrert prosjektvisning" />
+      <Property Name="ContentType" Value="WebPartPage" />
+      <Property Name="ContentTypeId" Value="0x01010901" />
       <View List="Lists/Oppgaver" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="0" />
       <View List="Dokumenter" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="1" />
       <AllUsersWebPart ID="Sitefeed" WebPartZoneID="RightColumn" WebPartOrder="0" >
@@ -128,6 +129,38 @@
          </WebPart>
          ]]>
       </View>        
+    </File>
+    <File Path="SitePages\Tilordnet.aspx" Url="Tilordnet.aspx" Type="GhostableInLibrary" >
+      <Property Name="Title" Value="Mine prosjektelementer" />
+      <Property Name="ContentType" Value="WebPartPage" />
+      <Property Name="ContentTypeId" Value="0x01010901" />
+      <View List="Lists/Oppgaver" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="0" >
+        <![CDATA[
+         <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <TypeName>Microsoft.SharePoint.WebPartPages.XsltListViewWebPart</TypeName>
+          <Title>Mine oppgaver</Title>
+         </WebPart>
+         ]]>
+      </View>
+      <View List="Lists/Kommunikasjonsplan" BaseViewID="1" WebPartZoneID="RightColumn" WebPartOrder="0" >
+        <![CDATA[
+         <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <TypeName>Microsoft.SharePoint.WebPartPages.XsltListViewWebPart</TypeName>
+          <Title>Mine kommunikasjonselementer</Title>
+         </WebPart>
+         ]]>
+      </View>
+      <View List="Lists/Produkter" BaseViewID="1" WebPartZoneID="RightColumn" WebPartOrder="1" >
+        <![CDATA[
+         <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <TypeName>Microsoft.SharePoint.WebPartPages.XsltListViewWebPart</TypeName>
+          <Title>Prosjektprodukter jeg har ansvar for</Title>
+         </WebPart>
+         ]]>
+      </View>
     </File>
   </Module>
 </Elements>

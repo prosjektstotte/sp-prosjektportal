@@ -28,6 +28,7 @@
 	</sharepoint:scriptblock>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/jquery-1.11.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.common.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.generics.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.setup.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.setup.contenttypes.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
@@ -192,6 +193,8 @@
                 var editPhaseUrl = editMetaUrl.replace('Project', 'PhaseOnly');
                 GT.jQuery('#changeProjectPhaseLink').attr('href', editPhaseUrl);
                 HandleMissingMetadata();
+
+                GT.Project.ShowMetadataIfIsWelcomePage('.projectFrontPage .rightColumnStatic');
             });
 
             function HandleMissingMetadata() {

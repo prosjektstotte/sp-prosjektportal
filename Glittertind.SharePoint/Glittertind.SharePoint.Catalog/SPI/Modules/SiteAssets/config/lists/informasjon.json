@@ -1,19 +1,19 @@
 ﻿{
     "Name": "Informasjon",
-    "OnQuickLaunch": "true",
-    "VersioningEnabled":  "true",
+    "OnQuickLaunch": false,
+    "VersioningEnabled":  true,
     "Description": "",
     "Views": [
 	    {
 	    	"Name": "Alle elementer",
-	        "ViewFields": ["Title", "GtProjectInfoDescription"],
+	        "ViewFields": ["LinkTitle", "GtProjectInfoDescription"],
 	        "RowLimit": 0,
 	        "Query": ""
 	    },
         {
 	    	"Name": "",
             "Url": "SitePages/Motereferat.aspx",
-	        "ViewFields": ["Title", "GtProjectInfoDescription"],
+	        "ViewFields": ["LinkTitle", "GtProjectInfoDescription"],
 	        "RowLimit": 30,
 	        "Query": "<OrderBy><FieldRef Name='Created' Ascending='FALSE' /></OrderBy>"
 	    }

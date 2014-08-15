@@ -1,12 +1,12 @@
 ﻿{
     "Name": "Sjekkliste",
-    "OnQuickLaunch": "true",
-    "VersioningEnabled":  "true",
+    "OnQuickLaunch": true,
+    "VersioningEnabled":  true,
     "Description": "",
     "Views": [
 	    {
 	        "Name": "Alle elementer",
-	        "ViewFields": ["Title", "GtProjectPhase", "GtChecklistStatus", "GtComment"],
+	        "ViewFields": ["LinkTitle", "GtProjectPhase", "GtChecklistStatus", "GtComment"],
 	        "RowLimit": 50,
 	        "Query": "<OrderBy><FieldRef Name='GtProjectPhase' /></OrderBy>"
 	    }

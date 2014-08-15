@@ -32,6 +32,10 @@ String.prototype.leadingUpper = function () {
     return result;
 };
 
+String.prototype.endsWith = function (suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
+
 Object.size = function (obj) {
     var size = 0, key;
     for (key in obj) {

@@ -1,0 +1,107 @@
+﻿
+<link rel="stylesheet" type="text/css" href="../_layouts/15/1044/styles/Themable/searchv15.css">
+<script type="text/javascript" src="../SiteAssets/gt/js/knockout-3.1.0.js"></script>
+
+<style type="text/css"></style>
+
+<script type="text/javascript" language="javascript">
+    (function () {
+        var jQuery = GT.jQuery;
+
+        jQuery(document).ready(function () {
+			SP.SOD.executeOrDelayUntilScriptLoaded(function(){
+				warningDate = new Date();
+    			warningDate.setDate(warningDate.getDate()-60);
+    			var filter = {lastChanged: warningDate, statusRisk:"høy", statusTime: "etter plan",statusBudget:"over budsjett" };
+
+    			 //Høy risiko, etter plan, over budsjett (eller 'vet ikke') og siste endret er eldre enn 2 måneder og fase != realisere
+
+				GT.Project.get_allProjectsUnderCurrent().done(function(){
+					GT.Project.Model.appViewModel.filter(filter);
+				});
+				ko.applyBindings(GT.Project.Model.appViewModel);
+				(function( $ ) {
+					$('.gt-result-table').dataTable();
+				})(GT.jQuery)
+
+
+			} , "sp.js");
+        });
+    })();
+
+
+
+</script>
+
+
+<div id="gt-csomprojectdir-out">
+    <h1>Prosjekter som krever tilsyn</h1>
+
+    <table class="gt-result-table">
+        <thead>
+            <tr>
+                <th>Tittel</th>
+                <th>Effektmål</th>
+                <th>Prosjekteier</th>
+                <th>Prosjektleder</th>
+                <th>Status tid</th>
+                <th>Status risiko</th>
+                <th>Status budsjett</th>
+                <th>Sist endret</th>
+                <th>Fase</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: projects(), visible: loaded()" style="display: none;">
+            <tr data-bind="visible: matchesFilter()">
+                <td><a href="" data-bind="text: title(), attr:{href: url()}"></a></td>
+                <td data-bind="text: projectGoal()"></td>
+                <td data-bind="text: projectOwner()"></td>
+                <td data-bind="text: projectManager()"></td>
+                <td data-bind="text: statusTime()"></td>
+                <td data-bind="text: statusRisk()"></td>
+                <td data-bind="text: statusBudget()"></td>
+                <td data-bind="text: lastChangedDisplayValue()"></td>
+                <td data-bind="text: phase()"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div data-bind="visible: !loaded()" style="display: none;">
+        <img src="/_layouts/15/images/gears_anv4.gif?rev=38" /> vent litt mens vi laster inn data ...
+    </div>
+
+
+    <h1>Porteføljeoversikt</h1>
+
+    <table class="gt-result-table">
+        <thead>
+            <tr>
+                <th>Tittel</th>
+                <th>Effektmål</th>
+                <th>Prosjekteier</th>
+                <th>Prosjektleder</th>
+                <th>Status tid</th>
+                <th>Status risiko</th>
+                <th>Status budsjett</th>
+                <th>Sist endret</th>
+                <th>Fase</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: projects(), visible: loaded()" style="display: none;">
+            <tr>
+                <td><a href="" data-bind="text: title(), attr:{href: url()}"></a></td>
+                <td data-bind="text: projectGoal()"></td>
+                <td data-bind="text: projectOwner()"></td>
+                <td data-bind="text: projectManager()"></td>
+                <td data-bind="text: statusTime()"></td>
+                <td data-bind="text: statusRisk()"></td>
+                <td data-bind="text: statusBudget()"></td>
+                <td data-bind="text: lastChangedDisplayValue()"></td>
+                <td data-bind="text: phase()"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div data-bind="visible: !loaded()" style="display: none;">
+        <img src="/_layouts/15/images/gears_anv4.gif?rev=38" /> vent litt mens vi laster inn data ...
+    </div>
+</div>
+

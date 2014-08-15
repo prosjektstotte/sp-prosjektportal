@@ -1,12 +1,12 @@
 ﻿{
     "Name": "Prosjektlogg",
-    "OnQuickLaunch": "true",
-    "VersioningEnabled":  "true",
+    "OnQuickLaunch": true,
+    "VersioningEnabled":  true,
     "Description": "",
     "Views": [
 	    {
 	        "Name": "Alle elementer",
-	        "ViewFields": ["Title", "GtProjectLogType", "GtProjectLogReporter", "GtProjectLogResponsible", "GtProjectLogConsequence", "GtProjectLogRecommendation", "GtProjectLogExperience", "GtProjectLogProductLookup", "GtProjectLogEventLookup"],
+	        "ViewFields": ["LinkTitle", "GtProjectLogType", "GtProjectLogReporter", "GtProjectLogResponsible", "GtProjectLogConsequence", "GtProjectLogRecommendation", "GtProjectLogExperience", "GtProjectLogProductLookup", "GtProjectLogEventLookup"],
 	        "RowLimit": 0,
 	        "Query": ""
 	    }

@@ -6,5 +6,11 @@
     <ProjectItemFile Source="Glittertind_Control_List.js" Target="DisplayTemplates\" Type="ElementFile" />
     <ProjectItemFile Source="Glittertind_Item_Project.html" Target="DisplayTemplates\" Type="ElementFile" />
     <ProjectItemFile Source="Glittertind_Item_Project.js" Target="DisplayTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="Glittertind_Item_NewProject.html" Target="DisplayTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="Glittertind_Item_NewProject.js" Target="DisplayTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="Glittertind_Control_Table.html" Target="DisplayTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="Glittertind_Control_Table.js" Target="DisplayTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="Glittertind_Item_Project_details.html" Target="DisplayTemplates\" Type="ElementFile" />
+    <ProjectItemFile Source="Glittertind_Item_Project_details.js" Target="DisplayTemplates\" Type="ElementFile" />
   </Files>
 </ProjectItem>

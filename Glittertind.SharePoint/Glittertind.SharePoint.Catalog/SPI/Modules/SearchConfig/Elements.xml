@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="SearchConfig" Url="Lists/SearchConfig" RootWebOnly="FALSE" Path="SearchConfig">
-		<File Url="SearchSettings.xml" Type="GhostableInLibrary" Path="SearchSettings.xml">
+		<File Url="SearchSettings.xml" Type="GhostableInLibrary" Path="SearchSettings.xml" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE">
 			<Property Name="FileLeafRef" Value="SearchSettings.xml" />
 			<Property Name="ContentType" Value="Search Config Content Type" />
 			<Property Name="ConfigNotes" Value="" />

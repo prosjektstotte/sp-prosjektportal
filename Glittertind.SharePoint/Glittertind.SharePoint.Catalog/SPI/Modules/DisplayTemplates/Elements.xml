@@ -10,6 +10,15 @@
       <Property Name="TargetControlType" Type="string" Value=";#Content Web Parts;#SearchResults;#" />
       <Property Name="HtmlDesignLockedFile" Value="FALSE" />
     </File>
+    <File Path="Glittertind_Control_Table.js" Url="Glittertind_Control_Table.js" Type="GhostableInLibrary" Level="Published" ReplaceContent="TRUE" >
+      <Property Name="Title" Type="string" Value="Glittertind Table" />
+      <Property Name="MasterPageDescription" Type="string" Value="" />
+      <Property Name="ContentType" Value="0x0101002039C03B61C64EC4A04F5361F385106601" />
+      <Property Name="DisplayTemplateLevel" Value="Control" />
+      <Property Name="TemplateHidden" Type="int" Value="0" />
+      <Property Name="TargetControlType" Type="string" Value=";#Content Web Parts;#SearchResults;#" />
+      <Property Name="HtmlDesignLockedFile" Value="FALSE" />
+    </File>
     <File Path="Glittertind_Item_Project.js" Url="Glittertind_Item_Project.js" Type="GhostableInLibrary" Level="Published" ReplaceContent="TRUE" >
       <Property Name="Title" Type="string" Value="Glittertind Prosjekt" />
       <Property Name="MasterPageDescription" Type="string" Value="" />
@@ -20,7 +29,30 @@
       <Property Name="ManagedPropertyMapping" Type="string" Value="'Path':'Path','Title':'Title', 'ProjectManager':'GtProjectManagerOWSUSER','ProjectOwner':'GtProjectOwnerOWSUSER','ProjectPhase':'owstaxIdGtProjectPhase'" />
       <Property Name="HtmlDesignLockedFile" Value="FALSE" />
     </File>
+    <File Path="Glittertind_Item_NewProject.js" Url="Glittertind_Item_NewProject.js" Type="GhostableInLibrary" Level="Published" ReplaceContent="TRUE" >
+      <Property Name="Title" Type="string" Value="Glittertind Nye Prosjekt" />
+      <Property Name="MasterPageDescription" Type="string" Value="" />
+      <Property Name="ContentType" Value="0x0101002039C03B61C64EC4A04F5361F385106603" />
+      <Property Name="DisplayTemplateLevel" Type="string" Value="Item" />
+      <Property Name="TemplateHidden" Type="int" Value="0" />
+      <Property Name="TargetControlType" Type="string" Value=";#Content Web Parts;#SearchResults;#" />
+      <Property Name="ManagedPropertyMapping" Type="string" Value="'Path':'Path','Title':'Title', 'ProjectManager':'GtProjectManagerOWSUSER','ProjectOwner':'GtProjectOwnerOWSUSER','ProjectPhase':'owstaxIdGtProjectPhase','Created':'Created'" />
+      <Property Name="HtmlDesignLockedFile" Value="FALSE" />
+    </File>
+    <File Path="Glittertind_Item_Project_details.js" Url="Glittertind_Item_Project_details" Type="GhostableInLibrary" Level="Published" ReplaceContent="TRUE" >
+      <Property Name="Title" Type="string" Value="Glittertind Prosjektdetaljer" />
+      <Property Name="MasterPageDescription" Type="string" Value="" />
+      <Property Name="ContentType" Value="0x0101002039C03B61C64EC4A04F5361F385106603" />
+      <Property Name="DisplayTemplateLevel" Type="string" Value="Item" />
+      <Property Name="TemplateHidden" Type="int" Value="0" />
+      <Property Name="TargetControlType" Type="string" Value=";#Content Web Parts;#SearchResults;#" />
+      <Property Name="ManagedPropertyMapping" Type="string" Value="'Path','Title', 'ProjectManager':'GtProjectManagerOWSUSER','ProjectOwner':'GtProjectOwnerOWSUSER','ProjectPhase':'owstaxIdGtProjectPhase','Created','GtProjectGoalsOWSMTXT','GtStatusTimeOWSCHCS','GtStatusRiskOWSCHCS','GtStatusBudgetOWSCHCS','LastModifiedTime'" />
+      <Property Name="HtmlDesignLockedFile" Value="FALSE" />
+    </File>
     <File Url="Glittertind_Control_List.html" Type="GhostableInLibrary" ReplaceContent="TRUE" />
     <File Url="Glittertind_Item_Project.html" Type="GhostableInLibrary" ReplaceContent="TRUE" />
+    <File Url="Glittertind_Item_NewProject.html" Type="GhostableInLibrary" ReplaceContent="TRUE" />
+    <File Url="Glittertind_Control_Table.html" Type="GhostableInLibrary" ReplaceContent="TRUE" />
+    <File Url="Glittertind_Item_Project_details.html" Type="GhostableInLibrary" ReplaceContent="TRUE" />
   </Module>
 </Elements>

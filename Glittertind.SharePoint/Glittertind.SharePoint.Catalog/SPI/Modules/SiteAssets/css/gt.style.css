@@ -6,15 +6,17 @@
 .newProjectPage .projectInputForm button{float:right;margin:0;}
 .newProjectPage .projectInputForm textarea#projectDescriptionInput{height:70px;overflow:auto;}
 .newProjectPage .validationMessage{color:red;margin-bottom:10px;}
+.projectFrontPage .rightColumnStatic { display: none;}
 .projectFrontPage .projectMetadata{width:300px;margin-bottom: 20px;}
 .projectFrontPage .projectMetadata table{width:100%;margin-bottom:10px;}
 .projectFrontPage .projectMetadata table td{padding:3px;}
 .projectFrontPage .projectMetadata table tr td:first-child{width:120px;}
-.projectFrontPage .projectMetadata table tr:nth-child(odd) td{background-color:rgba(239,239,239,0.78);}
+.projectFrontPage .projectMetadata table tr:nth-child(odd) td{background-color:#E0F5E0;}
 .projectFrontPage .missingMetadataWarning{display:none;color:red;margin:10px 0;}
 .projectFrontPage .projectMetadata a#editPageMetaLink,.projectFrontPage .projectMetadata a#editPageMetaLink:visited,.projectFrontPage .projectMetadata a#editPageMetaLink:active{color:#666;font-size:.9em;text-decoration:none;}
 ul.gt-List{list-style-type:none;padding-left:0;}
 ul.gt-List .gt-projectItem{display:block;margin-bottom:20px;}
+ul.gt-List .new.gt-projectItem{display:block;margin-bottom:10px;}
 ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
 .gt-phaseIcon{display:block;width:92px;height:62px;float:left;}
 .gt-phaseIcon .phaseLetter{display:block;font-size:33px;text-align:center;}
@@ -25,35 +27,35 @@ ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
 .projectFrontPage .projectPhaseSection a#changeProjectPhaseLink{float:left;display:none;border:1px solid #ccc;text-transform:none;text-decoration:none;padding:5px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases{width:100%;list-style:none;overflow:hidden;margin:0;padding:0;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected,
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected a {background-color:#1B8600; color:#DFEED5;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected a {background-color:rgb(51, 153, 51); color:#DFEED5;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:nth-child(5),
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child{background-color:#00527F; color:#EDF4F4;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child{background-color:rgb(0, 114, 198); color:#EDF4F4;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:nth-child(5) a,
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child a {color:#EDF4F4;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:before,
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:after {border-left-color:#1B8600;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:after {border-left-color:rgb(51, 153, 51);}
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child:before, 
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child:after, 
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:nth-child(5):before,
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:nth-child(5):after{border-left-color:#00527F;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li {color: #1B8600; text-decoration:none;background:#DFEED5;position:relative;display:block;float:left;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li a{ color: #1B8600;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li:after{content:" ";display:block;width:0;height:0;border-top:50px solid transparent;border-bottom:50px solid transparent;border-left:30px solid #DFEED5;position:absolute;top:50%;margin-top:-50px;left:100%;z-index:2;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li:before{content:" ";display:block;width:0;height:0;border-top:50px solid transparent;border-bottom:50px solid transparent;border-left:30px solid #1B8600;position:absolute;top:50%;margin-top:-50px;margin-left:1px;left:100%;z-index:1;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child {padding-left:10px;background-color:#EDF4F4;color:#00527F;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child a{color:#00527F;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:nth-child(5):after{border-left-color:rgb(0, 114, 198);}
+.projectFrontPage .projectPhaseSection ul.projectPhases li {color: rgb(51, 153, 51); text-decoration:none;background:#E0F5E0;position:relative;display:block;float:left;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li a{ color: rgb(51, 153, 51);}
+.projectFrontPage .projectPhaseSection ul.projectPhases li:after{content:" ";display:block;width:0;height:0;border-top:50px solid transparent;border-bottom:50px solid transparent;border-left:30px solid #E0F5E0;position:absolute;top:50%;margin-top:-50px;left:100%;z-index:2;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li:before{content:" ";display:block;width:0;height:0;border-top:50px solid transparent;border-bottom:50px solid transparent;border-left:30px solid rgb(51, 153, 51);position:absolute;top:50%;margin-top:-50px;margin-left:1px;left:100%;z-index:1;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child {padding-left:10px;background-color:#EDF4F4;color:rgb(0, 114, 198);}
+.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child a{color:rgb(0, 114, 198);}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:nth-child(5), 
-.projectFrontPage .projectPhaseSection ul.projectPhases li:nth-child(5) a{background-color:#EDF4F4;color:#00527F;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li:nth-child(5) a{background-color:#EDF4F4;color:rgb(0, 114, 198);}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:after,.projectFrontPage .projectPhaseSection ul.projectPhases li:nth-child(5):after{border-left-color:#EDF4F4;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:before,.projectFrontPage .projectPhaseSection ul.projectPhases li:nth-child(5):before{border-left-color:#00527F;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:before,.projectFrontPage .projectPhaseSection ul.projectPhases li:nth-child(5):before{border-left-color:rgb(0, 114, 198);}
 
 @media(max-width: 1299px) {
-.projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 42px;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 35px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:72px;height:52px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:26px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:10px;}
 }
-@media(min-width: 1300px) {
+@media(min-width: 1380px) {
 .projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 34px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:91px;height:62px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:33px;}
@@ -65,3 +67,28 @@ ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:33px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:12px;}
 }
+
+.gt-result-table td {padding: 4px;border-right:1px solid;border-spacing: 0;margin: 0;}
+table.gt-result-table, table.gt-result-table th{border-collapse: collapse;border: 1px solid;padding: 4px;text-align:left;}
+table.gt-result-table tr:nth-child(even){background-color: #ddd;}
+
+#gtloglist {max-width: 700px;}
+#gtloglist h2 {margin-bottom: 10px;}
+#gtloglist table tr th {font-weight: normal;font-size: 0.85em;color: rgb(119, 119, 119);text-align: left;text-decoration: none;vertical-align: middle;white-space: nowrap;padding:0 5px;}
+#gtloglist table tr td {padding: 5px;}
+#gtloglist table tr:nth-child(odd) td {background-color:#E0F5E0;}
+
+#gtchecklist {width: 514px;}
+#gtchecklist ul {padding-left: 10px;}
+#gtchecklist li {list-style: none;margin-bottom: 10px;}
+#gtchecklist .gt-checklist-title {display: inline-block;width: 80%;vertical-align: middle;}
+#gtchecklist .gt-icon {width: 25px;height: 25px;display: inline-block;margin-right: 7px;border-radius: 5px;vertical-align: top;}
+#gtchecklist .gt-icon:after {font-size: 17px;padding-left: auto;margin-left: 7px;margin-right: auto;margin-top: 1px;display: inline-block;color: white;}
+#gtchecklist .gt-icon.gt-completed {background-color: green;}
+#gtchecklist .gt-icon.gt-completed:after {content: "\2713 ";}
+#gtchecklist .gt-icon.gt-ignored {background-color: #E8C900;}
+#gtchecklist .gt-icon.gt-ignored:after {content: "\2713 ";}
+#gtchecklist .gt-icon.gt-failed {background-color: red;}
+#gtchecklist .gt-icon.gt-failed:after {content: "\2717";margin-top: 0;}
+#gtchecklist .gt-icon.gt-nostatus {background-color: gray;}
+#gtchecklist .gt-icon.gt-nostatus:after {content: "?";font-weight: bold;margin-left: 9px;}

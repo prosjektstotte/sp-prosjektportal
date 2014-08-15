@@ -55,7 +55,7 @@
     <None Include="Features\SiteSiteAssetsArtefacts\SiteSiteAssetsArtefacts.feature">
       <FeatureId>{183e9372-efbb-40d6-b5ee-0b5a05e7b249}</FeatureId>
     </None>
-    <None Include="Features\SiteSearchSettings\SiteSearchSettings.feature">
+    <None Include="Features\WebSearchSettings\WebSearchSettings.feature">
       <FeatureId>{67ce64ae-3931-4a84-ac39-ad77a93f5b28}</FeatureId>
     </None>
     <None Include="Features\WebCatalogSitePages\WebCatalogSitePages.feature">
@@ -77,11 +77,27 @@
     <None Include="SPI\Lists\Kunngjoringer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4deb663b-e46c-4fb6-aab4-71ca5dadc2c8}</SharePointProjectItemId>
     </None>
+    <None Include="SPI\Lists\Lenker\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{b8e1b27f-f360-41a8-9abb-20d4d8199a2a}</SharePointProjectItemId>
+    </None>
     <None Include="SPI\Lists\Standarddokumenter\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{72a7d104-c204-4428-a15c-55ebd4f7c8e7}</SharePointProjectItemId>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SPI\Lists\Lenker\Elements.xml" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_Table.html" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_Table.js" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_NewProject.html" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_NewProject.js" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project_details.html" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project_details.js" />
+    <Content Include="SPI\Modules\SiteAssets\html\gt.calendarform.html" />
+    <Content Include="SPI\Modules\SiteAssets\html\gt.projectlogform.html" />
+    <Content Include="SPI\Modules\SiteAssets\html\gt.csomprojectdir.html" />
+    <Content Include="SPI\Modules\SiteAssets\html\gt.csomprojectoverview.html" />
+    <Content Include="SPI\Modules\SiteAssets\js\knockout-3.1.0.js" />
+    <Content Include="SPI\Modules\SitePages\PortefoljeOversikt.aspx" />
     <None Include="SPI\Modules\PropertyBag\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{07ef7ea5-6e7a-42e1-b29f-6f4ae59e3cda}</SharePointProjectItemId>
     </None>
@@ -138,8 +154,8 @@
     <Content Include="Features\SiteSiteAssetsArtefacts\SiteSiteAssetsArtefacts.Template.xml">
       <DependentUpon>SiteSiteAssetsArtefacts.feature</DependentUpon>
     </Content>
-    <Content Include="Features\SiteSearchSettings\SiteSearchSettings.Template.xml">
-      <DependentUpon>SiteSearchSettings.feature</DependentUpon>
+    <Content Include="Features\WebSearchSettings\WebSearchSettings.Template.xml">
+      <DependentUpon>WebSearchSettings.feature</DependentUpon>
     </Content>
     <Content Include="Features\WebCatalogSitePages\WebCatalogSitePages.Template.xml">
       <DependentUpon>WebCatalogSitePages.feature</DependentUpon>

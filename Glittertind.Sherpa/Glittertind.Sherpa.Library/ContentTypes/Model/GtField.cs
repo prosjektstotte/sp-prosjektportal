@@ -50,7 +50,11 @@ namespace Glittertind.Sherpa.Library.ContentTypes.Model
                 {
                     return GetSelfClosingFieldXml(required, "ShowField=\"Term1033\" Mult=\"TRUE\"");
                 }
-                case ("Choice") :
+                case ("Choice"):
+                {
+                    return GetFieldWithContentXml(required, "FillInChoice=\"" + FillInChoice.ToString().ToUpper() + "\"", GetChoiceFieldXmlContent());
+                }
+                case ("MultiChoice"):
                 {
                     return GetFieldWithContentXml(required, "FillInChoice=\"" + FillInChoice.ToString().ToUpper() + "\"", GetChoiceFieldXmlContent());
                 }
