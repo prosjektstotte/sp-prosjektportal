@@ -1,40 +1,48 @@
 ﻿{
-   Description: '',
-   Name: '',
-   SiteFeatures: [
-      {
-         FeatureId: '97f310cf-bc74-494f-8fc0-b6a3dd3bf42a',
-         FeatureName: 'Glittertind.SharePoint.Catalog_SiteSiteAssetsArtefacts',
-         ReactivateOnUpgrade: 'true'
-      },
-      {
-         FeatureId: '9ca326d3-723f-4e65-b8f9-db7e18802ac4',
-         FeatureName: 'Glittertind.SharePoint.Project_SiteProjectWebTemplate'
-      },
-      {
-         FeatureId: '8a49d7c1-7477-4ec4-b124-4513e6c294fd',
-         FeatureName: 'Glittertind.SharePoint.Catalog_SiteSearchSettings'
-      }
+   "Description" : "",
+   "Language"    : "1044",
+   "Name"        : "",
+   "Quicklaunch" : {
+						"Hjem": "",
+						"Standarddokumenter": "Standarddokumenter",
+						"Porteføljeoversikt" : "SitePages/PortefoljeOversikt.aspx",
+						"Erfaringslogg": "SitePages/Erfaringslogg.aspx",
+						"Områdeinnhold": ""
+					},
+   "SiteFeatures": [
+	  {
+		 "FeatureId"       : "97f310cf-bc74-494f-8fc0-b6a3dd3bf42a",
+		 "FeatureName"     : "Glittertind.SharePoint.Catalog_SiteSiteAssetsArtefacts",
+		 "ReactivateAlways": "true"
+	  },
+	  {
+		 "FeatureId"  : "9ca326d3-723f-4e65-b8f9-db7e18802ac4",
+		 "FeatureName": "Glittertind.SharePoint.Project_SiteProjectWebTemplate"
+	  },
+	  {
+		 "FeatureId"  : "8a49d7c1-7477-4ec4-b124-4513e6c294fd",
+		 "FeatureName": "Glittertind.SharePoint.Catalog_WebSearchSettings"
+	  }
    ],
-   Template: '',
-   Url: '/',
-   WebFeatures: [
-      {
-         FeatureId: '15a572c6-e545-4d32-897a-bab6f5846e18',
-         FeatureName: 'SiteFeed'
-      },
-      {
-         FeatureId: 'acb15743-f07b-4c83-8af3-ffcfdf354965',
-         FeatureName: 'SearchConfigList'
-      },
-      {
-         FeatureId: '3753e6d4-b343-4d70-b62f-729e698f692b',
-         FeatureName: 'Glittertind.SharePoint.Catalog_WebCatalogLists'
-      },
-      {
-         FeatureId: '333d6b99-5713-41e0-aeeb-4e3e86143b3e',
-         FeatureName: 'Glittertind.SharePoint.Catalog_WebCatalogSitePages'
-      }
+   "Template"    : "",
+   "Url"         : "/",
+   "WebFeatures" : [
+	  {
+		 "FeatureId"  : "15a572c6-e545-4d32-897a-bab6f5846e18",
+		 "FeatureName": "SiteFeed"
+	  },
+	  {
+		 "FeatureId"  : "acb15743-f07b-4c83-8af3-ffcfdf354965",
+		 "FeatureName": "SearchConfigList"
+	  },
+	  {
+		 "FeatureId"  : "3753e6d4-b343-4d70-b62f-729e698f692b",
+		 "FeatureName": "Glittertind.SharePoint.Catalog_WebCatalogLists"
+	  },
+	  {
+		 "FeatureId"  : "333d6b99-5713-41e0-aeeb-4e3e86143b3e",
+		 "FeatureName": "Glittertind.SharePoint.Catalog_WebCatalogSitePages"
+	  }
    ],
-   Webs: []
+   "Webs"        : []
 }

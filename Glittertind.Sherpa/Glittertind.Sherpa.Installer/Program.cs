@@ -11,7 +11,7 @@ namespace Glittertind.Sherpa.Installer
         public static ICredentials Credentials { get; set; }
         public static Uri UrlToSite { get; set; }
         public static bool IsSharePointOnline { get; set; }
-        public static InstallationManager installationManager { get; set; }
+        public static InstallationManager InstallationManager { get; set; }
 
         static void Main(string[] args)
         {
@@ -43,7 +43,7 @@ namespace Glittertind.Sherpa.Installer
                     Console.WriteLine("Authenticated with default credentials");
                 }
             }
-            installationManager = new InstallationManager(UrlToSite, Credentials, IsSharePointOnline);
+            InstallationManager = new InstallationManager(UrlToSite, Credentials, IsSharePointOnline);
             ShowStartScreenAndExecuteCommand();
         }
 
@@ -53,9 +53,7 @@ namespace Glittertind.Sherpa.Installer
             Console.WriteLine("Press 1 to install managed metadata groups and term sets.");
             Console.WriteLine("Press 2 to upload and activate sandboxed solution.");
             Console.WriteLine("Press 3 to setup site columns and content types.");
-            Console.WriteLine("Press 4 to activate features.");
-            Console.WriteLine("Press 5 to reactivate features (usually after upgrade).");
-            Console.WriteLine("Press 6 to configure quicklaunch.");
+            Console.WriteLine("Press 4 to setup sites.");
             Console.WriteLine("Press 9 to DELETE all Glittertind site columns and content types.");
             Console.WriteLine("Press 0 to exit application.");
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -79,43 +77,33 @@ namespace Glittertind.Sherpa.Installer
             {
                 case 1:
                 {
-                    installationManager.SetupTaxonomy();
+                    InstallationManager.SetupTaxonomy();
                     break;
                 }
                 case 2:
                 {
-                    installationManager.UploadAndActivateSandboxSolution();
+                    InstallationManager.UploadAndActivateSandboxSolution();
                     break;
                 }
                 case 3:
                 {
-                    installationManager.CreateSiteColumnsAndContentTypes();
+                    InstallationManager.CreateSiteColumnsAndContentTypes();
                     break;
                 }
                 case 4:
                 {
-                    installationManager.ActivateFeatures();
-                    break;
-                }
-                case 5:
-                {
-                    installationManager.ReactivateFeautures();
-                    break;
-                }
-                case 6:
-                {
-                    installationManager.ConfigureQuicklaunch();
+                    InstallationManager.ConfigureSites();
                     break;
                 }
                 case 9:
                 {
-                    installationManager.DeleteAllGlittertindSiteColumnsAndContentTypes();
+                    InstallationManager.DeleteAllGlittertindSiteColumnsAndContentTypes();
                     break;
                 }
                 case 1337:
                 {
                     Console.WriteLine("(Hidden feature) Forcing recrawl of "+UrlToSite +" and all subsites");
-                    installationManager.ForceReCrawl();
+                    InstallationManager.ForceReCrawl();
                     break;
                 }
                 case 0:
