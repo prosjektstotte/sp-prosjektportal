@@ -441,13 +441,58 @@ GT.Project.Model.webModel = function () {
     _this.statusBudget = ko.observable();
     _this.lastChanged = ko.observable();
     _this.phase = ko.observable();
+    _this.matchesFilter = ko.observable(true);
+    _this.lastChangedDisplayValue = ko.computed(function () {
+        if (this.lastChanged() != undefined) {
+            return this.lastChanged().format("dd. MMM yyyy");
+        }
+        return '';
+
+    }, this);
 };
 
 GT.Project.Model.appViewModel = GT.Project.Model.appViewModel || {};
 GT.Project.get_allProjectsUnderCurrent = function () {
+
+    var masterDefered = GT.jQuery.Deferred();
+
     GT.Project.Model.appViewModel.projects = ko.observableArray([]);
     GT.Project.Model.appViewModel.loaded = ko.observable(false);
-    GT.Project.Model.filter = ko.compu
+    GT.Project.Model.appViewModel.filter = function (filterObject) {
+        var projects = this.projects();
+        var keys = Object.keys(filterObject);
+        var visible = false;
+        for (var i = 0; i < projects.length; i++) {
+            var match = false;
+            for (var y = 0; y < keys.length; y++) {
+
+                var currentValue = projects[i][keys[y]]()
+                var filterValue = filterObject[keys[y]]
+
+                if (typeof filterValue === 'string') {
+                    currentValue = currentValue.toLowerCase();
+                    filterValue = filterValue.toLowerCase();
+
+                    if (currentValue.indexOf(filterValue) !== -1) {
+                        match = true;
+                        break;
+                    }
+                }
+                else if ((filterValue instanceof Date)) {
+                    if (filterValue > currentValue) {
+                        match = true;
+                        break;
+                    }
+                }
+                else {
+                    console.log("fail");
+                }
+
+
+            }
+            projects[i].matchesFilter(match);
+        }
+    }
 
     var clientContext = SP.ClientContext.get_current();
     var get_allWebs = function () {
@@ -525,7 +570,7 @@ GT.Project.get_allProjectsUnderCurrent = function () {
                 model.statusTime(fieldValues.GtStatusTime ? fieldValues.GtStatusTime : '');
                 model.statusRisk(fieldValues.GtStatusRisk ? fieldValues.GtStatusRisk : '');
                 model.statusBudget(fieldValues.GtStatusBudget ? fieldValues.GtStatusBudget : '');
-                model.lastChanged(new Date(fieldValues.Last_x0020_Modified).format("dd. MMM yyyy kl HH:mm"));
+                model.lastChanged(new Date(fieldValues.Last_x0020_Modified));
                 model.phase(fieldValues.GtProjectPhase ? fieldValues.GtProjectPhase.Label : '');
                 GT.Project.Model.appViewModel.projects.push(model);
             }
@@ -537,10 +582,12 @@ GT.Project.get_allProjectsUnderCurrent = function () {
         return get_webDataDeferred.promise();
     };
 
-    get_allWebs().done(function (webCollection) {
+    get_allWebs().then(function (webCollection) {
         console.log("get_allWebs.done subwebs: " + webCollection.get_count());
-        get_webData(webCollection);
-    })
+        return get_webData(webCollection);
+    }).then(function () { masterDefered.resolve() });;
+
+    return masterDefered.promise();
 
 };
 

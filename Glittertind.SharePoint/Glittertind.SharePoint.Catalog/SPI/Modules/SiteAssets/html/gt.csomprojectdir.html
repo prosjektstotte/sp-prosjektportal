@@ -1,5 +1,6 @@
 ﻿<link rel="stylesheet" type="text/css" href="../_layouts/15/1044/styles/Themable/searchv15.css">
 <script type="text/javascript" src="../SiteAssets/gt/js/knockout-3.1.0.js"></script>
+
 <style type="text/css"></style>
 <script type="text/javascript" language="javascript">
     (function () {
@@ -18,8 +19,8 @@
 
 <div id="SearchBox" name="Control" class="">
     <div class="ms-srch-sbLarge ms-srch-sb-border" id="">
-        <input type="text" maxlength="2048" accesskey="S" title="Søk..." id="gt-searchbox" class="ms-textLarge ms-srch-sbLarge-fullWidth ms-srch-sb-prompt ms-helperText" onkeyup="GT.Project.render_Portefolje(GT.jQuery('#gt-searchbox').val());">
-        <a title="Søk" class="ms-srch-sb-searchLink" id="" onclick="GT.Project.render_Portefolje(GT.jQuery('#gt-searchbox').val());" href="javascript: {}">
+        <input type="text" maxlength="2048" accesskey="S" title="Søk..." id="gt-searchbox" class="ms-textLarge ms-srch-sbLarge-fullWidth ms-srch-sb-prompt ms-helperText" onkeyup="var text = GT.jQuery('#gt-searchbox').val(); GT.Project.Model.appViewModel.filter( {title: text, projectManager: text, projectOwner: text, phase: text} );">
+        <a title="Søk" class="ms-srch-sb-searchLink" id="" onclick="var text = GT.jQuery('#gt-searchbox').val(); GT.Project.Model.appViewModel.filter( {title: text, projectManager: text, projectOwner: text, phase: text} );" href="javascript: {}">
             <img src="/_layouts/15/images/searchresultui.png?rev=38" class="ms-srch-sbLarge-searchImg" id="searchImg" alt="Søk">
         </a>
     </div>
@@ -27,7 +28,7 @@
 
 <div id="gt-csomprojectdir-out">
     <ul class="gt-List" data-bind="foreach: projects(), visible: loaded()" style="display: none;">
-        <li>
+        <li data-bind="visible: matchesFilter()">
             <div class="gt-projectItem">
 
                 <div data-bind="html: GT.Project.GetPhaseLogoMarkup(phase())"></div>
@@ -41,4 +42,7 @@
             </div>
         </li>
     </ul>
+    <div data-bind="visible: !loaded()" style="display: none;">
+        <img src="/_layouts/15/images/gears_anv4.gif?rev=38" /> vent litt mens vi laster inn data ...
+    </div>
 </div>

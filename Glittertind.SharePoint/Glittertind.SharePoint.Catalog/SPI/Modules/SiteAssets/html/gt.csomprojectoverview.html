@@ -10,26 +10,68 @@
 
         jQuery(document).ready(function () {
 			SP.SOD.executeOrDelayUntilScriptLoaded(function(){
-				GT.Project.get_allProjectsUnderCurrent();
+				warningDate = new Date();
+    			warningDate.setDate(warningDate.getDate()-60);
+    			var filter = {lastChanged: warningDate, statusRisk:"høy", statusTime: "etter plan",statusBudget:"over budsjett" };
+
+    			 //Høy risiko, etter plan, over budsjett (eller 'vet ikke') og siste endret er eldre enn 2 måneder og fase != realisere
+
+				GT.Project.get_allProjectsUnderCurrent().done(function(){
+					GT.Project.Model.appViewModel.filter(filter);
+				});
 				ko.applyBindings(GT.Project.Model.appViewModel);
+				(function( $ ) {
+					$('.gt-result-table').dataTable();
+				})(GT.jQuery)
+
+
 			} , "sp.js");
         });
     })();
 
 
-</script>
 
-<div id="SearchBox" name="Control" style="display:none;">
-    <div class="ms-srch-sbLarge ms-srch-sb-border" id="">
-        <input type="text" value="a" maxlength="2048" accesskey="S" title="Søk..." id="gt-searchbox" class="ms-textLarge ms-srch-sbLarge-fullWidth ms-srch-sb-prompt ms-helperText" onkeyup="GT.Project.render_Portefolje(GT.jQuery('#gt-searchbox').val());">
-        <a title="Søk" class="ms-srch-sb-searchLink" id="" onclick="GT.Project.render_Portefolje(GT.jQuery('#gt-searchbox').val());" href="javascript: {}">
-            <img src="/_layouts/15/images/searchresultui.png?rev=38" class="ms-srch-sbLarge-searchImg" id="searchImg" alt="Søk">
-        </a>
-    </div>
-</div>
+</script>
 
 
 <div id="gt-csomprojectdir-out">
+    <h1>Prosjekter som krever tilsyn</h1>
+
+    <table class="gt-result-table">
+        <thead>
+            <tr>
+                <th>Tittel</th>
+                <th>Effektmål</th>
+                <th>Prosjekteier</th>
+                <th>Prosjektleder</th>
+                <th>Status tid</th>
+                <th>Status risiko</th>
+                <th>Status budsjett</th>
+                <th>Sist endret</th>
+                <th>Fase</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: projects(), visible: loaded()" style="display: none;">
+            <tr data-bind="visible: matchesFilter()">
+                <td><a href="" data-bind="text: title(), attr:{href: url()}"></a></td>
+                <td data-bind="text: projectGoal()"></td>
+                <td data-bind="text: projectOwner()"></td>
+                <td data-bind="text: projectManager()"></td>
+                <td data-bind="text: statusTime()"></td>
+                <td data-bind="text: statusRisk()"></td>
+                <td data-bind="text: statusBudget()"></td>
+                <td data-bind="text: lastChangedDisplayValue()"></td>
+                <td data-bind="text: phase()"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div data-bind="visible: !loaded()" style="display: none;">
+        <img src="/_layouts/15/images/gears_anv4.gif?rev=38" /> vent litt mens vi laster inn data ...
+    </div>
+
+
+    <h1>Porteføljeoversikt</h1>
+
     <table class="gt-result-table">
         <thead>
             <tr>
@@ -46,14 +88,14 @@
         </thead>
         <tbody data-bind="foreach: projects(), visible: loaded()" style="display: none;">
             <tr>
-                <td data-bind="text: title()"></td>
+                <td><a href="" data-bind="text: title(), attr:{href: url()}"></a></td>
                 <td data-bind="text: projectGoal()"></td>
                 <td data-bind="text: projectOwner()"></td>
                 <td data-bind="text: projectManager()"></td>
                 <td data-bind="text: statusTime()"></td>
                 <td data-bind="text: statusRisk()"></td>
                 <td data-bind="text: statusBudget()"></td>
-                <td data-bind="text: lastChanged()"></td>
+                <td data-bind="text: lastChangedDisplayValue()"></td>
                 <td data-bind="text: phase()"></td>
             </tr>
         </tbody>
