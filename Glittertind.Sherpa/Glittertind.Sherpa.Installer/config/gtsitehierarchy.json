@@ -10,39 +10,43 @@
 		"Områdeinnhold": ""
 	},
    "SiteFeatures": [
-	  {
-		 "FeatureId"       : "97f310cf-bc74-494f-8fc0-b6a3dd3bf42a",
-		 "FeatureName"     : "Glittertind.SharePoint.Catalog_SiteSiteAssetsArtefacts",
-		 "ReactivateAlways": "true"
-	  },
-	  {
-		 "FeatureId"  : "9ca326d3-723f-4e65-b8f9-db7e18802ac4",
-		 "FeatureName": "Glittertind.SharePoint.Project_SiteProjectWebTemplate"
-	  },
-	  {
-		 "FeatureId"  : "8a49d7c1-7477-4ec4-b124-4513e6c294fd",
-		 "FeatureName": "Glittertind.SharePoint.Catalog_WebSearchSettings"
-	  }
+	{
+		"FeatureId"       : "97f310cf-bc74-494f-8fc0-b6a3dd3bf42a",
+		"FeatureName"     : "Glittertind.SharePoint.Catalog_SiteSiteAssetsArtefacts",
+		"ReactivateAlways": "true"
+	},
+	{
+		"FeatureId"  : "9ca326d3-723f-4e65-b8f9-db7e18802ac4",
+		"FeatureName": "Glittertind.SharePoint.Project_SiteProjectWebTemplate"
+	}
    ],
    "Template"    : "",
    "Url"         : "/",
    "WebFeatures" : [
-	  {
-		 "FeatureId"  : "15a572c6-e545-4d32-897a-bab6f5846e18",
-		 "FeatureName": "SiteFeed"
-	  },
-	  {
-		 "FeatureId"  : "acb15743-f07b-4c83-8af3-ffcfdf354965",
-		 "FeatureName": "SearchConfigList"
-	  },
-	  {
-		 "FeatureId"  : "3753e6d4-b343-4d70-b62f-729e698f692b",
-		 "FeatureName": "Glittertind.SharePoint.Catalog_WebCatalogLists"
-	  },
-	  {
-		 "FeatureId"  : "333d6b99-5713-41e0-aeeb-4e3e86143b3e",
-		 "FeatureName": "Glittertind.SharePoint.Catalog_WebCatalogSitePages"
-	  }
+	{
+		"FeatureId"  : "48a243cb-7b16-4b5a-b1b5-07b809b43f47",
+		"FeatureName": "Innholdstyper for konfigurasjonsdata for søk"
+	},	  
+	{
+		"FeatureId"  : "e47705ec-268d-4c41-aa4e-0d8727985ebc",
+		"FeatureName": "Funksjon for konfigurasjonsmal for søk"
+	},	  
+	{
+		"FeatureId"  : "acb15743-f07b-4c83-8af3-ffcfdf354965",
+		"FeatureName": "Funksjon for forekomst av konfigurasjonsliste for søk"
+	},
+	{
+		"FeatureId"  : "8a49d7c1-7477-4ec4-b124-4513e6c294fd",
+		"FeatureName": "Glittertind.SharePoint.Catalog_WebSearchSettings"
+	},
+	{
+		"FeatureId"  : "3753e6d4-b343-4d70-b62f-729e698f692b",
+		"FeatureName": "Glittertind.SharePoint.Catalog_WebCatalogLists"
+	},
+	{
+		"FeatureId"  : "333d6b99-5713-41e0-aeeb-4e3e86143b3e",
+		"FeatureName": "Glittertind.SharePoint.Catalog_WebCatalogSitePages"
+	}
    ],
    "Webs"        : [
 		{
@@ -59,11 +63,34 @@
 			},
 			"WebFeatures" : [
 				{
-					"FeatureId"  : "15a572c6-e545-4d32-897a-bab6f5846e18",
-					"FeatureName": "SiteFeed"
+					"FeatureId"  : "ec918931-c874-4033-bd09-4f36b2e31fef",
+					"FeatureName": "Arbeidsflyter kan bruke apptillatelser",
+					"ReactivateAlways": "true"
 				}
 			],
-			"Webs"        : []
+			"Webs"        : [
+					{
+						"Description" : "Arbeidsrom for Pzlers",
+						"Language"    : "1044",
+						"Name"        : "PzlRoom",
+						"Template"    : "STS#0",
+						"Url"         : "pzlroomsub",
+						"Quicklaunch" : {
+							"Hjem": "",
+							"Testlink2": "Testlink",
+							"Overskrift" : "",
+							"Områdeinnhold": ""
+						},
+						"WebFeatures" : [
+							{
+								"FeatureId"  : "ec918931-c874-4033-bd09-4f36b2e31fef",
+								"FeatureName": "Arbeidsflyter kan bruke apptillatelser",
+								"ReactivateAlways": "true"
+							}
+						],
+						"Webs"        : []
+					}
+			]
 		}
    ]
 }

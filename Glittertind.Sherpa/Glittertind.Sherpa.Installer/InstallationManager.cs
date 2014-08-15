@@ -36,14 +36,6 @@ namespace Glittertind.Sherpa.Installer
             taxonomyManager.WriteTaxonomyToTermStore();
         }
 
-        public void DeleteAllGlittertindSiteColumnsAndContentTypes()
-        {
-            Console.WriteLine("Deleting all Glitterind columns and content types");
-            var contentTypeManager = new ContentTypeManager(_urlToSite, _credentials);
-            contentTypeManager.DeleteAllGlittertindSiteColumnsAndContentTypes("Glittertind");
-            contentTypeManager.DisposeContext();
-        }
-
         public void UploadAndActivateSandboxSolution()
         {
             Console.WriteLine("Uploading and activating sandboxed solution(s)");
@@ -80,6 +72,14 @@ namespace Glittertind.Sherpa.Installer
 
             var siteManager = new SiteSetupManager(_urlToSite, _credentials, sitePersister.Load());
             siteManager.SetupSites();
+        }
+
+        public void DeleteAllGlittertindSiteColumnsAndContentTypes()
+        {
+            Console.WriteLine("Deleting all Glitterind columns and content types");
+            var contentTypeManager = new ContentTypeManager(_urlToSite, _credentials);
+            contentTypeManager.DeleteAllGlittertindSiteColumnsAndContentTypes("Glittertind");
+            contentTypeManager.DisposeContext();
         }
 
         public void ForceReCrawl()

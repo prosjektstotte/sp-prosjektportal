@@ -42,7 +42,7 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
         {
             var webToConfigure = EnsureWeb(context, parentWeb, configWeb);
 
-            FeatureManager.ActivateFeatures(context, webToConfigure, configWeb.SiteFeatures, configWeb.WebFeatures);
+            FeatureManager.ActivateFeatures(context, configWeb.SiteFeatures, configWeb.WebFeatures);
             QuicklaunchManager.CreateQuicklaunchNodes(context, webToConfigure, configWeb.Quicklaunch);
 
             foreach (GtWeb subWeb in configWeb.Webs)
@@ -53,7 +53,7 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
 
         private Web EnsureWeb(ClientContext context, Web parentWeb, GtWeb configWeb)
         {
-            Web webToConfigure = null;
+            Web webToConfigure;
             if (parentWeb == null)
             {
                 //We assume that the root web always exists
@@ -61,14 +61,12 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
             }
             else
             {
-                webToConfigure = GetSubWeb(context, parentWeb, configWeb.Url);
-
-                if (webToConfigure == null)
-                {
-                    webToConfigure = parentWeb.Webs.Add(GetWebCreationInformationFromConfig(configWeb));
-                    context.ExecuteQuery();
-                }
+                webToConfigure = GetSubWeb(context, parentWeb, configWeb.Url) ??
+                                 parentWeb.Webs.Add(GetWebCreationInformationFromConfig(configWeb));
             }
+            context.Load(webToConfigure, w => w.Url);
+            context.ExecuteQuery();
+
             return webToConfigure;
         }
 
@@ -92,25 +90,6 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
             return relativeOrAbsoluteUrl;
         }
 
-        private bool WebExists(ClientContext context, string webUrl)
-        {
-            // load up the root web object but only 
-            // specifying the sub webs property to avoid 
-            // unneeded network traffic
-            var web = context.Web;
-            context.Load(web, w => w.Webs);
-            context.ExecuteQuery();
-
-            // use a simple linq query to get any sub webs with the URL we want to check
-            var subWeb = (from w in web.Webs where w.Url == webUrl select w).SingleOrDefault();
-            if (subWeb != null)
-            {
-                // if found true
-                return true;
-            }
-            // default to false...
-            return false;
-        }
         private Web GetSubWeb(ClientContext context, Web parentWeb, string webUrl)
         {
             context.Load(parentWeb, w => w.Url, w => w.Webs);

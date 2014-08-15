@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using Glittertind.Sherpa.Library.SiteHierarchy.Model;
 using Microsoft.SharePoint.Client;
 
@@ -7,20 +8,29 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
 {
     public class FeatureManager
     {
-        public void ActivateFeatures(ClientContext clientContext, Web web, List<GtFeature> siteFeatures, List<GtFeature> webFeatures)
+        public void ActivateFeatures(ClientContext clientContext, List<GtFeature> siteFeatures, List<GtFeature> webFeatures)
         {
-            foreach (var featureActivation in siteFeatures)
+            if (siteFeatures != null)
             {
-                ActivateFeature(clientContext, web, featureActivation, FeatureDefinitionScope.Site);
+                foreach (var featureActivation in siteFeatures)
+                {
+                    ActivateFeature(clientContext, clientContext.Web, featureActivation, FeatureDefinitionScope.Site);
+                }
             }
-            foreach (var featureActivation in webFeatures)
+            if (webFeatures != null)
             {
-                ActivateFeature(clientContext, web, featureActivation, FeatureDefinitionScope.Web);
+                foreach (var featureActivation in webFeatures)
+                {
+                    ActivateFeature(clientContext, clientContext.Web, featureActivation, FeatureDefinitionScope.Web);
+                }
             }
         }
 
         private void ActivateFeature(ClientContext clientContext, Web web, GtFeature feature, FeatureDefinitionScope featureScope)
         {
+            //TODO: REMOVE THIS LINE. For testing purposes only
+            if (feature.FeatureName.StartsWith("Glittertind")) return;
+
             switch (featureScope)
             {
                 case FeatureDefinitionScope.Web:
@@ -47,14 +57,11 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
             clientContext.Load(featureCollection);
             clientContext.ExecuteQuery();
 
-            var feature = featureCollection.GetById(featureInfo.FeatureId);
-            clientContext.Load(feature);
-            clientContext.ExecuteQuery();
-
-            if (feature.ServerObjectIsNull != null && (bool)feature.ServerObjectIsNull)
+            if (!DoesFeatureExistInCollection(featureCollection, featureInfo.FeatureId))
             {
                 Console.WriteLine("Activating feature " + featureInfo.FeatureName);
-                featureCollection.Add(featureInfo.FeatureId, true, FeatureDefinitionScope.Site);
+                // FeaturedefinitionScope.None is the way to go for any feature. http://stackoverflow.com/questions/17803291/failing-to-activate-a-feature-using-com-in-sharepoint-2010
+                featureCollection.Add(featureInfo.FeatureId, true, FeatureDefinitionScope.None);
                 clientContext.ExecuteQuery();
             }
         }
@@ -64,16 +71,25 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
             clientContext.Load(featureCollection);
             clientContext.ExecuteQuery();
 
-            var feature = featureCollection.GetById(featureInfo.FeatureId);
-            clientContext.Load(feature);
-            clientContext.ExecuteQuery();
-
-            if (feature.ServerObjectIsNull != null && !(bool)feature.ServerObjectIsNull)
+            if (DoesFeatureExistInCollection(featureCollection, featureInfo.FeatureId))
             {
                 Console.WriteLine("Deactivating feature " + featureInfo.FeatureName);
                 featureCollection.Remove(featureInfo.FeatureId, true);
                 clientContext.ExecuteQuery();
             }
+        }
+
+        private static bool DoesFeatureExistInCollection(FeatureCollection featureCollection, Guid featureId)
+        {
+            var featureEnumerator = featureCollection.GetEnumerator();
+            while (featureEnumerator.MoveNext())
+            {
+                if (featureEnumerator.Current.DefinitionId.Equals(featureId))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
