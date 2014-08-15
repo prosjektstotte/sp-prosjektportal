@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.SharePoint.Client;
 
@@ -9,7 +8,8 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
     {
         public void CreateQuicklaunchNodes(ClientContext clientContext, Web web, Dictionary<string, string> quicklaunchNodes)
         {
-            if (quicklaunchNodes == null) throw new ArgumentNullException("quicklaunchNodes");
+            if (quicklaunchNodes == null) return;
+
             var quickLaunch = web.Navigation.QuickLaunch;
             clientContext.Load(quickLaunch);
             clientContext.ExecuteQuery();

@@ -29,44 +29,47 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
             {
                 clientContext.Credentials = _credentials;
 
-                EnsureAndConfigureWebAndActivateFeatures(clientContext, _configurationWeb);
+                EnsureAndConfigureWebAndActivateFeatures(clientContext, null, _configurationWeb);
             }
         }
 
         /// <summary>
-        /// Check if web exists at Url
-        /// If not, create it
-        /// Set properties
-        /// Activate SiteCol features
-        /// Activate Web Features
-        /// Go through subwebs
+        /// Assumptions:
+        /// 1. The order of webs and subwebs in the config file follows the structure of SharePoint sites
+        /// 2. No config element is present without their parent web already being defined in the config file, except the root web
         /// </summary>
-        private void EnsureAndConfigureWebAndActivateFeatures(ClientContext context, GtWeb configWeb)
+        private void EnsureAndConfigureWebAndActivateFeatures(ClientContext context, Web parentWeb, GtWeb configWeb)
         {
-            Web webToConfigure = null;
-            if (IsRootweb(configWeb))
-            {
-                //We assume that the root web always exists
-                webToConfigure = context.Site.RootWeb;
-            }
-            else if (!WebExists(context, configWeb.Url))
-            {
-                //This _should_ open the parent and that site _should_ exist if the webs are in correct order
-                var parent = context.Site.OpenWeb(configWeb.Url);
-                context.Load(parent);
-                context.ExecuteQuery();
+            var webToConfigure = EnsureWeb(context, parentWeb, configWeb);
 
-                webToConfigure = parent.Webs.Add(GetWebCreationInformationFromConfig(configWeb));
-                context.ExecuteQuery();
-            }
-
-            //FeatureManager.ActivateFeatures(context, webToConfigure, configWeb.SiteFeatures, configWeb.WebFeatures);
+            FeatureManager.ActivateFeatures(context, webToConfigure, configWeb.SiteFeatures, configWeb.WebFeatures);
             QuicklaunchManager.CreateQuicklaunchNodes(context, webToConfigure, configWeb.Quicklaunch);
 
             foreach (GtWeb subWeb in configWeb.Webs)
             {
-                EnsureAndConfigureWebAndActivateFeatures(context, subWeb);
+                EnsureAndConfigureWebAndActivateFeatures(context, webToConfigure, subWeb);
             }
+        }
+
+        private Web EnsureWeb(ClientContext context, Web parentWeb, GtWeb configWeb)
+        {
+            Web webToConfigure = null;
+            if (parentWeb == null)
+            {
+                //We assume that the root web always exists
+                webToConfigure = context.Site.RootWeb;
+            }
+            else
+            {
+                webToConfigure = GetSubWeb(context, parentWeb, configWeb.Url);
+
+                if (webToConfigure == null)
+                {
+                    webToConfigure = parentWeb.Webs.Add(GetWebCreationInformationFromConfig(configWeb));
+                    context.ExecuteQuery();
+                }
+            }
+            return webToConfigure;
         }
 
         private WebCreationInformation GetWebCreationInformationFromConfig(GtWeb configWeb)
@@ -81,12 +84,6 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
                     WebTemplate = configWeb.Template
                 };
         }
-
-        private static bool IsRootweb(GtWeb configWeb)
-        {
-            return configWeb.Url == "/";
-        }
-
 
         private string GetAbsoluteUrl(string relativeOrAbsoluteUrl)
         {
@@ -113,6 +110,15 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
             }
             // default to false...
             return false;
+        }
+        private Web GetSubWeb(ClientContext context, Web parentWeb, string webUrl)
+        {
+            context.Load(parentWeb, w => w.Url, w => w.Webs);
+            context.ExecuteQuery();
+
+            var absoluteUrlToCheck = parentWeb.Url.TrimEnd('/') + '/' + webUrl;
+            // use a simple linq query to get any sub webs with the URL we want to check
+            return (from w in parentWeb.Webs where w.Url == absoluteUrlToCheck select w).SingleOrDefault();
         }
     }
 }

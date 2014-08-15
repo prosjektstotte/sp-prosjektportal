@@ -11,19 +11,11 @@ namespace Glittertind.Sherpa.Library.SiteHierarchy
         {
             foreach (var featureActivation in siteFeatures)
             {
-                ActivateFeature(clientContext, web,featureActivation, FeatureDefinitionScope.Site);
+                ActivateFeature(clientContext, web, featureActivation, FeatureDefinitionScope.Site);
             }
             foreach (var featureActivation in webFeatures)
             {
-                ActivateFeature(clientContext, web,featureActivation, FeatureDefinitionScope.Web);
-            }
-        }
-
-        public void ActivateWebFeatures(ClientContext clientContext, Web web, List<GtFeature> webFeatures)
-        {
-            foreach (var featureActivation in webFeatures)
-            {
-                ActivateFeature(clientContext, web,featureActivation, FeatureDefinitionScope.Web);
+                ActivateFeature(clientContext, web, featureActivation, FeatureDefinitionScope.Web);
             }
         }
 
