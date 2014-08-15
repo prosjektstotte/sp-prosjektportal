@@ -11,7 +11,7 @@
 .projectFrontPage .projectMetadata table{width:100%;margin-bottom:10px;}
 .projectFrontPage .projectMetadata table td{padding:3px;}
 .projectFrontPage .projectMetadata table tr td:first-child{width:120px;}
-.projectFrontPage .projectMetadata table tr:nth-child(odd) td{background-color:rgba(239,239,239,0.78);}
+.projectFrontPage .projectMetadata table tr:nth-child(odd) td{background-color:rgba(81, 204, 81, 0.1);}
 .projectFrontPage .missingMetadataWarning{display:none;color:red;margin:10px 0;}
 .projectFrontPage .projectMetadata a#editPageMetaLink,.projectFrontPage .projectMetadata a#editPageMetaLink:visited,.projectFrontPage .projectMetadata a#editPageMetaLink:active{color:#666;font-size:.9em;text-decoration:none;}
 ul.gt-List{list-style-type:none;padding-left:0;}
@@ -68,21 +68,26 @@ ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:12px;}
 }
 
-.gt-result-table td {
-    padding: 4px;
-    border-left:1px solid;       
-    border-right:1px solid;       
-    border-spacing: 0;
-    margin: 0;
-}
+.gt-result-table td {padding: 4px;border-right:1px solid;border-spacing: 0;margin: 0;}
+table.gt-result-table, table.gt-result-table th{border-collapse: collapse;border: 1px solid;padding: 4px;text-align:left;}
+table.gt-result-table tr:nth-child(even){background-color: #ddd;}
 
-table.gt-result-table, table.gt-result-table th{
-    border-collapse: collapse;
-    border: 1px solid;
-    padding: 4px;
-    text-align:left;
-}
+#gtloglist {max-width: 700px;}
+#gtloglist table tr th {text-align: left;}
+#gtloglist table tr td {padding: 5px;}
+#gtloglist table tr:nth-child(odd) td {background-color: rgba(81, 204, 81, 0.1);}
 
-table.gt-result-table tr:nth-child(even){
-    background-color: #ddd;
-}
+#gtchecklist {width: 514px;}
+#gtchecklist ul {padding-left: 10px;}
+#gtchecklist li {list-style: none;margin-bottom: 10px;}
+#gtchecklist .gt-checklist-title {display: inline-block;width: 80%;vertical-align: middle;}
+#gtchecklist .gt-icon {width: 25px;height: 25px;display: inline-block;margin-right: 7px;border-radius: 5px;vertical-align: top;}
+#gtchecklist .gt-icon:after {font-size: 17px;padding-left: auto;margin-left: 7px;margin-right: auto;margin-top: 1px;display: inline-block;color: white;}
+#gtchecklist .gt-icon.gt-completed {background-color: green;}
+#gtchecklist .gt-icon.gt-completed:after {content: "\2713 ";}
+#gtchecklist .gt-icon.gt-ignored {background-color: #E8C900;}
+#gtchecklist .gt-icon.gt-ignored:after {content: "\2713 ";}
+#gtchecklist .gt-icon.gt-failed {background-color: red;}
+#gtchecklist .gt-icon.gt-failed:after {content: "\2717";margin-top: 0;}
+#gtchecklist .gt-icon.gt-nostatus {background-color: gray;}
+#gtchecklist .gt-icon.gt-nostatus:after {content: "?";font-weight: bold;margin-left: 9px;}

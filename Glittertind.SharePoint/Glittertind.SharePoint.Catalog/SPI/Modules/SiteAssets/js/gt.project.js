@@ -364,18 +364,18 @@ GT.Project.PhaseForm.CheckList.render = function () {
     promise.done(function (items) {
         var outHtml = [];
         outHtml.push('<div id="gtchecklist">',
-						'<h2 class="ms-h2">Fasesjekkliste</h2>',
-						'<ul>');
+                        '<h2 class="ms-h2">Fasesjekkliste</h2>',
+                        '<ul>');
         for (var i = 0; i < items.length; i++) {
             outHtml.push('<li>',
-							'<a href="', items[i].get_editItemUrl(window.location.toString()), '" >',
-								'<span class="gt-icon ', items[i].get_statusCssClass(), '" title="', items[i].Status, '"></span>',
-								'<span class="gt-checklist-title">', items[i].Title, '</span></a>',
-						'</li>');
+                            '<a href="', items[i].get_editItemUrl(window.location.toString()), '" >',
+                                '<span class="gt-icon ', items[i].get_statusCssClass(), '" title="', items[i].Status, '"></span>',
+                                '<span class="gt-checklist-title">', items[i].Title, '</span></a>',
+                        '</li>');
         }
         outHtml.push('</ul>',
-				'<div>Sjekklisten er basert på beslutningspunkt fra <a href="http://prosjektveiviseren.no/" target="_blank">Prosjektveiviseren</a></div>',
-		        '</div>');
+                '<div>Sjekklisten er basert på beslutningspunkt fra <a href="http://prosjektveiviseren.no/" target="_blank">Prosjektveiviseren</a></div>',
+                '</div>');
         GT.jQuery(".ms-webpart-zone.ms-fullWidth").append(outHtml.join(""));
     });
 };
@@ -386,7 +386,7 @@ GT.Project.GetCurrentPhase = function () {
     var web = ctx.get_web();
     var props = web.get_allProperties();
     ctx.load(web);
-    ctx.load(props); //need to load the properties explicitly 		
+    ctx.load(props); //need to load the properties explicitly       
     ctx.executeQueryAsync(function () {
         var phase = props.get_fieldValues()['glittertind_persistedPhase'];
         console.log(phase);
@@ -402,34 +402,34 @@ GT.Project.PhaseForm.CheckList.getData = function () {
     var scriptPromise = GT.jQuery.getScript(_spPageContextInfo.siteServerRelativeUrl + "/_layouts/15/SP.RequestExecutor.js");
 
     var promise = GT.jQuery
-	.when(currentPhasePromise, scriptPromise)
-	.then(function (phase) {
-	    var defer = GT.jQuery.Deferred();
-	    var ctx = new SP.ClientContext.get_current();
-	    var list = ctx.get_web().get_lists().getByTitle('Sjekkliste');
-	    var camlQuery = new SP.CamlQuery();
-	    camlQuery.set_viewXml("<View><Query><Where><Eq><FieldRef Name='GtProjectPhase'/><Value Type='TaxonomyFieldType'>" + phase + "</Value></Eq></Where><OrderBy><FieldRef Name='Title' /></OrderBy></Query></View>");
-	    var listItems = list.getItems(camlQuery);
-	    ctx.load(listItems);
-	    ctx.executeQueryAsync(function () {
-	        var listItemEnumerator = listItems.getEnumerator();
-	        var checkListItems = [];
-	        while (listItemEnumerator.moveNext()) {
-	            var item = listItemEnumerator.get_current();
-	            var title = item.get_item('Title');
-	            var id = item.get_item('ID');
-	            var status = item.get_item('GtChecklistStatus');
-	            var checkListItem = new GT.Project.PhaseForm.CheckList.CheckListItem(title, id, status);
-	            checkListItems.push(checkListItem);
-	        }
-	        defer.resolve(checkListItems);
-	    }, function (sender, args) {
-	        console.log(args.get_message());
-	        defer.reject();
-	    });
-	    return defer.promise();
+    .when(currentPhasePromise, scriptPromise)
+    .then(function (phase) {
+        var defer = GT.jQuery.Deferred();
+        var ctx = new SP.ClientContext.get_current();
+        var list = ctx.get_web().get_lists().getByTitle('Sjekkliste');
+        var camlQuery = new SP.CamlQuery();
+        camlQuery.set_viewXml("<View><Query><Where><Eq><FieldRef Name='GtProjectPhase'/><Value Type='TaxonomyFieldType'>" + phase + "</Value></Eq></Where><OrderBy><FieldRef Name='Title' /></OrderBy></Query></View>");
+        var listItems = list.getItems(camlQuery);
+        ctx.load(listItems);
+        ctx.executeQueryAsync(function () {
+            var listItemEnumerator = listItems.getEnumerator();
+            var checkListItems = [];
+            while (listItemEnumerator.moveNext()) {
+                var item = listItemEnumerator.get_current();
+                var title = item.get_item('Title');
+                var id = item.get_item('ID');
+                var status = item.get_item('GtChecklistStatus');
+                var checkListItem = new GT.Project.PhaseForm.CheckList.CheckListItem(title, id, status);
+                checkListItems.push(checkListItem);
+            }
+            defer.resolve(checkListItems);
+        }, function (sender, args) {
+            console.log(args.get_message());
+            defer.reject();
+        });
+        return defer.promise();
 
-	});
+    });
 
     return promise;
 
@@ -467,16 +467,20 @@ GT.Project.CalendarForm.RenderRelatedLogElements = function () {
     promise.done(function (items) {
         var outHtml = [];
         outHtml.push('<div id="gtloglist">',
-						'<h2 class="ms-h2">Elementer fra loggen</h2>',
-						'<ul>');
+                        '<h2 class="ms-h2">Elementer fra loggen</h2>',
+                        '<table><tbody>',
+                        '<tr><th>Tittel</th><th>Beskrivelse</th><th>Loggelement</th><th>Meldt av</th></tr>');
         for (var i = 0; i < items.length; i++) {
-            outHtml.push('<li>',
-							'<a href="', items[i].get_viewItemUrl(window.location.toString()), '" >',
-								'<span class="gt-title">', items[i].Title, '</span></a>',
-						'</li>');
+            outHtml.push('<tr>',
+                            '<td><a href="', items[i].get_viewItemUrl(window.location.toString()), '" >',
+                                '<span class="gt-title">', items[i].Title, '</span></a></td>',
+                                '<td>', items[i].Description, '</td>',
+                                '<td>', items[i].Type, '</td>',
+                                '<td>', items[i].ReportedBy, '</td>',
+                        '</tr>');
         }
-        outHtml.push('</ul>',
-		        '</div>');
+        outHtml.push('</tbody></table>',
+                '</div>');
         GT.jQuery(".ms-webpart-zone.ms-fullWidth").append(outHtml.join(""));
     });
 };
@@ -485,44 +489,52 @@ GT.Project.CalendarForm.getData = function () {
     var scriptPromise = GT.jQuery.getScript(_spPageContextInfo.siteServerRelativeUrl + "/_layouts/15/SP.RequestExecutor.js");
 
     var promise = GT.jQuery
-	.when(dateAndTime, scriptPromise)
-	.then(function (fieldValue) {
-	    var defer = GT.jQuery.Deferred();
-	    var ctx = new SP.ClientContext.get_current();
-	    var list = ctx.get_web().get_lists().getByTitle('Prosjektlogg');
-	    var camlQuery = new SP.CamlQuery();
-	    camlQuery.set_viewXml("<View><Query><Where><Eq><FieldRef Name='GtProjectLogEventLookup'/><Value Type='Lookup'>" + fieldValue + "</Value></Eq></Where><OrderBy><FieldRef Name='Created' /></OrderBy></Query></View>");
-	    var listItems = list.getItems(camlQuery);
-	    ctx.load(listItems);
-	    ctx.executeQueryAsync(function () {
-	        var listItemEnumerator = listItems.getEnumerator();
-	        var logElements = [];
-	        while (listItemEnumerator.moveNext()) {
-	            var item = listItemEnumerator.get_current();
-	            var title = item.get_item('Title');
-	            var id = item.get_item('ID');
-	            var desc = item.get_item('GtProjectLogDescription');
-	            var logElement = new GT.Project.PhaseForm.LogElement(title, id, desc);
-	            logElements.push(logElement);
-	        }
-	        defer.resolve(logElements);
-	    }, function (sender, args) {
-	        console.log("Couldn't get project log elements for the specified meeting");
-	        console.log(args.get_message());
-	        defer.reject();
-	    });
-	    return defer.promise();
+    .when(dateAndTime, scriptPromise)
+    .then(function (fieldValue) {
+        var defer = GT.jQuery.Deferred();
+        var ctx = new SP.ClientContext.get_current();
+        var list = ctx.get_web().get_lists().getByTitle('Prosjektlogg');
+        var camlQuery = new SP.CamlQuery();
+        camlQuery.set_viewXml("<View><Query><Where><Eq><FieldRef Name='GtProjectLogEventLookup'/><Value Type='Lookup'>" + fieldValue + "</Value></Eq></Where><OrderBy><FieldRef Name='Created' /></OrderBy></Query></View>");
+        var listItems = list.getItems(camlQuery);
+        ctx.load(listItems);
+        ctx.executeQueryAsync(function () {
+            var listItemEnumerator = listItems.getEnumerator();
+            var logElements = [];
+            while (listItemEnumerator.moveNext()) {
+                var item = listItemEnumerator.get_current();
+                var title = item.get_item('Title');
+                var id = item.get_item('ID');
+                var desc = item.get_item('GtProjectLogDescription');
+                var type = item.get_item('GtProjectLogType');
+                var reportedBy = item.get_item('GtProjectLogReporter');
+                if (reportedBy != null) {
+                    reportedBy = reportedBy.get_lookupValue();
+                }
+                var logElement = new GT.Project.CalendarForm.LogElement(title, id, desc, type, reportedBy);
+                logElements.push(logElement);
+            }
+            defer.resolve(logElements);
+        }, function (sender, args) {
+            console.log("Couldn't get project log elements for the specified meeting");
+            console.log(args.get_message());
+            defer.reject();
+        });
+        return defer.promise();
 
-	});
+    });
 
     return promise;
 };
 
-GT.Project.CalendarForm.LogElement = function (title, id, description) {
+GT.Project.CalendarForm.LogElement = function (title, id, description, type, reportedBy) {
     var self = this;
     self.Title = title;
     self.Id = id;
     self.Description = description;
+    self.Type = type;
+    self.ReportedBy = reportedBy;
+
     self.get_viewItemUrl = function (sourceUrl) {
         var editElmLink = _spPageContextInfo.webServerRelativeUrl + "/Lists/Prosjektlogg/DispForm.aspx?ID=" + self.Id;
         if (sourceUrl) {
@@ -562,11 +574,11 @@ GT.Project.get_allProjectsUnderCurrent = function () {
         clientContext.load(webCollection, 'Include(RootFolder, ServerRelativeUrl)');
 
         clientContext.executeQueryAsync(
-			function () {
-			    if (webCollection !== null && webCollection.get_areItemsAvailable()) {
-			        defer.resolve(webCollection);
-			    } else { defer.reject(); }
-			}, defer.reject);
+            function () {
+                if (webCollection !== null && webCollection.get_areItemsAvailable()) {
+                    defer.resolve(webCollection);
+                } else { defer.reject(); }
+            }, defer.reject);
 
         return defer.promise();
     }
@@ -587,12 +599,12 @@ GT.Project.get_allProjectsUnderCurrent = function () {
             }
 
             clientContext.executeQueryAsync(
-			function () {
-			    defer.resolve(welcomePages);
-			},
-			function () {
-			    defer.reject();
-			});
+            function () {
+                defer.resolve(welcomePages);
+            },
+            function () {
+                defer.reject();
+            });
 
             return defer.promise();
         };
