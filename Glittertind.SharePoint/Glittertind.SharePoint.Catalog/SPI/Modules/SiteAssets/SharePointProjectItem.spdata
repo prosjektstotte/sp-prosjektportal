@@ -30,5 +30,6 @@
     <ProjectItemFile Source="html\gt.phaseform.html" Target="SiteAssets\html\" Type="ElementFile" />
     <ProjectItemFile Source="html\gt.calendarform.html" Target="SiteAssets\html\" Type="ElementFile" />
     <ProjectItemFile Source="config\quicklaunch\quicklaunch.json" Target="SiteAssets\config\quicklaunch\" Type="ElementFile" />
+    <ProjectItemFile Source="html\gt.alldocumentsview.html" Target="SiteAssets\html\" Type="ElementFile" />
   </Files>
 </ProjectItem>

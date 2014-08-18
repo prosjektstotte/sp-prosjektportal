@@ -7,7 +7,7 @@
 		"Standarddokumenter": "Standarddokumenter",
 		"Porteføljeoversikt" : "SitePages/PortefoljeOversikt.aspx",
 		"Erfaringslogg": "SitePages/Erfaringslogg.aspx",
-		"Områdeinnhold": ""
+		"Områdeinnhold": "_layouts/15/viewlsts.aspx"
 	},
    "SiteFeatures": [
 	{
