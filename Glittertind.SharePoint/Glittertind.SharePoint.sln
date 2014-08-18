@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glittertind.SharePoint.Package", "Glittertind.SharePoint.Package\Glittertind.SharePoint.Package.csproj", "{3AD6083E-40FC-4772-94F4-AEB58CB35659}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9D6EE420-C3BB-4E59-9D4B-BF17FA8DD592} = {9D6EE420-C3BB-4E59-9D4B-BF17FA8DD592}
@@ -10,6 +12,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glittertind.SharePoint.Catalog", "Glittertind.SharePoint.Catalog\Glittertind.SharePoint.Catalog.csproj", "{9D6EE420-C3BB-4E59-9D4B-BF17FA8DD592}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glittertind.SharePoint.Project", "Glittertind.SharePoint.Project\Glittertind.SharePoint.Project.csproj", "{264591DA-9E83-4968-AFEB-E4C95B9F2F07}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SherpaConfig", "SherpaConfig", "{2226871B-79A1-4D94-A036-D868624654C8}"
+	ProjectSection(SolutionItems) = preProject
+		..\Glittertind.Sherpa\config\gtcontenttypes.json = ..\Glittertind.Sherpa\config\gtcontenttypes.json
+		..\Glittertind.Sherpa\config\gtfields.json = ..\Glittertind.Sherpa\config\gtfields.json
+		..\Glittertind.Sherpa\config\gtsitehierarchy.json = ..\Glittertind.Sherpa\config\gtsitehierarchy.json
+		..\Glittertind.Sherpa\config\gttaxonomy.json = ..\Glittertind.Sherpa\config\gttaxonomy.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
