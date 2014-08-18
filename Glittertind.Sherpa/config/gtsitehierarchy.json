@@ -1,11 +1,10 @@
 ﻿{
-   "Description" : "",
-   "Language"    : "1044",
+   "Description" : "Projectportal rotområde",
    "Name"        : "",
    "Quicklaunch" : {
 		"Hjem": "",
 		"Standarddokumenter": "Standarddokumenter",
-		"Porteføljeoversikt" : "SitePages/PortefoljeOversikt.aspx",
+		"Porteføljeoversikt" : "SitePages/PortefoljeOversiktAlternativ.aspx",
 		"Erfaringslogg": "SitePages/Erfaringslogg.aspx",
 		"Områdeinnhold": "_layouts/15/viewlsts.aspx"
 	},
@@ -20,7 +19,6 @@
 		"FeatureName": "Glittertind.SharePoint.Project_SiteProjectWebTemplate"
 	}
    ],
-   "Template"    : "",
    "Url"         : "/",
    "WebFeatures" : [
 	{
@@ -48,49 +46,5 @@
 		"FeatureName": "Glittertind.SharePoint.Catalog_WebCatalogSitePages"
 	}
    ],
-   "Webs"        : [
-		{
-			"Description" : "Arbeidsrom for Pzlers",
-			"Language"    : "1044",
-			"Name"        : "PzlRoom",
-			"Template"    : "STS#0",
-			"Url"         : "pzlroom",
-			"Quicklaunch" : {
-				"Hjem": "",
-				"Testlink": "Testlink",
-				"Overskrift" : "",
-				"Områdeinnhold": ""
-			},
-			"WebFeatures" : [
-				{
-					"FeatureId"  : "ec918931-c874-4033-bd09-4f36b2e31fef",
-					"FeatureName": "Arbeidsflyter kan bruke apptillatelser",
-					"ReactivateAlways": "true"
-				}
-			],
-			"Webs"        : [
-					{
-						"Description" : "Arbeidsrom for Pzlers",
-						"Language"    : "1044",
-						"Name"        : "PzlRoom",
-						"Template"    : "STS#0",
-						"Url"         : "pzlroomsub",
-						"Quicklaunch" : {
-							"Hjem": "",
-							"Testlink2": "Testlink",
-							"Overskrift" : "",
-							"Områdeinnhold": ""
-						},
-						"WebFeatures" : [
-							{
-								"FeatureId"  : "ec918931-c874-4033-bd09-4f36b2e31fef",
-								"FeatureName": "Arbeidsflyter kan bruke apptillatelser",
-								"ReactivateAlways": "true"
-							}
-						],
-						"Webs"        : []
-					}
-			]
-		}
-   ]
+   "Webs"        : []
 }
