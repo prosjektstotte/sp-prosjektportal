@@ -1,38 +1,35 @@
 ﻿[
    {
-      Description : "",
-      DisplayName : "Glittertind dokument",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010100293fde3fcada480b9a77bbdad7dfa28c",
-      InternalName: "GtBaseDocument"
+      "Description"  : "",
+      "DisplayName"  : "Glittertind dokument",
+      "Group"        : "Glittertind Innholdstyper",
+      "ID"           : "0x010100293fde3fcada480b9a77bbdad7dfa28c",
+      "InternalName" : "GtBaseDocument"
    },
    {
-      Description : "",
-      DisplayName : "Prosjektdokument",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010100293fde3fcada480b9a77bbdad7dfa28c01",
-      InternalName: "GtProjectDocument",
-      Fields : [
+      "Description"    : "",
+      "DisplayName"    : "Prosjektdokument",
+      "Fields"         : [
          "GtProjectPhase"
       ],
-      RequiredFields : [
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010100293fde3fcada480b9a77bbdad7dfa28c01",
+      "InternalName"   : "GtProjectDocument",
+      "RequiredFields" : [
          "GtProjectPhase"
       ]
    },
    {
-      Description : "",
-      DisplayName : "Glittertind nettdelside",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010109010058561f86d956412b9dd7957bbcd67aae",
-      InternalName: "GtBaseWebPartPage"
+      "Description"  : "",
+      "DisplayName"  : "Glittertind nettdelside",
+      "Group"        : "Glittertind Innholdstyper",
+      "ID"           : "0x010109010058561f86d956412b9dd7957bbcd67aae",
+      "InternalName" : "GtBaseWebPartPage"
    },
    {
-      Description : "",
-      DisplayName : "Prosjektforside",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010109010058561f86d956412b9dd7957bbcd67aae01",
-      InternalName: "GtProjectFrontPage",
-      Fields : [
+      "Description"    : "",
+      "DisplayName"    : "Prosjektforside",
+      "Fields"         : [
          "GtProjectNumber",
          "GtProjectServiceArea",
          "GtProjectType",
@@ -47,7 +44,10 @@
          "GtAverageRisk",
          "GtProjectGoals"
       ],
-      RequiredFields : [
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010109010058561f86d956412b9dd7957bbcd67aae01",
+      "InternalName"   : "GtProjectFrontPage",
+      "RequiredFields" : [
          "GtProjectServiceArea",
          "GtProjectType",
          "GtProjectPhase",
@@ -62,24 +62,21 @@
       ]
    },
    {
-      Description : "",
-      DisplayName : "Glittertind element",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010088578e7470cc4aa68d56634648310702",
-      InternalName: "GtBaseItem",
-      Fields : [],
-      RequiredFields : []
+      "Description"    : "",
+      "DisplayName"    : "Glittertind element",
+      "Fields"         : [],
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010088578e7470cc4aa68d56634648310702",
+      "InternalName"   : "GtBaseItem",
+      "RequiredFields" : []
    },
    {
-      Description : "",
-      DisplayName : "Usikkerhet",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010088578e7470cc4aa68d5663464831070201",
-      InternalName: "GtProjectUncertainty",
-      Fields : [
+      "Description"    : "",
+      "DisplayName"    : "Usikkerhet",
+      "Fields"         : [
          "GtProjectPhase",
          "GtRiskProbability",
-         "GtRiskConsequence", 
+         "GtRiskConsequence",
          "GtRiskProximity",
          "GtRiskFactor",
          "GtRiskAction",
@@ -87,147 +84,150 @@
          "GtRiskConsequencePostAction",
          "GtRiskFactiorPostAction"
       ],
-      RequiredFields : []
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010088578e7470cc4aa68d5663464831070201",
+      "InternalName"   : "GtProjectUncertainty",
+      "RequiredFields" : []
    },
    {
-      Description : "",
-      DisplayName : "Risiko",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010088578e7470cc4aa68d566346483107020101",
-      InternalName: "GtProjectRisk",
-      Fields : [],
-      RequiredFields : []
+      "Description"    : "",
+      "DisplayName"    : "Risiko",
+      "Fields"         : [],
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010088578e7470cc4aa68d566346483107020101",
+      "InternalName"   : "GtProjectRisk",
+      "RequiredFields" : []
    },
    {
-      Description : "",
-      DisplayName : "Mulighet",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010088578e7470cc4aa68d566346483107020102",
-      InternalName: "GtProjectOpportunity",
-      Fields : [],
-      RequiredFields : []
+      "Description"    : "",
+      "DisplayName"    : "Mulighet",
+      "Fields"         : [],
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010088578e7470cc4aa68d566346483107020102",
+      "InternalName"   : "GtProjectOpportunity",
+      "RequiredFields" : []
    },
    {
-      Description : "",
-      DisplayName : "Interessent",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010088578e7470cc4aa68d5663464831070202",
-      InternalName: "GtProjectStakeholder",
-      Fields : [
-        "GtStakeholderGroup",
-        "GtStakeholderContext",
-        "GtStakeholderStrategy",
-        "GtStakeholderInterest",
-        "GtStakeholderInfluence",
-        "GtStakeholderInfluencePossibilty",
-        "GtStakeholderActions"
+      "Description"    : "",
+      "DisplayName"    : "Interessent",
+      "Fields"         : [
+         "GtStakeholderGroup",
+         "GtStakeholderContext",
+         "GtStakeholderStrategy",
+         "GtStakeholderInterest",
+         "GtStakeholderInfluence",
+         "GtStakeholderInfluencePossibilty",
+         "GtStakeholderActions"
       ],
-      RequiredFields : []
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010088578e7470cc4aa68d5663464831070202",
+      "InternalName"   : "GtProjectStakeholder",
+      "RequiredFields" : []
    },
    {
-      Description : "",
-      DisplayName : "Kommunikasjonsbaseelement",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010088578e7470cc4aa68d5663464831070203",
-      InternalName: "GtProjectCommunicationBase",
-      Fields : [
-          "GtProjectPhase",
-          "GtActionDate",
-          "GtActionResponsible"
+      "Description"    : "",
+      "DisplayName"    : "Kommunikasjonsbaseelement",
+      "Fields"         : [
+         "GtProjectPhase",
+         "GtActionDate",
+         "GtActionResponsible"
       ],
-      RequiredFields : []
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010088578e7470cc4aa68d5663464831070203",
+      "InternalName"   : "GtProjectCommunicationBase",
+      "RequiredFields" : []
    },
    {
-      Description : "",
-      DisplayName : "Sjekkpunkt",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010088578e7470cc4aa68d5663464831070204",
-      InternalName: "GtProjectChecklistElement",
-      Fields : [
-          "GtProjectPhase",
-          "GtChecklistStatus",
-          "GtComment"
+      "Description"    : "",
+      "DisplayName"    : "Sjekkpunkt",
+      "Fields"         : [
+         "GtProjectPhase",
+         "GtChecklistStatus",
+         "GtComment"
       ],
-      RequiredFields : []
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010088578e7470cc4aa68d5663464831070204",
+      "InternalName"   : "GtProjectChecklistElement",
+      "RequiredFields" : []
    },
-      {
-      Description : "",
-      DisplayName : "Prosjektproduktbase",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010088578e7470cc4aa68d5663464831070205",
-      InternalName: "GtProjectProductBase",
-      Fields : [
-          "GtProductPhase",
-          "GtProductQualityExpectations",
-          "GtProductAcceptanceCriteria",
-          "GtProductQualityTolerance",
-          "GtProductQualityResponsible",
-          "GtProductAcceptanceMethod",
-          "GtProductAcceptanceResponsible",
-          "GtProductAcceptanceDate"
+   {
+      "Description"    : "",
+      "DisplayName"    : "Prosjektproduktbase",
+      "Fields"         : [
+         "GtProductPhase",
+         "GtProductQualityExpectations",
+         "GtProductAcceptanceCriteria",
+         "GtProductQualityTolerance",
+         "GtProductQualityResponsible",
+         "GtProductAcceptanceMethod",
+         "GtProductAcceptanceResponsible",
+         "GtProductAcceptanceDate"
       ],
-      RequiredFields : []
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010088578e7470cc4aa68d5663464831070205",
+      "InternalName"   : "GtProjectProductBase",
+      "RequiredFields" : []
    },
-      {
-      Description : "",
-      DisplayName : "Prosjektloggbaseelement",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010088578e7470cc4aa68d5663464831070206",
-      InternalName: "GtProjectLogBase",
-      Fields : [
-          "GtProjectLogType",
-          "GtProjectLogReporter",
-          "GtProjectLogDescription",
-          "GtProjectLogResponsible",
-          "GtProjectLogConsequence",
-          "GtProjectLogRecommendation",
-          "GtProjectLogExperience",
-          "GtProjectLogActors"
+   {
+      "Description"    : "",
+      "DisplayName"    : "Prosjektloggbaseelement",
+      "Fields"         : [
+         "GtProjectLogType",
+         "GtProjectLogReporter",
+         "GtProjectLogDescription",
+         "GtProjectLogResponsible",
+         "GtProjectLogConsequence",
+         "GtProjectLogRecommendation",
+         "GtProjectLogExperience",
+         "GtProjectLogActors"
       ],
-      RequiredFields : []
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010088578e7470cc4aa68d5663464831070206",
+      "InternalName"   : "GtProjectLogBase",
+      "RequiredFields" : []
    },
-    {
-      Description : "",
-      DisplayName : "Glittertind baseoppgave",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010800233b015f95174c9a8eb505493841de8d",
-      InternalName: "GtTaskBase",
-      Fields : [
-          "GtProjectPhase"
+   {
+      "Description"    : "",
+      "DisplayName"    : "Glittertind baseoppgave",
+      "Fields"         : [
+         "GtProjectPhase"
       ],
-      RequiredFields : [
-          "GtProjectPhase"
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010800233b015f95174c9a8eb505493841de8d",
+      "InternalName"   : "GtTaskBase",
+      "RequiredFields" : [
+         "GtProjectPhase"
       ]
    },
-    {
-      Description : "",
-      DisplayName : "Infoelement",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010088578e7470cc4aa68d5663464831070207",
-      InternalName: "GtInfoElement",
-      Fields : [
-          "GtProjectInfoDescription"
+   {
+      "Description"    : "",
+      "DisplayName"    : "Infoelement",
+      "Fields"         : [
+         "GtProjectInfoDescription"
       ],
-      RequiredFields : [
-          "GtProjectInfoDescription"
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010088578e7470cc4aa68d5663464831070207",
+      "InternalName"   : "GtInfoElement",
+      "RequiredFields" : [
+         "GtProjectInfoDescription"
       ]
    },
-    {
-      Description : "",
-      DisplayName : "Glittertind basehendelse",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010200a2b2ac17a2244b8590398a9d1e7e3e37",
-      InternalName: "GtProjectEventBase",
-      Fields : [],
-      RequiredFields : []
+   {
+      "Description"    : "",
+      "DisplayName"    : "Glittertind basehendelse",
+      "Fields"         : [],
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010200a2b2ac17a2244b8590398a9d1e7e3e37",
+      "InternalName"   : "GtProjectEventBase",
+      "RequiredFields" : []
    },
-    {
-      Description : "",
-      DisplayName : "Prosjekthendelse",
-      Group       : "Glittertind Innholdstyper",
-      ID          : "0x010200a2b2ac17a2244b8590398a9d1e7e3e3701",
-      InternalName: "GtProjectEvent",
-      Fields : [],
-      RequiredFields : []
+   {
+      "Description"    : "",
+      "DisplayName"    : "Prosjekthendelse",
+      "Fields"         : [],
+      "Group"          : "Glittertind Innholdstyper",
+      "ID"             : "0x010200a2b2ac17a2244b8590398a9d1e7e3e3701",
+      "InternalName"   : "GtProjectEvent",
+      "RequiredFields" : []
    }
 ]
