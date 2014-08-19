@@ -469,15 +469,18 @@ GT.Project.CalendarForm.RenderRelatedLogElements = function () {
         outHtml.push('<div id="gtloglist">',
                         '<h2 class="ms-h2">Elementer fra loggen</h2>',
                         '<table><tbody>',
-                        '<tr><th>Tittel</th><th>Beskrivelse</th><th>Loggelement</th><th>Meldt av</th></tr>');
+                        '<tr><th>Tittel</th>',
+                        '<th>Beskrivelse</th>',
+                        '<th>Loggelement</th>',
+                        '<th>Meldt av</th></tr>');
         for (var i = 0; i < items.length; i++) {
-            outHtml.push('<tr>',
-                            '<td><a href="', items[i].get_viewItemUrl(window.location.toString()), '" >',
-                                '<span class="gt-title">', items[i].Title, '</span></a></td>',
-                                '<td>', items[i].Description, '</td>',
-                                '<td>', items[i].Type, '</td>',
-                                '<td>', items[i].ReportedBy, '</td>',
-                        '</tr>');
+            outHtml.push(i % 2 == 1 ? '<tr>' : '<tr class="ms-HoverBackground-bgColor">',
+                    '<td><a href="', items[i].get_viewItemUrl(window.location.toString()), '" >',
+                    '<span class="gt-title">', items[i].Title, '</span></a></td>',
+                    '<td>', items[i].Description, '</td>',
+                    '<td>', items[i].Type, '</td>',
+                    '<td>', items[i].ReportedBy, '</td>',
+            '</tr>');
         }
         outHtml.push('</tbody></table>',
                 '</div>');
@@ -555,8 +558,20 @@ GT.Project.Model.webModel = function () {
     _this.projectManager = ko.observable();
     _this.projectOwner = ko.observable();
     _this.statusTime = ko.observable();
+    _this.statusTimeCss = ko.computed(function () {
+        if (_this.statusTime() != undefined && _this.statusTime().toLowerCase() === 'etter plan') return 'status-red';
+        return 'status-ok';
+    }, this);
     _this.statusRisk = ko.observable();
+    _this.statusRiskCss = ko.computed(function () {
+        if (_this.statusRisk() != undefined && _this.statusRisk().toLowerCase() === 'høy') return 'status-red';
+        return 'status-ok';
+    }, this);
     _this.statusBudget = ko.observable();
+    _this.statusBudgetCss = ko.computed(function () {
+        if (_this.statusBudget() != undefined && _this.statusBudget().toLowerCase() === 'over budsjett') return 'status-red';
+        return 'status-ok';
+    }, this);
     _this.lastChanged = ko.observable();
     _this.phase = ko.observable();
     _this.matchesFilter = ko.observable(true);
@@ -718,4 +733,4 @@ function splitArray(a, maxCapacity) {
         i += size;
     }
     return out;
-}
+};

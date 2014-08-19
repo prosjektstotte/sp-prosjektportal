@@ -69,7 +69,7 @@
 			        <h2 style="text-align:justify;" class="ms-webpart-titleText"><nobr><span>Om prosjektet</span><span id="WebPartCaptionWPQ2"></span></nobr></h2>
                     <div class="projectMetadata">
                         <table>
-                            <tr>
+                            <tr class="ms-HoverBackground-bgColor">
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtProjectNumber" />
                                 </td>
@@ -85,7 +85,7 @@
                                     <Taxonomy:TaxonomyFieldControl FieldName="GtProjectServiceArea" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="ms-HoverBackground-bgColor">
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtProjectType" />
                                 </td>
@@ -101,7 +101,7 @@
                                     <Taxonomy:TaxonomyFieldControl FieldName="GtProjectPhase" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
-                            <tr class="GtProjectManager">
+                            <tr class="GtProjectManager ms-HoverBackground-bgColor">
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtProjectManager" />
                                 </td>
@@ -117,7 +117,7 @@
                                     <SharePoint:UserField FieldName="GtProjectOwner" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="ms-HoverBackground-bgColor">
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtStartDate" />
                                 </td>
@@ -133,7 +133,7 @@
                                     <SharePoint:DateTimeField FieldName="GtEndDate" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="ms-HoverBackground-bgColor">
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtStatusRisk" />
                                 </td>
@@ -149,7 +149,7 @@
                                     <SharePoint:CheckBoxChoiceField FieldName="GtStatusTime" ControlMode="Display" runat="server" />
                                 </td>
                             </tr>
-                            <tr>
+                            <tr class="ms-HoverBackground-bgColor">
                                 <td>
                                     <SharePoint:FieldLabel runat="server" FieldName="GtStatusBudget" />
                                 </td>

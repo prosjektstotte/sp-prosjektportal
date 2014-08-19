@@ -70,9 +70,10 @@
 
     <SharePoint:ScriptBlock runat="server">if(typeof(MSOLayout_MakeInvisibleIfEmpty) == "function") {MSOLayout_MakeInvisibleIfEmpty();}</SharePoint:ScriptBlock>
     <script type=text/javascript>
-        _spBodyOnLoadFunctionNames.push("SetFocusModeOnPage");
-        function SetFocusModeOnPage() {
-            GT.Common.SetFullScreenModeForCurrentPage(true);
-        }
+        GT.jQuery(document).ready(function() {
+            SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function() {
+                GT.Common.SetFullScreenModeForCurrentPage(true);
+            });
+        });
     </script>
 </asp:Content>

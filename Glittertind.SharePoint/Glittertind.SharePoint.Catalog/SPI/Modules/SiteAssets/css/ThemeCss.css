@@ -1,0 +1,253 @@
+﻿/* JUST FOR REFERENCE - NOT ACTUALLY USED - WILL BE REMOVED */
+.ms-lightbox
+{
+min-width:400px;
+min-height:100%;
+ background-color:rgba(255, 255, 255, 0.90);
+}
+.ms-accentText,.ms-accentText:visited
+{
+ color:#393;
+}
+.ms-metadata,
+.ms-descriptiontext
+{
+ color:#777;
+}
+.ms-helperText,
+input.ms-helperText
+{
+ color:#777;
+}
+.ms-subtleLink:link,
+.ms-subtleLink:visited,
+.ms-atMention:link,
+.ms-atMention:visited,
+.ms-hashTag:link,
+.ms-hashTag:visited
+{
+ color:#444;
+}
+.ms-subtleLink:hover,
+.ms-atMention:hover,
+.ms-hashTag:hover
+{
+ color:#393;
+text-decoration:none;
+}
+.ms-subtleLink:active,
+.ms-atMention:active,
+.ms-hashTag:active
+{
+ color:#287A28;
+text-decoration:none;
+}
+.ms-calloutLink:link,
+a.ms-calloutLink:visited,
+.ms-calloutLinkDisabled,
+.ms-commandLink,
+.ms-commandLink:visited,
+.ms-secondaryCommandLink,
+.ms-secondaryCommandLink:visited
+{
+ font-family:"Segoe UI","Segoe UI","Segoe",Tahoma,Helvetica,Arial,sans-serif;
+ color:#262626;
+text-transform:uppercase;
+text-decoration:none;
+}
+.ms-calloutLink:hover,
+.ms-commandLink:hover,
+.ms-secondaryCommandLink:hover
+{
+ color:#393;
+text-decoration:none;
+}
+.ms-calloutLink:active,
+.ms-commandLink:active,
+.ms-secondaryCommandLink:active,
+.ms-commandGlyph:active
+{
+ color:#287A28;
+}
+.ms-heroCommandLink,
+.ms-heroCommandLink:visited
+{
+ color:#393;
+text-decoration:none;
+}
+.ms-heroCommandLink:hover,
+.ms-heroCommandLink:active
+{
+ color:#287A28;
+text-decoration:none;
+}
+.ms-calloutLinkDisabled:link,
+.ms-calloutLinkDisabled:visited,
+a.ms-calloutLinkDisabled:hover,
+.ms-calloutLinkDisabled:active,
+.ms-commandLinkDisabled:link,
+.ms-commandLinkDisabled:visited,
+.ms-commandLinkDisabled:hover,
+.ms-commandLinkDisabled:active
+{
+ color:#B1B1B1;
+cursor:default;
+border-style:none;
+}
+.ms-core-form-error,
+.ms-error,
+.ms-formvalidation,
+.ms-diffdeletenostrike,
+.ms-diffdelete
+{
+ color:#f00;
+}
+.ms-emphasis{
+ color:#fff;
+ background-color:#393;
+}
+.ms-core-needIEFilter .ms-emphasis{
+background-color:transparent;
+ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff339933, endColorstr=#ff339933);";
+}
+.ms-emphasisBorder{
+ border:1px solid #2B872B;
+}
+.ms-emphasisBorder:hover{
+ border-color:#277927;
+}
+.ms-subtleEmphasis{
+ color:#666;
+ background-color:rgba(239, 239, 239, 0.78);
+}
+.ms-subtleEmphasisCommand{
+ color:#262626;
+ background-color:rgba(239, 239, 239, 0.78);
+}
+.ms-core-needIEFilter .ms-subtleEmphasisCommand{
+background-color:transparent;
+ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#c6efefef, endColorstr=#c6efefef);";
+}
+.ms-sideNav:hover,
+.ms-sideNav:active{
+ background-color:rgba(203, 237, 203, 0.50);
+}
+.ms-core-needIEFilter .ms-sideNav:hover,
+.ms-core-needIEFilter .ms-sideNav:active{
+background-color:transparent;
+ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#7fcbedcb, endColorstr=#7fcbedcb);";
+}
+.ms-sideNav-selected{
+ background-color:rgba(239, 239, 239, 0.78);
+}
+.ms-core-needIEFilter .ms-sideNav-selected{
+background-color:transparent;
+ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#c6efefef, endColorstr=#c6efefef);";
+}
+.ms-topBar{
+ color:#333;
+ background-color:rgba(239, 239, 239, 0.80);
+}
+.ms-core-needIEFilter .ms-topBar{
+background-color:transparent;
+ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#cbefefef, endColorstr=#cbefefef);";
+}
+.ms-topBar:hover{
+ color:#333;
+}
+.ms-topBar:active{
+ color:#333;
+}
+.ms-shadow
+{
+box-shadow:0px 0px 7px 0px rgba(0,0,0,0.47);
+}
+.ms-bgOverlay{
+ background-color:rgba(255, 255, 255, 0.90);
+}
+.ms-core-needIEFilter .ms-bgOverlay{
+background-color:transparent;
+ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#e5ffffff, endColorstr=#e5ffffff);";
+}
+.ms-bgDisabled{
+ background-color:#FDFDFD;
+}
+.ms-core-needIEFilter .ms-bgDisabled{
+background-color:transparent;
+ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#fffdfdfd, endColorstr=#fffdfdfd);";
+}
+.ms-bgHeader{
+ background-color:rgba(248, 248, 248, 0.85);
+}
+.ms-core-needIEFilter .ms-bgHeader{
+background-color:transparent;
+ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#d9f8f8f8, endColorstr=#d9f8f8f8);";
+}
+.ms-bgFooter{
+ background-color:rgba(239, 239, 239, 0.80);
+}
+.ms-core-needIEFilter .ms-bgFooter{
+background-color:transparent;
+ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#cbefefef, endColorstr=#cbefefef);";
+}
+.ms-bgHoverable:hover{
+ background-color:rgba(203, 237, 203, 0.50);
+}
+.ms-core-needIEFilter .ms-bgHoverable:hover{
+background-color:transparent;
+ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#7fcbedcb, endColorstr=#7fcbedcb);";
+}
+.ms-bgSelected{
+ background-color:rgba(132, 214, 132, 0.50);
+}
+.ms-core-needIEFilter .ms-bgSelected{
+background-color:transparent;
+ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f84d684, endColorstr=#7f84d684);";
+}
+.ms-ContentAccent1-fontColor{ color:#393;}
+.ms-ContentAccent2-fontColor{ color:#FF0097;}
+.ms-ContentAccent3-fontColor{ color:#960;}
+.ms-ContentAccent4-fontColor{ color:#F09609;}
+.ms-ContentAccent5-fontColor{ color:#A200FF;}
+.ms-ContentAccent6-fontColor{ color:#00ABA9;}
+.ms-TileText-fontColor{ color:#fff;}
+.ms-TopBarText-fontColor{ color:#333;}
+.ms-ContentAccent1-bgColor{ background-color:#393;}
+.ms-ContentAccent2-bgColor{ background-color:#FF0097;}
+.ms-ContentAccent3-bgColor{ background-color:#960;}
+.ms-ContentAccent4-bgColor{ background-color:#F09609;}
+.ms-ContentAccent5-bgColor{ background-color:#A200FF;}
+.ms-ContentAccent6-bgColor{ background-color:#00ABA9;}
+.ms-SelectionBackground-bgColor{ background-color:rgba(132, 214, 132, 0.50);}
+.ms-HoverBackground-bgColor{ background-color:rgba(203, 237, 203, 0.50);}
+.ms-TileBackgroundOverlay-bgColor{ background-color:rgba(0, 0, 0, 0.60);}
+.ms-EmphasisBackground-bgColor{ background-color:#393;}
+.ms-TopBarBackground-bgColor{ background-color:rgba(239, 239, 239, 0.80);}
+.ms-EmphasisHoverBackground-bgColor{ background-color:#2B872B;}
+.ms-core-needIEFilter .ms-ContentAccent1-bgColor{ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff339933, endColorstr=#ff339933);";}
+.ms-core-needIEFilter .ms-ContentAccent2-bgColor{ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffff0097, endColorstr=#ffff0097);";}
+.ms-core-needIEFilter .ms-ContentAccent3-bgColor{ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff996600, endColorstr=#ff996600);";}
+.ms-core-needIEFilter .ms-ContentAccent4-bgColor{ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#fff09609, endColorstr=#fff09609);";}
+.ms-core-needIEFilter .ms-ContentAccent5-bgColor{ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffa200ff, endColorstr=#ffa200ff);";}
+.ms-core-needIEFilter .ms-ContentAccent6-bgColor{ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff00aba9, endColorstr=#ff00aba9);";}
+.ms-core-needIEFilter .ms-SelectionBackground-bgColor{ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f84d684, endColorstr=#7f84d684);";}
+.ms-core-needIEFilter .ms-HoverBackground-bgColor{ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#7fcbedcb, endColorstr=#7fcbedcb);";}
+.ms-core-needIEFilter .ms-TileBackgroundOverlay-bgColor{ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);";}
+.ms-core-needIEFilter .ms-EmphasisBackground-bgColor{ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff339933, endColorstr=#ff339933);";}
+.ms-core-needIEFilter .ms-TopBarBackground-bgColor{ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#cbefefef, endColorstr=#cbefefef);";}
+.ms-core-needIEFilter .ms-EmphasisHoverBackground-bgColor{ -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff2b872b, endColorstr=#ff2b872b);";}
+.ms-ContentAccent1-borderColor{ border-color:#393;}
+.ms-ContentAccent2-borderColor{ border-color:#FF0097;}
+.ms-ContentAccent3-borderColor{ border-color:#960;}
+.ms-ContentAccent4-borderColor{ border-color:#F09609;}
+.ms-ContentAccent5-borderColor{ border-color:#A200FF;}
+.ms-ContentAccent6-borderColor{ border-color:#00ABA9;}
+.ms-StrongLines-borderColor{ border-color:#7ED47E;}
+.ms-Lines-borderColor{ border-color:#ABABAB;}
+.ms-SubtleLines-borderColor{ border-color:#E5E5E5;}
+.ms-DisabledLines-borderColor{ border-color:#E1E1E1;}
+.ms-AccentLines-borderColor{ border-color:#3CB63C;}
+.ms-FocusedAccentLine-borderColor{ border-color:#2a8dd4;}
+.ms-RowAccent-borderColor{ border-color:#393;}
+.ms-EmphasisBorder-borderColor{ border-color:#2B872B;}
+.ms-TopBarBorder-borderColor{ border-color:#f0f0f0;}

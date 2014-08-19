@@ -12,7 +12,6 @@
 .projectFrontPage .projectMetadata table{width:100%;margin-bottom:10px;}
 .projectFrontPage .projectMetadata table td{padding:3px;}
 .projectFrontPage .projectMetadata table tr td:first-child{width:120px;}
-.projectFrontPage .projectMetadata table tr:nth-child(odd) td{background-color:#E0F5E0;}
 .projectFrontPage .missingMetadataWarning {display:none;color:red;margin:10px 0;}
 .projectFrontPage .projectMetadata a#editPageMetaLink,.projectFrontPage .projectMetadata a#editPageMetaLink:visited,.projectFrontPage .projectMetadata a#editPageMetaLink:active{color:#666;font-size:.9em;text-decoration:none;}
 ul.gt-List{list-style-type:none;padding-left:0;}
@@ -69,15 +68,16 @@ ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:12px;}
 }
 
-.gt-result-table td {padding: 4px;border-right:1px solid;border-spacing: 0;margin: 0;}
-table.gt-result-table, table.gt-result-table th{border-collapse: collapse;border: 1px solid;padding: 4px;text-align:left;}
-table.gt-result-table tr:nth-child(even){background-color: #ddd;}
+.loadingSpinner {vertical-align: top; margin: 15px;}
+.gt-result-table {width: 100%;}
+.gt-result-table tr th {font-weight: normal;font-size: 0.95em;color: rgb(119, 119, 119);text-align: left;text-decoration: none;vertical-align: middle;white-space: nowrap;padding:5px 4px;}
+.gt-result-table,.gt-result-table td, .gt-result-table th{padding: 4px;text-align:left;}
+.gt-result-table .status-red{background-color: rgba(255, 75, 77, 0.4); }
 
 #gtloglist {max-width: 700px;}
 #gtloglist h2 {margin-bottom: 10px;}
 #gtloglist table tr th {font-weight: normal;font-size: 0.85em;color: rgb(119, 119, 119);text-align: left;text-decoration: none;vertical-align: middle;white-space: nowrap;padding:0 5px;}
 #gtloglist table tr td {padding: 5px;}
-#gtloglist table tr:nth-child(odd) td {background-color:#E0F5E0;}
 
 #gtchecklist {width: 514px;}
 #gtchecklist ul {padding-left: 10px;}
