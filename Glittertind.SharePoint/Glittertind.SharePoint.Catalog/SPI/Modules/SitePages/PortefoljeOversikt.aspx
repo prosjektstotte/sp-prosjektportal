@@ -72,7 +72,7 @@
     <script type=text/javascript>
         _spBodyOnLoadFunctionNames.push("SetFocusModeOnPage");
         function SetFocusModeOnPage() {
-            SetFullScreenMode(true);
+            GT.Common.SetFullScreenModeForCurrentPage(true);
         }
     </script>
 </asp:Content>

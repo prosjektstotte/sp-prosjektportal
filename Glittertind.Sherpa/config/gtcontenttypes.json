@@ -39,8 +39,11 @@
          "GtStartDate",
          "GtEndDate",
          "GtStatusRisk",
+         "GtStatusRiskComment",
          "GtStatusTime",
+         "GtStatusTimeComment",
          "GtStatusBudget",
+         "GtStatusBudgetComment",
          "GtAverageRisk",
          "GtProjectGoals"
       ],

@@ -83,6 +83,15 @@
       "InternalName" : "GtStatusRisk",
       "Type"         : "Choice"
    },
+    {
+      "Description"  : "Kommentar til status risiko angitt over",
+      "DisplayName"  : "Kommentar, risiko",
+      "Group"        : "Glittertind Områdekolonner",
+      "ID"           : "b5932b1d-bee4-410c-aac2-54a7cd9d5381",
+      "InternalName" : "GtStatusRiskComment",
+      "NumLines"     : "3",
+      "Type"         : "Note"
+   },
    {
       "Choices"      : [
          "Foran plan",
@@ -97,6 +106,15 @@
       "ID"           : "1447ef51-8e9b-4d16-aa2a-526dc9f1539e",
       "InternalName" : "GtStatusTime",
       "Type"         : "Choice"
+   },
+    {
+      "Description"  : "Kommentar til status tid angitt over",
+      "DisplayName"  : "Kommentar, tid",
+      "Group"        : "Glittertind Områdekolonner",
+      "ID"           : "cb1fc0b7-cbb8-40af-a782-c6b9ad4ee40f",
+      "InternalName" : "GtStatusTimeComment",
+      "NumLines"     : "3",
+      "Type"         : "Note"
    },
    {
       "Choices"      : [
@@ -113,6 +131,15 @@
       "ID"           : "a9902b9d-8aad-40df-9788-ba73c64c3cb5",
       "InternalName" : "GtStatusBudget",
       "Type"         : "Choice"
+   },
+    {
+      "Description"  : "Kommentar til status budsjett angitt over",
+      "DisplayName"  : "Kommentar, budsjett",
+      "Group"        : "Glittertind Områdekolonner",
+      "ID"           : "f2bb8a37-f4cf-43a4-b180-0b07ab14abd5",
+      "InternalName" : "GtStatusBudgetComment",
+      "NumLines"     : "3",
+      "Type"         : "Note"
    },
    {
       "Description"  : "",
