@@ -39,7 +39,7 @@
       <Property Name="ManagedPropertyMapping" Type="string" Value="'Path':'Path','Title':'Title', 'ProjectManager':'GtProjectManagerOWSUSER','ProjectOwner':'GtProjectOwnerOWSUSER','ProjectPhase':'owstaxIdGtProjectPhase','Created':'Created'" />
       <Property Name="HtmlDesignLockedFile" Value="FALSE" />
     </File>
-    <File Path="Glittertind_Item_Project_details.js" Url="Glittertind_Item_Project_details" Type="GhostableInLibrary" Level="Published" ReplaceContent="TRUE" >
+    <File Path="Glittertind_Item_Project_details.js" Url="Glittertind_Item_Project_details.js" Type="GhostableInLibrary" Level="Published" ReplaceContent="TRUE" >
       <Property Name="Title" Type="string" Value="Glittertind Prosjektdetaljer" />
       <Property Name="MasterPageDescription" Type="string" Value="" />
       <Property Name="ContentType" Value="0x0101002039C03B61C64EC4A04F5361F385106603" />
