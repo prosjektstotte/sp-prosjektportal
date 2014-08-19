@@ -1,13 +1,12 @@
 ﻿{
-   "Description" : "",
-   "Language"    : "1044",
+   "Description" : "Projectportal rotområde",
    "Name"        : "",
    "Quicklaunch" : {
 		"Hjem": "",
 		"Standarddokumenter": "Standarddokumenter",
 		"Porteføljeoversikt" : "SitePages/PortefoljeOversiktAlternativ.aspx",
 		"Erfaringslogg": "SitePages/Erfaringslogg.aspx",
-		"Områdeinnhold": ""
+		"Områdeinnhold": "_layouts/15/viewlsts.aspx"
 	},
    "SiteFeatures": [
 	{
@@ -20,7 +19,6 @@
 		"FeatureName": "Glittertind.SharePoint.Project_SiteProjectWebTemplate"
 	}
    ],
-   "Template"    : "",
    "Url"         : "/",
    "WebFeatures" : [
 	{
