@@ -17,6 +17,7 @@
     <File Path="html\gt.csomprojectdir.html" Url="html/gt.csomprojectdir.html" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="html\gt.csomprojectoverview.html" Url="html/gt.csomprojectoverview.html" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="html\gt.alldocumentsview.html" Url="html/gt.alldocumentsview.html" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
+    <File Path="html\gt.checklistform.html" Url="html/gt.checklistform.html" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\data\sjekkliste.data.json" Url="config/data/sjekkliste.data.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\data\oppgaver.data.json" Url="config/data/oppgaver.data.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\dokumenter.json" Url="config/lists/dokumenter.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />

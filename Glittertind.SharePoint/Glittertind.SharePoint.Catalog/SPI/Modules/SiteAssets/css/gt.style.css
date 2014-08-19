@@ -1,4 +1,5 @@
-﻿.newProjectPage h1{margin-left:10px;}
+﻿.validationMessage { color: red;}
+.newProjectPage h1{margin-left:10px;}
 .newProjectPage .projectInputForm{width:263px;margin-left:20px;}
 .newProjectPage .projectInputForm label{display:inline-table;width:250px;margin:0;}
 .newProjectPage .projectInputForm label span{color:red;}
@@ -12,7 +13,7 @@
 .projectFrontPage .projectMetadata table td{padding:3px;}
 .projectFrontPage .projectMetadata table tr td:first-child{width:120px;}
 .projectFrontPage .projectMetadata table tr:nth-child(odd) td{background-color:#E0F5E0;}
-.projectFrontPage .missingMetadataWarning{display:none;color:red;margin:10px 0;}
+.projectFrontPage .missingMetadataWarning {display:none;color:red;margin:10px 0;}
 .projectFrontPage .projectMetadata a#editPageMetaLink,.projectFrontPage .projectMetadata a#editPageMetaLink:visited,.projectFrontPage .projectMetadata a#editPageMetaLink:active{color:#666;font-size:.9em;text-decoration:none;}
 ul.gt-List{list-style-type:none;padding-left:0;}
 ul.gt-List .gt-projectItem{display:block;margin-bottom:20px;}

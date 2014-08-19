@@ -1,0 +1,19 @@
+﻿<script type="text/javascript" src="../../../SiteAssets/gt/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../../../SiteAssets/gt/js/gt.generics.js"></script>
+<script type="text/javascript" src="../../../SiteAssets/gt/js/gt.project.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../SiteAssets/gt/css/gt.style.css">
+
+<script type="text/javascript" language="javascript">
+    function PreSaveAction() {
+        GT.jQuery('.validationMessage').remove();
+        var status = GT.jQuery('#onetIDListForm table.ms-formtable > tbody > tr select[title="Status"] option:selected');
+        if (status.text() === 'Ignorert') {
+            var comment = GT.jQuery('#onetIDListForm table.ms-formtable > tbody > tr textarea[title = "Kommentar"]');
+            if (comment.val() === '') {
+                comment.after('<div class="validationMessage">Du må angi en kommentar for hvorfor sjekklistepunktet er ignorert</div>');
+                return false;
+            }
+        }
+        return true;
+    }
+</script>

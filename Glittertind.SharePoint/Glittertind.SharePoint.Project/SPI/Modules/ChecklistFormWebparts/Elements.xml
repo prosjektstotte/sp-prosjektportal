@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="ChecklistFormWebparts" Url="Lists/Sjekkliste">
+    <File Path="ChecklistFormWebparts\FormPlaceholder.aspx" Url="EditForm.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="TRUE" ReplaceContent="FALSE">
+      <AllUsersWebPart WebPartOrder="0" WebPartZoneID="Main">
+        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+        <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+          <Title>See file gt.checklistform.html</Title>
+          <FrameType>None</FrameType>
+          <Description>Gjør at forfattere kan skrive inn innhold i rik tekst.</Description>
+          <IsIncluded>true</IsIncluded>
+          <ZoneID>Main</ZoneID>
+          <PartOrder>0</PartOrder>
+          <FrameState>Normal</FrameState>
+          <Height />
+          <Width />
+          <AllowRemove>true</AllowRemove>
+          <AllowZoneChange>true</AllowZoneChange>
+          <AllowMinimize>true</AllowMinimize>
+          <AllowConnect>true</AllowConnect>
+          <AllowEdit>true</AllowEdit>
+          <AllowHide>true</AllowHide>
+          <IsVisible>true</IsVisible>
+          <DetailLink />
+          <HelpLink />
+          <HelpMode>Modeless</HelpMode>
+          <Dir>Default</Dir>
+          <PartImageSmall />
+          <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
+          <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
+          <IsIncludedFilter />
+          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
+          <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">../../../SiteAssets/gt/html/gt.checklistform.html</ContentLink>
+          <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor"></Content>
+          <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+        </WebPart>]]>
+      </AllUsersWebPart>
+    </File>
+  </Module>
+</Elements>
