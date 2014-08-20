@@ -107,6 +107,8 @@
     <Content Include="SPI\Modules\SiteAssets\html\gt.csomprojectdir_newprojects.html" />
     <Content Include="SPI\Modules\SiteAssets\js\knockout-3.1.0.js" />
     <Content Include="SPI\Modules\SitePages\PortefoljeOversikt.aspx" />
+    <None Include="SPI\Modules\DefaultDocuments\Prosjektbegrunnelse.docx" />
+    <None Include="SPI\Modules\DefaultDocuments\Styringsdokument.docx" />
     <None Include="SPI\Modules\PropertyBag\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{07ef7ea5-6e7a-42e1-b29f-6f4ae59e3cda}</SharePointProjectItemId>
     </None>
@@ -117,7 +119,6 @@
       <SharePointProjectItemId>{e9afb12f-7344-4716-8c81-f637d12e009d}</SharePointProjectItemId>
     </None>
     <None Include="SPI\Modules\DefaultDocuments\Sluttrapport.docx" />
-    <None Include="SPI\Modules\DefaultDocuments\Styringsdokumentasjon.docx" />
     <None Include="SPI\Modules\DisplayTemplates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1ba5f944-d13c-4375-8436-1c263db2347d}</SharePointProjectItemId>
     </None>

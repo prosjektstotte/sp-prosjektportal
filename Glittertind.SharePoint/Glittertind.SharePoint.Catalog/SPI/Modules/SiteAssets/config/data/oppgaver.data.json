@@ -198,7 +198,7 @@
                 "Fields": [
                     {
                         "Name": "Title",
-                        "Value": "Allokere nøkkelressurser for prosjektet og gjøre nødvendige avtaler for å sikre ressurstilgang, samt sette sammen en prosjektgruppe   "
+                        "Value": "Allokere nøkkelressurser for prosjektet og gjøre nødvendige avtaler for å sikre ressurstilgang, samt sette sammen en prosjektgruppe"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -282,7 +282,7 @@
                 "Fields": [
                     {
                         "Name": "Title",
-                        "Value": "Vurdere om det er gjort en tilstrekkelig evaluering av ulike alternative investeringer for å sikre at prosjektforslaget representerer et riktig valg å gå videre med, inklusive kvantitative og kvalitative gevinstanalyser og sammenligninger av kost/nytte for hvert alternativ"
+                        "Value": "Vurdere om det er gjort en tilstrekkelig evaluering av ulike alternativer å sikre at prosjektforslaget gir et riktig valg å gå videre med. (Husk kvantitative og kvalitative gevinstanalyser og sammenligninger av kost/nytte for hvert alternativ)"
                     },
                     {
                         "Name": "GtProjectPhase",

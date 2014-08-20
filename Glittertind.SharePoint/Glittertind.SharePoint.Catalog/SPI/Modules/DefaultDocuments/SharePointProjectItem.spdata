@@ -6,7 +6,8 @@
     <ProjectItemFile Source="Prosjektforslag.docx" Target="DefaultDocuments\" Type="ElementFile" />
     <ProjectItemFile Source="Prosjektmandat.docx" Target="DefaultDocuments\" Type="ElementFile" />
     <ProjectItemFile Source="Sluttrapport.docx" Target="DefaultDocuments\" Type="ElementFile" />
-    <ProjectItemFile Source="Styringsdokumentasjon.docx" Target="DefaultDocuments\" Type="ElementFile" />
     <ProjectItemFile Source="Placeholder.txt" Target="DefaultDocuments\" Type="ElementFile" />
+    <ProjectItemFile Source="Styringsdokument.docx" Target="DefaultDocuments\" Type="ElementFile" />
+    <ProjectItemFile Source="Prosjektbegrunnelse.docx" Target="DefaultDocuments\" Type="ElementFile" />
   </Files>
 </ProjectItem>
