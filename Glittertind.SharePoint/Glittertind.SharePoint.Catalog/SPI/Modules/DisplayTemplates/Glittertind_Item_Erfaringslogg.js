@@ -43,15 +43,17 @@ myItem.tilProsjektStyre = $getItemValue(ctx, "TilProsjektStyre");
 myItem.lastModified = $getItemValue(ctx, "LastModifiedTime");
 myItem.parentWebUrl = $getItemValue(ctx, "SPWebUrl");
 
+var trClass = 'erfaring';
+if (ctx.CurrentItemIdx % 2 === 0) {
+    trClass = trClass + ' ms-HoverBackground-bgColor';
+}
 
 AddPostRenderCallback(ctx, function()
 {              
-	console.log("H E L L O");
      var rootElement = document.getElementById(myItem.id);
 	 var parentProjectHyperLink = rootElement.getElementsByClassName("csom-projectname")[0];
 	 
 	 var loadSiteName = function(item){
-		console.log("H E L L O");
 		var clientContext = new SP.ClientContext(item.href);
 		var web = clientContext.get_web();
 		clientContext.load(web, 'Title');
@@ -65,15 +67,12 @@ AddPostRenderCallback(ctx, function()
 
 ms_outHtml.push(''
 ,''
-,'		<tr id="', myItem.id ,'">'
+, '		<tr id="', myItem.id, '" class="', trClass,'">'
 ,'            <td>'
 ,'				<a href="', myItem.url ,'">', myItem.title ,'</a>'
 ,'			</td>'
 ,'			<td>'
 ,'				<a class="csom-projectname" href="', myItem.parentWebUrl ,'"></a>'
-,'			</td>'
-,'			<td>'
-,'				', myItem.meldtAv ,''
 ,'			</td>'
 ,'			<td>'
 ,'				', myItem.loggBeskrivelse ,''

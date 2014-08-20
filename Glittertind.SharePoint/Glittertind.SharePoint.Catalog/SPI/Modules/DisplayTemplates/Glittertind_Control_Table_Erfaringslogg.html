@@ -50,9 +50,7 @@ var noResultsClassName = "ms-srch-result-noResults";
 var ListRenderRenderWrapper = function(itemRenderResult, inCtx, tpl)
 {
     var iStr = [];
-    iStr.push('<tr>');
     iStr.push(itemRenderResult);
-    iStr.push('</tr>');
     return iStr.join('');
 }
 ctx['ItemRenderWrapper'] = ListRenderRenderWrapper;
