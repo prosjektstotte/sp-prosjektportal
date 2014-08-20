@@ -1,6 +1,6 @@
 ﻿{
     "Name": "Møtekalender",
-    "OnQuickLaunch": true,
+    "OnQuickLaunch": false,
     "VersioningEnabled":  true,
     "Description": "",
     "Views": [

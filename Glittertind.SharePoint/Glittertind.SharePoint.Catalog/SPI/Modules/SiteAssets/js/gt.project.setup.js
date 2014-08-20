@@ -73,38 +73,67 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
     var web = clientContext.get_web();
     var quickLaunchNodeCollection = web.get_navigation().get_quickLaunch();
 
-    GT.jQuery.when(GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/quicklaunch"))
-    .then(function (files) {
-        for (var fileIndex = 0; fileIndex < files.length; fileIndex++) {
-            GT.jQuery.getJSON(files[fileIndex].ServerRelativeUrl)
-            .then(function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    var linkNode = data[i];
-                    var linkUrl = GT.Project.Setup.GetUrlWithoutTokens(linkNode.Url);
+    clientContext.load(web);
+    clientContext.load(quickLaunchNodeCollection);
+    clientContext.executeQueryAsync(function() {
+        GT.jQuery.when(GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/quicklaunch"))
+        .then(function (files) {
+            for (var fileIndex = 0; fileIndex < files.length; fileIndex++) {
+                GT.jQuery.getJSON(files[fileIndex].ServerRelativeUrl)
+                .then(function (data) {
+                    var temporaryQuickLaunch = [];
+                    var index = quickLaunchNodeCollection.get_count()-1;
+                    while (index >= 0) {
+                        var oldNode = quickLaunchNodeCollection.itemAt(index);
+                        temporaryQuickLaunch.push(oldNode);
+                        oldNode.deleteObject();
+                        index--;
+                    }
+                    clientContext.executeQueryAsync(function() {
+                        for (var i = 0; i < data.length; i++) {
+                            var linkNode = data[i];
+                            var nodeTitle = linkNode.Title;
+                            var linkUrl = GT.Project.Setup.GetUrlWithoutTokens(linkNode.Url);
 
-                    var newNode = new SP.NavigationNodeCreationInformation();
-                    newNode.set_title(linkNode.Title);
-                    newNode.set_url(linkUrl);
-                    newNode.set_asLastNode(true);
+                            var existingNode = null;
+                            for (var k = 0; k < temporaryQuickLaunch.length; k++) {
+                                if (temporaryQuickLaunch[k].get_title() === nodeTitle) {
+                                    existingNode = temporaryQuickLaunch[k];
+                                    break;
+                                }
+                            }
+                            var newNode = new SP.NavigationNodeCreationInformation();
+                            newNode.set_title(nodeTitle);
+                            if (existingNode === null || existingNode === undefined) {
+                                newNode.set_url(linkUrl);
+                            } else {
+                                newNode.set_url(existingNode.get_url());
+                            }
+                            newNode.set_asLastNode(true);
+                            quickLaunchNodeCollection.add(newNode);
 
-                    quickLaunchNodeCollection.add(newNode);
-                    console.log('Adding the link node ' + linkNode.Title + ' to the quicklaunch');
-                };
-                clientContext.executeQueryAsync(function () { }, function () { });
-            })
-            .done(function () {
-                deferred.resolve();
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log('Error ' + errorThrown);
-                deferred.reject();
-            });
-        }
-    })
-    .fail(function () {
-        deferred.reject();
+                            console.log('Adding the link node ' + linkNode.Title + ' to the quicklaunch');
+                        };
+                        clientContext.executeQueryAsync(function() {}, function () {});
+                    }, function (jqXHR, textStatus, errorThrown) {
+                        console.log('Error deleting objects ' + errorThrown);
+                    });
+                })
+                .done(function () {
+                    deferred.resolve();
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    console.log('Error ' + errorThrown);
+                    deferred.reject();
+                });
+            }
+        })
+        .fail(function () {
+            deferred.reject();
+        });
+    }, function() {
+        console.log("Couldnt load quicklaunchcollection");
     });
-
     return deferred.promise();
 };
 

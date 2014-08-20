@@ -1,6 +1,6 @@
 ﻿{
     "Name": "Dokumenter",
-    "OnQuickLaunch": true,
+    "OnQuickLaunch": false,
     "VersioningEnabled":  true,
     "Description": "",
     "Views": [

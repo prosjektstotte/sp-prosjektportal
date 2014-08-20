@@ -1,6 +1,6 @@
 ﻿{
     "Name": "Oppgaver",
-    "OnQuickLaunch": true,
+    "OnQuickLaunch": false,
     "VersioningEnabled":  true,
     "Description": "",
     "Views": [

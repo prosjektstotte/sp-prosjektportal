@@ -1,6 +1,6 @@
 ﻿{
     "Name": "Kommunikasjonsplan",
-    "OnQuickLaunch": true,
+    "OnQuickLaunch": false,
     "VersioningEnabled":  true,
     "Description": "",
     "Views": [

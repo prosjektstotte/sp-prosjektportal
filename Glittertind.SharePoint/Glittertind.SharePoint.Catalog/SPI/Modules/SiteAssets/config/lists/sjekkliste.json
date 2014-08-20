@@ -1,6 +1,6 @@
 ﻿{
     "Name": "Sjekkliste",
-    "OnQuickLaunch": true,
+    "OnQuickLaunch": false,
     "VersioningEnabled":  true,
     "Description": "",
     "Views": [

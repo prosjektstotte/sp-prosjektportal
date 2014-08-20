@@ -1,18 +1,62 @@
 ﻿[
     {
+        "Url": "",
+        "Title": "Hjem"
+    },
+    {
+        "Url": "Lists/Prosjektlogg",
+        "Title": "Prosjektlogg"
+    },
+    {
+        "Url": "Lists/Interessentregister",
+        "Title": "Interessentregister"
+    },
+    {
+        "Url": "Lists/Kommunikasjonsplan",
+        "Title": "Kommunikasjonsplan"
+    },
+    {
+        "Url": "Lists/Usikkerhet",
+        "Title": "Usikkerhet"
+    },
+    {
+        "Url": "Lists/Oppgaver",
+        "Title": "Oppgaver"
+    },
+    {
         "Url": "SitePages/Motereferat.aspx",
         "Title": "Møtereferat"
     },
     {
+        "Url": "Lists/Motekalender",
+        "Title": "Møtekalender"
+    },
+    {
+        "Url": "Dokumenter",
+        "Title": "Dokumenter"
+    },
+    {
+        "Url": "Lists/Sjekkliste",
+        "Title": "Sjekkliste"
+    },
+    {
+        "Url": "",
+        "Title": "Notatblokk"
+    },
+    {
         "Url": "SitePages/Ufiltrert.aspx",
-        "Title": "Ufiltrert prosjektvisning"
+        "Title": "Forside alle faser"
+    },
+    {
+        "Url": "_layouts/15/viewlsts.aspx",
+		"Title": "Områdeinnhold"
+    },
+    {
+        "Url": "{SiteUrl}/_layouts/15/osssearchresults.aspx?u={SiteUrlEncoded}&k=owstaxIdGtProjectPhase%3A%2200%20Ingen%20fase%22",
+        "Title": "Prosjektelementer uten fase"
     },
     {
         "Url": "SitePages/Tilordnet.aspx",
         "Title": "Mine prosjektelementer"
-    },
-    {
-        "Url": "{SiteUrl}/_layouts/15/osssearchresults.aspx?u={SiteUrlEncoded}&k=owstaxIdGtProjectPhase%3A%22Ingen%20fase%22",
-        "Title": "Prosjektelementer uten fase"
     }
 ]

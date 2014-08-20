@@ -1,6 +1,6 @@
 ﻿{
     "Name": "Interessentregister",
-    "OnQuickLaunch": true,
+    "OnQuickLaunch": false,
     "VersioningEnabled":  true,
     "Description": "",
     "Views": [
