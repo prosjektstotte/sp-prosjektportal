@@ -104,6 +104,7 @@
     <Content Include="SPI\Modules\SiteAssets\html\gt.projectlogform.html" />
     <Content Include="SPI\Modules\SiteAssets\html\gt.csomprojectdir.html" />
     <Content Include="SPI\Modules\SiteAssets\html\gt.csomprojectoverview.html" />
+    <Content Include="SPI\Modules\SiteAssets\html\gt.csomprojectdir_newprojects.html" />
     <Content Include="SPI\Modules\SiteAssets\js\knockout-3.1.0.js" />
     <Content Include="SPI\Modules\SitePages\PortefoljeOversikt.aspx" />
     <None Include="SPI\Modules\PropertyBag\SharePointProjectItem.spdata">

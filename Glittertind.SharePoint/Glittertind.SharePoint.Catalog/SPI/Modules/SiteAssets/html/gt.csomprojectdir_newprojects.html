@@ -1,0 +1,16 @@
+﻿<h2 style="text-align:justify;" class="ms-webpart-titleText"><nobr><span>Siste prosjekter</span><span id="WebPartCaptionWPQ7"></span></nobr></h2>
+<div id="gt-csomprojectdir-new-out">
+    <ul class="gt-List" data-bind="foreach: recentlyCreatedProjects(), visible: loaded()" style="display: none;">
+        <li data-bind="">
+            <div class="new gt-projectItem">
+                <h2>
+                    <a href="" data-bind="text: title(), attr: {href: url() }">title</a>
+                </h2>  
+				<span data-bind="text: createdDisplayValue()" ></span>				
+            </div>
+        </li>
+    </ul>
+    <div data-bind="visible: !loaded()" style="display: none;">
+        <img src="/_layouts/15/images/gears_anv4.gif?rev=38" /> vent litt mens vi laster inn data ...
+    </div>
+</div>

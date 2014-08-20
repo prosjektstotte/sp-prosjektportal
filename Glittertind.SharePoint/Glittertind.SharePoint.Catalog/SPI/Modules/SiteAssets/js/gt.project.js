@@ -554,6 +554,7 @@ GT.Project.Model.webModel = function () {
     _this.title = ko.observable();
     _this.url = ko.observable();
     _this.lastChanged = ko.observable();
+    _this.created = ko.observable();
     _this.projectGoal = ko.observable();
     _this.projectManager = ko.observable();
     _this.projectOwner = ko.observable();
@@ -582,6 +583,13 @@ GT.Project.Model.webModel = function () {
         return '';
 
     }, this);
+    _this.createdDisplayValue = ko.computed(function () {
+        if (this.created() != undefined) {
+            return this.created().format("dd. MMM yyyy");
+        }
+        return '';
+
+    }, this);
 };
 
 GT.Project.Model.appViewModel = GT.Project.Model.appViewModel || {};
@@ -591,6 +599,15 @@ GT.Project.get_allProjectsUnderCurrent = function () {
 
     GT.Project.Model.appViewModel.projects = ko.observableArray([]);
     GT.Project.Model.appViewModel.loaded = ko.observable(false);
+    GT.Project.Model.appViewModel.recentlyCreatedProjects = ko.computed(function () {
+        var unsortedProjects = GT.Project.Model.appViewModel.projects().slice(0); // cloning array
+        unsortedProjects.sort(function (a, b) {
+            return b.created() - a.created();
+        });
+
+        return unsortedProjects.slice(0, 5);
+
+    }, GT.Project.Model.appViewModel);
     GT.Project.Model.appViewModel.filter = function (filterObject) {
         var projects = this.projects();
         var keys = Object.keys(filterObject);
@@ -704,6 +721,7 @@ GT.Project.get_allProjectsUnderCurrent = function () {
                 model.statusRisk(fieldValues.GtStatusRisk ? fieldValues.GtStatusRisk : '');
                 model.statusBudget(fieldValues.GtStatusBudget ? fieldValues.GtStatusBudget : '');
                 model.lastChanged(new Date(fieldValues.Last_x0020_Modified));
+                model.created(new Date(fieldValues.Created));
                 model.phase(fieldValues.GtProjectPhase ? fieldValues.GtProjectPhase.Label : '');
                 GT.Project.Model.appViewModel.projects.push(model);
             }
