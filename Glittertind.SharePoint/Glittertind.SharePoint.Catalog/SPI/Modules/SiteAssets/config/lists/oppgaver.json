@@ -19,6 +19,13 @@
 	    },
         {
 	    	"Name": "",
+	    	"Url": "SitePages/Ufiltrert.aspx",
+	        "ViewFields": ["Checkmark", "LinkTitle", "StartDate", "DueDate", "AssignedTo"],
+	        "RowLimit": 100,
+	        "Query": "<OrderBy><FieldRef Name='Created' Ascending='FALSE' /></OrderBy><GroupBy Collapse='TRUE'><FieldRef Name='GtProjectPhase' /></GroupBy>"
+	    },
+        {
+	    	"Name": "",
             "Url": "SitePages/Motereferat.aspx",
 	        "ViewFields": ["Checkmark", "LinkTitle", "StartDate", "DueDate", "AssignedTo"],
 	        "RowLimit": 30,

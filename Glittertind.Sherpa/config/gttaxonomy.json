@@ -69,31 +69,31 @@
     {
       "Terms": [
         {
-          "Title": "Konsept",
+          "Title": "01 Konsept",
           "Id": "99e85650-33de-4af4-b8db-edffbc8a310b"
         },
         {
-          "Title": "Planlegge",
+          "Title": "02 Planlegge",
           "Id": "cda4f1e1-3488-4e57-8a04-6973df239689"
         },
         {
-          "Title": "Gjennomf\u00f8re",
+          "Title": "03 Gjennomf\u00f8re",
           "Id": "99d7765a-c786-4792-a1a1-866ef0f982b9"
         },
         {
-          "Title": "Avslutte",
+          "Title": "04 Avslutte",
           "Id": "30e03c52-8c3e-4cfe-9b18-ca71593ce130"
         },
         {
-          "Title": "Realisere",
+          "Title": "05 Realisere",
           "Id": "b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
         },
         {
-          "Title": "Flere faser",
+          "Title": "06 Flere faser",
           "Id": "777cc6ac-4639-4633-85b9-f1ef61197c4d"
         },
 		{
-		  "Title": "Ingen fase",
+		  "Title": "00 Ingen fase",
 		  "Id": "6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
 		}
       ],

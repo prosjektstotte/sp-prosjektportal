@@ -13,9 +13,16 @@
         {
 	    	"Name": "",
 	    	"Url": "SitePages/Forside.aspx",
-	        "ViewFields": ["DocIcon", "LinkFilename", "GtProjectPhase", "Modified", "Editor"],
+	        "ViewFields": ["DocIcon", "LinkFilename", "Modified", "Editor"],
 	        "RowLimit": 10,
 	        "Query": "<OrderBy><FieldRef Name='Created' Ascending='FALSE' /></OrderBy>"
+	    },
+        {
+	    	"Name": "",
+	    	"Url": "SitePages/Ufiltrert.aspx",
+	        "ViewFields": ["DocIcon", "LinkFilename", "Modified", "Editor"],
+	        "RowLimit": 100,
+	        "Query": "<OrderBy><FieldRef Name='Created' Ascending='FALSE' /></OrderBy><GroupBy Collapse='TRUE'><FieldRef Name='GtProjectPhase' /></GroupBy>"
 	    }
     ]
 }

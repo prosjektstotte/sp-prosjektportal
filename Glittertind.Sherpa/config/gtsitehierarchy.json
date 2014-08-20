@@ -1,11 +1,11 @@
 ﻿{
-   "Description" : "Projectportal rotområde",
+   "Description" : "Prosjektportal rotområde",
    "Name"        : "",
    "Quicklaunch" : {
 		"Hjem": "",
-		"Standarddokumenter": "Standarddokumenter",
 		"Porteføljeoversikt" : "SitePages/PortefoljeOversiktAlternativ.aspx",
 		"Erfaringslogg": "SitePages/Erfaringslogg.aspx",
+		"Standarddokumenter": "Standarddokumenter",
 		"Områdeinnhold": "_layouts/15/viewlsts.aspx"
 	},
    "SiteFeatures": [
