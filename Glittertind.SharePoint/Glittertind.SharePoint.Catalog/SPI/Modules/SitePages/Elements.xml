@@ -792,7 +792,7 @@
     </File>
     <File Path="PortefoljeOversikt.aspx" Url="Erfaringslogg.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE">
       <Property Name="title" Value="Erfaringslogg"></Property>
-      <AllUsersWebPart WebPartZoneID="CenterColumn" WebPartOrder="0">
+      <AllUsersWebPart WebPartZoneID="LeftColumn" WebPartOrder="0">
         <![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
   <Title>Overskrift</Title>
@@ -826,7 +826,7 @@
         <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
         </WebPart>]]>
       </AllUsersWebPart>
-      <AllUsersWebPart WebPartZoneID="CenterColumn" WebPartOrder="1">
+      <AllUsersWebPart WebPartZoneID="LeftColumn" WebPartOrder="1">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
