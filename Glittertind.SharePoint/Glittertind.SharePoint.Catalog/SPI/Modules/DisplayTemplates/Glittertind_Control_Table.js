@@ -27,7 +27,11 @@ var noResultsClassName = "ms-srch-result-noResults";
 var ListRenderRenderWrapper = function(itemRenderResult, inCtx, tpl)
 {
     var iStr = [];
-    iStr.push('<tr>');
+    if (inCtx.CurrentItemIdx % 2 === 0) {
+        iStr.push('<tr class="ms-HoverBackground-bgColor">');
+    } else {
+        iStr.push('<tr>');
+    }
     iStr.push(itemRenderResult);
     iStr.push('</tr>');
     return iStr.join('');
@@ -43,9 +47,9 @@ ms_outHtml.push(''
 ,'				<th>Prosjektleder</th>'
 ,'				<th>Status tid</th>'
 ,'				<th>Status risiko</th>'
-,'				<th>Status budsjett</th>'
+, '				<th>Status budsjett</th>'
+, '				<th>Fase</th>'
 ,'				<th>Sist endret</th>'
-,'				<th>Fase</th>'
 ,'			</tr>'
 ,'		</thead>'
 ,'		<tbody>'

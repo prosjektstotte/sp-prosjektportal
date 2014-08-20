@@ -10,7 +10,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Beslutte utredning av idéen"
+                        "Value": "Er det en tydelig definert problemstilling som synliggjør behovet for nærmere utredning?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -26,7 +26,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Definere en tydelig problemstilling som synliggjør behovet for nærmere utredning"
+                        "Value": "Er det tydeliggjort hvordan eller av hvem utredningen skal finansieres?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -42,7 +42,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Gjøre det tydelig hvordan eller av hvem utredningen skal finansieres"
+                        "Value": "Er det mest riktig å gjennomføre tiltaket som et prosjekt eller som en linjeoppgave?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -58,7 +58,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Vurdere om det er mest riktig å gjennomføre tiltaket som et prosjekt eller som en linjeoppgave"
+                        "Value": "Er tiltaket  i henhold til virksomhetsstrategien?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -74,7 +74,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Vurdere om tiltaket er i henhold til virksomhetsstrategien"
+                        "Value": "Er det behov for mer informasjon før det kan fattes en beslutning"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -90,7 +90,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Vurdere om det er behov for mer informasjon før det kan fattes en beslutning"
+                        "Value": "Er det tydeliggjort hvilke føringer (IT -politiske eller andre) som gjelder for og må tas hensyn til i utredningen?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -106,7 +106,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Vurdere om det finnes noen føringer (IT -politiske eller andre) som gjelder og må tas hensyn til i utredningen"
+                        "Value": "Skal vi gå videre til konseptfasen og utrede ulike konsepter for et mulig prosjekt?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -122,39 +122,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Vurdere om vi skal gå videre til konseptfasen og utrede ulike konsepter for et mulig prosjekt"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "ContentTypeId",
-                        "Value": "0x010088578E7470CC4AA68D5663464831070204"
-                    },
-                    {
-                        "Name": "Title",
-                        "Value": "Hvis vi går videre til konseptfasen, utnevne en utredningsleder for konseptfasen"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "ContentTypeId",
-                        "Value": "0x010088578E7470CC4AA68D5663464831070204"
-                    },
-                    {
-                        "Name": "Title",
-                        "Value": "Vurdere om det skal startes opp et prosjekt og gå videre med planlegging"
+                        "Value": "Er prosjektet realistisk og gjennomførbart?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -170,7 +138,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Vurdere om prosjektet er realistisk og gjennomførbart"
+                        "Value": "Er det etablert et prosjektstyre?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -186,7 +154,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Hvis det etableres et prosjekt, utnevne en prosjekteier"
+                        "Value": "Er rollebeskrivelse for prosjekteier etablert?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -202,7 +170,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Vurdere om det skal etableres et prosjektstyre"
+                        "Value": "Støtter prosjektforslaget opp under virksomhetens mål og strategier?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -218,7 +186,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Etablere rollebeskrivelse for prosjekteier"
+                        "Value": "Er det gjort en tilstrekkelig vurdering av ulike alternative investeringer for å sikre at prosjektforslaget representerer et riktig valg å gå videre med, inklusive kvantitative og kvalitative gevinstanalyser og sammenligninger av kost/nytte for hvert alternativ?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -234,7 +202,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Vurdere om prosjektforslaget støtter opp under virksomhetens mål og strategier"
+                        "Value": "Er prosjektleder og øvrige sentrale prosjektdeltakere utpekt?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -250,7 +218,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Vurdere om det er gjort en tilstrekkelig vurdering av ulike alternative investeringer for å sikre at prosjektforslaget representerer et riktig valg å gå videre med, inklusive kvantitative og kvalitative gevinstanalyser og sammenligninger av kost/nytte for"
+                        "Value": "Er rollebeskrivelse for prosjektleder etablert?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -266,7 +234,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Utpeke en prosjektleder og sette sammen en prosjektgruppe"
+                        "Value": "Er nøkkelressurser allokert?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -274,7 +242,7 @@
                     }
                 ]
             },
-            {
+			{
                 "Fields": [
                     {
                         "Name": "ContentTypeId",
@@ -282,23 +250,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Etablere rollebeskrivelse for prosjektleder"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "ContentTypeId",
-                        "Value": "0x010088578E7470CC4AA68D5663464831070204"
-                    },
-                    {
-                        "Name": "Title",
-                        "Value": "Allokere nøkkelressurser for prosjektet og gjøre nødvendige avtaler for å sikre ressurstilgang"
+                        "Value": "Er det utarbeidet en grov Prosjektbegrunnelse?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -346,7 +298,7 @@
                     },
                     {
                         "Name": "Title",
-                        "Value": "Er det utarbeidet nødvendige strategier for gjennomføring, for eksempel implementeringsstrategi, kvalitetsstrategi og Planleggingsfasen?"
+                        "Value": "Er det utarbeidet nødvendige strategier for gjennomføring, (for eksempel implementeringsstrategi, kvalitetsstrategi og anskaffelsesstrategi)?"
                     },
                     {
                         "Name": "GtProjectPhase",

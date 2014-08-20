@@ -38,7 +38,6 @@
 
     <div id="TwoLines">
 <!--#_
-
 var url = $getItemValue(ctx, "Path");
 var title = $getItemValue(ctx, "Title");
 var projectManager = $getItemValue(ctx, "ProjectManager");
@@ -52,11 +51,11 @@ var statusTime = $getItemValue(ctx, "GtStatusTimeOWSCHCS");
 var statusRisk = $getItemValue(ctx, "GtStatusRiskOWSCHCS");
 var statusBudget = $getItemValue(ctx, "GtStatusBudgetOWSCHCS");
 var lastModified = $getItemValue(ctx, "LastModifiedTime");
-
-
 _#-->
             <td>
-				<a href="_#= url =#_">_#= title =#_</a>
+                <a href="_#= url =#_">
+                    _#= title =#_
+                </a>
 			</td>
 			<td title="_#= projectGoals =#_">
 				_#= projectGoalsTrimmed =#_ 
@@ -76,12 +75,12 @@ _#-->
 			<td>
 				_#= statusBudget =#_
 			</td>
+            <td>
+                _#= projectPhase =#_
+            </td>
 			<td>
 				_#= lastModified =#_
-			</td>
-			<td>
-				_#= projectPhase =#_
-			</td>			
+			</td>		
     </div> 
 </body>
 </html>
