@@ -23,7 +23,7 @@
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/jquery-1.11.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.common.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
-    <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/gt/css/gt.style.css %&gt;" runat="server" After="corev15.css" ></SharePoint:CssRegistration>
+    <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/gt/css/gt.style.css?rev=20140820 %&gt;" runat="server" After="corev15.css" ></SharePoint:CssRegistration>
     <meta name="CollaborationServer" content="SharePoint Team Web Site" />
     <SharePoint:styleblock runat="server">
         .s4-nothome {

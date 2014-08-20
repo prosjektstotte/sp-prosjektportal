@@ -561,6 +561,7 @@ GT.Project.Model.webModel = function () {
     _this.statusTime = ko.observable();
     _this.statusTimeCss = ko.computed(function () {
         if (_this.statusTime() != undefined && _this.statusTime().toLowerCase() === 'etter plan') return 'status-red';
+        else if (_this.statusTime() != undefined && (_this.statusTime().toLowerCase() === 'foran plan' || _this.statusTime().toLowerCase() === 'på plan')) return 'status-green';
         return 'status-ok';
     }, this);
     _this.statusRisk = ko.observable();
@@ -571,6 +572,7 @@ GT.Project.Model.webModel = function () {
     _this.statusBudget = ko.observable();
     _this.statusBudgetCss = ko.computed(function () {
         if (_this.statusBudget() != undefined && _this.statusBudget().toLowerCase() === 'over budsjett') return 'status-red';
+        else if (_this.statusBudget() != undefined && _this.statusBudget().toLowerCase() === 'vet ikke') return 'status-yellow';
         return 'status-ok';
     }, this);
     _this.lastChanged = ko.observable();

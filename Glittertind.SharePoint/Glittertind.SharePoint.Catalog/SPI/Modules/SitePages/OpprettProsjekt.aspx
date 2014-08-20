@@ -19,7 +19,7 @@
 <asp:Content ID="Content5" ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/jquery-1.11.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.provisioning.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
-    <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/gt/css/gt.style.css %&gt;" runat="server" ></SharePoint:CssRegistration>
+    <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/gt/css/gt.style.css?rev=20140820 %&gt;" runat="server" ></SharePoint:CssRegistration>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderSearchArea" runat="server">
 	<SharePoint:DelegateControl runat="server" ControlId="SmallSearchInputBox"/>
