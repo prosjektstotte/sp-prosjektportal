@@ -330,6 +330,7 @@ GT.Project.Setup.copyDefaultItems = function () {
                     for (var y = 0; y < rows[i].Fields.length; y++) {
                         var name = rows[i].Fields[y].Name;
                         var value = rows[i].Fields[y].Value;
+                        if (value.length > 255) value = value.substr(0, 252) + "...";
                         oListItem.set_item(name, value);
                     }
                     oListItem.update();
