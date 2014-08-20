@@ -1,0 +1,115 @@
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"> 
+<head>
+<title>Glittertind Erfaringslogg</title>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
+<mso:ManagedPropertyMapping msdt:dt="string">'Path','Title','LastModifiedTime','LoggElement':'GtProjectLogTypeOWSCHCS','MeldtAv':'GtProjectLogReporterOWSUSER','Loggbeskrivelse':'GtProjectLogDescriptionOWSMTXT','Ansvarlig':'GtProjectLogResponsibleOWSCHCS','Konsekvens':'GtProjectLogConsequenceOWSMTXT','Anbefaling':'GtProjectLogRecommendationOWSMTXT','TilErfaringslogg':'GtProjectLogExperienceOWSBOOL','Aktorer':'GtProjectLogActorsOWSCHCM','PavirkerProdukt':'GtProjectLogProductLookup','TilProsjektStyre':'GtProjectLogEventLookup','crawltime','SPWebUrl'</mso:ManagedPropertyMapping>
+<mso:MasterPageDescription msdt:dt="string">Glittertind visningsmal for Ã¥ vise nye prosjekter</mso:MasterPageDescription>
+<mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106603</mso:ContentTypeId>
+<mso:TargetControlType msdt:dt="string">;#Content Web Parts;#SearchResults;#</mso:TargetControlType>
+<mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">https://glittertind.sharepoint.com/sites/drangedal/_catalogs/masterpage/Display Templates/Search/Glittertind_Item_Erfaringslogg.html, Konverteringen er fullført.</mso:HtmlDesignStatusAndPreview>
+<mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+
+<body>
+
+    <!--
+            Warning: Do not try to add HTML to this section. Only the contents of the first <div>
+            inside the <body> tag will be used while executing Display Template code. Any HTML that
+            you add to this section will NOT become part of your Display Template.
+    -->
+    <script>
+
+    </script>
+
+    <!--
+        Use the div below to author your Display Template. Here are some things to keep in mind:
+        * Surround any JavaScript logic as shown below using a "pound underscore" (#_ ... _#) token
+        inside a comment.
+
+        * Use the values assigned to your variables using an "underscore pound equals"
+        (_#= ... =#_) token.
+    -->
+
+    <div id="TwoLines">
+
+<!--#_
+
+var myItem = {};
+myItem.id = ctx.ClientControl.get_nextUniqueId();
+myItem.url = $getItemValue(ctx, "Path");
+myItem.title = $getItemValue(ctx, "Title");
+myItem.crawltime = $getItemValue(ctx, "crawltime");
+myItem.meldtAv = $getItemValue(ctx, "MeldtAv");
+myItem.loggBeskrivelse = $getItemValue(ctx, "Loggbeskrivelse");
+myItem.ansvarlig = $getItemValue(ctx, "Ansvarlig");
+myItem.konsekvens = $getItemValue(ctx, "Konsekvens");
+myItem.anbefaling = $getItemValue(ctx, "Anbefaling");
+myItem.tilErfaringslogg = $getItemValue(ctx, "TilErfaringslogg");
+myItem.aktorer = $getItemValue(ctx, "Aktorer");
+if(myItem.aktorer !== undefined) {
+	myItem.aktorer = myItem.aktorer.toString();
+	myItem.aktorer = myItem.aktorer.substr(0,myItem.aktorer.length-2).split(";#").join(", ");
+}
+
+myItem.pavirkerProdukt = $getItemValue(ctx, "PavirkerProdukt");
+myItem.tilProsjektStyre = $getItemValue(ctx, "TilProsjektStyre");
+myItem.lastModified = $getItemValue(ctx, "LastModifiedTime");
+myItem.parentWebUrl = $getItemValue(ctx, "SPWebUrl");
+
+
+AddPostRenderCallback(ctx, function()
+{              
+	console.log("H E L L O");
+     var rootElement = document.getElementById(myItem.id);
+	 var parentProjectHyperLink = rootElement.getElementsByClassName("csom-projectname")[0];
+	 
+	 var loadSiteName = function(item){
+		console.log("H E L L O");
+		var clientContext = new SP.ClientContext(item.href);
+		var web = clientContext.get_web();
+		clientContext.load(web, 'Title');
+		clientContext.executeQueryAsync(
+			function(){ item.text = web.get_title();}, 
+			function(){ item.text = "foo";}
+		);
+	}
+	SP.SOD.executeOrDelayUntilScriptLoaded(function(){loadSiteName(parentProjectHyperLink);},"sp.js");
+});
+
+_#-->
+
+		<tr id="_#= myItem.id =#_">
+            <td>
+				<a href="_#= myItem.url =#_">_#= myItem.title =#_</a>
+			</td>
+			<td>
+				<a class="csom-projectname" href="_#= myItem.parentWebUrl =#_"></a>
+			</td>
+			<td>
+				_#= myItem.meldtAv =#_
+			</td>
+			<td>
+				_#= myItem.loggBeskrivelse =#_
+			</td>
+			<td>
+				_#= myItem.ansvarlig =#_
+			</td>
+			<td>
+				_#= myItem.konsekvens =#_
+			</td>
+			<td>
+				_#= myItem.anbefaling =#_
+			</td>
+			<td>
+				_#= myItem.aktorer =#_
+			</td>
+		</tr>
+    </div> 
+</body>
+</html>

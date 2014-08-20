@@ -693,6 +693,40 @@
         </WebPart>]]>
       </AllUsersWebPart>
       <AllUsersWebPart WebPartOrder="2" WebPartZoneID="RightColumn">
+        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+  <Title>Innholdsredigering</Title>
+  <FrameType>None</FrameType>
+  <Description>Gjør at forfattere kan skrive inn innhold i rik tekst.</Description>
+  <IsIncluded>true</IsIncluded>
+  <ZoneID>RightColumn</ZoneID>
+  <PartOrder>0</PartOrder>
+  <FrameState>Normal</FrameState>
+  <Height />
+  <Width />
+  <AllowRemove>true</AllowRemove>
+  <AllowZoneChange>true</AllowZoneChange>
+  <AllowMinimize>true</AllowMinimize>
+  <AllowConnect>true</AllowConnect>
+  <AllowEdit>true</AllowEdit>
+  <AllowHide>true</AllowHide>
+  <IsVisible>true</IsVisible>
+  <DetailLink />
+  <HelpLink />
+  <HelpMode>Modeless</HelpMode>
+  <Dir>Default</Dir>
+  <PartImageSmall />
+  <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
+  <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
+  <IsIncludedFilter />
+  <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+  <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
+  <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">../SiteAssets/gt/html/gt.csomprojectdir_newprojects.html</ContentLink>
+  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+  <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+</WebPart>]]>
+      </AllUsersWebPart>
+      <AllUsersWebPart WebPartOrder="3" WebPartZoneID="RightColumn">
         <![CDATA[<webParts>
           <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
             <metaData>
@@ -790,6 +824,116 @@
         ]]>
       </AllUsersWebPart>
     </File>
-    <File Path="PortefoljeOversikt.aspx" Url="Erfaringslogg.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE"></File>
+    <File Path="PortefoljeOversikt.aspx" Url="Erfaringslogg.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE">
+      <Property Name="title" Value="Erfaringslogg"></Property>
+      <AllUsersWebPart WebPartZoneID="LeftColumn" WebPartOrder="0">
+        <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+  <Title>Overskrift</Title>
+  <FrameType>None</FrameType>
+  <Description>Gjør at forfattere kan skrive inn innhold i rik tekst.</Description>
+  <IsIncluded>true</IsIncluded>
+  <ZoneID>CenterColumn</ZoneID>
+  <PartOrder>0</PartOrder>
+  <FrameState>Normal</FrameState>
+  <Height />
+  <Width />
+  <AllowRemove>true</AllowRemove>
+  <AllowZoneChange>true</AllowZoneChange>
+  <AllowMinimize>true</AllowMinimize>
+  <AllowConnect>true</AllowConnect>
+  <AllowEdit>true</AllowEdit>
+  <AllowHide>true</AllowHide>
+  <IsVisible>true</IsVisible>
+  <DetailLink />
+  <HelpLink />
+  <HelpMode>Modeless</HelpMode>
+  <Dir>Default</Dir>
+  <PartImageSmall />
+  <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
+  <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
+  <IsIncludedFilter />
+  <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+  <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
+  <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">&lt;h1&gt;Erfaringslogg&lt;br/&gt;&lt;/h1&gt;&lt;p&gt;Dette er en aggregert visning av prosjektloggelementer som er markert med &amp;quot;til erfaringslogg&amp;quot;. Visningen er s&#248;kedrevet s&#229; det kan ta noen minutter f&#248;r elementer blir synlige&lt;br/&gt;&lt;/p&gt;&lt;br/&gt;</Content>
+        <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+        </WebPart>]]>
+      </AllUsersWebPart>
+      <AllUsersWebPart WebPartZoneID="LeftColumn" WebPartOrder="1">
+        <![CDATA[<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Microsoft.Office.Server.Search.WebControls.ResultScriptWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="MaxPagesBeforeCurrent" type="int">4</property>
+        <property name="ShowBestBets" type="bool">False</property>
+        <property name="ShowViewDuplicates" type="bool">False</property>
+        <property name="Height" type="string" />
+        <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
+        <property name="DataProviderJSON" type="string">{"QueryGroupName":"Default","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"{searchboxquery} ContentTypeId:0x010088578e7470cc4aa68d5663464831070206* Path:{SiteCollection.URL} GtProjectLogExperienceOWSBOOL=1","FallbackSort":null,"FallbackSortJson":"null","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":true,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":false,"ScopeResultsToCurrentSite":false,"TrimDuplicates":true,"Properties":{"ListId":"b769b028-4114-4010-9407-674b104b4edb","ListItemId":8},"PropertiesJson":"{\"ListId\":\"b769b028-4114-4010-9407-674b104b4edb\",\"ListItemId\":8}","ClientType":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="UseSharedDataProvider" type="bool">False</property>
+        <property name="ShowPreferencesLink" type="bool">True</property>
+        <property name="EmptyMessage" type="string" />
+        <property name="ScrollToTopOnRedraw" type="bool">False</property>
+        <property name="ShowDefinitions" type="bool">True</property>
+        <property name="SelectedPropertiesJson" type="string">["Path","Title","LastModifiedTime","GtProjectLogTypeOWSCHCS","GtProjectLogReporterOWSUSER","GtProjectLogDescriptionOWSMTXT","GtProjectLogResponsibleOWSCHCS","GtProjectLogConsequenceOWSMTXT","GtProjectLogRecommendationOWSMTXT","GtProjectLogExperienceOWSBOOL","GtProjectLogActorsOWSCHCM","GtProjectLogProductLookup","GtProjectLogEventLookup","crawltime","SPWebUrl"]</property>
+        <property name="CatalogIconImageUrl" type="string" />
+        <property name="RepositionLanguageDropDown" type="bool">False</property>
+        <property name="PreloadedItemTemplateIdsJson" type="string">["~sitecollection/_catalogs/masterpage/Display Templates/Search/Group_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Site.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Word.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_PowerPoint.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Person_CompactHorizontal.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_BestBet.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_WebPage.js"]</property>
+        <property name="ResultsPerPage" type="int">50</property>
+        <property name="EmitStyleReference" type="bool">True</property>
+        <property name="ShowPaging" type="bool">True</property>
+        <property name="ResultTypeId" type="string" null="true" />
+        <property name="ShowUpScopeMessage" type="bool">False</property>
+        <property name="AllowMinimize" type="bool">True</property>
+        <property name="AllowClose" type="bool">True</property>
+        <property name="HelpMode" type="helpmode">Modeless</property>
+        <property name="Title" type="string">Søkeresultater</property>
+        <property name="ShowResults" type="bool">True</property>
+        <property name="MaxPagesAfterCurrent" type="int">1</property>
+        <property name="ShowResultCount" type="bool">True</property>
+        <property name="Hidden" type="bool">False</property>
+        <property name="ItemTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Item_Erfaringslogg.js</property>
+        <property name="ItemBodyTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Item_CommonItem_Body.js</property>
+        <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
+        <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
+        <property name="AvailableSortsJson" type="string">[{"name":"Relevans","sorts":[]},{"name":"Dato (nyeste)","sorts":[{"p":"Write","d":1}]},{"name":"Dato (eldste)","sorts":[{"p":"Write","d":0}]},{"name":"Visninger for levetid","sorts":[{"p":"ViewsLifeTime","d":1}]},{"name":"Siste visninger","sorts":[{"p":"ViewsRecent","d":1}]}]</property>
+        <property name="ChromeState" type="chromestate">Normal</property>
+        <property name="AllowHide" type="bool">True</property>
+        <property name="AllowEdit" type="bool">True</property>
+        <property name="StatesJson" type="string">{}</property>
+        <property name="RenderTemplateId" type="string">&#126;sitecollection/_catalogs/masterpage/Display Templates/Search/Glittertind_Control_Table_Erfaringslogg.js</property>
+        <property name="ShowPersonalFavorites" type="bool">False</property>
+        <property name="ShowSortOptions" type="bool">False</property>
+        <property name="ChromeType" type="chrometype">None</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="HelpUrl" type="string" />
+        <property name="ShowLanguageOptions" type="bool">False</property>
+        <property name="Description" type="string">Viser søkeresultatene og tilknyttede egenskaper.</property>
+        <property name="ServerIncludeScriptsJson" type="string">null</property>
+        <property name="TitleUrl" type="string" />
+        <property name="AlternateErrorMessage" type="string" null="true" />
+        <property name="ShowAlertMe" type="bool">False</property>
+        <property name="ShowDidYouMean" type="bool">False</property>
+        <property name="QueryGroupName" type="string">Default</property>
+        <property name="Width" type="string" />
+        <property name="ShowAdvancedLink" type="bool">False</property>
+        <property name="ExportMode" type="exportmode">All</property>
+        <property name="Direction" type="direction">NotSet</property>
+        <property name="BypassResultTypes" type="bool">True</property>
+        <property name="GroupTemplateId" type="string" />
+        <property name="TitleIconImageUrl" type="string" />
+        <property name="MissingAssembly" type="string">Kan ikke importere denne webdelen.</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>]]>
+      </AllUsersWebPart>
+    </File>
   </Module>
 </Elements>

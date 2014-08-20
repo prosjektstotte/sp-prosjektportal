@@ -89,6 +89,10 @@
     <Content Include="SPI\Modules\DefaultDocuments\Placeholder.txt" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_Table.html" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_Table.js" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_Table_Erfaringslogg.html" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_Table_Erfaringslogg.js" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Erfaringslogg.html" />
+    <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Erfaringslogg.js" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_NewProject.html" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_NewProject.js" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Item_Project_details.html" />
@@ -100,6 +104,7 @@
     <Content Include="SPI\Modules\SiteAssets\html\gt.projectlogform.html" />
     <Content Include="SPI\Modules\SiteAssets\html\gt.csomprojectdir.html" />
     <Content Include="SPI\Modules\SiteAssets\html\gt.csomprojectoverview.html" />
+    <Content Include="SPI\Modules\SiteAssets\html\gt.csomprojectdir_newprojects.html" />
     <Content Include="SPI\Modules\SiteAssets\js\knockout-3.1.0.js" />
     <Content Include="SPI\Modules\SitePages\PortefoljeOversikt.aspx" />
     <None Include="SPI\Modules\PropertyBag\SharePointProjectItem.spdata">
