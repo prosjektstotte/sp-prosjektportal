@@ -52,7 +52,7 @@
 		"Title": "Områdeinnhold"
     },
     {
-        "Url": "{SiteUrl}/_layouts/15/osssearchresults.aspx?u={SiteUrlEncoded}&k=owstaxIdGtProjectPhase%3A%2200%20Ingen%20fase%22",
+        "Url": "{SiteUrl}/_layouts/15/osssearchresults.aspx?u={SiteUrlEncoded}&k=owstaxIdGtProjectPhase%3A%22Ingen%20fase%22",
         "Title": "Prosjektelementer uten fase"
     },
     {
