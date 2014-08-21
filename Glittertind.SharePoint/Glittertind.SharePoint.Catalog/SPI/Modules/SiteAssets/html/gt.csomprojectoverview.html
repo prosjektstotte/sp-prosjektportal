@@ -56,8 +56,8 @@
                 <th>Sist endret</th>
             </tr>
         </thead>
-        <tbody data-bind="foreach: projects(), visible: loaded()" style="display: none;">
-            <tr data-bind="visible: matchesFilter(), css: {'ms-HoverBackground-bgColor': $index() % 2 == 0}">
+        <tbody data-bind="foreach: attentionProjects(), visible: loaded()" style="display: none;">
+            <tr data-bind="css: {'ms-HoverBackground-bgColor': $index() % 2 == 0}">
                 <td><a href="" data-bind="text: title(), attr:{href: url()}"></a></td>
                 <td data-bind="text: projectGoal()"></td>
                 <td data-bind="text: projectOwner()"></td>

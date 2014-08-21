@@ -12,8 +12,8 @@
       <Property Name="Title" Value="Prosjektbegrunnelse" />
       <Property Name="ContentType" Value="Prosjektdokument" />
       <Property Name="ContentTypeId" Value="0x010100293fde3fcada480b9a77bbdad7dfa28c01" />
-      <Property Name="j25543a5815d485da9a5e0773ad762e9" Value="Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32" />
-      <Property Name="GtProjectPhase" Value="Ingen fase" />
+      <Property Name="j25543a5815d485da9a5e0773ad762e9" Value="Flere faser|777cc6ac-4639-4633-85b9-f1ef61197c4d" />
+      <Property Name="GtProjectPhase" Value="Flere faser" />
     </File>
     <File Path="Prosjektforslag.docx" Url="Prosjektforslag.docx" Type="GhostableInLibrary" ReplaceContent="FALSE" IgnoreIfAlreadyExists="TRUE" >
       <Property Name="Title" Value="Prosjektforslag" />

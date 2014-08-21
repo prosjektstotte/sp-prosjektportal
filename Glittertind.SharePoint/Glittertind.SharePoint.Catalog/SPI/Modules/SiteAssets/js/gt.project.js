@@ -610,6 +610,18 @@ GT.Project.get_allProjectsUnderCurrent = function () {
         return unsortedProjects.slice(0, 5);
 
     }, GT.Project.Model.appViewModel);
+    GT.Project.Model.appViewModel.attentionProjects = ko.computed(function () {
+        var attentionProjects = []; // cloning array
+        var existingProjects = GT.Project.Model.appViewModel.projects();
+        for (var i = 0; i < existingProjects.length; i++) {
+            if (existingProjects[i].matchesFilter()) {
+                attentionProjects.push(existingProjects[i]);
+            }
+        }
+
+        return attentionProjects;
+
+    }, GT.Project.Model.appViewModel);
     GT.Project.Model.appViewModel.filter = function (filterObject) {
         var projects = this.projects();
         var keys = Object.keys(filterObject);
