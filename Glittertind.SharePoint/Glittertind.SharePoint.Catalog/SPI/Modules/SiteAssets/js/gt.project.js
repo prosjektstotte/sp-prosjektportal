@@ -5,7 +5,7 @@ GT.Project.PhaseForm.CheckList = GT.Project.PhaseForm.CheckList || {};
 GT.Project.CalendarForm = GT.Project.CalendarForm || {};
 if (GT.jQuery === undefined) GT.jQuery = jQuery.noConflict(true);
 
-GT.Project.FilterEventLookup = function () {
+GT.Project.FilterEventLookupOnLogForm = function () {
     SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
         var eventLookup = GT.jQuery('#onetIDListForm .ms-webpart-chrome.ms-webpart-chrome-vertical.ms-webpart-chrome-fullWidth > div > table > tbody > tr > td > #part1 table.ms-formtable select[id^="GtProjectLogEventLookup"]');
         var options = eventLookup.find('option').clone();
@@ -18,6 +18,14 @@ GT.Project.FilterEventLookup = function () {
             return (eventDate >= now || eventName === "" || eventName === "(Ingen)");
         }).appendTo(eventLookup);
     });
+};
+
+GT.Project.HideProductsInLogFormIfEmpty = function() {
+    var productLookups = GT.jQuery('#onetIDListForm .ms-webpart-chrome.ms-webpart-chrome-vertical.ms-webpart-chrome-fullWidth > div > table > tbody > tr > td > #part1 table.ms-formtable > tbody > tr table[id^="GtProjectLogProductLookup"] .ms-input select[id^="GtProjectLogProductLookup"]');
+    var produktLookupOptions = productLookups.find('option');
+    if (produktLookupOptions.length === 0) {
+        productLookups.closest('#part1 table.ms-formtable > tbody > tr').hide();
+    }
 };
 
 GT.Project.ShowMetadataIfIsWelcomePage = function (selector) {
