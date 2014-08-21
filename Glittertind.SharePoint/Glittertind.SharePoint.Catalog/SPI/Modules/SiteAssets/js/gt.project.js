@@ -5,6 +5,9 @@ GT.Project.PhaseForm.CheckList = GT.Project.PhaseForm.CheckList || {};
 GT.Project.CalendarForm = GT.Project.CalendarForm || {};
 if (GT.jQuery === undefined) GT.jQuery = jQuery.noConflict(true);
 
+window.console = window.console || {};
+window.console.log = window.console.log || function (msg) { };
+
 GT.Project.FilterEventLookupOnLogForm = function () {
     SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
         var eventLookup = GT.jQuery('#onetIDListForm .ms-webpart-chrome.ms-webpart-chrome-vertical.ms-webpart-chrome-fullWidth > div > table > tbody > tr > td > #part1 table.ms-formtable select[id^="GtProjectLogEventLookup"]');
@@ -20,7 +23,7 @@ GT.Project.FilterEventLookupOnLogForm = function () {
     });
 };
 
-GT.Project.HideProductsInLogFormIfEmpty = function() {
+GT.Project.HideProductsInLogFormIfEmpty = function () {
     var productLookups = GT.jQuery('#onetIDListForm .ms-webpart-chrome.ms-webpart-chrome-vertical.ms-webpart-chrome-fullWidth > div > table > tbody > tr > td > #part1 table.ms-formtable > tbody > tr table[id^="GtProjectLogProductLookup"] .ms-input select[id^="GtProjectLogProductLookup"]');
     var produktLookupOptions = productLookups.find('option');
     if (produktLookupOptions.length === 0) {
