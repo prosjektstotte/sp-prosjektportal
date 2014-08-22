@@ -32,7 +32,7 @@
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
 	<div class="newProjectPage">
 		<h1>Opprett nytt prosjektområde</h1>
-	    <div class="projectInputForm">
+	    <div id="gtprojectinputform" class="projectInputForm">
 	        <label for="projectNameInput">Navn <span>*</span></label>
             <input id="projectNameInput" type="text" placeholder="Prosjektets navn" autofocus required />
 	        <label for="projectUrlInput">URL-kortnavn <span>*</span></label>
@@ -44,10 +44,37 @@
 	        <div id="projectFormValidation" class="validationMessage"></div>
 	        <button id="createProjectBtn" onclick="GT.Provisioning.CreateWebFromCustomForm(); return false;">Opprett prosjektområde</button>
 	    </div>
+		<div id="gtoldbrowser" style="display:none;">
+	        Opprettelse av prosjekter krever en nettleser nyere IE9
+	    </div>
     </div>
 	<script type="text/javascript">
+	    var ie = (function () {
+
+	        var undef,
+				v = 3,
+				div = document.createElement('div'),
+				all = div.getElementsByTagName('i');
+
+	        while (
+				div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+				all[0]
+			);
+
+	        return v > 4 ? v : undef;
+
+	    }());
+
 	    GT.jQuery(document).ready(function () {
-	        GT.Provisioning.SetupUrlPreviewAndValidation();
+	        if (!ie || ie > 9) {
+	            GT.Provisioning.SetupUrlPreviewAndValidation();
+	        }
+	        else {
+	            GT.jQuery("#gtprojectinputform").hide();
+	            GT.jQuery("#gtoldbrowser").show();
+
+
+	        }
 	    });
 	</script>
 </asp:Content>

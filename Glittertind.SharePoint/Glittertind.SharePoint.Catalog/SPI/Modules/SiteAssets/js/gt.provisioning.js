@@ -18,7 +18,7 @@ GT.Provisioning.CreateWebFromCustomForm = function () {
     var urlField = document.getElementById('projectUrlInput');
     var descField = document.getElementById('projectDescriptionInput');
 
-    if (!nameField.checkValidity() || !urlField.checkValidity() || !descField.checkValidity()) {
+    if (nameField.checkValidity && (!nameField.checkValidity() || !urlField.checkValidity() || !descField.checkValidity())) {
         document.getElementById('projectFormValidation').innerHTML = "Navn og URL-kortnavn er obligatoriske felter";
         return;
     }
@@ -99,11 +99,13 @@ GT.Provisioning.DoesWebExist = function (serverRelativeUrlOrFullUrl) {
 GT.Provisioning.SetupUrlPreviewAndValidation = function () {
     GT.jQuery('#projectUrlPreview').text(_spPageContextInfo.siteAbsoluteUrl + "/");
     GT.jQuery('#projectUrlInput').on('keyup', function (event) {
+        event = event || window.event; //IE8 doesn't pass an instance of the event object to the handler, you'll have to get it from the global object
+        var target = event.target || event.srcElement; // It doesn't share all of the properties and methods, either, including target
         var previewUrl = _spPageContextInfo.siteAbsoluteUrl + "/" + GT.jQuery('#projectUrlInput').val();
         GT.jQuery('#projectUrlPreview').text(previewUrl);
 
-        if (GT.jQuery('#projectUrlInput').val().length > 2) {
-            if (event.target.validity.valid) {
+        if (GT.jQuery('#projectUrlInput').val().length > 2 && target.validity) {
+            if (target.validity.valid) {
                 document.getElementById('projectUrlInputValidation').style.display = 'none';
             } else {
                 document.getElementById('projectUrlInputValidation').style.display = 'block';
@@ -111,12 +113,14 @@ GT.Provisioning.SetupUrlPreviewAndValidation = function () {
         }
     });
     GT.jQuery('#projectUrlInput').on('change', function (event) {
+        event = event || window.event; //IE8 doesn't pass an instance of the event object to the handler, you'll have to get it from the global object
+        var target = event.target || event.srcElement; // It doesn't share all of the properties and methods, either, including target
         var previewUrl = _spPageContextInfo.siteAbsoluteUrl + "/" + GT.jQuery('#projectUrlInput').val();
         GT.jQuery('#projectUrlPreview').text(previewUrl);
 
-        if (event.target.validity.valid) {
+        if (target.validity && target.validity.valid) {
             document.getElementById('projectUrlInputValidation').style.display = 'none';
-        } else {
+        } else if (target.validity) {
             document.getElementById('projectUrlInputValidation').style.display = 'block';
         }
     });
