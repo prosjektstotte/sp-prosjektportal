@@ -51,36 +51,39 @@ var statusTime = $getItemValue(ctx, "GtStatusTimeOWSCHCS");
 var statusRisk = $getItemValue(ctx, "GtStatusRiskOWSCHCS");
 var statusBudget = $getItemValue(ctx, "GtStatusBudgetOWSCHCS");
 var lastModified = $getItemValue(ctx, "LastModifiedTime");
+var statusTimeCss = GT.Project.Model.GetStatusCssClass(statusTime.value);
+var statusRiskCss = GT.Project.Model.GetStatusCssClass(statusRisk.value);
+var statusBudgetCss = GT.Project.Model.GetStatusCssClass(statusBudget.value);
 _#-->
-            <td>
-                <a href="_#= url =#_">
-                    _#= title =#_
-                </a>
-			</td>
-			<td title="_#= projectGoals =#_">
-				_#= projectGoalsTrimmed =#_ 
-			</td>
-			<td>
-				_#= projectOwner =#_
-			</td>
-			<td>
-				_#= projectManager =#_
-			</td>
-			<td>
-				_#= statusTime =#_
-			</td>
-			<td>
-				_#= statusRisk =#_
-			</td>
-			<td>
-				_#= statusBudget =#_
-			</td>
-            <td>
-                _#= projectPhase =#_
-            </td>
-			<td>
-				_#= lastModified =#_
-			</td>		
+        <td>
+            <a href="_#= url =#_">
+                _#= title =#_
+            </a>
+		</td>
+		<td title="_#= projectGoals =#_">
+			_#= projectGoalsTrimmed =#_ 
+		</td>
+		<td>
+			_#= projectOwner =#_
+		</td>
+		<td>
+			_#= projectManager =#_
+		</td>
+        <td class="_#= statusTimeCss =#_">
+            _#= statusTime =#_
+        </td>
+        <td class="_#= statusRiskCss =#_">
+            _#= statusRisk =#_
+        </td>
+        <td class="_#= statusBudgetCss =#_">
+            _#= statusBudget =#_
+        </td>
+        <td>
+            _#= projectPhase =#_
+        </td>
+		<td>
+			_#= lastModified =#_
+		</td>		
     </div> 
 </body>
 </html>

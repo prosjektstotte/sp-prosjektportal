@@ -560,6 +560,27 @@ GT.Project.CalendarForm.LogElement = function (title, id, description, type, rep
 
 // dependency on knokcout.js
 GT.Project.Model = GT.Project.Model || {};
+
+//Also used from display template
+GT.Project.Model.GetStatusCssClass = function (status) {
+    if (status === undefined || status === null) return 'status-unknown';
+
+    var statusToCheck = status.toLowerCase();
+
+    if (statusToCheck === 'etter plan') return 'status-red';
+    else if (statusToCheck === 'foran plan') return 'status-green';
+    else if (statusToCheck === 'på plan') return 'status-green';
+    else if (statusToCheck === 'høy') return 'status-red';
+    else if (statusToCheck === 'medium') return 'status-yellow';
+    else if (statusToCheck === 'lav') return 'status-green';
+    else if (statusToCheck === 'over budsjett') return 'status-red';
+    else if (statusToCheck === 'på budsjett') return 'status-green';
+    else if (statusToCheck === 'under budsjett') return 'status-green';
+    else if (statusToCheck === 'vet ikke') return 'status-yellow';
+
+    return 'status-unknown';
+};
+
 GT.Project.Model.webModel = function () {
     var _this = this;
     _this.title = ko.observable();
@@ -571,20 +592,15 @@ GT.Project.Model.webModel = function () {
     _this.projectOwner = ko.observable();
     _this.statusTime = ko.observable();
     _this.statusTimeCss = ko.computed(function () {
-        if (_this.statusTime() != undefined && _this.statusTime().toLowerCase() === 'etter plan') return 'status-red';
-        else if (_this.statusTime() != undefined && (_this.statusTime().toLowerCase() === 'foran plan' || _this.statusTime().toLowerCase() === 'på plan')) return 'status-green';
-        return 'status-ok';
+        return GT.Project.Model.GetStatusCssClass(_this.statusTime());
     }, this);
     _this.statusRisk = ko.observable();
     _this.statusRiskCss = ko.computed(function () {
-        if (_this.statusRisk() != undefined && _this.statusRisk().toLowerCase() === 'høy') return 'status-red';
-        return 'status-ok';
+        return GT.Project.Model.GetStatusCssClass(_this.statusRisk());
     }, this);
     _this.statusBudget = ko.observable();
     _this.statusBudgetCss = ko.computed(function () {
-        if (_this.statusBudget() != undefined && _this.statusBudget().toLowerCase() === 'over budsjett') return 'status-red';
-        else if (_this.statusBudget() != undefined && _this.statusBudget().toLowerCase() === 'vet ikke') return 'status-yellow';
-        return 'status-ok';
+        return GT.Project.Model.GetStatusCssClass(_this.statusBudget());
     }, this);
     _this.lastChanged = ko.observable();
     _this.phase = ko.observable();

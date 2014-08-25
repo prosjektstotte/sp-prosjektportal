@@ -33,7 +33,9 @@ var statusTime = $getItemValue(ctx, "GtStatusTimeOWSCHCS");
 var statusRisk = $getItemValue(ctx, "GtStatusRiskOWSCHCS");
 var statusBudget = $getItemValue(ctx, "GtStatusBudgetOWSCHCS");
 var lastModified = $getItemValue(ctx, "LastModifiedTime");
-
+var statusTimeCss = GT.Project.Model.GetStatusCssClass(statusTime.value);
+var statusRiskCss = GT.Project.Model.GetStatusCssClass(statusRisk.value);
+var statusBudgetCss = GT.Project.Model.GetStatusCssClass(statusBudget.value);
 
 ms_outHtml.push(''
 ,'            <td>'
@@ -47,14 +49,14 @@ ms_outHtml.push(''
 ,'			</td>'
 ,'			<td>'
 ,'				', projectManager ,''
-,'			</td>'
-,'			<td>'
+, '			</td>'
+, '			<td class="', statusTimeCss , '">'
 ,'				', statusTime ,''
-,'			</td>'
-,'			<td>'
+, '			</td>'
+, '			<td class="', statusRiskCss , '">'
 ,'				', statusRisk ,''
-,'			</td>'
-,'			<td>'
+, '			</td>'
+, '			<td class="', statusBudgetCss , '">'
 ,'				', statusBudget ,''
 , '			</td>'
 , '			<td>'

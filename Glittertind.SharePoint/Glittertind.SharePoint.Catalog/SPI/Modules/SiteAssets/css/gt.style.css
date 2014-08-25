@@ -75,7 +75,7 @@ ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
 }
 
 .loadingSpinner {vertical-align: top; margin: 15px;}
-.gt-result-table {width: 100%;}
+.gt-result-table {width: 100%;border-collapse: collapse;}
 .gt-result-table tr th {font-weight: normal;font-size: 0.95em;color: rgb(119, 119, 119);text-align: left;text-decoration: none;vertical-align: middle;white-space: nowrap;padding:5px 4px;}
 .gt-result-table,.gt-result-table td, .gt-result-table th{padding: 4px;text-align:left;}
 .gt-result-table .status-red{background-color: rgba(255, 75, 77, 0.4); }
