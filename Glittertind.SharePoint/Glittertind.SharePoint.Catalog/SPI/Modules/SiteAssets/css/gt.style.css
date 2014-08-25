@@ -1,8 +1,7 @@
 ﻿.validationMessage { color: red;}
-.newProjectPage h1{margin-left:10px;}
+.newProjectPage h1{margin-left:10px;display: none;}
 .newProjectPage .projectInputForm{width:263px;margin-left:20px;}
-.newProjectPage .projectInputForm label{display:inline-table;width:250px;margin:0;}
-.newProjectPage .projectInputForm label span{color:red;}
+.newProjectPage .projectInputForm label{display:inline-table;width:260px;margin:0;word-break: break-all;}
 .newProjectPage .projectInputForm input,.newProjectPage .projectInputForm textarea{width:250px;margin:3px 0 10px;}
 .newProjectPage .projectInputForm button{float:right;margin:0;}
 .newProjectPage .projectInputForm textarea#projectDescriptionInput{height:70px;overflow:auto;}

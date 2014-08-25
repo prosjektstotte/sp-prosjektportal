@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="SitePages" Url="SitePages" Path="SitePages" List="119">
     <File Path="Portefolje.aspx" Url="Portefolje.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE">
-      <Property Name="title" Value="Prosjektportal - porteføljeforside" ></Property>
+      <Property Name="Title" Value="Forside" ></Property>
       <AllUsersWebPart WebPartOrder="1" WebPartZoneID="LeftColumn">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -391,6 +391,7 @@
       </AllUsersWebPart>
     </File>
     <File Path="PortefoljeOversikt.aspx" Url="PortefoljeOversikt.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE">
+      <Property Name="Title" Value="Porteføljeoversikt" ></Property>
       <AllUsersWebPart WebPartOrder="0" WebPartZoneID="CenterColumn">
         <![CDATA[<webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
@@ -585,6 +586,7 @@
       </AllUsersWebPart>
     </File>
     <File Path="PortefoljeOversikt.aspx" Url="PortefoljeOversiktAlternativ.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE">
+      <Property Name="Title" Value="Porteføljeoversikt" ></Property>
       <AllUsersWebPart WebPartOrder="0" WebPartZoneID="LeftColumn">
         <![CDATA[<?xml version="1.0" encoding="utf-8"?>
           <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
@@ -624,7 +626,7 @@
       <Property Name="Title" Value="Opprett prosjektområde" ></Property>
     </File>
     <File Path="Portefolje.aspx" Url="PortefoljeAlternativ.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE">
-      <Property Name="title" Value="Prosjektportal - porteføljeforside" ></Property>
+      <Property Name="Title" Value="Forside" ></Property>
       <AllUsersWebPart WebPartOrder="1" WebPartZoneID="CenterColumn">
         <![CDATA[<?xml version="1.0" encoding="utf-8"?>
           <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
@@ -825,7 +827,7 @@
       </AllUsersWebPart>
     </File>
     <File Path="PortefoljeOversikt.aspx" Url="Erfaringslogg.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE">
-      <Property Name="title" Value="Erfaringslogg"></Property>
+      <Property Name="Title" Value="Erfaringslogg"></Property>
       <AllUsersWebPart WebPartZoneID="LeftColumn" WebPartOrder="0">
         <![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">

@@ -32,7 +32,6 @@
     <ProjectItemFile Source="config\quicklaunch\quicklaunch.json" Target="SiteAssets\config\quicklaunch\" Type="ElementFile" />
     <ProjectItemFile Source="html\gt.alldocumentsview.html" Target="SiteAssets\html\" Type="ElementFile" />
     <ProjectItemFile Source="html\gt.checklistform.html" Target="SiteAssets\html\" Type="ElementFile" />
-    <ProjectItemFile Source="css\ThemeCss.css" Target="SiteAssets\css\" Type="ElementFile" />
     <ProjectItemFile Source="html\gt.csomprojectdir_newprojects.html" Target="SiteAssets\html\" Type="ElementFile" />
   </Files>
 </ProjectItem>

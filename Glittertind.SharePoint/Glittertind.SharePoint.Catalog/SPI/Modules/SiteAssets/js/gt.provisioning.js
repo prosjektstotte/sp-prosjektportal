@@ -125,3 +125,36 @@ GT.Provisioning.SetupUrlPreviewAndValidation = function () {
         }
     });
 };
+
+
+GT.Provisioning = GT.Provisioning || {};
+
+GT.Provisioning.CanManageWeb = function () {
+    var self = this;
+    self.defer = GT.jQuery.Deferred();
+    var clientContext = new SP.ClientContext.get_current();
+    self.oWeb = clientContext.get_web();
+    clientContext.load(self.oWeb);
+    clientContext.load(self.oWeb, 'EffectiveBasePermissions');
+
+    var permissionMask = new SP.BasePermissions();
+    permissionMask.set(SP.PermissionKind.manageWeb);
+    self.shouldShowLink = self.oWeb.doesUserHavePermissions(permissionMask);
+
+    clientContext.executeQueryAsync(Function.createDelegate(self, GT.Provisioning.onQuerySucceededUser), Function.createDelegate(self, GT.Provisioning.onQueryFailedUser));
+    return self.defer.promise();
+};
+GT.Provisioning.onQuerySucceededUser = function () {
+    var self = this;
+    self.defer.resolve(self.shouldShowLink.get_value());
+};
+
+GT.Provisioning.onQueryFailedUser = function () {
+    this.defer.reject();
+};
+
+GT.Provisioning.ShowLink = function () {
+    GT.Provisioning.CanManageWeb().done(function (shouldShowLink) {
+        if (shouldShowLink) GT.jQuery('#newProjectLink').show();
+    });
+};

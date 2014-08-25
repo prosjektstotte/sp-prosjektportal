@@ -137,7 +137,7 @@ GT.Project.SetMetaDataDefaultsForLib = function (lib, field, term) {
 
     var safeTermObject = GT.Project.GetSafeTerm(term);
 
-    var termString = term.WssId + ';#' + term.Label + '|' + term.TermGuid;
+    var termString = safeTermObject.WssId + ';#' + safeTermObject.Label + '|' + safeTermObject.TermGuid;
     var siteCollRelativeUrl = _spPageContextInfo.webServerRelativeUrl + '/' + lib;
     var template = '<MetadataDefaults><a href="{siteCollRelativeUrl}"><DefaultValue FieldName="{field}">{term}</DefaultValue></a></MetadataDefaults>';
     var result = template.split("{siteCollRelativeUrl}").join(siteCollRelativeUrl);
@@ -335,38 +335,6 @@ GT.Project.GetPhaseTermFromCurrentItem = function () {
         console.log('error when getting page field' + sender + " " + args);
     }));
     return deferred.promise();
-};
-
-GT.Project.NewProjectLink = GT.Project.NewProjectLink || {};
-
-GT.Project.NewProjectLink.canManageWeb = function () {
-    var self = this;
-    self.defer = GT.jQuery.Deferred();
-    var clientContext = new SP.ClientContext.get_current();
-    self.oWeb = clientContext.get_web();
-    clientContext.load(self.oWeb);
-    clientContext.load(self.oWeb, 'EffectiveBasePermissions');
-
-    var permissionMask = new SP.BasePermissions();
-    permissionMask.set(SP.PermissionKind.manageWeb);
-    self.shouldShowLink = self.oWeb.doesUserHavePermissions(permissionMask);
-
-    clientContext.executeQueryAsync(Function.createDelegate(self, GT.Project.NewProjectLink.onQuerySucceededUser), Function.createDelegate(self, GT.Project.NewProjectLink.onQueryFailedUser));
-    return self.defer.promise();
-};
-GT.Project.NewProjectLink.onQuerySucceededUser = function () {
-    var self = this;
-    self.defer.resolve(self.shouldShowLink.get_value());
-};
-
-GT.Project.NewProjectLink.onQueryFailedUser = function () {
-    this.defer.reject();
-};
-
-GT.Project.NewProjectLink.showLink = function () {
-    GT.Project.NewProjectLink.canManageWeb().done(function (shouldShowLink) {
-        if (shouldShowLink) GT.jQuery('#newProjectLink').show();
-    });
 };
 
 GT.Project.PhaseForm.CheckList.render = function () {
