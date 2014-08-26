@@ -18,6 +18,7 @@
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/jquery-1.11.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.common.js?rev=20140825" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.provisioning.js?rev=20140825" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/gt/css/gt.style.css?rev=20140825 %&gt;" runat="server" ></SharePoint:CssRegistration>
 </asp:Content>
@@ -45,35 +46,17 @@
 	        <button id="createProjectBtn" onclick="GT.Provisioning.CreateWebFromCustomForm(); return false;">Opprett prosjektområde</button>
 	    </div>
 		<div id="gtoldbrowser" style="display:none;">
-	        Opprettelse av prosjekter krever en nettleser nyere IE9
+	        Opprettelse av prosjekter krever at du oppgraderer nettleseren til IE10 eller nyere.
 	    </div>
     </div>
 	<script type="text/javascript">
-	    var ie = (function () {
-
-	        var undef,
-				v = 3,
-				div = document.createElement('div'),
-				all = div.getElementsByTagName('i');
-
-	        while (
-				div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
-				all[0]
-			);
-
-	        return v > 4 ? v : undef;
-
-	    }());
-
 	    GT.jQuery(document).ready(function () {
-	        if (!ie || ie > 9) {
+	        if (!GT.Common.IsNonHtml5Browser()) {
 	            GT.Provisioning.SetupUrlPreviewAndValidation();
 	        }
 	        else {
 	            GT.jQuery("#gtprojectinputform").hide();
 	            GT.jQuery("#gtoldbrowser").show();
-
-
 	        }
 	    });
 	</script>

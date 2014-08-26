@@ -52,7 +52,7 @@
             border: none;
         }
     </style>
-    <table class="projectFrontPage" width="100%" cellpadding="0" cellspacing="0" style="padding: 5px 10px 10px 10px;">
+    <table class="projectFrontPage" cellpadding="0" cellspacing="0">
 	    <tr>
 		    <td valign="top" width="70%">
 		        <div class="projectPhaseSection">

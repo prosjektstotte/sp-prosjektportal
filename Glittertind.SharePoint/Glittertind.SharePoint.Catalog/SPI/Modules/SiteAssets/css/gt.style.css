@@ -6,6 +6,7 @@
 .newProjectPage .projectInputForm button{float:right;margin:0;}
 .newProjectPage .projectInputForm textarea#projectDescriptionInput{height:70px;overflow:auto;}
 .newProjectPage .validationMessage{color:red;margin-bottom:10px;}
+.projectFrontPage { width: 100%;padding: 5px 10px 10px 10px;}
 .projectFrontPage .rightColumnStatic { display: none;}
 .projectFrontPage .projectMetadata{width:300px;margin-bottom: 20px;}
 .projectFrontPage .projectMetadata table{width:100%;margin-bottom:10px;}
@@ -27,26 +28,26 @@ ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases{width:100%;list-style:none;overflow:hidden;margin:0;padding:0;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected,
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected a {background-color:rgb(51, 153, 51); color:#DFEED5;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:nth-child(5),
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected.phasenumber-5,
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child{background-color:rgb(0, 114, 198); color:#EDF4F4;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:nth-child(5) a,
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected.phasenumber-5 a,
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child a {color:#EDF4F4;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:before,
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:after {border-left-color:rgb(51, 153, 51);}
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child:before, 
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child:after, 
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:nth-child(5):before,
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:nth-child(5):after{border-left-color:rgb(0, 114, 198);}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected.phasenumber-5:before,
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected.phasenumber-5:after{border-left-color:rgb(0, 114, 198);}
 .projectFrontPage .projectPhaseSection ul.projectPhases li {color: rgb(51, 153, 51); text-decoration:none;background:#E0F5E0;position:relative;display:block;float:left;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li a{ color: rgb(51, 153, 51);}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:after{content:" ";display:block;width:0;height:0;border-top:50px solid transparent;border-bottom:50px solid transparent;border-left:30px solid #E0F5E0;position:absolute;top:50%;margin-top:-50px;left:100%;z-index:2;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:before{content:" ";display:block;width:0;height:0;border-top:50px solid transparent;border-bottom:50px solid transparent;border-left:30px solid rgb(51, 153, 51);position:absolute;top:50%;margin-top:-50px;margin-left:1px;left:100%;z-index:1;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:first-child {padding-left:10px;background-color:#EDF4F4;color:rgb(0, 114, 198);}
 .projectFrontPage .projectPhaseSection ul.projectPhases li:first-child a{color:rgb(0, 114, 198);}
-.projectFrontPage .projectPhaseSection ul.projectPhases li:nth-child(5), 
-.projectFrontPage .projectPhaseSection ul.projectPhases li:nth-child(5) a{background-color:#EDF4F4;color:rgb(0, 114, 198);}
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:after,.projectFrontPage .projectPhaseSection ul.projectPhases li:nth-child(5):after{border-left-color:#EDF4F4;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:before,.projectFrontPage .projectPhaseSection ul.projectPhases li:nth-child(5):before{border-left-color:rgb(0, 114, 198);}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.phasenumber-5, 
+.projectFrontPage .projectPhaseSection ul.projectPhases li.phasenumber-5 a{background-color:#EDF4F4;color:rgb(0, 114, 198);}
+.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:after,.projectFrontPage .projectPhaseSection ul.projectPhases li.phasenumber-5:after{border-left-color:#EDF4F4;}
+.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:before,.projectFrontPage .projectPhaseSection ul.projectPhases li.phasenumber-5:before{border-left-color:rgb(0, 114, 198);}
 
 @media(max-width: 1299px) {
 .projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 35px;}
@@ -73,13 +74,22 @@ ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:12px;}
 }
 
+.ieversion-7 .projectFrontPage .projectPhaseSection ul.projectPhases li,
+.ieversion-8 .projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 30px;}
+.ieversion-7 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon,
+.ieversion-8 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:70px;height:52px;}
+.ieversion-7 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter,
+.ieversion-8 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:26px;}
+.ieversion-7 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase,
+.ieversion-8 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:10px;}
+
 .loadingSpinner {vertical-align: top; margin: 15px;}
 .gt-result-table {width: 100%;border-collapse: collapse;}
 .gt-result-table tr th {font-weight: normal;font-size: 0.95em;color: rgb(119, 119, 119);text-align: left;text-decoration: none;vertical-align: middle;white-space: nowrap;padding:5px 4px;}
 .gt-result-table,.gt-result-table td, .gt-result-table th{padding: 4px;text-align:left;}
-.gt-result-table .status-red{background-color: rgba(255, 75, 77, 0.4); }
-.gt-result-table .status-yellow{background-color: rgba(240,230,140, 0.8); }
-.gt-result-table .status-green{background-color: rgba(0, 150, 0, 0.4); }
+.gt-result-table .status-red{background-color: rgb(204, 102, 102); background-color: rgba(255, 75, 77, 0.4); }
+.gt-result-table .status-yellow{background-color: rgb(240, 230, 140);background-color: rgba(240,230,140, 0.8); }
+.gt-result-table .status-green{background-color: rgb(153,204,102);background-color: rgba(0, 150, 0, 0.4); }
 
 #gtloglist {max-width: 700px;}
 #gtloglist h2 {margin-bottom: 10px;}

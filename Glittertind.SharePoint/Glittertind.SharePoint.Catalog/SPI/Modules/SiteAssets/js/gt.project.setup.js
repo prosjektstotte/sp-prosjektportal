@@ -268,6 +268,12 @@ GT.Project.Setup.copyFiles = function (properties) {
 
 GT.Project.Setup.getFiles = function (srcWeb, lib, folderPath) {
     var deferred = GT.jQuery.Deferred();
+
+    if (GT.Common.IsNonHtml5Browser()) {
+        console.log("Using IE<10, skipping getting files (non IE<10 compatible)");
+        deferred.resolve();
+        return deferred.promise();
+    }
     if (folderPath == undefined) {
         var srcFolderQuery = "_api/web/GetFolderByServerRelativeUrl('" + srcWeb + "/" + lib + "')/Files";
     } else {
