@@ -9,6 +9,7 @@ Prosjektportalen for SharePoint (kodenavn "Glittertind") er bygget på bestillin
 Glittertind installeres med <a href="https://github.com/sharepoint-sherpa/sherpa">Sherpa </a>, som er en kommandolinjeapplikasjon som setter opp taksonomi, installerer sandboxed solutions, setter opp innholdstyper og konfigurerer områdesamlingen.
 
 # Hvordan installere løsningen?
+## Før du starter
 Før du starter er det viktig å være klar over følgende
 * Glittertind setter opp taksonomi i den globale managed metadata servicen ved å opprette en termgruppe Glittertind og term set i denne gruppen
 * Applikasjonen må derfor kjøres av en bruker som er termlagrinsadministrator ('term store administrator')
@@ -17,6 +18,7 @@ Før du starter er det viktig å være klar over følgende
 * Dersom du er på On-Prem må applikasjonen kjøre på en SharePoint server
 * Løsningen har foreløpig begrenset funksjonalitet i IE8 og IE9.
 
+## Steg for steg
 1. En områdesamling må opprettes for prosjektportalen. Vi anbefaler ikke at prosjektportalen installeres i en områdesamling som brukes til noe annet fra før. Vi anbefaler at områdesamlingen opprettes med norsk språk og malen gruppeområde ('team site'). Gjør steg 2-4 mens du venter på at områdesamlingen opprettes.
 2. For å installere løsningen uten å gjøre endringer anbefaler vi at den ferdigpakkede løsningen lastes ned fra Releases på denne siden. 
 3. Pakk ut installasjonspakken til disken, og naviger til mappen via kommandolinjen.
