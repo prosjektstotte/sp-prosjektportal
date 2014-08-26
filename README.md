@@ -1,6 +1,8 @@
 Prosjektportal for SharePoint
 =================
 
+Prosjektportal for SharePoint (kodenavn "Glittertind") er et prosjektstyringsverktøy for SharePoint Online og SharePoint 2013. Det bruker  [<a href="https://github.com/sharepoint-sherpa/sherpa">Sherpa </a>] for installasjon.
+
 Dette prosjektet består i dag av to ulike løsninger, Sherpa og Glittertind.
 * Sherpa et en kommandolinjeapplikasjon for å installere SharePoint-løsnignen til SharePoint Online og On-Prem. 
 * Glittertind er et SharePoint-prosjekt for prosjektstyring basert på prosjektveiviseren.no
@@ -23,7 +25,7 @@ Dette prosjektet består i dag av to ulike løsninger, Sherpa og Glittertind.
   * Konsollapplikasjonen har et enkelt brukergrensesnitt for å utføre de ulike funksjonene Sherpa kan gjøre. 
 
 ### Hvordan komme i gang?
-1. Last ned Sherpa fra Github (foreløpig kun mulig å laste ned som en Visual Studio solution). 
+1. Last ned Sherpa fra Github (foreløpig kun mulig å laste ned som en Visual Studio solution) [<a href="https://github.com/sharepoint-sherpa/sherpa">herfra. </a>] 
 2. Endre konfigurasjonsfilene til ditt behov 
 3. Bygg løsningen og naviger til output-mappen til applikasjonen (typisk ‘rot/sp-prosjektportal\Glittertind.Sherpa\Glittertind.Sherpa.Installer\bin\Debug') 
 4. Legg evt. SharePoint sandbox-løsninger i en mappe som heter solutions i samme mappe som applikasjonen ligger
@@ -49,3 +51,7 @@ Glittertind installeres med Sherpa.
 ## Relevante ressurser
 * JSON Prettifier: http://www.uize.com/examples/json-prettifier.html
 * Prosjektveiviseren: http://www.prosjektveiviseren.no/
+
+# Maintainers
+Tarjei Ormestøyl [<a href="mailto:tarjeieo@puzzlepart.com">tarjeieo@puzzlepart.com</a>], 
+Ole Kristian Mørch-Storstein [<a href="mailto:olekms@puzzlepart.com">olekms@puzzlepart.com</a>]
