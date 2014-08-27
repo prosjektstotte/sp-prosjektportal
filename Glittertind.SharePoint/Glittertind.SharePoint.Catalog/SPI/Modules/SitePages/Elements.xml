@@ -469,7 +469,7 @@
         <property name="AllowMinimize" type="bool">True</property>
         <property name="AllowClose" type="bool">True</property>
         <property name="HelpMode" type="helpmode">Modeless</property>
-        <property name="Title" type="string">Prosjekter som krever tilsyn</property>
+        <property name="Title" type="string">Prosjekter som krever oppfølging</property>
         <property name="ShowResults" type="bool">True</property>
         <property name="MaxPagesAfterCurrent" type="int">1</property>
         <property name="ShowResultCount" type="bool">True</property>
