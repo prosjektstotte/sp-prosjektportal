@@ -23,8 +23,8 @@ Før du starter er det viktig å være klar over følgende
 2. For å installere løsningen uten å gjøre endringer anbefaler vi at den ferdigpakkede løsningen lastes ned fra Releases på denne siden. 
 3. Pakk ut installasjonspakken til disken, og naviger til mappen via kommandolinjen.
 4. På kommandolinjen, skriv sherpa.exe --help for å se mulige parametere
-5a. Dersom du er på SharePoint Online: På kommandolinjen, skriv sherpa.exe --url "URL til nyopprettet områdesamling" --userName "brukernavn til områdesamlingadministrator" --spo
-5b. Dersom du er på SharePoint 2013 On-Prem: På kommandolinjen, skriv sherpa.exe --url "URL til nyopprettet områdesamling"
+5. Dersom du er på SharePoint Online: På kommandolinjen, skriv sherpa.exe --url "URL til nyopprettet områdesamling" --userName "brukernavn til områdesamlingadministrator" --spo
+5. Dersom du er på SharePoint 2013 On-Prem: På kommandolinjen, skriv sherpa.exe --url "URL til nyopprettet områdesamling"
 6. Applikasjonen starter. Dersom du bruker SharePoint Online må du skrive passord.
 7. Kjør gjennom stegene 1 til 4 i rekkefølge. Hvert steg må gå gjennom uten feil for at alt skal fungere. Dersom du opplever feil, ta kontakt for å se på mulige problemløsninger.
 8. Etter at stegene er gjennomført skal prosjektportalen være oppe og kjøre.
