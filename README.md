@@ -35,7 +35,7 @@ Før du starter er det viktig å være klar over følgende
 8. Etter at operasjonene er gjennomført skal prosjektportalen være oppe og kjøre.
 
 # Kontakt
-For spørsmål og innspill, ta kontakt med Asker Kommune ved Geir Graff. For bistand og support til installasjon av løsningen, ta kontakt med <a href="support@puzzlepart.com">Puzzlepart</a>.
+For spørsmål og innspill, ta kontakt med Asker Kommune ved <a href="Geir.Graff@asker.kommune.no">Geir Graff</a>. For tekniske spørsmål, bistand og support til installasjon av løsningen, ta kontakt med <a href="support@puzzlepart.com">Puzzlepart</a>.
 
 # Maintainers
 Tarjei Ormestøyl [<a href="mailto:tarjeieo@puzzlepart.com">tarjeieo@puzzlepart.com</a>], 
