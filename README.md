@@ -1,7 +1,7 @@
 ﻿Prosjektportal for SharePoint
 =================
 
-Prosjektportal for SharePoint er et prosjektstyringsverktøy for SharePoint Online og SharePoint 2013 basert på <a href="http://prosjektveiviseren.no">prosjektveiviseren</a>. 
+Prosjektportal for SharePoint er et prosjektstyringsverktøy for SharePoint basert på <a href="http://prosjektveiviseren.no">Prosjektveiviseren</a>. 
 
 # Hva er prosjektportal for SharePoint?
 Prosjektportalen for SharePoint (kodenavn "Glittertind") er bygget av <a href="http://www.puzzlepart.com">Puzzlepart AS</a> på bestilling for Asker Kommune og <a href="http://www.ks.no/kommit">KommIT</a>. Glittertind inneholder SharePoint-artefakter som til sammen utgjør et prosjektstyringsverktøy. Det blir satt opp en portefølgeside der en får en oversikt over eksisterende prosjekter og kan opprette nye prosjektrom. Hvert prosjektområde inneholder en del lister, en del standardelementer og logikk for å gjennomføre et prosjekt etter prosjektveiviserens modell. Prosjektveiviseren er Difis anbefalte prosjektmodell for gjennomføring av digitaliseringsprosjekter i offentlige virksomheter.
@@ -35,7 +35,7 @@ Før du starter er det viktig å være klar over følgende
 8. Etter at operasjonene er gjennomført skal prosjektportalen være oppe og kjøre.
 
 # Kontakt
-For spørsmål og innspill, ta kontakt med Asker Kommune ved <a href="mailto:Geir.Graff@asker.kommune.no">Geir Graff</a>. For tekniske spørsmål, bistand og support til installasjon av løsningen, ta kontakt med <a href="mailto:support@puzzlepart.com">Puzzlepart</a>.
+For spørsmål og innspill, ta kontakt med Asker Kommune ved <a href="mailto:lars.sverre.gjolme@ks.no">Lars Sverre Gjølme</a> eller <a href="mailto:Geir.Graff@asker.kommune.no">Geir Graff</a>. For tekniske spørsmål, bistand og support til installasjon av løsningen, ta kontakt med <a href="mailto:support@puzzlepart.com">Puzzlepart</a>.
 
 # Maintainers
 Tarjei Ormestøyl [<a href="mailto:tarjeieo@puzzlepart.com">tarjeieo@puzzlepart.com</a>], 
