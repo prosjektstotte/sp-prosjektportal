@@ -21,11 +21,12 @@ ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
 .gt-phaseIcon{display:block;width:92px;height:62px;float:left;}
 .gt-phaseIcon .phaseLetter{display:block;font-size:33px;text-align:center;}
 .gt-phaseIcon .projectPhase{display:block;font-size:12px;text-transform:uppercase;text-align:center;}
-.projectFrontPage .projectPhaseSection{height:130px;max-width:690px;}
+.projectFrontPage .projectPhaseSection{height:130px;}
 .designmode .projectFrontPage .projectPhaseSection { display: none;}
-.projectFrontPage .projectPhaseSection h2.gt-phaseHeading{width:137px;float:left;margin:0 10px 10px 0;}
+.projectFrontPage .projectPhaseSection .projectPhaseHeading { display: block;width: 100%;float: left;}
+.projectFrontPage .projectPhaseSection h2.gt-phaseHeading{width:137px;float:left;margin:0 10px 10px 0; text-overflow: initial;}
 .projectFrontPage .projectPhaseSection a#changeProjectPhaseLink{float:left;display:none;border:1px solid #ccc;text-transform:none;text-decoration:none;padding:5px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases{width:100%;list-style:none;overflow:hidden;margin:0;padding:0;}
+.projectFrontPage .projectPhaseSection ul.projectPhases{width: 100%;list-style:none;overflow:hidden;margin:0;padding:0;float: left;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected,
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected a {background-color:rgb(51, 153, 51); color:#DFEED5;}
 .projectFrontPage .projectPhaseSection ul.projectPhases li.selected.phasenumber-5,
