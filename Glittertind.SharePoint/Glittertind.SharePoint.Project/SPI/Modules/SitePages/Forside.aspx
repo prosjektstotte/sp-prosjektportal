@@ -29,10 +29,10 @@
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/jquery-1.11.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.common.js?rev=20140825" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.generics.js?rev=20140825" runat="server" Language="javascript" ></SharePoint:ScriptLink>
-    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.js?rev=20140825" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.js?rev=20140911" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.setup.js?rev=20140825" runat="server" Language="javascript" ></SharePoint:ScriptLink>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.setup.contenttypes.js?rev=20140825" runat="server" Language="javascript" ></SharePoint:ScriptLink>
-    <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/gt/css/gt.style.css?rev=20140825 %&gt;" runat="server" ></SharePoint:CssRegistration>
+    <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/gt/css/gt.style.css?rev=20140911 %&gt;" runat="server" ></SharePoint:CssRegistration>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderSearchArea" runat="server">
 	<SharePoint:DelegateControl runat="server" ControlId="SmallSearchInputBox" />
@@ -56,8 +56,10 @@
 	    <tr>
 		    <td valign="top" width="70%">
 		        <div class="projectPhaseSection">
-		            <h2 style="text-align:justify;" class="ms-webpart-titleText gt-phaseHeading"><nobr><span>Prosjektets faser</span><span id="WebPartCaptionWPQ2"></span></nobr></h2>
-                    <a id="changeProjectPhaseLink" href="javascript:void(0);">Endre fase</a>
+		            <div class="projectPhaseHeading">
+		                <h2 class="ms-webpart-titleText gt-phaseHeading"><nobr><span>Prosjektets faser</span><span id="WebPartCaptionWPQ2"></span></nobr></h2>
+                        <a id="changeProjectPhaseLink" href="javascript:void(0);">Endre fase</a>
+                    </div>
 		            <ul class="projectPhases"></ul>
 		        </div>
 			    <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Left%>" ID="LeftColumn" Orientation="Vertical" />
