@@ -858,7 +858,7 @@
   <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
   <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
   <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
-  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">&lt;h1&gt;Erfaringslogg&lt;br/&gt;&lt;/h1&gt;&lt;p&gt;Dette er en aggregert visning av prosjektloggelementer som er markert med &amp;quot;til erfaringslogg&amp;quot;. Visningen er s&#248;kedrevet s&#229; det kan ta noen minutter f&#248;r elementer blir synlige&lt;br/&gt;&lt;/p&gt;&lt;br/&gt;</Content>
+  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">&lt;p&gt;Dette er en aggregert visning av prosjektloggelementer som er markert med &amp;quot;til erfaringslogg&amp;quot;. Visningen er s&#248;kedrevet s&#229; det kan ta noe tid f&#248;r elementer blir synlige&lt;br/&gt;&lt;/p&gt;&lt;br/&gt;</Content>
         <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
         </WebPart>]]>
       </AllUsersWebPart>
