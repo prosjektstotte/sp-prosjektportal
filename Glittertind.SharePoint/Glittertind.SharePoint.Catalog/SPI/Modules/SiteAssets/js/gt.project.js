@@ -729,7 +729,8 @@ GT.Project.get_allProjectsUnderCurrent = function () {
                 model.statusTime(fieldValues.GtStatusTime ? fieldValues.GtStatusTime : '');
                 model.statusRisk(fieldValues.GtStatusRisk ? fieldValues.GtStatusRisk : '');
                 model.statusBudget(fieldValues.GtStatusBudget ? fieldValues.GtStatusBudget : '');
-                model.lastChanged(new Date(fieldValues.Last_x0020_Modified));
+                var properDateInput = fieldValues.Last_x0020_Modified.replace(' ', 'T') + 'Z';
+                model.lastChanged(new Date(properDateInput));
                 model.created(new Date(fieldValues.Created));
                 model.phase(fieldValues.GtProjectPhase ? fieldValues.GtProjectPhase.Label : '');
                 GT.Project.Model.appViewModel.projects.push(model);
