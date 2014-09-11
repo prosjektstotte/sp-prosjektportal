@@ -159,7 +159,7 @@
       "Type"         : "Note"
    },
    {
-      "Description"  : "",
+      "Description"  : "Tall 0 til 5",
       "DisplayName"  : "Sannsynlighet (S)",
       "Group"        : "Glittertind Områdekolonner",
       "ID"           : "0e1b295d-2bfb-4ef6-ae92-e72068e56111",
@@ -169,7 +169,7 @@
       "Type"         : "Number"
    },
    {
-      "Description"  : "",
+      "Description"  : "Tall 0 til 5",
       "DisplayName"  : "Konsekvens (K)",
       "Group"        : "Glittertind Områdekolonner",
       "ID"           : "554d32a0-0148-4b3c-bfc4-f101232ee501",
@@ -223,7 +223,7 @@
       "Type"         : "Note"
    },
    {
-      "Description"  : "",
+      "Description"  : "Tall 0 til 5",
       "DisplayName"  : "S etter tiltak",
       "Group"        : "Glittertind Områdekolonner",
       "ID"           : "f81ebcb7-8791-44b0-9919-08ed5524b11d",
@@ -233,7 +233,7 @@
       "Type"         : "Number"
    },
    {
-      "Description"  : "",
+      "Description"  : "Tall 0 til 5",
       "DisplayName"  : "K etter tiltak",
       "Group"        : "Glittertind Områdekolonner",
       "ID"           : "00f17233-d4c0-49d0-aebd-5004552abb17",
