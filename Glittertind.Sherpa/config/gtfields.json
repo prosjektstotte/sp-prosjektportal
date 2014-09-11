@@ -23,7 +23,7 @@
       "ID"           : "ddb69044-7d2c-4865-86ec-b71413780409",
       "InternalName" : "GtProjectType",
       "TermSetId"    : "3930cddb-fa4d-496f-b314-03ecabb91de1",
-      "Type"         : "TaxonomyFieldType"
+      "Type"         : "TaxonomyFieldTypeMulti"
    },
    {
       "Description"  : "",
@@ -32,7 +32,7 @@
       "ID"           : "3275d73a-fd4d-48ba-bcc1-31526460d57b",
       "InternalName" : "GtProjectServiceArea",
       "TermSetId"    : "99af1a25-88c1-4781-a05c-8446928d3fdd",
-      "Type"         : "TaxonomyFieldType"
+      "Type"         : "TaxonomyFieldTypeMulti"
    },
    {
       "Description"  : "",
