@@ -50,7 +50,7 @@
             <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
             <PartImageLarge>/_layouts/15/images/wp_pers.gif</PartImageLarge>
             <IsIncludedFilter />
-            <Assembly>Microsoft.SharePoint.Portal, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+            <Assembly>Microsoft.SharePoint.Portal, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
             <TypeName>Microsoft.SharePoint.Portal.WebControls.SiteFeedWebPart</TypeName>
           </WebPart>
         ]]>
@@ -99,7 +99,7 @@
             <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
             <PartImageLarge>/_layouts/15/images/wp_pers.gif</PartImageLarge>
             <IsIncludedFilter />
-            <Assembly>Microsoft.SharePoint.Portal, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+            <Assembly>Microsoft.SharePoint.Portal, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
             <TypeName>Microsoft.SharePoint.Portal.WebControls.SiteFeedWebPart</TypeName>
           </WebPart>
         ]]>
