@@ -625,16 +625,28 @@ GT.Project.get_allProjectsUnderCurrent = function () {
             var match = false;
             for (var y = 0; y < keys.length; y++) {
 
-                var currentValue = projects[i][keys[y]]()
-                var filterValue = filterObject[keys[y]]
-
+                var currentValue = projects[i][keys[y]]();
+                var filterValue = filterObject[keys[y]];
+            
                 if (typeof filterValue === 'string') {
                     currentValue = currentValue.toLowerCase();
                     filterValue = filterValue.toLowerCase();
+                    var filterValues = filterValue.split(";");
+                    for (var x = 0; x < filterValues.length; x++) {
+                        var currentFilterValue = filterValues[x];
 
-                    if (currentValue.indexOf(filterValue) !== -1) {
-                        match = true;
-                        break;
+                        if (currentFilterValue.indexOf("!") == 0) {
+                            currentFilterValue = currentFilterValue.substr(1);
+                            if (currentValue.indexOf(currentFilterValue) !== -1) {
+                                match = false;
+                                break;
+                            }
+                        } else {
+                            if (currentValue.indexOf(currentFilterValue) !== -1) {
+                                match = true;
+                                break;
+                            }
+                        }
                     }
                 }
                 else if ((filterValue instanceof Date)) {
@@ -644,10 +656,8 @@ GT.Project.get_allProjectsUnderCurrent = function () {
                     }
                 }
                 else {
-                    console.log("fail");
+                    console.log("Fail when filtering");
                 }
-
-
             }
             projects[i].matchesFilter(match);
         }

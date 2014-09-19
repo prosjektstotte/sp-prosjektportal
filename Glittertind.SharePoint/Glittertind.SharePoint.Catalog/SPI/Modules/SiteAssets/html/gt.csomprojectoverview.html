@@ -19,7 +19,7 @@
             SP.SOD.executeOrDelayUntilScriptLoaded(function () {
                 warningDate = new Date();
                 warningDate.setDate(warningDate.getDate() - 60);
-                var filter = { lastChanged: warningDate, statusRisk: "høy", statusTime: "etter plan", statusBudget: "over budsjett" };
+                var filter = { lastChanged: warningDate, statusRisk: "høy", statusTime: "etter plan", statusBudget: "over budsjett;vet ikke", phase: "!realisere" };
 
                 //Høy risiko, etter plan, over budsjett (eller 'vet ikke') og siste endret er eldre enn 2 måneder og fase != realisere
 
