@@ -657,14 +657,20 @@ GT.Project.get_allProjectsUnderCurrent = function () {
     var get_allWebs = function () {
         var defer = GT.jQuery.Deferred();
         var webCollection = clientContext.get_web().getSubwebsForCurrentUser(null);
-        clientContext.load(webCollection, 'Include(RootFolder, ServerRelativeUrl)');
+        //clientContext.load(webCollection, 'Include(RootFolder, ServerRelativeUrl)');
+        clientContext.load(webCollection);
 
         clientContext.executeQueryAsync(
             function () {
                 if (webCollection !== null && webCollection.get_areItemsAvailable()) {
                     defer.resolve(webCollection);
-                } else { defer.reject(); }
-            }, defer.reject);
+                } else {
+                    defer.reject();
+                }
+            }, function (sender, args) {
+                console.error('Request failed. ' + args.get_message());
+                defer.reject();
+            });
 
         return defer.promise();
     }
@@ -674,21 +680,31 @@ GT.Project.get_allProjectsUnderCurrent = function () {
 
         var get_pageProperties = function (pagedWebs) {
             var defer = GT.jQuery.Deferred();
-            var welcomePages = [];
             for (var i = 0; i < pagedWebs.length; i++) {
                 var web = pagedWebs[i];
-                var welcomePageUrl = web.get_serverRelativeUrl() + "/" + web.get_rootFolder().get_welcomePage();
-                var welcomePage = web.getFileByServerRelativeUrl(welcomePageUrl);
-                clientContext.load(web);
-                clientContext.load(welcomePage, 'ListItemAllFields');
-                welcomePages.push(welcomePage);
-            }
+                var rootFolder = web.get_rootFolder();
 
-            clientContext.executeQueryAsync(
-            function () {
-                defer.resolve(welcomePages);
-            },
-            function () {
+                clientContext.load(web);
+                //clientContext.load(rootFolder);
+            }
+            clientContext.executeQueryAsync(function () {
+                var welcomePages = [];
+                for (var i = 0; i < pagedWebs.length; i++) {
+                    var web = pagedWebs[i];
+                    //Will throw  Unauthorized exception when users have only 'View' permissions: web.get_rootFolder().get_welcomePage();
+                    var welcomePageUrl = web.get_serverRelativeUrl() + "/SitePages/Forside.aspx";
+                    var welcomePage = web.getFileByServerRelativeUrl(welcomePageUrl);
+                    clientContext.load(welcomePage, 'ListItemAllFields');
+                    welcomePages.push(welcomePage);
+                };
+                clientContext.executeQueryAsync(function () {
+                    defer.resolve(welcomePages);
+                }, function (sender, args) {
+                    console.error('Request failed. ' + args.get_message());
+                    defer.reject();
+                });
+            }, function (sender, args) {
+                console.error('Request failed. ' + args.get_message());
                 defer.reject();
             });
 
