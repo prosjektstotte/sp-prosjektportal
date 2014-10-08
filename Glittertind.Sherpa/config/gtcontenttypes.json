@@ -48,6 +48,9 @@
          "GtProjectGoals"
       ],
       "Group"          : "Glittertind Innholdstyper",
+      "HiddenFields"   : [
+         "GtAverageRisk"
+      ],
       "ID"             : "0x010109010058561f86d956412b9dd7957bbcd67aae01",
       "InternalName"   : "GtProjectFrontPage",
       "RequiredFields" : [

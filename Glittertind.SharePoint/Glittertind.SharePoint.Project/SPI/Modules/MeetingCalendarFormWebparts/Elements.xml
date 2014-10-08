@@ -5,7 +5,7 @@
       <AllUsersWebPart WebPartOrder="0" WebPartZoneID="Main">
         <![CDATA[<?xml version="1.0" encoding="utf-8"?>
         <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
-          <Title>See file gt.calendarform.html</Title>
+          <Title>See file gt.calendarform.txt</Title>
           <FrameType>None</FrameType>
           <Description>Gjør at forfattere kan skrive inn innhold i rik tekst.</Description>
           <IsIncluded>true</IsIncluded>
@@ -31,7 +31,7 @@
           <IsIncludedFilter />
           <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
           <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
-          <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">../../../SiteAssets/gt/html/gt.calendarform.html</ContentLink>
+          <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">../../../SiteAssets/gt/html/gt.calendarform.txt</ContentLink>
           <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor"></Content>
           <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
         </WebPart>]]>

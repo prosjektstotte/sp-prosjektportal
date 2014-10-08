@@ -145,7 +145,6 @@
       "Description"  : "",
       "DisplayName"  : "Snittrisiko",
       "Group"        : "Glittertind Områdekolonner",
-      "Hidden"       : "true",
       "ID"           : "8be4cd39-1468-4258-95f3-10343dc4ef11",
       "InternalName" : "GtAverageRisk",
       "Type"         : "Number"
