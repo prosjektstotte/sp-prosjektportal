@@ -42,6 +42,6 @@ Tarjei Ormestøyl [<a href="mailto:tarjeieo@puzzlepart.com">tarjeieo@puzzlepart.
 Ole Kristian Mørch-Storstein [<a href="mailto:olekms@puzzlepart.com">olekms@puzzlepart.com</a>]
 
 # Feilsøking
-## Problem: Du får feilmeldingen "Method not found: ‘Void Microsoft.SharePoint.Client.Conten tTypeCreationInformation.set_Id(System.String)’" når du installerer løsningen til On-Premises
-Løsning: Du installerer på feil miljø eller har en gammel versjon av SharePoint 2013 (før Service Pack 1). Du må installere Service Pack 1 for å kunne installere løsningen.
-Les mer: http://developeratwar.com/2014/10/you-get-an-exception-occured-method-not-found-void-microsoft-sharepoint-client-conten-ttypecreationinformation-set_idsystem-string
+Problem: Du får feilmeldingen "Method not found: ‘Void Microsoft.SharePoint.Client.Conten tTypeCreationInformation.set_Id(System.String)’" når du installerer løsningen til On-Premises.
+
+Løsning: Du installerer på feil miljø eller har en gammel versjon av SharePoint 2013 (før Service Pack 1). Du må installere Service Pack 1 for å kunne installere løsningen. Les mer: http://developeratwar.com/2014/10/you-get-an-exception-occured-method-not-found-void-microsoft-sharepoint-client-conten-ttypecreationinformation-set_idsystem-string
