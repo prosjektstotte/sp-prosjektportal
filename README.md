@@ -35,7 +35,7 @@ Før du starter er det viktig å være klar over følgende
 8. Etter at operasjonene er gjennomført skal prosjektportalen være oppe og kjøre.
 
 # Kontakt
-For spørsmål og innspill, ta kontakt med KommIT ved <a href="mailto:lars.sverre.gjolme@ks.no">Lars Sverre Gjølme</a> eller Asker Kommune ved <a href="mailto:Geir.Graff@asker.kommune.no">Geir Graff</a>. For bistand til installasjon av løsningen eller muligheter for videreutvikling og spesialtilpasninger, ta kontakt med <a href="mailto:support@puzzlepart.com">Puzzlepart</a> eller <a href="mailto:steffen.norby@puzzlepart.com">Steffen Norby</a>. Vi gjør oppmerksom på at eventuell bistand vil være en fakturerbar tjeneste.
+For spørsmål og innspill, ta kontakt med KommIT ved <a href="mailto:lars.sverre.gjolme@ks.no">Lars Sverre Gjølme</a> eller Asker Kommune ved <a href="mailto:Geir.Graff@asker.kommune.no">Geir Graff</a>. For bistand til installasjon av løsningen eller muligheter for videreutvikling og spesialtilpasninger, ta kontakt med <a href="mailto:support@puzzlepart.com">Puzzlepart</a> eller <a href="mailto:tormod.guldvog@puzzlepart.com">Tormod Guldvog</a>. Vi gjør oppmerksom på at eventuell bistand vil være en fakturerbar tjeneste.
 
 # Maintainers
 Tarjei Ormestøyl [<a href="mailto:tarjeieo@puzzlepart.com">tarjeieo@puzzlepart.com</a>], 
