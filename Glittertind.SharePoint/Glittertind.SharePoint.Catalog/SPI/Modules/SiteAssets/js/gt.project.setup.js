@@ -409,7 +409,7 @@ GT.Project.Setup.CreateWebContentTypes = function () {
             GT.Project.Setup.ContentTypes.UpdateListContentTypes("Usikkerhet", ["Risiko", "Mulighet"]),
             GT.Project.Setup.ContentTypes.UpdateListContentTypes("Oppgaver", ["Prosjektoppgave"]),
             GT.Project.Setup.ContentTypes.UpdateListContentTypes("Møtekalender", ["Prosjekthendelse"]),
-            GT.Project.Setup.ContentTypes.UpdateListContentTypes("Sjekkliste", ["Sjekkpunkt"]),
+            GT.Project.Setup.ContentTypes.UpdateListContentTypes("Fasesjekkliste", ["Sjekkpunkt"]),
             GT.Project.Setup.ContentTypes.UpdateListContentTypes("Dokumenter", ["Prosjektdokument"])
         ).then(function () {
             GT.jQuery.when(

@@ -84,12 +84,20 @@
     {
       "Terms": [
         {
+          "Title": "Anlegg",
+          "Id": "26a1b6a7-9a4b-4a26-be46-7f6bb0e07475"
+        },
+        {
           "Title": "Bygg",
           "Id": "81d51eff-4dd8-4d9f-8373-327ce4cfebb9"
         },
         {
           "Title": "IKT",
           "Id": "f43d2dcf-27c8-432d-8b9b-dae09d9b0d7a"
+        },
+        {
+          "Title": "Annet",
+          "Id": "088eeab9-8ebd-4a53-976c-e7b9a5e7eed9"
         },
         {
           "Title": "Organisasjonsutvikling",

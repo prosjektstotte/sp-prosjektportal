@@ -19,10 +19,10 @@
     <File Path="html\gt.alldocumentsview.html" Url="html/gt.alldocumentsview.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="html\gt.checklistform.html" Url="html/gt.checklistform.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="html\gt.csomprojectdir_newprojects.html" Url="html/gt.csomprojectdir_newprojects.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
-    <File Path="config\data\sjekkliste.data.json" Url="config/data/sjekkliste.data.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
+    <File Path="config\data\fasesjekkliste.data.json" Url="config/data/sjekkliste.data.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\data\oppgaver.data.json" Url="config/data/oppgaver.data.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\dokumenter.json" Url="config/lists/dokumenter.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
-    <File Path="config\lists\sjekkliste.json" Url="config/lists/sjekkliste.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
+    <File Path="config\lists\fasesjekkliste.json" Url="config/lists/sjekkliste.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\usikkerhet.json" Url="config/lists/usikkerhet.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\Interessentregister.json" Url="config/lists/Interessentregister.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\kommunikasjonsplan.json" Url="config/lists/kommunikasjonsplan.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />

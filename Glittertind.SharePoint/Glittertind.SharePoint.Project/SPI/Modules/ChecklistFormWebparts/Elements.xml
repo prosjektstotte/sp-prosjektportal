@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <Module Name="ChecklistFormWebparts" Url="Lists/Sjekkliste">
+  <Module Name="ChecklistFormWebparts" Url="Lists/Fasesjekkliste">
     <File Path="ChecklistFormWebparts\FormPlaceholder.aspx" Url="EditForm.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="TRUE" ReplaceContent="FALSE">
       <AllUsersWebPart WebPartOrder="0" WebPartZoneID="Main">
         <![CDATA[<?xml version="1.0" encoding="utf-8"?>

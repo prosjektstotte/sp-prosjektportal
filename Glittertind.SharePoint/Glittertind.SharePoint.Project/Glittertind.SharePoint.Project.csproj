@@ -95,7 +95,7 @@
     <None Include="SPI\Lists\MeetingCalendar\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{9da20a34-e51e-484f-aa0d-c4656c1ce4d4}</SharePointProjectItemId>
     </None>
-    <None Include="SPI\Lists\Sjekkliste\SharePointProjectItem.spdata">
+    <None Include="SPI\Lists\Fasesjekkliste\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a478460e-be34-495c-b7da-5c88f9de9f75}</SharePointProjectItemId>
     </None>
     <None Include="SPI\Lists\Usikkerhet\SharePointProjectItem.spdata">
@@ -148,11 +148,15 @@
     <Content Include="SPI\Lists\Interessentregister\Elements.xml" />
     <Content Include="SPI\Lists\Kommunikasjonsplan\Elements.xml" />
     <Content Include="SPI\Lists\MeetingCalendar\Elements.xml" />
-    <Content Include="SPI\Lists\Sjekkliste\Elements.xml" />
+    <Content Include="SPI\Lists\Fasesjekkliste\Elements.xml" />
     <Content Include="SPI\Lists\Usikkerhet\Elements.xml" />
-    <Content Include="SPI\Modules\ChecklistFormWebparts\Elements.xml" />
+    <Content Include="SPI\Modules\ChecklistFormWebparts\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SPI\Modules\ChecklistFormWebparts\FormPlaceholder.aspx" />
-    <Content Include="SPI\Modules\ContentTypeBindings\Elements.xml" />
+    <Content Include="SPI\Modules\ContentTypeBindings\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SPI\Modules\MeetingCalendarFormWebparts\Elements.xml" />
     <Content Include="SPI\Modules\MeetingCalendarFormWebparts\FormPlaceholder.aspx" />
     <Content Include="SPI\Modules\ProjectLogFormWebparts\FormPlaceholder.aspx" />

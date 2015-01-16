@@ -8,6 +8,14 @@
       "Type"         : "Text"
    },
    {
+     "Description"  : "",
+     "DisplayName"  : "Sak-/arkivreferanse",
+     "Group"        : "Glittertind Områdekolonner",
+     "ID"           : "a59fe220-36c3-464a-8cfc-40d6d04debd2",
+     "InternalName" : "GtArchiveReference",
+     "Type"         : "Text"
+   },
+   {
       "Description"  : "",
       "DisplayName"  : "Fase",
       "Group"        : "Glittertind Områdekolonner",

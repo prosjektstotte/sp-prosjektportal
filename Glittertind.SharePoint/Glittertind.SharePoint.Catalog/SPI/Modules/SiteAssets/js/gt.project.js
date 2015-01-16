@@ -353,7 +353,7 @@ GT.Project.PhaseForm.CheckList.render = function () {
                         '</li>');
         }
         outHtml.push('</ul>',
-                '<div>Sjekklisten er basert på beslutningspunkt fra <a href="http://prosjektveiviseren.no/" target="_blank">Prosjektveiviseren</a></div>',
+                '<div>Fasesjekkliste er basert på beslutningspunkt fra <a href="http://prosjektveiviseren.no/" target="_blank">Prosjektveiviseren</a></div>',
                 '</div>');
         GT.jQuery(".ms-webpart-zone.ms-fullWidth").append(outHtml.join(""));
     });
@@ -385,7 +385,7 @@ GT.Project.PhaseForm.CheckList.getData = function () {
     .then(function (phase) {
         var defer = GT.jQuery.Deferred();
         var ctx = new SP.ClientContext.get_current();
-        var list = ctx.get_web().get_lists().getByTitle('Sjekkliste');
+        var list = ctx.get_web().get_lists().getByTitle('Fasesjekkliste');
         var camlQuery = new SP.CamlQuery();
         camlQuery.set_viewXml("<View><Query><Where><Eq><FieldRef Name='GtProjectPhase'/><Value Type='TaxonomyFieldType'>" + phase + "</Value></Eq></Where><OrderBy><FieldRef Name='Title' /></OrderBy></Query></View>");
         var listItems = list.getItems(camlQuery);
@@ -432,7 +432,7 @@ GT.Project.PhaseForm.CheckList.CheckListItem = function (title, id, status) {
         return 'gt-nostatus';
     };
     self.get_editItemUrl = function (sourceUrl) {
-        var editElmLink = _spPageContextInfo.webServerRelativeUrl + "/Lists/Sjekkliste/EditForm.aspx?ID=" + self.Id;
+        var editElmLink = _spPageContextInfo.webServerRelativeUrl + "/Lists/Fasesjekkliste/EditForm.aspx?ID=" + self.Id;
         if (sourceUrl) {
             editElmLink += "&Source=" + encodeURIComponent(sourceUrl);
         }
