@@ -31,6 +31,7 @@
       "DisplayName"    : "Prosjektforside",
       "Fields"         : [
          "GtProjectNumber",
+         "GtArchiveReference",
          "GtProjectServiceArea",
          "GtProjectType",
          "GtProjectPhase",
