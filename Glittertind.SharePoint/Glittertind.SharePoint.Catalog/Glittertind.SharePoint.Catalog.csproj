@@ -105,6 +105,7 @@
     <Content Include="SPI\Modules\SiteAssets\html\gt.csomprojectoverview.html" />
     <Content Include="SPI\Modules\SiteAssets\html\gt.csomprojectdir_newprojects.html" />
     <Content Include="SPI\Modules\SiteAssets\js\knockout-3.1.0.js" />
+    <Content Include="SPI\Modules\SiteAssets\js\customsteps.js" />
     <Content Include="SPI\Modules\SitePages\PortefoljeOversikt.aspx" />
     <None Include="SPI\Modules\DefaultDocuments\Prosjektbegrunnelse.docx" />
     <None Include="SPI\Modules\DefaultDocuments\Styringsdokument.docx" />

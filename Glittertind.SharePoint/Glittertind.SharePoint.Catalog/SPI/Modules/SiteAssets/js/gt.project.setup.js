@@ -15,14 +15,15 @@ GT.Project.Setup.Model.step = function (name, stepNum, callback, properties) {
         return self.callback(properties);
     };
     self.execute = function (dependentPromise) {
-        return GT.jQuery.when(dependentPromise)
-            .then(function () {
-                console.log('Executing step ' + self.stepNumber);
-                return self.callback(properties).then(function () {
-                    var properties = { currentStep: { 'key': 'glittertind_currentsetupstep', 'value': self.stepNumber + 1 } };
-                    return GT.Project.Setup.persistProperties(properties);
-                });
+        var deferred = GT.jQuery.Deferred();
+        dependentPromise.done(function () {
+            console.log('Executing step ' + self.stepNumber);
+            return self.callback(properties).done(function () {
+                var properties = { currentStep: { 'key': 'glittertind_currentsetupstep', 'value': self.stepNumber + 1 } };
+                GT.Project.Setup.persistProperties(properties).done(function () { deferred.resolve(); });
             });
+        });
+        return deferred.promise();
     };
 };
 
@@ -75,21 +76,21 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
 
     clientContext.load(web);
     clientContext.load(quickLaunchNodeCollection);
-    clientContext.executeQueryAsync(function() {
-        GT.jQuery.when(GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/quicklaunch"))
-        .then(function (files) {
+    clientContext.executeQueryAsync(function () {
+        GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/quicklaunch")
+        .done(function (files) {
             for (var fileIndex = 0; fileIndex < files.length; fileIndex++) {
                 GT.jQuery.getJSON(files[fileIndex].ServerRelativeUrl)
                 .then(function (data) {
                     var temporaryQuickLaunch = [];
-                    var index = quickLaunchNodeCollection.get_count()-1;
+                    var index = quickLaunchNodeCollection.get_count() - 1;
                     while (index >= 0) {
                         var oldNode = quickLaunchNodeCollection.itemAt(index);
                         temporaryQuickLaunch.push(oldNode);
                         oldNode.deleteObject();
                         index--;
                     }
-                    clientContext.executeQueryAsync(function() {
+                    clientContext.executeQueryAsync(function () {
                         for (var i = 0; i < data.length; i++) {
                             var linkNode = data[i];
                             var nodeTitle = linkNode.Title;
@@ -114,13 +115,13 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
 
                             console.log('Adding the link node ' + linkNode.Title + ' to the quicklaunch');
                         };
-                        clientContext.executeQueryAsync(function() {}, function () {});
+                        clientContext.executeQueryAsync(function () { deferred.resolve(); }, function () { });
                     }, function (jqXHR, textStatus, errorThrown) {
                         console.log('Error deleting objects ' + errorThrown);
                     });
                 })
                 .done(function () {
-                    deferred.resolve();
+
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
                     console.log('Error ' + errorThrown);
@@ -131,7 +132,7 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
         .fail(function () {
             deferred.reject();
         });
-    }, function() {
+    }, function () {
         console.log("Couldnt load quicklaunchcollection");
     });
     return deferred.promise();
@@ -226,7 +227,7 @@ GT.Project.Setup.Debug.setProperty = function (key, value) {
     propBag.set_item(key, value);
     context.load(web);
     web.update();
-    context.executeQueryAsync();
+    context.executeQueryAsync(function () { console.log("successfully set property " + key); }, function () { });
 };
 
 
@@ -242,8 +243,9 @@ GT.Project.Setup.closeWaitMessage = function () {
 // [end] utility methods
 
 GT.Project.Setup.copyFiles = function (properties) {
-    var deferred = GT.jQuery.Deferred();
-
+    var _this = this;
+    _this.deferred = GT.jQuery.Deferred();
+    _this.promises = [];
     var srcWeb = properties.srcWeb;
     var srcLib = properties.srcLib;
     var dstWeb = properties.dstWeb;
@@ -252,18 +254,18 @@ GT.Project.Setup.copyFiles = function (properties) {
     GT.jQuery.when(GT.Project.Setup.getFiles(srcWeb, srcLib))
 
     .then(function (files) {
-        var promises = [];
+
         for (var i = 0; i < files.length; i++) {
-            promises.push(GT.Project.Setup.copyFile(files[i], srcWeb, dstWeb, dstLib));
+            _this.promises.push(GT.Project.Setup.copyFile(files[i], srcWeb, dstWeb, dstLib));
         }
-        GT.jQuery.when.apply(GT.jQuery, promises)
+        GT.jQuery.when.apply(GT.jQuery, _this.promises)
         .always(function () {
             console.log("all done copying files");
-            deferred.resolve();
+            _this.deferred.resolve();
         });
 
     });
-    return deferred.promise();
+    return _this.deferred.promise();
 };
 
 GT.Project.Setup.getFiles = function (srcWeb, lib, folderPath) {
@@ -346,72 +348,14 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
     return deferred.promise();
 };
 
+GT.Project.Setup.populateTaskList = function (listData) {
 
+    var deferred = GT.jQuery.Deferred();
 
-var gtinput = {
-    "Name": "Oppgaver",
-    "type" : "Tasklist",
-    "Data": {
-        "Rows": [
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Task 1"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ],
-                "Rows": [
-                    {
-                        "Fields": [
-                            {
-                                "Name": "Title",
-                                "Value": "Task 1.1"
-                            },
-                            {
-                                "Name": "GtProjectPhase",
-                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                            }
-                        ]
-                    },
-                    {
-                        "Fields": [
-                            {
-                                "Name": "Title",
-                                "Value": "Task 1.2"
-                            },
-                            {
-                                "Name": "GtProjectPhase",
-                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Task 2"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ]
-            }
-        ]
-    }
-};
-
-GT.Project.Setup.populateTaskList = function(listData) {
     var clientContext = SP.ClientContext.get_current();
     var oList = clientContext.get_web().get_lists().getByTitle(listData.Name);
     // private method
-    var createListItem = function(row) {
+    var createListItem = function (row) {
 
         if (row.Fields) {
             var itemCreateInfo = new SP.ListItemCreationInformation();
@@ -436,7 +380,7 @@ GT.Project.Setup.populateTaskList = function(listData) {
         }
     }
 
-    var updateParentIdReference = function(row) {
+    var updateParentIdReference = function (row) {
         if (row.ListItem) {
             var id = row.ListItem.get_item("ID");
         }
@@ -454,71 +398,105 @@ GT.Project.Setup.populateTaskList = function(listData) {
 
     createListItem(listData.Data);
 
-    clientContext.executeQueryAsync(function(sender, args) {
+    clientContext.executeQueryAsync(function (sender, args) {
 
         console.log("Copied default items to " + listData.Name);
         updateParentIdReference(listData.Data);
-        clientContext.executeQueryAsync(function(sender, args) {
+        clientContext.executeQueryAsync(function (sender, args) {
             console.log("Updated parent task info " + listData.Name);
-        }, function(sender, args) {
+            deferred.resolve();
+        }, function (sender, args) {
             console.error('Request failed. ' + args.get_message());
+            deferred.reject();
         });
 
-    }, function(sender, args) {
+    }, function (sender, args) {
         console.error('Request failed. ' + args.get_message());
+        deferred.reject();
     });
+    return deferred.promise();
 };
 
+GT.Project.Setup.populateGenericList = function (listData) {
+
+    var deferred = GT.jQuery.Deferred();
+    var clientContext = SP.ClientContext.get_current();
+    var oList = clientContext.get_web().get_lists().getByTitle(listData.Name);
+
+    var rows = listData.Data.Rows;
+    for (var i = 0; i < rows.length; i++) {
+
+        var itemCreateInfo = new SP.ListItemCreationInformation();
+        var oListItem = oList.addItem(itemCreateInfo);
+
+        for (var y = 0; y < rows[i].Fields.length; y++) {
+            var name = rows[i].Fields[y].Name;
+            var value = rows[i].Fields[y].Value;
+            if (value.length > 255) value = value.substr(0, 252) + "...";
+            oListItem.set_item(name, value);
+        }
+        oListItem.update();
+        clientContext.load(oListItem);
+    }
+
+    clientContext.executeQueryAsync(function (sender, args) {
+        console.log("Copied default items to " + listData.Name);
+        deferred.resolve();
+    }, function (sender, args) {
+        console.error('Request failed. ' + args.get_message());
+        deferred.reject();
+    });
+
+    return deferred.promise();
+
+};
 
 GT.Project.Setup.copyDefaultItems = function () {
-    var deferred = GT.jQuery.Deferred();
+    var _this = this;
+    _this.promises = [];
+    _this.deferred = GT.jQuery.Deferred();
 
-    GT.jQuery.when(GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/data"))
-    .then(function (files) {
+    GT.Project.Setup.getFiles(_spPageContextInfo.siteServerRelativeUrl, "SiteAssets", "gt/config/data")
+    .done(function (files) {
         for (var i = 0; i < files.length; i++) {
-            GT.jQuery.getJSON(files[i].ServerRelativeUrl).then(function (data) {
+            _this.promises.push(GT.jQuery.Deferred());
 
-                if (!data.Type || data.Type != "Tasklist") {
-                    var clientContext = SP.ClientContext.get_current();
-                    var oList = clientContext.get_web().get_lists().getByTitle(data.Name);
+            (function (index) {
+                GT.jQuery.getJSON(files[i].ServerRelativeUrl).done(function (data) {
 
-                    var rows = data.Data.Rows;
-                    for (var i = 0; i < rows.length; i++) {
-
-                        var itemCreateInfo = new SP.ListItemCreationInformation();
-                        var oListItem = oList.addItem(itemCreateInfo);
-
-                        for (var y = 0; y < rows[i].Fields.length; y++) {
-                            var name = rows[i].Fields[y].Name;
-                            var value = rows[i].Fields[y].Value;
-                            if (value.length > 255) value = value.substr(0, 252) + "...";
-                            oListItem.set_item(name, value);
-                        }
-                        oListItem.update();
-                        clientContext.load(oListItem);
-
-                        clientContext.executeQueryAsync(function (sender, args) {
-                            console.log("Copied default items to " + data.Name);
-                        }, function (sender, args) {
-                            console.error('Request failed. ' + args.get_message());
+                    if (!data.Type || data.Type != "Tasklist") {
+                        GT.Project.Setup.populateGenericList(data).done(function () {
+                            _this.promises[index].resolve();
+                        });
+                    } else {
+                        GT.Project.Setup.populateTaskList(data).done(function () {
+                            _this.promises[index].resolve();
                         });
                     }
-                } else {
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    console.log("Could not get file: " + textStatus + " " + errorThrown);
+                });
+            })(i);
 
-                }
-
-
-            });
         }
+
+        GT.jQuery.when.apply(GT.jQuery, _this.promises).done(function () {
+            _this.deferred.resolve();
+        });
+
     })
     .fail(function () {
         console.log("Could not find path {site collection root}/SiteAssets/gt/config/data");
-        deferred.reject();
-    })
-    .done(function () {
-        deferred.resolve();
+        _this.deferred.reject();
     });
 
+    return _this.deferred.promise();
+};
+
+GT.Project.Setup.ExecuteCustomSteps = function () {
+    var deferred = GT.jQuery.Deferred();
+    deferred.resolve();
+    //GT.jQuery.getScript(_spPageContextInfo.siteServerRelativeUrl + "SiteAssets/gt/config/js/customteps.js");
     return deferred.promise();
 };
 
@@ -706,19 +684,14 @@ GT.Project.Setup.GetViewFromCollectionByName = function (viewCollection, name) {
 
 GT.Project.Setup.HandleOnTheFlyConfiguration = function (defaultProperties) {
     var deferred = GT.jQuery.Deferred();
-    GT.jQuery.when(GT.Project.Setup.resolveProperties(defaultProperties))
-    .then(function (properties) {
-        GT.jQuery.when(GT.Project.GetPhaseNameFromCurrentItem())
-        .then(function (currentPhase) {
+    GT.Project.Setup.resolveProperties(defaultProperties).done(function (properties) {
+        GT.Project.GetPhaseNameFromCurrentItem().done(function (currentPhase) {
             // Persist change of phase
             if (currentPhase != undefined && currentPhase != "" && properties.persistedPhase.value != currentPhase) {
                 GT.Project.Setup.showWaitMessage();
-                GT.jQuery.when(
-                    GT.Project.ChangeProjectPhase()
-                ).then(function () {
+                GT.Project.ChangeProjectPhase().done(function () {
                     properties.persistedPhase.value = currentPhase;
-                    GT.Project.Setup.persistProperties(properties)
-                    .then(function () {
+                    GT.Project.Setup.persistProperties(properties).done(function () {
                         GT.Project.Setup.closeWaitMessage();
                         deferred.resolve(true);
                     });
@@ -736,32 +709,34 @@ GT.Project.Setup.execute = function (defaultProperties, steps) {
     // 2. All right i will run configure!
     // 3. spin over all the steps configured 
     // 4. set configured
-    var self = this;
-    self.steps = steps;
+    var _this = this;
+    _this.steps = steps;
+    _this.dependentPromises = [];
     var deferred = GT.jQuery.Deferred();
 
-    GT.jQuery.when(GT.Project.Setup.resolveProperties(defaultProperties))
-    .then(function (properties) {
+    GT.Project.Setup.resolveProperties(defaultProperties)
+    .done(function (properties) {
         console.log("execute: using these settings :" + JSON.stringify(properties));
         if (properties.configured.value === "0") {
             console.log("execute: not configured, showing long running ops message");
             GT.Project.Setup.showWaitMessage();
             var version = properties.version.value;
-            var steps = self.steps[version];
+            var steps = _this.steps[version];
             if (!steps) return;
             var currentStep = parseInt(properties.currentStep.value);
             console.log("execute: current step is " + currentStep);
 
-            var dependentPromise = null;
-            while (steps[currentStep] != undefined) {
-                console.log("execute: queuing step '" + steps[currentStep].name + "'");
-                dependentPromise = steps[currentStep].execute(dependentPromise);
+            _this.dependentPromises.push(GT.jQuery.Deferred());
+            _this.dependentPromises[0].resolve();
+            _this.dependentPromises[0] = _this.dependentPromises[0].promise();
 
+            while (steps[currentStep] != undefined) {
+                var i = _this.dependentPromises.length - 1;
+                console.log("execute: queuing step '" + steps[currentStep].name + "'");
+                _this.dependentPromises.push(steps[currentStep].execute(_this.dependentPromises[i]));
                 currentStep++;
             }
-
-            GT.jQuery.when(dependentPromise)
-            .always(function () {
+            GT.jQuery.when.apply(GT.jQuery, _this.dependentPromises).done(function () {
                 properties.currentStep.value = currentStep;
                 properties.configured.value = "1";
                 GT.Project.Setup.persistProperties(properties);
@@ -811,12 +786,14 @@ GT.jQuery(document).ready(function () {
                     new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", 4, GT.Project.Setup.UpdateListsFromConfig, {}),
                     new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", 5, GT.Project.Setup.copyDefaultItems, {}),
                     new GT.Project.Setup.Model.step("Kopier dokumenter", 6, GT.Project.Setup.copyFiles,
-                        { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
+                        { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" }),
+                    new GT.Project.Setup.Model.step("Custom steg", 7, GT.Project.Setup.ExecuteCustomSteps, {})
                 ]
             };
             var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
             GT.jQuery.getScript(scriptbase + "SP.js", function () {
                 GT.jQuery.getScript(scriptbase + "SP.Taxonomy.js", function () {
+
                     GT.Project.Setup.execute(properties, steps)
                     .done(function (shouldReload) {
                         if (shouldReload) {
@@ -829,6 +806,7 @@ GT.jQuery(document).ready(function () {
                             }
                         });
                     });
+
                 });
             });
         });
