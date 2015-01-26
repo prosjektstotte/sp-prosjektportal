@@ -197,7 +197,8 @@
       "Description"    : "",
       "DisplayName"    : "Glittertind baseoppgave",
       "Fields"         : [
-         "GtProjectPhase"
+         "GtProjectPhase",
+         "GtProjectTaskUrl"
       ],
       "Group"          : "Glittertind Innholdstyper",
       "ID"             : "0x010800233b015f95174c9a8eb505493841de8d",

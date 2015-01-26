@@ -346,6 +346,130 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
     return deferred.promise();
 };
 
+
+
+var gtinput = {
+    "Name": "Oppgaver",
+    "type" : "Tasklist",
+    "Data": {
+        "Rows": [
+            {
+                "Fields": [
+                    {
+                        "Name": "Title",
+                        "Value": "Task 1"
+                    },
+                    {
+                        "Name": "GtProjectPhase",
+                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                    }
+                ],
+                "Rows": [
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Task 1.1"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Task 1.2"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Fields": [
+                    {
+                        "Name": "Title",
+                        "Value": "Task 2"
+                    },
+                    {
+                        "Name": "GtProjectPhase",
+                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                    }
+                ]
+            }
+        ]
+    }
+};
+
+GT.Project.Setup.populateTaskList = function(listData) {
+    var clientContext = SP.ClientContext.get_current();
+    var oList = clientContext.get_web().get_lists().getByTitle(listData.Name);
+    // private method
+    var createListItem = function(row) {
+
+        if (row.Fields) {
+            var itemCreateInfo = new SP.ListItemCreationInformation();
+            var listItem = oList.addItem(itemCreateInfo);
+
+            for (var i = 0; i < row.Fields.length; i++) {
+                var name = row.Fields[i].Name;
+                var value = row.Fields[i].Value;
+                if (value.length > 255) value = value.substr(0, 252) + "...";
+                listItem.set_item(name, value);
+            }
+
+            row.ListItem = listItem;
+            listItem.update();
+            clientContext.load(listItem);
+        }
+
+        if (row.Rows) {
+            for (var i = 0; i < row.Rows.length; i++) {
+                createListItem(row.Rows[i]);
+            }
+        }
+    }
+
+    var updateParentIdReference = function(row) {
+        if (row.ListItem) {
+            var id = row.ListItem.get_item("ID");
+        }
+        for (var i = 0; i < row.Rows.length; i++) {
+            if (id) {
+                row.Rows[i].ListItem.set_item("ParentID", id);
+                row.Rows[i].ListItem.update();
+            }
+
+            if (row.Rows[i].Rows) {
+                updateParentIdReference(row.Rows[i]);
+            }
+        }
+    }
+
+    createListItem(listData.Data);
+
+    clientContext.executeQueryAsync(function(sender, args) {
+
+        console.log("Copied default items to " + listData.Name);
+        updateParentIdReference(listData.Data);
+        clientContext.executeQueryAsync(function(sender, args) {
+            console.log("Updated parent task info " + listData.Name);
+        }, function(sender, args) {
+            console.error('Request failed. ' + args.get_message());
+        });
+
+    }, function(sender, args) {
+        console.error('Request failed. ' + args.get_message());
+    });
+};
+
+
 GT.Project.Setup.copyDefaultItems = function () {
     var deferred = GT.jQuery.Deferred();
 
@@ -353,29 +477,37 @@ GT.Project.Setup.copyDefaultItems = function () {
     .then(function (files) {
         for (var i = 0; i < files.length; i++) {
             GT.jQuery.getJSON(files[i].ServerRelativeUrl).then(function (data) {
-                var clientContext = SP.ClientContext.get_current();
-                var oList = clientContext.get_web().get_lists().getByTitle(data.Name);
 
-                var rows = data.Data.Rows;
-                for (var i = 0; i < rows.length; i++) {
+                if (!data.Type || data.Type != "Tasklist") {
+                    var clientContext = SP.ClientContext.get_current();
+                    var oList = clientContext.get_web().get_lists().getByTitle(data.Name);
 
-                    var itemCreateInfo = new SP.ListItemCreationInformation();
-                    var oListItem = oList.addItem(itemCreateInfo);
+                    var rows = data.Data.Rows;
+                    for (var i = 0; i < rows.length; i++) {
 
-                    for (var y = 0; y < rows[i].Fields.length; y++) {
-                        var name = rows[i].Fields[y].Name;
-                        var value = rows[i].Fields[y].Value;
-                        if (value.length > 255) value = value.substr(0, 252) + "...";
-                        oListItem.set_item(name, value);
+                        var itemCreateInfo = new SP.ListItemCreationInformation();
+                        var oListItem = oList.addItem(itemCreateInfo);
+
+                        for (var y = 0; y < rows[i].Fields.length; y++) {
+                            var name = rows[i].Fields[y].Name;
+                            var value = rows[i].Fields[y].Value;
+                            if (value.length > 255) value = value.substr(0, 252) + "...";
+                            oListItem.set_item(name, value);
+                        }
+                        oListItem.update();
+                        clientContext.load(oListItem);
+
+                        clientContext.executeQueryAsync(function (sender, args) {
+                            console.log("Copied default items to " + data.Name);
+                        }, function (sender, args) {
+                            console.error('Request failed. ' + args.get_message());
+                        });
                     }
-                    oListItem.update();
-                    clientContext.load(oListItem);
+                } else {
+
                 }
-                clientContext.executeQueryAsync(function (sender, args) {
-                    console.log("Copied default items to " + data.Name);
-                }, function (sender, args) {
-                    console.error('Request failed. ' + args.get_message());
-                });
+
+
             });
         }
     })

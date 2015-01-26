@@ -546,5 +546,14 @@
       "ID"           : "a3038ecc-69db-4179-b23b-5fdb0535b38c",
       "InternalName" : "GtProjectInfoDescription",
       "Type"         : "Note"
-   }
+   },
+   {
+      "Description"  : "",
+      "DisplayName"  : "Url",
+      "Group"        : "Glittertind Områdekolonner",
+      "ID"           : "0ba73871-4944-46a0-b829-df731121876f",
+      "InternalName" : "GtProjectTaskUrl",
+      "Type"         : "URL",
+      "Format"       : "Hyperlink"
+   }   
 ]
