@@ -33,6 +33,6 @@
     <File Path="config\lists\oppgaver.json" Url="config/lists/oppgaver.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\lists\informasjon.json" Url="config/lists/informasjon.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE" />
     <File Path="config\quicklaunch\quicklaunch.json" Url="config/quicklaunch/quicklaunch.txt" Type="GhostableInLibrary" ReplaceContent="TRUE" IgnoreIfAlreadyExists="FALSE"/>
-    
+    <File Path="config\defaultfolders\folders.txt" Url="config/defaultfolders/folders.txt" ReplaceContent="FALSE" IgnoreIfAlreadyExists="FALSE" />
   </Module>
 </Elements>

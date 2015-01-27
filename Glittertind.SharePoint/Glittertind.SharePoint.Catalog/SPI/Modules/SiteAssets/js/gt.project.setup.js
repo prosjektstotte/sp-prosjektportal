@@ -348,6 +348,43 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
     return deferred.promise();
 };
 
+GT.Project.Setup.createFolders = function () {
+    var deferred = GT.jQuery.Deferred();
+    GT.jQuery.ajax({
+        url: _spPageContextInfo.siteServerRelativeUrl + "/SiteAssets/gt/config/defaultfolders/folders.txt"
+    })
+	.done(function (data) {
+	    var folders = data.split("\n");
+	    if (folders.length === 0) {
+	        deferred.resolve();
+	        return;
+	    }
+	    var ctx = SP.ClientContext.get_current();
+	    var web = ctx.get_web();
+	    var list = web.get_lists().getByTitle("Dokumenter");
+	    var listUrl = _spPageContextInfo.webAbsoluteUrl + '/Dokumenter';
+	    var root = list.get_rootFolder();
+
+	    for (var i = 0; i < folders.length ; i++) {
+	        root.get_folders().add(listUrl + folders[i]);
+	    }
+
+	    list.update();
+
+	    ctx.executeQueryAsync(function (sender, args) {
+	        console.log("Created folder structure");
+	        deferred.resolve();
+	    }, function (sender, args) {
+	        console.error('Request failed. ' + args.get_message());
+	    });
+	})
+	.fail(function (jqXHR, textStatus, errorThrown) {
+	    console.log("not able to create folder structure, " + textStatus);
+	    deferred.resolve();
+	});
+    return deferred.promise();
+};
+
 GT.Project.Setup.populateTaskList = function (listData) {
 
     var deferred = GT.jQuery.Deferred();
@@ -493,10 +530,21 @@ GT.Project.Setup.copyDefaultItems = function () {
     return _this.deferred.promise();
 };
 
+GT.Project.Setup.CustomStep = {};
+
 GT.Project.Setup.ExecuteCustomSteps = function () {
     var deferred = GT.jQuery.Deferred();
-    deferred.resolve();
-    //GT.jQuery.getScript(_spPageContextInfo.siteServerRelativeUrl + "SiteAssets/gt/config/js/customteps.js");
+    GT.jQuery.getScript(_spPageContextInfo.siteServerRelativeUrl + "/SiteAssets/gt/js/customsteps.js")
+	.done(function () {
+	    GT.Project.Setup.CustomStep.promise.done(function (status) {
+	        if (status) console.log(status);
+	        deferred.resolve();
+	    });
+	})
+	.fail(function (jqXHR, textStatus, errorThrown) {
+	    console.log(textStatus);
+	    deferred.reject();
+	});
     return deferred.promise();
 };
 
@@ -785,9 +833,10 @@ GT.jQuery(document).ready(function () {
                     new GT.Project.Setup.Model.step("Konfigurer quicklaunch", 3, GT.Project.Setup.ConfigureQuickLaunch, {}),
                     new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", 4, GT.Project.Setup.UpdateListsFromConfig, {}),
                     new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", 5, GT.Project.Setup.copyDefaultItems, {}),
-                    new GT.Project.Setup.Model.step("Kopier dokumenter", 6, GT.Project.Setup.copyFiles,
+					new GT.Project.Setup.Model.step("Oppretter evt. mappestruktur", 6, GT.Project.Setup.createFolders, {}),
+                    new GT.Project.Setup.Model.step("Kopier dokumenter", 7, GT.Project.Setup.copyFiles,
                         { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" }),
-                    new GT.Project.Setup.Model.step("Custom steg", 7, GT.Project.Setup.ExecuteCustomSteps, {})
+                    new GT.Project.Setup.Model.step("Custom steg", 8, GT.Project.Setup.ExecuteCustomSteps, {})
                 ]
             };
             var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";

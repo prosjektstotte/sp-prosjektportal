@@ -34,5 +34,6 @@
     <ProjectItemFile Source="html\gt.checklistform.html" Target="SiteAssets\html\" Type="ElementFile" />
     <ProjectItemFile Source="html\gt.csomprojectdir_newprojects.html" Target="SiteAssets\html\" Type="ElementFile" />
     <ProjectItemFile Source="js\customsteps.js" Target="SiteAssets\js\" Type="ElementFile" />
+    <ProjectItemFile Source="config\defaultfolders\folders.txt" Target="SiteAssets\config\defaultfolders\" Type="ElementFile" />
   </Files>
 </ProjectItem>
