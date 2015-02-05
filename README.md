@@ -50,6 +50,6 @@ Løsning: Du installerer på feil miljø eller har en gammel versjon av SharePoi
 
 Løsning: Sannsynligvis installerer du til et underområde istedenfor til en områdesamling. Du må først opprette en områdesamling fra SharePoint Admin Center (Office 365) eller Central Administration (On-premises). Se installasjonssteg 1.
 
-## Problem: installasjon av termset (operasjon 1) På onpremises SharePoint 2013 feiler med meldingen: "An exception occured: The remote server returned an error: (401) Unauthorized."
+## Problem: Installasjon av termset (operasjon 1) og andre operasjoner på SharePoint 2013 on-premises feiler med meldingen: "An exception occured: The remote server returned an error: (401) Unauthorized."
 
-Løsning: <a href="http://support.microsoft.com/kb/926642/en-us?wa=wsignin1.0">Skru av loopback check</a>
+Mulig løsning: Serveren har loopback check slått på. Se <a href="http://support.microsoft.com/kb/926642/en-us?wa=wsignin1.0">KB-926642 for løsning.</a>
