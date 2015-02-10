@@ -3,6 +3,8 @@
 
 Prosjektportal for SharePoint er et prosjektstyringsverktøy for SharePoint basert på <a href="http://prosjektveiviseren.no">Prosjektveiviseren</a>. 
 
+# NB 2015-02-10: Microsoft har rullet ut en endring til Office 365 som gjør at installasjonen av Glittertind til Office 365 akkurat nå ikke lar seg gjøre ved å følge stegene under. En oppdatert pakke kommer.
+
 # Hva er prosjektportal for SharePoint?
 Prosjektportal for SharePoint (kodenavn "Glittertind") er bygget av <a href="http://www.puzzlepart.com">Puzzlepart AS</a> på bestilling for Asker Kommune og <a href="http://www.ks.no/kommit">KommIT</a>. Glittertind inneholder SharePoint-artefakter som til sammen utgjør et prosjektstyringsverktøy. Det blir satt opp en portefølgeside der en får en oversikt over eksisterende prosjekter og kan opprette nye prosjektrom. Hvert prosjektområde inneholder en del lister, en del standardelementer og logikk for å gjennomføre et prosjekt etter prosjektveiviserens modell. Prosjektveiviseren er Difis anbefalte prosjektmodell for gjennomføring av digitaliseringsprosjekter i offentlige virksomheter.
 
