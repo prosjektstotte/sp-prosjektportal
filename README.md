@@ -3,6 +3,8 @@
 
 Prosjektportal for SharePoint er et prosjektstyringsverktøy for SharePoint basert på <a href="http://prosjektveiviseren.no">Prosjektveiviseren</a>. 
 
+2015-02-10: Microsoft rullet ut en endring til Office 365 som gjorde at installasjonen av Glittertind til Office 365 kunne feile. Dersom du har lastet ned versjon 0.3-beta eller eldre så bør du laste ned en ny versjon <a href="https://github.com/prosjektstotte/sp-prosjektportal/releases/tag/v0.4-beta">her</a>.
+
 # Hva er prosjektportal for SharePoint?
 Prosjektportal for SharePoint (kodenavn "Glittertind") er bygget av <a href="http://www.puzzlepart.com">Puzzlepart AS</a> på bestilling for Asker Kommune og <a href="http://www.ks.no/kommit">KommIT</a>. Glittertind inneholder SharePoint-artefakter som til sammen utgjør et prosjektstyringsverktøy. Det blir satt opp en portefølgeside der en får en oversikt over eksisterende prosjekter og kan opprette nye prosjektrom. Hvert prosjektområde inneholder en del lister, en del standardelementer og logikk for å gjennomføre et prosjekt etter prosjektveiviserens modell. Prosjektveiviseren er Difis anbefalte prosjektmodell for gjennomføring av digitaliseringsprosjekter i offentlige virksomheter.
 
@@ -55,7 +57,9 @@ Løsning: Sannsynligvis installerer du til et underområde istedenfor til en omr
 Mulig løsning: Serveren har loopback check slått på. Se <a href="http://support.microsoft.com/kb/926642/en-us?wa=wsignin1.0">KB-926642 for løsning.</a>
 
 ## Problem: Installasjonen feiler med feilmeldingen "(407) Proxy-godkjenning kreves." eller "(407) Proxy Authentication Required"
+
 Mulig løsng: Det kan være at nettverkstrafikken og autentiseringen må gjennom en proxy før den når SharePoint Online. Prøv å installere fra et annet nettverk eller ta kontakt for bistand.
 
 ## Problem: Opplasting av pakke (operasjon 2) mot SharePoint online feiler med feilmelding "403 Unauthroized", selv om du er sikker på at du har oppgitt riktig brukernavn og passord
+
 Mulig løsning: Du må kanskje slå på valget "Tillat brukere å kjøre skript på brukeropprettede områder" i globale innstillinger for Office 365 / SharePoint. Gå til Administrasjonsenter for SharePoint --> Innstillinger --> Gå ned til seksjonen "Egendefinert skript" --> Velg "Tillat brukere å kjøre skript på brukeropprettede områder". Se også <a href="https://support.office.com/en-us/article/Turn-scripting-capabilities-on-and-off-1f2c515f-5d7e-448a-9fd7-835da935584f?CorrelationId=aa45d353-1ade-4440-88e8-9310d92e9c85&ui=en-US&rs=en-US&ad=US">Turn scripting capabilities on and off</a>.

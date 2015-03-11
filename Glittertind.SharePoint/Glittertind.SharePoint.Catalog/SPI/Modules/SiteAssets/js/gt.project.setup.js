@@ -4,6 +4,7 @@ GT.Project = GT.Project || {};
 GT.Project.Setup = GT.Project.Setup || {};
 GT.Project.Setup.Model = GT.Project.Setup.Model || {}
 GT.Project.Setup.ContentTypes = GT.Project.Setup.ContentTypes || {}
+GT.Project.Setup.CustomStep = GT.Project.Setup.CustomStep || {};
 
 GT.Project.Setup.Model.step = function (name, stepNum, callback, properties) {
     var self = this;
@@ -530,16 +531,12 @@ GT.Project.Setup.copyDefaultItems = function () {
     return _this.deferred.promise();
 };
 
-GT.Project.Setup.CustomStep = {};
-
 GT.Project.Setup.ExecuteCustomSteps = function () {
     var deferred = GT.jQuery.Deferred();
     GT.jQuery.getScript(_spPageContextInfo.siteServerRelativeUrl + "/SiteAssets/gt/js/customsteps.js")
-	.done(function () {
-	    GT.Project.Setup.CustomStep.promise.done(function (status) {
-	        if (status) console.log(status);
-	        deferred.resolve();
-	    });
+	.done(function (status) {
+	    if (status) console.log(status);
+	    deferred.resolve();
 	})
 	.fail(function (jqXHR, textStatus, errorThrown) {
 	    console.log(textStatus);
