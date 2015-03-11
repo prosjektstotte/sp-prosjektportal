@@ -27,14 +27,13 @@ Før du starter er det viktig å være klar over følgende
 
 ## Steg for steg
 1. En områdesamling må opprettes for prosjektportalen. Vi anbefaler ikke at prosjektportalen installeres i en områdesamling som brukes til noe annet fra før. Vi anbefaler at områdesamlingen opprettes med norsk språk og malen gruppeområde ('team site'). Gjør steg 2-4 mens du venter på at områdesamlingen opprettes.
-2. For å installere løsningen uten å gjøre endringer anbefaler vi at den ferdigpakkede løsningen lastes ned fra <a href="https://github.com/prosjektstotte/sp-prosjektportal/releases">Releases</a> på denne siden. 
-3. Pakk ut installasjonspakken til disken, og naviger til mappen via kommandolinjen.
-4. På kommandolinjen, skriv sherpa.exe --help for å se mulige parametere
-5. Dersom du er på SharePoint Online: På kommandolinjen, skriv sherpa.exe --url "URL til nyopprettet områdesamling" --userName "brukernavn til områdesamlingadministrator" --spo
-5. Dersom du er på SharePoint 2013 On-Prem: På kommandolinjen, skriv sherpa.exe --url "URL til nyopprettet områdesamling"
-6. Applikasjonen starter. Dersom du bruker SharePoint Online må du skrive passord. Du får nå opp en del valg, der operasjonene 1 til 4 er viktigst.
-7. Kjør gjennom operasjonene i applikasjonen 1 til 4 i rekkefølge. Hvert steg må gå gjennom uten feil for at alt skal fungere. Dersom du opplever feil, ta kontakt for å se på mulige problemløsninger.
-8. Etter at operasjonene er gjennomført skal prosjektportalen være oppe og kjøre.
+2. For å installere løsningen uten å gjøre endringer anbefaler vi at den siste ferdigpakkede løsningen lastes ned fra <a href="https://github.com/prosjektstotte/sp-prosjektportal/releases">Releases</a> på denne siden. 
+3. Pakk ut installasjonspakken, og naviger til mappen via kommandolinjen.
+4. Dersom du er på SharePoint Online: På kommandolinjen, skriv sherpa.exe --url "URL til nyopprettet områdesamling" --userName "brukernavn til områdesamlingadministrator" --spo
+4. Dersom du er på SharePoint 2013 On-Prem: På kommandolinjen, skriv sherpa.exe --url "URL til nyopprettet områdesamling"
+5. Applikasjonen starter. Dersom du bruker SharePoint Online må du skrive passord. Du får nå opp en del valg, der operasjonene 1 til 4 er viktigst.
+6. Kjør gjennom operasjonene i applikasjonen 1 til 4 i rekkefølge. Hvert steg må gå gjennom uten feil for at alt skal fungere. Dersom du opplever feil kan du se seksjonen Feilsøking under, eller ta kontakt for å se på mulige problemløsninger.
+Etter at operasjonene er gjennomført skal prosjektportalen være oppe og kjøre.
 
 # Kontakt
 For spørsmål og innspill, ta kontakt med KommIT ved <a href="mailto:lars.sverre.gjolme@ks.no">Lars Sverre Gjølme</a> eller Asker Kommune ved <a href="mailto:Geir.Graff@asker.kommune.no">Geir Graff</a>. For bistand til installasjon av løsningen eller muligheter for videreutvikling og spesialtilpasninger, ta kontakt med <a href="mailto:support@puzzlepart.com">Puzzlepart</a> eller <a href="mailto:tormod.guldvog@puzzlepart.com">Tormod Guldvog</a>. Vi gjør oppmerksom på at eventuell bistand vil være en fakturerbar tjeneste.
@@ -50,7 +49,7 @@ Løsning: Du installerer på feil miljø eller har en gammel versjon av SharePoi
 
 ## Problem: Du får feilmeldingen "Value does not fall within the expected range" i steg 2 når du installerer løsningen.
 
-Løsning: Sannsynligvis installerer du til et underområde istedenfor til en områdesamling. Du må først opprette en områdesamling fra SharePoint Admin Center (Office 365) eller Central Administration (On-premises). Se installasjonssteg 1.
+Mulig løsning: Du installerer til et underområde istedenfor til en områdesamling. Du må først opprette en områdesamling fra SharePoint Admin Center (Office 365) eller Central Administration (On-premises). Se installasjonssteg 1 over.
 
 ## Problem: Installasjon av termset (operasjon 1) og andre operasjoner på SharePoint 2013 on-premises feiler med meldingen: "An exception occured: The remote server returned an error: (401) Unauthorized."
 
@@ -60,6 +59,6 @@ Mulig løsning: Serveren har loopback check slått på. Se <a href="http://suppo
 
 Mulig løsng: Det kan være at nettverkstrafikken og autentiseringen må gjennom en proxy før den når SharePoint Online. Prøv å installere fra et annet nettverk eller ta kontakt for bistand.
 
-## Problem: Opplasting av pakke (operasjon 2) mot SharePoint online feiler med feilmelding "403 Unauthroized", selv om du er sikker på at du har oppgitt riktig brukernavn og passord
+## Problem: Opplasting av pakke (operasjon 2) mot SharePoint online feiler med feilmelding "403 Forbidden", selv om du er sikker på at du har oppgitt riktig brukernavn og passord
 
 Mulig løsning: Du må kanskje slå på valget "Tillat brukere å kjøre skript på brukeropprettede områder" i globale innstillinger for Office 365 / SharePoint. Gå til Administrasjonsenter for SharePoint --> Innstillinger --> Gå ned til seksjonen "Egendefinert skript" --> Velg "Tillat brukere å kjøre skript på brukeropprettede områder". Se også <a href="https://support.office.com/en-us/article/Turn-scripting-capabilities-on-and-off-1f2c515f-5d7e-448a-9fd7-835da935584f?CorrelationId=aa45d353-1ade-4440-88e8-9310d92e9c85&ui=en-US&rs=en-US&ad=US">Turn scripting capabilities on and off</a>.
