@@ -55,6 +55,11 @@ GT.Project.Setup.ApplyTheme = function (properties) {
     var colorPaletteUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + properties.colorPaletteName;
     var fontSchemeUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + properties.fontSchemeName;
 
+    // I am tired
+    if (_spPageContextInfo.siteServerRelativeUrl === "/") {
+        colorPaletteUrl = "/_catalogs/theme/15/" + properties.colorPaletteName;
+        fontSchemeUrl = "/_catalogs/theme/15/" + properties.fontSchemeName;
+    }
     web.applyTheme(colorPaletteUrl, fontSchemeUrl, properties.backgroundImageUrl, properties.shareGenerated);
     web.update();
 
@@ -830,10 +835,8 @@ GT.jQuery(document).ready(function () {
                     new GT.Project.Setup.Model.step("Konfigurer quicklaunch", 3, GT.Project.Setup.ConfigureQuickLaunch, {}),
                     new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", 4, GT.Project.Setup.UpdateListsFromConfig, {}),
                     new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", 5, GT.Project.Setup.copyDefaultItems, {}),
-					new GT.Project.Setup.Model.step("Oppretter evt. mappestruktur", 6, GT.Project.Setup.createFolders, {}),
-                    new GT.Project.Setup.Model.step("Kopier dokumenter", 7, GT.Project.Setup.copyFiles,
-                        { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" }),
-                    new GT.Project.Setup.Model.step("Custom steg", 8, GT.Project.Setup.ExecuteCustomSteps, {})
+                    new GT.Project.Setup.Model.step("Kopier dokumenter", 6, GT.Project.Setup.copyFiles,
+                        { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
                 ]
             };
             var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
