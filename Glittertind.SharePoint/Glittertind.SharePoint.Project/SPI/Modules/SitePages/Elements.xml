@@ -136,11 +136,20 @@
       <Property Name="ContentTypeId" Value="0x01010901" />
       <View List="Lists/Oppgaver" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="0" >
         <![CDATA[
-         <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
-          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
-          <TypeName>Microsoft.SharePoint.WebPartPages.XsltListViewWebPart</TypeName>
-          <Title>Mine oppgaver</Title>
-         </WebPart>
+          <webParts>
+            <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+              <metaData>
+                <type name="Microsoft.SharePoint.WebPartPages.XsltListViewWebPart, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+                <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
+              </metaData>
+              <data>
+                <properties>
+                  <property name="ServerRender" type="bool">True</property>
+                  <property name="Title" type="string">Mine oppgaver</property>
+                </properties>
+              </data>
+            </webPart>
+          </webParts>
          ]]>
       </View>
       <View List="Lists/Kommunikasjonsplan" BaseViewID="1" WebPartZoneID="RightColumn" WebPartOrder="0" >

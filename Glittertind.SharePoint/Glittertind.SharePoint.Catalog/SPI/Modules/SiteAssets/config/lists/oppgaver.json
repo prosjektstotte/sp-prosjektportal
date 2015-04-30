@@ -36,7 +36,7 @@
             "Url": "SitePages/Tilordnet.aspx",
 	        "ViewFields": ["Checkmark", "LinkTitle", "GtProjectPhase", "StartDate", "DueDate"],
 	        "RowLimit": 30,
-	        "Query": "<Where><Or><Eq><FieldRef Name='AssignedTo' /><Value Type='Integer'><UserID/></Value></Eq><Membership Type='CurrentUserGroups'><FieldRef Name='AssignedTo' /></Membership></Or></Where><OrderBy><FieldRef Name='DueDate' /></OrderBy>"
+	        "Query": "<Where><Eq><FieldRef Name='AssignedTo' /><Value Type='Integer'><UserID/></Value></Eq></Where><OrderBy><FieldRef Name='DueDate' /></OrderBy>"
 	    }
     ]
 }
