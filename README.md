@@ -41,6 +41,15 @@ Tarjei Ormestøyl [<a href="mailto:tarjeieo@puzzlepart.com">tarjeieo@puzzlepart.
 Ole Kristian Mørch-Storstein [<a href="mailto:olekms@puzzlepart.com">olekms@puzzlepart.com</a>]
 
 # Feilsøking
+## Problem: Du får ikke filtrert oppgavelister under "Mine prosjektelementer" eller andre steder (SharePoint 2013 onpremises)
+Oppgavelister som ikke blir filtrert er <a href="http://stackoverflow.com/questions/29659969/cannot-filter-a-sharepoint-2013-task-list-after-march-2015-update">et kjent problem</a> for kunder med SharePoint 2013 som har installert Mars 2015 CU. 
+
+1. Vi anbefaler at kunder som har denne feilen oppgraderer til <a href="https://github.com/prosjektstotte/sp-prosjektportal/releases/tag/v0.5-beta.2">Glittertind versjon 0.5-beta.2</a> eller senere. Dette vil løse problemet for nye prosjekter som opprettes etter oppdateringen er installert.
+2. For å løse problemet for eksisterende prosjekter, gjør følgende på sider som har oppgavelister med filtering som ikke virker
+
+Settings -> Edit Page -> Select the List Web Part and the option Edit Web part -> Miscellaneous -> Server Render (Checkbox)
+
+
 ## Problem: Du får feilmeldingen "Method not found: ‘Void Microsoft.SharePoint.Client.ContentTypeCreationInformation.set_Id(System.String)’" i steg 3 når du installerer løsningen til On-Premises.
 
 Løsning: Du installerer på feil miljø eller har en gammel versjon av SharePoint 2013 (før Service Pack 1). Du må installere Service Pack 1 for å kunne installere løsningen. <a href="http://developeratwar.com/2014/10/you-get-an-exception-occured-method-not-found-void-microsoft-sharepoint-client-conten-ttypecreationinformation-set_idsystem-string">Les mer om denne feilen</a>
