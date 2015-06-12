@@ -110,7 +110,7 @@ GT.Project.ChangeQueryOfListViewOnPage = function (phaseName, listName, pageRela
                 console.error('Request failed. ' + args.get_message());
             });
         } else {
-            deferred.reject();
+            deferred.resolve();
             console.log('Could not find any view with url ' + viewUrl + ' for list ' + listName);
         }
     }, function (sender, args) {
