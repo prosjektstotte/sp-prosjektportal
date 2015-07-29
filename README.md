@@ -24,13 +24,13 @@ Før du starter er det viktig å være klar over følgende
 * (On-Premises) Servicen 'Microsoft SharePoint Foundation Sandboxed Code Service' må være startet i farmen
 
 ## Steg for steg
-1. En områdesamling må opprettes for prosjektportalen. Vi anbefaler ikke at prosjektportalen installeres i en områdesamling som brukes til noe annet fra før. Vi anbefaler at områdesamlingen opprettes med norsk språk og malen gruppeområde ('team site'). Gjør steg 2-4 mens du venter på at områdesamlingen opprettes.
+1. En områdesamling må opprettes for prosjektportalen. Vi anbefaler ikke at prosjektportalen installeres i en områdesamling som brukes til noe annet fra før. Vi anbefaler at områdesamlingen opprettes med norsk språk (selve SharePoint-installasjonen trenger ikke være norsk) og malen 'gruppeområde' ('team site'). Gjør gjerne steg 2-4 mens du venter på at områdesamlingen opprettes.
 2. For å installere løsningen uten å gjøre endringer anbefaler vi at den siste ferdigpakkede løsningen lastes ned fra <a href="https://github.com/prosjektstotte/sp-prosjektportal/releases">Releases</a> på denne siden. 
 3. Pakk ut installasjonspakken, og naviger til mappen via kommandolinjen.
-4. Dersom du er på SharePoint Online: På kommandolinjen, skriv sherpa.exe --url "URL til nyopprettet områdesamling" --userName "brukernavn til områdesamlingadministrator" --spo
-4. Dersom du er på SharePoint 2013 On-Prem: På kommandolinjen, skriv sherpa.exe --url "URL til nyopprettet områdesamling"
-5. Applikasjonen starter. Dersom du bruker SharePoint Online må du skrive passord. Du får nå opp en del valg, der operasjonene 1 til 4 er viktigst.
-6. Kjør gjennom operasjonene i applikasjonen 1 til 4 i rekkefølge. Hvert steg må gå gjennom uten feil for at alt skal fungere. Dersom du opplever feil kan du se seksjonen Feilsøking under, eller ta kontakt for å se på mulige problemløsninger.
+4. Dersom du skal installere til SharePoint Online: På kommandolinjen, skriv sherpa.exe --url "URL til nyopprettet områdesamling" --userName "brukernavn til områdesamlingadministrator" --spo
+4. Dersom du skal installere til SharePoint 2013 On-Premises: På kommandolinjen, skriv sherpa.exe --url "URL til nyopprettet områdesamling"
+5. Applikasjonen starter. Dersom du skal installere til SharePoint Online må du skrive passord. Du får nå opp en del valg, der operasjonene 1 til 4 er relevante i denne omgang.
+6. Kjør gjennom operasjonene i applikasjonen 1 til 4 i rekkefølge. Hvert steg må gå gjennom uten feil for at installasjonen skal blir vellykket. Dersom du opplever feil kan du se seksjonen Feilsøking under, eller ta kontakt for å se på mulige problemløsninger.
 Etter at operasjonene er gjennomført skal prosjektportalen være oppe og kjøre.
 
 # Kontakt
