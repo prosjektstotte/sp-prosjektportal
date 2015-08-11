@@ -70,18 +70,37 @@ GT.Project.SetEditMetadataUrls = function () {
     GT.jQuery('#changeProjectPhaseLink').attr('href', editPhaseUrl);
 }
 
-GT.Project.InitFrontpage = function (requiresPermissions) {
+GT.Project.InitFrontpage = function () {
     var funcsToExecute = [
         GT.Project.PopulateProjectPhasePart,
         GT.Project.ShowMetadataIfIsWelcomePage,
     ];
 
-    if (requiresPermissions == "AddAndCustomizePages") {
-        funcsToExecute = [
+    // For IE 10,11+
+    if (SP && SP.SOD) {
+        SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
+            for (var i = funcsToExecute.length - 1; i >= 0; i--) {
+                funcsToExecute[i]();
+                funcsToExecute.pop();
+            }
+        });
+    };
+
+    // For Chrome - SP.SOD.executeFunc only has a 53% success rate with Chrome
+    if (window['ExecuteOrDelayUntilScriptLoaded']) {
+        ExecuteOrDelayUntilScriptLoaded(function () {
+            for (var i = funcsToExecute.length - 1; i >= 0; i--) {
+                funcsToExecute[i]();
+                funcsToExecute.pop();
+            }
+        }, "sp.js");
+    };
+};
+GT.Project.InitOwnerControls = function () {
+    var funcsToExecute = [
             GT.Project.HandleMissingMetadata,
             GT.Project.SetEditMetadataUrls
-        ]
-    };
+    ];
 
     // For IE 10,11+
     if (SP && SP.SOD) {

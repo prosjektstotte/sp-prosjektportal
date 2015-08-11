@@ -189,7 +189,7 @@
     <SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AuthenticatedUsersOnly" Permissions="AddAndCustomizePages" PermissionContext="CurrentItem">
         <script type="text/javascript">
             GT.jQuery(document).ready(function () {
-                GT.Project.InitFrontpage("AddAndCustomizePages");
+                GT.Project.InitOwnerControls();
             });
         </script>
     </SharePoint:SPSecurityTrimmedControl>
