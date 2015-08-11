@@ -71,37 +71,19 @@ GT.Project.SetEditMetadataUrls = function () {
 }
 
 GT.Project.InitFrontpage = function () {
-    var funcsToExecute = [
+    GT.Project.ExecuteFunctionsAfterSPLoaded([
         GT.Project.PopulateProjectPhasePart,
         GT.Project.ShowMetadataIfIsWelcomePage,
-    ];
-
-    // For IE 10,11+
-    if (SP && SP.SOD) {
-        SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
-            for (var i = funcsToExecute.length - 1; i >= 0; i--) {
-                funcsToExecute[i]();
-                funcsToExecute.pop();
-            }
-        });
-    };
-
-    // For Chrome - SP.SOD.executeFunc only has a 53% success rate with Chrome
-    if (window['ExecuteOrDelayUntilScriptLoaded']) {
-        ExecuteOrDelayUntilScriptLoaded(function () {
-            for (var i = funcsToExecute.length - 1; i >= 0; i--) {
-                funcsToExecute[i]();
-                funcsToExecute.pop();
-            }
-        }, "sp.js");
-    };
+    ]);
 };
 GT.Project.InitOwnerControls = function () {
-    var funcsToExecute = [
+    GT.Project.ExecuteFunctionsAfterSPLoaded([
             GT.Project.HandleMissingMetadata,
             GT.Project.SetEditMetadataUrls
-    ];
+    ]);
+};
 
+GT.Project.ExecuteFunctionsAfterSPLoaded = function (funcsToExecute) {
     // For IE 10,11+
     if (SP && SP.SOD) {
         SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
@@ -121,7 +103,7 @@ GT.Project.InitOwnerControls = function () {
             }
         }, "sp.js");
     };
-};
+}
 
 GT.Project.ChangeProjectPhase = function () {
     var deferred = GT.jQuery.Deferred();
