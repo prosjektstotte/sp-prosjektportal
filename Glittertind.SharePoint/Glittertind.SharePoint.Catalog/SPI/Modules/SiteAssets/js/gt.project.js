@@ -280,12 +280,52 @@ GT.Project.EnsureMetaDataDefaultsEventReceiver = function (lib) {
 
 
 GT.Project.PopulateProjectPhasePart = function () {
-    GT.jQuery.when(GT.Project.GetPhaseNameFromCurrentItem()).then(function (phaseName) {
-        var phases = ['Konsept', 'Planlegge', 'Gjennomføre', 'Avslutte', 'Realisere'];
-        for (var ix = 0; ix < phases.length; ix++) {
-            GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(phases[ix], phases[ix] == phaseName, true, true, ix));
-        }
+    GT.jQuery.getScript(_spPageContextInfo.siteAbsoluteUrl + "/_layouts/15/SP.Taxonomy.js", function () {
+        var defs = [
+          GT.Project.GetPhaseNameFromCurrentItem(),
+          GT.Project.GetProjectPhases()
+        ]
+        GT.jQuery.when.apply(GT.jQuery, defs).then(function (currentPhase, allPhases) {
+            for (var ix = 0; ix < allPhases.length; ix++) {
+                GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(allPhases[ix], allPhases[ix] == currentPhase, true, true, ix));
+            }
+        });
     });
+};
+
+GT.Project.GetProjectPhases = function () {
+    var defer = GT.jQuery.Deferred();
+
+    var context = SP.ClientContext.get_current();
+    var taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(context);
+    var termStores = taxSession.get_termStores();
+
+    context.load(termStores);
+
+    context.executeQueryAsync(Function.createDelegate(this, function () {
+        var termStore = termStores.getItemAtIndex(0);
+        var termSet = termStore.getTermSet("abcfc9d9-a263-4abb-8234-be973c46258a");
+        var terms = termSet.getAllTerms();
+        context.load(terms);
+        context.executeQueryAsync(Function.createDelegate(this, function () {
+            var termsArray = [];
+            var termEnumerator = terms.getEnumerator();
+
+            while (termEnumerator.moveNext()) {
+                var currentTerm = termEnumerator.get_current();
+                if (currentTerm.get_localCustomProperties()["ShowOnFrontpage"] == "true") {
+                    termsArray.push(currentTerm.get_name());
+                }
+            }
+
+            defer.resolve(termsArray);
+        }), Function.createDelegate(this, function () {
+            defer.reject(arguments);
+        }));
+    }), Function.createDelegate(this, function () {
+        defer.reject(arguments);
+    }));
+    return defer.promise();
 };
 
 GT.Project.GetPhaseLogoMarkup = function (phaseName) {
