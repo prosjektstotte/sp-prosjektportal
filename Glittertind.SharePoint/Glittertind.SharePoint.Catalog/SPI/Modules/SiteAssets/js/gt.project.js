@@ -31,27 +31,79 @@ GT.Project.HideProductsInLogFormIfEmpty = function () {
     }
 };
 
-GT.Project.ShowMetadataIfIsWelcomePage = function (selector) {
-    SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
-        var ctx = SP.ClientContext.get_current();
-        var web = ctx.get_web();
-        var rootFolder = web.get_rootFolder();
+GT.Project.ShowMetadataIfIsWelcomePage = function () {
+    var selector = ".projectFrontPage .rightColumnStatic";
+    var ctx = SP.ClientContext.get_current();
+    var web = ctx.get_web();
+    var rootFolder = web.get_rootFolder();
 
-        ctx.load(rootFolder);
-        ctx.executeQueryAsync(function () {
-            var welcomePage = rootFolder.get_welcomePage();
-            if (_spPageContextInfo.serverRequestPath.endsWith(welcomePage)) {
-                GT.jQuery(selector).show();
-            } else {
-                GT.jQuery(selector).html('<p>Informasjon om prosjektet er kun tilgjengelig fra <a href="../' + welcomePage + '">forsiden</a></p>').show();
-            }
-
-        }, function () {
-            console.log('An error has accured. Showing metadata to avoid hiding it in fault.');
+    ctx.load(rootFolder);
+    ctx.executeQueryAsync(function () {
+        var welcomePage = rootFolder.get_welcomePage();
+        if (_spPageContextInfo.serverRequestPath.endsWith(welcomePage)) {
             GT.jQuery(selector).show();
-        });
+        } else {
+            GT.jQuery(selector).html('<p>Informasjon om prosjektet er kun tilgjengelig fra <a href="../' + welcomePage + '">forsiden</a></p>').show();
+        }
+
+    }, function () {
+        console.log('An error has accured. Showing metadata to avoid hiding it in fault.');
+        GT.jQuery(selector).show();
     });
 };
+
+GT.Project.HandleMissingMetadata = function () {
+    if (GT.jQuery('.projectFrontPage .projectMetadata table tr.GtProjectPhase td.fieldValue').text().trim() == '' ||
+        GT.jQuery('.projectFrontPage .projectMetadata table tr.GtProjectManager td.fieldValue').text().trim() == '' ||
+        GT.jQuery('.projectFrontPage .projectMetadata table tr.GtProjectGoals td.fieldValue').text().trim() == '') {
+        GT.jQuery('.projectFrontPage .missingMetadataWarning').show();
+        GT.jQuery('#changeProjectPhaseLink').hide();
+    } else {
+        GT.jQuery('#changeProjectPhaseLink').show();
+    }
+}
+
+GT.Project.SetEditMetadataUrls = function () {
+    var editMetaUrl = 'Forms/EditForm.aspx?EditMode=Project&ID=' + _spPageContextInfo.pageItemId;
+    GT.jQuery('#editPageMetaLink').attr('href', editMetaUrl);
+    var editPhaseUrl = editMetaUrl.replace('Project', 'PhaseOnly');
+    GT.jQuery('#changeProjectPhaseLink').attr('href', editPhaseUrl);
+}
+
+GT.Project.InitFrontpage = function () {
+    GT.Project.ExecuteFunctionsAfterSPLoaded([
+        GT.Project.PopulateProjectPhasePart,
+        GT.Project.ShowMetadataIfIsWelcomePage,
+    ]);
+};
+GT.Project.InitOwnerControls = function () {
+    GT.Project.ExecuteFunctionsAfterSPLoaded([
+            GT.Project.HandleMissingMetadata,
+            GT.Project.SetEditMetadataUrls
+    ]);
+};
+
+GT.Project.ExecuteFunctionsAfterSPLoaded = function (funcsToExecute) {
+    // For IE 10,11+
+    if (SP && SP.SOD) {
+        SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
+            for (var i = funcsToExecute.length - 1; i >= 0; i--) {
+                funcsToExecute[i]();
+                funcsToExecute.pop();
+            }
+        });
+    };
+
+    // For Chrome - SP.SOD.executeFunc only has a 53% success rate with Chrome
+    if (window['ExecuteOrDelayUntilScriptLoaded']) {
+        ExecuteOrDelayUntilScriptLoaded(function () {
+            for (var i = funcsToExecute.length - 1; i >= 0; i--) {
+                funcsToExecute[i]();
+                funcsToExecute.pop();
+            }
+        }, "sp.js");
+    };
+}
 
 GT.Project.ChangeProjectPhase = function () {
     var deferred = GT.jQuery.Deferred();
@@ -229,14 +281,52 @@ GT.Project.EnsureMetaDataDefaultsEventReceiver = function (lib) {
 
 
 GT.Project.PopulateProjectPhasePart = function () {
-    SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
-        GT.jQuery.when(GT.Project.GetPhaseNameFromCurrentItem()).then(function (phaseName) {
-            var phases = ['Konsept', 'Planlegge', 'Gjennomføre', 'Avslutte', 'Realisere'];
-            for (var ix = 0; ix < phases.length; ix++) {
-                GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(phases[ix], phases[ix] == phaseName, true, true, ix));
+    GT.jQuery.getScript(_spPageContextInfo.siteAbsoluteUrl + "/_layouts/15/SP.Taxonomy.js", function () {
+        var defs = [
+          GT.Project.GetPhaseNameFromCurrentItem(),
+          GT.Project.GetProjectPhases()
+        ]
+        GT.jQuery.when.apply(GT.jQuery, defs).then(function (currentPhase, allPhases) {
+            for (var ix = 0; ix < allPhases.length; ix++) {
+                GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(allPhases[ix], allPhases[ix] == currentPhase, true, true, ix));
             }
         });
     });
+};
+
+GT.Project.GetProjectPhases = function () {
+    var defer = GT.jQuery.Deferred();
+
+    var context = SP.ClientContext.get_current();
+    var taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(context);
+    var termStores = taxSession.get_termStores();
+
+    context.load(termStores);
+
+    context.executeQueryAsync(Function.createDelegate(this, function () {
+        var termStore = termStores.getItemAtIndex(0);
+        var termSet = termStore.getTermSet("abcfc9d9-a263-4abb-8234-be973c46258a");
+        var terms = termSet.getAllTerms();
+        context.load(terms);
+        context.executeQueryAsync(Function.createDelegate(this, function () {
+            var termsArray = [];
+            var termEnumerator = terms.getEnumerator();
+
+            while (termEnumerator.moveNext()) {
+                var currentTerm = termEnumerator.get_current();
+                if (currentTerm.get_localCustomProperties()["ShowOnFrontpage"] == "true") {
+                    termsArray.push(currentTerm.get_name());
+                }
+            }
+
+            defer.resolve(termsArray);
+        }), Function.createDelegate(this, function () {
+            defer.reject(arguments);
+        }));
+    }), Function.createDelegate(this, function () {
+        defer.reject(arguments);
+    }));
+    return defer.promise();
 };
 
 GT.Project.GetPhaseLogoMarkup = function (phaseName) {

@@ -182,33 +182,15 @@
     </table>
 	<SharePoint:ScriptBlock runat="server">if(typeof(MSOLayout_MakeInvisibleIfEmpty) == "function") {MSOLayout_MakeInvisibleIfEmpty();}</SharePoint:ScriptBlock>
     <script type="text/javascript" language="javascript">
-        GT.jQuery(document).ready(function() {
-            GT.Project.PopulateProjectPhasePart();
+        GT.jQuery(document).ready(function () {
+            GT.Project.InitFrontpage()
         });
     </script>
     <SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AuthenticatedUsersOnly" Permissions="AddAndCustomizePages" PermissionContext="CurrentItem">
         <script type="text/javascript">
             GT.jQuery(document).ready(function () {
-                var editMetaUrl = 'Forms/EditForm.aspx?EditMode=Project&ID=' + _spPageContextInfo.pageItemId;
-                GT.jQuery('#editPageMetaLink').attr('href', editMetaUrl);
-
-                var editPhaseUrl = editMetaUrl.replace('Project', 'PhaseOnly');
-                GT.jQuery('#changeProjectPhaseLink').attr('href', editPhaseUrl);
-                HandleMissingMetadata();
-
-                GT.Project.ShowMetadataIfIsWelcomePage('.projectFrontPage .rightColumnStatic');
+                GT.Project.InitOwnerControls();
             });
-
-            function HandleMissingMetadata() {
-                if (GT.jQuery('.projectFrontPage .projectMetadata table tr.GtProjectPhase td.fieldValue').text().trim() == '' ||
-                    GT.jQuery('.projectFrontPage .projectMetadata table tr.GtProjectManager td.fieldValue').text().trim() == '' ||
-                    GT.jQuery('.projectFrontPage .projectMetadata table tr.GtProjectGoals td.fieldValue').text().trim() == '') {
-                    GT.jQuery('.projectFrontPage .missingMetadataWarning').show();
-                    GT.jQuery('#changeProjectPhaseLink').hide();
-                } else {
-                    GT.jQuery('#changeProjectPhaseLink').show();
-                }
-            }
         </script>
     </SharePoint:SPSecurityTrimmedControl>
 </asp:Content>
