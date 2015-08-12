@@ -336,26 +336,28 @@ GT.Project.GetPhaseLogoMarkup = function (phaseName) {
 GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMarkup, linkToDocumentLibrary, index, isLastPhase) {
     var phaseDisplayName = "Ingen fase";
     var phaseLetter = 'X';
-    var selectedClass = selected ? "selected " : '';
-    if (isLastPhase) {
-        if (selectedClass) {
-            selectedClass += " ";
-        }
-
-        selectedClass += "last-phase "
+    var phaseClass = [];
+    if (selected) {
+        phaseClass.push("selected");
     }
+    if (isLastPhase) {
+        phaseClass.push("last-phase");
+    }
+    phaseClass.push(String.format('phasenumber-{0}', (index+1)));
+
     if (phaseName != '' && phaseName != undefined) {
         phaseDisplayName = phaseName;
         phaseLetter = phaseName.substr(0, 1);
     }
-    var markup = '<div class="gt-phaseIcon ' + selectedClass + '">' +
-        '<span class="phaseLetter">' + phaseLetter + '</span>' +
-        '<span class="projectPhase">' + phaseDisplayName + '</span>' +
-        '</div>';
+
+    var markup = String.format('<div class="gt-phaseIcon {0}">' +
+        '<span class="phaseLetter">{1}</span>' +
+        '<span class="projectPhase">{2}</span>' +
+        '</div>', phaseClass.join(' '), phaseLetter, phaseDisplayName);
     if (linkToDocumentLibrary)
-        markup = '<a href="../Dokumenter/Forms/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1=' + phaseDisplayName + '">' + markup + '</a>';
+        markup = String.format('<a href="../Dokumenter/Forms/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={0}">{1}</a>', phaseDisplayName, markup);
     if (wrapInListItemMarkup)
-        markup = '<li class="' + selectedClass + 'phasenumber-' + (index + 1) + '">' + markup + '</li>';
+        markup = String.format('<li class="{0}">{1}</li>', phaseClass.join(' '), markup);
 
     return markup;
 };
