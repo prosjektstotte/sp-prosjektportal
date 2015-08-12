@@ -314,7 +314,7 @@ GT.Project.GetProjectPhases = function () {
 
             while (termEnumerator.moveNext()) {
                 var currentTerm = termEnumerator.get_current();
-                if (currentTerm.get_localCustomProperties()["ShowOnFrontpage"] == "true") {
+                if (currentTerm.get_localCustomProperties()["ShowOnFrontpage"] != "false") {
                     termsArray.push(currentTerm.get_name());
                 }
             }
