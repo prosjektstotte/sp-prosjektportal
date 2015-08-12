@@ -288,7 +288,7 @@ GT.Project.PopulateProjectPhasePart = function () {
         ]
         GT.jQuery.when.apply(GT.jQuery, defs).then(function (currentPhase, allPhases) {
             for (var ix = 0; ix < allPhases.length; ix++) {
-                GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(allPhases[ix], allPhases[ix] == currentPhase, true, true, ix));
+                GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(allPhases[ix], allPhases[ix] == currentPhase, true, true, ix, (ix+1) == allPhases.length));
             }
         });
     });
@@ -333,10 +333,17 @@ GT.Project.GetPhaseLogoMarkup = function (phaseName) {
     GT.Project.GetPhaseLogoMarkup(phaseName, false);
 };
 
-GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMarkup, linkToDocumentLibrary, index) {
+GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMarkup, linkToDocumentLibrary, index, isLastPhase) {
     var phaseDisplayName = "Ingen fase";
     var phaseLetter = 'X';
-    var selectedClass = selected ? "selected" : '';
+    var selectedClass = selected ? "selected " : '';
+    if (isLastPhase) {
+        if (selectedClass) {
+            selectedClass += " ";
+        }
+
+        selectedClass += "last-phase "
+    }
     if (phaseName != '' && phaseName != undefined) {
         phaseDisplayName = phaseName;
         phaseLetter = phaseName.substr(0, 1);
@@ -348,7 +355,7 @@ GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMar
     if (linkToDocumentLibrary)
         markup = '<a href="../Dokumenter/Forms/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1=' + phaseDisplayName + '">' + markup + '</a>';
     if (wrapInListItemMarkup)
-        markup = '<li class="' + selectedClass + ' phasenumber-' + (index + 1) + '">' + markup + '</li>';
+        markup = '<li class="' + selectedClass + 'phasenumber-' + (index + 1) + '">' + markup + '</li>';
 
     return markup;
 };
