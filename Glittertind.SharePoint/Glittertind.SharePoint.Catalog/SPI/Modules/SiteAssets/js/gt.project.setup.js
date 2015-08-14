@@ -52,8 +52,8 @@ GT.Project.Setup.ApplyTheme = function (properties) {
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
 
-    var colorPaletteUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + properties.colorPaletteName;
-    var fontSchemeUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + properties.fontSchemeName;
+    var colorPaletteUrl = (_spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + properties.colorPaletteName).replace("//", "/");
+    var fontSchemeUrl = (_spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + properties.fontSchemeName).replace("//", "/");
 
     // I am tired
     if (_spPageContextInfo.siteServerRelativeUrl === "/") {

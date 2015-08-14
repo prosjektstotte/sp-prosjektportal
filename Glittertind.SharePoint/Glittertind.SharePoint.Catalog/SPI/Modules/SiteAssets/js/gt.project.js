@@ -309,17 +309,22 @@ GT.Project.GetProjectPhases = function () {
         var terms = termSet.getAllTerms();
         context.load(terms);
         context.executeQueryAsync(Function.createDelegate(this, function () {
-            var termsArray = [];
-            var termEnumerator = terms.getEnumerator();
+            var phases = [];
+            var tEnum = terms.getEnumerator();
 
-            while (termEnumerator.moveNext()) {
-                var currentTerm = termEnumerator.get_current();
-                if (currentTerm.get_localCustomProperties()["ShowOnFrontpage"] != "false") {
-                    termsArray.push(currentTerm.get_name());
+            while (tEnum.moveNext()) {
+                var trm = termEnumerator.get_current();      
+                var showOnFrontpage = trm.get_localCustomProperties()["ShowOnFrontpage"];
+                if (!showOnFrontpage) {
+                    phases.push(trm.get_name());
+                } else {
+                    if (showOnFrontpage.toLowerCase() != 'false') {
+                        phases.push(trm.get_name());
+                    }
                 }
             }
 
-            defer.resolve(termsArray);
+            defer.resolve(phases);
         }), Function.createDelegate(this, function () {
             defer.reject(arguments);
         }));
