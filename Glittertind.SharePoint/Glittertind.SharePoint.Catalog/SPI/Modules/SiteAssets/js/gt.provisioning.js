@@ -126,9 +126,6 @@ GT.Provisioning.SetupUrlPreviewAndValidation = function () {
     });
 };
 
-
-GT.Provisioning = GT.Provisioning || {};
-
 GT.Provisioning.CanManageWeb = function () {
     var self = this;
     self.defer = GT.jQuery.Deferred();
