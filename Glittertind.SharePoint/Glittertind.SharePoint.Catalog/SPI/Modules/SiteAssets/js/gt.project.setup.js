@@ -236,6 +236,10 @@ GT.Project.Setup.Debug.setProperty = function (key, value) {
     context.executeQueryAsync(function () { console.log("successfully set property " + key); }, function () { });
 };
 
+GT.Project.Setup.Debug.resetConfig = function () {
+    GT.Project.Setup.Debug.setProperty("glittertind_currentsetupstep", 1);
+    GT.Project.Setup.Debug.setProperty("glittertind_configured", 0);
+};
 
 GT.Project.Setup.showWaitMessage = function () {
     window.parent.eval("window.waitDialog = SP.UI.ModalDialog.showWaitScreenWithNoClose('<div style=\"text-align: left;display: inline-table;margin-top: 13px;\">Vent litt mens vi konfigurerer <br />prosjektområdet</div>', '', 140, 500);");
@@ -258,7 +262,6 @@ GT.Project.Setup.copyFiles = function (properties) {
     var dstLib = properties.dstLib;
 
     GT.jQuery.when(GT.Project.Setup.getFiles(srcWeb, srcLib))
-
     .then(function (files) {
 
         for (var i = 0; i < files.length; i++) {
@@ -310,12 +313,14 @@ GT.Project.Setup.getFiles = function (srcWeb, lib, folderPath) {
     return deferred.promise();
 };
 
-GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
+GT.Project.Setup.copyFile = function (file, srcWeb, srcLibUrl, dstWeb, dstLib) {
     var deferred = GT.jQuery.Deferred();
+    var dstLibUrl = dstWeb + "/" + dstLib;
 
     var executor = new SP.RequestExecutor(srcWeb);
+    var srcFileUrl = String.format("{0}/_api/Web/GetFileByServerRelativeUrl('{1}')/$value", srcWeb, file.FileRef)
     var info = {
-        url: file.__metadata.uri + "/$value",
+        url: srcFileUrl,
         method: "GET",
         binaryStringResponseBody: true,
         success: function (data) {
@@ -323,8 +328,11 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
             //binary data available in data.body
             var result = data.body;
             var digest = GT.jQuery("#__REQUESTDIGEST").val();
+
+            var dstFileServerRelativeUrl = file.FileDirRef.replace(srcLibUrl, dstLibUrl);
+            var dstFileUrl = String.format("{0}/_api/web/GetFolderByServerRelativeUrl('{1}')/Files/Add(url='{2}')", dstWeb, dstFileServerRelativeUrl, file.LinkFilename)
             var info2 = {
-                url: "_api/web/GetFolderByServerRelativeUrl('" + dstWeb + "/" + dstLib + "')/Files/Add(url='" + file.Name + "')",
+                url: dstFileUrl,
                 method: "POST",
                 headers: {
                     "Accept": "application/json; odata=verbose",
@@ -334,7 +342,7 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
                 binaryStringRequestBody: true,
                 body: result,
                 success: function (data2) {
-                    console.log("Success! " + file.Name + " was uploaded to SharePoint.");
+                    console.log("Success! " + file.LinkFilename + " was uploaded to SharePoint.");
                     deferred.resolve();
                 },
                 error: function (err2) {
@@ -354,32 +362,62 @@ GT.Project.Setup.copyFile = function (file, srcWeb, dstWeb, dstLib) {
     return deferred.promise();
 };
 
-GT.Project.Setup.createFolders = function () {
+GT.Project.Setup.copyFilesAndFolders = function (properties) {
+    var srcWeb = properties.srcWeb;
+    var srcLib = properties.srcLib;
+    var srcLibUrl = srcWeb + "/" + srcLib;
+    var dstWeb = properties.dstWeb;
+    var dstLib = properties.dstLib;
+
     var deferred = GT.jQuery.Deferred();
+    var digest = GT.jQuery("#__REQUESTDIGEST").val();
+
     GT.jQuery.ajax({
-        url: _spPageContextInfo.siteServerRelativeUrl + "/SiteAssets/gt/config/defaultfolders/folders.txt"
+        url: String.format("{0}/_api/web/Lists/GetByTitle('{1}')/Items?$expand=Folder&$select=Title,LinkFilename,FileRef,FileDirRef,Folder/ServerRelativeUrl", srcWeb, srcLib),
+        headers: {
+            "Accept": "application/json; odata=verbose",
+            "X-RequestDigest": digest
+        },
+        contentType: "application/json;odata=verbose",
     })
 	.done(function (data) {
-	    var folders = data.split("\n");
-	    if (folders.length === 0) {
-	        deferred.resolve();
-	        return;
-	    }
 	    var ctx = SP.ClientContext.get_current();
 	    var web = ctx.get_web();
-	    var list = web.get_lists().getByTitle("Dokumenter");
-	    var listUrl = _spPageContextInfo.webAbsoluteUrl + '/Dokumenter';
+	    var list = web.get_lists().getByTitle(dstLib);
+	    var listUrl = _spPageContextInfo.webAbsoluteUrl + '/' + dstLib;
 	    var root = list.get_rootFolder();
 
+	    var docItems = data.d.results;
+	    var folders = [];
+	    var files = [];
+
+	    for (var j = 0; j < docItems.length; j++) {
+	        if (docItems[j].Folder.__metadata && docItems[j].Folder.__metadata.type === "SP.Folder") {
+	            folders.push(docItems[j]);
+	        } else {
+	            files.push(docItems[j]);
+	        }
+	    }
 	    for (var i = 0; i < folders.length ; i++) {
-	        root.get_folders().add(listUrl + folders[i]);
+	        var folderUrl = folders[i].Folder.ServerRelativeUrl.replace(srcLibUrl, '');
+	        root.get_folders().add(listUrl + folderUrl);
 	    }
 
 	    list.update();
 
 	    ctx.executeQueryAsync(function (sender, args) {
 	        console.log("Created folder structure");
-	        deferred.resolve();
+
+	        var promises = [];
+	        for (var i = 0; i < files.length; i++) {
+	            promises.push(GT.Project.Setup.copyFile(files[i], srcWeb, srcLibUrl, dstWeb, dstLib));
+	        }
+	        GT.jQuery.when.apply(GT.jQuery, promises)
+            .always(function () {
+                console.log("Copied files");
+                deferred.resolve();
+            });
+
 	    }, function (sender, args) {
 	        console.error('Request failed. ' + args.get_message());
 	    });
@@ -835,8 +873,8 @@ GT.jQuery(document).ready(function () {
                     new GT.Project.Setup.Model.step("Konfigurer quicklaunch", 3, GT.Project.Setup.ConfigureQuickLaunch, {}),
                     new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", 4, GT.Project.Setup.UpdateListsFromConfig, {}),
                     new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", 5, GT.Project.Setup.copyDefaultItems, {}),
-                    new GT.Project.Setup.Model.step("Kopier dokumenter", 6, GT.Project.Setup.copyFiles,
-                        { srcWeb: _spPageContextInfo.webServerRelativeUrl + "/..", srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
+                    new GT.Project.Setup.Model.step("Kopierer standarddokumenter og mapper", 6, GT.Project.Setup.copyFilesAndFolders,
+                        { srcWeb: _spPageContextInfo.siteServerRelativeUrl, srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
                 ]
             };
             var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
