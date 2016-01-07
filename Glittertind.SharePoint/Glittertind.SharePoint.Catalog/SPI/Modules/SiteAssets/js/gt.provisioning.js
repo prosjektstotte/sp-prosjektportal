@@ -22,15 +22,9 @@ GT.Provisioning.CreateWebFromCustomForm = function () {
         document.getElementById('projectFormValidation').innerHTML = "Navn og URL-kortnavn er obligatoriske felter";
         return;
     }
-    var urlToNewWeb = _spPageContextInfo.webServerRelativeUrl + "/" + urlField.value;
-    GT.jQuery.when(GT.Provisioning.DoesWebExist(urlToNewWeb)).then(function (doesWebExist) {
-        if (doesWebExist) {
-            document.getElementById('projectFormValidation').innerHTML = "Det finnes allerede et område med denne URLen";
-        } else {
-            waitMessage();
-            GT.Provisioning.CreateWeb(nameField.value, urlField.value, descField.value);
-        }
-    });
+    
+    waitMessage();
+    GT.Provisioning.CreateWeb(nameField.value, urlField.value, descField.value);
 };
 
 GT.Provisioning.CreateWeb = function (webTitle, webUrl, webDescription) {
@@ -72,28 +66,6 @@ GT.Provisioning.OnCreateWebFailure = function (sender, args) {
     document.getElementById('projectFormValidation').innerHTML = args.get_message();
     console.log('En feil oppstod: ' + args.get_message());
     console.log("raw response data: \n" + args.get_webRequestExecutor().get_responseData());
-};
-
-
-GT.Provisioning.DoesWebExist = function (serverRelativeUrlOrFullUrl) {
-    var deferred = GT.jQuery.Deferred();
-    GT.jQuery.ajax({
-        url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/webinfos?$filter=ServerRelativeUrl eq '" + serverRelativeUrlOrFullUrl + "'",
-        type: "GET",
-        headers: { "Accept": "application/json; odata=verbose" },
-        success: function (data) {
-            var webs = data.d.results.length;
-            if (webs >= 1) {
-                deferred.resolve(true);
-            } else {
-                deferred.resolve(false);
-            }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus);
-        }
-    });
-    return deferred.promise();
 };
 
 GT.Provisioning.SetupUrlPreviewAndValidation = function () {
