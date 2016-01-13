@@ -361,7 +361,42 @@ GT.Project.Setup.copyFile = function (file, srcWeb, srcLibUrl, dstWeb, dstLib) {
     executor.executeAsync(info);
     return deferred.promise();
 };
+GT.Project.Setup.createFolders = function () {
+    var deferred = GT.jQuery.Deferred();
+    GT.jQuery.ajax({
+        url: _spPageContextInfo.siteServerRelativeUrl + "/SiteAssets/gt/config/defaultfolders/folders.txt"
+    })
+	.done(function (data) {
+	    var folders = data.split("\n");
+	    if (folders.length === 0) {
+	        deferred.resolve();
+	        return;
+	    }
+	    var ctx = SP.ClientContext.get_current();
+	    var web = ctx.get_web();
+	    var list = web.get_lists().getByTitle("Dokumenter");
+	    var listUrl = _spPageContextInfo.webAbsoluteUrl + '/Dokumenter';
+	    var root = list.get_rootFolder();
 
+	    for (var i = 0; i < folders.length ; i++) {
+	        root.get_folders().add(listUrl + folders[i]);
+	    }
+
+	    list.update();
+
+	    ctx.executeQueryAsync(function (sender, args) {
+	        console.log("Created folder structure");
+	        deferred.resolve();
+	    }, function (sender, args) {
+	        console.error('Request failed. ' + args.get_message());
+	    });
+	})
+	.fail(function (jqXHR, textStatus, errorThrown) {
+	    console.log("not able to create folder structure, " + textStatus);
+	    deferred.resolve();
+	});
+    return deferred.promise();
+};
 GT.Project.Setup.copyFilesAndFolders = function (properties) {
     var srcWeb = properties.srcWeb;
     var srcLib = properties.srcLib;
