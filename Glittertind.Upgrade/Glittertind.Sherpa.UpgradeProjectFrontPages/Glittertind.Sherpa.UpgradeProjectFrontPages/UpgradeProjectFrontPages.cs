@@ -26,8 +26,9 @@ namespace Glittertind.Sherpa.UpgradeProjectFrontPages
             string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             if (assemblyFolder != null)
             {
-                string frontPageFileName = Path.Combine(assemblyFolder, @"..\Forside.aspx");
-                var frontPage = System.IO.File.ReadAllBytes(Path.GetFullPath(frontPageFileName));
+                string frontPageFileName = "Forside.aspx";
+                string frontPageFilePath = Path.Combine(assemblyFolder, frontPageFileName);
+                var frontPage = System.IO.File.ReadAllBytes(Path.GetFullPath(frontPageFilePath));
 
                 foreach (Web subweb in webs)
                 {
@@ -39,7 +40,7 @@ namespace Glittertind.Sherpa.UpgradeProjectFrontPages
                     context.Load(rootFolder, r => r.ServerRelativeUrl);
                     context.ExecuteQuery();
 
-                    var fileLocation = Url.Combine(subweb.Url, "SitePages/Frontpage.aspx");
+                    var fileLocation = Url.Combine(subweb.Url, $"SitePages/{frontPageFileName}");
 
                      var newFile = new FileCreationInformation
                     {
