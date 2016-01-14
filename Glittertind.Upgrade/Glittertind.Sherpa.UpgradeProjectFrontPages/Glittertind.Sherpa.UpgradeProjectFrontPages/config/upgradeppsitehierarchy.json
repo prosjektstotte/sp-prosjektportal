@@ -1,0 +1,17 @@
+﻿{
+  "RootWeb": {
+    "Description": "Upgrading front pages of all projects with the latest changes",
+    "Language": "1033",
+    "Name": "Project portal upgrade",
+    "Quicklaunch": { },
+    "Template": "",
+    "Url": "/",
+    "WebFeatures": [ ],
+    "CustomTaskTypes": [
+      {
+        "Fullname": "Glittertind.Sherpa.UpgradeProjectFrontPages.UpgradeProjectFrontPages",
+        "DisplayName": "Upgrade project portal"
+      }
+    ]
+  }
+}
