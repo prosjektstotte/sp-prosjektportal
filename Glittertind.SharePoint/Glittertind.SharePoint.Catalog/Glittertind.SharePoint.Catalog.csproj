@@ -122,9 +122,6 @@
     <None Include="SPI\Modules\DisplayTemplates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1ba5f944-d13c-4375-8436-1c263db2347d}</SharePointProjectItemId>
     </None>
-    <None Include="SPI\Modules\SearchConfig\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{cdfc3114-1f0d-4a1b-955a-d118b3d21794}</SharePointProjectItemId>
-    </None>
     <Content Include="SPI\Modules\PropertyBag\Elements.xml" />
     <Content Include="SPI\Modules\DisplayTemplates\Elements.xml" />
     <Content Include="SPI\Modules\DisplayTemplates\Glittertind_Control_List.html" />
@@ -172,10 +169,6 @@
     </Content>
     <Content Include="SPI\ContentTypeBindings\CatalogBindings\Elements.xml" />
     <Content Include="SPI\Modules\DefaultDocuments\Elements.xml" />
-    <Content Include="SPI\Modules\SearchConfig\Elements.xml" />
-    <Content Include="SPI\Modules\SearchConfig\SearchSettings.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="SPI\Modules\SiteAssets\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
