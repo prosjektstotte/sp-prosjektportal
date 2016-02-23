@@ -20,8 +20,9 @@ Før du starter er det viktig å være klar over følgende
 * Glittertind setter opp taksonomi i den globale managed metadata servicen ved å opprette en termgruppe 'Glittertind' og term set og termer i denne gruppen
 * Områdesamlingen ('site collection') må opprettes på forhånd, se steg 1 under.
 * Applikasjonen <strong>må</strong> kjøres av en bruker som er termlagrinsadministrator ('term store administrator') og områdesamlingsadministrator ('site collection administrator') i områdesamlingen som prosjektportalen skal installeres i
-* (On-Premises) Applikasjonen må kjøre på en av SharePoint-serverne i farmen
+* (On-Premises) Du bør ha patchet SharePoint-farmen til en nyere versjon. Absolutt minimum er Service Pack 1 (15.0.4571.1502)
 * (On-Premises) Servicen 'Microsoft SharePoint Foundation Sandboxed Code Service' må være startet i farmen
+* (On-Premises) Løsningen er avhengig av at søkeservicen fungerer og at innhold blir crawlet. Du vil få installert løsningen selv om søk ikke fungerer.
 
 ## Steg for steg
 1. En områdesamling må opprettes for prosjektportalen. Vi anbefaler ikke at prosjektportalen installeres i en områdesamling som brukes til noe annet fra før. Vi anbefaler at områdesamlingen opprettes med norsk språk (selve SharePoint-installasjonen trenger ikke være norsk) og malen 'gruppeområde' ('team site'). Gjør gjerne steg 2-4 mens du venter på at områdesamlingen opprettes.
