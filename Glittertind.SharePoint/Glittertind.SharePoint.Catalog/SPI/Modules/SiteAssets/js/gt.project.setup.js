@@ -736,6 +736,7 @@ GT.Project.Setup.UpdateListViews = function (data) {
             var query = listViewsToConfigure[i].Query;
             var viewFieldsData = listViewsToConfigure[i].ViewFields;
             var viewUrl = listViewsToConfigure[i].Url;
+            var paged = listViewsToConfigure[i].Paged === true;
 
             var view = null;
             if (viewName != "") {
@@ -757,12 +758,14 @@ GT.Project.Setup.UpdateListViews = function (data) {
                 if (query != undefined && query != "") {
                     view.set_viewQuery(query);
                 }
+                view.set_paged(paged);
                 view.update();
             } else {
                 var viewInfo = new SP.ViewCreationInformation();
                 viewInfo.set_title(viewName);
                 viewInfo.set_rowLimit(rowLimit);
                 viewInfo.set_query(query);
+                viewInfo.set_paged(paged);
                 viewInfo.set_viewFields(viewFieldsData);
                 viewCollection.add(viewInfo);
             }
@@ -830,7 +833,7 @@ GT.Project.Setup.HandleOnTheFlyConfiguration = function (defaultProperties) {
 GT.Project.Setup.execute = function (defaultProperties, steps) {
     // 1. should i run configure? No - > stop
     // 2. All right i will run configure!
-    // 3. spin over all the steps configured 
+    // 3. spin over all the steps configured
     // 4. set configured
     var _this = this;
     _this.steps = steps;

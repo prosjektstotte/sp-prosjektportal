@@ -461,7 +461,7 @@
         <property name="CatalogIconImageUrl" type="string" />
         <property name="RepositionLanguageDropDown" type="bool">False</property>
         <property name="PreloadedItemTemplateIdsJson" type="string">["~sitecollection/_catalogs/masterpage/Display Templates/Search/Group_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Site.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Word.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_PowerPoint.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Person_CompactHorizontal.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_BestBet.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_WebPage.js"]</property>
-        <property name="ResultsPerPage" type="int">10</property>
+        <property name="ResultsPerPage" type="int">50</property>
         <property name="EmitStyleReference" type="bool">True</property>
         <property name="ShowPaging" type="bool">True</property>
         <property name="ResultTypeId" type="string" null="true" />
