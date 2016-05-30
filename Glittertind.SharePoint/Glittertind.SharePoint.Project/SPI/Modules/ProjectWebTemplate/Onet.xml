@@ -36,6 +36,8 @@
         <Feature ID="15a572c6-e545-4d32-897a-bab6f5846e18" />
         <!-- Following content -->
         <Feature ID="a7a2793e-67cd-4dc1-9fd0-43f61581207a" />
+        <!-- Metadata navigation and filtering -->
+        <Feature ID="7201d6a4-a5d3-49a1-8c19-19c4bac6e668" />
         <!-- CUSTOM FEATURES-->
         <!-- WebProjectLists -->
         <Feature ID="08b639ca-146c-44ae-a539-5112fe62d550" />
