@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glittertind.SharePoint.Package", "Glittertind.SharePoint.Package\Glittertind.SharePoint.Package.csproj", "{3AD6083E-40FC-4772-94F4-AEB58CB35659}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -21,7 +21,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SherpaConfig", "SherpaConfi
 		..\Glittertind.Sherpa\config\gttaxonomy.json = ..\Glittertind.Sherpa\config\gttaxonomy.json
 	EndProjectSection
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Glittertind.SharePoint.Sherpa", "Glittertind.SharePoint.Sherpa\Glittertind.SharePoint.Sherpa.shproj", "{963AEAF4-E25D-4338-912D-11BDC5590E73}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Glittertind.SharePoint.Sherpa\Glittertind.SharePoint.Sherpa.projitems*{963aeaf4-e25d-4338-912d-11bdc5590e73}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

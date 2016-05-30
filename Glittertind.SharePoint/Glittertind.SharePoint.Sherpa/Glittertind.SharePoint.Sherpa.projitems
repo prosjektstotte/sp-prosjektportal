@@ -9,5 +9,13 @@
     <Import_RootNamespace>Glittertind.SharePoint.Sherpa</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)content\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)config\gtcontenttypes.json" />
+    <Content Include="$(MSBuildThisFileDirectory)config\gtfields.json" />
+    <Content Include="$(MSBuildThisFileDirectory)config\gtsitehierarchy.json" />
+    <Content Include="$(MSBuildThisFileDirectory)config\gttaxonomy.json" />
+    <Content Include="$(MSBuildThisFileDirectory)search\SearchConfiguration_tenant.xml" />
   </ItemGroup>
 </Project>
