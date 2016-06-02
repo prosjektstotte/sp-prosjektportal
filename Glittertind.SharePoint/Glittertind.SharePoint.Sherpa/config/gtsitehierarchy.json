@@ -101,6 +101,7 @@
 		"Quicklaunch": {
 			"Hjem": "",
 			"Porteføljeoversikt": "SitePages/PortefoljeOversikt.aspx",
+			"Porteføljeoppfølging": "SitePages/PortefoljeOppfolging.aspx",
 			"Erfaringslogg": "SitePages/Erfaringslogg.aspx",
 			"Standarddokumenter": "Standarddokumenter",
 			"Områdeinnhold": "_layouts/15/viewlsts.aspx"

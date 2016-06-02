@@ -61,7 +61,7 @@
                 &#160;
             </td>
             <td valign="top" width="20%">
-                <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Center%>" ID="CenterColumn" Orientation="Vertical" />
+                <WebPartPages:WebPartZone runat="server" FrameType="TitleBarOnly" Title="<%$Resources:cms,WebPartZoneTitle_Center%>" ID="RightColumn" Orientation="Vertical" />
                 &#160;
             </td>
             <td>&#160;</td>

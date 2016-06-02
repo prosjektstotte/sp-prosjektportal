@@ -40,17 +40,16 @@
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\prosjektlogg.txt" />
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\prosjektprodukter.txt" />
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\usikkerhet.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\quicklaunch\quicklaunch.json" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\quicklaunch\quicklaunch.txt" />
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\css\gt.style.css" />
-    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.alldocumentsview.html" />
-    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.calendarform.html" />
-    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.checklistform.html" />
-    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.csomprojectdir.html" />
-    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.csomprojectdir_newprojects.html" />
-    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.csomprojectoverview.html" />
-    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.newprojectlink.html" />
-    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.phaseform.html" />
-    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.projectlogform.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.alldocumentsview.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.calendarform.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.checklistform.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.csomprojectdir.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.csomprojectdir_newprojects.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.newprojectlink.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.phaseform.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.projectlogform.txt" />
     <Content Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\properties.json" />
     <Content Include="$(MSBuildThisFileDirectory)search\SearchConfiguration_tenant.xml" />
   </ItemGroup>
