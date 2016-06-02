@@ -1,56 +1,113 @@
 ﻿{
-    "FieldConfigurations": [
-        "gtfields.json"
-    ],
-    "ContentTypeConfigurations": [
-        "gtcontenttypes.json"
-    ],
-    "TaxonomyConfigurations": [
-        "gttaxonomy.json"
-    ],
-    "SandboxedSolutions": [
-        "Glittertind.SharePoint.wsp"
-    ],
-    "SiteFeatures": [
-        {
-            "FeatureId": "97f310cf-bc74-494f-8fc0-b6a3dd3bf42a",
-            "FeatureName": "Glittertind.SharePoint.Catalog_SiteSiteAssetsArtefacts",
-            "ReactivateAlways": "true"
-        },
+		"FieldConfigurations": [
+				"gtfields.json"
+		],
+		"ContentTypeConfigurations": [
+				"gtcontenttypes.json"
+		],
+		"TaxonomyConfigurations": [
+				"gttaxonomy.json"
+		],
+		"SandboxedSolutions": [
+				"Glittertind.SharePoint.wsp"
+		],
+		"SiteFeatures": [
         {
             "FeatureId": "9ca326d3-723f-4e65-b8f9-db7e18802ac4",
             "FeatureName": "Glittertind.SharePoint.Project_SiteProjectWebTemplate"
         }
-    ],
-  "RootWeb": {
-    "CustomTaskTypes": [
+		],
+	"RootWeb": {
+		"CustomTaskTypes": [
+			{
+				"Fullname": "Glittertind.Sherpa.UpgradeProjectFrontPages.UpgradeProjectFrontPages",
+				"DisplayName": "Upgrade project portal"
+			}
+		],
+		"Description": "",
+		"Language": "1044",
+		"Name": "Prosjektportalen",
+    "Lists": [
       {
-        "Fullname": "Glittertind.Sherpa.UpgradeProjectFrontPages.UpgradeProjectFrontPages",
-        "DisplayName": "Upgrade project portal"
+        "Title": "Kunngjøringer",
+        "Description": "",
+        "Url": "Lists/Kunngjoringer",
+        "TemplateType": "104",
+        "VersioningEnabled": "false",
+        "OnQuickLaunch": "false",
+        "Views": [ ]
+      },
+      {
+        "Title": "Lenker",
+        "Description": "",
+        "Url": "Lists/Lenker",
+        "TemplateType": "103",
+        "VersioningEnabled": "false",
+        "OnQuickLaunch": "false",
+        "Views": [ ]
+      },
+      {
+        "Title": "Standarddokumenter",
+        "Description": "",
+        "Url": "Standarddokumenter",
+        "TemplateType": "101",
+        "VersioningEnabled": "true",
+        "OnQuickLaunch": "false",
+        "Views": [
+          {
+            "Title": "Alle dokumenter",
+            "ViewFields": [
+              "DocIcon",
+              "LinkFilename",
+              "GtProjectPhase",
+              "Modified",
+              "Editor"
+            ]
+          }
+        ],
+        "RemoveExisitingContentTypes": "true",
+        "ContentTypes": [
+          "Prosjektdokument"
+        ]
       }
     ],
-    "Description": "",
-    "Language": "1044",
-    "Name": "Prosjektportalen",
-    "Lists": [ ],
-    "Properties": {
-      "projectportal_version": "1.1.0.0",
-      "sherpaversion": "1.1.0.0"
-    },
-    "Quicklaunch": {
-      "Hjem": "",
-      "Porteføljeoversikt": "SitePages/PortefoljeOversiktAlternativ.aspx",
-      "Erfaringslogg": "SitePages/Erfaringslogg.aspx",
-      "Standarddokumenter": "Standarddokumenter",
-      "Områdeinnhold": "_layouts/15/viewlsts.aspx"
-    },
-    "Template": "",
-    "Url": "/",
+		"ContentFolders": [
+			{
+				"FolderName": "MasterPages",
+				"ListUrl": "_catalogs/masterpage",
+				"FolderUrl": "",
+				"PropertiesFile": "properties.json",
+				"ExcludeExtensions": ".html"
+			},
+			{
+				"FolderName": "SiteAssets",
+				"ListUrl": "SiteAssets",
+				"FolderUrl": "gt",
+				"ExcludeExtensions": ""
+			},
+			{
+				"FolderName": "Standarddokumenter",
+				"ListUrl": "Standarddokumenter",
+        "FolderUrl": "",
+        "PropertiesFile": "properties.json",
+				"ExcludeExtensions": ".xml"
+			}
+		],
+		"Properties": {
+			"projectportal_version": "1.1.0.0",
+			"sherpaversion": "1.1.0.0",
+			"vti_welcomepage": "SitePages/Portefolje.aspx"
+		},
+		"Quicklaunch": {
+			"Hjem": "",
+			"Porteføljeoversikt": "SitePages/PortefoljeOversikt.aspx",
+			"Erfaringslogg": "SitePages/Erfaringslogg.aspx",
+			"Standarddokumenter": "Standarddokumenter",
+			"Områdeinnhold": "_layouts/15/viewlsts.aspx"
+		},
+		"Template": "",
+		"Url": "/",
     "WebFeatures": [
-      {
-        "FeatureId": "8a49d7c1-7477-4ec4-b124-4513e6c294fd",
-        "FeatureName": "Glittertind.SharePoint.Catalog_WebSearchSettings"
-      },
       {
         "FeatureId": "3753e6d4-b343-4d70-b62f-729e698f692b",
         "FeatureName": "Glittertind.SharePoint.Catalog_WebCatalogLists"
@@ -60,6 +117,7 @@
         "FeatureName": "Glittertind.SharePoint.Catalog_WebCatalogSitePages"
       }
     ],
-    "Webs": [ ]
-  }
+		"Webs": [],
+		"WelcomePageUrl": "SitePages/Portefolje.aspx"
+	}
 }

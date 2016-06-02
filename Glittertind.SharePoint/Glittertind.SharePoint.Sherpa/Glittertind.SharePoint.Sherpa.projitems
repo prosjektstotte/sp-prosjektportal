@@ -9,13 +9,66 @@
     <Import_RootNamespace>Glittertind.SharePoint.Sherpa</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)content\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)config\gtcontenttypes.json" />
     <Content Include="$(MSBuildThisFileDirectory)config\gtfields.json" />
     <Content Include="$(MSBuildThisFileDirectory)config\gtsitehierarchy.json" />
     <Content Include="$(MSBuildThisFileDirectory)config\gttaxonomy.json" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Control_List.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Control_List.js" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Control_Table.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Control_Table.js" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Control_Table_Erfaringslogg.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Control_Table_Erfaringslogg.js" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Item_Erfaringslogg.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Item_Erfaringslogg.js" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Item_NewProject.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Item_NewProject.js" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Item_Project.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Item_Project.js" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Item_Project_details.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\Display Templates\Search\Glittertind_Item_Project_details.js" />
+    <Content Include="$(MSBuildThisFileDirectory)content\MasterPages\properties.json" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\data\fasesjekkliste.data.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\data\oppgaver.data.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\dokumenter.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\fasesjekkliste.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\informasjon.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\Interessentregister.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\kommunikasjonsplan.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\motekalender.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\oppgaver.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\prosjektlogg.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\prosjektprodukter.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\usikkerhet.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\quicklaunch\quicklaunch.json" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\css\gt.style.css" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.alldocumentsview.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.calendarform.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.checklistform.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.csomprojectdir.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.csomprojectdir_newprojects.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.csomprojectoverview.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.newprojectlink.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.phaseform.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.projectlogform.html" />
+    <Content Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\properties.json" />
     <Content Include="$(MSBuildThisFileDirectory)search\SearchConfiguration_tenant.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\customsteps.js" />
+    <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\gt.common.js" />
+    <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\gt.generics.js" />
+    <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\gt.project.js" />
+    <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\gt.project.setup.contenttypes.js" />
+    <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\gt.project.setup.js" />
+    <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\gt.provisioning.js" />
+    <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\jquery-1.11.1.min.js" />
+    <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\knockout-3.1.0.js" />
+    <None Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\Gevinstrealiseringsplan.docx" />
+    <None Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\Prosjektbegrunnelse.docx" />
+    <None Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\Prosjektforslag.docx" />
+    <None Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\Prosjektmandat.docx" />
+    <None Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\Sluttrapport.docx" />
+    <None Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\Styringsdokument.docx" />
   </ItemGroup>
 </Project>

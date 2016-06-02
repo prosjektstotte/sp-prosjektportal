@@ -1,0 +1,171 @@
+﻿[
+  {
+    "Path": "Glittertind_Item_Erfaringslogg.js",
+    "Url": "Glittertind_Item_Erfaringslogg.js",
+    "Properties": {
+      "Title": "Glittertind Erfaringslogg element",
+      "MasterPageDescription": "",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+      "DisplayTemplateLevel": "Item",
+      "TemplateHidden": "0",
+      "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
+    }
+  },
+  {
+    "Path": "Glittertind_Control_Table_Erfaringslogg.js",
+    "Url": "Glittertind_Control_Table_Erfaringslogg.js",
+    "Properties": {
+      "Title": "Glittertind Kontroll for Erfaringslogg",
+      "MasterPageDescription": "",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106601",
+      "DisplayTemplateLevel": "Control",
+      "TemplateHidden": "0",
+      "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
+    }
+  },
+  {
+    "Path": "Glittertind_Control_List.js",
+    "Url": "Glittertind_Control_List.js",
+    "Properties": {
+      "Title": "Glittertind Listekontroll",
+      "MasterPageDescription": "",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106601",
+      "DisplayTemplateLevel": "Control",
+      "TemplateHidden": "0",
+      "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
+    }
+  },
+  {
+    "Path": "Glittertind_Item_Project.js",
+    "Url": "Glittertind_Item_Project.js",
+    "Properties": {
+      "Title": "Glittertind Prosjektelement",
+      "MasterPageDescription": "",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+      "DisplayTemplateLevel": "Item",
+      "TemplateHidden": "0",
+      "TargetControlType": ";#Content Web Parts;#SearchResults;#"
+    }
+  },
+  {
+    "Path": "Glittertind_Item_NewProject.js",
+    "Url": "Glittertind_Item_NewProject.js",
+    "Properties": {
+      "Title": "Glittertind Nytt Prosjekt-element",
+      "MasterPageDescription": "",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+      "DisplayTemplateLevel": "Item",
+      "TemplateHidden": "0",
+      "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
+    }
+  },
+  {
+    "Path": "Glittertind_Control_Table.js",
+    "Url": "Glittertind_Control_Table.js",
+    "Properties": {
+      "Title": "Glittertind Kontroll for Portefølje",
+      "MasterPageDescription": "",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106601",
+      "DisplayTemplateLevel": "Control",
+      "TemplateHidden": "0",
+      "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
+    }
+  },
+  {
+    "Path": "Glittertind_Item_Project_details.js",
+    "Url": "Glittertind_Item_Project_details.js",
+    "Properties": {
+      "Title": "Glittertind Prosjektdetaljer element",
+      "MasterPageDescription": "",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+      "DisplayTemplateLevel": "Item",
+      "TemplateHidden": "0",
+      "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
+    }
+  },
+  {
+    "Path": "Glittertind_Item_Erfaringslogg.html",
+    "Url": "Glittertind_Item_Erfaringslogg.html",
+    "Properties": {
+        "Title": "Glittertind Erfaringsloggelement",
+        "MasterPageDescription": "",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+        "DisplayTemplateLevel": "Item",
+        "TemplateHidden": "0",
+        "TargetControlType": ";#Content Web Parts;#SearchResults;#",
+      
+        }
+},
+{
+    "Path": "Glittertind_Control_Table_Erfaringslogg.html",
+    "Url": "Glittertind_Control_Table_Erfaringslogg.html",
+    "Properties": {
+        "Title": "Glittertind Kontroll for Erfaringslogg",
+        "MasterPageDescription": "",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106601",
+        "DisplayTemplateLevel": "Control",
+        "TemplateHidden": "0",
+        "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
+    }
+},
+{
+    "Path": "Glittertind_Control_List.html",
+    "Url": "Glittertind_Control_List.html",
+    "Properties": {
+        "Title": "Glittertind Listekontroll",
+        "MasterPageDescription": "",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106601",
+        "DisplayTemplateLevel": "Control",
+        "TemplateHidden": "0",
+        "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
+    }
+},
+{
+    "Path": "Glittertind_Item_Project.html",
+    "Url": "Glittertind_Item_Project.html",
+    "Properties": {
+        "Title": "Glittertind Prosjektelement",
+        "MasterPageDescription": "",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+        "DisplayTemplateLevel": "Item",
+        "TemplateHidden": "0",
+        "TargetControlType": ";#Content Web Parts;#SearchResults;#"
+    }
+},
+{
+    "Path": "Glittertind_Item_NewProject.html",
+    "Url": "Glittertind_Item_NewProject.html",
+    "Properties": {
+        "Title": "Glittertind Nytt Prosjekt-element",
+        "MasterPageDescription": "",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+        "DisplayTemplateLevel": "Item",
+        "TemplateHidden": "0",
+        "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
+    }
+},
+{
+    "Path": "Glittertind_Control_Table.html",
+    "Url": "Glittertind_Control_Table.html",
+    "Properties": {
+        "Title": "Glittertind Kontroll for Portefølje",
+        "MasterPageDescription": "",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106601",
+        "DisplayTemplateLevel": "Control",
+        "TemplateHidden": "0",
+        "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
+    }
+},
+{
+    "Path": "Glittertind_Item_Project_details.html",
+    "Url": "Glittertind_Item_Project_details.html",
+    "Properties": {
+        "Title": "Glittertind Prosjektdetaljer element",
+        "MasterPageDescription": "",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+        "DisplayTemplateLevel": "Item",
+        "TemplateHidden": "0",
+        "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
+    }
+}
+]

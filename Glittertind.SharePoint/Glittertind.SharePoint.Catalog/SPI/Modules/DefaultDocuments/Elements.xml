@@ -1,48 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="DefaultDocuments" Path="DefaultDocuments" Url="Standarddokumenter" List="101">
-    <File Path="Gevinstrealiseringsplan.docx" Url="Gevinstrealiseringsplan.docx" Type="GhostableInLibrary" ReplaceContent="FALSE" IgnoreIfAlreadyExists="TRUE" >
-      <Property Name="Title" Value="Gevinstrealiseringsplan" />
-      <Property Name="ContentType" Value="Prosjektdokument" />
-      <Property Name="ContentTypeId" Value="0x010100293fde3fcada480b9a77bbdad7dfa28c01" />
-      <Property Name="j25543a5815d485da9a5e0773ad762e9" Value="Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec" />
-      <Property Name="GtProjectPhase" Value="Realisere" />
-    </File>
-    <File Path="Prosjektbegrunnelse.docx" Url="Prosjektbegrunnelse.docx" Type="GhostableInLibrary" ReplaceContent="FALSE" IgnoreIfAlreadyExists="TRUE" >
-      <Property Name="Title" Value="Prosjektbegrunnelse" />
-      <Property Name="ContentType" Value="Prosjektdokument" />
-      <Property Name="ContentTypeId" Value="0x010100293fde3fcada480b9a77bbdad7dfa28c01" />
-      <Property Name="j25543a5815d485da9a5e0773ad762e9" Value="Flere faser|777cc6ac-4639-4633-85b9-f1ef61197c4d" />
-      <Property Name="GtProjectPhase" Value="Flere faser" />
-    </File>
-    <File Path="Prosjektforslag.docx" Url="Prosjektforslag.docx" Type="GhostableInLibrary" ReplaceContent="FALSE" IgnoreIfAlreadyExists="TRUE" >
-      <Property Name="Title" Value="Prosjektforslag" />
-      <Property Name="ContentType" Value="Prosjektdokument" />
-      <Property Name="ContentTypeId" Value="0x010100293fde3fcada480b9a77bbdad7dfa28c01" />
-      <Property Name="j25543a5815d485da9a5e0773ad762e9" Value="Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689" />
-      <Property Name="GtProjectPhase" Value="Planlegge" />
-    </File>
-    <File Path="Prosjektmandat.docx" Url="Prosjektmandat.docx" Type="GhostableInLibrary" ReplaceContent="FALSE" IgnoreIfAlreadyExists="TRUE" >
-      <Property Name="Title" Value="Prosjektmandat" />
-      <Property Name="ContentType" Value="Prosjektdokument" />
-      <Property Name="ContentTypeId" Value="0x010100293fde3fcada480b9a77bbdad7dfa28c01" />
-      <Property Name="j25543a5815d485da9a5e0773ad762e9" Value="Konsept|99e85650-33de-4af4-b8db-edffbc8a310b" />
-      <Property Name="GtProjectPhase" Value="Konsept" />
-    </File>
-    <File Path="Sluttrapport.docx" Url="Sluttrapport.docx" Type="GhostableInLibrary" ReplaceContent="FALSE" IgnoreIfAlreadyExists="TRUE" >
-      <Property Name="Title" Value="Sluttrapport" />
-      <Property Name="ContentType" Value="Prosjektdokument" />
-      <Property Name="ContentTypeId" Value="0x010100293fde3fcada480b9a77bbdad7dfa28c01" />
-      <Property Name="j25543a5815d485da9a5e0773ad762e9" Value="Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130" />
-      <Property Name="GtProjectPhase" Value="Avslutte" />
-    </File>
-    <File Path="Styringsdokument.docx" Url="Styringsdokument.docx" Type="GhostableInLibrary" ReplaceContent="FALSE" IgnoreIfAlreadyExists="TRUE" >
-      <Property Name="Title" Value="Styringsdokument" />
-      <Property Name="ContentType" Value="Prosjektdokument" />
-      <Property Name="ContentTypeId" Value="0x010100293fde3fcada480b9a77bbdad7dfa28c01" />
-      <Property Name="j25543a5815d485da9a5e0773ad762e9" Value="Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9" />
-      <Property Name="GtProjectPhase" Value="Gjennomføre" />
-    </File>
     <File Path="Placeholder.txt" Url="Forms/AllItems.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="TRUE" ReplaceContent="FALSE" >
       <AllUsersWebPart WebPartOrder="0" WebPartZoneID="Main">
         <![CDATA[<?xml version="1.0" encoding="utf-8"?>

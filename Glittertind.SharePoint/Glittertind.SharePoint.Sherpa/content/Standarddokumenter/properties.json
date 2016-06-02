@@ -1,0 +1,56 @@
+﻿[
+  {
+    "Path": "Gevinstrealiseringsplan.docx",
+    "Url": "Gevinstrealiseringsplan.docx",
+    "Properties": {
+      "Title": "Gevinstrealiseringsplan",
+      "ContentTypeId": "0x010100293fde3fcada480b9a77bbdad7dfa28c01",
+      "GtProjectPhase": "-1;#Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
+    }
+  },
+  {
+    "Path": "Prosjektbegrunnelse.docx",
+    "Url": "Prosjektbegrunnelse.docx",
+    "Properties": {
+      "Title": "Prosjektbegrunnelse",
+      "ContentTypeId": "0x010100293fde3fcada480b9a77bbdad7dfa28c01",
+      "GtProjectPhase": "-1;#Flere faser|777cc6ac-4639-4633-85b9-f1ef61197c4d"
+    }
+  },
+  {
+    "Path": "Prosjektforslag.docx",
+    "Url": "Prosjektforslag.docx",
+    "Properties": {
+      "Title": "Prosjektforslag",
+      "ContentTypeId": "0x010100293fde3fcada480b9a77bbdad7dfa28c01",
+      "GtProjectPhase": "-1;#Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+    }
+  },
+  {
+    "Path": "Prosjektmandat.docx",
+    "Url": "Prosjektmandat.docx",
+    "Properties": {
+      "Title": "Prosjektmandat",
+      "ContentTypeId": "0x010100293fde3fcada480b9a77bbdad7dfa28c01",
+      "GtProjectPhase": "-1;#Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+    }
+  },
+  {
+    "Path": "Sluttrapport.docx",
+    "Url": "Sluttrapport.docx",
+    "Properties": {
+      "Title": "Sluttrapport",
+      "ContentTypeId": "0x010100293fde3fcada480b9a77bbdad7dfa28c01",
+      "GtProjectPhase": "-1;#Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+    }
+  },
+  {
+    "Path": "Styringsdokument.docx",
+    "Url": "Styringsdokument.docx",
+    "Properties": {
+      "Title": "Styringsdokument",
+      "ContentTypeId": "0x010100293fde3fcada480b9a77bbdad7dfa28c01",
+      "GtProjectPhase": "-1;#Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+    }
+  }
+]
