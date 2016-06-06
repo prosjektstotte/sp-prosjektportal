@@ -24,6 +24,26 @@ ctx.ListDataJSONGroupsKey = "ResultTables";
 
 var noResultsClassName = "ms-srch-result-noResults";
 
+function GetStatusCssClass(status) {
+    if (status === undefined || status === null) return 'status-unknown';
+
+    var statusToCheck = status.toLowerCase();
+
+    if (statusToCheck === 'etter plan') return 'status-red';
+    else if (statusToCheck === 'forsinket') return 'status-red';
+    else if (statusToCheck === 'foran plan') return 'status-green';
+    else if (statusToCheck === 'på plan') return 'status-green';
+    else if (statusToCheck === 'høy') return 'status-red';
+    else if (statusToCheck === 'medium') return 'status-yellow';
+    else if (statusToCheck === 'lav') return 'status-green';
+    else if (statusToCheck === 'over budsjett') return 'status-red';
+    else if (statusToCheck === 'på budsjett') return 'status-green';
+    else if (statusToCheck === 'under budsjett') return 'status-green';
+    else if (statusToCheck === 'vet ikke') return 'status-yellow';
+
+    return 'status-unknown';
+};
+
 var ListRenderRenderWrapper = function(itemRenderResult, inCtx, tpl)
 {
     var iStr = [];
