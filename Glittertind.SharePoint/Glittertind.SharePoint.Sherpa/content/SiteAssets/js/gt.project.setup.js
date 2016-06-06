@@ -101,8 +101,9 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
                             var linkNode = data[i];
                             var nodeTitle = linkNode.Title;
                             var linkUrl = GT.Project.Setup.GetUrlWithoutTokens(linkNode.Url);
-
+							var isExternal = linkNode.IsExternal == true;
                             var existingNode = null;
+							
                             for (var k = 0; k < temporaryQuickLaunch.length; k++) {
                                 if (temporaryQuickLaunch[k].get_title() === nodeTitle) {
                                     existingNode = temporaryQuickLaunch[k];
@@ -112,8 +113,10 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
                             var newNode = new SP.NavigationNodeCreationInformation();
                             newNode.set_title(nodeTitle);
                             if (existingNode === null || existingNode === undefined) {
+								newNode.set_isExternal(isExternal);
                                 newNode.set_url(linkUrl);
                             } else {
+								newNode.set_isExternal(existingNode.get_isExternal());
                                 newNode.set_url(existingNode.get_url());
                             }
                             newNode.set_asLastNode(true);
@@ -150,7 +153,12 @@ GT.Project.Setup.GetUrlWithoutTokens = function (url) {
               .replace('{SiteUrl}', _spPageContextInfo.webAbsoluteUrl)
               .replace('{SiteUrlEncoded}', encodeURIComponent(_spPageContextInfo.webAbsoluteUrl))
               .replace('{SiteCollection}', _spPageContextInfo.siteAbsoluteUrl)
-              .replace('{SiteCollectionEncoded}', encodeURIComponent(_spPageContextInfo.siteAbsoluteUrl));
+              .replace('{SiteCollectionEncoded}', encodeURIComponent(_spPageContextInfo.siteAbsoluteUrl))
+			  .replace('{site}', _spPageContextInfo.webAbsoluteUrl)
+              .replace('{siteurl}', _spPageContextInfo.webAbsoluteUrl)
+              .replace('{siteurlencoded}', encodeURIComponent(_spPageContextInfo.webAbsoluteUrl))
+              .replace('{sitecollection}', _spPageContextInfo.siteAbsoluteUrl)
+              .replace('{sitecollectionencoded}', encodeURIComponent(_spPageContextInfo.siteAbsoluteUrl));
 };
 
 // [start] utility methods
@@ -736,7 +744,9 @@ GT.Project.Setup.UpdateListViews = function (data) {
             var query = listViewsToConfigure[i].Query;
             var viewFieldsData = listViewsToConfigure[i].ViewFields;
             var viewUrl = listViewsToConfigure[i].Url;
+			var defaultView = listViewsToConfigure[i].DefaultView == true;
             var paged = listViewsToConfigure[i].Paged === true;
+			var deleteView = listViewsToConfigure[i].Delete === true;
 
             var view = null;
             if (viewName != "") {
@@ -745,6 +755,10 @@ GT.Project.Setup.UpdateListViews = function (data) {
                 view = GT.Project.Setup.GetViewFromCollectionByUrl(viewCollection, viewUrl);
             }
             if (view != null) {
+				if (deleteView) {
+					view.deleteObject();
+					continue;
+				}
                 if (viewFieldsData != undefined && viewFieldsData.length > 0) {
                     var columns = view.get_viewFields();
                     columns.removeAll();
@@ -759,14 +773,18 @@ GT.Project.Setup.UpdateListViews = function (data) {
                     view.set_viewQuery(query);
                 }
                 view.set_paged(paged);
+				view.set_defaultView(defaultView);
                 view.update();
             } else {
+
+				if (deleteView) { continue; }
                 var viewInfo = new SP.ViewCreationInformation();
                 viewInfo.set_title(viewName);
                 viewInfo.set_rowLimit(rowLimit);
                 viewInfo.set_query(query);
                 viewInfo.set_paged(paged);
                 viewInfo.set_viewFields(viewFieldsData);
+				viewInfo.set_setAsDefaultView(defaultView)
                 viewCollection.add(viewInfo);
             }
         };

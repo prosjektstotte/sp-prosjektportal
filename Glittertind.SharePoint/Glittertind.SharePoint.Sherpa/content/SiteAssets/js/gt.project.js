@@ -451,9 +451,7 @@ GT.Project.PhaseForm.CheckList.render = function () {
                                 '<span class="gt-checklist-title">', items[i].Title, '</span></a>',
                         '</li>');
         }
-        outHtml.push('</ul>',
-                '<div>Fasesjekkliste er basert på beslutningspunkt fra <a href="http://prosjektveiviseren.no/" target="_blank">Prosjektveiviseren</a></div>',
-                '</div>');
+        outHtml.push('</ul></div>');
         GT.jQuery(".ms-webpart-zone.ms-fullWidth").append(outHtml.join(""));
     });
 };
