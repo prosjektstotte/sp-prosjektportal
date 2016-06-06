@@ -51,7 +51,8 @@
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.phaseform.txt" />
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.projectlogform.txt" />
     <Content Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\properties.json" />
-    <Content Include="$(MSBuildThisFileDirectory)search\SearchConfiguration_tenant.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)search-tenant\SearchConfiguration_tenant.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)search\Prosjektportalen-konfigurasjon.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\customsteps.js" />
