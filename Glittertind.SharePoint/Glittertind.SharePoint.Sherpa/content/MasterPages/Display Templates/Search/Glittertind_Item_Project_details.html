@@ -48,9 +48,9 @@ var statusTime = $getItemValue(ctx, "GtStatusTimeOWSCHCS");
 var statusRisk = $getItemValue(ctx, "GtStatusRiskOWSCHCS");
 var statusBudget = $getItemValue(ctx, "GtStatusBudgetOWSCHCS");
 var lastModified = $getItemValue(ctx, "LastModifiedTime");
-var statusTimeCss = GetStatusCssClass(statusTime.value);
-var statusRiskCss = GetStatusCssClass(statusRisk.value);
-var statusBudgetCss = GetStatusCssClass(statusBudget.value);
+var statusTimeCss = window.GT.GetStatusCssClass(statusTime.value);
+var statusRiskCss = window.GT.GetStatusCssClass(statusRisk.value);
+var statusBudgetCss = window.GT.GetStatusCssClass(statusBudget.value);
 _#-->
         <td>
             <a href="_#= url =#_">

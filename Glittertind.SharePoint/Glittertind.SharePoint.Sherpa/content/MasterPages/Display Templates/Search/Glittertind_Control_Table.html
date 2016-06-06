@@ -43,8 +43,8 @@
             ctx.ListDataJSONGroupsKey = "ResultTables";
 
             var noResultsClassName = "ms-srch-result-noResults";
-
-            function GetStatusCssClass(status) {
+            window.GT = window.GT || {};
+            window.GT.GetStatusCssClass = function(status) {
 	            if (status === undefined || status === null) return 'status-unknown';
 
 	            var statusToCheck = status.toLowerCase();
