@@ -329,10 +329,6 @@ GT.Project.GetProjectPhases = function () {
     return defer.promise();
 };
 
-GT.Project.GetPhaseLogoMarkup = function (phaseName) {
-    GT.Project.GetPhaseLogoMarkup(phaseName, false);
-};
-
 GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMarkup, linkToDocumentLibrary, index, isLastPhase) {
     var phaseDisplayName = "Ingen fase";
     var phaseLetter = 'X';

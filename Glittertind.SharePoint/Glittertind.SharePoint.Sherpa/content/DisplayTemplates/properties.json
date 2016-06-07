@@ -5,7 +5,7 @@
     "Properties": {
       "Title": "Glittertind Erfaringslogg element",
       "MasterPageDescription": "",
-      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
       "DisplayTemplateLevel": "Item",
       "TemplateHidden": "0",
       "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
@@ -17,7 +17,7 @@
     "Properties": {
       "Title": "Glittertind Kontroll for Erfaringslogg",
       "MasterPageDescription": "",
-      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106601",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
       "DisplayTemplateLevel": "Control",
       "TemplateHidden": "0",
       "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
@@ -29,7 +29,7 @@
     "Properties": {
       "Title": "Glittertind Listekontroll",
       "MasterPageDescription": "",
-      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106601",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
       "DisplayTemplateLevel": "Control",
       "TemplateHidden": "0",
       "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
@@ -41,10 +41,11 @@
     "Properties": {
       "Title": "Glittertind Prosjektelement",
       "MasterPageDescription": "",
-      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
       "DisplayTemplateLevel": "Item",
       "TemplateHidden": "0",
-      "TargetControlType": ";#Content Web Parts;#SearchResults;#"
+      "TargetControlType": ";#Content Web Parts;#SearchResults;#",
+      "ManagedPropertyMapping": "'Path':'Path','Title':'Title', 'ProjectManager':'GtProjectManagerOWSUSER;RefinableString51','ProjectOwner':'GtProjectOwnerOWSUSER;RefinableString50','ProjectPhase':'owstaxIdGtProjectPhase;RefinableString52'"
     }
   },
   {
@@ -53,11 +54,11 @@
     "Properties": {
       "Title": "Glittertind Nytt Prosjekt-element",
       "MasterPageDescription": "",
-      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
       "DisplayTemplateLevel": "Item",
       "TemplateHidden": "0",
-      "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
-    }
+      "TargetControlType": ";#Content Web Parts;#SearchResults;#",
+      "ManagedPropertyMapping": "'Path','Title','GtProjectManagerOWSUSER','GtProjectOwnerOWSUSER','owstaxIdGtProjectPhase'"    }
   },
   {
     "Path": "Glittertind_Control_Table.js",
@@ -65,7 +66,7 @@
     "Properties": {
       "Title": "Glittertind Kontroll for Portefølje",
       "MasterPageDescription": "",
-      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106601",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
       "DisplayTemplateLevel": "Control",
       "TemplateHidden": "0",
       "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
@@ -77,10 +78,11 @@
     "Properties": {
       "Title": "Glittertind Prosjektdetaljer element",
       "MasterPageDescription": "",
-      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+      "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
       "DisplayTemplateLevel": "Item",
       "TemplateHidden": "0",
-      "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
+      "TargetControlType": ";#Content Web Parts;#SearchResults;#",
+      "ManagedPropertyMapping": "'Path','Title','GtProjectManagerOWSUSER','GtProjectOwnerOWSUSER','owstaxIdGtProjectPhase','Created','GtProjectGoalsOWSMTXT','GtStatusTimeOWSCHCS','GtStatusRiskOWSCHCS','GtStatusBudgetOWSCHCS','LastModifiedTime'"  
     }
   },
   {
@@ -89,10 +91,10 @@
     "Properties": {
         "Title": "Glittertind Erfaringsloggelement",
         "MasterPageDescription": "",
-        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
         "DisplayTemplateLevel": "Item",
         "TemplateHidden": "0",
-        "TargetControlType": ";#Content Web Parts;#SearchResults;#",
+        "TargetControlType": ";#Content Web Parts;#SearchResults;#"
       
         }
 },
@@ -102,7 +104,7 @@
     "Properties": {
         "Title": "Glittertind Kontroll for Erfaringslogg",
         "MasterPageDescription": "",
-        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106601",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
         "DisplayTemplateLevel": "Control",
         "TemplateHidden": "0",
         "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
@@ -114,7 +116,7 @@
     "Properties": {
         "Title": "Glittertind Listekontroll",
         "MasterPageDescription": "",
-        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106601",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
         "DisplayTemplateLevel": "Control",
         "TemplateHidden": "0",
         "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
@@ -126,7 +128,7 @@
     "Properties": {
         "Title": "Glittertind Prosjektelement",
         "MasterPageDescription": "",
-        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
         "DisplayTemplateLevel": "Item",
         "TemplateHidden": "0",
         "TargetControlType": ";#Content Web Parts;#SearchResults;#"
@@ -138,7 +140,7 @@
     "Properties": {
         "Title": "Glittertind Nytt Prosjekt-element",
         "MasterPageDescription": "",
-        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
         "DisplayTemplateLevel": "Item",
         "TemplateHidden": "0",
         "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
@@ -150,7 +152,7 @@
     "Properties": {
         "Title": "Glittertind Kontroll for Portefølje",
         "MasterPageDescription": "",
-        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106601",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
         "DisplayTemplateLevel": "Control",
         "TemplateHidden": "0",
         "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
@@ -162,7 +164,7 @@
     "Properties": {
         "Title": "Glittertind Prosjektdetaljer element",
         "MasterPageDescription": "",
-        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106603",
+        "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
         "DisplayTemplateLevel": "Item",
         "TemplateHidden": "0",
         "TargetControlType": ";#Content Web Parts;#SearchResults;#"      

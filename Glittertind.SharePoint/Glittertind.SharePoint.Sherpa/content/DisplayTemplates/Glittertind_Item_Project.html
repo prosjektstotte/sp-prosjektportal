@@ -5,7 +5,7 @@
 <!--[if gte mso 9]><xml>
 <mso:CustomDocumentProperties>
 <mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
-<mso:ManagedPropertyMapping msdt:dt="string">'Path':'Path','Title':'Title', 'ProjectManager':'GtProjectManagerOWSUSER','ProjectOwner':'GtProjectOwnerOWSUSER','ProjectPhase':'owstaxIdGtProjectPhase'</mso:ManagedPropertyMapping>
+<mso:ManagedPropertyMapping msdt:dt="string">'Path','Title','GtProjectManagerOWSUSER','GtProjectOwnerOWSUSER','owstaxIdGtProjectPhase'</mso:ManagedPropertyMapping>
 <mso:MasterPageDescription msdt:dt="string">Glittertind visningsmal for å vise prosjekter</mso:MasterPageDescription>
 <mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106603</mso:ContentTypeId>
 <mso:TargetControlType msdt:dt="string">;#Content Web Parts;#SearchResults;#</mso:TargetControlType>
@@ -38,10 +38,10 @@
 
 var url = $getItemValue(ctx, "Path");
 var title = $getItemValue(ctx, "Title");
-var projectManager = $getItemValue(ctx, "ProjectManager");
-var projectOwner = $getItemValue(ctx, "ProjectOwner");
-var projectPhase = $getItemValue(ctx, "ProjectPhase");
-var projectPhaseDisplayMarkup = GT.Project.GetPhaseLogoMarkup(projectPhase.toString());
+var projectManager = $getItemValue(ctx, "GtProjectManagerOWSUSER");
+var projectOwner = $getItemValue(ctx, "GtProjectOwnerOWSUSER");
+var projectPhase = $getItemValue(ctx, "owstaxIdGtProjectPhase");
+var projectPhaseDisplayMarkup = GT.Project.GetPhaseLogoMarkup(projectPhase.toString(), false);
 _#-->
              <div class="gt-projectItem">
                 _#= projectPhaseDisplayMarkup =#_

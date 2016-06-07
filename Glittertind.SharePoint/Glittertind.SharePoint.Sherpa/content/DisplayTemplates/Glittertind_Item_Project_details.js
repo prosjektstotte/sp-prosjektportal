@@ -11,8 +11,6 @@ function DisplayTemplate_6aff6d5116b842a095ce6e76a1bac874(ctx) {
   ctx['DisplayTemplateData']['TargetControlType']=['SearchResults', 'Content Web Parts'];
   this.DisplayTemplateData = ctx['DisplayTemplateData'];
 
-ms_outHtml.push('',''
-);
 var url = $getItemValue(ctx, "Path");
 var title = $getItemValue(ctx, "Title");
 var projectManager = $getItemValue(ctx, "GtProjectManagerOWSUSER");

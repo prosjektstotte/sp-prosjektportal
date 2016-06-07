@@ -132,7 +132,7 @@
                 <property name="EmptyMessage" type="string" />
                 <property name="ScrollToTopOnRedraw" type="bool">False</property>
                 <property name="ShowDefinitions" type="bool">True</property>
-                <property name="SelectedPropertiesJson" type="string">["Path","Title","GtProjectManagerOWSUSER","GtProjectOwnerOWSUSER"]</property>
+                <property name="SelectedPropertiesJson" type="string">["Path","Title","GtProjectManagerOWSUSER","GtProjectOwnerOWSUSER","owstaxIdGtProjectPhase"]</property>
                 <property name="CatalogIconImageUrl" type="string" />
                 <property name="RepositionLanguageDropDown" type="bool">False</property>
                 <property name="PreloadedItemTemplateIdsJson" type="string">["~sitecollection/_catalogs/masterpage/Display Templates/Search/Group_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Default.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Site.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Word.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_PowerPoint.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Person_CompactHorizontal.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_BestBet.js","~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_WebPage.js"]</property>

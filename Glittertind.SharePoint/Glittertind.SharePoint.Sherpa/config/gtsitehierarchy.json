@@ -80,9 +80,9 @@
       ],
       "ContentFolders":[
          {
-            "FolderName":"MasterPages",
+            "FolderName":"DisplayTemplates",
             "ListUrl":"_catalogs/masterpage",
-            "FolderUrl":"",
+            "FolderUrl":"Display Templates/Search",
             "PropertiesFile":"properties.json",
             "ExcludeExtensions":".html"
          },
