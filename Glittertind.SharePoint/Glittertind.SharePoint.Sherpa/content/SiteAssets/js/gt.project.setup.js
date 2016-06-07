@@ -416,7 +416,7 @@ GT.Project.Setup.copyFilesAndFolders = function (properties) {
     var digest = GT.jQuery("#__REQUESTDIGEST").val();
 
     GT.jQuery.ajax({
-        url: String.format("{0}/_api/web/Lists/GetByTitle('{1}')/Items?$expand=Folder&$select=Title,LinkFilename,FileRef,FileDirRef,Folder/ServerRelativeUrl", srcWeb, srcLib),
+        url: String.format("{0}/_api/web/Lists/GetByTitle('{1}')/Items?$expand=Folder&$select=Title,LinkFilename,FileRef,FileDirRef,Folder/ServerRelativeUrl&$top=500", srcWeb, srcLib),
         headers: {
             "Accept": "application/json; odata=verbose",
             "X-RequestDigest": digest
@@ -487,8 +487,8 @@ GT.Project.Setup.populateTaskList = function (listData) {
 
             for (var i = 0; i < row.Fields.length; i++) {
                 var name = row.Fields[i].Name;
-                var value = row.Fields[i].Value;
-                if (value.length > 255) value = value.substr(0, 252) + "...";
+				var value = GT.Project.Setup.GetUrlWithoutTokens(row.Fields[i].Value);
+				if (name === "Title" && value.length > 255) value = value.substr(0, 252) + "...";
                 listItem.set_item(name, value);
             }
 
