@@ -93,11 +93,11 @@
             "ExcludeExtensions":""
          },
          {
-            "FolderName":"Standarddokumenter",
+            "FolderName":"DefaultDocuments",
             "ListUrl":"Standarddokumenter",
             "FolderUrl":"",
             "PropertiesFile":"properties.json",
-            "ExcludeExtensions":".xml"
+            "ExcludeExtensions":".xml,.placeholder"
          }
       ],
       "Properties":{

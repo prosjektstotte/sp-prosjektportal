@@ -50,12 +50,11 @@
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.newprojectlink.txt" />
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.phaseform.txt" />
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.projectlogform.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\properties.json" />
+    <Content Include="$(MSBuildThisFileDirectory)content\DefaultDocuments\properties.json" />
     <Content Include="$(MSBuildThisFileDirectory)search-tenant\SearchConfiguration_tenant.xml" />
     <Content Include="$(MSBuildThisFileDirectory)search\Prosjektportalen-konfigurasjon.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\customsteps.js" />
     <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\gt.common.js" />
     <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\gt.generics.js" />
     <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\gt.project.js" />
@@ -64,11 +63,11 @@
     <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\gt.provisioning.js" />
     <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\jquery-1.11.1.min.js" />
     <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\knockout-3.1.0.js" />
-    <None Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\Gevinstrealiseringsplan.docx" />
-    <None Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\Prosjektbegrunnelse.docx" />
-    <None Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\Prosjektforslag.docx" />
-    <None Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\Prosjektmandat.docx" />
-    <None Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\Sluttrapport.docx" />
-    <None Include="$(MSBuildThisFileDirectory)content\Standarddokumenter\Styringsdokument.docx" />
+    <None Include="$(MSBuildThisFileDirectory)content\DefaultDocuments\Gevinstrealiseringsplan.docx" />
+    <None Include="$(MSBuildThisFileDirectory)content\DefaultDocuments\Prosjektbegrunnelse.docx" />
+    <None Include="$(MSBuildThisFileDirectory)content\DefaultDocuments\Prosjektforslag.docx" />
+    <None Include="$(MSBuildThisFileDirectory)content\DefaultDocuments\Prosjektmandat.docx" />
+    <None Include="$(MSBuildThisFileDirectory)content\DefaultDocuments\Sluttrapport.docx" />
+    <None Include="$(MSBuildThisFileDirectory)content\DefaultDocuments\Styringsdokument.docx" />
   </ItemGroup>
 </Project>
