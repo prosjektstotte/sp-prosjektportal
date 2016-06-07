@@ -28,6 +28,7 @@
     <Content Include="$(MSBuildThisFileDirectory)content\DisplayTemplates\Glittertind_Item_Project_details.html" />
     <Content Include="$(MSBuildThisFileDirectory)content\DisplayTemplates\Glittertind_Item_Project_details.js" />
     <Content Include="$(MSBuildThisFileDirectory)content\DisplayTemplates\properties.json" />
+    <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\core\settings.txt" />
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\data\fasesjekkliste.data.txt" />
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\data\oppgaver.data.txt" />
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\config\lists\dokumenter.txt" />

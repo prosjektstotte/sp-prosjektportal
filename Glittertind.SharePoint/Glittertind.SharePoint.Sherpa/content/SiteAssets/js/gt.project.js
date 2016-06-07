@@ -288,50 +288,71 @@ GT.Project.PopulateProjectPhasePart = function () {
         ]
         GT.jQuery.when.apply(GT.jQuery, defs).then(function (currentPhase, allPhases) {
             for (var ix = 0; ix < allPhases.length; ix++) {
-                GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(allPhases[ix], allPhases[ix] == currentPhase, true, true, ix, (ix+1) == allPhases.length));
+                GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(allPhases[ix], allPhases[ix].Name == currentPhase, true, true, ix, (ix+1) == allPhases.length));
             }
         });
     });
 };
 
+GT.Project.GetPhaseTermSetId = function () {
+    var defer = GT.jQuery.Deferred();
+    var settingsUrl = String.format("{0}/SiteAssets/gt/config/core/settings.txt", _spPageContextInfo.siteServerRelativeUrl);
+    GT.jQuery.getJSON(settingsUrl)
+    .then(function (data) {
+        defer.resolve(data.PhaseSettings.TermSetId);
+    })
+    .fail(function() {
+        console.log("Could not find settings file for getting taxonomy term set id. Resolving to default.");
+        defer.resolve("abcfc9d9-a263-4abb-8234-be973c46258a");
+    });
+    return defer.promise();
+}
+
 GT.Project.GetProjectPhases = function () {
     var defer = GT.jQuery.Deferred();
 
-    var context = SP.ClientContext.get_current();
-    var taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(context);
-    var termStores = taxSession.get_termStores();
+    GT.jQuery.when(GT.Project.GetPhaseTermSetId()).then(function (termSetId) {
+        var context = SP.ClientContext.get_current();
+        var taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(context);
+        var termStores = taxSession.get_termStores();
 
-    context.load(termStores);
+        context.load(termStores);
 
-    context.executeQueryAsync(Function.createDelegate(this, function () {
-        var termStore = termStores.getItemAtIndex(0);
-        var termSet = termStore.getTermSet("abcfc9d9-a263-4abb-8234-be973c46258a");
-        var terms = termSet.getAllTerms();
-        context.load(terms);
         context.executeQueryAsync(Function.createDelegate(this, function () {
-            var termsArray = [];
-            var termEnumerator = terms.getEnumerator();
+            var termStore = termStores.getItemAtIndex(0);
+            var termSet = termStore.getTermSet(termSetId);
+            var terms = termSet.getAllTerms();
+            context.load(terms);
+            context.executeQueryAsync(Function.createDelegate(this, function () {
+                var termsArray = [];
+                var termEnumerator = terms.getEnumerator();
 
-            while (termEnumerator.moveNext()) {
-                var currentTerm = termEnumerator.get_current();
-                if (currentTerm.get_localCustomProperties()["ShowOnFrontpage"] != "false") {
-                    termsArray.push(currentTerm.get_name());
+                while (termEnumerator.moveNext()) {
+                    var currentTerm = termEnumerator.get_current();
+                    if (currentTerm.get_localCustomProperties()["ShowOnFrontpage"] != "false") {
+                        termsArray.push({
+                            "Name": currentTerm.get_name(),
+                            "Id": currentTerm.get_id(),
+                            "SubText": currentTerm.get_localCustomProperties()["SubText"]
+                        });
+                    }
                 }
-            }
 
-            defer.resolve(termsArray);
+                defer.resolve(termsArray);
+            }), Function.createDelegate(this, function () {
+                defer.reject(arguments);
+            }));
         }), Function.createDelegate(this, function () {
             defer.reject(arguments);
         }));
-    }), Function.createDelegate(this, function () {
-        defer.reject(arguments);
-    }));
+    });
     return defer.promise();
 };
 
-GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMarkup, linkToDocumentLibrary, index, isLastPhase) {
+GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup, linkToDocumentLibrary, index, isLastPhase) {
     var phaseDisplayName = "Ingen fase";
     var phaseLetter = 'X';
+    var phaseSubText = '';
     var phaseClass = [];
     if (selected) {
         phaseClass.push("selected");
@@ -341,15 +362,17 @@ GT.Project.GetPhaseLogoMarkup = function (phaseName, selected, wrapInListItemMar
     }
     phaseClass.push(String.format('phasenumber-{0}', (index+1)));
 
-    if (phaseName != '' && phaseName != undefined) {
-        phaseDisplayName = phaseName;
-        phaseLetter = phaseName.substr(0, 1);
+    if (phase && phase.Name) {
+        phaseDisplayName = phase.Name;
+        phaseLetter = phaseDisplayName.substr(0, 1);
+        phaseSubText = phase.SubText;
     }
 
     var markup = String.format('<div class="gt-phaseIcon {0}">' +
         '<span class="phaseLetter">{1}</span>' +
         '<span class="projectPhase">{2}</span>' +
-        '</div>', phaseClass.join(' '), phaseLetter, phaseDisplayName);
+        '<span class="phaseSubText">{3}</span>' +
+        '</div>', phaseClass.join(' '), phaseLetter, phaseDisplayName, phaseSubText);
     if (linkToDocumentLibrary)
         markup = String.format('<a href="../Dokumenter/Forms/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={0}">{1}</a>', phaseDisplayName, markup);
     if (wrapInListItemMarkup)
