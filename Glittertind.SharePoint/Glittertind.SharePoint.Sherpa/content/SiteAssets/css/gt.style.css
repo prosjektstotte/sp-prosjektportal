@@ -18,6 +18,10 @@ ul.gt-List{list-style-type:none;padding-left:0;}
 ul.gt-List .gt-projectItem{display:block;margin-bottom:20px;}
 ul.gt-List .new.gt-projectItem{display:block;margin-bottom:10px;}
 ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
+.gt-list-control .clear-search {cursor: pointer;}
+.gt-list-control .clear-search:hover {text-decoration: underline}
+.gt-list-control ul#Paging {display: block; list-style-type: none; margin: 5px 0 5px 0; padding: 0;}
+.gt-list-control ul#Paging li {display: inline-block; margin-right: 10px;}
 .gt-phaseIcon{display:block;width:92px;height:62px;float:left;}
 .gt-phaseIcon .phaseLetter{display:block;font-size:33px;text-align:center;}
 .gt-phaseIcon .projectPhase{display:block;font-size:12px;text-transform:uppercase;text-align:center;}
