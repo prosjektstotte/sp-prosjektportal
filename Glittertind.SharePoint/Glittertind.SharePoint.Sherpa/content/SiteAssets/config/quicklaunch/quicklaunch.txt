@@ -48,6 +48,11 @@
         "Title": "Forside alle faser"
     },
     {
+        "Url": "{SiteUrl}/SitePages/Forms/DispForm.aspx?ID=3&EditMode=ProjectInfo",
+        "Title": "Prosjektinfo",
+		"IsExternal":true
+    },
+    {
         "Url": "_layouts/15/viewlsts.aspx",
 		"Title": "Områdeinnhold"
     },
