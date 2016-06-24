@@ -249,14 +249,12 @@ GT.Project.EnsureMetaDataDefaultsEventReceiver = function (lib) {
 
     ctx.executeQueryAsync(function (sender, args) {
         var eventReceiversEnumerator = eventReceivers.getEnumerator();
-        console.log(eventReceiversEnumerator);
         var eventReceiverExists = false;
         while (eventReceiversEnumerator.moveNext()) {
             var eventReceiver = eventReceiversEnumerator.get_current();
             var name = eventReceiver.get_receiverName();
-            console.log(name);
             if (name === 'LocationBasedMetadataDefaultsReceiver ItemAdded') {
-                console.log('Event Receiver exists, noop');
+                console.log('LocationBasedMetadataDefaultsReceiver event receiver exists - backing off');
                 eventReceiverExists = true;
             }
         }
@@ -270,14 +268,14 @@ GT.Project.EnsureMetaDataDefaultsEventReceiver = function (lib) {
             eventRecCreationInfo.set_eventType(SP.EventReceiverType.itemAdded);
 
             eventReceivers.add(eventRecCreationInfo);
-            console.log('Added eventreceiver');
+            console.log('Added LocationBasedMetadataDefaultsReceiver event receiver');
 
         }
     },
-       function (sender, args) {
-           console.log("fail: " + args.get_message());
-       });
-}
+    function (sender, args) {
+        console.log("Failed while getting event receivers: " + args.get_message());
+    });
+};
 
 
 GT.Project.PopulateProjectPhasePart = function () {
