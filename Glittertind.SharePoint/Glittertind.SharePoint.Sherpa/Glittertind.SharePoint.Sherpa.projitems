@@ -55,6 +55,7 @@
     <Content Include="$(MSBuildThisFileDirectory)search\Prosjektportalen-konfigurasjon.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\css\gt.style.less" />
     <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\gt.common.js" />
     <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\gt.generics.js" />
     <None Include="$(MSBuildThisFileDirectory)content\SiteAssets\js\gt.project.js" />

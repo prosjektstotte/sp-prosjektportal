@@ -1,119 +1,411 @@
-﻿.validationMessage { color: red;}
-.newProjectPage h1{margin-left:10px;display: none;}
-.newProjectPage .projectInputForm{width:263px;margin-left:20px;}
-.newProjectPage .projectInputForm label{display:inline-table;width:260px;margin:0;word-break: break-all;}
-.newProjectPage .projectInputForm input,.newProjectPage .projectInputForm textarea{width:250px;margin:3px 0 10px;}
-.newProjectPage .projectInputForm button{float:right;margin:0;}
-.newProjectPage .projectInputForm textarea#projectDescriptionInput{height:70px;overflow:auto;}
-.newProjectPage .validationMessage{color:red;margin-bottom:10px;}
-.projectFrontPage { width: 100%;}
-.projectFrontPage > tbody > tr > td:first-child { min-width: 640px;}
-.projectFrontPage .rightColumnStatic { display: none;}
-.projectFrontPage .projectMetadata{width:300px;margin-bottom: 20px;}
-.projectFrontPage .projectMetadata table{width:100%;margin-bottom:10px;}
-.projectFrontPage .projectMetadata table td{padding:3px;}
-.projectFrontPage .projectMetadata table tr td:first-child{width:120px;}
-.projectFrontPage .missingMetadataWarning {display:none;color:red;margin:10px 0;}
-.projectFrontPage .projectMetadata a#editPageMetaLink,.projectFrontPage .projectMetadata a#editPageMetaLink:visited,.projectFrontPage .projectMetadata a#editPageMetaLink:active{color:#666;font-size:.9em;text-decoration:none;}
-ul.gt-List{list-style-type:none;padding-left:0;}
-ul.gt-List .gt-projectItem{display:block;margin-bottom:20px;}
-ul.gt-List .new.gt-projectItem{display:block;margin-bottom:10px;}
-ul.gt-List .gt-projectItem .gt-phaseIcon{margin-right:20px;}
-.gt-list-control .clear-search {cursor: pointer;}
-.gt-list-control .clear-search:hover {text-decoration: underline}
-.gt-list-control ul#Paging {display: block; list-style-type: none; margin: 5px 0 5px 0; padding: 0;}
-.gt-list-control ul#Paging li {display: inline-block; margin-right: 10px;}
-.gt-phaseIcon{display:block;width:92px;height:62px;float:left;}
-.gt-phaseIcon .phaseLetter{display:block;font-size:33px;text-align:center;}
-.gt-phaseIcon .projectPhase{display:block;font-size:12px;text-transform:uppercase;text-align:center;}
-.projectFrontPage .projectPhaseSection{height:130px;}
-.designmode .projectFrontPage .projectPhaseSection { display: none;}
-.projectFrontPage .projectPhaseSection .projectPhaseHeading { display: block;width: 100%;float: left;}
-.projectFrontPage .projectPhaseSection h2.gt-phaseHeading{width:137px;float:left;margin:0 10px 10px 0; text-overflow: initial;}
-.projectFrontPage .projectPhaseSection a#changeProjectPhaseLink{float:left;display:none;border:1px solid #ccc;text-transform:none;text-decoration:none;padding:5px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases{width: 100%;list-style:none;overflow:hidden;margin:0;padding:0;float: left;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected,
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected a {background-color:rgb(51, 153, 51); color:#DFEED5;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected.last-phase,
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child{background-color:rgb(0, 114, 198); color:#EDF4F4;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected.last-phase a,
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child a {color:#EDF4F4;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:before,
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:after {border-left-color:rgb(51, 153, 51);}
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child:before, 
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:first-child:after, 
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected.last-phase:before,
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected.last-phase:after{border-left-color:rgb(0, 114, 198);}
-.projectFrontPage .projectPhaseSection ul.projectPhases li {color: rgb(51, 153, 51); text-decoration:none;background:#E0F5E0;position:relative;display:block;float:left;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li a{ color: rgb(51, 153, 51);}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .phaseSubText {font-size: 70%; text-transform: none;text-align: center;display: block;margin-left: auto;margin-right: auto; }
-.projectFrontPage .projectPhaseSection ul.projectPhases li:after{content:" ";display:block;width:0;height:0;border-top:50px solid transparent;border-bottom:50px solid transparent;border-left:30px solid #E0F5E0;position:absolute;top:50%;margin-top:-50px;left:100%;z-index:2;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li:before{content:" ";display:block;width:0;height:0;border-top:50px solid transparent;border-bottom:50px solid transparent;border-left:30px solid rgb(51, 153, 51);position:absolute;top:50%;margin-top:-50px;margin-left:1px;left:100%;z-index:1;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child {padding-left:10px;background-color:#EDF4F4;color:rgb(0, 114, 198);}
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child a{color:rgb(0, 114, 198);}
-.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase, 
-.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase a{background-color:#EDF4F4;color:rgb(0, 114, 198);}
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:after,.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase:after{border-left-color:#EDF4F4;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:before,.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase:before{border-left-color:rgb(0, 114, 198);}
-
-@media(max-width: 1299px) {
-.projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 35px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:72px;height:52px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:26px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:10px;}
+﻿.validationMessage {
+  color: red;
 }
-@media(min-width: 1300px) {
-.projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 35px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:76px;height:52px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:26px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:10px;}
+.newProjectPage h1 {
+  margin-left: 10px;
+  display: none;
 }
-@media(min-width: 1450px) {
-.projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 34px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:88px;height:58px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:32px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:11px;}
+.newProjectPage .projectInputForm {
+  width: 263px;
+  margin-left: 20px;
 }
-@media(min-width: 1650px) {
-.projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 46px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:91px;height:62px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:33px;}
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:12px;}
+.newProjectPage .projectInputForm label {
+  display: inline-table;
+  width: 260px;
+  margin: 0;
+  word-break: break-all;
 }
-
-.ieversion-7 .projectFrontPage .projectPhaseSection ul.projectPhases li,
-.ieversion-8 .projectFrontPage .projectPhaseSection ul.projectPhases li{padding:10px 0 10px 30px;}
-.ieversion-7 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon,
-.ieversion-8 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon{width:70px;height:52px;}
-.ieversion-7 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter,
-.ieversion-8 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .phaseLetter{font-size:26px;}
-.ieversion-7 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase,
-.ieversion-8 .projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon .projectPhase{font-size:10px;}
-
-.loadingSpinner {vertical-align: top; margin: 15px;}
-.gt-result-table {width: 99%;border-collapse: collapse;}
-.gt-result-table tr th {font-weight: normal;font-size: 0.95em;color: rgb(119, 119, 119);text-align: left;text-decoration: none;vertical-align: middle;white-space: nowrap;padding:5px 4px;}
-.gt-result-table,.gt-result-table td, .gt-result-table th{padding: 4px;text-align:left;}
-.gt-result-table .status-red{background-color: rgb(204, 102, 102); background-color: rgba(255, 75, 77, 0.4); }
-.gt-result-table .status-yellow{background-color: rgb(240, 230, 140);background-color: rgba(240,230,140, 0.8); }
-.gt-result-table .status-green{background-color: rgb(153,204,102);background-color: rgba(0, 150, 0, 0.4); }
-
-#gtloglist {max-width: 700px;}
-#gtloglist h2 {margin-bottom: 10px;}
-#gtloglist table tr th {font-weight: normal;font-size: 0.85em;color: rgb(119, 119, 119);text-align: left;text-decoration: none;vertical-align: middle;white-space: nowrap;padding:0 5px;}
-#gtloglist table tr td {padding: 5px;}
-
-#gtchecklist {width: 514px;}
-#gtchecklist ul {padding-left: 10px;}
-#gtchecklist li {list-style: none;margin-bottom: 10px;}
-#gtchecklist .gt-checklist-title {display: inline-block;width: 80%;vertical-align: middle;}
-#gtchecklist .gt-icon {width: 25px;height: 25px;display: inline-block;margin-right: 7px;border-radius: 5px;vertical-align: top;}
-#gtchecklist .gt-icon:after {font-size: 17px;padding-left: auto;margin-left: 7px;margin-right: auto;margin-top: 1px;display: inline-block;color: white;}
-#gtchecklist .gt-icon.gt-completed {background-color: green;}
-#gtchecklist .gt-icon.gt-completed:after {content: "\2713 ";}
-#gtchecklist .gt-icon.gt-ignored {background-color: #E8C900;}
-#gtchecklist .gt-icon.gt-ignored:after {content: "\2713 ";}
-#gtchecklist .gt-icon.gt-failed {background-color: red;}
-#gtchecklist .gt-icon.gt-failed:after {content: "\2717";margin-top: 0;}
-#gtchecklist .gt-icon.gt-nostatus {background-color: gray;}
-#gtchecklist .gt-icon.gt-nostatus:after {content: "?";font-weight: bold;margin-left: 9px;}
+.newProjectPage .projectInputForm input,
+.newProjectPage .projectInputForm textarea {
+  width: 250px;
+  margin: 3px 0 10px;
+}
+.newProjectPage .projectInputForm button {
+  float: right;
+  margin: 0;
+}
+.newProjectPage .projectInputForm textarea#projectDescriptionInput {
+  height: 70px;
+  overflow: auto;
+}
+.newProjectPage .validationMessage {
+  color: red;
+  margin-bottom: 10px;
+}
+.projectFrontPage {
+  width: 100%;
+}
+.projectFrontPage > tbody > tr > td:first-child {
+  min-width: 640px;
+}
+.projectFrontPage .rightColumnStatic {
+  display: none;
+}
+.projectFrontPage .projectMetadata {
+  width: 300px;
+  margin-bottom: 20px;
+}
+.projectFrontPage .projectMetadata table {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.projectFrontPage .projectMetadata table td {
+  padding: 3px;
+}
+.projectFrontPage .projectMetadata table tr td:first-child {
+  width: 120px;
+}
+.projectFrontPage .missingMetadataWarning {
+  display: none;
+  color: red;
+  margin: 10px 0;
+}
+.projectFrontPage .projectMetadata a#editPageMetaLink,
+.projectFrontPage .projectMetadata a#editPageMetaLink:visited,
+.projectFrontPage .projectMetadata a#editPageMetaLink:active {
+  color: #666;
+  font-size: .9em;
+  text-decoration: none;
+}
+ul.gt-List {
+  list-style-type: none;
+  padding-left: 0;
+}
+ul.gt-List .gt-projectItem {
+  display: block;
+  margin-bottom: 20px;
+}
+ul.gt-List .new.gt-projectItem {
+  display: block;
+  margin-bottom: 10px;
+}
+ul.gt-List .gt-projectItem .gt-phaseIcon {
+  margin-right: 20px;
+}
+.gt-list-control .clear-search {
+  cursor: pointer;
+}
+.gt-list-control .clear-search:hover {
+  text-decoration: underline;
+}
+.gt-list-control ul#Paging {
+  display: block;
+  list-style-type: none;
+  margin: 5px 0 5px 0;
+  padding: 0;
+}
+.gt-list-control ul#Paging li {
+  display: inline-block;
+  margin-right: 10px;
+}
+.gt-phaseIcon {
+  display: block;
+  width: 92px;
+  height: 62px;
+  float: left;
+}
+.gt-phaseIcon .phaseLetter {
+  display: block;
+  font-size: 33px;
+  text-align: center;
+}
+.gt-phaseIcon .projectPhase {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.designmode .projectFrontPage .projectPhaseSection {
+  display: none;
+}
+.projectFrontPage .projectPhaseSection {
+  width: 100%;
+}
+.projectFrontPage .projectPhaseSection .projectPhaseHeading {
+  display: block;
+  width: 100%;
+  float: left;
+}
+.projectFrontPage .projectPhaseSection h2.gt-phaseHeading {
+  width: 137px;
+  float: left;
+  margin: 0 10px 10px 0;
+  text-overflow: initial;
+}
+.projectFrontPage .projectPhaseSection a#changeProjectPhaseLink {
+  float: left;
+  display: none;
+  border: 1px solid #ccc;
+  text-transform: none;
+  text-decoration: none;
+  padding: 5px;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases {
+  width: 96%;
+  margin: 0 0 20px 0;
+  padding: 0;
+  display: flex;
+  list-style-type: square;
+  overflow: hidden;
+  clear: both;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li {
+  width: auto;
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  flex: 1;
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 10px 0 10px 0;
+  text-decoration: none;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li a,
+.projectFrontPage .projectPhaseSection ul.projectPhases li a:visited {
+  position: relative;
+  width: 100%;
+  text-decoration: none;
+  color: #333;
+  overflow: hidden;
+  display: block;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon {
+  position: relative;
+  width: 100%;
+  height: auto;
+  float: none;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li .projectPhase {
+  width: 68%;
+  text-align: left;
+  float: left;
+  font-size: 1rem;
+  margin-top: 3px;
+  margin-bottom: 15px;
+  color: #339933;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li .phaseSubText {
+  width: 68%;
+  font-size: 0.7rem;
+  text-transform: none;
+  text-align: left;
+  display: block;
+  float: left;
+  color: #333;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li .phaseLetter {
+  border-radius: 1000px;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  display: block;
+  margin: 10px 10px 0 0;
+  float: left;
+  text-align: center;
+  z-index: 100;
+  line-height: 38px;
+  font-size: 1.4rem;
+  vertical-align: middle;
+  border: 1px solid #339933;
+  color: #339933;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li:before,
+.projectFrontPage .projectPhaseSection ul.projectPhases li:after {
+  display: block;
+  position: absolute;
+  top: 37px;
+  width: 100%;
+  height: 1px;
+  content: '';
+  background-color: #0072c6;
+  z-index: 2;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li:before {
+  left: 0;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li :after {
+  right: 0;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon:before,
+.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon:after {
+  display: block;
+  position: absolute;
+  top: 33px;
+  width: 100%;
+  height: 1px;
+  content: '';
+  background-color: #339933;
+  z-index: 2;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon:before {
+  left: 0;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon:after {
+  right: 0;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li:hover .phaseLetter {
+  border: 1px solid #666;
+  background-color: #333;
+  color: #fff;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected .projectPhase {
+  font-weight: 600;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected .gt-phaseIcon:before,
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected .gt-phaseIcon:after {
+  height: 2px;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected .phaseLetter {
+  border: 1px solid #339933;
+  background-color: #339933;
+  color: #fff;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:hover .phaseLetter {
+  border: 1px solid #666;
+  background-color: #333;
+  color: #fff;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase .projectPhase,
+.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child .projectPhase {
+  color: #0072c6;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase .gt-phaseIcon:before,
+.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child .gt-phaseIcon:before,
+.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase .gt-phaseIcon:after,
+.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child .gt-phaseIcon:after {
+  background-color: none;
+  height: 0;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase .phaseLetter,
+.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child .phaseLetter {
+  color: #0072c6;
+  border: 1px solid #0072c6;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase.selected .phaseLetter,
+.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child.selected .phaseLetter {
+  background-color: #0072c6;
+  color: #fff;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase:hover .phaseLetter,
+.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:hover .phaseLetter {
+  border: 1px solid #666;
+  background-color: #333;
+  color: #fff;
+}
+.loadingSpinner {
+  vertical-align: top;
+  margin: 15px;
+}
+.gt-result-table {
+  width: 99%;
+  border-collapse: collapse;
+  padding: 4px;
+  text-align: left;
+}
+.gt-result-table tr th {
+  font-weight: normal;
+  font-size: 0.95em;
+  color: #777777;
+  text-align: left;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  padding: 5px 4px;
+}
+.gt-result-table td,
+.gt-result-table th {
+  padding: 4px;
+  text-align: left;
+}
+.gt-result-table .status-red {
+  background-color: #cc6666;
+  background-color: rgba(255, 75, 77, 0.4);
+}
+.gt-result-table .status-yellow {
+  background-color: #f0e68c;
+  background-color: rgba(240, 230, 140, 0.8);
+}
+.gt-result-table .status-green {
+  background-color: #99cc66;
+  background-color: rgba(0, 150, 0, 0.4);
+}
+#gtloglist {
+  max-width: 700px;
+}
+#gtloglist h2 {
+  margin-bottom: 10px;
+}
+#gtloglist table tr th {
+  font-weight: normal;
+  font-size: 0.85em;
+  color: #777777;
+  text-align: left;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  padding: 0 5px;
+}
+#gtloglist table tr td {
+  padding: 5px;
+}
+#gtchecklist {
+  width: 514px;
+}
+#gtchecklist ul {
+  padding-left: 10px;
+}
+#gtchecklist li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+#gtchecklist .gt-checklist-title {
+  display: inline-block;
+  width: 80%;
+  vertical-align: middle;
+}
+#gtchecklist .gt-icon {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  margin-right: 7px;
+  border-radius: 5px;
+  vertical-align: top;
+}
+#gtchecklist .gt-icon:after {
+  font-size: 17px;
+  padding-left: auto;
+  margin-left: 7px;
+  margin-right: auto;
+  margin-top: 1px;
+  display: inline-block;
+  color: white;
+}
+#gtchecklist .gt-icon.gt-completed {
+  background-color: green;
+}
+#gtchecklist .gt-icon.gt-completed:after {
+  content: "\2713 ";
+}
+#gtchecklist .gt-icon.gt-ignored {
+  background-color: #E8C900;
+}
+#gtchecklist .gt-icon.gt-ignored:after {
+  content: "\2713 ";
+}
+#gtchecklist .gt-icon.gt-failed {
+  background-color: red;
+}
+#gtchecklist .gt-icon.gt-failed:after {
+  content: "\2717";
+  margin-top: 0;
+}
+#gtchecklist .gt-icon.gt-nostatus {
+  background-color: gray;
+}
+#gtchecklist .gt-icon.gt-nostatus:after {
+  content: "?";
+  font-weight: bold;
+  margin-left: 9px;
+}

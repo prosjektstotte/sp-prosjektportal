@@ -549,7 +549,6 @@ GT.Project.Setup.populateGenericList = function (listData) {
 
     var rows = listData.Data.Rows;
     for (var i = 0; i < rows.length; i++) {
-
         var itemCreateInfo = new SP.ListItemCreationInformation();
         var oListItem = oList.addItem(itemCreateInfo);
 
