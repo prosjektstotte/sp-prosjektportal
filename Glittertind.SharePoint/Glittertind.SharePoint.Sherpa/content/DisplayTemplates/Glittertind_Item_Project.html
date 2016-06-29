@@ -36,12 +36,14 @@
     <div id="TwoLines">
 <!--#_
 
-var url = $getItemValue(ctx, "Path");
-var title = $getItemValue(ctx, "Title");
-var projectManager = $getItemValue(ctx, "GtProjectManagerOWSUSER");
-var projectOwner = $getItemValue(ctx, "GtProjectOwnerOWSUSER");
-var projectPhase = $getItemValue(ctx, "owstaxIdGtProjectPhase");
-var projectPhaseDisplayMarkup = GT.Project.GetPhaseLogoMarkup(projectPhase.toString(), false);
+    var url = $getItemValue(ctx, "Path");
+    var title = $getItemValue(ctx, "Title");
+    var projectManager = $getItemValue(ctx, "GtProjectManagerOWSUSER");
+    var projectOwner = $getItemValue(ctx, "GtProjectOwnerOWSUSER");
+    var projectPhase = $getItemValue(ctx, "owstaxIdGtProjectPhase");
+
+    var phaseItem = {"Name":projectPhase.toString()};
+    var projectPhaseDisplayMarkup = GT.Project.GetPhaseLogoMarkup(phaseItem, false);
 _#-->
              <div class="gt-projectItem">
                 _#= projectPhaseDisplayMarkup =#_

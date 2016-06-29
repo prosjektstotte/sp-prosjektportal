@@ -25,7 +25,9 @@ function DisplayTemplate_6f7b9c276cca4ec69280a4cd659e15c6(ctx) {
     var projectManager = $getItemValue(ctx, "ProjectManager");
     var projectOwner = $getItemValue(ctx, "ProjectOwner");
     var projectPhase = $getItemValue(ctx, "ProjectPhase");
-    var projectPhaseDisplayMarkup = GT.Project.GetPhaseLogoMarkup(projectPhase.toString());
+
+    var phaseItem = { "Name": projectPhase.toString() };
+    var projectPhaseDisplayMarkup = GT.Project.GetPhaseLogoMarkup(phaseItem, false);
     ms_outHtml.push(''
     , '             <div class="gt-projectItem">'
     , '                ', projectPhaseDisplayMarkup, ''

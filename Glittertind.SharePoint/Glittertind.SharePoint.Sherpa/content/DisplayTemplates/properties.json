@@ -45,7 +45,7 @@
       "DisplayTemplateLevel": "Item",
       "TemplateHidden": "0",
       "TargetControlType": ";#Content Web Parts;#SearchResults;#",
-      "ManagedPropertyMapping": "'Path':'Path','Title':'Title', 'ProjectManager':'GtProjectManagerOWSUSER;RefinableString51','ProjectOwner':'GtProjectOwnerOWSUSER;RefinableString50','ProjectPhase':'owstaxIdGtProjectPhase;RefinableString52'"
+      "ManagedPropertyMapping": "'Path':'Path','Title':'Title', 'ProjectManager':'GtProjectManagerOWSUSER','ProjectOwner':'GtProjectOwnerOWSUSER','ProjectPhase':'owstaxIdGtProjectPhase'"
     }
   },
   {
