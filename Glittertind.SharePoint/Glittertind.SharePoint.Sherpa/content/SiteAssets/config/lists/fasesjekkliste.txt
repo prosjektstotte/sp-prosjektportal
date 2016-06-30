@@ -8,6 +8,7 @@
 	        "Name": "Alle elementer",
 	        "ViewFields": ["LinkTitle", "GtProjectPhase", "GtChecklistStatus", "GtComment"],
 	        "RowLimit": 50,
+            "Paged":true,
 	        "Query": "<OrderBy><FieldRef Name='GtProjectPhase' /></OrderBy>"
 	    }
     ]

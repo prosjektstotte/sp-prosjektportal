@@ -8,6 +8,7 @@
 	    	"Name": "Alle oppgaver",
 	        "ViewFields": ["Checkmark", "LinkTitle", "StartDate", "DueDate", "AssignedTo", "GtProjectPhase"],
 	        "RowLimit": 0,
+            "Paged":true,
 	        "Query": ""
 	    },
         {
@@ -15,6 +16,7 @@
 	    	"Url": "SitePages/Forside.aspx",
 	        "ViewFields": ["Checkmark", "LinkTitle", "StartDate", "DueDate", "AssignedTo"],
 	        "RowLimit": 10,
+            "Paged":true,
 	        "Query": "<OrderBy><FieldRef Name='Created' Ascending='FALSE' /></OrderBy>"
 	    },
         {
@@ -22,6 +24,7 @@
 	    	"Url": "SitePages/Ufiltrert.aspx",
 	        "ViewFields": ["Checkmark", "LinkTitle", "StartDate", "DueDate", "AssignedTo"],
 	        "RowLimit": 100,
+            "Paged":true,
 	        "Query": "<OrderBy><FieldRef Name='Created' Ascending='FALSE' /></OrderBy><GroupBy Collapse='TRUE'><FieldRef Name='GtProjectPhase' /></GroupBy>"
 	    },
         {
@@ -29,6 +32,7 @@
             "Url": "SitePages/Motereferat.aspx",
 	        "ViewFields": ["Checkmark", "LinkTitle", "StartDate", "DueDate", "AssignedTo"],
 	        "RowLimit": 30,
+            "Paged":true,
 	        "Query": "<OrderBy><FieldRef Name='Created' Ascending='FALSE' /></OrderBy>"
 	    },
         {
@@ -36,6 +40,7 @@
             "Url": "SitePages/Tilordnet.aspx",
 	        "ViewFields": ["Checkmark", "LinkTitle", "GtProjectPhase", "StartDate", "DueDate"],
 	        "RowLimit": 30,
+            "Paged":true,
 	        "Query": "<Where><Eq><FieldRef Name='AssignedTo' /><Value Type='Integer'><UserID/></Value></Eq></Where><OrderBy><FieldRef Name='DueDate' /></OrderBy>"
 	    }
     ]
