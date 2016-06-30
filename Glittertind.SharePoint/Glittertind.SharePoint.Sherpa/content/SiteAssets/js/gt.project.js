@@ -285,8 +285,11 @@ GT.Project.PopulateProjectPhasePart = function () {
           GT.Project.GetProjectPhases()
         ]
         GT.jQuery.when.apply(GT.jQuery, defs).then(function (currentPhase, allPhases) {
-            for (var ix = 0; ix < allPhases.length; ix++) {
-                GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(allPhases[ix], allPhases[ix].Name == currentPhase, true, true, ix, (ix+1) == allPhases.length));
+            if (allPhases && allPhases.length > 0) {
+                var widthPerPhase = 100 / allPhases.length;
+                for (var ix = 0; ix < allPhases.length; ix++) {
+                    GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(allPhases[ix], allPhases[ix].Name == currentPhase, true, true, widthPerPhase, ix, (ix + 1) == allPhases.length));
+                }
             }
         });
     });
@@ -347,7 +350,7 @@ GT.Project.GetProjectPhases = function () {
     return defer.promise();
 };
 
-GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup, linkToDocumentLibrary, index, isLastPhase) {
+GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup, linkToDocumentLibrary, widthPerPhase, index, isLastPhase) {
     var phaseDisplayName = "Ingen fase";
     var phaseLetter = 'X';
     var phaseSubText = '';
@@ -374,7 +377,14 @@ GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup,
     if (linkToDocumentLibrary)
         markup = String.format('<a href="../Dokumenter/Forms/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={0}">{1}</a>', phaseDisplayName, markup);
     if (wrapInListItemMarkup)
-        markup = String.format('<li class="{0}">{1}</li>', phaseClass.join(' '), markup);
+    {
+        var styleForIE = '';
+        //No support for flex in IE < 10
+        if (detectIE() && detectIE() < 10) {
+            styleForIE = String.format('style="display:table-cell; width:{0}%;"', widthPerPhase);
+        }
+        markup = String.format('<li class="{0}" {1}>{2}</li>', phaseClass.join(' '), styleForIE, markup);
+    }
 
     return markup;
 };
