@@ -1,0 +1,488 @@
+﻿{
+	  "Name": "Fasesjekkliste",
+	  "Type": "GenericList",
+		"Data": {
+				"Rows": [
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det en tydelig definert problemstilling som synliggjør behovet for nærmere utredning?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det tydeliggjort hvordan eller av hvem utredningen skal finansieres?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det mest riktig å gjennomføre tiltaket som et prosjekt eller som en linjeoppgave?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er tiltaket  i henhold til virksomhetsstrategien?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det behov for mer informasjon før det kan fattes en beslutning"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det tydeliggjort hvilke føringer (IT -politiske eller andre) som gjelder for og må tas hensyn til i utredningen?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Skal vi gå videre til konseptfasen og utrede ulike konsepter for et mulig prosjekt?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er prosjektet realistisk og gjennomførbart?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det etablert et prosjektstyre?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er rollebeskrivelse for prosjekteier etablert?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Støtter prosjektforslaget opp under virksomhetens mål og strategier?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det gjort tilstrekkelige vurderinger av alternative investeringer som sikrer at prosjektforslaget representerer et riktig valg å gå videre med, inklusive kvantitative og kvalitative gevinstanalyser og sammenligninger av kost/nytte for hvert alternativ?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er prosjektleder og øvrige sentrale prosjektdeltakere utpekt?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er rollebeskrivelse for prosjektleder etablert?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er nøkkelressurser allokert?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+										}
+								]
+						},
+			{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det utarbeidet en grov Prosjektbegrunnelse?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er prosjektet fortsatt ønskelig og i tråd med virksomhetens strategiske mål?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det utarbeidet en helhetlig og konsistent plan som bryter prosjektet ned i håndterbare faser?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det utarbeidet nødvendige strategier for gjennomføring, (for eksempel implementeringsstrategi, kvalitetsstrategi og anskaffelsesstrategi)?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det gjennomført interessentanalyse?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er prosjektorganisasjonen tydelig definert med roller og ansvar, og er det ressurser til å gjennomføre prosjektet?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er usikkerhetsanalyse blitt uført og er usikkerheten akseptabel?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er kritiske suksessfaktorer identifisert?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det utarbeidet en gevinstrealiseringsplan og er linjeorganisasjonens kapasitet til å realisere gevinstene blitt vurdert?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er prosjektets leveranser i overensstemmelse med definerte resultatmål?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er leveranser dokumentert og levert i henhold til plan?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det noe utestående arbeid som prosjektet skal ha ansvar for å avslutte?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er linjeorganisasjonen klar til å ta i bruk leveransene fra prosjektet og er nødvendig opplæring, brukerdokumentasjon, driftsrutiner osv utarbeidet og gjennomført?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det klart hvem som skal følge opp og rapportere effekter (i henhold til gevinstrealiseringsplan), og til hvem?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er det klart hvem som har ansvar for forvaltning og drift, og er nødvendige avtaler inngått?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er utestående arbeid tilfredsstillende lukket og eventuelt akseptert overført til linjen?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er prosjektets hovedresultat (produkt, kost, tid, kvalitet, ressursbruk) dokumentert?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er positive og negative erfaringer dokumentert for erfaringsoverføring?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er prosjektdokumentene forsvarlig arkivert?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er alle prosjektkontrakter avsluttet?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er alle relevante interessenter blitt informert om avslutning av prosjektet?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er gevinstrealiseringsplanen oppdatert?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er Erfaringslogg oppdatert,avsluttet og lagret?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er planlagte målinger og tiltak gjennomført?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
+										}
+								]
+						},
+						{
+								"Fields": [
+										{
+												"Name": "Title",
+												"Value": "Er forventede gevinster oppnådd eller er det behov for ytterligere tiltak? I så fall er det utarbeidet en tiltaksplan?"
+										},
+										{
+												"Name": "GtProjectPhase",
+												"Value": "Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
+										}
+								]
+						}
+				]
+		}
+}

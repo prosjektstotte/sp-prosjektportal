@@ -51,6 +51,9 @@
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.phaseform.txt" />
     <Content Include="$(MSBuildThisFileDirectory)content\SiteAssets\html\gt.projectlogform.txt" />
     <Content Include="$(MSBuildThisFileDirectory)content\DefaultDocuments\properties.json" />
+    <Content Include="$(MSBuildThisFileDirectory)importdata\fasesjekkliste.data.json" />
+    <Content Include="$(MSBuildThisFileDirectory)importdata\lenker.data.json" />
+    <Content Include="$(MSBuildThisFileDirectory)importdata\oppgaver.data.json" />
     <Content Include="$(MSBuildThisFileDirectory)search-tenant\SearchConfiguration_tenant.xml" />
     <Content Include="$(MSBuildThisFileDirectory)search\Prosjektportalen-konfigurasjon.xml" />
   </ItemGroup>

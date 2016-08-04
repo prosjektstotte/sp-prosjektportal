@@ -616,6 +616,117 @@ GT.Project.Setup.copyDefaultItems = function () {
     return _this.deferred.promise();
 };
 
+GT.Project.Setup.CopyListItems = function (properties) {
+    var sourceListName = properties.srcList;
+    var sourceWebUrl = properties.srcWeb;
+    var destListName = properties.dstList;
+    var listType = properties.listType;
+    var fieldsToSynch = properties.fields;
+    var fieldsJson = fieldsToSynch.join(",");
+    
+    var deferred = GT.jQuery.Deferred();
+    var digest = GT.jQuery("#__REQUESTDIGEST").val();
+
+    GT.jQuery.ajax({
+        url: String.format("{0}/_api/web/Lists/GetByTitle('{1}')/Items?$top=500&$select={2}", sourceWebUrl, sourceListName, fieldsJson),
+        headers: {
+            "Accept": "application/json; odata=verbose",
+            "X-RequestDigest": digest
+        },
+        contentType: "application/json;odata=verbose",
+    })
+	.done(function (data) {
+	    var clientContext = SP.ClientContext.get_current();
+	    var web = clientContext.get_web();
+	    var list = web.get_lists().getByTitle(destListName);
+	    var fields = list.get_fields();
+	    GT.Project.Setup.ListItems = GT.Project.Setup.ListItems || {};
+	    GT.Project.Setup.ListItems.srcItems = data.d.results;
+
+	    for (var i = 0; i < GT.Project.Setup.ListItems.srcItems.length; i++) {
+	        var srcItem = GT.Project.Setup.ListItems.srcItems[i];
+
+	        var itemCreateInfo = new SP.ListItemCreationInformation();
+	        var newItem = list.addItem(itemCreateInfo);
+
+	        for (var j = 0; j < fieldsToSynch.length; j++) {
+	            var fieldName = fieldsToSynch[j];
+	            var fieldValue = srcItem[fieldName];
+
+	            if (fieldValue && fieldName.toUpperCase() !== "ID" && fieldName.toUpperCase() !== "PARENTIDID") {
+	                if (fieldName.indexOf("Title") === 0) {
+	                    var value = GT.Project.Setup.GetUrlWithoutTokens(fieldValue);
+	                    if (fieldName === "Title" && value.length > 255) value = value.substr(0, 252) + "...";
+	                    newItem.set_item(fieldName, value);
+	                } else if (fieldValue.TermGuid) {
+	                    var field = fields.getByInternalNameOrTitle(fieldName);
+	                    var taxField = clientContext.castTo(field, SP.Taxonomy.TaxonomyField);
+	                    var taxonomySingle = new SP.Taxonomy.TaxonomyFieldValue();
+	                    taxonomySingle.set_label(fieldValue.Label);
+	                    taxonomySingle.set_termGuid(fieldValue.TermGuid);
+	                    taxonomySingle.set_wssId(fieldValue.WssId);
+	                    taxField.setFieldValueByValue(newItem, taxonomySingle);
+	                } else {
+	                    newItem.set_item(fieldName, fieldValue);
+	                }
+	            }
+	        }
+
+	        srcItem.NewListItem = newItem;
+	        newItem.update();
+	        clientContext.load(newItem);
+	    }
+
+	    clientContext.executeQueryAsync(function (sender, args) {
+	        console.log("Copied default items to " + destListName);
+	        if (listType === "TaskList") {
+	            GT.jQuery.when(
+                    GT.Project.Setup.UpdateParentReferences(clientContext, GT.Project.Setup.ListItems.srcItems)
+                ).then(function () {
+                    deferred.resolve();
+                });
+	        } else {
+	            deferred.resolve();
+	        }
+	    }, function (sender, args) {
+	        console.error('Request failed while copying list items. ' + args.get_message());
+	        deferred.reject();
+	    });
+	});
+
+    return deferred.promise();
+}
+GT.Project.Setup.UpdateParentReferences = function (clientContext, srcItems) {
+    var deferred = GT.jQuery.Deferred();
+
+    for (var x = 0; x < srcItems.length; x++) {
+        var srcItem = srcItems[x];
+        var newItem = srcItem.NewListItem;
+
+        if (srcItem.ParentIDId) {
+            var parentItem = GT.jQuery.grep(srcItems, function (n, i) {
+                return n.ID === srcItem.ParentIDId;
+            });
+            if (parentItem) {
+                var newParentId = parentItem[0].NewListItem.get_id();
+                newItem.set_item("ParentID", newParentId);
+                newItem.update();
+                clientContext.load(newItem);
+            }
+        }
+    }
+
+    clientContext.executeQueryAsync(function (sender, args) {
+        console.log("Updated parent references");
+        deferred.resolve();
+    }, function (sender, args) {
+        console.error('Request failed while copying list items. ' + args.get_message());
+        deferred.reject();
+    });
+
+    return deferred.resolve();
+}
+
 GT.Project.Setup.ExecuteCustomSteps = function () {
     var deferred = GT.jQuery.Deferred();
     GT.jQuery.getScript(_spPageContextInfo.siteServerRelativeUrl + "/SiteAssets/gt/js/customsteps.js")
@@ -927,11 +1038,25 @@ GT.jQuery(document).ready(function () {
                     new GT.Project.Setup.Model.step("Sett arving av navigasjon", 2, GT.Project.Setup.InheritNavigation, {}),
                     new GT.Project.Setup.Model.step("Konfigurer quicklaunch", 3, GT.Project.Setup.ConfigureQuickLaunch, {}),
                     new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", 4, GT.Project.Setup.UpdateListsFromConfig, {}),
-                    new GT.Project.Setup.Model.step("Oppretter standardverdier i sjekkliste", 5, GT.Project.Setup.copyDefaultItems, {}),
-                    new GT.Project.Setup.Model.step("Kopierer standarddokumenter og mapper", 6, GT.Project.Setup.copyFilesAndFolders,
-                        { srcWeb: _spPageContextInfo.siteServerRelativeUrl, srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter" })
+                    new GT.Project.Setup.Model.step("Kopierer standardoppgaver", 5, GT.Project.Setup.CopyListItems,
+                        {
+                            srcList: "Standardoppgaver", srcWeb: _spPageContextInfo.siteServerRelativeUrl, "dstList": "Oppgaver", "listType": "TaskList", "fields": ["Title", "GtProjectPhase", "ParentIDId", "Id", "Order"]
+                        }),
+                    new GT.Project.Setup.Model.step("Kopierer standardsjekkliste", 6, GT.Project.Setup.CopyListItems,
+                        {
+                            srcList: "Fasesjekkliste", srcWeb: _spPageContextInfo.siteServerRelativeUrl, "dstList": "Fasesjekkliste", "listType": "GenericList", "fields": ["Title", "GtProjectPhase", "Id"]
+                        }),
+                    new GT.Project.Setup.Model.step("Kopierer standardinteressenter", 7, GT.Project.Setup.CopyListItems,
+                        {
+                            srcList: "Standardinteressenter", srcWeb: _spPageContextInfo.siteServerRelativeUrl, "dstList": "Interessenter", "listType": "GenericList", "fields": ["Title", "GtStakeholderGroup", "GtStakeholderContext", "GtStakeholderStrategy", "GtStakeholderInterest", "GtStakeholderInfluence","GtStakeholderInfluencePossibilty", "Id"]
+                        }),
+                    new GT.Project.Setup.Model.step("Kopierer standarddokumenter og mapper", 8, GT.Project.Setup.copyFilesAndFolders,
+                        {
+                            srcWeb: _spPageContextInfo.siteServerRelativeUrl, srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter"
+                        })
                 ]
             };
+            
             var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
             GT.jQuery.getScript(scriptbase + "SP.js", function () {
                 GT.jQuery.getScript(scriptbase + "SP.Taxonomy.js", function () {
