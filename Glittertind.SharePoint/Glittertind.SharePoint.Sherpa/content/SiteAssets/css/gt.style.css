@@ -5,6 +5,10 @@
   margin-left: 10px;
   display: none;
 }
+.newProjectPage .validationMessage {
+  color: red;
+  margin-bottom: 10px;
+}
 .newProjectPage .projectInputForm {
   width: 263px;
   margin-left: 20px;
@@ -28,10 +32,6 @@
   height: 70px;
   overflow: auto;
 }
-.newProjectPage .validationMessage {
-  color: red;
-  margin-bottom: 10px;
-}
 .projectFrontPage {
   width: 100%;
 }
@@ -40,6 +40,11 @@
 }
 .projectFrontPage .rightColumnStatic {
   display: none;
+}
+.projectFrontPage .missingMetadataWarning {
+  display: none;
+  color: red;
+  margin: 10px 0;
 }
 .projectFrontPage .projectMetadata {
   width: 300px;
@@ -54,11 +59,6 @@
 }
 .projectFrontPage .projectMetadata table tr td:first-child {
   width: 120px;
-}
-.projectFrontPage .missingMetadataWarning {
-  display: none;
-  color: red;
-  margin: 10px 0;
 }
 .projectFrontPage .projectMetadata a#editPageMetaLink,
 .projectFrontPage .projectMetadata a#editPageMetaLink:visited,
@@ -79,7 +79,7 @@ ul.gt-List .new.gt-projectItem {
   display: block;
   margin-bottom: 10px;
 }
-ul.gt-List .gt-projectItem .gt-phaseIcon {
+ul.gt-List .new.gt-projectItem .gt-phaseIcon {
   margin-right: 20px;
 }
 .gt-list-control .clear-search {
@@ -97,6 +97,43 @@ ul.gt-List .gt-projectItem .gt-phaseIcon {
 .gt-list-control ul#Paging li {
   display: inline-block;
   margin-right: 10px;
+}
+.loadingSpinner {
+  vertical-align: top;
+  margin: 15px;
+}
+.gt-result-table {
+  width: 99%;
+  border-collapse: collapse;
+  padding: 4px;
+  text-align: left;
+}
+.gt-result-table tr th {
+  font-weight: normal;
+  font-size: 0.95em;
+  color: #777777;
+  text-align: left;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  padding: 5px 4px;
+}
+.gt-result-table td,
+.gt-result-table th {
+  padding: 4px;
+  text-align: left;
+}
+.gt-result-table .status-red {
+  background-color: #cc6666;
+  background-color: rgba(255, 75, 77, 0.4);
+}
+.gt-result-table .status-yellow {
+  background-color: #f0e68c;
+  background-color: rgba(240, 230, 140, 0.8);
+}
+.gt-result-table .status-green {
+  background-color: #99cc66;
+  background-color: rgba(0, 150, 0, 0.4);
 }
 .gt-phaseIcon {
   display: block;
@@ -146,10 +183,10 @@ ul.gt-List .gt-projectItem .gt-phaseIcon {
   padding: 0;
   display: flex;
   list-style-type: square;
-  overflow: hidden;
+  overflow: visible;
   clear: both;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li {
   width: auto;
   -ms-flex: 1;
   -webkit-flex: 1;
@@ -161,8 +198,8 @@ ul.gt-List .gt-projectItem .gt-phaseIcon {
   padding: 10px 0 10px 0;
   text-decoration: none;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li a,
-.projectFrontPage .projectPhaseSection ul.projectPhases li a:visited {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li a,
+.projectFrontPage .projectPhaseSection ul.projectPhases > li a:visited {
   position: relative;
   width: 100%;
   text-decoration: none;
@@ -170,13 +207,13 @@ ul.gt-List .gt-projectItem .gt-phaseIcon {
   overflow: hidden;
   display: block;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .gt-phaseIcon {
   position: relative;
   width: 100%;
   height: auto;
   float: none;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li .projectPhase {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .projectPhase {
   width: 68%;
   text-align: left;
   float: left;
@@ -185,7 +222,32 @@ ul.gt-List .gt-projectItem .gt-phaseIcon {
   margin-bottom: 15px;
   color: #339933;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li .phaseSubText {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .checklistStats {
+  display: none;
+  opacity: 0;
+  transition: opacity 0s ease-in-out;
+  -moz-transition: opacity 0s ease-in-out;
+  -webkit-transition: opacity 0s ease-in-out;
+  position: absolute;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .checklistStats h3 {
+  color: #eee;
+  padding-bottom: 5px;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .checklistStats ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .checklistStats ul li {
+  display: block;
+  margin: 0;
+  padding: 0;
+  margin-top: 5px;
+  list-style-type: none;
+  list-style: none;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .phaseSubText {
   width: 68%;
   font-size: 0.7rem;
   text-transform: none;
@@ -194,7 +256,7 @@ ul.gt-List .gt-projectItem .gt-phaseIcon {
   float: left;
   color: #333;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li .phaseLetter {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .phaseLetter {
   border-radius: 1000px;
   position: relative;
   width: 40px;
@@ -211,8 +273,8 @@ ul.gt-List .gt-projectItem .gt-phaseIcon {
   border: 1px solid #339933;
   color: #339933;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li:before,
-.projectFrontPage .projectPhaseSection ul.projectPhases li:after {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li:before,
+.projectFrontPage .projectPhaseSection ul.projectPhases > li:after {
   display: block;
   position: absolute;
   top: 37px;
@@ -222,14 +284,14 @@ ul.gt-List .gt-projectItem .gt-phaseIcon {
   background-color: #0072c6;
   z-index: 2;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li:before {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li:before {
   left: 0;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li :after {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li :after {
   right: 0;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon:before,
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon:after {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .gt-phaseIcon:before,
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .gt-phaseIcon:after {
   display: block;
   position: absolute;
   top: 33px;
@@ -239,97 +301,107 @@ ul.gt-List .gt-projectItem .gt-phaseIcon {
   background-color: #339933;
   z-index: 2;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon:before {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .gt-phaseIcon:before {
   left: 0;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li .gt-phaseIcon:after {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .gt-phaseIcon:after {
   right: 0;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li:hover .phaseLetter {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li:hover .phaseLetter {
   border: 1px solid #666;
   background-color: #333;
   color: #fff;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected .projectPhase {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li.selected .projectPhase {
   font-weight: 600;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected .gt-phaseIcon:before,
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected .gt-phaseIcon:after {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li.selected .gt-phaseIcon:before,
+.projectFrontPage .projectPhaseSection ul.projectPhases > li.selected .gt-phaseIcon:after {
   height: 2px;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected .phaseLetter {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li.selected .phaseLetter {
   border: 1px solid #339933;
   background-color: #339933;
   color: #fff;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li.selected:hover .phaseLetter {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li.selected:hover .phaseLetter {
   border: 1px solid #666;
   background-color: #333;
   color: #fff;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase .projectPhase,
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child .projectPhase {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li.last-phase .projectPhase,
+.projectFrontPage .projectPhaseSection ul.projectPhases > li:first-child .projectPhase {
   color: #0072c6;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase .gt-phaseIcon:before,
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child .gt-phaseIcon:before,
-.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase .gt-phaseIcon:after,
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child .gt-phaseIcon:after {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li.last-phase .gt-phaseIcon:before,
+.projectFrontPage .projectPhaseSection ul.projectPhases > li:first-child .gt-phaseIcon:before,
+.projectFrontPage .projectPhaseSection ul.projectPhases > li.last-phase .gt-phaseIcon:after,
+.projectFrontPage .projectPhaseSection ul.projectPhases > li:first-child .gt-phaseIcon:after {
   background-color: none;
   height: 0;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase .phaseLetter,
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child .phaseLetter {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li.last-phase .phaseLetter,
+.projectFrontPage .projectPhaseSection ul.projectPhases > li:first-child .phaseLetter {
   color: #0072c6;
   border: 1px solid #0072c6;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase.selected .phaseLetter,
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child.selected .phaseLetter {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li.last-phase.selected .phaseLetter,
+.projectFrontPage .projectPhaseSection ul.projectPhases > li:first-child.selected .phaseLetter {
   background-color: #0072c6;
   color: #fff;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases li.last-phase:hover .phaseLetter,
-.projectFrontPage .projectPhaseSection ul.projectPhases li:first-child:hover .phaseLetter {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li.last-phase:hover .phaseLetter,
+.projectFrontPage .projectPhaseSection ul.projectPhases > li:first-child:hover .phaseLetter {
   border: 1px solid #666;
   background-color: #333;
   color: #fff;
 }
-.loadingSpinner {
-  vertical-align: top;
-  margin: 15px;
+.projectFrontPage .projectPhaseSection ul.projectPhases > li:hover .checklistStats {
+  display: block;
+  position: absolute;
+  top: 100%;
+  margin-left: -7px;
+  margin-top: -1px;
+  z-index: 15;
+  background: rgba(50, 50, 50, 0.95);
+  padding: 15px;
+  border: 0px solid #ccc;
+  box-shadow: 3px 8px 15px #999;
+  color: #eee;
+  width: 250px;
+  border-radius: 2px;
+  overflow: visible;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition-delay: .2s;
 }
-.gt-result-table {
-  width: 99%;
-  border-collapse: collapse;
-  padding: 4px;
-  text-align: left;
+.projectFrontPage .projectPhaseSection ul.projectPhases > li:hover .checklistStats:before {
+  bottom: 100%;
+  left: 10%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  z-index: 200;
 }
-.gt-result-table tr th {
-  font-weight: normal;
-  font-size: 0.95em;
-  color: #777777;
-  text-align: left;
-  text-decoration: none;
-  vertical-align: middle;
-  white-space: nowrap;
-  padding: 5px 4px;
-}
-.gt-result-table td,
-.gt-result-table th {
-  padding: 4px;
-  text-align: left;
-}
-.gt-result-table .status-red {
-  background-color: #cc6666;
-  background-color: rgba(255, 75, 77, 0.4);
-}
-.gt-result-table .status-yellow {
-  background-color: #f0e68c;
-  background-color: rgba(240, 230, 140, 0.8);
-}
-.gt-result-table .status-green {
-  background-color: #99cc66;
-  background-color: rgba(0, 150, 0, 0.4);
+.projectFrontPage .projectPhaseSection ul.projectPhases > li:hover .checklistStats:after {
+  bottom: 100%;
+  left: 10%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  z-index: 200;
+  border-color: rgba(51, 51, 51, 0);
+  border-bottom-color: rgba(51, 51, 51, 0.95);
+  border-width: 12px;
+  margin-left: -12px;
 }
 #gtloglist {
   max-width: 700px;
@@ -360,51 +432,56 @@ ul.gt-List .gt-projectItem .gt-phaseIcon {
   list-style: none;
   margin-bottom: 10px;
 }
-#gtchecklist .gt-checklist-title {
-  display: inline-block;
-  width: 80%;
-  vertical-align: middle;
+#gtchecklist li a {
+  line-height: 20px;
+  display: block;
+  color: #444;
 }
-#gtchecklist .gt-icon {
-  width: 25px;
-  height: 25px;
+#gtchecklist li a .gt-checklist-title {
+  display: inline-block;
+  width: 90%;
+  vertical-align: top;
+}
+.gt-icon {
+  width: 20px;
+  height: 20px;
   display: inline-block;
   margin-right: 7px;
   border-radius: 5px;
   vertical-align: top;
 }
-#gtchecklist .gt-icon:after {
-  font-size: 17px;
+.gt-icon:after {
+  font-size: 13px;
   padding-left: auto;
-  margin-left: 7px;
+  margin-left: 5px;
   margin-right: auto;
   margin-top: 1px;
   display: inline-block;
   color: white;
 }
-#gtchecklist .gt-icon.gt-completed {
+.gt-icon.gt-completed {
   background-color: green;
 }
-#gtchecklist .gt-icon.gt-completed:after {
+.gt-icon.gt-completed:after {
   content: "\2713 ";
 }
-#gtchecklist .gt-icon.gt-ignored {
+.gt-icon.gt-ignored {
   background-color: #E8C900;
 }
-#gtchecklist .gt-icon.gt-ignored:after {
+.gt-icon.gt-ignored:after {
   content: "\2713 ";
 }
-#gtchecklist .gt-icon.gt-failed {
+.gt-icon.gt-failed {
   background-color: red;
 }
-#gtchecklist .gt-icon.gt-failed:after {
+.gt-icon.gt-failed:after {
   content: "\2717";
   margin-top: 0;
 }
-#gtchecklist .gt-icon.gt-nostatus {
+.gt-icon.gt-nostatus {
   background-color: gray;
 }
-#gtchecklist .gt-icon.gt-nostatus:after {
+.gt-icon.gt-nostatus:after {
   content: "?";
   font-weight: bold;
   margin-left: 9px;

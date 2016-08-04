@@ -282,13 +282,16 @@ GT.Project.PopulateProjectPhasePart = function () {
     GT.jQuery.getScript(_spPageContextInfo.siteAbsoluteUrl + "/_layouts/15/SP.Taxonomy.js", function () {
         var defs = [
           GT.Project.GetPhaseNameFromCurrentItem(),
-          GT.Project.GetProjectPhases()
+          GT.Project.GetProjectPhases(),
+          GT.Project.GetChecklistData()
         ]
-        GT.jQuery.when.apply(GT.jQuery, defs).then(function (currentPhase, allPhases) {
+        GT.jQuery.when.apply(GT.jQuery, defs).then(function (currentPhase, allPhases, checklistData) {
             if (allPhases && allPhases.length > 0) {
                 var widthPerPhase = 100 / allPhases.length;
                 for (var ix = 0; ix < allPhases.length; ix++) {
-                    GT.jQuery('.projectPhases').append(GT.Project.GetPhaseLogoMarkup(allPhases[ix], allPhases[ix].Name == currentPhase, true, true, widthPerPhase, ix, (ix + 1) == allPhases.length));
+                    var checkListItemStats = checklistData[allPhases[ix].Name];
+                    var phaseLogoMarkup = GT.Project.GetPhaseLogoMarkup(allPhases[ix], allPhases[ix].Name == currentPhase, true, true, widthPerPhase, ix, (ix + 1) == allPhases.length, checkListItemStats);
+                    GT.jQuery('.projectPhases').append(phaseLogoMarkup);
                 }
             }
         });
@@ -350,7 +353,7 @@ GT.Project.GetProjectPhases = function () {
     return defer.promise();
 };
 
-GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup, linkToDocumentLibrary, widthPerPhase, index, isLastPhase) {
+GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup, linkToDocumentLibrary, widthPerPhase, index, isLastPhase, checklistStats) {
     var phaseDisplayName = "Ingen fase";
     var phaseLetter = 'X';
     var phaseSubText = '';
@@ -368,14 +371,21 @@ GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup,
         phaseLetter = phaseDisplayName.substr(0, 1);
         phaseSubText = phase.SubText;
     }
+    var checklistMarkup = String.format("<h3>Beslutningspunkter for {0}</h3><ul><li>Ingen punkter funnet for denne fasen</li></ul>", phaseDisplayName);
+    if (checklistStats) {
+        checklistMarkup = String.format("<h3>Beslutningspunkter for {0}</h3><ul>" +
+            "<li><span class='gt-icon gt-completed'></span>{1} punkter gjennomført</li>" +
+            "<li><span class='gt-icon gt-failed'></span>{2} punkter ikke gjennomført</li></ul>", phaseDisplayName, checklistStats.Checked, checklistStats.Unchecked);
+    }
 
     var markup = String.format('<div class="gt-phaseIcon {0}">' +
         '<span class="phaseLetter">{1}</span>' +
         '<span class="projectPhase">{2}</span>' +
         '<span class="phaseSubText">{3}</span>' +
         '</div>', phaseClass.join(' '), phaseLetter, phaseDisplayName, phaseSubText);
+
     if (linkToDocumentLibrary)
-        markup = String.format('<a href="../Dokumenter/Forms/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={0}">{1}</a>', phaseDisplayName, markup);
+        markup = String.format('<a href="../Dokumenter/Forms/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={0}">{1}</a><div class="checklistStats">{2}</div>', phaseDisplayName, markup, checklistMarkup);
     if (wrapInListItemMarkup)
     {
         var styleForIE = '';
@@ -500,6 +510,62 @@ GT.Project.GetCurrentPhase = function () {
     return defer.promise();
 };
 
+GT.Project.GetChecklistData = function () {
+    var defer = GT.jQuery.Deferred();
+
+    console.log("Retrieving check list data");
+
+    var caml = "<View><Query><OrderBy><FieldRef Name=\'ID\' /></OrderBy></Query></View>";
+    var url = String.format("{0}/_api/web/lists/getByTitle('Fasesjekkliste')/GetItems", _spPageContextInfo.webServerRelativeUrl);
+    var requestData = '{"query": { "__metadata": { "type": "SP.CamlQuery" }, "ViewXml": "' + caml + '"}}';
+    var digest = GT.jQuery("#__REQUESTDIGEST").val();
+
+    GT.jQuery.ajax({
+        url: url,
+        type: "POST",
+        data: requestData,
+        headers: {
+            "Accept": "application/json; odata=verbose",
+            "X-RequestDigest": digest,
+            "Content-Type": "application/json; odata=verbose"
+        },
+        dataType: "json",
+        success: function (data) {
+            var checklistItems = {};
+            
+            for (var i = 0; i < data.d.results.length; i++) {
+                var checklistItem = data.d.results[i];
+                if (checklistItem.GtProjectPhase) {
+                    var phaseName = checklistItem.GtProjectPhase.Label;
+                    var status = checklistItem.GtChecklistStatus;
+                    
+                    var existingPhase = checklistItems[phaseName];
+                    if (!existingPhase) {
+                        checklistItems[phaseName] = {
+                            Id: checklistItem.GtProjectPhase.TermGuid,
+                            Checked: 0,
+                            Unchecked: 0
+                        };
+                        existingPhase = checklistItems[phaseName];
+                    }
+                    if (status !== "Ja") {
+                        existingPhase.Unchecked += 1;
+                    } else {
+                        existingPhase.Checked += 1;
+                    }
+                }
+            }
+            defer.resolve(checklistItems);
+        },
+        fail: function () {
+            console.log("error while getting checklistdata");
+            console.log(arguments);
+            defer.reject();
+        }
+    });
+
+    return defer.promise();
+}
 GT.Project.PhaseForm.CheckList.getData = function () {
     var currentPhasePromise = GT.Project.GetCurrentPhase();
     var scriptPromise = GT.jQuery.getScript(_spPageContextInfo.siteServerRelativeUrl + "/_layouts/15/SP.RequestExecutor.js");

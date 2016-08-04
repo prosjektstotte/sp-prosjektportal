@@ -1,488 +1,566 @@
 ﻿.validationMessage {
-    color: red;
+	color: red;
 }
 
-.newProjectPage h1 {
-    margin-left: 10px;
-    display: none;
-}
+.newProjectPage {
+    h1 {
+	    margin-left: 10px;
+	    display: none;
+    }
+    .validationMessage {
+	    color: red;
+	    margin-bottom: 10px;
+    }
+    .projectInputForm {
+	    width: 263px;
+	    margin-left: 20px;
 
-.newProjectPage .projectInputForm {
-    width: 263px;
-    margin-left: 20px;
-}
+        label {
+	        display: inline-table;
+	        width: 260px;
+	        margin: 0;
+	        word-break: break-all;
+        }
 
-.newProjectPage .projectInputForm label {
-    display: inline-table;
-    width: 260px;
-    margin: 0;
-    word-break: break-all;
-}
+        input, textarea {
+	        width: 250px;
+	        margin: 3px 0 10px;
+        }
 
-.newProjectPage .projectInputForm input, .newProjectPage .projectInputForm textarea {
-    width: 250px;
-    margin: 3px 0 10px;
-}
+        button {
+	        float: right;
+	        margin: 0;
+        }
 
-.newProjectPage .projectInputForm button {
-    float: right;
-    margin: 0;
+        textarea#projectDescriptionInput {
+	        height: 70px;
+	        overflow: auto;
+        }
+    }
 }
-
-.newProjectPage .projectInputForm textarea#projectDescriptionInput {
-    height: 70px;
-    overflow: auto;
-}
-
-.newProjectPage .validationMessage {
-    color: red;
-    margin-bottom: 10px;
-}
-
 .projectFrontPage {
-    width: 100%;
-}
+	width: 100%;
 
-.projectFrontPage > tbody > tr > td:first-child {
-    min-width: 640px;
-}
+    > tbody > tr > td:first-child {
+	    min-width: 640px;
+    }
+    .rightColumnStatic {
+	    display: none;
+    }
+    .missingMetadataWarning {
+	    display: none;
+	    color: red;
+	    margin: 10px 0;
+    }
 
-.projectFrontPage .rightColumnStatic {
-    display: none;
-}
+    .projectMetadata {
+	    width: 300px;
+	    margin-bottom: 20px;
 
-.projectFrontPage .projectMetadata {
-    width: 300px;
-    margin-bottom: 20px;
-}
+        table {
+	        width: 100%;
+	        margin-bottom: 10px;
 
-.projectFrontPage .projectMetadata table {
-    width: 100%;
-    margin-bottom: 10px;
-}
+            td {
+	            padding: 3px;
+            }
 
-.projectFrontPage .projectMetadata table td {
-    padding: 3px;
-}
-
-.projectFrontPage .projectMetadata table tr td:first-child {
-    width: 120px;
-}
-
-.projectFrontPage .missingMetadataWarning {
-    display: none;
-    color: red;
-    margin: 10px 0;
-}
-
-.projectFrontPage .projectMetadata a#editPageMetaLink, .projectFrontPage .projectMetadata a#editPageMetaLink:visited, .projectFrontPage .projectMetadata a#editPageMetaLink:active {
-    color: #666;
-    font-size: .9em;
-    text-decoration: none;
+            tr td:first-child {
+	            width: 120px;
+            }
+        }
+        a#editPageMetaLink, a#editPageMetaLink:visited, a#editPageMetaLink:active {
+	        color: #666;
+	        font-size: .9em;
+	        text-decoration: none;
+        }
+    }
 }
 
 ul.gt-List {
-    list-style-type: none;
-    padding-left: 0;
+	list-style-type: none;
+	padding-left: 0;
+
+    .gt-projectItem {
+	    display: block;
+	    margin-bottom: 20px;
+    }
+    .new.gt-projectItem {
+	    display: block;
+	    margin-bottom: 10px;
+
+        .gt-phaseIcon {
+	        margin-right: 20px;
+        }
+    }
 }
 
-ul.gt-List .gt-projectItem {
-    display: block;
-    margin-bottom: 20px;
-}
-
-ul.gt-List .new.gt-projectItem {
-    display: block;
-    margin-bottom: 10px;
-}
-
-ul.gt-List .gt-projectItem .gt-phaseIcon {
-    margin-right: 20px;
-}
-
-.gt-list-control .clear-search {
-    cursor: pointer;
-}
-
-.gt-list-control .clear-search:hover {
-    text-decoration: underline;
-}
-
-.gt-list-control ul#Paging {
-    display: block;
-    list-style-type: none;
-    margin: 5px 0 5px 0;
-    padding: 0;
-}
-
-.gt-list-control ul#Paging li {
-    display: inline-block;
-    margin-right: 10px;
-}
-
-.gt-phaseIcon {
-    display: block;
-    width: 92px;
-    height: 62px;
-    float: left;
-}
-
-.gt-phaseIcon .phaseLetter {
-    display: block;
-    font-size: 33px;
-    text-align: center;
-}
-
-.gt-phaseIcon .projectPhase {
-    display: block;
-    font-size: 12px;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-.designmode .projectFrontPage .projectPhaseSection {
-    display: none;
-}
-
-.projectFrontPage .projectPhaseSection {
-    width: 100%;
-
-    .projectPhaseHeading {
-        display: block;
-        width: 100%;
-        float: left;
+.gt-list-control {
+    .clear-search {
+	    cursor: pointer;
     }
 
-    h2.gt-phaseHeading {
-        width: 137px;
-        float: left;
-        margin: 0 10px 10px 0;
-        text-overflow: initial;
+    .clear-search:hover {
+	    text-decoration: underline;
     }
 
-    a#changeProjectPhaseLink {
-        float: left;
-        display: none;
-        border: 1px solid #ccc;
-        text-transform: none;
-        text-decoration: none;
-        padding: 5px;
-    }
-
-    ul.projectPhases {
-        width: 96%;
-        margin: 0 0 20px 0;
-        padding: 0;
-        display: flex;
-        list-style-type: square;
-        overflow: hidden;
-        clear: both;
+    ul#Paging {
+	    display: block;
+	    list-style-type: none;
+	    margin: 5px 0 5px 0;
+	    padding: 0;
 
         li {
-            @gtGreen: rgb(51, 153, 51);
-            @gtBlue: rgb(0, 114, 198);
-            @gtGreenInverted: #fff;
-            @gtBlueInverted: #fff;
-
-            .phaseLetterHover() {
-                &:hover {
-                    .phaseLetter {
-                        border: 1px solid #666;
-                        background-color: #333;
-                        color: #fff;
-                    }
-                }
-            }
-
-            width: auto;
-            -ms-flex: 1;
-            -webkit-flex: 1;
-            -moz-flex: 1;
-            flex: 1;
-            display: block;
-            position: relative;
-            margin: 0;
-            padding: 10px 0 10px 0;
-            text-decoration: none;
-
-            a,
-            a:visited {
-                position: relative;
-                width: 100%;
-                text-decoration: none;
-                color: #333;
-                overflow: hidden;
-                display: block;
-            }
-
-            .gt-phaseIcon {
-                position: relative;
-                width: 100%;
-                height: auto;
-                float: none;
-            }
-
-            .projectPhase {
-                width: 68%;
-                text-align: left;
-                float: left;
-                font-size: 1rem;
-                margin-top: 3px;
-                margin-bottom: 15px;
-                color: @gtGreen;
-            }
-            
-            .phaseSubText {
-                width: 68%;
-                font-size: 0.7rem;
-                text-transform: none;
-                text-align: left;
-                display: block;
-                float: left;
-                color: #333;
-            }
-
-            .phaseLetter {
-                border-radius: 1000px;
-                position: relative;
-                width: 40px;
-                height: 40px;
-                background-color: #fff;
-                display: block;
-                margin: 10px 10px 0 0;
-                float: left;
-                text-align: center;
-                z-index: 100;
-                line-height: 38px;
-                font-size: 1.4rem;
-                vertical-align: middle;
-                border: 1px solid @gtGreen;
-                color: @gtGreen;
-            }
-            
-            &:before,
-            &:after {
-                display: block;
-                position: absolute;
-                top: 37px;
-                width: 100%;
-                height: 1px;
-                content: '';
-                background-color: @gtBlue;
-                z-index: 2;
-            }
-            
-            &:before {
-                left: 0;
-            }
-
-            :after {
-                right: 0;
-            }
-
-            .gt-phaseIcon:before,
-            .gt-phaseIcon:after {
-                display: block;
-                position: absolute;
-                top: 33px;
-                width: 100%;
-                height: 1px;
-                content: '';
-                background-color: @gtGreen;
-                z-index: 2;
-            }
-
-            .gt-phaseIcon:before {
-                left: 0;
-            }
-
-            .gt-phaseIcon:after {
-                right: 0;
-            }
-            
-            .phaseLetterHover();
-
-            &.selected {
-                .projectPhase {
-                    font-weight: 600;
-                }
-                
-                .gt-phaseIcon:before,
-                .gt-phaseIcon:after {
-                    height: 2px;    
-                }
-                .phaseLetter {
-                    border: 1px solid @gtGreen;
-                    background-color: @gtGreen;
-                    color: @gtGreenInverted
-                }
-                
-                .phaseLetterHover();
-            }
-
-            &.last-phase,
-            &:first-child {
-                .projectPhase {
-                    color: @gtBlue;
-                }
-                .gt-phaseIcon {
-                    &:before,
-                    &:after {
-                        background-color: none;
-                        height: 0;
-                    }
-                }
-                .phaseLetter {
-                    color: @gtBlue;
-                    border: 1px solid @gtBlue;
-                }
-                &.selected {
-                    .phaseLetter {
-                        background-color: @gtBlue;
-                        color: @gtBlueInverted;
-                    }
-                }
-                .phaseLetterHover();
-            }
+	        display: inline-block;
+	        margin-right: 10px;
         }
     }
 }
 
 .loadingSpinner {
-    vertical-align: top;
-    margin: 15px;
+	vertical-align: top;
+	margin: 15px;
 }
 
 .gt-result-table {
-    width: 99%;
-    border-collapse: collapse;
-    padding: 4px;
-    text-align: left;
+	width: 99%;
+	border-collapse: collapse;
+	padding: 4px;
+	text-align: left;
 
-    tr th {
-        font-weight: normal;
-        font-size: 0.95em;
-        color: rgb(119, 119, 119);
-        text-align: left;
-        text-decoration: none;
-        vertical-align: middle;
-        white-space: nowrap;
-        padding: 5px 4px;
-    }
+	tr th {
+		font-weight: normal;
+		font-size: 0.95em;
+		color: rgb(119, 119, 119);
+		text-align: left;
+		text-decoration: none;
+		vertical-align: middle;
+		white-space: nowrap;
+		padding: 5px 4px;
+	}
 
-    td, th {
-        padding: 4px;
-        text-align: left;
-    }
+	td, th {
+		padding: 4px;
+		text-align: left;
+	}
 
-    .status-red {
-        background-color: rgb(204, 102, 102);
-        background-color: rgba(255, 75, 77, 0.4);
-    }
+	.status-red {
+		background-color: rgb(204, 102, 102);
+		background-color: rgba(255, 75, 77, 0.4);
+	}
 
-    .status-yellow {
-        background-color: rgb(240, 230, 140);
-        background-color: rgba(240,230,140, 0.8);
-    }
+	.status-yellow {
+		background-color: rgb(240, 230, 140);
+		background-color: rgba(240,230,140, 0.8);
+	}
 
-    .status-green {
-        background-color: rgb(153,204,102);
-        background-color: rgba(0, 150, 0, 0.4);
+	.status-green {
+		background-color: rgb(153,204,102);
+		background-color: rgba(0, 150, 0, 0.4);
+	}
+}
+
+.gt-phaseIcon {
+	display: block;
+	width: 92px;
+	height: 62px;
+	float: left;
+
+    .phaseLetter {
+	    display: block;
+	    font-size: 33px;
+	    text-align: center;
     }
+    .projectPhase {
+	    display: block;
+	    font-size: 12px;
+	    text-transform: uppercase;
+	    text-align: center;
+    }
+}
+
+.designmode .projectFrontPage .projectPhaseSection {
+	display: none;
+}
+
+.projectFrontPage .projectPhaseSection {
+	width: 100%;
+
+	.projectPhaseHeading {
+		display: block;
+		width: 100%;
+		float: left;
+	}
+
+	h2.gt-phaseHeading {
+		width: 137px;
+		float: left;
+		margin: 0 10px 10px 0;
+		text-overflow: initial;
+	}
+
+	a#changeProjectPhaseLink {
+		float: left;
+		display: none;
+		border: 1px solid #ccc;
+		text-transform: none;
+		text-decoration: none;
+		padding: 5px;
+	}
+
+	ul.projectPhases {
+		width: 96%;
+		margin: 0 0 20px 0;
+		padding: 0;
+		display: flex;
+		list-style-type: square;
+		overflow: visible;
+		clear: both;
+
+		> li {
+			@gtGreen: rgb(51, 153, 51);
+			@gtBlue: rgb(0, 114, 198);
+			@gtGreenInverted: #fff;
+			@gtBlueInverted: #fff;
+
+			.phaseLetterHover() {
+				&:hover {
+					.phaseLetter {
+						border: 1px solid #666;
+						background-color: #333;
+						color: #fff;
+					}
+				}
+			}
+
+			width: auto;
+			-ms-flex: 1;
+			-webkit-flex: 1;
+			-moz-flex: 1;
+			flex: 1;
+			display: block;
+			position: relative;
+			margin: 0;
+			padding: 10px 0 10px 0;
+			text-decoration: none;
+
+			a,
+			a:visited {
+				position: relative;
+				width: 100%;
+				text-decoration: none;
+				color: #333;
+				overflow: hidden;
+				display: block;
+			}
+
+			.gt-phaseIcon {
+				position: relative;
+				width: 100%;
+				height: auto;
+				float: none;
+			}
+
+			.projectPhase {
+				width: 68%;
+				text-align: left;
+				float: left;
+				font-size: 1rem;
+				margin-top: 3px;
+				margin-bottom: 15px;
+				color: @gtGreen;
+			}
+			.checklistStats {
+				display: none;
+                opacity:0;
+                transition: opacity .0s ease-in-out;
+                -moz-transition: opacity .0s ease-in-out;
+                -webkit-transition: opacity .0s ease-in-out;
+                position:absolute;
+
+                h3 {
+                    color:#eee;
+	                padding-bottom:5px;
+                }
+				ul {
+					padding: 0;
+					margin: 0;
+					list-style:none;
+					li {
+						display: block;
+						margin: 0;
+						padding: 0;
+						margin-top: 5px;
+						list-style-type: none;
+						list-style:none;
+					}
+				}
+			}
+			
+			.phaseSubText {
+				width: 68%;
+				font-size: 0.7rem;
+				text-transform: none;
+				text-align: left;
+				display: block;
+				float: left;
+				color: #333;
+			}
+
+			.phaseLetter {
+				border-radius: 1000px;
+				position: relative;
+				width: 40px;
+				height: 40px;
+				background-color: #fff;
+				display: block;
+				margin: 10px 10px 0 0;
+				float: left;
+				text-align: center;
+				z-index: 100;
+				line-height: 38px;
+				font-size: 1.4rem;
+				vertical-align: middle;
+				border: 1px solid @gtGreen;
+				color: @gtGreen;
+			}
+			
+			&:before,
+			&:after {
+				display: block;
+				position: absolute;
+				top: 37px;
+				width: 100%;
+				height: 1px;
+				content: '';
+				background-color: @gtBlue;
+				z-index: 2;
+			}
+			
+			&:before {
+				left: 0;
+			}
+
+			:after {
+				right: 0;
+			}
+
+			.gt-phaseIcon:before,
+			.gt-phaseIcon:after {
+				display: block;
+				position: absolute;
+				top: 33px;
+				width: 100%;
+				height: 1px;
+				content: '';
+				background-color: @gtGreen;
+				z-index: 2;
+			}
+
+			.gt-phaseIcon:before {
+				left: 0;
+			}
+
+			.gt-phaseIcon:after {
+				right: 0;
+			}
+			
+			.phaseLetterHover();
+
+			&.selected {
+				.projectPhase {
+					font-weight: 600;
+				}
+				
+				.gt-phaseIcon:before,
+				.gt-phaseIcon:after {
+					height: 2px;    
+				}
+				.phaseLetter {
+					border: 1px solid @gtGreen;
+					background-color: @gtGreen;
+					color: @gtGreenInverted
+				}
+				
+				.phaseLetterHover();
+			}
+
+			&.last-phase,
+			&:first-child {
+				.projectPhase {
+					color: @gtBlue;
+				}
+				.gt-phaseIcon {
+					&:before,
+					&:after {
+						background-color: none;
+						height: 0;
+					}
+				}
+				.phaseLetter {
+					color: @gtBlue;
+					border: 1px solid @gtBlue;
+				}
+				&.selected {
+					.phaseLetter {
+						background-color: @gtBlue;
+						color: @gtBlueInverted;
+					}
+				}
+				.phaseLetterHover();
+			}
+			&:hover {
+				.checklistStats {
+                    display: block;
+					position:absolute;
+	                top:100%;
+	                margin-left:-7px;
+                    margin-top: -1px;
+	                z-index:15;
+	                background: rgba(50,50,50,.95);
+	                padding:15px;
+	                border:0px solid #ccc;
+	                box-shadow: 3px 8px 15px #999;
+	                color: #eee;
+	                width:250px;
+	                border-radius:2px;
+	                overflow:visible;
+	                opacity:1;
+                    transition: opacity .2s ease-in-out;
+                    -moz-transition: opacity .2s ease-in-out;
+                    -webkit-transition: opacity .2s ease-in-out;
+                    transition-delay: .2s;
+
+                    &:before {
+	                    bottom: 100%;
+	                    left: 10%;
+	                    border: solid transparent;
+	                    content: " ";
+	                    height: 0;
+	                    width: 0;
+	                    position: absolute;
+	                    pointer-events: none;
+	                    z-index:200;
+                    }
+                    &:after {
+	                    bottom: 100%;
+	                    left: 10%;
+	                    border: solid transparent;
+	                    content: " ";
+	                    height: 0;
+	                    width: 0;
+	                    position: absolute;
+	                    pointer-events: none;
+	                    z-index:200;
+	                    border-color: rgba(51, 51, 51,0);
+	                    border-bottom-color:rgba(51, 51, 51,.95);
+	                    border-width: 12px;
+	                    margin-left: -12px;
+                    }
+				}
+			}
+		}
+	}
 }
 
 #gtloglist {
-    max-width: 700px;
+	max-width: 700px;
 
-    h2 {
-        margin-bottom: 10px;
-    }
+	h2 {
+		margin-bottom: 10px;
+	}
 
-    table tr th {
-        font-weight: normal;
-        font-size: 0.85em;
-        color: rgb(119, 119, 119);
-        text-align: left;
-        text-decoration: none;
-        vertical-align: middle;
-        white-space: nowrap;
-        padding: 0 5px;
-    }
+	table tr th {
+		font-weight: normal;
+		font-size: 0.85em;
+		color: rgb(119, 119, 119);
+		text-align: left;
+		text-decoration: none;
+		vertical-align: middle;
+		white-space: nowrap;
+		padding: 0 5px;
+	}
 
-    table tr td {
-        padding: 5px;
-    }
+	table tr td {
+		padding: 5px;
+	}
 }
 
 #gtchecklist {
-    width: 514px;
+	width: 514px;
 
-    ul {
-        padding-left: 10px;
-    }
+	ul {
+		padding-left: 10px;
+	}
 
-    li {
-        list-style: none;
-        margin-bottom: 10px;
-    }
+	li {
+		list-style: none;
+		margin-bottom: 10px;
+		
+		a {
+			line-height: 20px;
+			display: block;
+			color: #444;
+			
+			.gt-checklist-title {
+				display: inline-block;
+				width: 90%;
+				vertical-align: top;
+			}
+		}
+	}
+}
 
-    .gt-checklist-title {
-        display: inline-block;
-        width: 80%;
-        vertical-align: middle;
-    }
+.gt-icon {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	margin-right: 7px;
+	border-radius: 5px;
+	vertical-align: top;
 
-    .gt-icon {
-        width: 25px;
-        height: 25px;
-        display: inline-block;
-        margin-right: 7px;
-        border-radius: 5px;
-        vertical-align: top;
-    }
+		
+	&:after {
+		font-size: 13px;
+		padding-left: auto;
+		margin-left: 5px;
+		margin-right: auto;
+		margin-top: 1px;
+		display: inline-block;
+		color: white;
+	}
+		
+	&.gt-completed {
+		background-color: green;
+		&:after {
+			content: "\2713 ";
+		}
+	}
+		
+	&.gt-ignored {
+		background-color: #E8C900;
+			
+		&:after {
+			content: "\2713 ";
+		}
+	}
 
-    .gt-icon:after {
-        font-size: 17px;
-        padding-left: auto;
-        margin-left: 7px;
-        margin-right: auto;
-        margin-top: 1px;
-        display: inline-block;
-        color: white;
-    }
+	&.gt-failed {
+		background-color: red;
+			
+		&:after {
+			content: "\2717";
+			margin-top: 0;
+		}
+	}
 
-    .gt-icon.gt-completed {
-        background-color: green;
-    }
+	&.gt-nostatus {
+		background-color: gray;
 
-    .gt-icon.gt-completed:after {
-        content: "\2713 ";
-    }
-
-    .gt-icon.gt-ignored {
-        background-color: #E8C900;
-    }
-
-    .gt-icon.gt-ignored:after {
-        content: "\2713 ";
-    }
-
-    .gt-icon.gt-failed {
-        background-color: red;
-    }
-
-    .gt-icon.gt-failed:after {
-        content: "\2717";
-        margin-top: 0;
-    }
-
-    .gt-icon.gt-nostatus {
-        background-color: gray;
-    }
-
-    .gt-icon.gt-nostatus:after {
-        content: "?";
-        font-weight: bold;
-        margin-left: 9px;
-    }
+		&:after {
+			content: "?";
+			font-weight: bold;
+			margin-left: 9px;
+		}
+	}
 }
