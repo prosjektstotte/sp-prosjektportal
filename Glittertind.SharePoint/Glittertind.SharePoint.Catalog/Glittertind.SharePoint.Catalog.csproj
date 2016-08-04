@@ -65,21 +65,8 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
-    <None Include="SPI\ContentTypeBindings\CatalogBindings\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{93a15cc9-adef-4ae9-8cb0-363e54bf751a}</SharePointProjectItemId>
-    </None>
-    <None Include="SPI\Lists\Kunngjoringer\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{4deb663b-e46c-4fb6-aab4-71ca5dadc2c8}</SharePointProjectItemId>
-    </None>
-    <None Include="SPI\Lists\Lenker\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{b8e1b27f-f360-41a8-9abb-20d4d8199a2a}</SharePointProjectItemId>
-    </None>
-    <None Include="SPI\Lists\Standarddokumenter\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{72a7d104-c204-4428-a15c-55ebd4f7c8e7}</SharePointProjectItemId>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SPI\Lists\Lenker\Elements.xml" />
     <Content Include="SPI\Modules\DefaultDocuments\Placeholder.txt" />
     <Content Include="SPI\Modules\SitePages\PortefoljeOversikt.aspx" />
     <None Include="SPI\Modules\DefaultDocuments\SharePointProjectItem.spdata">
@@ -93,7 +80,6 @@
     <Content Include="Features\WebCatalogSitePages\WebCatalogSitePages.Template.xml">
       <DependentUpon>WebCatalogSitePages.feature</DependentUpon>
     </Content>
-    <Content Include="SPI\ContentTypeBindings\CatalogBindings\Elements.xml" />
     <Content Include="SPI\Modules\DefaultDocuments\Elements.xml" />
     <Content Include="SPI\Modules\SitePages\OpprettProsjekt.aspx" />
     <Content Include="SPI\Modules\SitePages\Elements.xml" />
@@ -103,8 +89,6 @@
     <Content Include="Features\WebCatalogLists\WebCatalogLists.Template.xml">
       <DependentUpon>WebCatalogLists.feature</DependentUpon>
     </Content>
-    <Content Include="SPI\Lists\Kunngjoringer\Elements.xml" />
-    <Content Include="SPI\Lists\Standarddokumenter\Elements.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

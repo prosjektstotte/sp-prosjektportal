@@ -14,6 +14,11 @@
    "SearchConfigurations":[
       "Prosjektportalen-konfigurasjon.xml"
    ],
+   "ImportDataConfigurations":[
+      "fasesjekkliste.data.json",
+      "oppgaver.data.json",
+      "lenker.data.json"
+   ],
    "SiteFeatures":[
       {
          "FeatureId":"9ca326d3-723f-4e65-b8f9-db7e18802ac4",
@@ -42,15 +47,92 @@
 
             ]
          },
-         {
-            "Title":"Lenker",
-            "Description":"",
-            "Url":"Lists/Lenker",
-            "TemplateType":"103",
-            "VersioningEnabled":"false",
-            "OnQuickLaunch":"false",
-            "Views":[
+        {
+          "Title": "Lenker",
+          "Description": "",
+          "Url": "Lists/Lenker",
+          "TemplateType": "103",
+          "VersioningEnabled": "false",
+          "OnQuickLaunch": "false",
+          "Views": [
 
+          ]
+        },
+         {
+            "Title":"Standardinteressenter",
+            "Description":"",
+            "Url":"Lists/Interessenter",
+            "TemplateType":"100",
+            "VersioningEnabled":"true",
+            "OnQuickLaunch":"false",
+            "RemoveExisitingContentTypes":"true",
+            "ContentTypes":[
+               "Interessent"
+            ],
+            "Views":[
+               {
+                "Title": "Alle elementer",
+                "Rowlimit": 100,
+                  "ViewFields":[
+                    "LinkTitle",
+                     "GtStakeholderGroup",
+                     "GtStakeholderContext",
+                     "GtStakeholderStrategy",
+                     "GtStakeholderInterest",
+                     "GtStakeholderInfluence",
+                     "GtStakeholderInfluencePossibilty",
+                     "Modified",
+                     "Editor"
+                  ]
+               }
+            ]
+         },
+         {
+            "Title":"Fasesjekkliste",
+            "Description":"",
+            "Url":"Lists/Fasesjekkliste",
+            "TemplateType":"100",
+            "VersioningEnabled":"true",
+            "OnQuickLaunch":"false",
+            "RemoveExisitingContentTypes":"true",
+            "ContentTypes":[
+               "Sjekkpunkt"
+            ],
+            "Views":[
+               {
+                "Title": "Alle elementer",
+                "Rowlimit": 100,
+                  "ViewFields":[
+                     "LinkTitle",
+                     "GtProjectPhase",
+                     "Modified",
+                     "Editor"
+                  ]
+               }
+            ]
+         },
+         {
+            "Title":"Standardoppgaver",
+            "Description":"",
+            "Url":"Lists/Standardoppgaver",
+            "TemplateType":"171",
+            "VersioningEnabled":"true",
+            "OnQuickLaunch":"false",
+            "RemoveExisitingContentTypes":"true",
+            "ContentTypes":[
+               "Glittertind baseoppgave"
+            ],
+            "Views":[
+               {
+                  "Title":"Alle oppgaver",
+                  "Rowlimit": 100,
+                  "ViewFields":[
+                     "LinkTitle",
+                     "GtProjectPhase",
+                     "Modified",
+                     "Editor"
+                  ]
+               }
             ]
          },
          {
@@ -62,7 +144,8 @@
             "OnQuickLaunch":"false",
             "Views":[
                {
-                  "Title":"Alle dokumenter",
+                "Title": "Alle dokumenter",
+                "Rowlimit": 100,
                   "ViewFields":[
                      "DocIcon",
                      "LinkFilename",
