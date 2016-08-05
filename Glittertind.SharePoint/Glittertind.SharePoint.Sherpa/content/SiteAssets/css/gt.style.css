@@ -378,7 +378,7 @@ ul.gt-List .new.gt-projectItem .gt-phaseIcon {
   transition: opacity 0.2s ease-in-out;
   -moz-transition: opacity 0.2s ease-in-out;
   -webkit-transition: opacity 0.2s ease-in-out;
-  transition-delay: .2s;
+  transition-delay: .1s;
 }
 .projectFrontPage .projectPhaseSection ul.projectPhases > li:hover .checklistStats:before {
   bottom: 100%;
