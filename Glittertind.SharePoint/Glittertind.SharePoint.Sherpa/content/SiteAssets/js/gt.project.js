@@ -371,11 +371,16 @@ GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup,
         phaseLetter = phaseDisplayName.substr(0, 1);
         phaseSubText = phase.SubText;
     }
-    var checklistMarkup = String.format("<h3>Beslutningspunkter for {0}</h3><ul><li>Ingen punkter funnet for denne fasen</li></ul>", phaseDisplayName);
+    var checklistMarkup = String.format("<h3>Beslutningspunkter for {0}</h3><ul><li>Ingen punkter funnet for denne fasen</li><li class='spacer'></li>" +
+        "<li><a class='see-all' href='{1}/Lists/Fasesjekkliste/AllItems.aspx'>Gå til fasesjekklisten</a></li></ul>",
+        phaseDisplayName, _spPageContextInfo.webServerRelativeUrl);
+
     if (checklistStats) {
         checklistMarkup = String.format("<h3>Beslutningspunkter for {0}</h3><ul>" +
             "<li><span class='gt-icon gt-completed'></span>{1} punkter gjennomført</li>" +
-            "<li><span class='gt-icon gt-failed'></span>{2} punkter ikke gjennomført</li></ul>", phaseDisplayName, checklistStats.Checked, checklistStats.Unchecked);
+            "<li><span class='gt-icon gt-failed'></span>{2} punkter ikke gjennomført</li><li class='spacer'></li>" +
+            "<li><a class='see-all' href='{3}/Lists/Fasesjekkliste/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={0}'>Se alle sjekkpunktene for denne fasen</a></li></ul>",
+            phaseDisplayName, checklistStats.Checked, checklistStats.Unchecked, _spPageContextInfo.webServerRelativeUrl);
     }
 
     var markup = String.format('<div class="gt-phaseIcon {0}">' +
@@ -385,7 +390,7 @@ GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup,
         '</div>', phaseClass.join(' '), phaseLetter, phaseDisplayName, phaseSubText);
 
     if (linkToDocumentLibrary)
-        markup = String.format('<a href="../Dokumenter/Forms/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={0}">{1}</a><div class="checklistStats">{2}</div>', phaseDisplayName, markup, checklistMarkup);
+        markup = String.format('<a href="{0}/Dokumenter/Forms/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={1}">{2}</a><div class="checklistStats">{3}</div>', _spPageContextInfo.webServerRelativeUrl,phaseDisplayName, markup, checklistMarkup);
     if (wrapInListItemMarkup)
     {
         var styleForIE = '';

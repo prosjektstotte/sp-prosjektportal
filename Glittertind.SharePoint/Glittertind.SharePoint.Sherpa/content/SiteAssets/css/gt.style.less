@@ -244,8 +244,8 @@ ul.gt-List {
 			padding: 10px 0 10px 0;
 			text-decoration: none;
 
-			a,
-			a:visited {
+			> a,
+			> a:visited {
 				position: relative;
 				width: 100%;
 				text-decoration: none;
@@ -271,7 +271,6 @@ ul.gt-List {
 				color: @gtGreen;
 			}
 			.checklistStats {
-				display: none;
                 opacity:0;
                 transition: opacity .0s ease-in-out;
                 -moz-transition: opacity .0s ease-in-out;
@@ -293,6 +292,11 @@ ul.gt-List {
 						margin-top: 5px;
 						list-style-type: none;
 						list-style:none;
+                        
+                        a {
+                            color: #eee;
+                            text-decoration: none;
+                        }
 					}
 				}
 			}

@@ -198,8 +198,8 @@ ul.gt-List .new.gt-projectItem .gt-phaseIcon {
   padding: 10px 0 10px 0;
   text-decoration: none;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases > li a,
-.projectFrontPage .projectPhaseSection ul.projectPhases > li a:visited {
+.projectFrontPage .projectPhaseSection ul.projectPhases > li > a,
+.projectFrontPage .projectPhaseSection ul.projectPhases > li > a:visited {
   position: relative;
   width: 100%;
   text-decoration: none;
@@ -223,7 +223,6 @@ ul.gt-List .new.gt-projectItem .gt-phaseIcon {
   color: #339933;
 }
 .projectFrontPage .projectPhaseSection ul.projectPhases > li .checklistStats {
-  display: none;
   opacity: 0;
   transition: opacity 0s ease-in-out;
   -moz-transition: opacity 0s ease-in-out;
@@ -246,6 +245,10 @@ ul.gt-List .new.gt-projectItem .gt-phaseIcon {
   margin-top: 5px;
   list-style-type: none;
   list-style: none;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .checklistStats ul li a {
+  color: #eee;
+  text-decoration: none;
 }
 .projectFrontPage .projectPhaseSection ul.projectPhases > li .phaseSubText {
   width: 68%;
