@@ -2,7 +2,6 @@
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="123be4dc-7b9f-4e83-899c-e6d4c9efc880" solutionId="123be4dc-7b9f-4e83-899c-e6d4c9efc880" resetWebServer="false" sharePointProductVersion="15.0" name="Glittertind.SharePoint" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <features>
     <featureReference itemId="c718f2c3-c1f0-46fc-b57f-cd064abd207b" projectPath="..\Glittertind.SharePoint.Catalog\Glittertind.SharePoint.Catalog.csproj" />
-    <featureReference itemId="0b6695f1-2854-4999-8959-9373f99b6bf9" projectPath="..\Glittertind.SharePoint.Catalog\Glittertind.SharePoint.Catalog.csproj" />
     <featureReference itemId="e1328cd5-ddcf-486e-a8d0-d8f7446c7220" projectPath="..\Glittertind.SharePoint.Project\Glittertind.SharePoint.Project.csproj" />
     <featureReference itemId="69159289-f11f-4be5-b957-d2e40e3d966a" projectPath="..\Glittertind.SharePoint.Project\Glittertind.SharePoint.Project.csproj" />
     <featureReference itemId="febaf00e-518a-4fe4-a685-edfa07dafb99" projectPath="..\Glittertind.SharePoint.Project\Glittertind.SharePoint.Project.csproj" />

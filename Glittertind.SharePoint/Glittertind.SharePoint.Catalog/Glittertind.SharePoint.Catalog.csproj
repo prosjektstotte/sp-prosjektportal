@@ -55,9 +55,6 @@
     <None Include="Features\WebCatalogSitePages\WebCatalogSitePages.feature">
       <FeatureId>{c718f2c3-c1f0-46fc-b57f-cd064abd207b}</FeatureId>
     </None>
-    <None Include="Features\WebCatalogLists\WebCatalogLists.feature">
-      <FeatureId>{0b6695f1-2854-4999-8959-9373f99b6bf9}</FeatureId>
-    </None>
     <None Include="key.snk" />
     <None Include="Package\Package.package">
       <PackageId>{1af74622-c035-4433-b0b4-89334ad333bb}</PackageId>
@@ -67,11 +64,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SPI\Modules\DefaultDocuments\Placeholder.txt" />
     <Content Include="SPI\Modules\SitePages\PortefoljeOversikt.aspx" />
-    <None Include="SPI\Modules\DefaultDocuments\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{e9afb12f-7344-4716-8c81-f637d12e009d}</SharePointProjectItemId>
-    </None>
     <None Include="SPI\Modules\SitePages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2a91b212-5e42-4f63-a48b-59c173e8fe33}</SharePointProjectItemId>
     </None>
@@ -80,15 +73,9 @@
     <Content Include="Features\WebCatalogSitePages\WebCatalogSitePages.Template.xml">
       <DependentUpon>WebCatalogSitePages.feature</DependentUpon>
     </Content>
-    <Content Include="SPI\Modules\DefaultDocuments\Elements.xml" />
     <Content Include="SPI\Modules\SitePages\OpprettProsjekt.aspx" />
     <Content Include="SPI\Modules\SitePages\Elements.xml" />
     <Content Include="SPI\Modules\SitePages\Portefolje.aspx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Features\WebCatalogLists\WebCatalogLists.Template.xml">
-      <DependentUpon>WebCatalogLists.feature</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
