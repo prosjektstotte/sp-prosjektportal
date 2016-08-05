@@ -204,9 +204,6 @@
             "FeatureName":"Glittertind.SharePoint.Catalog_WebCatalogSitePages"
          }
       ],
-      "Webs":[
-
-      ],
       "WelcomePageUrl":"SitePages/Portefolje.aspx"
    }
 }
