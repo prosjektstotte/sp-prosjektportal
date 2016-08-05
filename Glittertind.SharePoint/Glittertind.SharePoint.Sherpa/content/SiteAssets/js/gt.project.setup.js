@@ -664,13 +664,7 @@ GT.Project.Setup.CopyListItems = function (properties) {
 	                                if (fieldName === "Title" && value.length > 255) value = value.substr(0, 252) + "...";
 	                                newItem.set_item(fieldName, value);
 	                            } else if (fieldValue.TermGuid) {
-	                                var field = fields.getByInternalNameOrTitle(fieldName);
-	                                var taxField = clientContext.castTo(field, SP.Taxonomy.TaxonomyField);
-	                                var taxonomySingle = new SP.Taxonomy.TaxonomyFieldValue();
-	                                taxonomySingle.set_label(fieldValue.Label);
-	                                taxonomySingle.set_termGuid(fieldValue.TermGuid);
-	                                taxonomySingle.set_wssId(fieldValue.WssId);
-	                                taxField.setFieldValueByValue(newItem, taxonomySingle);
+	                                newItem.set_item(fieldName, fieldValue.WssId);
 	                            } else {
 	                                newItem.set_item(fieldName, fieldValue);
 	                            }
@@ -1070,7 +1064,7 @@ GT.jQuery(document).ready(function () {
                         }),
                     new GT.Project.Setup.Model.step("Kopierer standardinteressenter", 7, GT.Project.Setup.CopyListItems,
                         {
-                            srcList: "Standardinteressenter", srcWeb: _spPageContextInfo.siteServerRelativeUrl, "dstList": "Interessentregister", "listType": "GenericList", "fields": ["Title", "GtStakeholderGroup", "GtStakeholderContext", "GtStakeholderStrategy", "GtStakeholderInterest", "GtStakeholderInfluence","GtStakeholderInfluencePossibilty", "Id"]
+                            srcList: "Interessentregister", srcWeb: _spPageContextInfo.siteServerRelativeUrl, "dstList": "Interessentregister", "listType": "GenericList", "fields": ["Title", "GtStakeholderGroup", "GtStakeholderContext", "GtStakeholderStrategy", "GtStakeholderInterest", "GtStakeholderInfluence", "GtStakeholderInfluencePossibilty", "Id"]
                         }),
                     new GT.Project.Setup.Model.step("Kopierer standarddokumenter og mapper", 8, GT.Project.Setup.copyFilesAndFolders,
                         {

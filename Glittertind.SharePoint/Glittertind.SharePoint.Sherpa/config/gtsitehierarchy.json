@@ -59,9 +59,9 @@
           ]
         },
          {
-            "Title":"Standardinteressenter",
+            "Title":"Interessentregister",
             "Description":"",
-            "Url":"Lists/Interessenter",
+            "Url":"Lists/Interessentregister",
             "TemplateType":"100",
             "VersioningEnabled":"true",
             "OnQuickLaunch":"false",
@@ -199,10 +199,6 @@
       "Template":"",
       "Url":"/",
       "WebFeatures":[
-         {
-            "FeatureId":"3753e6d4-b343-4d70-b62f-729e698f692b",
-            "FeatureName":"Glittertind.SharePoint.Catalog_WebCatalogLists"
-         },
          {
             "FeatureId":"333d6b99-5713-41e0-aeeb-4e3e86143b3e",
             "FeatureName":"Glittertind.SharePoint.Catalog_WebCatalogSitePages"
