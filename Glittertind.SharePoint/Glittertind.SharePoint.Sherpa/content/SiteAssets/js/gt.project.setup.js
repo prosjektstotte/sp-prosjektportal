@@ -642,54 +642,69 @@ GT.Project.Setup.CopyListItems = function (properties) {
 	    var fields = list.get_fields();
 	    GT.Project.Setup.ListItems = GT.Project.Setup.ListItems || {};
 	    GT.Project.Setup.ListItems.srcItems = data.d.results;
+        
+	    clientContext.load(fields);
+	    clientContext.load(list, "ItemCount");
+	    clientContext.executeQueryAsync(function (sender, args) {
+	        if (list.get_itemCount() === 0) {
+	            for (var i = 0; i < GT.Project.Setup.ListItems.srcItems.length; i++) {
+	                var srcItem = GT.Project.Setup.ListItems.srcItems[i];
 
-	    for (var i = 0; i < GT.Project.Setup.ListItems.srcItems.length; i++) {
-	        var srcItem = GT.Project.Setup.ListItems.srcItems[i];
+	                try {
+	                    var itemCreateInfo = new SP.ListItemCreationInformation();
+	                    var newItem = list.addItem(itemCreateInfo);
 
-	        var itemCreateInfo = new SP.ListItemCreationInformation();
-	        var newItem = list.addItem(itemCreateInfo);
+	                    for (var j = 0; j < fieldsToSynch.length; j++) {
+	                        var fieldName = fieldsToSynch[j];
+	                        var fieldValue = srcItem[fieldName];
 
-	        for (var j = 0; j < fieldsToSynch.length; j++) {
-	            var fieldName = fieldsToSynch[j];
-	            var fieldValue = srcItem[fieldName];
+	                        if (fieldValue && fieldName.toUpperCase() !== "ID" && fieldName.toUpperCase() !== "PARENTIDID") {
+	                            if (fieldName.indexOf("Title") === 0) {
+	                                var value = GT.Project.Setup.GetUrlWithoutTokens(fieldValue);
+	                                if (fieldName === "Title" && value.length > 255) value = value.substr(0, 252) + "...";
+	                                newItem.set_item(fieldName, value);
+	                            } else if (fieldValue.TermGuid) {
+	                                var field = fields.getByInternalNameOrTitle(fieldName);
+	                                var taxField = clientContext.castTo(field, SP.Taxonomy.TaxonomyField);
+	                                var taxonomySingle = new SP.Taxonomy.TaxonomyFieldValue();
+	                                taxonomySingle.set_label(fieldValue.Label);
+	                                taxonomySingle.set_termGuid(fieldValue.TermGuid);
+	                                taxonomySingle.set_wssId(fieldValue.WssId);
+	                                taxField.setFieldValueByValue(newItem, taxonomySingle);
+	                            } else {
+	                                newItem.set_item(fieldName, fieldValue);
+	                            }
+	                        }
+	                    }
 
-	            if (fieldValue && fieldName.toUpperCase() !== "ID" && fieldName.toUpperCase() !== "PARENTIDID") {
-	                if (fieldName.indexOf("Title") === 0) {
-	                    var value = GT.Project.Setup.GetUrlWithoutTokens(fieldValue);
-	                    if (fieldName === "Title" && value.length > 255) value = value.substr(0, 252) + "...";
-	                    newItem.set_item(fieldName, value);
-	                } else if (fieldValue.TermGuid) {
-	                    var field = fields.getByInternalNameOrTitle(fieldName);
-	                    var taxField = clientContext.castTo(field, SP.Taxonomy.TaxonomyField);
-	                    var taxonomySingle = new SP.Taxonomy.TaxonomyFieldValue();
-	                    taxonomySingle.set_label(fieldValue.Label);
-	                    taxonomySingle.set_termGuid(fieldValue.TermGuid);
-	                    taxonomySingle.set_wssId(fieldValue.WssId);
-	                    taxField.setFieldValueByValue(newItem, taxonomySingle);
-	                } else {
-	                    newItem.set_item(fieldName, fieldValue);
+	                    srcItem.NewListItem = newItem;
+	                    newItem.update();
+	                    clientContext.load(newItem);
+	                } catch(exception) {
+	                    console.log("Error while creating data item " + srcItem.Title + " - not aborting...")
+	                    console.log(exception);
 	                }
 	            }
-	        }
-
-	        srcItem.NewListItem = newItem;
-	        newItem.update();
-	        clientContext.load(newItem);
-	    }
-
-	    clientContext.executeQueryAsync(function (sender, args) {
-	        console.log("Copied default items to " + destListName);
-	        if (listType === "TaskList") {
-	            GT.jQuery.when(
-                    GT.Project.Setup.UpdateParentReferences(clientContext, GT.Project.Setup.ListItems.srcItems)
-                ).then(function () {
-                    deferred.resolve();
-                });
+	            clientContext.executeQueryAsync(function (sender, args) {
+	                console.log("Copied default items to " + destListName);
+	                if (listType === "TaskList") {
+	                    GT.jQuery.when(
+                            GT.Project.Setup.UpdateParentReferences(clientContext, GT.Project.Setup.ListItems.srcItems)
+                        ).then(function () {
+                            deferred.resolve();
+                        });
+	                } else {
+	                    deferred.resolve();
+	                }
+	            }, function (sender, args) {
+	                console.error('Request failed while copying list items. ' + args.get_message());
+	                deferred.reject();
+	            });
 	        } else {
 	            deferred.resolve();
 	        }
 	    }, function (sender, args) {
-	        console.error('Request failed while copying list items. ' + args.get_message());
+	        console.error('Request failed while retrieving list to synch. ' + args.get_message());
 	        deferred.reject();
 	    });
 	});
@@ -724,7 +739,7 @@ GT.Project.Setup.UpdateParentReferences = function (clientContext, srcItems) {
         deferred.reject();
     });
 
-    return deferred.resolve();
+    return deferred.promise();
 }
 
 GT.Project.Setup.ExecuteCustomSteps = function () {
@@ -775,17 +790,24 @@ GT.Project.Setup.CreateWebContentTypes = function () {
                     GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Relevant kommunikasjonselement", "GtProjectTaskComElement", "Kommunikasjonsplan", "Title", "{087dae25-b007-4e58-91b4-347dde464840}", false, false, "")
                 ).then(function () {
                     GT.jQuery.when(
-                        GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektloggelement", ["GtProjectLogEventLookup", "GtProjectLogProductLookup"]),
                         GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektoppgave", ["GtProjectTaskRisk", "GtProjectTaskComElement"]),
                         GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Kommunikasjonselement", ["GtCommunicationTarget"]),
                         GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektprodukt", ["GtProductInteressent"])
                     ).then(function () {
                         GT.jQuery.when(
-                            GT.Project.Setup.ContentTypes.SetFieldDescriptionsOfList("Interessentregister", [{ "key": "Title", "value": "Navnet på interessenten" }])
-                        ).done(function () {
-                            deferred.resolve();
-                        }).fail(function () {
-                            deferred.reject();
+                            GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektloggelement", ["GtProjectLogEventLookup"])
+                        ).then(function () {
+                            GT.jQuery.when(
+                                GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektloggelement", ["GtProjectLogProductLookup"])
+                            ).then(function () {
+                                GT.jQuery.when(
+                                    GT.Project.Setup.ContentTypes.SetFieldDescriptionsOfList("Interessentregister", [{ "key": "Title", "value": "Navnet på interessenten" }])
+                                ).done(function () {
+                                    deferred.resolve();
+                                }).fail(function () {
+                                    deferred.reject();
+                                });
+                            });
                         });
                     });
                 });
@@ -1048,7 +1070,7 @@ GT.jQuery(document).ready(function () {
                         }),
                     new GT.Project.Setup.Model.step("Kopierer standardinteressenter", 7, GT.Project.Setup.CopyListItems,
                         {
-                            srcList: "Standardinteressenter", srcWeb: _spPageContextInfo.siteServerRelativeUrl, "dstList": "Interessenter", "listType": "GenericList", "fields": ["Title", "GtStakeholderGroup", "GtStakeholderContext", "GtStakeholderStrategy", "GtStakeholderInterest", "GtStakeholderInfluence","GtStakeholderInfluencePossibilty", "Id"]
+                            srcList: "Standardinteressenter", srcWeb: _spPageContextInfo.siteServerRelativeUrl, "dstList": "Interessentregister", "listType": "GenericList", "fields": ["Title", "GtStakeholderGroup", "GtStakeholderContext", "GtStakeholderStrategy", "GtStakeholderInterest", "GtStakeholderInfluence","GtStakeholderInfluencePossibilty", "Id"]
                         }),
                     new GT.Project.Setup.Model.step("Kopierer standarddokumenter og mapper", 8, GT.Project.Setup.copyFilesAndFolders,
                         {

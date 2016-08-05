@@ -144,7 +144,6 @@ GT.Project.Setup.ContentTypes.LinkFieldsToContentType = function (contentTypeNam
                             var fieldLink = new SP.FieldLinkCreationInformation();
                             fieldLink.set_field(field);
                             fieldLinkCollection.add(fieldLink);
-                            didAddFields = true;
                         }
                         contentType.update(true);
                         clientContext.load(contentType);
