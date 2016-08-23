@@ -1,5 +1,9 @@
 ﻿[
     {
+        "Url": "{sitecollection}",
+        "Title": "Til porteføljen"
+    },
+    {
         "Url": "",
         "Title": "Hjem"
     },
