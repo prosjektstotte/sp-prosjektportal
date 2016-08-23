@@ -103,7 +103,7 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
                             var linkUrl = GT.Project.Setup.GetUrlWithoutTokens(linkNode.Url);
 							var isExternal = linkNode.IsExternal == true;
                             var existingNode = null;
-							
+
                             for (var k = 0; k < temporaryQuickLaunch.length; k++) {
                                 if (temporaryQuickLaunch[k].get_title() === nodeTitle) {
                                     existingNode = temporaryQuickLaunch[k];
@@ -623,7 +623,7 @@ GT.Project.Setup.CopyListItems = function (properties) {
     var listType = properties.listType;
     var fieldsToSynch = properties.fields;
     var fieldsJson = fieldsToSynch.join(",");
-    
+
     var deferred = GT.jQuery.Deferred();
     var digest = GT.jQuery("#__REQUESTDIGEST").val();
 
@@ -642,7 +642,7 @@ GT.Project.Setup.CopyListItems = function (properties) {
 	    var fields = list.get_fields();
 	    GT.Project.Setup.ListItems = GT.Project.Setup.ListItems || {};
 	    GT.Project.Setup.ListItems.srcItems = data.d.results;
-        
+
 	    clientContext.load(fields);
 	    clientContext.load(list, "ItemCount");
 	    clientContext.executeQueryAsync(function (sender, args) {
@@ -868,6 +868,7 @@ GT.Project.Setup.UpdateListViews = function (data) {
             var viewName = listViewsToConfigure[i].Name;
             var rowLimit = listViewsToConfigure[i].RowLimit;
             var query = listViewsToConfigure[i].Query;
+            var viewType = listViewsToConfigure[i].ViewType;
             var viewFieldsData = listViewsToConfigure[i].ViewFields;
             var viewUrl = listViewsToConfigure[i].Url;
 			var defaultView = listViewsToConfigure[i].DefaultView == true;
@@ -910,6 +911,9 @@ GT.Project.Setup.UpdateListViews = function (data) {
                 viewInfo.set_query(query);
                 viewInfo.set_paged(paged);
                 viewInfo.set_viewFields(viewFieldsData);
+                if (viewType) {
+                    viewInfo.set_viewTypeKind(viewType);
+                }
 				viewInfo.set_setAsDefaultView(defaultView)
                 viewCollection.add(viewInfo);
             }
@@ -1072,7 +1076,7 @@ GT.jQuery(document).ready(function () {
                         })
                 ]
             };
-            
+
             var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
             GT.jQuery.getScript(scriptbase + "SP.js", function () {
                 GT.jQuery.getScript(scriptbase + "SP.Taxonomy.js", function () {
