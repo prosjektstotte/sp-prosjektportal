@@ -270,7 +270,11 @@ GT.Project.Setup.ContentTypes.UpdateListContentTypes = function (listName, conte
                 var contentTypeEnumerator = listContentTypes.getEnumerator();
                 while (contentTypeEnumerator.moveNext()) {
                     var ct = contentTypeEnumerator.get_current();
-                    if (!IsInCollection(ct.get_name(), contentTypeNames)) {
+                    var ctName = ct.get_name();
+                    var ctId = ct.get_id().get_stringValue();
+
+                    // We don't want to remove folders from the libraries (issues with OneDrive synch)
+                    if (ctId.indexOf("0x0120") === -1 && !IsInCollection(ctName, contentTypeNames)) {
                         contentTypesToRemove.push(ct);
                     }
                 }
