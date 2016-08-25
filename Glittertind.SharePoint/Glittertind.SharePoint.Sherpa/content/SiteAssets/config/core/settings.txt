@@ -1,6 +1,61 @@
 ﻿{
-	"PhaseSettings": {
-		"FieldInternalName":"GtProjectPhase",
-		"TermSetId":"abcfc9d9-a263-4abb-8234-be973c46258a"
-	}
+    "PhaseSettings": {
+        "FieldInternalName": "GtProjectPhase",
+        "TermSetId": "abcfc9d9-a263-4abb-8234-be973c46258a"
+    },
+    "DataSources": {
+        "Lists": [
+            {
+                "ListType": "TaskList",
+                "SrcList": "Standardoppgaver",
+                "DstList": "Oppgaver",
+                "SrcWeb": "{sitecollection}",
+                "Fields": [
+                    "Title",
+                    "GtProjectPhase",
+                    "ParentIDId",
+                    "Id",
+                    "Order"
+                ]
+            },
+            {
+                "ListType": "GenericList",
+                "SrcList": "Fasesjekkliste",
+                "DstList": "Fasesjekkliste",
+                "SrcWeb": "{sitecollection}",
+                "Fields": [
+                    "Title",
+                    "GtProjectPhase",
+                    "Id"
+                ]
+            },
+            {
+                "ListType": "GenericList",
+                "SrcList": "Interessentregister",
+                "DstList": "Interessentregister",
+                "SrcWeb": "{sitecollection}",
+                "Fields": [
+                    "Title",
+                    "GtStakeholderGroup",
+                    "GtStakeholderContext",
+                    "GtStakeholderStrategy",
+                    "GtStakeholderInterest",
+                    "GtStakeholderInfluence",
+                    "GtStakeholderInfluencePossibilty",
+                    "Id"
+                ]
+            },
+            {
+                "ListType": "DocumentLibrary",
+                "SrcList": "Standarddokumenter",
+                "DstList": "Dokumenter",
+                "SrcWeb": "{sitecollectionrelative}",
+                "Fields": [
+                    "Title",
+                    "GtProjectPhase",
+                    "Id"
+                ]
+            }
+        ]
+    }
 }

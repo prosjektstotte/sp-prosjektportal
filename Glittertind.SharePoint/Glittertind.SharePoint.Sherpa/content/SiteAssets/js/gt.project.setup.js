@@ -158,7 +158,9 @@ GT.Project.Setup.GetUrlWithoutTokens = function (url) {
               .replace('{siteurl}', _spPageContextInfo.webAbsoluteUrl)
               .replace('{siteurlencoded}', encodeURIComponent(_spPageContextInfo.webAbsoluteUrl))
               .replace('{sitecollection}', _spPageContextInfo.siteAbsoluteUrl)
-              .replace('{sitecollectionencoded}', encodeURIComponent(_spPageContextInfo.siteAbsoluteUrl));
+              .replace('{sitecollectionencoded}', encodeURIComponent(_spPageContextInfo.siteAbsoluteUrl))
+              .replace('{sitecollectionrelative}', _spPageContextInfo.siteServerRelativeUrl)
+              .replace('{SiteCollectionRelative}', _spPageContextInfo.siteServerRelativeUrl);
 };
 
 // [start] utility methods
@@ -405,12 +407,13 @@ GT.Project.Setup.createFolders = function () {
 	});
     return deferred.promise();
 };
-GT.Project.Setup.copyFilesAndFolders = function (properties) {
-    var srcWeb = properties.srcWeb;
-    var srcLib = properties.srcLib;
-    var srcLibUrl = srcWeb + "/" + srcLib;
-    var dstWeb = properties.dstWeb;
-    var dstLib = properties.dstLib;
+GT.Project.Setup.CopyFilesAndFolders = function (properties) {
+    var dstWeb = _spPageContextInfo.webServerRelativeUrl;
+    var srcWeb = properties.SrcWeb;
+    var srcLib = properties.SrcList;
+    var dstLib = properties.DstList;
+    var srcListUrl = srcWeb + "/" + srcLib;
+    var dstListUrl = dstWeb + '/' + dstLib;
 
     var deferred = GT.jQuery.Deferred();
     var digest = GT.jQuery("#__REQUESTDIGEST").val();
@@ -427,7 +430,6 @@ GT.Project.Setup.copyFilesAndFolders = function (properties) {
 	    var ctx = SP.ClientContext.get_current();
 	    var web = ctx.get_web();
 	    var list = web.get_lists().getByTitle(dstLib);
-	    var listUrl = _spPageContextInfo.webAbsoluteUrl + '/' + dstLib;
 	    var root = list.get_rootFolder();
 
 	    var docItems = data.d.results;
@@ -442,8 +444,8 @@ GT.Project.Setup.copyFilesAndFolders = function (properties) {
 	        }
 	    }
 	    for (var i = 0; i < folders.length ; i++) {
-	        var folderUrl = folders[i].Folder.ServerRelativeUrl.replace(srcLibUrl, '');
-	        root.get_folders().add(listUrl + folderUrl);
+	        var folderUrl = folders[i].Folder.ServerRelativeUrl.replace(srcListUrl, '');
+	        root.get_folders().add(dstListUrl + folderUrl);
 	    }
 
 	    list.update();
@@ -453,7 +455,7 @@ GT.Project.Setup.copyFilesAndFolders = function (properties) {
 
 	        var promises = [];
 	        for (var i = 0; i < files.length; i++) {
-	            promises.push(GT.Project.Setup.copyFile(files[i], srcWeb, srcLibUrl, dstWeb, dstLib));
+	            promises.push(GT.Project.Setup.copyFile(files[i], srcWeb, srcListUrl, dstWeb, dstLib));
 	        }
 	        GT.jQuery.when.apply(GT.jQuery, promises)
             .always(function () {
@@ -617,11 +619,11 @@ GT.Project.Setup.copyDefaultItems = function () {
 };
 
 GT.Project.Setup.CopyListItems = function (properties) {
-    var sourceListName = properties.srcList;
-    var sourceWebUrl = properties.srcWeb;
-    var destListName = properties.dstList;
-    var listType = properties.listType;
-    var fieldsToSynch = properties.fields;
+    var sourceListName = properties.SrcList;
+    var sourceWebUrl = properties.SrcWeb;
+    var destListName = properties.DstList;
+    var listType = properties.ListType;
+    var fieldsToSynch = properties.Fields;
     var fieldsJson = fieldsToSynch.join(",");
 
     var deferred = GT.jQuery.Deferred();
@@ -812,6 +814,34 @@ GT.Project.Setup.CreateWebContentTypes = function () {
     return deferred.promise();
 };
 
+GT.Project.Setup.GetCopyDataFromSourceListsSteps = function (settings, startIndex) {
+    var steps = [];
+    for (var i = 0; i < settings.DataSources.Lists.length; i++) {
+        var listDataSource = settings.DataSources.Lists[i];
+        var srcWebUrl = GT.Project.Setup.GetUrlWithoutTokens(listDataSource.SrcWeb);
+        var listType = listDataSource.ListType;
+
+        if (listType === "DocumentLibrary") {
+            steps.push(new GT.Project.Setup.Model.step("Kopierer dokumenter fra " + listDataSource.SrcList, startIndex + i, GT.Project.Setup.CopyFilesAndFolders,
+            {
+                SrcList: listDataSource.SrcList,
+                SrcWeb: srcWebUrl,
+                DstList: listDataSource.DstList,
+            }));
+        } else {
+            steps.push(new GT.Project.Setup.Model.step("Kopierer listeelementer fra " + listDataSource.SrcList, startIndex + i, GT.Project.Setup.CopyListItems,
+            {
+                SrcList: listDataSource.SrcList,
+                SrcWeb: srcWebUrl,
+                DstList: listDataSource.DstList,
+                ListType: listType,
+                Fields: listDataSource.Fields
+            }));
+        }
+    }
+    return steps;
+}
+
 GT.Project.Setup.UpdateListsFromConfig = function () {
     var deferred = GT.jQuery.Deferred();
 
@@ -956,6 +986,17 @@ GT.Project.Setup.GetViewFromCollectionByName = function (viewCollection, name) {
     return null;
 };
 
+GT.Project.Setup.GetSettingsFromFile = function () {
+    var deferred = GT.jQuery.Deferred();
+    var urlToSettings = _spPageContextInfo.siteServerRelativeUrl + "/SiteAssets/gt/config/core/settings.txt";
+
+    GT.jQuery.getJSON(urlToSettings)
+    .then(function (data) {
+        deferred.resolve(data);
+    });
+
+    return deferred.promise();
+};
 GT.Project.Setup.HandleOnTheFlyConfiguration = function (defaultProperties) {
     var deferred = GT.jQuery.Deferred();
     GT.Project.Setup.resolveProperties(defaultProperties).done(function (properties) {
@@ -1048,55 +1089,44 @@ GT.jQuery(document).ready(function () {
             'value': 'NA'
         }
     };
-    GT.jQuery.when(GT.Project.Setup.PatchRequestExecutor())
-        .done(function () {
-            var steps = {
-                '1.0.0.0': [
-                    new GT.Project.Setup.Model.step("Setter områdets temafarger", 0, GT.Project.Setup.ApplyTheme,
-                        { colorPaletteName: "palette013.spcolor", fontSchemeName: "SharePointPersonality.spfont", backgroundImageUrl: "", shareGenerated: true }),
-                    new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", 1, GT.Project.Setup.CreateWebContentTypes, {}),
-                    new GT.Project.Setup.Model.step("Sett arving av navigasjon", 2, GT.Project.Setup.InheritNavigation, {}),
-                    new GT.Project.Setup.Model.step("Konfigurer quicklaunch", 3, GT.Project.Setup.ConfigureQuickLaunch, {}),
-                    new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", 4, GT.Project.Setup.UpdateListsFromConfig, {}),
-                    new GT.Project.Setup.Model.step("Kopierer standardoppgaver", 5, GT.Project.Setup.CopyListItems,
-                        {
-                            srcList: "Standardoppgaver", srcWeb: _spPageContextInfo.siteServerRelativeUrl, "dstList": "Oppgaver", "listType": "TaskList", "fields": ["Title", "GtProjectPhase", "ParentIDId", "Id", "Order"]
-                        }),
-                    new GT.Project.Setup.Model.step("Kopierer standardsjekkliste", 6, GT.Project.Setup.CopyListItems,
-                        {
-                            srcList: "Fasesjekkliste", srcWeb: _spPageContextInfo.siteServerRelativeUrl, "dstList": "Fasesjekkliste", "listType": "GenericList", "fields": ["Title", "GtProjectPhase", "Id"]
-                        }),
-                    new GT.Project.Setup.Model.step("Kopierer standardinteressenter", 7, GT.Project.Setup.CopyListItems,
-                        {
-                            srcList: "Interessentregister", srcWeb: _spPageContextInfo.siteServerRelativeUrl, "dstList": "Interessentregister", "listType": "GenericList", "fields": ["Title", "GtStakeholderGroup", "GtStakeholderContext", "GtStakeholderStrategy", "GtStakeholderInterest", "GtStakeholderInfluence", "GtStakeholderInfluencePossibilty", "Id"]
-                        }),
-                    new GT.Project.Setup.Model.step("Kopierer standarddokumenter og mapper", 8, GT.Project.Setup.copyFilesAndFolders,
-                        {
-                            srcWeb: _spPageContextInfo.siteServerRelativeUrl, srcLib: "Standarddokumenter", dstWeb: _spPageContextInfo.webServerRelativeUrl, dstLib: "Dokumenter"
-                        })
-                ]
-            };
+    GT.jQuery.when(
+        GT.Project.Setup.PatchRequestExecutor(),
+        GT.Project.Setup.GetSettingsFromFile()
+    ).done(function (executor, settings) {
 
-            var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
-            GT.jQuery.getScript(scriptbase + "SP.js", function () {
-                GT.jQuery.getScript(scriptbase + "SP.Taxonomy.js", function () {
+        var steps = {
+            '1.0.0.0': [
+                new GT.Project.Setup.Model.step("Setter områdets temafarger", 0, GT.Project.Setup.ApplyTheme,
+                    { colorPaletteName: "palette013.spcolor", fontSchemeName: "SharePointPersonality.spfont", backgroundImageUrl: "", shareGenerated: true }),
+                new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", 1, GT.Project.Setup.CreateWebContentTypes, {}),
+                new GT.Project.Setup.Model.step("Sett arving av navigasjon", 2, GT.Project.Setup.InheritNavigation, {}),
+                new GT.Project.Setup.Model.step("Konfigurer quicklaunch", 3, GT.Project.Setup.ConfigureQuickLaunch, {}),
+                new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", 4, GT.Project.Setup.UpdateListsFromConfig, {})
+            ]
+        };
+        var dataSourceSteps = GT.Project.Setup.GetCopyDataFromSourceListsSteps(settings, 5);
+        steps['1.0.0.0'] = steps['1.0.0.0'].concat(dataSourceSteps);
 
-                    GT.Project.Setup.execute(properties, steps)
+        var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
+        GT.jQuery.getScript(scriptbase + "SP.js", function () {
+            GT.jQuery.getScript(scriptbase + "SP.Taxonomy.js", function () {
+
+                GT.Project.Setup.execute(properties, steps)
+                .done(function (shouldReload) {
+                    if (shouldReload) {
+                        location.reload();
+                    }
+                    GT.Project.Setup.HandleOnTheFlyConfiguration(properties)
                     .done(function (shouldReload) {
                         if (shouldReload) {
                             location.reload();
                         }
-                        GT.Project.Setup.HandleOnTheFlyConfiguration(properties)
-                        .done(function (shouldReload) {
-                            if (shouldReload) {
-                                location.reload();
-                            }
-                        });
                     });
-
                 });
+
             });
         });
+    });
 });
 
 
