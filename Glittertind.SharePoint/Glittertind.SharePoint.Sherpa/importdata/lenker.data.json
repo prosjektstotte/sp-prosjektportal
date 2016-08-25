@@ -1,20 +1,20 @@
 ﻿{
-  "Name": "Lenker",
-  "Type": "LinkList",
-  "Data": {
-    "Rows": [
-      {
-        "Fields": [
-          {
-            "Name": "URL",
-            "Value": "http://prosjektveiviseren.no/, prosjektveiviseren"
-          },
-          {
-            "Name": "Comments",
-            "Value": "Prosjektveiviseren er Difis anbefalte prosjektmodell for gjennomføring av digitaliseringsprosjekter i offentlige virksomheter"
-          }
+    "Name": "Lenker",
+    "Type": "LinkList",
+    "Data": {
+        "Rows": [
+            {
+                "Fields": [
+                    {
+                        "Name": "URL",
+                        "Value": "http://prosjektveiviseren.no/, prosjektveiviseren"
+                    },
+                    {
+                        "Name": "Comments",
+                        "Value": "Prosjektveiviseren er Difis anbefalte prosjektmodell for gjennomføring av digitaliseringsprosjekter i offentlige virksomheter"
+                    }
+                ]
+            }
         ]
-      }
-    ]
     }
 }

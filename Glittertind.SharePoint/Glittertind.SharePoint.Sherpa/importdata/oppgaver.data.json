@@ -1,6 +1,6 @@
 ﻿{
-  "Name": "Standardoppgaver",
-  "Type": "TaskList",
+    "Name": "Standardoppgaver",
+    "Type": "TaskList",
     "Data": {
         "Rows": [
             {
