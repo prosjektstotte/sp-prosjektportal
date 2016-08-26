@@ -986,9 +986,9 @@ GT.Project.Setup.GetViewFromCollectionByName = function (viewCollection, name) {
     return null;
 };
 
-GT.Project.Setup.GetSettingsFromFile = function () {
+GT.Project.Setup.GetDataSources = function () {
     var deferred = GT.jQuery.Deferred();
-    var urlToSettings = _spPageContextInfo.siteServerRelativeUrl + "/SiteAssets/gt/config/core/settings.txt";
+    var urlToSettings = _spPageContextInfo.siteServerRelativeUrl + "/SiteAssets/gt/config/core/datasources.txt";
 
     GT.jQuery.getJSON(urlToSettings)
     .then(function (data) {
@@ -1091,8 +1091,8 @@ GT.jQuery(document).ready(function () {
     };
     GT.jQuery.when(
         GT.Project.Setup.PatchRequestExecutor(),
-        GT.Project.Setup.GetSettingsFromFile()
-    ).done(function (executor, settings) {
+        GT.Project.Setup.GetDataSources()
+    ).done(function (executor, dataSources) {
 
         var steps = {
             '1.0.0.0': [
@@ -1104,7 +1104,7 @@ GT.jQuery(document).ready(function () {
                 new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", 4, GT.Project.Setup.UpdateListsFromConfig, {})
             ]
         };
-        var dataSourceSteps = GT.Project.Setup.GetCopyDataFromSourceListsSteps(settings, 5);
+        var dataSourceSteps = GT.Project.Setup.GetCopyDataFromSourceListsSteps(dataSources, 5);
         steps['1.0.0.0'] = steps['1.0.0.0'].concat(dataSourceSteps);
 
         var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
@@ -1123,12 +1123,10 @@ GT.jQuery(document).ready(function () {
                         }
                     });
                 });
-
             });
         });
     });
 });
-
 
 GT.Project.Setup.PatchRequestExecutor = function () {
     return GT.jQuery.getScript(_spPageContextInfo.webAbsoluteUrl + "/_layouts/15/SP.RequestExecutor.js", function () {
