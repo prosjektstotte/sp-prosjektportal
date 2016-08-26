@@ -82,6 +82,48 @@ ul.gt-List .new.gt-projectItem {
 ul.gt-List .new.gt-projectItem .gt-phaseIcon {
   margin-right: 20px;
 }
+#gtcopylistelements .gtelementform {
+  max-width: 800px;
+}
+#gtcopylistelements .gtelementform .gtbuttons {
+  float: right;
+  margin: 20px 0 20px 0;
+}
+#gtcopylistelements .gtelementform table.gtelements {
+  border: none;
+  width: 100%;
+}
+#gtcopylistelements .gtelementform table.gtelements tr th {
+  font-weight: 500;
+}
+#gtcopylistelements .gtelementform table.gtelements tr th,
+#gtcopylistelements .gtelementform table.gtelements tr td {
+  max-width: 450px;
+  line-height: 2em;
+  font-size: 1rem;
+  text-align: left;
+  vertical-align: top;
+  padding: 5px;
+}
+#gtcopylistelements .gtelementform table.gtelements tr td.ms-ChoiceField .ms-ChoiceField-field {
+  margin-top: 0;
+  width: 100%;
+}
+#gtcopylistelements .gtelementform table.gtelements tr td.ms-ChoiceField.title-field .ms-Label {
+  padding: 0;
+}
+#gtcopylistelements .gtelementform table.gtelements tr td.ms-ChoiceField.title-field .ms-ChoiceField-field:after {
+  display: none;
+}
+#gtcopylistelements .gtelementform table.gtelements tr td.ms-ChoiceField.check-field .ms-ChoiceField-field:after {
+  border-radius: 0;
+  left: 5px;
+  top: 5px;
+}
+#gtcopylistelements .gtelementform table.gtelements tr td.ms-ChoiceField.check-field .ms-ChoiceField-input[type=checkbox]:checked + .ms-ChoiceField-field:before {
+  top: 9px;
+  left: 9px;
+}
 .gt-list-control .clear-search {
   cursor: pointer;
 }

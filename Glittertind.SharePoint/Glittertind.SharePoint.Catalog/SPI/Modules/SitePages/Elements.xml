@@ -590,9 +590,6 @@
         </webParts>]]>
       </AllUsersWebPart>
     </File>
-    <File Path="OpprettProsjekt.aspx" Url="OpprettProsjekt.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE" >
-      <Property Name="Title" Value="Opprett prosjektområde" ></Property>
-    </File>
     <File Path="PortefoljeOversikt.aspx" Url="Erfaringslogg.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE">
       <Property Name="Title" Value="Erfaringslogg"></Property>
       <AllUsersWebPart WebPartZoneID="LeftColumn" WebPartOrder="0">
@@ -703,6 +700,12 @@
           </webPart>
         </webParts>]]>
       </AllUsersWebPart>
+    </File>
+    <File Path="OpprettProsjekt.aspx" Url="OpprettProsjekt.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE" >
+      <Property Name="Title" Value="Opprett prosjektområde" ></Property>
+    </File>
+    <File Path="KopierElementer.aspx" Url="KopierElementer.aspx" Type="GhostableInLibrary" IgnoreIfAlreadyExists="FALSE" ReplaceContent="TRUE" >
+      <Property Name="Title" Value="Kopier elementer" ></Property>
     </File>
   </Module>
 </Elements>

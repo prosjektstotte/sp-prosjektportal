@@ -3,118 +3,171 @@
 }
 
 .newProjectPage {
-    h1 {
-	    margin-left: 10px;
-	    display: none;
-    }
-    .validationMessage {
-	    color: red;
-	    margin-bottom: 10px;
-    }
-    .projectInputForm {
-	    width: 263px;
-	    margin-left: 20px;
+	h1 {
+		margin-left: 10px;
+		display: none;
+	}
+	.validationMessage {
+		color: red;
+		margin-bottom: 10px;
+	}
+	.projectInputForm {
+		width: 263px;
+		margin-left: 20px;
 
-        label {
-	        display: inline-table;
-	        width: 260px;
-	        margin: 0;
-	        word-break: break-all;
-        }
+		label {
+			display: inline-table;
+			width: 260px;
+			margin: 0;
+			word-break: break-all;
+		}
 
-        input, textarea {
-	        width: 250px;
-	        margin: 3px 0 10px;
-        }
+		input, textarea {
+			width: 250px;
+			margin: 3px 0 10px;
+		}
 
-        button {
-	        float: right;
-	        margin: 0;
-        }
+		button {
+			float: right;
+			margin: 0;
+		}
 
-        textarea#projectDescriptionInput {
-	        height: 70px;
-	        overflow: auto;
-        }
-    }
+		textarea#projectDescriptionInput {
+			height: 70px;
+			overflow: auto;
+		}
+	}
 }
 .projectFrontPage {
 	width: 100%;
 
-    > tbody > tr > td:first-child {
-	    min-width: 640px;
-    }
-    .rightColumnStatic {
-	    display: none;
-    }
-    .missingMetadataWarning {
-	    display: none;
-	    color: red;
-	    margin: 10px 0;
-    }
+	> tbody > tr > td:first-child {
+		min-width: 640px;
+	}
+	.rightColumnStatic {
+		display: none;
+	}
+	.missingMetadataWarning {
+		display: none;
+		color: red;
+		margin: 10px 0;
+	}
 
-    .projectMetadata {
-	    width: 300px;
-	    margin-bottom: 20px;
+	.projectMetadata {
+		width: 300px;
+		margin-bottom: 20px;
 
-        table {
-	        width: 100%;
-	        margin-bottom: 10px;
+		table {
+			width: 100%;
+			margin-bottom: 10px;
 
-            td {
-	            padding: 3px;
-            }
+			td {
+				padding: 3px;
+			}
 
-            tr td:first-child {
-	            width: 120px;
-            }
-        }
-        a#editPageMetaLink, a#editPageMetaLink:visited, a#editPageMetaLink:active {
-	        color: #666;
-	        font-size: .9em;
-	        text-decoration: none;
-        }
-    }
+			tr td:first-child {
+				width: 120px;
+			}
+		}
+		a#editPageMetaLink, a#editPageMetaLink:visited, a#editPageMetaLink:active {
+			color: #666;
+			font-size: .9em;
+			text-decoration: none;
+		}
+	}
 }
 
 ul.gt-List {
 	list-style-type: none;
 	padding-left: 0;
 
-    .gt-projectItem {
-	    display: block;
-	    margin-bottom: 20px;
-    }
-    .new.gt-projectItem {
-	    display: block;
-	    margin-bottom: 10px;
+	.gt-projectItem {
+		display: block;
+		margin-bottom: 20px;
+	}
+	.new.gt-projectItem {
+		display: block;
+		margin-bottom: 10px;
 
-        .gt-phaseIcon {
-	        margin-right: 20px;
-        }
-    }
+		.gt-phaseIcon {
+			margin-right: 20px;
+		}
+	}
 }
+#gtcopylistelements {
+	.gtelementform {
+		max-width: 800px;
 
-.gt-list-control {
-    .clear-search {
-	    cursor: pointer;
-    }
-
-    .clear-search:hover {
-	    text-decoration: underline;
-    }
-
-    ul#Paging {
-	    display: block;
-	    list-style-type: none;
-	    margin: 5px 0 5px 0;
-	    padding: 0;
-
-        li {
-	        display: inline-block;
-	        margin-right: 10px;
+        .gtbuttons {
+            float: right;
+            margin: 20px 0 20px 0;
         }
-    }
+		table.gtelements {
+			border: none;
+            width: 100%;
+
+			tr {
+				th {
+					font-weight: 500;
+
+				}
+				th, td {
+					max-width: 450px;
+					line-height: 2em;
+					font-size: 1rem;
+					text-align: left;
+					vertical-align: top;
+					padding: 5px;
+				}
+				td.ms-ChoiceField{
+					.ms-ChoiceField-field {
+						margin-top: 0;
+                        width: 100%;
+					}
+					&.title-field {
+						.ms-Label {
+							padding: 0;
+						}
+						.ms-ChoiceField-field:after {
+							display: none;
+						}
+					}
+					&.check-field {
+						.ms-ChoiceField-field:after {
+							border-radius: 0;
+							left: 5px;
+							top: 5px;
+						}
+						.ms-ChoiceField-input[type=checkbox]:checked+.ms-ChoiceField-field:before {                            
+							top: 9px;
+							left: 9px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.gt-list-control {
+	.clear-search {
+		cursor: pointer;
+	}
+
+	.clear-search:hover {
+		text-decoration: underline;
+	}
+
+	ul#Paging {
+		display: block;
+		list-style-type: none;
+		margin: 5px 0 5px 0;
+		padding: 0;
+
+		li {
+			display: inline-block;
+			margin-right: 10px;
+		}
+	}
 }
 
 .loadingSpinner {
@@ -166,17 +219,17 @@ ul.gt-List {
 	height: 62px;
 	float: left;
 
-    .phaseLetter {
-	    display: block;
-	    font-size: 33px;
-	    text-align: center;
-    }
-    .projectPhase {
-	    display: block;
-	    font-size: 12px;
-	    text-transform: uppercase;
-	    text-align: center;
-    }
+	.phaseLetter {
+		display: block;
+		font-size: 33px;
+		text-align: center;
+	}
+	.projectPhase {
+		display: block;
+		font-size: 12px;
+		text-transform: uppercase;
+		text-align: center;
+	}
 }
 
 .designmode .projectFrontPage .projectPhaseSection {
@@ -271,16 +324,16 @@ ul.gt-List {
 				color: @gtGreen;
 			}
 			.checklistStats {
-                opacity:0;
-                transition: opacity .0s ease-in-out;
-                -moz-transition: opacity .0s ease-in-out;
-                -webkit-transition: opacity .0s ease-in-out;
-                position:absolute;
+				opacity:0;
+				transition: opacity .0s ease-in-out;
+				-moz-transition: opacity .0s ease-in-out;
+				-webkit-transition: opacity .0s ease-in-out;
+				position:absolute;
 
-                h3 {
-                    color:#eee;
-	                padding-bottom:5px;
-                }
+				h3 {
+					color:#eee;
+					padding-bottom:5px;
+				}
 				ul {
 					padding: 0;
 					margin: 0;
@@ -292,15 +345,15 @@ ul.gt-List {
 						margin-top: 5px;
 						list-style-type: none;
 						list-style:none;
-                        
-                        a {
-                            color: #eee;
-                            text-decoration: none;
-                        }
+
+						a {
+							color: #eee;
+							text-decoration: none;
+						}
 					}
 				}
 			}
-			
+
 			.phaseSubText {
 				width: 68%;
 				font-size: 0.7rem;
@@ -328,7 +381,7 @@ ul.gt-List {
 				border: 1px solid @gtGreen;
 				color: @gtGreen;
 			}
-			
+
 			&:before,
 			&:after {
 				display: block;
@@ -340,7 +393,7 @@ ul.gt-List {
 				background-color: @gtBlue;
 				z-index: 2;
 			}
-			
+
 			&:before {
 				left: 0;
 			}
@@ -368,24 +421,24 @@ ul.gt-List {
 			.gt-phaseIcon:after {
 				right: 0;
 			}
-			
+
 			.phaseLetterHover();
 
 			&.selected {
 				.projectPhase {
 					font-weight: 600;
 				}
-				
+
 				.gt-phaseIcon:before,
 				.gt-phaseIcon:after {
-					height: 2px;    
+					height: 2px;
 				}
 				.phaseLetter {
 					border: 1px solid @gtGreen;
 					background-color: @gtGreen;
 					color: @gtGreenInverted
 				}
-				
+
 				.phaseLetterHover();
 			}
 
@@ -415,52 +468,52 @@ ul.gt-List {
 			}
 			&:hover {
 				.checklistStats {
-                    display: block;
+					display: block;
 					position:absolute;
-	                top:100%;
-	                margin-left:-7px;
-                    margin-top: -1px;
-	                z-index:15;
-	                background: rgba(50,50,50,.95);
-	                padding:15px;
-	                border:0px solid #ccc;
-	                box-shadow: 3px 8px 15px #999;
-	                color: #eee;
-	                width:250px;
-	                border-radius:2px;
-	                overflow:visible;
-	                opacity:1;
-                    transition: opacity .2s ease-in-out;
-                    -moz-transition: opacity .2s ease-in-out;
-                    -webkit-transition: opacity .2s ease-in-out;
-                    transition-delay: .1s;
+					top:100%;
+					margin-left:-7px;
+					margin-top: -1px;
+					z-index:15;
+					background: rgba(50,50,50,.95);
+					padding:15px;
+					border:0px solid #ccc;
+					box-shadow: 3px 8px 15px #999;
+					color: #eee;
+					width:250px;
+					border-radius:2px;
+					overflow:visible;
+					opacity:1;
+					transition: opacity .2s ease-in-out;
+					-moz-transition: opacity .2s ease-in-out;
+					-webkit-transition: opacity .2s ease-in-out;
+					transition-delay: .1s;
 
-                    &:before {
-	                    bottom: 100%;
-	                    left: 10%;
-	                    border: solid transparent;
-	                    content: " ";
-	                    height: 0;
-	                    width: 0;
-	                    position: absolute;
-	                    pointer-events: none;
-	                    z-index:200;
-                    }
-                    &:after {
-	                    bottom: 100%;
-	                    left: 10%;
-	                    border: solid transparent;
-	                    content: " ";
-	                    height: 0;
-	                    width: 0;
-	                    position: absolute;
-	                    pointer-events: none;
-	                    z-index:200;
-	                    border-color: rgba(51, 51, 51,0);
-	                    border-bottom-color:rgba(51, 51, 51,.95);
-	                    border-width: 12px;
-	                    margin-left: -12px;
-                    }
+					&:before {
+						bottom: 100%;
+						left: 10%;
+						border: solid transparent;
+						content: " ";
+						height: 0;
+						width: 0;
+						position: absolute;
+						pointer-events: none;
+						z-index:200;
+					}
+					&:after {
+						bottom: 100%;
+						left: 10%;
+						border: solid transparent;
+						content: " ";
+						height: 0;
+						width: 0;
+						position: absolute;
+						pointer-events: none;
+						z-index:200;
+						border-color: rgba(51, 51, 51,0);
+						border-bottom-color:rgba(51, 51, 51,.95);
+						border-width: 12px;
+						margin-left: -12px;
+					}
 				}
 			}
 		}
@@ -500,12 +553,12 @@ ul.gt-List {
 	li {
 		list-style: none;
 		margin-bottom: 10px;
-		
+
 		a {
 			line-height: 20px;
 			display: block;
 			color: #444;
-			
+
 			.gt-checklist-title {
 				display: inline-block;
 				width: 90%;
@@ -523,7 +576,7 @@ ul.gt-List {
 	border-radius: 5px;
 	vertical-align: top;
 
-		
+
 	&:after {
 		font-size: 13px;
 		padding-left: auto;
@@ -533,17 +586,17 @@ ul.gt-List {
 		display: inline-block;
 		color: white;
 	}
-		
+
 	&.gt-completed {
 		background-color: green;
 		&:after {
 			content: "\2713 ";
 		}
 	}
-		
+
 	&.gt-ignored {
 		background-color: #E8C900;
-			
+
 		&:after {
 			content: "\2713 ";
 		}
@@ -551,7 +604,7 @@ ul.gt-List {
 
 	&.gt-failed {
 		background-color: red;
-			
+
 		&:after {
 			content: "\2717";
 			margin-top: 0;

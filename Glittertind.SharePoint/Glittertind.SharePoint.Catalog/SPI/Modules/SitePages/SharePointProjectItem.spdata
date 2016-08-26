@@ -5,5 +5,6 @@
     <ProjectItemFile Source="Portefolje.aspx" Target="SitePages\" Type="ElementFile" />
     <ProjectItemFile Source="OpprettProsjekt.aspx" Target="SitePages\" Type="ElementFile" />
     <ProjectItemFile Source="PortefoljeOversikt.aspx" Target="SitePages\" Type="ElementFile" />
+    <ProjectItemFile Source="KopierElementer.aspx" Target="SitePages\" Type="ElementFile" />
   </Files>
 </ProjectItem>

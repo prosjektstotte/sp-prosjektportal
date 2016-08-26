@@ -22,7 +22,7 @@ GT.Provisioning.CreateWebFromCustomForm = function () {
         document.getElementById('projectFormValidation').innerHTML = "Navn og URL-kortnavn er obligatoriske felter";
         return;
     }
-    
+
     waitMessage();
     GT.Provisioning.CreateWeb(nameField.value, urlField.value, descField.value);
 };
@@ -127,3 +127,106 @@ GT.Provisioning.ShowLink = function () {
         if (shouldShowLink) GT.jQuery('#newProjectLink').show();
     });
 };
+
+GT.Provisioning.PopulateCopyListElementPage = function (sourceListTitle) {
+    var caml = "<View><Query><OrderBy><FieldRef Name=\'ID\' Ascending='\FALSE'\ /></OrderBy></Query></View>";
+    var url = String.format("{0}/_api/web/lists/getByTitle('{1}')/GetItems", _spPageContextInfo.webServerRelativeUrl, sourceListTitle);
+    var requestData = '{"query": { "__metadata": { "type": "SP.CamlQuery" }, "ViewXml": "' + caml + '"}}';
+    var digest = GT.jQuery("#__REQUESTDIGEST").val();
+
+    GT.jQuery.ajax({
+        url: url,
+        type: "POST",
+        data: requestData,
+        headers: {
+            "Accept": "application/json; odata=verbose",
+            "X-RequestDigest": digest,
+            "Content-Type": "application/json; odata=verbose"
+        },
+        dataType: "json",
+        success: function (data) {
+            var infoMessage = GT.jQuery('.gtinfomessage');
+            infoMessage.text(String.format("Viser {0} elementer fra listen {1} som du kan kopiere ned til prosjektområdet ditt. Velg elementene du ønsker, og hent de ved å velge knappen nederst på denne siden", data.d.results.length, sourceListTitle));
+
+            var elementsTable = GT.jQuery('table.gtelements');
+            elementsTable.append('<tr><th></th><th>Navn</th><th>Fase</th><th>Opprettet</th></tr>');
+
+            for (var x = 0; x < data.d.results.length; x++) {
+                var element = data.d.results[x];
+                var created = new Date(element.Created);
+
+                var tableRow = GT.jQuery(String.format('<tr class="{0}"></tr>', x % 2 == 1 ? '' : 'ms-HoverBackground-bgColor'))
+                .append(
+                    String.format('<td class="ms-ChoiceField check-field"><input type="checkbox" class="ms-ChoiceField-input gt-checked-element" value="{0}" id="{0}"><label for="{0}" class="ms-ChoiceField-field"><span class="ms-Label">&nbsp;</span></label></td><td class="ms-ChoiceField title-field"><label for="{0}" class="ms-ChoiceField-field"><span class="ms-Label">{1}</span></label></td><td>{2}</td><td>{3}</td>', element.Id, element.Title, element.GtProjectPhase.Label, created.format("dd.MM.yyyy, HH:mm"))
+                );
+
+                elementsTable.append(tableRow);
+            }
+        }
+    });
+}
+
+GT.Provisioning.CopyListElements = function() {
+    var destinationWebUrl = decodeURIComponent(getParameterByName('dstweb'));
+    var destinationListTitle = getParameterByName('dstlist');
+    var sourceListTitle = getParameterByName('srclist');
+
+    if (!destinationWebUrl || !destinationListTitle || !sourceListTitle) {
+        GT.jQuery('.validationMessage').text('Det har oppstått en feil. URL-parametere ikke satt.').show();
+    } else {
+        var checkedValues = GT.jQuery('table.gtelements tr td.check-field input.gt-checked-element:checked').map(function() {
+            return this.value;
+        }).get();
+
+        var srcContext = SP.ClientContext.get_current();
+        var srcWeb = srcContext.get_web();
+        var srcList = srcWeb.get_lists().getByTitle(sourceListTitle);
+        var chosenIds = [];
+        checkedValues.forEach(function(id){
+            var srcItem = srcList.getItemById(id);
+            srcContext.load(srcItem, "Title", "Id", "GtProjectPhase");
+            chosenIds.push(srcItem);
+        });
+        srcContext.executeQueryAsync(function() {
+            var dstContext = new SP.ClientContext(destinationWebUrl);
+            var dstWeb = dstContext.get_web();
+            var dstList = dstWeb.get_lists().getByTitle(destinationListTitle);
+
+            chosenIds.forEach(function(item){
+                var fieldsToSynch = ["Title", "GtProjectPhase"];
+                try {
+                    var itemCreateInfo = new SP.ListItemCreationInformation();
+                    var newItem = dstList.addItem(itemCreateInfo);
+
+                    for (var j = 0; j < fieldsToSynch.length; j++) {
+                        var fieldName = fieldsToSynch[j];
+                        var fieldValue = item.get_item(fieldName);
+
+                        if (fieldValue && fieldName.toUpperCase() !== "ID" && fieldName.toUpperCase() !== "PARENTIDID") {
+                            if (fieldValue.TermGuid && fieldValue.WssId) {
+                                newItem.set_item(fieldName, fieldValue.WssId);
+                            } else {
+                                newItem.set_item(fieldName, fieldValue);
+                            }
+                        }
+                    }
+                    newItem.update();
+                    dstContext.load(newItem);
+                } catch(exception) {
+                    console.log("Error while creating data item " + item.Title + " - not aborting...")
+                    console.log(exception);
+                }
+            });
+
+            dstContext.executeQueryAsync(function() {
+                console.log("Success - items copied");
+            }, function (sender, args) {
+                console.log("Error copying items");
+                console.log(args.get_message());
+            });
+        }, function(sender,args){
+            console.log("Error getting items to copy");
+            console.log(args.get_message());
+        });
+    }
+}

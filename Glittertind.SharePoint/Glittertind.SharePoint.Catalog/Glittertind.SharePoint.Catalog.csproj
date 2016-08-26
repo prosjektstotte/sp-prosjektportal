@@ -64,6 +64,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SPI\Modules\SitePages\KopierElementer.aspx" />
     <Content Include="SPI\Modules\SitePages\PortefoljeOversikt.aspx" />
     <None Include="SPI\Modules\SitePages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{2a91b212-5e42-4f63-a48b-59c173e8fe33}</SharePointProjectItemId>
