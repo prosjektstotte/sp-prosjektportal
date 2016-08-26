@@ -718,7 +718,7 @@ GT.Project.Setup.UpdateParentReferences = function (clientContext, srcItems) {
             var parentItem = GT.jQuery.grep(srcItems, function (n, i) {
                 return n.ID === srcItem.ParentIDId;
             });
-            if (parentItem) {
+            if (parentItem && parentItem[0] && parentItem[0].NewListItem) {
                 var newParentId = parentItem[0].NewListItem.get_id();
                 newItem.set_item("ParentID", newParentId);
                 newItem.update();

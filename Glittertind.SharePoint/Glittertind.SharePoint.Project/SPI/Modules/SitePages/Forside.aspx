@@ -27,12 +27,12 @@
 	    var navBarHelpOverrideKey = "WSSEndUser";
 	</sharepoint:scriptblock>
     <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/jquery-1.11.1.min.js" runat="server" Language="javascript" ></SharePoint:ScriptLink>
-    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.common.js?rev=20160701" runat="server" Language="javascript" ></SharePoint:ScriptLink>
-    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.generics.js?rev=20160701" runat="server" Language="javascript" ></SharePoint:ScriptLink>
-    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.js?rev=20160701" runat="server" Language="javascript" ></SharePoint:ScriptLink>
-    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.setup.js?rev=20160701" runat="server" Language="javascript" ></SharePoint:ScriptLink>
-    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.setup.contenttypes.js?rev=20160701" runat="server" Language="javascript" ></SharePoint:ScriptLink>
-    <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/gt/css/gt.style.css?rev=20160701 %&gt;" runat="server" ></SharePoint:CssRegistration>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.common.js?rev=20160826" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.generics.js?rev=20160826" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.js?rev=20160826" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.setup.js?rev=20160826" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:ScriptLink Name="~sitecollection/SiteAssets/gt/js/gt.project.setup.contenttypes.js?rev=20160826" runat="server" Language="javascript" ></SharePoint:ScriptLink>
+    <SharePoint:CssRegistration Name="&lt;% $SPUrl:~sitecollection/SiteAssets/gt/css/gt.style.css?rev=20160826 %&gt;" runat="server" ></SharePoint:CssRegistration>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderSearchArea" runat="server">
 	<SharePoint:DelegateControl runat="server" ControlId="SmallSearchInputBox" />

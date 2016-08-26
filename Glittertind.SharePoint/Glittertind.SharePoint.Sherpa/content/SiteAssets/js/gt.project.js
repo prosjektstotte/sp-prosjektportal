@@ -504,7 +504,7 @@ GT.Project.GetCurrentPhase = function () {
     var web = ctx.get_web();
     var props = web.get_allProperties();
     ctx.load(web);
-    ctx.load(props); //need to load the properties explicitly       
+    ctx.load(props); //need to load the properties explicitly
     ctx.executeQueryAsync(function () {
         var phase = props.get_fieldValues()['glittertind_persistedPhase'];
         console.log(phase);
@@ -517,8 +517,6 @@ GT.Project.GetCurrentPhase = function () {
 
 GT.Project.GetChecklistData = function () {
     var defer = GT.jQuery.Deferred();
-
-    console.log("Retrieving check list data");
 
     var caml = "<View><Query><OrderBy><FieldRef Name=\'ID\' /></OrderBy></Query></View>";
     var url = String.format("{0}/_api/web/lists/getByTitle('Fasesjekkliste')/GetItems", _spPageContextInfo.webServerRelativeUrl);
@@ -537,13 +535,13 @@ GT.Project.GetChecklistData = function () {
         dataType: "json",
         success: function (data) {
             var checklistItems = {};
-            
+
             for (var i = 0; i < data.d.results.length; i++) {
                 var checklistItem = data.d.results[i];
                 if (checklistItem.GtProjectPhase) {
                     var phaseName = checklistItem.GtProjectPhase.Label;
                     var status = checklistItem.GtChecklistStatus;
-                    
+
                     var existingPhase = checklistItems[phaseName];
                     if (!existingPhase) {
                         checklistItems[phaseName] = {
