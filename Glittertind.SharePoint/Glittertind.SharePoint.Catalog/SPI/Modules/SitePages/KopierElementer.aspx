@@ -42,20 +42,13 @@
             </table>
             <div class="gtbuttons">
 			    <button type="button" class="ms-Button ms-Button--primary" id="copyElementsBtn" onclick="GT.Provisioning.CopyListElements(); return false;"><span class="ms-Button-label">Hent valgte elementer</span></button>
-                <button type="button" class="ms-Button" id="cancelBtn" onclick="return false;"><span class="ms-Button-label">Avbryt og gå tilbake</span></button>
+                <button type="button" class="ms-Button" id="cancelBtn" onclick="GT.Provisioning.AbortCopyListElements(); return false;"><span class="ms-Button-label">Avbryt og gå tilbake</span></button>
             </div>
 		</div>
 	</div>
 	<script type="text/javascript">
 	    GT.jQuery(document).ready(function () {
-	        var destinationWebUrl = getParameterByName('dstweb');
-	        var destinationListTitle = getParameterByName('dstlist');
-		    var sourceListTitle = getParameterByName('srclist');
-		    if (!destinationWebUrl || !destinationListTitle || !sourceListTitle) {
-		        GT.jQuery('.validationMessage').show();
-		    } else {
-		        GT.Provisioning.PopulateCopyListElementPage(sourceListTitle);
-		    }
+	        GT.Provisioning.InitalizeCopyElementsPage();
 		});
 	</script>
 </asp:Content>

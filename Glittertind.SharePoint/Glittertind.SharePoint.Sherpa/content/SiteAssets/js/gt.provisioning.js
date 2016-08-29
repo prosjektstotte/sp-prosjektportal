@@ -2,8 +2,8 @@
 GT.Provisioning = GT.Provisioning || {};
 if (GT.jQuery === undefined) GT.jQuery = jQuery.noConflict(true);
 
-function waitMessage() {
-    window.parent.eval("window.waitDialog = SP.UI.ModalDialog.showWaitScreenWithNoClose('Oppretter prosjektområde', '', 80, 450);");
+function waitMessage(message) {
+    window.parent.eval(String.format("window.waitDialog = SP.UI.ModalDialog.showWaitScreenWithNoClose('{0}', '', 80, 450);", message));
 }
 function closeWaitMessage() {
     if (window.parent.waitDialog != null) {
@@ -23,7 +23,7 @@ GT.Provisioning.CreateWebFromCustomForm = function () {
         return;
     }
 
-    waitMessage();
+    waitMessage('Oppretter prosjektområde');
     GT.Provisioning.CreateWeb(nameField.value, urlField.value, descField.value);
 };
 
@@ -128,41 +128,89 @@ GT.Provisioning.ShowLink = function () {
     });
 };
 
-GT.Provisioning.PopulateCopyListElementPage = function (sourceListTitle) {
-    var caml = "<View><Query><OrderBy><FieldRef Name=\'ID\' Ascending='\FALSE'\ /></OrderBy></Query></View>";
-    var url = String.format("{0}/_api/web/lists/getByTitle('{1}')/GetItems", _spPageContextInfo.webServerRelativeUrl, sourceListTitle);
-    var requestData = '{"query": { "__metadata": { "type": "SP.CamlQuery" }, "ViewXml": "' + caml + '"}}';
-    var digest = GT.jQuery("#__REQUESTDIGEST").val();
+GT.Provisioning.GetDataSources = function () {
+    var deferred = GT.jQuery.Deferred();
+    var urlToFile = _spPageContextInfo.siteServerRelativeUrl + "/SiteAssets/gt/config/core/datasources.txt";
 
-    GT.jQuery.ajax({
-        url: url,
-        type: "POST",
-        data: requestData,
-        headers: {
-            "Accept": "application/json; odata=verbose",
-            "X-RequestDigest": digest,
-            "Content-Type": "application/json; odata=verbose"
-        },
-        dataType: "json",
-        success: function (data) {
-            var infoMessage = GT.jQuery('.gtinfomessage');
-            infoMessage.text(String.format("Viser {0} elementer fra listen {1} som du kan kopiere ned til prosjektområdet ditt. Velg elementene du ønsker, og hent de ved å velge knappen nederst på denne siden", data.d.results.length, sourceListTitle));
+    GT.jQuery.getJSON(urlToFile)
+    .then(function (data) {
+        deferred.resolve(data);
+    });
+
+    return deferred.promise();
+};
+
+GT.Provisioning.GetUrlOfDataSourceByList = function(srcListName) {
+    var deferred = GT.jQuery.Deferred();
+
+    GT.jQuery.when(GT.Provisioning.GetDataSources()).then(function (data) {
+        var srcWebUrl = _spPageContextInfo.siteServerRelativeUrl;
+        for (var i = 0; i < data.DataSources.Lists.length; i++) {
+            var listDataSource = data.DataSources.Lists[i];
+            if (listDataSource.SrcList === srcListName) {
+                srcWebUrl = GT.Common.GetUrlWithoutTokens(listDataSource.SrcWeb);
+                continue;
+            }
+        }
+        deferred.resolve(srcWebUrl);
+    });
+
+    return deferred.promise();
+}
+GT.Provisioning.InitalizeCopyElementsPage = function() {
+    var destinationWebUrl = getParameterByName('dstweb');
+    var destinationListTitle = getParameterByName('dstlist');
+    var sourceListTitle = getParameterByName('srclist');
+    if (!destinationWebUrl || !destinationListTitle || !sourceListTitle) {
+        GT.jQuery('.validationMessage').show();
+    } else {
+        SP.SOD.executeOrDelayUntilScriptLoaded(function(){
+            GT.Provisioning.PopulateCopyListElementPage(sourceListTitle);
+        } , "sp.js");
+    }
+}
+GT.Provisioning.PopulateCopyListElementPage = function (sourceListTitle) {
+    GT.jQuery.when(
+        GT.Provisioning.GetUrlOfDataSourceByList(sourceListTitle)
+    ).then(function(sourceListUrl) {
+        GT.Provisioning.SourceListUrl = sourceListUrl;
+        var caml = "<View><Query><OrderBy><FieldRef Name=\'ID\' Ascending='\FALSE'\ /></OrderBy></Query></View>";
+
+        var clientContext = new SP.ClientContext(sourceListUrl);
+        var srcList = clientContext.get_web().get_lists().getByTitle(sourceListTitle);
+
+        var camlQuery = new SP.CamlQuery();
+        camlQuery.set_viewXml(caml);
+
+        this.srcListItems = srcList.getItems(camlQuery);
+
+        clientContext.load(this.srcListItems, 'Include(Id,Title,GtProjectPhase,Created)');
+        clientContext.executeQueryAsync(Function.createDelegate(this, function() {
+            GT.jQuery('.gtinfomessage').text(String.format("Viser {0} elementer fra listen {1} som du kan kopiere ned til prosjektområdet ditt. Velg elementene du ønsker, og hent de ved å velge knappen nederst på denne siden", this.srcListItems.get_count(), sourceListTitle));
 
             var elementsTable = GT.jQuery('table.gtelements');
             elementsTable.append('<tr><th></th><th>Navn</th><th>Fase</th><th>Opprettet</th></tr>');
 
-            for (var x = 0; x < data.d.results.length; x++) {
-                var element = data.d.results[x];
-                var created = new Date(element.Created);
+            var counter = 0;
+            var listItemEnumerator = this.srcListItems.getEnumerator();
+            while (listItemEnumerator.moveNext()) {
+                var currentListItem = listItemEnumerator.get_current();
+                var createdDate = new Date(currentListItem.get_item('Created'));
+                var phase = currentListItem.get_item('GtProjectPhase');
+                var phaseLabel = phase && phase.Label ? phase.Label : "";
 
-                var tableRow = GT.jQuery(String.format('<tr class="{0}"></tr>', x % 2 == 1 ? '' : 'ms-HoverBackground-bgColor'))
+                var tableRow = GT.jQuery(String.format('<tr class="{0}"></tr>', counter % 2 == 1 ? '' : 'ms-HoverBackground-bgColor'))
                 .append(
-                    String.format('<td class="ms-ChoiceField check-field"><input type="checkbox" class="ms-ChoiceField-input gt-checked-element" value="{0}" id="{0}"><label for="{0}" class="ms-ChoiceField-field"><span class="ms-Label">&nbsp;</span></label></td><td class="ms-ChoiceField title-field"><label for="{0}" class="ms-ChoiceField-field"><span class="ms-Label">{1}</span></label></td><td>{2}</td><td>{3}</td>', element.Id, element.Title, element.GtProjectPhase.Label, created.format("dd.MM.yyyy, HH:mm"))
+                    String.format('<td class="ms-ChoiceField check-field"><input type="checkbox" class="ms-ChoiceField-input gt-checked-element" value="{0}" id="{0}"><label for="{0}" class="ms-ChoiceField-field"><span class="ms-Label">&nbsp;</span></label></td><td class="ms-ChoiceField title-field"><label for="{0}" class="ms-ChoiceField-field"><span class="ms-Label">{1}</span></label></td><td>{2}</td><td>{3}</td>', currentListItem.get_id(), currentListItem.get_item('Title'), phaseLabel, createdDate.format("dd.MM.yyyy, HH:mm"))
                 );
 
                 elementsTable.append(tableRow);
+                counter++;
             }
-        }
+        }), Function.createDelegate(this, function() {
+            GT.jQuery('.validationMessage').text('Det har oppstått en feil. Kunne ikke hente listeelementer').show();
+            console.log(arguments);
+        }));
     });
 }
 
@@ -174,13 +222,15 @@ GT.Provisioning.CopyListElements = function() {
     if (!destinationWebUrl || !destinationListTitle || !sourceListTitle) {
         GT.jQuery('.validationMessage').text('Det har oppstått en feil. URL-parametere ikke satt.').show();
     } else {
+        waitMessage('Kopierer valgte elementer');
         var checkedValues = GT.jQuery('table.gtelements tr td.check-field input.gt-checked-element:checked').map(function() {
             return this.value;
         }).get();
 
-        var srcContext = SP.ClientContext.get_current();
+        var srcContext = new SP.ClientContext(GT.Provisioning.SourceListUrl);
         var srcWeb = srcContext.get_web();
         var srcList = srcWeb.get_lists().getByTitle(sourceListTitle);
+
         var chosenIds = [];
         checkedValues.forEach(function(id){
             var srcItem = srcList.getItemById(id);
@@ -220,13 +270,31 @@ GT.Provisioning.CopyListElements = function() {
 
             dstContext.executeQueryAsync(function() {
                 console.log("Success - items copied");
+                closeWaitMessage();
+                waitMessage('Kopiering vellykket!');
+                setTimeout(function(){
+                    closeWaitMessage();
+                    location.replace(destinationWebUrl);
+                }, 1000);
             }, function (sender, args) {
                 console.log("Error copying items");
                 console.log(args.get_message());
+                closeWaitMessage();
+            GT.jQuery('.validationMessage').text('Det har oppstått en feil.').show();
             });
         }, function(sender,args){
             console.log("Error getting items to copy");
             console.log(args.get_message());
+            closeWaitMessage();
+            GT.jQuery('.validationMessage').text('Det har oppstått en feil.').show();
         });
+    }
+}
+GT.Provisioning.AbortCopyListElements = function() {
+    var destinationWebUrl = decodeURIComponent(getParameterByName('dstweb'));
+    if (destinationWebUrl) {
+        location.replace(destinationWebUrl);
+    } else {
+        location.replace(_spPageContextInfo.siteAbsoluteUrl);
     }
 }
