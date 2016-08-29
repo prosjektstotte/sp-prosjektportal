@@ -53,38 +53,44 @@ GT.Project.Setup.CreateSiteSettingsCustomActions = function () {
     var web = clientContext.get_web();
     var customActions = web.get_userCustomActions();
 
-    var alreadyExists = false;
-    var customActionsEnumerator = customActions.getEnumerator();
-    while (customActionsEnumerator.moveNext()) {
-        var currentCustomAction = customActionsEnumerator.get_current();
-        if (currentCustomAction.get_name() === 'GT.SiteSettings.CopyTasks') {
-            alreadyExists = true;
+    clientContext.load(web, 'Title', 'UserCustomActions');
+    clientContext.load(customActions);
+    clientContext.executeQueryAsync(Function.createDelegate(this, function () {
+        var alreadyExists = false;
+        var customActionsEnumerator = customActions.getEnumerator();
+        while (customActionsEnumerator.moveNext()) {
+            var currentCustomAction = customActionsEnumerator.get_current();
+            if (currentCustomAction.get_name() === 'GT.SiteSettings.CopyTasks') {
+                alreadyExists = true;
+            }
         }
-    }
-    if (!alreadyExists) {
-        var newCustomAction = customActions.add();
-        newCustomAction.set_location('Microsoft.SharePoint.SiteSettings');
-        newCustomAction.set_group('Customization');
-        newCustomAction.set_sequence(150);
-        newCustomAction.set_name('GT.SiteSettings.CopyTasks');
-        newCustomAction.set_title('Hent oppgaver fra porteføljeområdet');
-        newCustomAction.set_description('Velg oppgaver fra porteføljeområdet og kopier oppgavene til prosjektet.');
-        var customActionJavaScript = 'javascript:location.replace(String.format("{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings", _spPageContextInfo.siteServerRelativeUrl, "Standardoppgaver", "Oppgaver", encodeURIComponent(_spPageContextInfo.webServerRelativeUrl)))';
-        newCustomAction.set_url(customActionJavaScript);
-        newCustomAction.update();
+        if (!alreadyExists) {
+            var newCustomAction = customActions.add();
+            newCustomAction.set_location('Microsoft.SharePoint.SiteSettings');
+            newCustomAction.set_group('Customization');
+            newCustomAction.set_sequence(150);
+            newCustomAction.set_name('GT.SiteSettings.CopyTasks');
+            newCustomAction.set_title('Hent oppgaver fra porteføljeområdet');
+            newCustomAction.set_description('Velg oppgaver fra porteføljeområdet og kopier oppgavene til prosjektet.');
+            var customActionJavaScript = 'javascript:location.replace(String.format("{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings", _spPageContextInfo.siteServerRelativeUrl, "Standardoppgaver", "Oppgaver", encodeURIComponent(_spPageContextInfo.webServerRelativeUrl)))';
+            newCustomAction.set_url(customActionJavaScript);
+            newCustomAction.update();
 
-        clientContext.load(web, 'Title', 'UserCustomActions');
-
-        clientContext.executeQueryAsync(Function.createDelegate(this, function () {
-            console.log('Configured custom actions for site');
+            clientContext.load(web, 'Title', 'UserCustomActions');
+            clientContext.executeQueryAsync(Function.createDelegate(this, function () {
+                console.log('Configured custom actions for site');
+                deferred.resolve();
+            }), Function.createDelegate(this, function() {
+                console.log('Error ' + errorThrown);
+                deferred.resolve();
+            }));
+        } else {
             deferred.resolve();
-        }), Function.createDelegate(this, function() {
-            console.log('Error ' + errorThrown);
-            deferred.reject();
-        }));
-    } else {
-        deferred.reject();
-    }
+        }
+    }), Function.createDelegate(this, function() {
+        console.log('Error ' + errorThrown);
+        deferred.resolve();
+    }));
 
     return deferred.promise();
 }
