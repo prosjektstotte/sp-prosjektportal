@@ -6,7 +6,7 @@
     "Views": [
 	    {
 	    	"Name": "Alle oppgaver",
-	        "ViewFields": ["Checkmark", "LinkTitle", "StartDate", "DueDate", "AssignedTo", "GtProjectPhase"],
+	        "ViewFields": ["Checkmark", "LinkTitle", "StartDate", "DueDate", "AssignedTo", "GtProjectPhase", "Modified", "Editor"],
 	        "RowLimit": 0,
             "Paged":true,
 	        "Query": ""
