@@ -55,6 +55,44 @@ GT.Common.IsNonHtml5Browser = function() {
     return false;
 };
 
+// See tokens here: http://msdn.microsoft.com/en-us/library/office/ms431831%28v=office.15%29.aspx
+GT.Common.GetUrlWithoutTokens = function (url) {
+    return url.replace('{Site}', _spPageContextInfo.webAbsoluteUrl)
+              .replace('{SiteUrl}', _spPageContextInfo.webAbsoluteUrl)
+              .replace('{SiteUrlEncoded}', encodeURIComponent(_spPageContextInfo.webAbsoluteUrl))
+              .replace('{SiteCollection}', _spPageContextInfo.siteAbsoluteUrl)
+              .replace('{SiteCollectionEncoded}', encodeURIComponent(_spPageContextInfo.siteAbsoluteUrl))
+			  .replace('{site}', _spPageContextInfo.webAbsoluteUrl)
+              .replace('{siteurl}', _spPageContextInfo.webAbsoluteUrl)
+              .replace('{siteurlencoded}', encodeURIComponent(_spPageContextInfo.webAbsoluteUrl))
+              .replace('{sitecollection}', _spPageContextInfo.siteAbsoluteUrl)
+              .replace('{sitecollectionencoded}', encodeURIComponent(_spPageContextInfo.siteAbsoluteUrl))
+              .replace('{sitecollectionrelative}', _spPageContextInfo.siteServerRelativeUrl)
+              .replace('{SiteCollectionRelative}', _spPageContextInfo.siteServerRelativeUrl);
+};
+
+GT.Common.GetFormDigestForSite = function(url) {
+    var deferred = GT.jQuery.Deferred();
+
+    GT.jQuery.ajax({
+        type: "POST",
+        headers: {
+            "accept": "application/json;odata=verbose"
+        },
+        url: url + "/_api/contextinfo",
+        contentType: "text/html; charset=utf-8",
+        dataType: "html",
+        success: function (data, status) {
+            var contextInfo = JSON.parse(data);
+            deferred.resolve(contextInfo.d.GetContextWebInformation.FormDigestValue);
+        },
+        error: function (xmlReq) {
+            console.log('error: ' + xmlReq.status + ' \n\r ' + xmlReq.statusText + '\n\r' + xmlReq.responseText);
+            deferred.reject();
+        }
+    });
+    return deferred.promise();
+};
 GT.jQuery(function () {
     GT.Common.DetectEditMode();
     GT.Common.DetectAndStapleIEVersion();
