@@ -35,14 +35,18 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
 	<div id="gtcopylistelements">
-		<div class="validationMessage" style="display:none;">Denne siden kan ikke besøkes direkte, kun via et prosjektområde.</div>
-        <div class="gtinfomessage">Viser elementer fra valgt liste som du kan kopiere ned til prosjektet ditt.</div>
 		<div class="gtelementform">
+		    <div class="validationMessage" style="display:none;">Denne siden kan ikke besøkes direkte, kun via et prosjektområde.</div>
+            <div class="gtinfomessage">Viser elementer fra valgt liste som du kan kopiere ned til prosjektet ditt.</div>
+            <div class="gtbuttons">
+			    <button type="button" class="ms-Button ms-Button--primary" onclick="GT.Provisioning.CopyListElements(); return false;"><span class="ms-Button-label">Hent valgte elementer</span></button>
+                <button type="button" class="ms-Button" onclick="GT.Provisioning.AbortCopyListElements(); return false;"><span class="ms-Button-label">Avbryt og gå tilbake</span></button>
+            </div>
             <table class="gtelements">
             </table>
             <div class="gtbuttons">
-			    <button type="button" class="ms-Button ms-Button--primary" id="copyElementsBtn" onclick="GT.Provisioning.CopyListElements(); return false;"><span class="ms-Button-label">Hent valgte elementer</span></button>
-                <button type="button" class="ms-Button" id="cancelBtn" onclick="GT.Provisioning.AbortCopyListElements(); return false;"><span class="ms-Button-label">Avbryt og gå tilbake</span></button>
+			    <button type="button" class="ms-Button ms-Button--primary" onclick="GT.Provisioning.CopyListElements(); return false;"><span class="ms-Button-label">Hent valgte elementer</span></button>
+                <button type="button" class="ms-Button" onclick="GT.Provisioning.AbortCopyListElements(); return false;"><span class="ms-Button-label">Avbryt og gå tilbake</span></button>
             </div>
 		</div>
 	</div>
