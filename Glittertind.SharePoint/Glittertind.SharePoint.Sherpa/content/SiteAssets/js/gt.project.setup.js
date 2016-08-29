@@ -46,6 +46,49 @@ GT.Project.Setup.InheritNavigation = function () {
     return deferred.promise();
 };
 
+GT.Project.Setup.CreateSiteSettingsCustomActions = function () {
+    var deferred = GT.jQuery.Deferred();
+
+    var clientContext = SP.ClientContext.get_current();
+    var web = clientContext.get_web();
+    var customActions = web.get_userCustomActions();
+
+    var alreadyExists = false;
+    var customActionsEnumerator = customActions.getEnumerator();
+    while (customActionsEnumerator.moveNext()) {
+        var currentCustomAction = customActionsEnumerator.get_current();
+        if (currentCustomAction.get_name() === 'GT.SiteSettings.CopyTasks') {
+            alreadyExists = true;
+        }
+    }
+    if (!alreadyExists) {
+        var newCustomAction = customActions.add();
+        newCustomAction.set_location('Microsoft.SharePoint.SiteSettings');
+        newCustomAction.set_group('Customization');
+        newCustomAction.set_sequence(150);
+        newCustomAction.set_name('GT.SiteSettings.CopyTasks');
+        newCustomAction.set_title('Hent oppgaver fra porteføljeområdet');
+        newCustomAction.set_description('Velg oppgaver fra porteføljeområdet og kopier oppgavene til prosjektet.');
+        var customActionJavaScript = 'javascript:location.replace(String.format("{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings", _spPageContextInfo.siteServerRelativeUrl, "Standardoppgaver", "Oppgaver", encodeURIComponent(_spPageContextInfo.webServerRelativeUrl)))';
+        newCustomAction.set_url(customActionJavaScript);
+        newCustomAction.update();
+
+        clientContext.load(web, 'Title', 'UserCustomActions');
+
+        clientContext.executeQueryAsync(Function.createDelegate(this, function () {
+            console.log('Configured custom actions for site');
+            deferred.resolve();
+        }), Function.createDelegate(this, function() {
+            console.log('Error ' + errorThrown);
+            deferred.reject();
+        }));
+    } else {
+        deferred.reject();
+    }
+
+    return deferred.promise();
+}
+
 GT.Project.Setup.ApplyTheme = function (properties) {
     var deferred = GT.jQuery.Deferred();
 
@@ -100,7 +143,7 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
                         for (var i = 0; i < data.length; i++) {
                             var linkNode = data[i];
                             var nodeTitle = linkNode.Title;
-                            var linkUrl = GT.Project.Setup.GetUrlWithoutTokens(linkNode.Url);
+                            var linkUrl = GT.Common.GetUrlWithoutTokens(linkNode.Url);
 							var isExternal = linkNode.IsExternal == true;
                             var existingNode = null;
 
@@ -145,22 +188,6 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
         console.log("Couldnt load quicklaunchcollection");
     });
     return deferred.promise();
-};
-
-// See tokens here: http://msdn.microsoft.com/en-us/library/office/ms431831%28v=office.15%29.aspx
-GT.Project.Setup.GetUrlWithoutTokens = function (url) {
-    return url.replace('{Site}', _spPageContextInfo.webAbsoluteUrl)
-              .replace('{SiteUrl}', _spPageContextInfo.webAbsoluteUrl)
-              .replace('{SiteUrlEncoded}', encodeURIComponent(_spPageContextInfo.webAbsoluteUrl))
-              .replace('{SiteCollection}', _spPageContextInfo.siteAbsoluteUrl)
-              .replace('{SiteCollectionEncoded}', encodeURIComponent(_spPageContextInfo.siteAbsoluteUrl))
-			  .replace('{site}', _spPageContextInfo.webAbsoluteUrl)
-              .replace('{siteurl}', _spPageContextInfo.webAbsoluteUrl)
-              .replace('{siteurlencoded}', encodeURIComponent(_spPageContextInfo.webAbsoluteUrl))
-              .replace('{sitecollection}', _spPageContextInfo.siteAbsoluteUrl)
-              .replace('{sitecollectionencoded}', encodeURIComponent(_spPageContextInfo.siteAbsoluteUrl))
-              .replace('{sitecollectionrelative}', _spPageContextInfo.siteServerRelativeUrl)
-              .replace('{SiteCollectionRelative}', _spPageContextInfo.siteServerRelativeUrl);
 };
 
 // [start] utility methods
@@ -489,7 +516,7 @@ GT.Project.Setup.populateTaskList = function (listData) {
 
             for (var i = 0; i < row.Fields.length; i++) {
                 var name = row.Fields[i].Name;
-				var value = GT.Project.Setup.GetUrlWithoutTokens(row.Fields[i].Value);
+				var value = GT.Common.GetUrlWithoutTokens(row.Fields[i].Value);
 				if (name === "Title" && value.length > 255) value = value.substr(0, 252) + "...";
                 listItem.set_item(name, value);
             }
@@ -662,7 +689,7 @@ GT.Project.Setup.CopyListItems = function (properties) {
 
 	                        if (fieldValue && fieldName.toUpperCase() !== "ID" && fieldName.toUpperCase() !== "PARENTIDID") {
 	                            if (fieldName.indexOf("Title") === 0) {
-	                                var value = GT.Project.Setup.GetUrlWithoutTokens(fieldValue);
+	                                var value = GT.Common.GetUrlWithoutTokens(fieldValue);
 	                                if (fieldName === "Title" && value.length > 255) value = value.substr(0, 252) + "...";
 	                                newItem.set_item(fieldName, value);
 	                            } else if (fieldValue.TermGuid) {
@@ -818,7 +845,7 @@ GT.Project.Setup.GetCopyDataFromSourceListsSteps = function (settings, startInde
     var steps = [];
     for (var i = 0; i < settings.DataSources.Lists.length; i++) {
         var listDataSource = settings.DataSources.Lists[i];
-        var srcWebUrl = GT.Project.Setup.GetUrlWithoutTokens(listDataSource.SrcWeb);
+        var srcWebUrl = GT.Common.GetUrlWithoutTokens(listDataSource.SrcWeb);
         var listType = listDataSource.ListType;
 
         if (listType === "DocumentLibrary") {
@@ -975,6 +1002,7 @@ GT.Project.Setup.GetViewFromCollectionByUrl = function (viewCollection, url) {
     }
     return null;
 };
+
 GT.Project.Setup.GetViewFromCollectionByName = function (viewCollection, name) {
     var viewCollectionEnumerator = viewCollection.getEnumerator();
     while (viewCollectionEnumerator.moveNext()) {
@@ -997,6 +1025,7 @@ GT.Project.Setup.GetDataSources = function () {
 
     return deferred.promise();
 };
+
 GT.Project.Setup.HandleOnTheFlyConfiguration = function (defaultProperties) {
     var deferred = GT.jQuery.Deferred();
     GT.Project.Setup.resolveProperties(defaultProperties).done(function (properties) {
@@ -1098,13 +1127,14 @@ GT.jQuery(document).ready(function () {
             '1.0.0.0': [
                 new GT.Project.Setup.Model.step("Setter områdets temafarger", 0, GT.Project.Setup.ApplyTheme,
                     { colorPaletteName: "palette013.spcolor", fontSchemeName: "SharePointPersonality.spfont", backgroundImageUrl: "", shareGenerated: true }),
-                new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", 1, GT.Project.Setup.CreateWebContentTypes, {}),
-                new GT.Project.Setup.Model.step("Sett arving av navigasjon", 2, GT.Project.Setup.InheritNavigation, {}),
-                new GT.Project.Setup.Model.step("Konfigurer quicklaunch", 3, GT.Project.Setup.ConfigureQuickLaunch, {}),
-                new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", 4, GT.Project.Setup.UpdateListsFromConfig, {})
+                new GT.Project.Setup.Model.step("Setter områdets temafarger", 1, GT.Project.Setup.CreateSiteSettingsCustomActions, {}),
+                new GT.Project.Setup.Model.step("Opprette områdenivå innholdstyper", 2, GT.Project.Setup.CreateWebContentTypes, {}),
+                new GT.Project.Setup.Model.step("Sett arving av navigasjon", 3, GT.Project.Setup.InheritNavigation, {}),
+                new GT.Project.Setup.Model.step("Konfigurer quicklaunch", 4, GT.Project.Setup.ConfigureQuickLaunch, {}),
+                new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", 5, GT.Project.Setup.UpdateListsFromConfig, {})
             ]
         };
-        var dataSourceSteps = GT.Project.Setup.GetCopyDataFromSourceListsSteps(dataSources, 5);
+        var dataSourceSteps = GT.Project.Setup.GetCopyDataFromSourceListsSteps(dataSources, 6);
         steps['1.0.0.0'] = steps['1.0.0.0'].concat(dataSourceSteps);
 
         var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";
