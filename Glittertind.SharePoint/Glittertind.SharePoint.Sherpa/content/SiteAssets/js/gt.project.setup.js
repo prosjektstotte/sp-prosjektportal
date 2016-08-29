@@ -72,7 +72,7 @@ GT.Project.Setup.CreateSiteSettingsCustomActions = function () {
             newCustomAction.set_name('GT.SiteSettings.CopyTasks');
             newCustomAction.set_title('Hent oppgaver fra porteføljeområdet');
             newCustomAction.set_description('Velg oppgaver fra porteføljeområdet og kopier oppgavene til prosjektet.');
-            var customActionJavaScript = 'javascript:location.replace(String.format("{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings", _spPageContextInfo.siteServerRelativeUrl, "Standardoppgaver", "Oppgaver", encodeURIComponent(_spPageContextInfo.webServerRelativeUrl)))';
+            var customActionJavaScript = 'javascript:window.location.href = String.format("{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings", _spPageContextInfo.siteServerRelativeUrl, "Standardoppgaver", "Oppgaver", encodeURIComponent(_spPageContextInfo.webServerRelativeUrl));';
             newCustomAction.set_url(customActionJavaScript);
             newCustomAction.update();
 
@@ -819,14 +819,15 @@ GT.Project.Setup.CreateWebContentTypes = function () {
                     GT.Project.Setup.ContentTypes.CreateLookupSiteColumn("Relevant kommunikasjonselement", "GtProjectTaskComElement", "Kommunikasjonsplan", "Title", "{087dae25-b007-4e58-91b4-347dde464840}", false, false, "")
                 ).then(function () {
                     GT.jQuery.when(
-                        GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektoppgave", ["GtProjectTaskRisk", "GtProjectTaskComElement"]),
                         GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Kommunikasjonselement", ["GtCommunicationTarget"]),
                         GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektprodukt", ["GtProductInteressent"])
                     ).then(function () {
                         GT.jQuery.when(
+                            GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektoppgave", ["GtProjectTaskRisk"]),
                             GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektloggelement", ["GtProjectLogEventLookup"])
                         ).then(function () {
                             GT.jQuery.when(
+                                GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektoppgave", ["GtProjectTaskComElement"]),
                                 GT.Project.Setup.ContentTypes.LinkFieldsToContentType("Prosjektloggelement", ["GtProjectLogProductLookup"])
                             ).then(function () {
                                 GT.jQuery.when(
