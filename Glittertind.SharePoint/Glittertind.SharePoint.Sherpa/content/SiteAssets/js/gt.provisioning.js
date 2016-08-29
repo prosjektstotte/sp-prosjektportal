@@ -244,6 +244,7 @@ GT.Provisioning.CopyListElements = function() {
         var srcContext = new SP.ClientContext(GT.Provisioning.SourceListUrl);
         var srcWeb = srcContext.get_web();
         var srcList = srcWeb.get_lists().getByTitle(sourceListTitle);
+        var rootFolder = srcList.get_rootFolder();
 
         var chosenIds = [];
         checkedValues.forEach(function(id){
@@ -255,6 +256,7 @@ GT.Provisioning.CopyListElements = function() {
             var dstContext = new SP.ClientContext(destinationWebUrl);
             var dstWeb = dstContext.get_web();
             var dstList = dstWeb.get_lists().getByTitle(destinationListTitle);
+            var dstRootFolder = dstList.get_rootFolder();
 
             chosenIds.forEach(function(item){
                 var fieldsToSynch = ["Title", "GtProjectPhase"];
@@ -276,19 +278,21 @@ GT.Provisioning.CopyListElements = function() {
                     }
                     newItem.update();
                     dstContext.load(newItem);
-                } catch(exception) {
+                } catch (exception) {
                     console.log("Error while creating data item " + item.Title + " - not aborting...")
                     console.log(exception);
                 }
             });
 
+            dstContext.load(dstRootFolder, 'ServerRelativeUrl')
             dstContext.executeQueryAsync(function() {
                 console.log("Success - items copied");
                 closeWaitMessage();
                 waitMessage('Kopiering vellykket!');
                 setTimeout(function(){
                     closeWaitMessage();
-                    location.replace(destinationWebUrl);
+                    var redirectToListUrl = dstRootFolder.get_serverRelativeUrl();
+                    window.location.href = redirectToListUrl ? redirectToListUrl: destinationWebUrl;
                 }, 1000);
             }, function (sender, args) {
                 console.log("Error copying items");
