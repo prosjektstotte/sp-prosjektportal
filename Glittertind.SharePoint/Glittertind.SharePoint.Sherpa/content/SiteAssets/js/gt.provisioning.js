@@ -134,6 +134,7 @@ GT.Provisioning.GetDataSources = function () {
 
     GT.jQuery.getJSON(urlToFile)
     .then(function (data) {
+        GT.Provisioning.DataSourceConfig = data;
         deferred.resolve(data);
     });
 
@@ -143,7 +144,9 @@ GT.Provisioning.GetDataSources = function () {
 GT.Provisioning.GetUrlOfDataSourceByList = function(srcListName) {
     var deferred = GT.jQuery.Deferred();
 
-    GT.jQuery.when(GT.Provisioning.GetDataSources()).then(function (data) {
+    GT.jQuery.when(
+        GT.Provisioning.GetDataSources()
+    ).then(function (data) {
         var srcWebUrl = _spPageContextInfo.siteServerRelativeUrl;
         for (var i = 0; i < data.DataSources.Lists.length; i++) {
             var listDataSource = data.DataSources.Lists[i];
@@ -186,22 +189,33 @@ GT.Provisioning.PopulateCopyListElementPage = function (sourceListTitle) {
 
         clientContext.load(this.srcListItems, 'Include(Id,Title,GtProjectPhase,Created)');
         clientContext.executeQueryAsync(Function.createDelegate(this, function() {
-            GT.jQuery('.gtinfomessage').text(String.format("Viser {0} elementer fra listen {1} som du kan kopiere ned til prosjektområdet ditt. Velg elementene du ønsker, og hent de ved å velge knappen nederst på denne siden", this.srcListItems.get_count(), sourceListTitle));
+            GT.jQuery('.gtinfomessage').text(String.format("Viser {0} elementer fra listen {1} som du kan kopiere ned til prosjektområdet ditt. Listen er sortert på når oppgavene ble opprettet, med de nyeste øverst. Oppgavefasen blir også kopiert. Dessverre kan ikke oppgaverelasjonene gjenskapes.", this.srcListItems.get_count(), sourceListTitle));
+
+            var newMarkup = String.format('<span class="ms-newdocument-iconouter"><img class="ms-newdocument-icon" src="{0}/_layouts/15/images/spcommon.png?rev=44" alt="ny" title="ny"></span>', _spPageContextInfo.siteServerRelativeUrl);
+            var daysToShowNewIndicator = 7;
+            if (GT.Provisioning.DataSourceConfig && GT.Provisioning.DataSourceConfig.DaysToShowNewIndicator) {
+                daysToShowNewIndicator = GT.Provisioning.DataSourceConfig.DaysToShowNewIndicator;
+            }
+            var cutoffDate = new Date();
+            cutoffDate.setDate(cutoffDate.getDate()-daysToShowNewIndicator);
 
             var elementsTable = GT.jQuery('table.gtelements');
-            elementsTable.append('<tr><th></th><th>Navn</th><th>Fase</th><th>Opprettet</th></tr>');
+
+            var sortMarkup = '<span class="ms-sortarrowdown-iconouter" id="diidSortArrowSpan1Modified"><img class="ms-sortarrowdown-icon" src="/_layouts/15/images/spcommon.png?rev=44" alt="Sorter på opprettet" aria-expanded="false"></span>';
+            elementsTable.append(String.format('<tr><th>Velg</th><th>Navn</th><th>Fase</th><th>Opprettet{0}</th></tr>', sortMarkup));
 
             var counter = 0;
             var listItemEnumerator = this.srcListItems.getEnumerator();
             while (listItemEnumerator.moveNext()) {
                 var currentListItem = listItemEnumerator.get_current();
                 var createdDate = new Date(currentListItem.get_item('Created'));
+                var isNewItem = createdDate > cutoffDate;
                 var phase = currentListItem.get_item('GtProjectPhase');
                 var phaseLabel = phase && phase.Label ? phase.Label : "";
 
                 var tableRow = GT.jQuery(String.format('<tr class="{0}"></tr>', counter % 2 == 1 ? '' : 'ms-HoverBackground-bgColor'))
                 .append(
-                    String.format('<td class="ms-ChoiceField check-field"><input type="checkbox" class="ms-ChoiceField-input gt-checked-element" value="{0}" id="{0}"><label for="{0}" class="ms-ChoiceField-field"><span class="ms-Label">&nbsp;</span></label></td><td class="ms-ChoiceField title-field"><label for="{0}" class="ms-ChoiceField-field"><span class="ms-Label">{1}</span></label></td><td>{2}</td><td>{3}</td>', currentListItem.get_id(), currentListItem.get_item('Title'), phaseLabel, createdDate.format("dd.MM.yyyy, HH:mm"))
+                    String.format('<td class="ms-ChoiceField check-field"><input type="checkbox" class="ms-ChoiceField-input gt-checked-element" value="{0}" id="{0}"><label for="{0}" class="ms-ChoiceField-field"><span class="ms-Label">&nbsp;</span></label></td><td class="ms-ChoiceField title-field"><label for="{0}" class="ms-ChoiceField-field"><span class="ms-Label">{1}{2}</span></label></td><td>{3}</td><td>{4}</td>', currentListItem.get_id(), currentListItem.get_item('Title'), isNewItem ? newMarkup : '', phaseLabel, createdDate.format("dd.MM.yyyy, HH:mm"))
                 );
 
                 elementsTable.append(tableRow);
