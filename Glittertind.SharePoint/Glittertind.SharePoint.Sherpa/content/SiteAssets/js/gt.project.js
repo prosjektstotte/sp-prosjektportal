@@ -377,10 +377,12 @@ GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup,
 
     if (checklistStats) {
         checklistMarkup = String.format("<h3>Beslutningspunkter for {0}</h3><ul>" +
-            "<li><span class='gt-icon gt-completed'></span>{1} punkter gjennomført</li>" +
-            "<li><span class='gt-icon gt-failed'></span>{2} punkter ikke gjennomført</li><li class='spacer'></li>" +
-            "<li><a class='see-all' href='{3}/Lists/Fasesjekkliste/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={0}'>Se alle sjekkpunktene for denne fasen</a></li></ul>",
-            phaseDisplayName, checklistStats.Checked, checklistStats.Unchecked, _spPageContextInfo.webServerRelativeUrl);
+            "<li><span class='gt-icon gt-completed'></span>{1} utførte punkter</li>" +
+            "<li><span class='gt-icon gt-nostatus'></span>{2} åpne punkter</li>" +
+            "<li><span class='gt-icon gt-ignored'></span>{3} ikke relevante</li>" +
+            "<li class='spacer'><span> </span></li>" +
+            "<li><a class='see-all' href='{4}/Lists/Fasesjekkliste/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={0}'>Se alle sjekkpunktene for denne fasen</a></li></ul>",
+            phaseDisplayName, checklistStats.Closed, checklistStats.Open, checklistStats.Ignored, _spPageContextInfo.webServerRelativeUrl);
     }
 
     var markup = String.format('<div class="gt-phaseIcon {0}">' +
@@ -546,15 +548,18 @@ GT.Project.GetChecklistData = function () {
                     if (!existingPhase) {
                         checklistItems[phaseName] = {
                             Id: checklistItem.GtProjectPhase.TermGuid,
-                            Checked: 0,
-                            Unchecked: 0
+                            Closed: 0,
+                            Open: 0,
+                            Ignored: 0
                         };
                         existingPhase = checklistItems[phaseName];
                     }
-                    if (status !== "Ja" && status !== "Utført") {
-                        existingPhase.Unchecked += 1;
+                    if (status === "Ja" || status === "Utført") {
+                        existingPhase.Closed += 1;
+                    } else if (status === "Ignorert" || status === "Ikke relevant") {
+                        existingPhase.Ignored += 1;
                     } else {
-                        existingPhase.Checked += 1;
+                        existingPhase.Open += 1;
                     }
                 }
             }
