@@ -551,7 +551,7 @@ GT.Project.GetChecklistData = function () {
                         };
                         existingPhase = checklistItems[phaseName];
                     }
-                    if (status !== "Ja") {
+                    if (status !== "Ja" && status !== "Utført") {
                         existingPhase.Unchecked += 1;
                     } else {
                         existingPhase.Checked += 1;
@@ -613,10 +613,10 @@ GT.Project.PhaseForm.CheckList.CheckListItem = function (title, id, status) {
     self.Id = id;
     self.Status = status;
     self.get_statusCssClass = function () {
-        if (self.Status === 'Ja') {
+        if (self.Status === 'Ja' || self.Status === 'Utført') {
             return 'gt-completed';
         }
-        if (self.Status === 'Ignorert') {
+        if (self.Status === 'Ignorert' || self.Status === 'Ikke relevant') {
             return 'gt-ignored';
         }
         if (self.Status === 'Nei') {

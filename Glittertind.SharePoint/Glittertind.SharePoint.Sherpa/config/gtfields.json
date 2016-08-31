@@ -368,9 +368,11 @@
    },
    {
       "Choices"      : [
-         "Ja",
-         "Ignorert"
+         "Åpent",
+         "Utført",
+         "Ikke relevant"
       ],
+      "Default"      : "Åpent",
       "Description"  : "",
       "DisplayName"  : "Status",
       "Group"        : "Glittertind Områdekolonner",
@@ -555,5 +557,5 @@
       "InternalName" : "GtProjectTaskUrl",
       "Type"         : "URL",
       "Format"       : "Hyperlink"
-   }   
+   }
 ]
