@@ -529,5 +529,5 @@ ul.gt-List .new.gt-projectItem .gt-phaseIcon {
 .gt-icon.gt-nostatus:after {
   content: "?";
   font-weight: bold;
-  margin-left: 9px;
+  margin: 0 0 0 7px;
 }
