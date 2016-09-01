@@ -318,35 +318,29 @@ GT.Project.GetProjectPhases = function () {
     GT.jQuery.when(GT.Project.GetPhaseTermSetId()).then(function (termSetId) {
         var context = SP.ClientContext.get_current();
         var taxSession = SP.Taxonomy.TaxonomySession.getTaxonomySession(context);
-        var termStores = taxSession.get_termStores();
+        var termStore = taxSession.getDefaultSiteCollectionTermStore();
+        var termSet = termStore.getTermSet(termSetId);
+        var terms = termSet.getAllTerms();
 
-        context.load(termStores);
+        context.load(terms);
         context.executeQueryAsync(Function.createDelegate(this, function () {
-            var termStore = termStores.getItemAtIndex(0);
-            var termSet = termStore.getTermSet(termSetId);
-            var terms = termSet.getAllTerms();
+            var termsArray = [];
+            var termEnumerator = terms.getEnumerator();
 
-            context.load(terms);
-            context.executeQueryAsync(Function.createDelegate(this, function () {
-                var termsArray = [];
-                var termEnumerator = terms.getEnumerator();
-
-                while (termEnumerator.moveNext()) {
-                    var currentTerm = termEnumerator.get_current();
-                    if (currentTerm.get_localCustomProperties()["ShowOnFrontpage"] != "false") {
-                        termsArray.push({
-                            "Name": currentTerm.get_name(),
-                            "Id": currentTerm.get_id(),
-                            "SubText": currentTerm.get_localCustomProperties()["SubText"]
-                        });
-                    }
+            while (termEnumerator.moveNext()) {
+                var currentTerm = termEnumerator.get_current();
+                if (currentTerm.get_localCustomProperties()["ShowOnFrontpage"] != "false") {
+                    termsArray.push({
+                        "Name": currentTerm.get_name(),
+                        "Id": currentTerm.get_id(),
+                        "SubText": currentTerm.get_localCustomProperties()["SubText"]
+                    });
                 }
+            }
 
-                defer.resolve(termsArray);
-            }), Function.createDelegate(this, function () {
-                defer.reject(arguments);
-            }));
+            defer.resolve(termsArray);
         }), Function.createDelegate(this, function () {
+            console.log('Error: Could not load terms');
             defer.reject(arguments);
         }));
     });

@@ -72,7 +72,8 @@ GT.Project.Setup.CreateSiteSettingsCustomActions = function () {
             newCustomAction.set_name('GT.SiteSettings.CopyTasks');
             newCustomAction.set_title('Hent oppgaver fra porteføljeområdet');
             newCustomAction.set_description('Velg oppgaver fra porteføljeområdet og kopier oppgavene til prosjektet.');
-            var customActionJavaScript = 'javascript:window.location.href = String.format(\'{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings\', _spPageContextInfo.siteServerRelativeUrl, \'Standardoppgaver\', \'Oppgaver\', encodeURIComponent(_spPageContextInfo.webServerRelativeUrl));';
+            var customActionJavaScript = String.format('{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings', _spPageContextInfo.siteServerRelativeUrl, 'Standardoppgaver', 'Oppgaver', encodeURIComponent(_spPageContextInfo.webServerRelativeUrl));;
+
             newCustomAction.set_url(customActionJavaScript);
             newCustomAction.update();
 
@@ -405,6 +406,7 @@ GT.Project.Setup.copyFile = function (file, srcWeb, srcLibUrl, dstWeb, dstLib) {
     executor.executeAsync(info);
     return deferred.promise();
 };
+
 GT.Project.Setup.createFolders = function () {
     var deferred = GT.jQuery.Deferred();
     GT.jQuery.ajax({
@@ -441,6 +443,7 @@ GT.Project.Setup.createFolders = function () {
 	});
     return deferred.promise();
 };
+
 GT.Project.Setup.CopyFilesAndFolders = function (properties) {
     var dstWeb = _spPageContextInfo.webServerRelativeUrl;
     var srcWeb = properties.SrcWeb;
@@ -509,7 +512,6 @@ GT.Project.Setup.CopyFilesAndFolders = function (properties) {
 };
 
 GT.Project.Setup.populateTaskList = function (listData) {
-
     var deferred = GT.jQuery.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
@@ -557,7 +559,6 @@ GT.Project.Setup.populateTaskList = function (listData) {
     }
 
     createListItem(listData.Data);
-
     clientContext.executeQueryAsync(function (sender, args) {
 
         console.log("Copied default items to " + listData.Name);

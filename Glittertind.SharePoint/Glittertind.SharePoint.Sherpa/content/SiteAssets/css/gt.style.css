@@ -270,6 +270,7 @@ ul.gt-List .new.gt-projectItem .gt-phaseIcon {
   -moz-transition: opacity 0s ease-in-out;
   -webkit-transition: opacity 0s ease-in-out;
   position: absolute;
+  max-height: 10px;
 }
 .projectFrontPage .projectPhaseSection ul.projectPhases > li .checklistStats h3 {
   color: #eee;
@@ -407,7 +408,8 @@ ul.gt-List .new.gt-projectItem .gt-phaseIcon {
 .projectFrontPage .projectPhaseSection ul.projectPhases > li:hover .checklistStats {
   display: block;
   position: absolute;
-  top: 100%;
+  top: 90%;
+  max-height: 140px;
   margin-left: -7px;
   margin-top: -1px;
   z-index: 15;

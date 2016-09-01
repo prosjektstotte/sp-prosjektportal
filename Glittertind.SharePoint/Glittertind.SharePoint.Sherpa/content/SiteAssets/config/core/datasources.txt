@@ -8,6 +8,7 @@
                 "DstList": "Oppgaver",
                 "SrcWeb": "{sitecollectionrelative}",
                 "Fields": [
+                    "ID",
                     "Title",
                     "GtProjectPhase",
                     "ParentIDId",
@@ -20,6 +21,7 @@
                 "DstList": "Fasesjekkliste",
                 "SrcWeb": "{sitecollectionrelative}",
                 "Fields": [
+                    "ID",
                     "Title",
                     "GtProjectPhase"
                 ]
@@ -30,6 +32,7 @@
                 "DstList": "Interessentregister",
                 "SrcWeb": "{sitecollectionrelative}",
                 "Fields": [
+                    "ID",
                     "Title",
                     "GtStakeholderGroup",
                     "GtStakeholderContext",
@@ -45,6 +48,7 @@
                 "DstList": "Dokumenter",
                 "SrcWeb": "{sitecollectionrelative}",
                 "Fields": [
+                    "ID",
                     "Title",
                     "GtProjectPhase"
                 ]
