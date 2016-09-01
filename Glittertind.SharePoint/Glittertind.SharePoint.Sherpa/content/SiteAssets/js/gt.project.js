@@ -321,11 +321,11 @@ GT.Project.GetProjectPhases = function () {
         var termStores = taxSession.get_termStores();
 
         context.load(termStores);
-
         context.executeQueryAsync(Function.createDelegate(this, function () {
             var termStore = termStores.getItemAtIndex(0);
             var termSet = termStore.getTermSet(termSetId);
             var terms = termSet.getAllTerms();
+
             context.load(terms);
             context.executeQueryAsync(Function.createDelegate(this, function () {
                 var termsArray = [];
@@ -377,12 +377,12 @@ GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup,
 
     if (checklistStats) {
         checklistMarkup = String.format("<h3>Beslutningspunkter for {0}</h3><ul>" +
-            "<li><span class='gt-icon gt-completed'></span>{1} utførte punkter</li>" +
-            "<li><span class='gt-icon gt-nostatus'></span>{2} åpne punkter</li>" +
+            "<li><span class='gt-icon gt-nostatus'></span>{1} åpne punkter</li>" +
+            "<li><span class='gt-icon gt-completed'></span>{2} utførte punkter</li>" +
             "<li><span class='gt-icon gt-ignored'></span>{3} ikke relevante</li>" +
             "<li class='spacer'><span> </span></li>" +
             "<li><a class='see-all' href='{4}/Lists/Fasesjekkliste/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={0}'>Se alle sjekkpunktene for denne fasen</a></li></ul>",
-            phaseDisplayName, checklistStats.Closed, checklistStats.Open, checklistStats.Ignored, _spPageContextInfo.webServerRelativeUrl);
+            phaseDisplayName, checklistStats.Open, checklistStats.Closed, checklistStats.Ignored, _spPageContextInfo.webServerRelativeUrl);
     }
 
     var markup = String.format('<div class="gt-phaseIcon {0}">' +
