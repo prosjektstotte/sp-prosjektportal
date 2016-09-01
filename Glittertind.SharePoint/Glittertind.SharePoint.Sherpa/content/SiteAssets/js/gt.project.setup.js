@@ -72,7 +72,7 @@ GT.Project.Setup.CreateSiteSettingsCustomActions = function () {
             newCustomAction.set_name('GT.SiteSettings.CopyTasks');
             newCustomAction.set_title('Hent oppgaver fra porteføljeområdet');
             newCustomAction.set_description('Velg oppgaver fra porteføljeområdet og kopier oppgavene til prosjektet.');
-            var customActionJavaScript = 'javascript:window.location.href = String.format("{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings", _spPageContextInfo.siteServerRelativeUrl, "Standardoppgaver", "Oppgaver", encodeURIComponent(_spPageContextInfo.webServerRelativeUrl));';
+            var customActionJavaScript = 'javascript:window.location.href = String.format(\'{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings\', _spPageContextInfo.siteServerRelativeUrl, \'Standardoppgaver\', \'Oppgaver\', encodeURIComponent(_spPageContextInfo.webServerRelativeUrl));';
             newCustomAction.set_url(customActionJavaScript);
             newCustomAction.update();
 
@@ -81,7 +81,8 @@ GT.Project.Setup.CreateSiteSettingsCustomActions = function () {
                 console.log('Configured custom actions for site');
                 deferred.resolve();
             }), Function.createDelegate(this, function() {
-                console.log('Error ' + errorThrown);
+                console.log('Error adding custom actions');
+                console.log(arguments);
                 deferred.resolve();
             }));
         } else {
