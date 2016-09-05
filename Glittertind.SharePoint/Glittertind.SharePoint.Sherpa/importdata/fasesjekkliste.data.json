@@ -127,6 +127,18 @@
                 "Fields": [
                     {
                         "Name": "Title",
+                        "Value": "Er gevinstansvarlig utpekt og rollebeskrivelse etablert?"
+                    },
+                    {
+                        "Name": "GtProjectPhase",
+                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                    }
+                ]
+            },
+            {
+                "Fields": [
+                    {
+                        "Name": "Title",
                         "Value": "Støtter prosjektforslaget opp under virksomhetens mål og strategier?"
                     },
                     {
@@ -211,6 +223,18 @@
                 "Fields": [
                     {
                         "Name": "Title",
+                        "Value": "Er prosjektets resultatmål med tilhørende produkter/leveranser egnet til å skape de ønskede endringene og gevinstene som ble lagt til grunn for vurderingene i konseptfasen?"
+                    },
+                    {
+                        "Name": "GtProjectPhase",
+                        "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                    }
+                ]
+            },
+            {
+                "Fields": [
+                    {
+                        "Name": "Title",
                         "Value": "Er det utarbeidet en helhetlig og konsistent plan som bryter prosjektet ned i håndterbare faser?"
                     },
                     {
@@ -283,7 +307,19 @@
                 "Fields": [
                     {
                         "Name": "Title",
-                        "Value": "Er det utarbeidet en gevinstrealiseringsplan og er linjeorganisasjonens kapasitet til å realisere gevinstene blitt vurdert?"
+                        "Value": "Har gevinstansvarlig vært aktivt involvert i utarbeidelsen av gevinstrealiseringplanen?"
+                    },
+                    {
+                        "Name": "GtProjectPhase",
+                        "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                    }
+                ]
+            },
+            {
+                "Fields": [
+                    {
+                        "Name": "Title",
+                        "Value": "Er linjeorganisasjonens kapasitet til å realisere gevinstene blitt vurdert?"
                     },
                     {
                         "Name": "GtProjectPhase",
@@ -320,6 +356,18 @@
                     {
                         "Name": "Title",
                         "Value": "Er det noe utestående arbeid som prosjektet skal ha ansvar for å avslutte?"
+                    },
+                    {
+                        "Name": "GtProjectPhase",
+                        "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+                    }
+                ]
+            },
+            {
+                "Fields": [
+                    {
+                        "Name": "Title",
+                        "Value": "Oppfatter gevinstansvarlig at de ønskede gevinstene fortsatt er realistiske, og er gevinstrealiseringsplanen gjennomgått og eventuelt oppdatert underveis i gjennomføringsfasen(e)?"
                     },
                     {
                         "Name": "GtProjectPhase",
