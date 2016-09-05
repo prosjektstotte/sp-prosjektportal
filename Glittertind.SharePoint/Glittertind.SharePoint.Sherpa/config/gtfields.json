@@ -16,6 +16,14 @@
      "Type"         : "Text"
    },
    {
+      "Description" : "",
+      "DisplayName" : "Prosjektnavn i Økonomisystemet",
+      "Group"       : "Glittertind Områdekolonner",
+      "ID"          : "983d5ab3-0a6c-4f6a-a7b5-d34d52d73676",
+      "InternalName": "GtProjectFinanceName",
+      "Type"        : "Text"
+   },
+   {
       "Description"  : "",
       "DisplayName"  : "Fase",
       "Group"        : "Glittertind Områdekolonner",
@@ -104,6 +112,7 @@
       "Choices"      : [
          "Foran plan",
          "På plan",
+         "Mindre forsinkelse som kan tas igjen",
          "Forsinket"
       ],
       "Default"      : "På plan",
@@ -128,6 +137,7 @@
       "Choices"      : [
          "Under budsjett",
          "På budsjett",
+         "Mindre overskridelser som kan tas igjen",
          "Over budsjett",
          "Vet ikke"
       ],
@@ -158,8 +168,8 @@
       "Type"         : "Number"
    },
    {
-      "Description"  : "",
-      "DisplayName"  : "Effektmål",
+      "Description"  : "Beskriv hva prosjektet skal levere",
+      "DisplayName"  : "Målsetning",
       "Group"        : "Glittertind Områdekolonner",
       "ID"           : "018f09b8-4954-41bb-a8f6-fa531b90b79f",
       "InternalName" : "GtProjectGoals",
