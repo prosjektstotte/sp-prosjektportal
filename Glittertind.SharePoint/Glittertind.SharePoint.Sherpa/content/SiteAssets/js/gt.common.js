@@ -56,13 +56,15 @@ GT.Common.IsNonHtml5Browser = function() {
 };
 
 // See tokens here: http://msdn.microsoft.com/en-us/library/office/ms431831%28v=office.15%29.aspx
-GT.Common.GetUrlWithoutTokens = function (url) {
-    return url.replace('{Site}', _spPageContextInfo.webAbsoluteUrl)
+GT.Common.GetStringValueWithoutTokens = function (stringValue) {
+    return stringValue.replace('{Site}', _spPageContextInfo.webAbsoluteUrl)
+			  .replace('{SiteTitle}', _spPageContextInfo.webTitle)
               .replace('{SiteUrl}', _spPageContextInfo.webAbsoluteUrl)
               .replace('{SiteUrlEncoded}', encodeURIComponent(_spPageContextInfo.webAbsoluteUrl))
               .replace('{SiteCollection}', _spPageContextInfo.siteAbsoluteUrl)
               .replace('{SiteCollectionEncoded}', encodeURIComponent(_spPageContextInfo.siteAbsoluteUrl))
 			  .replace('{site}', _spPageContextInfo.webAbsoluteUrl)
+			  .replace('{sitetitle}', _spPageContextInfo.webTitle)
               .replace('{siteurl}', _spPageContextInfo.webAbsoluteUrl)
               .replace('{siteurlencoded}', encodeURIComponent(_spPageContextInfo.webAbsoluteUrl))
               .replace('{sitecollection}', _spPageContextInfo.siteAbsoluteUrl)

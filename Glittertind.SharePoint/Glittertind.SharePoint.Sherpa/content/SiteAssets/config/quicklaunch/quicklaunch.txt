@@ -1,11 +1,11 @@
 ﻿[
     {
         "Url": "{sitecollection}",
-        "Title": "Til porteføljen"
+        "Title": "Til prosjektoversikten"
     },
     {
         "Url": "",
-        "Title": "Hjem"
+        "Title": "Hjem ({sitetitle})"
     },
     {
         "Url": "Lists/Prosjektlogg",

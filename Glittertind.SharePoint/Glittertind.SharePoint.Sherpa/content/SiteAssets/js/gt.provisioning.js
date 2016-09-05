@@ -151,7 +151,7 @@ GT.Provisioning.GetUrlOfDataSourceByList = function(srcListName) {
         for (var i = 0; i < data.DataSources.Lists.length; i++) {
             var listDataSource = data.DataSources.Lists[i];
             if (listDataSource.SrcList === srcListName) {
-                srcWebUrl = GT.Common.GetUrlWithoutTokens(listDataSource.SrcWeb);
+                srcWebUrl = GT.Common.GetStringValueWithoutTokens(listDataSource.SrcWeb);
                 continue;
             }
         }
