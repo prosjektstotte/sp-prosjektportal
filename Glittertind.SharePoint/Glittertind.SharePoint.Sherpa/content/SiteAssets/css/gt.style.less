@@ -262,8 +262,7 @@ ul.gt-List {
 	}
 
 	ul.projectPhases {
-		width: 96%;
-		margin: 0 0 20px 0;
+		margin: 0 20px 30px 0;
 		padding: 0;
 		display: flex;
 		list-style-type: square;
@@ -276,6 +275,16 @@ ul.gt-List {
 			@gtGreenInverted: #fff;
 			@gtBlueInverted: #fff;
 
+			width: auto;
+			-ms-flex: 1;
+			-webkit-flex: 1;
+			-moz-flex: 1;
+			flex: 1;
+			display: block;
+			position: relative;
+			margin: 0;
+			text-decoration: none;
+
 			.phaseLetterHover() {
 				&:hover {
 					.phaseLetter {
@@ -285,17 +294,6 @@ ul.gt-List {
 					}
 				}
 			}
-
-			width: auto;
-			-ms-flex: 1;
-			-webkit-flex: 1;
-			-moz-flex: 1;
-			flex: 1;
-			display: block;
-			position: relative;
-			margin: 0;
-			padding: 10px 0 10px 0;
-			text-decoration: none;
 
 			> a,
 			> a:visited {
@@ -390,7 +388,7 @@ ul.gt-List {
 			&:after {
 				display: block;
 				position: absolute;
-				top: 37px;
+				top: 35px;
 				width: 100%;
 				height: 1px;
 				content: '';
@@ -410,7 +408,7 @@ ul.gt-List {
 			.gt-phaseIcon:after {
 				display: block;
 				position: absolute;
-				top: 33px;
+				top: 31px;
 				width: 100%;
 				height: 1px;
 				content: '';
@@ -474,17 +472,16 @@ ul.gt-List {
 				.checklistStats {
 					display: block;
 					position:absolute;
-					top:90%;
+					top:64px;
+                    left: -6px;
                     max-height: 140px;
-					margin-left:-7px;
-					margin-top: -1px;
 					z-index:15;
 					background: rgba(50,50,50,.95);
 					padding:15px;
 					border:0px solid #ccc;
 					box-shadow: 3px 8px 15px #999;
 					color: #eee;
-					width:250px;
+					min-width:240px;
 					border-radius:2px;
 					overflow:visible;
 					opacity:1;
@@ -578,7 +575,7 @@ ul.gt-List {
 	height: 20px;
 	display: inline-block;
 	margin-right: 7px;
-	border-radius: 5px;
+	border-radius: 15px;
 	vertical-align: top;
 
 
@@ -593,14 +590,14 @@ ul.gt-List {
 	}
 
 	&.gt-completed {
-		background-color: green;
+		background-color: #393;
 		&:after {
 			content: "\2713 ";
 		}
 	}
 
 	&.gt-ignored {
-		background-color: #E8C900;
+		background-color: #ff8000;
 
 		&:after {
 			content: "\2713 ";
