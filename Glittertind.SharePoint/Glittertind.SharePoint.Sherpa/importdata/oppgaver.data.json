@@ -7,143 +7,337 @@
                 "Fields": [
                     {
                         "Name": "Title",
-                        "Value": "Beslutte utredning av idéen og utforme et førsteutkast til prosjektmandat"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Definere en tydelig problemstilling som synliggjør behovet for nærmere utredning"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Gjøre det tydelig hvordan eller av hvem utredningen skal finansieres"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Vurdere om det er mest riktig å gjennomføre tiltaket som et prosjekt eller som en linjeoppgave"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Vurdere om tiltaket er i henhold til virksomhetsstrategien"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Vurdere om det finnes noen føringer (IT -politiske eller andre) som gjelder og må tas hensyn til i utredningen"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Vurdere om det er behov for mer informasjon før det kan fattes en beslutning"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Utforme endelig prosjektmandat og legge det fram til vedtak i Beslutningspunkt 1 (BP1)"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Gjennomføre BP1 (sjekkliste og evt. faseovergang) og vurdere om vi skal gå videre til konseptfasen og utrede ulike konsepter for et mulig prosjekt"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Hvis man i BP1 har vedtatt å gå videre til konseptfasen, utnevne en utredningsleder for konseptfasen"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Etablere prosjektforslagsdokumentet for videre arbeid (på basis av prosjektmandatet)"
+                        "Value": "Konsept"
                     },
                     {
                         "Name": "GtProjectPhase",
                         "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
                     }
-                ]
-            },
-            {
-                "Fields": [
+                ],
+                "Rows": [
                     {
-                        "Name": "Title",
-                        "Value": "Utnevne en prosjekteier"
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Beslutte utredning av idéen og utforme et førsteutkast til prosjektmandat"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                            }
+                        ]
                     },
                     {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Definere en tydelig problemstilling som synliggjør behovet for nærmere utredning"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Gjøre det tydelig hvordan eller av hvem utredningen skal finansieres"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Vurdere om det er mest riktig å gjennomføre tiltaket som et prosjekt eller som en linjeoppgave"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Vurdere om tiltaket er i henhold til virksomhetsstrategien"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Vurdere om det finnes noen føringer (IT -politiske eller andre) som gjelder og må tas hensyn til i utredningen"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Vurdere om det er behov for mer informasjon før det kan fattes en beslutning"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Utforme endelig prosjektmandat og legge det fram til vedtak i Beslutningspunkt 1 (BP1)"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Gjennomføre BP1 (sjekkliste og evt. faseovergang) og vurdere om vi skal gå videre til konseptfasen og utrede ulike konsepter for et mulig prosjekt"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Hvis man i BP1 har vedtatt å gå videre til konseptfasen, utnevne en utredningsleder for konseptfasen"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Ingen fase|6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Etablere prosjektforslagsdokumentet for videre arbeid (på basis av prosjektmandatet)"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Utnevne en prosjekteier"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Vurdere om det skal etableres et prosjektstyre"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Etablere rollebeskrivelse for prosjekteier"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Utpeke en prosjektleder"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Etablere rollebeskrivelse for prosjektleder"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Allokere nøkkelressurser for prosjektet og gjøre nødvendige avtaler for å sikre ressurstilgang, samt sette sammen en prosjektgruppe"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Gjennomføre nødvendige analyser (Samfunnsøkonomisk analyse, KS1, KS2 e.l.) "
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Etablere en grov prosjektbegrunnelse "
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Samle inn erfaringer fra tidligere prosjekter og aktiviteter som er nyttige for dette prosjektet"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Etablere prosjektets egen erfaringslogg"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Vurdere om prosjektet er realistisk og gjennomførbart"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Vurdere om prosjektforslaget støtter opp under virksomhetens mål og strategier"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Vurdere om det er gjort en tilstrekkelig evaluering av ulike alternativer å sikre at prosjektforslaget gir et riktig valg å gå videre med. (Husk kvantitative og kvalitative gevinstanalyser og sammenligninger av kost/nytte for hvert alternativ)"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Utarbeide endelig prosjektforslag til vedtak i Beslutningspunkt 2 (BP2)"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Ferdigstille faseplan for Planleggingsfasen til vedtak i Beslutningspunkt 2 (BP2)"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Gjennomføre BP2 (sjekkliste og evt. faseovergang) og vurdere om man skal gå videre til planleggingsfasen og planlegge prosjektet i detalj"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
+                            }
+                        ]
                     }
                 ]
             },
@@ -151,203 +345,157 @@
                 "Fields": [
                     {
                         "Name": "Title",
-                        "Value": "Vurdere om det skal etableres et prosjektstyre"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Etablere rollebeskrivelse for prosjekteier"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Utpeke en prosjektleder"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Etablere rollebeskrivelse for prosjektleder"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Allokere nøkkelressurser for prosjektet og gjøre nødvendige avtaler for å sikre ressurstilgang, samt sette sammen en prosjektgruppe"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Gjennomføre nødvendige analyser (Samfunnsøkonomisk analyse, KS1, KS2 e.l.) "
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Etablere en grov prosjektbegrunnelse "
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Samle inn erfaringer fra tidligere prosjekter og aktiviteter som er nyttige for dette prosjektet"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Etablere prosjektets egen erfaringslogg"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Vurdere om prosjektet er realistisk og gjennomførbart"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Vurdere om prosjektforslaget støtter opp under virksomhetens mål og strategier"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Vurdere om det er gjort en tilstrekkelig evaluering av ulike alternativer å sikre at prosjektforslaget gir et riktig valg å gå videre med. (Husk kvantitative og kvalitative gevinstanalyser og sammenligninger av kost/nytte for hvert alternativ)"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Utarbeide endelig prosjektforslag til vedtak i Beslutningspunkt 2 (BP2)"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Ferdigstille faseplan for Planleggingsfasen til vedtak i Beslutningspunkt 2 (BP2)"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Gjennomføre BP2 (sjekkliste og evt. faseovergang) og vurdere om man skal gå videre til planleggingsfasen og planlegge prosjektet i detalj"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Konsept|99e85650-33de-4af4-b8db-edffbc8a310b"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Vurdere å etablere nødvendige strategier for gjennomføring av prosjektet (Dette vil variere mellom ulike prosjekttyper. Se eksempler under aktiviteter i Planleggingsfasen på Prosjektveiviseren.no)"
+                        "Value": "Planlegge"
                     },
                     {
                         "Name": "GtProjectPhase",
                         "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
                     }
-                ]
-            },
-            {
-                "Fields": [
+                ],
+                "Rows": [
                     {
-                        "Name": "Title",
-                        "Value": "Ferdigstille den detaljerte prosjektbegrunnelsen som i sum skal sikre at prosjektet fortsatt er ønskelig og i tråd med virksomhetens strategiske mål?"
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Vurdere å etablere nødvendige strategier for gjennomføring av prosjektet (Dette vil variere mellom ulike prosjekttyper. Se eksempler under aktiviteter i Planleggingsfasen på Prosjektveiviseren.no)"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                            }
+                        ]
                     },
                     {
-                        "Name": "GtProjectPhase",
-                        "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Ferdigstille den detaljerte prosjektbegrunnelsen som i sum skal sikre at prosjektet fortsatt er ønskelig og i tråd med virksomhetens strategiske mål?"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Gjennomføre en interessentanalyse"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Opprette en kommunikasjonsplan"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Etablere en endelig prosjektorganisasjon med roller og ansvar, og tilstrekkelige ressurser til å gjennomføre prosjektet"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Gjennomføre usikkerhetsanalyse og vurdere om usikkerheten er akseptabel"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Identifisere kritiske suksessfaktorer og leveranser i prosjektet"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Utarbeide en gevinstrealiseringsplan som inkluderer en vurdering av linjeorganisasjonens kapasitet til å realisere gevinstene"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Utarbeide en helhetlig og konsistent gjennomføringsplan som bryter prosjektet ned i håndterbare faser med milepæler"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Utarbeide/samle nødvendig styringsdokumentasjon til vedtak i Beslutningspunkt 3 (BP3)"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Ferdigstille faseplan for første gjennomføringsfase til vedtak i BP3"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Gjennomføre BP3 (sjekkliste og evt. faseovergang) og vurdere om man skal gå videre til gjennomføringsfasen(e)"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
+                            }
+                        ]
                     }
                 ]
             },
@@ -355,143 +503,145 @@
                 "Fields": [
                     {
                         "Name": "Title",
-                        "Value": "Gjennomføre en interessentanalyse"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Opprette en kommunikasjonsplan"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Etablere en endelig prosjektorganisasjon med roller og ansvar, og tilstrekkelige ressurser til å gjennomføre prosjektet"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Gjennomføre usikkerhetsanalyse og vurdere om usikkerheten er akseptabel"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Identifisere kritiske suksessfaktorer og leveranser i prosjektet"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Utarbeide en gevinstrealiseringsplan som inkluderer en vurdering av linjeorganisasjonens kapasitet til å realisere gevinstene"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Utarbeide en helhetlig og konsistent gjennomføringsplan som bryter prosjektet ned i håndterbare faser med milepæler"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Utarbeide/samle nødvendig styringsdokumentasjon til vedtak i Beslutningspunkt 3 (BP3)"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Ferdigstille faseplan for første gjennomføringsfase til vedtak i BP3"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Gjennomføre BP3 (sjekkliste og evt. faseovergang) og vurdere om man skal gå videre til gjennomføringsfasen(e)"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Planlegge|cda4f1e1-3488-4e57-8a04-6973df239689"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Følge opp at prosjektets leveranser er i overensstemmelse med definerte resultatmål for prosjektet"
+                        "Value": "Gjennomføre"
                     },
                     {
                         "Name": "GtProjectPhase",
                         "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
                     }
-                ]
-            },
-            {
-                "Fields": [
+                ],
+                "Rows": [
                     {
-                        "Name": "Title",
-                        "Value": "Sørge for at leveranser er skikkelig dokumentert og levert i henhold til plan"
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Følge opp at prosjektets leveranser er i overensstemmelse med definerte resultatmål for prosjektet"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+                            }
+                        ]
                     },
                     {
-                        "Name": "GtProjectPhase",
-                        "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Sørge for at leveranser er skikkelig dokumentert og levert i henhold til plan"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Når det nærmer seg avslutningsfasen, vurdere om det er noe utestående arbeid som prosjektet skal ha ansvar for å avslutte"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Sørge for at nødvendig opplæring, brukerdokumentasjon, driftsrutiner osv er utarbeidet og gjennomført"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Sørge for god dialog med linjeorganisasjonen underveis, slik at den er klar til å ta i bruk leveransene fra prosjektet"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Forankre og tydeliggjøre hvem som skal følge opp og rapportere effekter (i henhold til gevinstrealiseringsplan), når dette skal rapporteres på etter prosjektslutt og til hvem"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Avklare hvem som har ansvar for videre forvaltning og drift av prosjektresultatet, og inngå nødvendige avtaler"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Levere ferdige prosjektprodukter til linjen"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Oppdatere styringsdokumentasjon (prosjektbegrunnelse, erfaringslogg og gevinstrealiseringsplan) til vedtak i Beslutningspunkt 4 (BP4)"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Ferdigstille faseplan for avslutningsfasen til vedtak i BP4"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Gjennomføre BP4 (sjekkliste og evt. faseovergang) og vurdere om man skal gå videre til avslutningsfasen"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
+                            }
+                        ]
                     }
                 ]
             },
@@ -499,155 +649,157 @@
                 "Fields": [
                     {
                         "Name": "Title",
-                        "Value": "Når det nærmer seg avslutningsfasen, vurdere om det er noe utestående arbeid som prosjektet skal ha ansvar for å avslutte"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Sørge for at nødvendig opplæring, brukerdokumentasjon, driftsrutiner osv er utarbeidet og gjennomført"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Sørge for god dialog med linjeorganisasjonen underveis, slik at den er klar til å ta i bruk leveransene fra prosjektet"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Forankre og tydeliggjøre hvem som skal følge opp og rapportere effekter (i henhold til gevinstrealiseringsplan), når dette skal rapporteres på etter prosjektslutt og til hvem"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Avklare hvem som har ansvar for videre forvaltning og drift av prosjektresultatet, og inngå nødvendige avtaler"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Levere ferdige prosjektprodukter til linjen"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Oppdatere styringsdokumentasjon (prosjektbegrunnelse, erfaringslogg og gevinstrealiseringsplan) til vedtak i Beslutningspunkt 4 (BP4)"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Ferdigstille faseplan for avslutningsfasen til vedtak i BP4"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Gjennomføre BP4 (sjekkliste og evt. faseovergang) og vurdere om man skal gå videre til avslutningsfasen"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Gjennomføre|99d7765a-c786-4792-a1a1-866ef0f982b9"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Komplettere evt. restanseliste og overlevere endelig leveranse til linjeorganisasjonen"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Levere evt. avtalt støtte til linjeorganisasjonen i innføringsfasen"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Sørge for at alle relevante kontrakter og avtaler er formelt avsluttet"
+                        "Value": "Avslutte"
                     },
                     {
                         "Name": "GtProjectPhase",
                         "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
                     }
-                ]
-            },
-            {
-                "Fields": [
+                ],
+                "Rows": [
                     {
-                        "Name": "Title",
-                        "Value": "Oppdatere og avslutte prosjektregnskapet"
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Komplettere evt. restanseliste og overlevere endelig leveranse til linjeorganisasjonen"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+                            }
+                        ]
                     },
                     {
-                        "Name": "GtProjectPhase",
-                        "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Levere evt. avtalt støtte til linjeorganisasjonen i innføringsfasen"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Sørge for at alle relevante kontrakter og avtaler er formelt avsluttet"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Oppdatere og avslutte prosjektregnskapet"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Avslutte og arkivere prosjektetdokumentasjonen (produkt, kost, tid, kvalitet, ressursbruk)"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Dokumentere positive og negative erfaringer for erfaringsoverføring til organisasjonens erfaringslogg"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Oppdatere prosjektbegrunnelse og gevinstrealiseringsplan (husk at planlagte effektmålinger bør inngå som en del av virksomhetens ordinære styringsprosesser for å sikre måloppnåelse"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Evaluere prosjektet og utarbeide sluttrapport"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Informere alle relevante interessenter om avslutning av prosjektet?"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Utarbeide/samle nødvendig styringsdokumentasjon (sluttrapport, oppdatert prosjektbegrunnelse og gevinstrealiseringplan med restrisiko) til vedtak i Beslutningspunkt 5 (BP5)"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Gjennomføre BP5 (sjekkliste og evt. faseovergang) og vurdere om man skal avslutte prosjektet og gå til realiseringsfasen"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+                            }
+                        ]
+                    },
+                    {
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Formelt oppløse prosjektorganisasjonen ('KickOut')"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
+                            }
+                        ]
                     }
                 ]
             },
@@ -655,143 +807,61 @@
                 "Fields": [
                     {
                         "Name": "Title",
-                        "Value": "Avslutte og arkivere prosjektetdokumentasjonen (produkt, kost, tid, kvalitet, ressursbruk)"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Dokumentere positive og negative erfaringer for erfaringsoverføring til organisasjonens erfaringslogg"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Oppdatere prosjektbegrunnelse og gevinstrealiseringsplan (husk at planlagte effektmålinger bør inngå som en del av virksomhetens ordinære styringsprosesser for å sikre måloppnåelse"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Evaluere prosjektet og utarbeide sluttrapport"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Informere alle relevante interessenter om avslutning av prosjektet?"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Utarbeide/samle nødvendig styringsdokumentasjon (sluttrapport, oppdatert prosjektbegrunnelse og gevinstrealiseringplan med restrisiko) til vedtak i Beslutningspunkt 5 (BP5)"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Gjennomføre BP5 (sjekkliste og evt. faseovergang) og vurdere om man skal avslutte prosjektet og gå til realiseringsfasen"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Formelt oppløse prosjektorganisasjonen ('KickOut')"
-                    },
-                    {
-                        "Name": "GtProjectPhase",
-                        "Value": "Avslutte|30e03c52-8c3e-4cfe-9b18-ca71593ce130"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Sørge for at planlagte målinger og tiltak er gjennomført i henhold til gevinstrealiseringplanen"
+                        "Value": "Realisere"
                     },
                     {
                         "Name": "GtProjectPhase",
                         "Value": "Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
                     }
-                ]
-            },
-            {
-                "Fields": [
+                ],
+                "Rows": [
                     {
-                        "Name": "Title",
-                        "Value": "Måle om forventede gevinster er oppnådd eller er om det behov for ytterligere tiltak. I så fall utarbeidet en tiltaksplan"
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Sørge for at planlagte målinger og tiltak er gjennomført i henhold til gevinstrealiseringplanen"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
+                            }
+                        ]
                     },
                     {
-                        "Name": "GtProjectPhase",
-                        "Value": "Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Gjennomføre avtalte effektmålinger for vedtak i Beslutningspunkt 6 (BP6)"
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Måle om forventede gevinster er oppnådd eller er om det behov for ytterligere tiltak. I så fall utarbeidet en tiltaksplan"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
+                            }
+                        ]
                     },
                     {
-                        "Name": "GtProjectPhase",
-                        "Value": "Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
-                    }
-                ]
-            },
-            {
-                "Fields": [
-                    {
-                        "Name": "Title",
-                        "Value": "Gjennomføre BP6 (sjekkliste) og vurdere om man har oppnådd ønsket effekt, og evt. vurdere nye tiltak"
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Gjennomføre avtalte effektmålinger for vedtak i Beslutningspunkt 6 (BP6)"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
+                            }
+                        ]
                     },
                     {
-                        "Name": "GtProjectPhase",
-                        "Value": "Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
+                        "Fields": [
+                            {
+                                "Name": "Title",
+                                "Value": "Gjennomføre BP6 (sjekkliste) og vurdere om man har oppnådd ønsket effekt, og evt. vurdere nye tiltak"
+                            },
+                            {
+                                "Name": "GtProjectPhase",
+                                "Value": "Realisere|b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
+                            }
+                        ]
                     }
                 ]
             }
