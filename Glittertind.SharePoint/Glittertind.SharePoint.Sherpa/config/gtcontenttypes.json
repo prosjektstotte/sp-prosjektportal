@@ -28,49 +28,6 @@
    },
    {
       "Description"    : "",
-      "DisplayName"    : "Prosjektforside",
-      "Fields"         : [
-         "GtProjectFinanceName",
-         "GtProjectNumber",
-         "GtArchiveReference",
-         "GtProjectServiceArea",
-         "GtProjectType",
-         "GtProjectPhase",
-         "GtProjectManager",
-         "GtProjectOwner",
-         "GtStartDate",
-         "GtEndDate",
-         "GtStatusRisk",
-         "GtStatusRiskComment",
-         "GtStatusTime",
-         "GtStatusTimeComment",
-         "GtStatusBudget",
-         "GtStatusBudgetComment",
-         "GtAverageRisk",
-         "GtProjectGoals"
-      ],
-      "Group"          : "Glittertind Innholdstyper",
-      "HiddenFields"   : [
-         "GtAverageRisk"
-      ],
-      "ID"             : "0x010109010058561f86d956412b9dd7957bbcd67aae01",
-      "InternalName"   : "GtProjectFrontPage",
-      "RequiredFields" : [
-         "GtProjectServiceArea",
-         "GtProjectType",
-         "GtProjectPhase",
-         "GtProjectManager",
-         "GtProjectOwner",
-         "GtStartDate",
-         "GtEndDate",
-         "GtStatusRisk",
-         "GtStatusTime",
-         "GtStatusBudget",
-         "GtProjectGoals"
-      ]
-   },
-   {
-      "Description"    : "",
       "DisplayName"    : "Glittertind element",
       "Fields"         : [],
       "Group"          : "Glittertind Innholdstyper",

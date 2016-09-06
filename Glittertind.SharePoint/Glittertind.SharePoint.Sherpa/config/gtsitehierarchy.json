@@ -3,7 +3,8 @@
       "gtfields.json"
    ],
    "ContentTypeConfigurations":[
-      "gtcontenttypes.json"
+      "gtcontenttypes.json",
+      "gtfrontpagecontenttype.json"
    ],
    "TaxonomyConfigurations":[
       "gttaxonomy.json"
