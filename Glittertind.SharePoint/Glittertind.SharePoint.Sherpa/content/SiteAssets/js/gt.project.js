@@ -286,12 +286,17 @@ GT.Project.PopulateProjectPhasePart = function () {
           GT.Project.GetChecklistData()
         ]
         GT.jQuery.when.apply(GT.jQuery, defs).then(function (currentPhase, allPhases, checklistData) {
-            if (allPhases && allPhases.length > 0) {
-                var widthPerPhase = 100 / allPhases.length;
-                for (var ix = 0; ix < allPhases.length; ix++) {
-                    var checkListItemStats = checklistData[allPhases[ix].Name];
-                    var phaseLogoMarkup = GT.Project.GetPhaseLogoMarkup(allPhases[ix], allPhases[ix].Name == currentPhase, true, true, widthPerPhase, ix, (ix + 1) == allPhases.length, checkListItemStats);
-                    GT.jQuery('.projectPhases').append(phaseLogoMarkup);
+            if (allPhases) {
+                var frontPagePhases = allPhases.filter(function(f) {return f.ShowOnFrontpage; });
+                if (frontPagePhases && frontPagePhases.length > 0) {
+                    var widthPerPhase = 100 / frontPagePhases.length;
+                    for (var ix = 0; ix < frontPagePhases.length; ix++) {
+                        if (frontPagePhases[ix].ShowOnFrontpage) {
+                            var checkListItemStats = checklistData[frontPagePhases[ix].Name];
+                            var phaseLogoMarkup = GT.Project.GetPhaseLogoMarkup(frontPagePhases[ix], frontPagePhases[ix].Name == currentPhase, true, true, widthPerPhase, ix, (ix + 1) == frontPagePhases.length, checkListItemStats);
+                            GT.jQuery('.projectPhases').append(phaseLogoMarkup);
+                        }
+                    }
                 }
             }
         });
@@ -310,7 +315,7 @@ GT.Project.GetPhaseTermSetId = function () {
         defer.resolve("abcfc9d9-a263-4abb-8234-be973c46258a");
     });
     return defer.promise();
-}
+};
 
 GT.Project.GetProjectPhases = function () {
     var defer = GT.jQuery.Deferred();
@@ -324,20 +329,14 @@ GT.Project.GetProjectPhases = function () {
 
         context.load(terms);
         context.executeQueryAsync(Function.createDelegate(this, function () {
-            var termsArray = [];
-            var termEnumerator = terms.getEnumerator();
-
-            while (termEnumerator.moveNext()) {
-                var currentTerm = termEnumerator.get_current();
-                if (currentTerm.get_localCustomProperties()["ShowOnFrontpage"] != "false") {
-                    termsArray.push({
-                        "Name": currentTerm.get_name(),
-                        "Id": currentTerm.get_id(),
-                        "SubText": currentTerm.get_localCustomProperties()["SubText"]
-                    });
-                }
-            }
-
+            var termsArray = terms.get_data().map(function (t) {
+                return {
+                    Id: t.get_id(),
+                    Name: t.get_name(),
+                    ShowOnFrontpage: t.get_localCustomProperties()["ShowOnFrontpage"] ? t.get_localCustomProperties()["ShowOnFrontpage"] === 'true' : true,
+                    SubText: t.get_localCustomProperties()["SubText"] ? t.get_localCustomProperties()["SubText"] : ""
+                };
+            });
             defer.resolve(termsArray);
         }), Function.createDelegate(this, function () {
             console.log('Error: Could not load terms');
