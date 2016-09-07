@@ -357,8 +357,9 @@ GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup,
     if (isLastPhase) {
         phaseClass.push("last-phase");
     }
-    phaseClass.push(String.format('phasenumber-{0}', (index+1)));
-
+    if (index) {
+        phaseClass.push(String.format('phasenumber-{0}', (index+1)));
+    }
     if (phase && phase.Name) {
         phaseDisplayName = phase.Name;
         phaseLetter = phaseDisplayName.substr(0, 1);
