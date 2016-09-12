@@ -1,199 +1,199 @@
 ﻿[
-   {
-      "Description"  : "",
-      "DisplayName"  : "Glittertind dokument",
-      "Group"        : "Glittertind Innholdstyper",
-      "ID"           : "0x010100293fde3fcada480b9a77bbdad7dfa28c",
-      "InternalName" : "GtBaseDocument"
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Prosjektdokument",
-      "Fields"         : [
-         "GtProjectPhase"
-      ],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010100293fde3fcada480b9a77bbdad7dfa28c01",
-      "InternalName"   : "GtProjectDocument",
-      "RequiredFields" : [
-         "GtProjectPhase"
-      ]
-   },
-   {
-      "Description"  : "",
-      "DisplayName"  : "Glittertind nettdelside",
-      "Group"        : "Glittertind Innholdstyper",
-      "ID"           : "0x010109010058561f86d956412b9dd7957bbcd67aae",
-      "InternalName" : "GtBaseWebPartPage"
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Glittertind element",
-      "Fields"         : [],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010088578e7470cc4aa68d56634648310702",
-      "InternalName"   : "GtBaseItem",
-      "RequiredFields" : []
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Usikkerhet",
-      "Fields"         : [
-         "GtProjectPhase",
-         "GtRiskProbability",
-         "GtRiskConsequence",
-         "GtRiskProximity",
-         "GtRiskFactor",
-         "GtRiskAction",
-         "GtRiskProbabilityPostAction",
-         "GtRiskConsequencePostAction",
-         "GtRiskFactiorPostAction"
-      ],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010088578e7470cc4aa68d5663464831070201",
-      "InternalName"   : "GtProjectUncertainty",
-      "RequiredFields" : []
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Risiko",
-      "Fields"         : [],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010088578e7470cc4aa68d566346483107020101",
-      "InternalName"   : "GtProjectRisk",
-      "RequiredFields" : []
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Mulighet",
-      "Fields"         : [],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010088578e7470cc4aa68d566346483107020102",
-      "InternalName"   : "GtProjectOpportunity",
-      "RequiredFields" : []
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Interessent",
-      "Fields"         : [
-         "GtStakeholderGroup",
-         "GtStakeholderContext",
-         "GtStakeholderStrategy",
-         "GtStakeholderInterest",
-         "GtStakeholderInfluence",
-         "GtStakeholderInfluencePossibilty",
-         "GtStakeholderActions"
-      ],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010088578e7470cc4aa68d5663464831070202",
-      "InternalName"   : "GtProjectStakeholder",
-      "RequiredFields" : []
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Kommunikasjonsbaseelement",
-      "Fields"         : [
-         "GtProjectPhase",
-         "GtActionDate",
-         "GtActionResponsible"
-      ],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010088578e7470cc4aa68d5663464831070203",
-      "InternalName"   : "GtProjectCommunicationBase",
-      "RequiredFields" : []
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Sjekkpunkt",
-      "Fields"         : [
-         "GtProjectPhase",
-         "GtChecklistStatus",
-         "GtComment"
-      ],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010088578e7470cc4aa68d5663464831070204",
-      "InternalName"   : "GtProjectChecklistElement",
-      "RequiredFields" : []
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Prosjektproduktbase",
-      "Fields"         : [
-         "GtProductPhase",
-         "GtProductQualityExpectations",
-         "GtProductAcceptanceCriteria",
-         "GtProductQualityTolerance",
-         "GtProductQualityResponsible",
-         "GtProductAcceptanceMethod",
-         "GtProductAcceptanceResponsible",
-         "GtProductAcceptanceDate"
-      ],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010088578e7470cc4aa68d5663464831070205",
-      "InternalName"   : "GtProjectProductBase",
-      "RequiredFields" : []
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Prosjektloggbaseelement",
-      "Fields"         : [
-         "GtProjectLogType",
-         "GtProjectLogReporter",
-         "GtProjectLogDescription",
-         "GtProjectLogResponsible",
-         "GtProjectLogConsequence",
-         "GtProjectLogRecommendation",
-         "GtProjectLogExperience",
-         "GtProjectLogActors"
-      ],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010088578e7470cc4aa68d5663464831070206",
-      "InternalName"   : "GtProjectLogBase",
-      "RequiredFields" : []
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Glittertind baseoppgave",
-      "Fields"         : [
-         "GtProjectPhase",
-         "GtProjectTaskUrl"
-      ],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010800233b015f95174c9a8eb505493841de8d",
-      "InternalName"   : "GtTaskBase",
-      "RequiredFields" : [
-         "GtProjectPhase"
-      ]
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Infoelement",
-      "Fields"         : [
-         "GtProjectInfoDescription"
-      ],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010088578e7470cc4aa68d5663464831070207",
-      "InternalName"   : "GtInfoElement",
-      "RequiredFields" : [
-         "GtProjectInfoDescription"
-      ]
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Glittertind basehendelse",
-      "Fields"         : [],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010200a2b2ac17a2244b8590398a9d1e7e3e37",
-      "InternalName"   : "GtProjectEventBase",
-      "RequiredFields" : []
-   },
-   {
-      "Description"    : "",
-      "DisplayName"    : "Prosjekthendelse",
-      "Fields"         : [],
-      "Group"          : "Glittertind Innholdstyper",
-      "ID"             : "0x010200a2b2ac17a2244b8590398a9d1e7e3e3701",
-      "InternalName"   : "GtProjectEvent",
-      "RequiredFields" : []
-   }
+    {
+        "Description": "",
+        "DisplayName": "Glittertind dokument",
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010100293fde3fcada480b9a77bbdad7dfa28c",
+        "InternalName": "GtBaseDocument"
+    },
+    {
+        "Description": "",
+        "DisplayName": "Prosjektdokument",
+        "Fields": [
+            "GtProjectPhase"
+        ],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010100293fde3fcada480b9a77bbdad7dfa28c01",
+        "InternalName": "GtProjectDocument",
+        "RequiredFields": [
+            "GtProjectPhase"
+        ]
+    },
+    {
+        "Description": "",
+        "DisplayName": "Glittertind nettdelside",
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010109010058561f86d956412b9dd7957bbcd67aae",
+        "InternalName": "GtBaseWebPartPage"
+    },
+    {
+        "Description": "",
+        "DisplayName": "Glittertind element",
+        "Fields": [],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010088578e7470cc4aa68d56634648310702",
+        "InternalName": "GtBaseItem",
+        "RequiredFields": []
+    },
+    {
+        "Description": "",
+        "DisplayName": "Usikkerhet",
+        "Fields": [
+            "GtProjectPhase",
+            "GtRiskProbability",
+            "GtRiskConsequence",
+            "GtRiskProximity",
+            "GtRiskFactor",
+            "GtRiskAction",
+            "GtRiskProbabilityPostAction",
+            "GtRiskConsequencePostAction",
+            "GtRiskFactiorPostAction"
+        ],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010088578e7470cc4aa68d5663464831070201",
+        "InternalName": "GtProjectUncertainty",
+        "RequiredFields": []
+    },
+    {
+        "Description": "",
+        "DisplayName": "Risiko",
+        "Fields": [],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010088578e7470cc4aa68d566346483107020101",
+        "InternalName": "GtProjectRisk",
+        "RequiredFields": []
+    },
+    {
+        "Description": "",
+        "DisplayName": "Mulighet",
+        "Fields": [],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010088578e7470cc4aa68d566346483107020102",
+        "InternalName": "GtProjectOpportunity",
+        "RequiredFields": []
+    },
+    {
+        "Description": "",
+        "DisplayName": "Interessent",
+        "Fields": [
+            "GtStakeholderGroup",
+            "GtStakeholderContext",
+            "GtStakeholderStrategy",
+            "GtStakeholderInterest",
+            "GtStakeholderInfluence",
+            "GtStakeholderInfluencePossibilty",
+            "GtStakeholderActions"
+        ],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010088578e7470cc4aa68d5663464831070202",
+        "InternalName": "GtProjectStakeholder",
+        "RequiredFields": []
+    },
+    {
+        "Description": "",
+        "DisplayName": "Kommunikasjonsbaseelement",
+        "Fields": [
+            "GtProjectPhase",
+            "GtActionDate",
+            "GtActionResponsible"
+        ],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010088578e7470cc4aa68d5663464831070203",
+        "InternalName": "GtProjectCommunicationBase",
+        "RequiredFields": []
+    },
+    {
+        "Description": "",
+        "DisplayName": "Sjekkpunkt",
+        "Fields": [
+            "GtProjectPhase",
+            "GtChecklistStatus",
+            "GtComment"
+        ],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010088578e7470cc4aa68d5663464831070204",
+        "InternalName": "GtProjectChecklistElement",
+        "RequiredFields": []
+    },
+    {
+        "Description": "",
+        "DisplayName": "Prosjektproduktbase",
+        "Fields": [
+            "GtProductPhase",
+            "GtProductQualityExpectations",
+            "GtProductAcceptanceCriteria",
+            "GtProductQualityTolerance",
+            "GtProductQualityResponsible",
+            "GtProductAcceptanceMethod",
+            "GtProductAcceptanceResponsible",
+            "GtProductAcceptanceDate"
+        ],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010088578e7470cc4aa68d5663464831070205",
+        "InternalName": "GtProjectProductBase",
+        "RequiredFields": []
+    },
+    {
+        "Description": "",
+        "DisplayName": "Prosjektloggbaseelement",
+        "Fields": [
+            "GtProjectLogType",
+            "GtProjectLogReporter",
+            "GtProjectLogDescription",
+            "GtProjectLogResponsible",
+            "GtProjectLogConsequence",
+            "GtProjectLogRecommendation",
+            "GtProjectLogExperience",
+            "GtProjectLogActors"
+        ],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010088578e7470cc4aa68d5663464831070206",
+        "InternalName": "GtProjectLogBase",
+        "RequiredFields": []
+    },
+    {
+        "Description": "",
+        "DisplayName": "Glittertind baseoppgave",
+        "Fields": [
+            "GtProjectPhase",
+            "GtProjectTaskUrl"
+        ],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010800233b015f95174c9a8eb505493841de8d",
+        "InternalName": "GtTaskBase",
+        "RequiredFields": [
+            "GtProjectPhase"
+        ]
+    },
+    {
+        "Description": "",
+        "DisplayName": "Infoelement",
+        "Fields": [
+            "GtProjectInfoDescription"
+        ],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010088578e7470cc4aa68d5663464831070207",
+        "InternalName": "GtInfoElement",
+        "RequiredFields": [
+            "GtProjectInfoDescription"
+        ]
+    },
+    {
+        "Description": "",
+        "DisplayName": "Glittertind basehendelse",
+        "Fields": [],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010200a2b2ac17a2244b8590398a9d1e7e3e37",
+        "InternalName": "GtProjectEventBase",
+        "RequiredFields": []
+    },
+    {
+        "Description": "",
+        "DisplayName": "Prosjekthendelse",
+        "Fields": [],
+        "Group": "Glittertind Innholdstyper",
+        "ID": "0x010200a2b2ac17a2244b8590398a9d1e7e3e3701",
+        "InternalName": "GtProjectEvent",
+        "RequiredFields": []
+    }
 ]

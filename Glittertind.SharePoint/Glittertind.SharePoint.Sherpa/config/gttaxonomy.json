@@ -1,134 +1,134 @@
 ﻿{
-  "TermSets": [
-    {
-      "Terms": [
+    "TermSets": [
         {
-          "Title": "Skole og oppvekst",
-          "Id": "46475d37-c854-439e-b04b-2433f2dc2566"
+            "Terms": [
+                {
+                    "Title": "Skole og oppvekst",
+                    "Id": "46475d37-c854-439e-b04b-2433f2dc2566"
+                },
+                {
+                    "Title": "Helse og velferd",
+                    "Id": "88058353-ac05-4652-a4fc-690b649ab03a"
+                },
+                {
+                    "Title": "Plan, bygg og geodata",
+                    "Id": "ab3dd407-a44b-4783-aa45-481fb9f564ba"
+                },
+                {
+                    "Title": "Trafikk og samferdsel",
+                    "Id": "6479faf1-3141-46ef-94d6-fc65e8f51448"
+                },
+                {
+                    "Title": "Kultur, idrett og fritid",
+                    "Id": "8b3870f8-59a2-4cef-a281-19228b286bbf"
+                },
+                {
+                    "Title": "Natur og miljø",
+                    "Id": "e302dff1-4fb3-4d86-894a-f3bd769f4764"
+                },
+                {
+                    "Title": "Vann og avløp",
+                    "Id": "8d1082d0-a44d-452d-baef-212b938c5102"
+                },
+                {
+                    "Title": "Arbeid og næringsliv",
+                    "Id": "27805ae3-5749-44d9-94a7-146eedb06cfb"
+                },
+                {
+                    "Title": "Skatt og avgift",
+                    "Id": "40191080-4a2a-4b8f-9c76-c31be95ae5d4"
+                },
+                {
+                    "Title": "Administrasjon og IKT",
+                    "Id": "b81d2835-beae-41ae-a810-89cf1bea480f"
+                }
+            ],
+            "Title": "Tjenesteområde",
+            "Id": "99af1a25-88c1-4781-a05c-8446928d3fdd"
         },
         {
-          "Title": "Helse og velferd",
-          "Id": "88058353-ac05-4652-a4fc-690b649ab03a"
+            "Terms": [
+                {
+                    "Title": "Konsept",
+                    "Id": "99e85650-33de-4af4-b8db-edffbc8a310b",
+                    "LocalCustomProperties": {
+                        "ShowOnFrontpage": "true"
+                    }
+                },
+                {
+                    "Title": "Planlegge",
+                    "Id": "cda4f1e1-3488-4e57-8a04-6973df239689",
+                    "LocalCustomProperties": {
+                        "ShowOnFrontpage": "true"
+                    }
+                },
+                {
+                    "Title": "Gjennomføre",
+                    "Id": "99d7765a-c786-4792-a1a1-866ef0f982b9",
+                    "LocalCustomProperties": {
+                        "ShowOnFrontpage": "true"
+                    }
+                },
+                {
+                    "Title": "Avslutte",
+                    "Id": "30e03c52-8c3e-4cfe-9b18-ca71593ce130",
+                    "LocalCustomProperties": {
+                        "ShowOnFrontpage": "true"
+                    }
+                },
+                {
+                    "Title": "Realisere",
+                    "Id": "b7ba84f0-70b9-45c4-8c50-8f73bf15bbec",
+                    "LocalCustomProperties": {
+                        "ShowOnFrontpage": "true"
+                    }
+                },
+                {
+                    "Title": "Flere faser",
+                    "Id": "777cc6ac-4639-4633-85b9-f1ef61197c4d",
+                    "LocalCustomProperties": {
+                        "ShowOnFrontpage": "false"
+                    }
+                },
+                {
+                    "Title": "Ingen fase",
+                    "Id": "6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32",
+                    "LocalCustomProperties": {
+                        "ShowOnFrontpage": "false"
+                    }
+                }
+            ],
+            "Title": "Fase",
+            "Id": "abcfc9d9-a263-4abb-8234-be973c46258a",
+            "CustomSortOrder": "6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32:777cc6ac-4639-4633-85b9-f1ef61197c4d:99e85650-33de-4af4-b8db-edffbc8a310b:cda4f1e1-3488-4e57-8a04-6973df239689:99d7765a-c786-4792-a1a1-866ef0f982b9:30e03c52-8c3e-4cfe-9b18-ca71593ce130:b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
         },
         {
-          "Title": "Plan, bygg og geodata",
-          "Id": "ab3dd407-a44b-4783-aa45-481fb9f564ba"
-        },
-        {
-          "Title": "Trafikk og samferdsel",
-          "Id": "6479faf1-3141-46ef-94d6-fc65e8f51448"
-        },
-        {
-          "Title": "Kultur, idrett og fritid",
-          "Id": "8b3870f8-59a2-4cef-a281-19228b286bbf"
-        },
-        {
-          "Title": "Natur og milj\u00f8",
-          "Id": "e302dff1-4fb3-4d86-894a-f3bd769f4764"
-        },
-        {
-          "Title": "Vann og avl\u00f8p",
-          "Id": "8d1082d0-a44d-452d-baef-212b938c5102"
-        },
-        {
-          "Title": "Arbeid og n\u00e6ringsliv",
-          "Id": "27805ae3-5749-44d9-94a7-146eedb06cfb"
-        },
-        {
-          "Title": "Skatt og avgift",
-          "Id": "40191080-4a2a-4b8f-9c76-c31be95ae5d4"
-        },
-        {
-          "Title": "Administrasjon og IKT",
-          "Id": "b81d2835-beae-41ae-a810-89cf1bea480f"
+            "Terms": [
+                {
+                    "Title": "Anlegg",
+                    "Id": "26a1b6a7-9a4b-4a26-be46-7f6bb0e07475"
+                },
+                {
+                    "Title": "Bygg",
+                    "Id": "81d51eff-4dd8-4d9f-8373-327ce4cfebb9"
+                },
+                {
+                    "Title": "IKT",
+                    "Id": "f43d2dcf-27c8-432d-8b9b-dae09d9b0d7a"
+                },
+                {
+                    "Title": "Annet",
+                    "Id": "088eeab9-8ebd-4a53-976c-e7b9a5e7eed9"
+                },
+                {
+                    "Title": "Organisasjonsutvikling",
+                    "Id": "682706ae-a2d7-47ed-81d7-f8b6f30e0340"
+                }
+            ],
+            "Title": "Prosjekttype",
+            "Id": "3930cddb-fa4d-496f-b314-03ecabb91de1"
         }
-      ],
-      "Title": "Tjenesteomr\u00e5de",
-      "Id": "99af1a25-88c1-4781-a05c-8446928d3fdd"
-    },
-    {
-      "Terms": [
-        {
-          "Title": "Konsept",
-          "Id": "99e85650-33de-4af4-b8db-edffbc8a310b",
-		  "LocalCustomProperties":  {
-				"ShowOnFrontpage": "true"
-		  }
-        },
-        {
-          "Title": "Planlegge",
-          "Id": "cda4f1e1-3488-4e57-8a04-6973df239689",
-		  "LocalCustomProperties":  {
-				"ShowOnFrontpage": "true"
-		  }
-        },
-        {
-          "Title": "Gjennomf\u00f8re",
-          "Id": "99d7765a-c786-4792-a1a1-866ef0f982b9",
-		  "LocalCustomProperties":  {
-				"ShowOnFrontpage": "true"
-		  }
-        },
-        {
-          "Title": "Avslutte",
-          "Id": "30e03c52-8c3e-4cfe-9b18-ca71593ce130",
-		  "LocalCustomProperties":  {
-				"ShowOnFrontpage": "true"
-		  }
-        },
-        {
-          "Title": "Realisere",
-          "Id": "b7ba84f0-70b9-45c4-8c50-8f73bf15bbec",
-		  "LocalCustomProperties":  {
-				"ShowOnFrontpage": "true"
-		  }
-        },
-        {
-          "Title": "Flere faser",
-          "Id": "777cc6ac-4639-4633-85b9-f1ef61197c4d",
-		  "LocalCustomProperties":  {
-				"ShowOnFrontpage": "false"
-		  }
-        },
-		{
-		  "Title": "Ingen fase",
-		  "Id": "6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32",
-		  "LocalCustomProperties":  {
-				"ShowOnFrontpage": "false"
-		  }
-		}
-      ],
-      "Title": "Fase",
-      "Id": "abcfc9d9-a263-4abb-8234-be973c46258a",
-      "CustomSortOrder": "6edb42ac-9aaf-4f07-9cf5-5dfdf9ab0c32:777cc6ac-4639-4633-85b9-f1ef61197c4d:99e85650-33de-4af4-b8db-edffbc8a310b:cda4f1e1-3488-4e57-8a04-6973df239689:99d7765a-c786-4792-a1a1-866ef0f982b9:30e03c52-8c3e-4cfe-9b18-ca71593ce130:b7ba84f0-70b9-45c4-8c50-8f73bf15bbec"
-    },
-    {
-      "Terms": [
-        {
-          "Title": "Anlegg",
-          "Id": "26a1b6a7-9a4b-4a26-be46-7f6bb0e07475"
-        },
-        {
-          "Title": "Bygg",
-          "Id": "81d51eff-4dd8-4d9f-8373-327ce4cfebb9"
-        },
-        {
-          "Title": "IKT",
-          "Id": "f43d2dcf-27c8-432d-8b9b-dae09d9b0d7a"
-        },
-        {
-          "Title": "Annet",
-          "Id": "088eeab9-8ebd-4a53-976c-e7b9a5e7eed9"
-        },
-        {
-          "Title": "Organisasjonsutvikling",
-          "Id": "682706ae-a2d7-47ed-81d7-f8b6f30e0340"
-        }
-      ],
-      "Title": "Prosjekttype",
-      "Id": "3930cddb-fa4d-496f-b314-03ecabb91de1"
-    }
-  ],
-  "Title": "Prosjektportalen",
-  "Id": "c56bb677-f782-4cf6-a6d6-17685ee9f19d"
+    ],
+    "Title": "Prosjektportalen",
+    "Id": "c56bb677-f782-4cf6-a6d6-17685ee9f19d"
 }

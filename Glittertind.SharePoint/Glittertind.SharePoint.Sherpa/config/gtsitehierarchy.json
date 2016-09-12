@@ -1,211 +1,207 @@
 ﻿{
-   "FieldConfigurations":[
-      "gtfields.json"
-   ],
-   "ContentTypeConfigurations":[
-      "gtcontenttypes.json",
-      "gtfrontpagecontenttype.json"
-   ],
-   "TaxonomyConfigurations":[
-      "gttaxonomy.json"
-   ],
-   "SandboxedSolutions":[
-      "Glittertind.SharePoint.wsp"
-   ],
-   "SearchConfigurations":[
-      "Prosjektportalen-konfigurasjon.xml"
-   ],
-   "ImportDataConfigurations":[
-      "fasesjekkliste.data.json",
-      "oppgaver.data.json",
-      "lenker.data.json"
-   ],
-   "SiteFeatures":[
-      {
-         "FeatureId":"9ca326d3-723f-4e65-b8f9-db7e18802ac4",
-         "FeatureName":"Glittertind.SharePoint.Project_SiteProjectWebTemplate"
-      }
-   ],
-   "RootWeb":{
-      "CustomTaskTypes":[
-         {
-            "Fullname":"Glittertind.Sherpa.UpgradeProjectFrontPages.UpgradeProjectFrontPages",
-            "DisplayName":"Upgrade project portal"
-         }
-      ],
-      "Description":"",
-      "Language":"1044",
-      "Name":"Prosjektportalen",
-      "Lists":[
-         {
-            "Title":"Kunngjøringer",
-            "Description":"",
-            "Url":"Lists/Kunngjoringer",
-            "TemplateType":"104",
-            "VersioningEnabled":"false",
-            "OnQuickLaunch":"false",
-            "Views":[
-
-            ]
-         },
+    "FieldConfigurations": [
+        "gtfields.json"
+    ],
+    "ContentTypeConfigurations": [
+        "gtcontenttypes.json",
+        "gtfrontpagecontenttype.json"
+    ],
+    "TaxonomyConfigurations": [
+        "gttaxonomy.json"
+    ],
+    "SandboxedSolutions": [
+        "Glittertind.SharePoint.wsp"
+    ],
+    "SearchConfigurations": [
+        "Prosjektportalen-konfigurasjon.xml"
+    ],
+    "ImportDataConfigurations": [
+        "fasesjekkliste.data.json",
+        "oppgaver.data.json",
+        "lenker.data.json"
+    ],
+    "SiteFeatures": [
         {
-          "Title": "Lenker",
-          "Description": "",
-          "Url": "Lists/Lenker",
-          "TemplateType": "103",
-          "VersioningEnabled": "false",
-          "OnQuickLaunch": "false",
-          "Views": [
-
-          ]
+            "FeatureId": "9ca326d3-723f-4e65-b8f9-db7e18802ac4",
+            "FeatureName": "Glittertind.SharePoint.Project_SiteProjectWebTemplate"
+        }
+    ],
+    "RootWeb": {
+        "CustomTaskTypes": [
+            {
+                "Fullname": "Glittertind.Sherpa.UpgradeProjectFrontPages.UpgradeProjectFrontPages",
+                "DisplayName": "Upgrade project portal"
+            }
+        ],
+        "Description": "",
+        "Language": "1044",
+        "Name": "Prosjektportalen",
+        "Lists": [
+            {
+                "Title": "Kunngjøringer",
+                "Description": "",
+                "Url": "Lists/Kunngjoringer",
+                "TemplateType": "104",
+                "VersioningEnabled": "false",
+                "OnQuickLaunch": "false",
+                "Views": []
+            },
+            {
+                "Title": "Lenker",
+                "Description": "",
+                "Url": "Lists/Lenker",
+                "TemplateType": "103",
+                "VersioningEnabled": "false",
+                "OnQuickLaunch": "false",
+                "Views": []
+            },
+            {
+                "Title": "Interessentregister",
+                "Description": "",
+                "Url": "Lists/Interessentregister",
+                "TemplateType": "100",
+                "VersioningEnabled": "true",
+                "OnQuickLaunch": "false",
+                "RemoveExisitingContentTypes": "true",
+                "ContentTypes": [
+                    "Interessent"
+                ],
+                "Views": [
+                    {
+                        "Title": "Alle elementer",
+                        "Rowlimit": 100,
+                        "ViewFields": [
+                            "LinkTitle",
+                            "GtStakeholderGroup",
+                            "GtStakeholderContext",
+                            "GtStakeholderStrategy",
+                            "GtStakeholderInterest",
+                            "GtStakeholderInfluence",
+                            "GtStakeholderInfluencePossibilty",
+                            "Modified",
+                            "Editor"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Title": "Fasesjekkliste",
+                "Description": "",
+                "Url": "Lists/Fasesjekkliste",
+                "TemplateType": "100",
+                "VersioningEnabled": "true",
+                "OnQuickLaunch": "false",
+                "RemoveExisitingContentTypes": "true",
+                "ContentTypes": [
+                    "Sjekkpunkt"
+                ],
+                "Views": [
+                    {
+                        "Title": "Alle elementer",
+                        "Rowlimit": 100,
+                        "ViewFields": [
+                            "LinkTitle",
+                            "GtProjectPhase",
+                            "Modified",
+                            "Editor"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Title": "Standardoppgaver",
+                "Description": "",
+                "Url": "Lists/Standardoppgaver",
+                "TemplateType": "171",
+                "VersioningEnabled": "true",
+                "OnQuickLaunch": "false",
+                "RemoveExisitingContentTypes": "true",
+                "ContentTypes": [
+                    "Glittertind baseoppgave"
+                ],
+                "Views": [
+                    {
+                        "Title": "Alle oppgaver",
+                        "Rowlimit": 100,
+                        "ViewFields": [
+                            "LinkTitle",
+                            "GtProjectPhase",
+                            "Modified",
+                            "Editor"
+                        ]
+                    }
+                ]
+            },
+            {
+                "Title": "Standarddokumenter",
+                "Description": "",
+                "Url": "Standarddokumenter",
+                "TemplateType": "101",
+                "VersioningEnabled": "true",
+                "OnQuickLaunch": "false",
+                "Views": [
+                    {
+                        "Title": "Alle dokumenter",
+                        "Rowlimit": 100,
+                        "ViewFields": [
+                            "DocIcon",
+                            "LinkFilename",
+                            "GtProjectPhase",
+                            "Modified",
+                            "Editor"
+                        ]
+                    }
+                ],
+                "RemoveExisitingContentTypes": "true",
+                "ContentTypes": [
+                    "Prosjektdokument",
+                    "Mappe"
+                ]
+            }
+        ],
+        "ContentFolders": [
+            {
+                "FolderName": "DisplayTemplates",
+                "ListUrl": "_catalogs/masterpage",
+                "FolderUrl": "Display Templates/Search",
+                "PropertiesFile": "properties.json",
+                "ExcludeExtensions": ".html"
+            },
+            {
+                "FolderName": "SiteAssets",
+                "ListUrl": "SiteAssets",
+                "FolderUrl": "gt",
+                "ExcludeExtensions": ""
+            },
+            {
+                "FolderName": "DefaultDocuments",
+                "ListUrl": "Standarddokumenter",
+                "FolderUrl": "",
+                "PropertiesFile": "properties.json",
+                "ExcludeExtensions": ".xml,.placeholder"
+            }
+        ],
+        "Properties": {
+            "projectportal_version": "1.1.0.0",
+            "sherpaversion": "1.1.0.0",
+            "vti_welcomepage": "SitePages/Portefolje.aspx"
         },
-         {
-            "Title":"Interessentregister",
-            "Description":"",
-            "Url":"Lists/Interessentregister",
-            "TemplateType":"100",
-            "VersioningEnabled":"true",
-            "OnQuickLaunch":"false",
-            "RemoveExisitingContentTypes":"true",
-            "ContentTypes":[
-               "Interessent"
-            ],
-            "Views":[
-               {
-                "Title": "Alle elementer",
-                "Rowlimit": 100,
-                  "ViewFields":[
-                    "LinkTitle",
-                     "GtStakeholderGroup",
-                     "GtStakeholderContext",
-                     "GtStakeholderStrategy",
-                     "GtStakeholderInterest",
-                     "GtStakeholderInfluence",
-                     "GtStakeholderInfluencePossibilty",
-                     "Modified",
-                     "Editor"
-                  ]
-               }
-            ]
-         },
-         {
-            "Title":"Fasesjekkliste",
-            "Description":"",
-            "Url":"Lists/Fasesjekkliste",
-            "TemplateType":"100",
-            "VersioningEnabled":"true",
-            "OnQuickLaunch":"false",
-            "RemoveExisitingContentTypes":"true",
-            "ContentTypes":[
-               "Sjekkpunkt"
-            ],
-            "Views":[
-               {
-                "Title": "Alle elementer",
-                "Rowlimit": 100,
-                  "ViewFields":[
-                     "LinkTitle",
-                     "GtProjectPhase",
-                     "Modified",
-                     "Editor"
-                  ]
-               }
-            ]
-         },
-         {
-            "Title":"Standardoppgaver",
-            "Description":"",
-            "Url":"Lists/Standardoppgaver",
-            "TemplateType":"171",
-            "VersioningEnabled":"true",
-            "OnQuickLaunch":"false",
-            "RemoveExisitingContentTypes":"true",
-            "ContentTypes":[
-               "Glittertind baseoppgave"
-            ],
-            "Views":[
-               {
-                  "Title":"Alle oppgaver",
-                  "Rowlimit": 100,
-                  "ViewFields":[
-                     "LinkTitle",
-                     "GtProjectPhase",
-                     "Modified",
-                     "Editor"
-                  ]
-               }
-            ]
-         },
-         {
-            "Title":"Standarddokumenter",
-            "Description":"",
-            "Url":"Standarddokumenter",
-            "TemplateType":"101",
-            "VersioningEnabled":"true",
-            "OnQuickLaunch":"false",
-            "Views":[
-               {
-                "Title": "Alle dokumenter",
-                "Rowlimit": 100,
-                  "ViewFields":[
-                     "DocIcon",
-                     "LinkFilename",
-                     "GtProjectPhase",
-                     "Modified",
-                     "Editor"
-                  ]
-               }
-            ],
-            "RemoveExisitingContentTypes":"true",
-            "ContentTypes":[
-              "Prosjektdokument",
-              "Mappe"
-            ]
-         }
-      ],
-      "ContentFolders":[
-         {
-            "FolderName":"DisplayTemplates",
-            "ListUrl":"_catalogs/masterpage",
-            "FolderUrl":"Display Templates/Search",
-            "PropertiesFile":"properties.json",
-            "ExcludeExtensions":".html"
-         },
-         {
-            "FolderName":"SiteAssets",
-            "ListUrl":"SiteAssets",
-            "FolderUrl":"gt",
-            "ExcludeExtensions":""
-         },
-         {
-            "FolderName":"DefaultDocuments",
-            "ListUrl":"Standarddokumenter",
-            "FolderUrl":"",
-            "PropertiesFile":"properties.json",
-            "ExcludeExtensions":".xml,.placeholder"
-         }
-      ],
-      "Properties":{
-         "projectportal_version":"1.1.0.0",
-         "sherpaversion":"1.1.0.0",
-         "vti_welcomepage":"SitePages/Portefolje.aspx"
-      },
-      "Quicklaunch":{
-         "Hjem":"",
-         "Porteføljeoversikt":"SitePages/PortefoljeOversikt.aspx",
-         "Porteføljeoppfølging":"SitePages/PortefoljeOppfolging.aspx",
-         "Erfaringslogg":"SitePages/Erfaringslogg.aspx",
-         "Standarddokumenter":"Standarddokumenter",
-         "Områdeinnhold":"_layouts/15/viewlsts.aspx"
-      },
-      "Template":"",
-      "Url":"/",
-      "WebFeatures":[
-         {
-            "FeatureId":"333d6b99-5713-41e0-aeeb-4e3e86143b3e",
-            "FeatureName":"Glittertind.SharePoint.Catalog_WebCatalogSitePages"
-         }
-      ],
-      "WelcomePageUrl":"SitePages/Portefolje.aspx"
-   }
+        "Quicklaunch": {
+            "Hjem": "",
+            "Porteføljeoversikt": "SitePages/PortefoljeOversikt.aspx",
+            "Porteføljeoppfølging": "SitePages/PortefoljeOppfolging.aspx",
+            "Erfaringslogg": "SitePages/Erfaringslogg.aspx",
+            "Standarddokumenter": "Standarddokumenter",
+            "Områdeinnhold": "_layouts/15/viewlsts.aspx"
+        },
+        "Template": "",
+        "Url": "/",
+        "WebFeatures": [
+            {
+                "FeatureId": "333d6b99-5713-41e0-aeeb-4e3e86143b3e",
+                "FeatureName": "Glittertind.SharePoint.Catalog_WebCatalogSitePages"
+            }
+        ],
+        "WelcomePageUrl": "SitePages/Portefolje.aspx"
+    }
 }
