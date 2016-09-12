@@ -167,7 +167,7 @@ ul.gt-List .gt-projectItem.new {
   text-align: left;
 }
 .gt-result-table td.restrict-width {
-  max-width: 80px;
+  max-width: 100px;
 }
 .gt-result-table .status-red {
   background-color: #cc6666;
