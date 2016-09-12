@@ -2,7 +2,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Prosjektnummer",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "64d45745-0dd0-4c21-979b-67fb13748bb1",
       "InternalName" : "GtProjectNumber",
       "Type"         : "Text"
@@ -10,7 +10,7 @@
    {
      "Description"  : "",
      "DisplayName"  : "Sak-/arkivreferanse",
-     "Group"        : "Glittertind Områdekolonner",
+     "Group"        : "Prosjektportalen områdekolonner",
      "ID"           : "a59fe220-36c3-464a-8cfc-40d6d04debd2",
      "InternalName" : "GtArchiveReference",
      "Type"         : "Text"
@@ -18,7 +18,7 @@
    {
       "Description" : "",
       "DisplayName" : "Prosjektnavn i Økonomisystemet",
-      "Group"       : "Glittertind Områdekolonner",
+      "Group"       : "Prosjektportalen områdekolonner",
       "ID"          : "983d5ab3-0a6c-4f6a-a7b5-d34d52d73676",
       "InternalName": "GtProjectFinanceName",
       "Type"        : "Text"
@@ -26,7 +26,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Fase",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "325543a5-815d-485d-a9a5-e0773ad762e9",
       "InternalName" : "GtProjectPhase",
       "TermSetId"    : "abcfc9d9-a263-4abb-8234-be973c46258a",
@@ -35,7 +35,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Prosjekttype",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "ddb69044-7d2c-4865-86ec-b71413780409",
       "InternalName" : "GtProjectType",
       "TermSetId"    : "3930cddb-fa4d-496f-b314-03ecabb91de1",
@@ -44,7 +44,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Tjenesteområde",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "3275d73a-fd4d-48ba-bcc1-31526460d57b",
       "InternalName" : "GtProjectServiceArea",
       "TermSetId"    : "99af1a25-88c1-4781-a05c-8446928d3fdd",
@@ -53,7 +53,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Prosjektleder",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "d46bed8f-0fb6-4684-8221-632fdb12598f",
       "InternalName" : "GtProjectManager",
       "Type"         : "User"
@@ -61,7 +61,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Prosjekteier",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "3121ac55-d68e-4fcb-8fc8-3d8ed8a601b2",
       "InternalName" : "GtProjectOwner",
       "Type"         : "User"
@@ -70,7 +70,7 @@
       "Description"  : "",
       "DisplayName"  : "Startdato",
       "Format"       : "DateOnly",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "e39c32db-a7da-4c93-9369-8aa5a7bde92d",
       "InternalName" : "GtStartDate",
       "Type"         : "DateTime"
@@ -79,7 +79,7 @@
       "Description"  : "",
       "DisplayName"  : "Sluttdato",
       "Format"       : "DateOnly",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "16623c2a-3fd1-41c2-87e7-958583dd88da",
       "InternalName" : "GtEndDate",
       "Type"         : "DateTime"
@@ -94,7 +94,7 @@
       "Description"  : "",
       "DisplayName"  : "Status risiko",
       "Format"       : "RadioButtons",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "fc8a879d-83bc-4670-b1f6-c9817e333614",
       "InternalName" : "GtStatusRisk",
       "Type"         : "Choice"
@@ -102,7 +102,7 @@
     {
       "Description"  : "Kommentar til status risiko angitt over",
       "DisplayName"  : "Kommentar, risiko",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "b5932b1d-bee4-410c-aac2-54a7cd9d5381",
       "InternalName" : "GtStatusRiskComment",
       "NumLines"     : "3",
@@ -119,7 +119,7 @@
       "Description"  : "",
       "DisplayName"  : "Status tid",
       "Format"       : "RadioButtons",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "1447ef51-8e9b-4d16-aa2a-526dc9f1539e",
       "InternalName" : "GtStatusTime",
       "Type"         : "Choice"
@@ -127,7 +127,7 @@
     {
       "Description"  : "Kommentar til status tid angitt over",
       "DisplayName"  : "Kommentar, tid",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "cb1fc0b7-cbb8-40af-a782-c6b9ad4ee40f",
       "InternalName" : "GtStatusTimeComment",
       "NumLines"     : "3",
@@ -145,7 +145,7 @@
       "Description"  : "",
       "DisplayName"  : "Status budsjett",
       "Format"       : "RadioButtons",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "a9902b9d-8aad-40df-9788-ba73c64c3cb5",
       "InternalName" : "GtStatusBudget",
       "Type"         : "Choice"
@@ -153,7 +153,7 @@
     {
       "Description"  : "Kommentar til status budsjett angitt over",
       "DisplayName"  : "Kommentar, budsjett",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "f2bb8a37-f4cf-43a4-b180-0b07ab14abd5",
       "InternalName" : "GtStatusBudgetComment",
       "NumLines"     : "3",
@@ -162,7 +162,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Snittrisiko",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "8be4cd39-1468-4258-95f3-10343dc4ef11",
       "InternalName" : "GtAverageRisk",
       "Type"         : "Number"
@@ -170,7 +170,7 @@
    {
       "Description"  : "Beskriv hva prosjektet skal levere",
       "DisplayName"  : "Målsetning",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "018f09b8-4954-41bb-a8f6-fa531b90b79f",
       "InternalName" : "GtProjectGoals",
       "Type"         : "Note"
@@ -178,7 +178,7 @@
    {
       "Description"  : "Tall 0 til 5",
       "DisplayName"  : "Sannsynlighet (S)",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "0e1b295d-2bfb-4ef6-ae92-e72068e56111",
       "InternalName" : "GtRiskProbability",
       "Max"          : 5,
@@ -188,7 +188,7 @@
    {
       "Description"  : "Tall 0 til 5",
       "DisplayName"  : "Konsekvens (K)",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "554d32a0-0148-4b3c-bfc4-f101232ee501",
       "InternalName" : "GtRiskConsequence",
       "Max"          : 5,
@@ -204,7 +204,7 @@
       ],
       "Description"  : "",
       "DisplayName"  : "Nærhet",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "c755525b-3716-4ee8-a4f4-f9684808c009",
       "InternalName" : "GtRiskProximity",
       "Type"         : "Choice"
@@ -226,7 +226,7 @@
       },
       "Description"     : "",
       "DisplayName"     : "Risikofaktor",
-      "Group"           : "Glittertind Områdekolonner",
+      "Group"           : "Prosjektportalen områdekolonner",
       "ID"              : "8499bd48-4c5d-43ae-8e27-7968d49ca14f",
       "InternalName"    : "GtRiskFactor",
       "Type"            : "Calculated"
@@ -234,7 +234,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Tiltak",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "6219fd33-2f3c-42f5-9790-174143bfb99c",
       "InternalName" : "GtRiskAction",
       "Type"         : "Note"
@@ -242,7 +242,7 @@
    {
       "Description"  : "Tall 0 til 5",
       "DisplayName"  : "S etter tiltak",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "f81ebcb7-8791-44b0-9919-08ed5524b11d",
       "InternalName" : "GtRiskProbabilityPostAction",
       "Max"          : 5,
@@ -252,7 +252,7 @@
    {
       "Description"  : "Tall 0 til 5",
       "DisplayName"  : "K etter tiltak",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "00f17233-d4c0-49d0-aebd-5004552abb17",
       "InternalName" : "GtRiskConsequencePostAction",
       "Max"          : 5,
@@ -276,7 +276,7 @@
       },
       "Description"     : "",
       "DisplayName"     : "Ny risikofaktor",
-      "Group"           : "Glittertind Områdekolonner",
+      "Group"           : "Prosjektportalen områdekolonner",
       "ID"              : "62f0454d-1150-4d55-86ef-075f786d6e5c",
       "InternalName"    : "GtRiskFactiorPostAction",
       "Type"            : "Calculated"
@@ -296,7 +296,7 @@
       ],
       "Description"  : "",
       "DisplayName"  : "Interessentgruppe",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "2847b3b0-ed22-4c47-b7c0-3ebfc83dae4a",
       "InternalName" : "GtStakeholderGroup",
       "Type"         : "Choice"
@@ -304,7 +304,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Arena/Møteplass/Nettverk",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "970ed1b2-9e71-45aa-8f8d-c391a15f067f",
       "InternalName" : "GtStakeholderContext",
       "Type"         : "Text"
@@ -312,7 +312,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Plan/strategi/prosjekt",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "1150d6bd-c9ba-4014-bd74-7d559110841d",
       "InternalName" : "GtStakeholderStrategy",
       "Type"         : "Text"
@@ -320,7 +320,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Interesse",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "748ae9b5-223d-4daa-b8f8-dc14284b59db",
       "InternalName" : "GtStakeholderInterest",
       "Type"         : "Note"
@@ -333,7 +333,7 @@
       ],
       "Description"  : "",
       "DisplayName"  : "Påvirkes i hvilken grad",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "475d2ca1-5b8e-4479-96ae-81c0a89354f3",
       "InternalName" : "GtStakeholderInfluence",
       "Type"         : "Choice"
@@ -346,7 +346,7 @@
       ],
       "Description"  : "",
       "DisplayName"  : "Mulighet til påvirkning",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "2bb7e155-3af4-4353-a460-8da404c4e748",
       "InternalName" : "GtStakeholderInfluencePossibilty",
       "Type"         : "Choice"
@@ -354,7 +354,7 @@
    {
       "Description"  : "Mulige strategier for å oppnå støtte eller redusere hindringer",
       "DisplayName"  : "Tiltak",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "45d5b378-67ce-4f21-b622-fe54b27c83a6",
       "InternalName" : "GtStakeholderActions",
       "Type"         : "Note"
@@ -363,7 +363,7 @@
       "Description"  : "",
       "DisplayName"  : "Tiltaksdato",
       "Format"       : "DateOnly",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "77450582-a061-4416-af17-6dfb99fa9036",
       "InternalName" : "GtActionDate",
       "Type"         : "DateTime"
@@ -371,7 +371,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Tiltaksansvarlig",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "2ae541a5-5ecc-481d-afb6-c03a6f1e71b4",
       "InternalName" : "GtActionResponsible",
       "Type"         : "User"
@@ -385,7 +385,7 @@
       "Default"      : "Åpent",
       "Description"  : "",
       "DisplayName"  : "Status",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "249527a3-c7f9-4ea5-9c33-f942c06c9215",
       "InternalName" : "GtChecklistStatus",
       "Type"         : "Choice"
@@ -393,7 +393,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Kommentar",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "509a6bfe-004e-41f9-bd73-9a0e02d5c4a7",
       "InternalName" : "GtComment",
       "Type"         : "Note"
@@ -401,7 +401,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Produksjonsfase",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "5563056f-533f-4333-bd29-85a2f94a37d0",
       "InternalName" : "GtProductPhase",
       "TermSetId"    : "abcfc9d9-a263-4abb-8234-be973c46258a",
@@ -410,7 +410,7 @@
    {
       "Description"  : "Hvilke forventninger er uttalt til produktkvaliteten?",
       "DisplayName"  : "Kvalitetsforventninger",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "c8e260c2-6887-4f9e-a713-7200246c3b1c",
       "InternalName" : "GtProductQualityExpectations",
       "Type"         : "Note"
@@ -418,7 +418,7 @@
    {
       "Description"  : "Målbare definisjoner av kravene produktet må møte før det kan aksepteres av interessentene",
       "DisplayName"  : "Akseptansekriterier",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "149a30c2-056d-44f0-9cb5-29bfc632ca25",
       "InternalName" : "GtProductAcceptanceCriteria",
       "Type"         : "Note"
@@ -426,7 +426,7 @@
    {
       "Description"  : "Hvilke toleranser (slingringsmonn) gjelder for akseptansekriteriene?",
       "DisplayName"  : "Kvalitetstoleranse",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "3dd7058b-0ba1-46e5-b40a-4f2f542638ea",
       "InternalName" : "GtProductQualityTolerance",
       "Type"         : "Note"
@@ -434,7 +434,7 @@
    {
       "Description"  : "Hvem er ansvarlig for å levere kvaliteten på produktet?",
       "DisplayName"  : "Kvalitetsansvar",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "c845028e-3395-49d4-86fe-6d94992c38c2",
       "InternalName" : "GtProductQualityResponsible",
       "Type"         : "User"
@@ -442,7 +442,7 @@
    {
       "Description"  : "Hvordan blir godkjenningen av produktet bekreftet (test, brukerundersøkelse, demo, muntlig, skriftlig)?",
       "DisplayName"  : "Godkjenningsmetode",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "3bcfaa2c-e9bd-4a22-bf65-af4d68c308e7",
       "InternalName" : "GtProductAcceptanceMethod",
       "Type"         : "Note"
@@ -450,7 +450,7 @@
    {
       "Description"  : "Hvem har ansvaret for å godkjenne produktet?",
       "DisplayName"  : "Godkjenningsansvar",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "dc856c1d-0b98-4d38-9918-d7068f74bd8b",
       "InternalName" : "GtProductAcceptanceResponsible",
       "Type"         : "User"
@@ -459,7 +459,7 @@
       "Description"  : "",
       "DisplayName"  : "Godkjent dato",
       "Format"       : "DateOnly",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "ce9474dd-407b-4480-951a-5381857fad6a",
       "InternalName" : "GtProductAcceptanceDate",
       "Type"         : "DateTime"
@@ -472,7 +472,7 @@
       ],
       "Description"  : "",
       "DisplayName"  : "Loggelement",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "2391d165-5d13-46b7-87d2-e32040293210",
       "InternalName" : "GtProjectLogType",
       "Type"         : "Choice"
@@ -480,7 +480,7 @@
    {
       "Description"  : "Oppgi den personen som meldte saken. Det er prosjektleders ansvar å opprette en Emnerapport på basis av emnet som er valgt etter prosedyrene valgt for dette prosjektet.",
       "DisplayName"  : "Meldt av",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "49b0ba6b-d1ec-4644-91b7-691a33524c90",
       "InternalName" : "GtProjectLogReporter",
       "Type"         : "User"
@@ -488,7 +488,7 @@
    {
       "Description"  : "Hva handler dette om?",
       "DisplayName"  : "Loggbeskrivelse",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "a3462545-ac76-4681-96b4-f883fea4b2ba",
       "InternalName" : "GtProjectLogDescription",
       "Type"         : "Note"
@@ -506,7 +506,7 @@
       "Description"  : "Hvem er ansvarlig for dette?",
       "DisplayName"  : "Ansvarlig",
       "FillInChoice" : "true",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "7838332a-cf7f-47d5-924f-8c6d134935ea",
       "InternalName" : "GtProjectLogResponsible",
       "Type"         : "Choice"
@@ -514,7 +514,7 @@
    {
       "Description"  : "Beskriv mer utfyllende hva dette kan føre til.",
       "DisplayName"  : "Konsekvens",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "7b424ee7-bcc8-490a-8c4c-01637da03347",
       "InternalName" : "GtProjectLogConsequence",
       "Type"         : "Note"
@@ -522,7 +522,7 @@
    {
       "Description"  : "Hva bør gjøres og hvorfor?",
       "DisplayName"  : "Anbefaling",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "6aad1f97-ba6f-4865-b325-9deea7bd0564",
       "InternalName" : "GtProjectLogRecommendation",
       "Type"         : "Note"
@@ -530,7 +530,7 @@
    {
       "Description"  : "Huk av dersom dette skal vises i prosjektets erfaringslogg.",
       "DisplayName"  : "Til erfaringslogg",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "832a2eeb-5709-40b4-9f7c-04ae67ddd86b",
       "InternalName" : "GtProjectLogExperience",
       "Type"         : "Boolean"
@@ -546,7 +546,7 @@
       "Description"  : "",
       "DisplayName"  : "Aktører",
       "FillInChoice" : "TRUE",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "6539658a-b186-402c-b224-9fb41cb48596",
       "InternalName" : "GtProjectLogActors",
       "Type"         : "MultiChoice"
@@ -554,7 +554,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Beskrivelse",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "a3038ecc-69db-4179-b23b-5fdb0535b38c",
       "InternalName" : "GtProjectInfoDescription",
       "Type"         : "Note"
@@ -562,7 +562,7 @@
    {
       "Description"  : "",
       "DisplayName"  : "Url",
-      "Group"        : "Glittertind Områdekolonner",
+      "Group"        : "Prosjektportalen områdekolonner",
       "ID"           : "0ba73871-4944-46a0-b829-df731121876f",
       "InternalName" : "GtProjectTaskUrl",
       "Type"         : "URL",
