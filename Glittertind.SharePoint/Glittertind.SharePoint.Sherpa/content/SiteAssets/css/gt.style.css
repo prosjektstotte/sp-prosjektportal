@@ -1,4 +1,4 @@
-﻿.validationMessage {
+.validationMessage {
   color: red;
 }
 .newProjectPage h1 {
@@ -146,6 +146,7 @@ ul.gt-List .gt-projectItem.new {
 }
 .gt-result-table {
   width: 99%;
+  margin-right: 1%;
   border-collapse: collapse;
   padding: 4px;
   text-align: left;
@@ -164,6 +165,9 @@ ul.gt-List .gt-projectItem.new {
 .gt-result-table th {
   padding: 4px;
   text-align: left;
+}
+.gt-result-table td.restrict-width {
+  max-width: 80px;
 }
 .gt-result-table .status-red {
   background-color: #cc6666;
