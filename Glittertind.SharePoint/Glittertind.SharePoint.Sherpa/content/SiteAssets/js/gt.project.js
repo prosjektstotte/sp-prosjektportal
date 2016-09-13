@@ -87,20 +87,25 @@ GT.Project.ExecuteFunctionsAfterSPLoaded = function (funcsToExecute) {
     // For IE 10,11+
     if (SP && SP.SOD) {
         SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
-            for (var i = funcsToExecute.length - 1; i >= 0; i--) {
-                funcsToExecute[i]();
-                funcsToExecute.pop();
-            }
+            SP.SOD.registerSod('sp.taxonomy.js', SP.Utilities.Utility.getLayoutsPageUrl('sp.taxonomy.js'));
+            SP.SOD.executeFunc('sp.taxonomy.js', 'SP.Taxonomy.TaxonomySession', function () {
+                for (var i = funcsToExecute.length - 1; i >= 0; i--) {
+                    funcsToExecute[i]();
+                    funcsToExecute.pop();
+                }
+            });
         });
     };
 
     // For Chrome - SP.SOD.executeFunc only has a 53% success rate with Chrome
     if (window['ExecuteOrDelayUntilScriptLoaded']) {
         ExecuteOrDelayUntilScriptLoaded(function () {
-            for (var i = funcsToExecute.length - 1; i >= 0; i--) {
-                funcsToExecute[i]();
-                funcsToExecute.pop();
-            }
+            ExecuteOrDelayUntilScriptLoaded(function () {
+                for (var i = funcsToExecute.length - 1; i >= 0; i--) {
+                    funcsToExecute[i]();
+                    funcsToExecute.pop();
+                }
+            }, "sp.taxonomy.js");
         }, "sp.js");
     };
 }
@@ -279,27 +284,24 @@ GT.Project.EnsureMetaDataDefaultsEventReceiver = function (lib) {
 
 
 GT.Project.PopulateProjectPhasePart = function () {
-    GT.jQuery.getScript(_spPageContextInfo.siteAbsoluteUrl + "/_layouts/15/SP.Taxonomy.js", function () {
-        var defs = [
-          GT.Project.GetPhaseNameFromCurrentItem(),
-          GT.Project.GetProjectPhases(),
-          GT.Project.GetChecklistData()
-        ]
-        GT.jQuery.when.apply(GT.jQuery, defs).then(function (currentPhase, allPhases, checklistData) {
-            if (allPhases) {
-                var frontPagePhases = allPhases.filter(function(f) {return f.ShowOnFrontpage; });
-                if (frontPagePhases && frontPagePhases.length > 0) {
-                    var widthPerPhase = 100 / frontPagePhases.length;
-                    for (var ix = 0; ix < frontPagePhases.length; ix++) {
-                        if (frontPagePhases[ix].ShowOnFrontpage) {
-                            var checkListItemStats = checklistData[frontPagePhases[ix].Name];
-                            var phaseLogoMarkup = GT.Project.GetPhaseLogoMarkup(frontPagePhases[ix], frontPagePhases[ix].Name == currentPhase, true, true, widthPerPhase, ix, (ix + 1) == frontPagePhases.length, checkListItemStats);
-                            GT.jQuery('.projectPhases').append(phaseLogoMarkup);
-                        }
+    GT.jQuery.when(
+        GT.Project.GetPhaseNameFromCurrentItem(),
+        GT.Project.GetProjectPhases(),
+        GT.Project.GetChecklistData()
+    ).then(function (currentPhase, allPhases, checklistData) {
+        if (allPhases) {
+            var frontPagePhases = allPhases.filter(function(f) {return f.ShowOnFrontpage; });
+            if (frontPagePhases && frontPagePhases.length > 0) {
+                var widthPerPhase = 100 / frontPagePhases.length;
+                for (var ix = 0; ix < frontPagePhases.length; ix++) {
+                    if (frontPagePhases[ix].ShowOnFrontpage) {
+                        var checkListItemStats = checklistData[frontPagePhases[ix].Name];
+                        var phaseLogoMarkup = GT.Project.GetPhaseLogoMarkup(frontPagePhases[ix], frontPagePhases[ix].Name == currentPhase, true, true, widthPerPhase, ix, (ix + 1) == frontPagePhases.length, checkListItemStats);
+                        GT.jQuery('.projectPhases').append(phaseLogoMarkup);
                     }
                 }
             }
-        });
+        }
     });
 };
 
@@ -391,7 +393,7 @@ GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup,
     {
         var styleForIE = '';
         //No support for flex in IE < 10
-        if (detectIE() && detectIE() < 10) {
+        if (detectIE() && detectIE() < 11) {
             styleForIE = String.format('style="display:table-cell; width:{0}%;"', widthPerPhase);
         }
         markup = String.format('<li class="{0}" {1}>{2}</li>', phaseClass.join(' '), styleForIE, markup);
