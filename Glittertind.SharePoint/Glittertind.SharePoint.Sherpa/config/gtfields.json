@@ -106,6 +106,7 @@
         "ID": "b5932b1d-bee4-410c-aac2-54a7cd9d5381",
         "InternalName": "GtStatusRiskComment",
         "NumLines": "3",
+        "UnlimitedLengthInDocumentLibrary": true,
         "Type": "Note"
     },
     {
@@ -131,6 +132,7 @@
         "ID": "cb1fc0b7-cbb8-40af-a782-c6b9ad4ee40f",
         "InternalName": "GtStatusTimeComment",
         "NumLines": "3",
+        "UnlimitedLengthInDocumentLibrary": true,
         "Type": "Note"
     },
     {
@@ -157,6 +159,7 @@
         "ID": "f2bb8a37-f4cf-43a4-b180-0b07ab14abd5",
         "InternalName": "GtStatusBudgetComment",
         "NumLines": "3",
+        "UnlimitedLengthInDocumentLibrary": true,
         "Type": "Note"
     },
     {
@@ -173,6 +176,7 @@
         "Group": "Prosjektportalen områdekolonner",
         "ID": "018f09b8-4954-41bb-a8f6-fa531b90b79f",
         "InternalName": "GtProjectGoals",
+        "UnlimitedLengthInDocumentLibrary": true,
         "Type": "Note"
     },
     {
@@ -396,6 +400,7 @@
         "Group": "Prosjektportalen områdekolonner",
         "ID": "509a6bfe-004e-41f9-bd73-9a0e02d5c4a7",
         "InternalName": "GtComment",
+        "UnlimitedLengthInDocumentLibrary": true,
         "Type": "Note"
     },
     {
@@ -517,6 +522,7 @@
         "Group": "Prosjektportalen områdekolonner",
         "ID": "7b424ee7-bcc8-490a-8c4c-01637da03347",
         "InternalName": "GtProjectLogConsequence",
+        "UnlimitedLengthInDocumentLibrary": true,
         "Type": "Note"
     },
     {
@@ -525,6 +531,7 @@
         "Group": "Prosjektportalen områdekolonner",
         "ID": "6aad1f97-ba6f-4865-b325-9deea7bd0564",
         "InternalName": "GtProjectLogRecommendation",
+        "UnlimitedLengthInDocumentLibrary": true,
         "Type": "Note"
     },
     {
@@ -557,6 +564,7 @@
         "Group": "Prosjektportalen områdekolonner",
         "ID": "a3038ecc-69db-4179-b23b-5fdb0535b38c",
         "InternalName": "GtProjectInfoDescription",
+        "UnlimitedLengthInDocumentLibrary": true,
         "Type": "Note"
     },
     {
