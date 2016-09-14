@@ -307,7 +307,7 @@ GT.Project.PopulateProjectPhasePart = function () {
 
 GT.Project.GetPhaseTermSetId = function () {
     var defer = GT.jQuery.Deferred();
-    var settingsUrl = String.format("{0}/SiteAssets/gt/config/core/settings.txt", _spPageContextInfo.siteServerRelativeUrl);
+    var settingsUrl = String.format("{0}/SiteAssets/gt/config/core/settings.txt", _spPageContextInfo.siteServerRelativeUrl === '/' ? '': _spPageContextInfo.siteServerRelativeUrl);
     GT.jQuery.getJSON(settingsUrl)
     .then(function (data) {
         defer.resolve(data.PhaseSettings.TermSetId);

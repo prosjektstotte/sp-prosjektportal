@@ -72,7 +72,9 @@ GT.Project.Setup.CreateSiteSettingsCustomActions = function () {
             newCustomAction.set_name('GT.SiteSettings.CopyTasks');
             newCustomAction.set_title('Hent oppgaver fra porteføljeområdet');
             newCustomAction.set_description('Velg oppgaver fra porteføljeområdet og kopier oppgavene til prosjektet.');
-            var customActionJavaScript = String.format('{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings', _spPageContextInfo.siteServerRelativeUrl, 'Standardoppgaver', 'Oppgaver', encodeURIComponent(_spPageContextInfo.webServerRelativeUrl));;
+            
+            var siteColRelativeUrl = _spPageContextInfo.siteServerRelativeUrl === '/' ? '' : _spPageContextInfo.siteServerRelativeUrl;
+            var customActionJavaScript = String.format('{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings', siteColRelativeUrl, 'Standardoppgaver', 'Oppgaver', encodeURIComponent(_spPageContextInfo.webServerRelativeUrl));;
 
             newCustomAction.set_url(customActionJavaScript);
             newCustomAction.update();
@@ -103,14 +105,10 @@ GT.Project.Setup.ApplyTheme = function (properties) {
     var clientContext = SP.ClientContext.get_current();
     var web = clientContext.get_web();
 
-    var colorPaletteUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + properties.colorPaletteName;
-    var fontSchemeUrl = _spPageContextInfo.siteServerRelativeUrl + "/_catalogs/theme/15/" + properties.fontSchemeName;
+    var siteColRelativeUrl = _spPageContextInfo.siteServerRelativeUrl === '/' ? '' : _spPageContextInfo.siteServerRelativeUrl;
+    var colorPaletteUrl = siteColRelativeUrl + "/_catalogs/theme/15/" + properties.colorPaletteName;
+    var fontSchemeUrl = siteColRelativeUrl + "/_catalogs/theme/15/" + properties.fontSchemeName;
 
-    // I am tired
-    if (_spPageContextInfo.siteServerRelativeUrl === "/") {
-        colorPaletteUrl = "/_catalogs/theme/15/" + properties.colorPaletteName;
-        fontSchemeUrl = "/_catalogs/theme/15/" + properties.fontSchemeName;
-    }
     web.applyTheme(colorPaletteUrl, fontSchemeUrl, properties.backgroundImageUrl, properties.shareGenerated);
     web.update();
 
@@ -407,56 +405,19 @@ GT.Project.Setup.copyFile = function (file, srcWeb, srcLibUrl, dstWeb, dstLib) {
     return deferred.promise();
 };
 
-GT.Project.Setup.createFolders = function () {
-    var deferred = GT.jQuery.Deferred();
-    GT.jQuery.ajax({
-        url: _spPageContextInfo.siteServerRelativeUrl + "/SiteAssets/gt/config/defaultfolders/folders.txt"
-    })
-	.done(function (data) {
-	    var folders = data.split("\n");
-	    if (folders.length === 0) {
-	        deferred.resolve();
-	        return;
-	    }
-	    var ctx = SP.ClientContext.get_current();
-	    var web = ctx.get_web();
-	    var list = web.get_lists().getByTitle("Dokumenter");
-	    var listUrl = _spPageContextInfo.webAbsoluteUrl + '/Dokumenter';
-	    var root = list.get_rootFolder();
-
-	    for (var i = 0; i < folders.length ; i++) {
-	        root.get_folders().add(listUrl + folders[i]);
-	    }
-
-	    list.update();
-
-	    ctx.executeQueryAsync(function (sender, args) {
-	        console.log("Created folder structure");
-	        deferred.resolve();
-	    }, function (sender, args) {
-	        console.error('Request failed. ' + args.get_message());
-	    });
-	})
-	.fail(function (jqXHR, textStatus, errorThrown) {
-	    console.log("not able to create folder structure, " + textStatus);
-	    deferred.resolve();
-	});
-    return deferred.promise();
-};
-
 GT.Project.Setup.CopyFilesAndFolders = function (properties) {
     var dstWeb = _spPageContextInfo.webServerRelativeUrl;
     var srcWeb = properties.SrcWeb;
     var srcLib = properties.SrcList;
     var dstLib = properties.DstList;
-    var srcListUrl = srcWeb + "/" + srcLib;
+    var srcListUrl = (srcWeb === '/' ? '' : srcWeb) + '/' + srcLib;
     var dstListUrl = dstWeb + '/' + dstLib;
 
     var deferred = GT.jQuery.Deferred();
     var digest = GT.jQuery("#__REQUESTDIGEST").val();
 
     GT.jQuery.ajax({
-        url: String.format("{0}/_api/web/Lists/GetByTitle('{1}')/Items?$expand=Folder&$select=Title,LinkFilename,FileRef,FileDirRef,Folder/ServerRelativeUrl&$top=500", srcWeb, srcLib),
+        url: String.format("{0}/_api/web/Lists/GetByTitle('{1}')/Items?$expand=Folder&$select=Title,LinkFilename,FileRef,FileDirRef,Folder/ServerRelativeUrl&$top=500", srcWeb === '/' ? '' : srcWeb, srcLib),
         headers: {
             "Accept": "application/json; odata=verbose",
             "X-RequestDigest": digest
@@ -486,7 +447,6 @@ GT.Project.Setup.CopyFilesAndFolders = function (properties) {
 	    }
 
 	    list.update();
-
 	    ctx.executeQueryAsync(function (sender, args) {
 	        console.log("Created folder structure");
 
@@ -665,7 +625,7 @@ GT.Project.Setup.CopyListItems = function (properties) {
     var digest = GT.jQuery("#__REQUESTDIGEST").val();
 
     GT.jQuery.ajax({
-        url: String.format("{0}/_api/web/Lists/GetByTitle('{1}')/Items?$top=500&$select={2}", sourceWebUrl, sourceListName, fieldsJson),
+        url: String.format("{0}/_api/web/Lists/GetByTitle('{1}')/Items?$top=500&$select={2}", sourceWebUrl === '/' ? '' : sourceWebUrl, sourceListName, fieldsJson),
         headers: {
             "Accept": "application/json; odata=verbose",
             "X-RequestDigest": digest
@@ -1025,7 +985,8 @@ GT.Project.Setup.GetViewFromCollectionByName = function (viewCollection, name) {
 
 GT.Project.Setup.GetDataSources = function () {
     var deferred = GT.jQuery.Deferred();
-    var urlToSettings = _spPageContextInfo.siteServerRelativeUrl + "/SiteAssets/gt/config/core/datasources.txt";
+    var siteColRelativeUrl = _spPageContextInfo.siteServerRelativeUrl === '/' ? '' : _spPageContextInfo.siteServerRelativeUrl;
+    var urlToSettings =  siteColRelativeUrl + "/SiteAssets/gt/config/core/datasources.txt";
 
     GT.jQuery.getJSON(urlToSettings)
     .then(function (data) {
