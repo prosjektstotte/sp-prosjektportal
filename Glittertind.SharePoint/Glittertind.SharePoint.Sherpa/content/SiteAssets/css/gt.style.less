@@ -267,15 +267,21 @@ ul.gt-List {
 	}
 
 	ul.projectPhases {
-		margin: 0 20px 30px 0;
-		padding: 0;
+		padding: 0 20px 30px 0;
+		margin: 0;
 		display: flex;
 		list-style-type: square;
 		overflow: visible;
 		clear: both;
+		width: 98%;
 
 		&.legacy-ie {
 			display: block;
+
+			li {
+				display: inline-block;
+				vertical-align: top;		
+			}
 		}
 		> li {
 			@gtGreen: rgb(51, 153, 51);
@@ -395,8 +401,9 @@ ul.gt-List {
 			&:after {
 				display: block;
 				position: absolute;
-				top: 35px;
+				top: 36px;
 				width: 100%;
+				margin-left: 1%;
 				height: 1px;
 				content: '';
 				background-color: @gtBlue;
@@ -417,6 +424,7 @@ ul.gt-List {
 				position: absolute;
 				top: 18px;
 				width: 100%;
+    			margin-left: 1%;
 				height: 1px;
 				content: '';
 				background-color: @gtGreen;

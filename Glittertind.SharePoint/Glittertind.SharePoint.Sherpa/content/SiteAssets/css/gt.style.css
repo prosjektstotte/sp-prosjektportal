@@ -224,15 +224,20 @@ ul.gt-List .gt-projectItem.new {
   padding: 5px;
 }
 .projectFrontPage .projectPhaseSection ul.projectPhases {
-  margin: 0 20px 30px 0;
-  padding: 0;
+  padding: 0 20px 30px 0;
+  margin: 0;
   display: flex;
   list-style-type: square;
   overflow: visible;
   clear: both;
+  width: 98%;
 }
 .projectFrontPage .projectPhaseSection ul.projectPhases.legacy-ie {
   display: block;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases.legacy-ie li {
+  display: inline-block;
+  vertical-align: top;
 }
 .projectFrontPage .projectPhaseSection ul.projectPhases > li {
   width: auto;
@@ -329,8 +334,9 @@ ul.gt-List .gt-projectItem.new {
 .projectFrontPage .projectPhaseSection ul.projectPhases > li:after {
   display: block;
   position: absolute;
-  top: 35px;
+  top: 36px;
   width: 100%;
+  margin-left: 1%;
   height: 1px;
   content: '';
   background-color: #0072c6;
@@ -348,6 +354,7 @@ ul.gt-List .gt-projectItem.new {
   position: absolute;
   top: 18px;
   width: 100%;
+  margin-left: 1%;
   height: 1px;
   content: '';
   background-color: #339933;

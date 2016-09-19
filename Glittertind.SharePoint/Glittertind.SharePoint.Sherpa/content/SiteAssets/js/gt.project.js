@@ -354,15 +354,16 @@ GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup,
     var phaseDisplayName = "Ingen fase";
     var phaseLetter = 'X';
     var phaseSubText = '';
-    var phaseClass = [];
+    var phaseClasses = [];
+    
+    if (index != undefined) {
+        phaseClasses.push(String.format('phasenumber-{0}', (index+1)));
+    }
     if (selected) {
-        phaseClass.push("selected");
+        phaseClasses.push("selected");
     }
     if (isLastPhase) {
-        phaseClass.push("last-phase");
-    }
-    if (index) {
-        phaseClass.push(String.format('phasenumber-{0}', (index+1)));
+        phaseClasses.push("last-phase");
     }
     if (phase && phase.Name) {
         phaseDisplayName = phase.Name;
@@ -387,7 +388,7 @@ GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup,
         '<span class="phaseLetter">{1}</span>' +
         '<span class="projectPhase">{2}</span>' +
         '<span class="phaseSubText">{3}</span>' +
-        '</div>', phaseClass.join(' '), phaseLetter, phaseDisplayName, phaseSubText);
+        '</div>', phaseClasses.join(' '), phaseLetter, phaseDisplayName, phaseSubText);
 
     if (linkToDocumentLibrary)
         markup = String.format('<a href="{0}/Dokumenter/Forms/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={1}">{2}</a><div class="checklistStats">{3}</div>', _spPageContextInfo.webServerRelativeUrl,phaseDisplayName, markup, checklistMarkup);
@@ -396,9 +397,9 @@ GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup,
         var styleForIE = '';
         //No support for flex in IE < 10
         if (oldInternetExplorer) {
-            styleForIE = String.format('style="display:table-cell; width:{0}%;"', widthPerPhase);
+            styleForIE = String.format('style="width:{0}%;"', widthPerPhase);
         }
-        markup = String.format('<li class="{0}" {1}>{2}</li>', phaseClass.join(' '), styleForIE, markup);
+        markup = String.format('<li class="{0}" {1}>{2}</li>', phaseClasses.join(' '), styleForIE, markup);
     }
 
     return markup;
