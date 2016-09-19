@@ -290,14 +290,16 @@ GT.Project.PopulateProjectPhasePart = function () {
         GT.Project.GetChecklistData()
     ).then(function (currentPhase, allPhases, checklistData) {
         if (allPhases) {
+            var oldInternetExplorer = detectIE() && detectIE() < 11;
             var frontPagePhases = allPhases.filter(function(f) {return f.ShowOnFrontpage; });
             if (frontPagePhases && frontPagePhases.length > 0) {
+                var phasesWithSubText = frontPagePhases.filter(function(f) {return f.SubText; });
                 var widthPerPhase = 100 / frontPagePhases.length;
                 for (var ix = 0; ix < frontPagePhases.length; ix++) {
                     if (frontPagePhases[ix].ShowOnFrontpage) {
                         var checkListItemStats = checklistData[frontPagePhases[ix].Name];
-                        var phaseLogoMarkup = GT.Project.GetPhaseLogoMarkup(frontPagePhases[ix], frontPagePhases[ix].Name == currentPhase, true, true, widthPerPhase, ix, (ix + 1) == frontPagePhases.length, checkListItemStats);
-                        GT.jQuery('.projectPhases').append(phaseLogoMarkup);
+                        var phaseLogoMarkup = GT.Project.GetPhaseLogoMarkup(frontPagePhases[ix], frontPagePhases[ix].Name == currentPhase, true, true, widthPerPhase, ix, (ix + 1) == frontPagePhases.length, checkListItemStats, oldInternetExplorer);
+                        GT.jQuery('.projectPhases').append(phaseLogoMarkup).addClass(oldInternetExplorer ? 'legacy-ie' : 'not-legacy-ie').addClass(phasesWithSubText.length > 0 ? 'has-subtext' : 'no-subtext');
                     }
                 }
             }
@@ -348,7 +350,7 @@ GT.Project.GetProjectPhases = function () {
     return defer.promise();
 };
 
-GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup, linkToDocumentLibrary, widthPerPhase, index, isLastPhase, checklistStats) {
+GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup, linkToDocumentLibrary, widthPerPhase, index, isLastPhase, checklistStats, oldInternetExplorer) {
     var phaseDisplayName = "Ingen fase";
     var phaseLetter = 'X';
     var phaseSubText = '';
@@ -393,7 +395,7 @@ GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup,
     {
         var styleForIE = '';
         //No support for flex in IE < 10
-        if (detectIE() && detectIE() < 11) {
+        if (oldInternetExplorer) {
             styleForIE = String.format('style="display:table-cell; width:{0}%;"', widthPerPhase);
         }
         markup = String.format('<li class="{0}" {1}>{2}</li>', phaseClass.join(' '), styleForIE, markup);

@@ -231,6 +231,9 @@ ul.gt-List .gt-projectItem.new {
   overflow: visible;
   clear: both;
 }
+.projectFrontPage .projectPhaseSection ul.projectPhases.legacy-ie {
+  display: block;
+}
 .projectFrontPage .projectPhaseSection ul.projectPhases > li {
   width: auto;
   -ms-flex: 1;
@@ -258,12 +261,37 @@ ul.gt-List .gt-projectItem.new {
   float: none;
 }
 .projectFrontPage .projectPhaseSection ul.projectPhases > li .projectPhase {
-  width: 68%;
+  width: 90%;
   text-align: left;
-  float: left;
   font-size: 1rem;
+  font-size: 0.9vw;
   margin-top: 3px;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  color: #339933;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .phaseSubText {
+  width: 90%;
+  font-size: 0.7rem;
+  font-size: 0.7vw;
+  text-transform: none;
+  text-align: left;
+  display: block;
+  color: #333;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases > li .phaseLetter {
+  border-radius: 1000px;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  display: block;
+  margin: 10px 10px 0 0;
+  text-align: center;
+  z-index: 100;
+  line-height: 38px;
+  font-size: 1.4rem;
+  vertical-align: middle;
+  border: 1px solid #339933;
   color: #339933;
 }
 .projectFrontPage .projectPhaseSection ul.projectPhases > li .checklistStats {
@@ -272,7 +300,6 @@ ul.gt-List .gt-projectItem.new {
   -moz-transition: opacity 0s ease-in-out;
   -webkit-transition: opacity 0s ease-in-out;
   position: absolute;
-  max-height: 10px;
 }
 .projectFrontPage .projectPhaseSection ul.projectPhases > li .checklistStats h3 {
   color: #eee;
@@ -298,32 +325,6 @@ ul.gt-List .gt-projectItem.new {
   color: #eee;
   text-decoration: none;
 }
-.projectFrontPage .projectPhaseSection ul.projectPhases > li .phaseSubText {
-  width: 68%;
-  font-size: 0.7rem;
-  text-transform: none;
-  text-align: left;
-  display: block;
-  float: left;
-  color: #333;
-}
-.projectFrontPage .projectPhaseSection ul.projectPhases > li .phaseLetter {
-  border-radius: 1000px;
-  position: relative;
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  display: block;
-  margin: 10px 10px 0 0;
-  float: left;
-  text-align: center;
-  z-index: 100;
-  line-height: 38px;
-  font-size: 1.4rem;
-  vertical-align: middle;
-  border: 1px solid #339933;
-  color: #339933;
-}
 .projectFrontPage .projectPhaseSection ul.projectPhases > li:before,
 .projectFrontPage .projectPhaseSection ul.projectPhases > li:after {
   display: block;
@@ -345,7 +346,7 @@ ul.gt-List .gt-projectItem.new {
 .projectFrontPage .projectPhaseSection ul.projectPhases > li .gt-phaseIcon:after {
   display: block;
   position: absolute;
-  top: 31px;
+  top: 18px;
   width: 100%;
   height: 1px;
   content: '';
@@ -362,6 +363,10 @@ ul.gt-List .gt-projectItem.new {
   border: 1px solid #666;
   background-color: #333;
   color: #fff;
+}
+.projectFrontPage .projectPhaseSection ul.projectPhases > li.selected:before,
+.projectFrontPage .projectPhaseSection ul.projectPhases > li.selected:after {
+  height: 2px;
 }
 .projectFrontPage .projectPhaseSection ul.projectPhases > li.selected .projectPhase {
   font-weight: 600;
@@ -412,7 +417,6 @@ ul.gt-List .gt-projectItem.new {
   position: absolute;
   top: 64px;
   left: -6px;
-  max-height: 140px;
   z-index: 15;
   background: rgba(50, 50, 50, 0.95);
   padding: 15px;
@@ -453,6 +457,22 @@ ul.gt-List .gt-projectItem.new {
   border-bottom-color: rgba(51, 51, 51, 0.95);
   border-width: 12px;
   margin-left: -12px;
+}
+@media (max-width: 1400px) {
+  .projectFrontPage .projectPhaseSection ul.projectPhases > li .projectPhase {
+    font-size: 12.6px;
+  }
+  .projectFrontPage .projectPhaseSection ul.projectPhases > li .phaseSubText {
+    font-size: 9.8px;
+  }
+}
+@media (min-width: 1680px) {
+  .projectFrontPage .projectPhaseSection ul.projectPhases > li .projectPhase {
+    font-size: 16.8px;
+  }
+  .projectFrontPage .projectPhaseSection ul.projectPhases > li .phaseSubText {
+    font-size: 13.5px;
+  }
 }
 #gtloglist {
   max-width: 700px;

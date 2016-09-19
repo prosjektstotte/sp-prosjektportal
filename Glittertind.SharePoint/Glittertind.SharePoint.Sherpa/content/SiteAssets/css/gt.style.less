@@ -274,6 +274,9 @@ ul.gt-List {
 		overflow: visible;
 		clear: both;
 
+		&.legacy-ie {
+			display: block;
+		}
 		> li {
 			@gtGreen: rgb(51, 153, 51);
 			@gtBlue: rgb(0, 114, 198);
@@ -318,21 +321,47 @@ ul.gt-List {
 			}
 
 			.projectPhase {
-				width: 68%;
+				width: 90%;
 				text-align: left;
-				float: left;
 				font-size: 1rem;
+				font-size: 0.9vw;
 				margin-top: 3px;
-				margin-bottom: 15px;
+				margin-bottom: 5px;
 				color: @gtGreen;
 			}
+			.phaseSubText {
+				width: 90%;
+				font-size: 0.7rem;
+				font-size: 0.7vw;
+				text-transform: none;
+				text-align: left;
+				display: block;
+				color: #333;
+			}
+
+			.phaseLetter {
+				border-radius: 1000px;
+				position: relative;
+				width: 40px;
+				height: 40px;
+				background-color: #fff;
+				display: block;
+				margin: 10px 10px 0 0;
+				text-align: center;
+				z-index: 100;
+				line-height: 38px;
+				font-size: 1.4rem;
+				vertical-align: middle;
+				border: 1px solid @gtGreen;
+				color: @gtGreen;
+			}
+
 			.checklistStats {
 				opacity:0;
 				transition: opacity .0s ease-in-out;
 				-moz-transition: opacity .0s ease-in-out;
 				-webkit-transition: opacity .0s ease-in-out;
 				position:absolute;
-				max-height: 10px;
 
 				h3 {
 					color:#eee;
@@ -342,6 +371,7 @@ ul.gt-List {
 					padding: 0;
 					margin: 0;
 					list-style:none;
+
 					li {
 						display: block;
 						margin: 0;
@@ -359,34 +389,6 @@ ul.gt-List {
 						}
 					}
 				}
-			}
-
-			.phaseSubText {
-				width: 68%;
-				font-size: 0.7rem;
-				text-transform: none;
-				text-align: left;
-				display: block;
-				float: left;
-				color: #333;
-			}
-
-			.phaseLetter {
-				border-radius: 1000px;
-				position: relative;
-				width: 40px;
-				height: 40px;
-				background-color: #fff;
-				display: block;
-				margin: 10px 10px 0 0;
-				float: left;
-				text-align: center;
-				z-index: 100;
-				line-height: 38px;
-				font-size: 1.4rem;
-				vertical-align: middle;
-				border: 1px solid @gtGreen;
-				color: @gtGreen;
 			}
 
 			&:before,
@@ -413,7 +415,7 @@ ul.gt-List {
 			.gt-phaseIcon:after {
 				display: block;
 				position: absolute;
-				top: 31px;
+				top: 18px;
 				width: 100%;
 				height: 1px;
 				content: '';
@@ -432,6 +434,10 @@ ul.gt-List {
 			.phaseLetterHover();
 
 			&.selected {
+				&:before,
+				&:after {
+					height: 2px;
+				}
 				.projectPhase {
 					font-weight: 600;
 				}
@@ -479,7 +485,6 @@ ul.gt-List {
 					position:absolute;
 					top:64px;
                     left: -6px;
-                    max-height: 140px;
 					z-index:15;
 					background: rgba(50,50,50,.95);
 					padding:15px;
@@ -521,6 +526,22 @@ ul.gt-List {
 						border-width: 12px;
 						margin-left: -12px;
 					}
+				}
+			}
+			@media (max-width: 1400px) {
+				.projectPhase {
+					font-size: 12.6px;
+				}
+				.phaseSubText {
+					font-size: 9.8px;
+				}
+			} 
+			@media (min-width: 1680px) {
+				.projectPhase {
+					font-size: 16.8px;
+				}
+				.phaseSubText {
+					font-size: 13.5px;
 				}
 			}
 		}
