@@ -733,14 +733,14 @@ GT.Project.Model.webModel = function () {
     _this.created = ko.observable();
     _this.lastChangedDisplayValue = ko.computed(function () {
         if (this.lastChanged() != undefined) {
-            return new Date(this.lastChanged()).format("dd. MM yyyy");
+            return new Date(this.lastChanged()).format("dd.MM.yyyy");
         }
         return '';
 
     }, this);
     _this.createdDisplayValue = ko.computed(function () {
         if (this.created() != undefined) {
-            return new Date(this.created()).format("dd. MM yyyy");
+            return new Date(this.created()).format("dd.MM.yyyy");
         }
         return '';
 
@@ -762,7 +762,7 @@ GT.Project.get_allProjectsUnderCurrent = function () {
         var digest = GT.jQuery("#__REQUESTDIGEST").val();
 
         GT.jQuery.ajax({
-            url: _spPageContextInfo.siteAbsoluteUrl + "/_api/site/rootWeb/webinfos?$orderby=Created%20desc",
+            url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/Webs?$select=Title,URL,Created,effectivebasepermissions&$filter=effectivebasepermissions/high%20gt%2032&$orderby=Created%20desc",
             headers: {
                 "Accept": "application/json; odata=verbose",
                 "X-RequestDigest": digest
