@@ -733,14 +733,14 @@ GT.Project.Model.webModel = function () {
     _this.created = ko.observable();
     _this.lastChangedDisplayValue = ko.computed(function () {
         if (this.lastChanged() != undefined) {
-            return new Date(this.lastChanged()).format("dd. MM yyyy");
+            return new Date(this.lastChanged()).format("dd.MM.yyyy");
         }
         return '';
 
     }, this);
     _this.createdDisplayValue = ko.computed(function () {
         if (this.created() != undefined) {
-            return new Date(this.created()).format("dd. MM yyyy");
+            return new Date(this.created()).format("dd.MM.yyyy");
         }
         return '';
 
@@ -759,23 +759,21 @@ GT.Project.get_allProjectsUnderCurrent = function () {
 
     var get_webData = function (webCollection) {
         var get_webDataDeferred = GT.jQuery.Deferred();
-        
+
         var clientContext = new SP.ClientContext.get_current();
         var web = clientContext.get_web();
-
         this.webCollection = web.getSubwebsForCurrentUser(null);
-
         clientContext.load(this.webCollection);
         clientContext.executeQueryAsync(Function.createDelegate(this, function() {
-            GT.Project.Model.appViewModel.projects = this.webCollection.get_data().map(function(i) { 
+            var subsites = this.webCollection.get_data().map(function(i) { 
                 var model = new GT.Project.Model.webModel();
                 model.title = i.get_title();
                 model.url = i.get_serverRelativeUrl();
-                model.lastChanged= i.get_lastItemModifiedDate();
+                model.lastChanged = i.get_lastItemModifiedDate();
                 model.created= i.get_created();
-
                 return model;
             });
+            GT.Project.Model.appViewModel.projects.push(subsites);
 
             GT.Project.Model.appViewModel.loaded(true);
             get_webDataDeferred.resolve(GT.Project.Model.appViewModel);
