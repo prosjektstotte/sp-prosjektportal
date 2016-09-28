@@ -759,34 +759,30 @@ GT.Project.get_allProjectsUnderCurrent = function () {
 
     var get_webData = function (webCollection) {
         var get_webDataDeferred = GT.jQuery.Deferred();
-        var digest = GT.jQuery("#__REQUESTDIGEST").val();
+        
+        var clientContext = new SP.ClientContext.get_current();
+        var web = clientContext.get_web();
 
-        GT.jQuery.ajax({
-            url: _spPageContextInfo.siteAbsoluteUrl + "/_api/site/rootWeb/webinfos?$orderby=Created%20desc",
-            headers: {
-                "Accept": "application/json; odata=verbose",
-                "X-RequestDigest": digest
-            },
-            contentType: "application/json;odata=verbose",
-        }).then(function (data) {
-            GT.Project.Model.appViewModel.projects([]);
+        this.webCollection = web.getSubwebsForCurrentUser(null);
 
-            for (var i = 0; i < data.d.results.length; i++) {
-                var web = data.d.results[i];
-
+        clientContext.load(this.webCollection);
+        clientContext.executeQueryAsync(Function.createDelegate(this, function() {
+            GT.Project.Model.appViewModel.projects = this.webCollection.get_data().map(function(i) { 
                 var model = new GT.Project.Model.webModel();
+                model.title = i.get_title();
+                model.url = i.get_serverRelativeUrl();
+                model.lastChanged= i.get_lastItemModifiedDate();
+                model.created= i.get_created();
 
-                model.title(web.Title);
-                model.url(web.ServerRelativeUrl);
-                model.lastChanged(web.LastItemModifiedDate);
-                model.created(web.Created);
+                return model;
+            });
 
-                GT.Project.Model.appViewModel.projects.push(model);
-            }
             GT.Project.Model.appViewModel.loaded(true);
             get_webDataDeferred.resolve(GT.Project.Model.appViewModel);
-
-        });
+        }), Function.createDelegate(this, function() {
+            console.log('Error getting recent projects');
+            console.log(arguments);
+        }));
 
         return get_webDataDeferred.promise();
     };
