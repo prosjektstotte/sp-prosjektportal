@@ -767,14 +767,19 @@ GT.Project.get_allProjectsUnderCurrent = function () {
         clientContext.executeQueryAsync(Function.createDelegate(this, function() {
             var subsites = this.webCollection.get_data().map(function(i) { 
                 var model = new GT.Project.Model.webModel();
-                model.title = i.get_title();
-                model.url = i.get_serverRelativeUrl();
-                model.lastChanged = i.get_lastItemModifiedDate();
-                model.created= i.get_created();
+                model.title(i.get_title());
+                model.url(i.get_serverRelativeUrl());
+                model.lastChanged(i.get_lastItemModifiedDate());
+                model.created(i.get_created());
                 return model;
             });
-            GT.Project.Model.appViewModel.projects.push(subsites);
+            subsites.sort(function(a, b){
+                return new Date(b.created()) - new Date(a.created());
+            });
 
+            for (var x = 0; x < subsites.length; x++) {
+                GT.Project.Model.appViewModel.projects.push(subsites[x]);
+            }
             GT.Project.Model.appViewModel.loaded(true);
             get_webDataDeferred.resolve(GT.Project.Model.appViewModel);
         }), Function.createDelegate(this, function() {
