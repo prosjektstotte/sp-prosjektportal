@@ -1,4 +1,4 @@
-.validationMessage {
+﻿.validationMessage {
   color: red;
 }
 .newProjectPage h1 {
@@ -500,25 +500,51 @@ ul.gt-List .gt-projectItem.new {
 #gtloglist table tr td {
   padding: 5px;
 }
+#gtloglist table tr td .gt-logelement-link {
+  cursor: pointer;
+  color: #444444;
+}
+#gtloglist table tr td .gt-logelement-link:hover {
+  text-decoration: underline;
+}
 #gtchecklist {
   width: 514px;
 }
 #gtchecklist ul {
   padding-left: 10px;
 }
-#gtchecklist li {
+#gtchecklist ul li {
   list-style: none;
   margin-bottom: 10px;
 }
-#gtchecklist li a {
+#gtchecklist ul li .gt-checklist-link {
   line-height: 20px;
   display: block;
-  color: #444;
 }
-#gtchecklist li a .gt-checklist-title {
+#gtchecklist ul li .gt-checklist-link .gt-checklist-title {
   display: inline-block;
   width: 90%;
   vertical-align: top;
+  color: #444444;
+  cursor: pointer;
+}
+#gtchecklist ul li .gt-checklist-link:hover {
+  text-decoration: underline;
+}
+.gt-reload-msg {
+  cursor: pointer;
+  margin-top: 10px;
+  color: #444444;
+}
+.gt-reload-msg span.gt-reload-icon {
+  display: inline-block;
+  background: url(/_layouts/15/images/spcommon.png?rev=23) -38px -218px;
+  height: 15px;
+  width: 15px;
+  margin-right: 5px;
+}
+.gt-reload-msg:hover {
+  text-decoration: underline;
 }
 .gt-icon {
   width: 20px;

@@ -23,7 +23,7 @@
 		}
 
 		input, textarea {
-			width: 250px;
+			width: 250px; 
 			margin: 3px 0 10px;
 		}
 
@@ -576,6 +576,15 @@ ul.gt-List {
 
 	table tr td {
 		padding: 5px;
+
+        .gt-logelement-link {
+            cursor: pointer;
+            color: #444444;
+            
+            &:hover {
+                text-decoration: underline;
+            }
+        }
 	}
 }
 
@@ -584,26 +593,48 @@ ul.gt-List {
 
 	ul {
 		padding-left: 10px;
-	}
+        
+	    li {
+		    list-style: none;
+		    margin-bottom: 10px;
 
-	li {
-		list-style: none;
-		margin-bottom: 10px;
+		    .gt-checklist-link {
+			    line-height: 20px;
+			    display: block;
 
-		a {
-			line-height: 20px;
-			display: block;
-			color: #444;
-
-			.gt-checklist-title {
-				display: inline-block;
-				width: 90%;
-				vertical-align: top;
-			}
-		}
+			    .gt-checklist-title {
+				    display: inline-block;
+				    width: 90%;
+				    vertical-align: top;
+                    color: #444444;
+                    cursor: pointer;
+			    }
+                
+                &:hover {
+                    text-decoration: underline;
+                }
+		    }
+	    }
 	}
 }
 
+.gt-reload-msg {
+    cursor: pointer;
+    margin-top: 10px;
+    color: #444444;
+
+    span.gt-reload-icon {
+        display: inline-block;
+        background: url(/_layouts/15/images/spcommon.png?rev=23) -38px -218px;
+        height: 15px;
+        width: 15px;
+        margin-right: 5px;
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
 .gt-icon {
 	width: 20px;
 	height: 20px;

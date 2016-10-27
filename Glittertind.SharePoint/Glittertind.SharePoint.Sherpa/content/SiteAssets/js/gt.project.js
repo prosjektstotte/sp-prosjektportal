@@ -479,26 +479,6 @@ GT.Project.GetPhaseTermFromCurrentItem = function () {
     return deferred.promise();
 };
 
-GT.Project.PhaseForm.CheckList.render = function () {
-    var promise = GT.Project.PhaseForm.CheckList.getData();
-
-    promise.done(function (items) {
-        var outHtml = [];
-        outHtml.push('<div id="gtchecklist">',
-                        '<h2 class="ms-h2">Fasesjekkliste</h2>',
-                        '<ul>');
-        for (var i = 0; i < items.length; i++) {
-            outHtml.push('<li>',
-                            '<a href="', items[i].get_editItemUrl(window.location.toString()), '" >',
-                                '<span class="gt-icon ', items[i].get_statusCssClass(), '" title="', items[i].Status, '"></span>',
-                                '<span class="gt-checklist-title">', items[i].Title, '</span></a>',
-                        '</li>');
-        }
-        outHtml.push('</ul></div>');
-        GT.jQuery(".ms-webpart-zone.ms-fullWidth").append(outHtml.join(""));
-    });
-};
-
 GT.Project.GetCurrentPhase = function () {
     var defer = GT.jQuery.Deferred();
     var ctx = new SP.ClientContext.get_current();
@@ -573,6 +553,28 @@ GT.Project.GetChecklistData = function () {
 
     return defer.promise();
 }
+
+GT.Project.PhaseForm.CheckList.render = function () {
+    GT.jQuery(".ms-webpart-zone.ms-fullWidth #gtchecklist").remove();
+
+    GT.Project.PhaseForm.CheckList.getData().done(function (items) {
+        var outHtml = [];
+        outHtml.push('<div id="gtchecklist">',
+                        '<h2 class="ms-h2">Fasesjekkliste</h2>',
+                        '<ul>');
+        for (var i = 0; i < items.length; i++) {
+            outHtml.push('<li>',
+                            '<div class="gt-checklist-link" onclick="GT.Project.PhaseForm.CheckList.onClick(\'', items[i].get_editItemUrl(), '\')">',
+                                '<span class="gt-icon ', items[i].get_statusCssClass(), '" title="', items[i].Status, '"></span>',
+                                '<span class="gt-checklist-title">', items[i].Title, '</span></div>',
+                        '</li>');
+        }
+        outHtml.push('</ul><div class="gt-reload-msg" onclick="GT.Project.PhaseForm.CheckList.render();"><span class="gt-reload-icon"></span>Oppdater sjekklisten</div></div>');
+
+        GT.jQuery(".ms-webpart-zone.ms-fullWidth").append(outHtml.join(""));
+    });
+};
+
 GT.Project.PhaseForm.CheckList.getData = function () {
     var currentPhasePromise = GT.Project.GetCurrentPhase();
     var scriptPromise = GT.jQuery.getScript(_spPageContextInfo.siteServerRelativeUrl + "/_layouts/15/SP.RequestExecutor.js");
@@ -606,9 +608,13 @@ GT.Project.PhaseForm.CheckList.getData = function () {
         return defer.promise();
 
     });
-
     return promise;
+};
 
+GT.Project.PhaseForm.CheckList.onClick = function (url) {
+    SP.UI.ModalDialog.showModalDialog({
+        url: url
+    });
 };
 
 GT.Project.PhaseForm.CheckList.CheckListItem = function (title, id, status) {
@@ -628,16 +634,13 @@ GT.Project.PhaseForm.CheckList.CheckListItem = function (title, id, status) {
         }
         return 'gt-nostatus';
     };
-    self.get_editItemUrl = function (sourceUrl) {
-        var editElmLink = _spPageContextInfo.webServerRelativeUrl + "/Lists/Fasesjekkliste/EditForm.aspx?ID=" + self.Id;
-        if (sourceUrl) {
-            editElmLink += "&Source=" + encodeURIComponent(sourceUrl);
-        }
-        return editElmLink;
+    self.get_editItemUrl = function () {
+        return _spPageContextInfo.webServerRelativeUrl + "/Lists/Fasesjekkliste/EditForm.aspx?ID=" + self.Id + "&Source=" + encodeURIComponent(window.location.toString());
     };
 };
 
 GT.Project.CalendarForm.RenderRelatedLogElements = function () {
+    GT.jQuery(".ms-webpart-zone.ms-fullWidth #gtloglist").remove();
     var promise = GT.Project.CalendarForm.getData();
 
     promise.done(function (items) {
@@ -650,19 +653,23 @@ GT.Project.CalendarForm.RenderRelatedLogElements = function () {
                         '<th>Loggelement</th>',
                         '<th>Meldt av</th></tr>');
         for (var i = 0; i < items.length; i++) {
+            var descriptionWithLineBreaks = items[i].Description ? items[i].Description.replace(/(?:\r\n|\r|\n)/g, '<br />') : '';
             outHtml.push(i % 2 == 1 ? '<tr>' : '<tr class="ms-HoverBackground-bgColor">',
-                    '<td><a href="', items[i].get_viewItemUrl(window.location.toString()), '" >',
-                    '<span class="gt-title">', items[i].Title, '</span></a></td>',
-                    '<td>', items[i].Description, '</td>',
+                    '<td><div class="gt-logelement-link" onclick="GT.Project.CalendarForm.LogElementOnClick(\'', items[i].get_viewItemUrl(), '\')">',
+                    '<span class="gt-title">', items[i].Title, '</span></div></td>',
+                    '<td>', descriptionWithLineBreaks, '</td>',
                     '<td>', items[i].Type, '</td>',
                     '<td>', items[i].ReportedBy, '</td>',
             '</tr>');
         }
         outHtml.push('</tbody></table>',
-                '</div>');
+            '<div class="gt-reload-msg" onclick="GT.Project.CalendarForm.RenderRelatedLogElements();"><span class="gt-reload-icon"></span>Oppdater loggelementer</div>',
+            '</div>');
+
         GT.jQuery(".ms-webpart-zone.ms-fullWidth").append(outHtml.join(""));
     });
 };
+
 GT.Project.CalendarForm.getData = function () {
     var dateAndTime = GT.Project.GetFieldValueFromCurrentItem("GtProjectEventDateAndTitle");
     var scriptPromise = GT.jQuery.getScript(_spPageContextInfo.siteServerRelativeUrl + "/_layouts/15/SP.RequestExecutor.js");
@@ -706,6 +713,12 @@ GT.Project.CalendarForm.getData = function () {
     return promise;
 };
 
+GT.Project.CalendarForm.LogElementOnClick = function (url) {
+    SP.UI.ModalDialog.showModalDialog({
+        url: url
+    });
+};
+
 GT.Project.CalendarForm.LogElement = function (title, id, description, type, reportedBy) {
     var self = this;
     self.Title = title;
@@ -714,12 +727,8 @@ GT.Project.CalendarForm.LogElement = function (title, id, description, type, rep
     self.Type = type;
     self.ReportedBy = reportedBy;
 
-    self.get_viewItemUrl = function (sourceUrl) {
-        var editElmLink = _spPageContextInfo.webServerRelativeUrl + "/Lists/Prosjektlogg/DispForm.aspx?ID=" + self.Id;
-        if (sourceUrl) {
-            editElmLink += "&Source=" + encodeURIComponent(sourceUrl);
-        }
-        return editElmLink;
+    self.get_viewItemUrl = function () {
+        return _spPageContextInfo.webServerRelativeUrl + "/Lists/Prosjektlogg/DispForm.aspx?ID=" + self.Id + "&Source=" + encodeURIComponent(window.location.toString());
     };
 };
 
