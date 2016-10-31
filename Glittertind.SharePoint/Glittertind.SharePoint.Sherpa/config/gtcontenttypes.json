@@ -15,9 +15,7 @@
         "Group": "Prosjektportalen innholdstyper",
         "ID": "0x010100293fde3fcada480b9a77bbdad7dfa28c01",
         "InternalName": "GtProjectDocument",
-        "RequiredFields": [
-            "GtProjectPhase"
-        ]
+        "RequiredFields": []
     },
     {
         "Description": "",
