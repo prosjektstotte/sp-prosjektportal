@@ -9,9 +9,14 @@ if((Get-PSSnapin -Name Microsoft.SharePoint.PowerShell -ErrorAction SilentlyCont
 Function Map-ManagedProperty ([string]$ManagedPropertyName, [string]$CrawledPropertyName, $SSA)
 {
     $MetadataCategory = Get-SPEnterpriseSearchMetadataCategory -SearchApplication $SSA -Identity "SharePoint"
-    $cct = Get-SPEnterpriseSearchMetadataCrawledProperty -SearchApplication $SSA -Name $CrawledPropertyName -Category $MetadataCategory
+    $CrawledProperty = Get-SPEnterpriseSearchMetadataCrawledProperty -SearchApplication $SSA -Name $CrawledPropertyName -Category $MetadataCategory
+    $ManagedProperty = Get-SPEnterpriseSearchMetadataManagedProperty -SearchApplication $SSA -Identity $ManagedPropertyName
 
-    New-SPEnterpriseSearchMetadataMapping -SearchApplication $SSA -CrawledProperty $cct -ManagedProperty $ManagedPropertyName
+    if ($CrawledProperty -ne $null -and $ManagedProperty -ne $null) {
+        New-SPEnterpriseSearchMetadataMapping -SearchApplication $SSA -CrawledProperty $CrawledProperty -ManagedProperty $ManagedProperty
+    } else {
+        Write-Warning "Cannot find a crawled or managed property. Remember that you need to populate a project with project metadata and issue a crawl of the content before running this script"
+    }
 }
 
 $SSA = Get-SPEnterpriseSearchServiceApplication -Identity $SSAName
