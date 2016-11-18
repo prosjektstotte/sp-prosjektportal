@@ -1,4 +1,4 @@
-﻿.validationMessage {
+.validationMessage {
   color: red;
 }
 .newProjectPage h1 {
@@ -168,6 +168,10 @@ ul.gt-List .gt-projectItem.new {
 }
 .gt-result-table td.restrict-width {
   max-width: 100px;
+}
+.gt-result-table .status-unknown {
+  background-color: #bbb;
+  background-color: rgba(50, 50, 50, 0.3);
 }
 .gt-result-table .status-red {
   background-color: #cc6666;
