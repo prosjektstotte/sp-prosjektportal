@@ -36,6 +36,10 @@ GT.Project.Setup.InheritNavigation = function () {
     var navigation = web.get_navigation();
     navigation.set_useShared(true);
 
+    var rootFolder = web.get_rootFolder();
+    rootFolder.set_welcomePage('SitePages/Forside.aspx');
+    rootFolder.update();
+
     clientContext.executeQueryAsync(function () {
         deferred.resolve();
     }, function () {

@@ -57,7 +57,8 @@ GT.Provisioning.OnCreateWebSuccess = function (sender, args) {
     var newUrl = this.newWeb.get_url()
     closeWaitMessage();
 
-    var setupPermissionsUrl = newUrl + '/_layouts/15/permsetup.aspx?HideCancel=1';
+    var redirectUrl = encodeURIComponent(newUrl + '/SitePages/Forside.aspx');
+    var setupPermissionsUrl = newUrl + '/_layouts/15/permsetup.aspx?HideCancel=1&Source=' + redirectUrl;
     window.location.replace(setupPermissionsUrl);
 };
 
