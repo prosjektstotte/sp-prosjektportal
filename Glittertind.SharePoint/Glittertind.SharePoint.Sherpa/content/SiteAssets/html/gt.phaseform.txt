@@ -30,10 +30,10 @@
 					GT.jQuery('.ms-cui-tabContainer').hide();
                     GT.jQuery('#onetIDListForm table.ms-formtable tr td.ms-formlabel span a[name="SPBookmark_FileLeafRef"]').closest('tr').hide();
                     GT.jQuery('#onetIDListForm table.ms-formtable tr td.ms-formlabel span a[name="SPBookmark_Title"]').closest('tr').hide();
-					if (currentId) {
-						GT.jQuery('.ms-formtable').before('<a class="gt-edit-link" href="EditForm.aspx?EditMode=Project&ID=' + currentId + '">Rediger prosjektegenskapene under.</a>');
-						GT.jQuery('.ms-formtable').after('<a class="gt-edit-link" href="EditForm.aspx?EditMode=Project&ID=' + currentId + '">Rediger prosjektegenskapene over.</a>');
-					}
+//					if (currentId) {
+//						GT.jQuery('.ms-formtable').before('<a class="gt-edit-link" href="EditForm.aspx?EditMode=Project&ID=' + currentId + '">Rediger prosjektegenskapene under.</a>');
+//						GT.jQuery('.ms-formtable').after('<a class="gt-edit-link" href="EditForm.aspx?EditMode=Project&ID=' + currentId + '">Rediger prosjektegenskapene over.</a>');
+//					}
                 }
             }
         });
