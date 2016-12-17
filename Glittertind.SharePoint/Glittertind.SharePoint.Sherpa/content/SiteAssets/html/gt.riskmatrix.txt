@@ -1,7 +1,7 @@
 ﻿<div style="margin-bottom:35px;">
 <b>Velg visning:</b> <select id="gt-riskmatrix-viewselector"><option>Laster..</option></select>
 </div>
-<div id="gt-riskmatrix" data-textposition="bottom">
+<div id="gt-riskmatrix" data-textposition="bottom" data-showlegend="false">
 </div>
 
 <script type="text/javascript" language="javascript">

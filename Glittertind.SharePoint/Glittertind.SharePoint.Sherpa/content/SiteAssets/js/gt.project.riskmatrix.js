@@ -4,10 +4,7 @@ var GT;
     (function (Project) {
         var RiskMarix;
         (function (RiskMarix) {
-            var __RISKS = new Array();
-            /**
-             * Config variables for the risk matrix
-             */
+            var __RISKS = [], __VIEWS = [];
             var __CONFIG = {
                 RISK_LIST_NAME: "Usikkerhet",
                 COLUMN_CONSEQUENCE: "GtRiskConsequence",
@@ -18,6 +15,7 @@ var GT;
                 COLUMN_ID: "ID",
                 COLUMN_TITLE: "Title",
                 CONTAINER: "#gt-riskmatrix",
+                VIEWSELECTOR: "#gt-riskmatrix-viewselector",
                 NUM_COLUMNS: 6,
                 NUM_ROWS: 6,
                 STATUS_BLUE: "#3867c8",
@@ -49,25 +47,78 @@ var GT;
                     this.Probability = probability;
                     this.RiskFactor = riskFactor;
                 }
+                ;
+                RiskItem.prototype.getX = function (c) {
+                    var x = (c.SHOW_LEGEND) ?
+                        ((c.W / c.NUM_COLS) * this.Consequence) + (c.W / 10) - 18 :
+                        ((c.W / c.NUM_COLS) * this.Consequence) - (c.W / 10) - 9;
+                    if (this.Id >= 10) {
+                        x -= 10;
+                    }
+                    if (this.Placement === 1) {
+                        x -= (c.W / 20);
+                    }
+                    else if (this.Placement === 2) {
+                        x += (c.W / 20);
+                    }
+                    return x;
+                };
+                ;
+                RiskItem.prototype.getY = function (c) {
+                    var y = (c.SHOW_LEGEND) ?
+                        c.H - (((c.H / c.NUM_ROWS * this.Probability)) - (c.H / 10) + (c.H / c.NUM_ROWS) - 2) :
+                        c.H - (((c.H / c.NUM_ROWS) * this.Probability) - (c.H / c.NUM_ROWS) + (c.HALF_ROW_HEIGHT / 2));
+                    if (this.Placement === 3) {
+                        y -= (h / 18);
+                    }
+                    if (this.Placement === 4) {
+                        y += (h / 18);
+                    }
+                    return y;
+                };
+                ;
+                RiskItem.prototype.getSum = function () {
+                    return (this.Probability * this.Consequence);
+                };
                 return RiskItem;
             }());
             ;
-            function _render($__container) {
-                var autoWidth = $__container.parent().width() * 0.9, autoHeight = autoWidth / 2, containerWidth = $__container.data("width") || autoWidth, containerHeight = $__container.data("height") || autoHeight, showLegend = ($__container.data("showlegend") === false) ? false : true;
-                RenderMatrix($__container, containerWidth, containerHeight, showLegend);
-            }
+            var View = (function () {
+                function View() {
+                }
+                return View;
+            }());
             ;
-            function GetRisks(viewXml) {
+            var MatrixConfig = (function () {
+                function MatrixConfig($__container) {
+                    this.AUTO_WIDTH = $__container.parent().width() * 0.9;
+                    this.AUTO_HEIGHT = this.AUTO_WIDTH / 2;
+                    this.SHOW_LEGEND = ($__container.data("showlegend") === false) ? false : true;
+                    this.W = $__container.data("width") || this.AUTO_WIDTH;
+                    this.H = $__container.data("height") || this.AUTO_HEIGHT;
+                    this.HP = this.H + 30;
+                    this.WP = this.W + 20;
+                    this.NUM_COLS = (this.SHOW_LEGEND) ? __CONFIG.NUM_COLUMNS : __CONFIG.NUM_COLUMNS - 1;
+                    this.NUM_ROWS = (this.SHOW_LEGEND) ? __CONFIG.NUM_ROWS : __CONFIG.NUM_ROWS - 1;
+                    this.COL_WIDTH = this.W / this.NUM_COLS;
+                    this.ROW_HEIGHT = this.H / this.NUM_ROWS;
+                    this.HALF_ROW_HEIGHT = this.ROW_HEIGHT / 2;
+                }
+                return MatrixConfig;
+            }());
+            function GetRisks(viewQuery) {
+                if (viewQuery === void 0) { viewQuery = ""; }
                 var def = jQuery.Deferred(), ctx = SP.ClientContext.get_current(), list = ctx.get_web().get_lists().getByTitle(__CONFIG.RISK_LIST_NAME);
                 var query = new SP.CamlQuery();
-                query.set_viewXml(viewXml);
+                query.set_viewXml("<View><Query>" + viewQuery + "</Query></View>");
                 var items = list.getItems(query);
                 ctx.load(items);
                 ctx.executeQueryAsync(function () {
-                    def.resolve(items.get_data().map(function (d) {
+                    __RISKS = items.get_data().map(function (d) {
                         var fieldValues = d.get_fieldValues();
                         return new RiskItem(fieldValues[__CONFIG.COLUMN_ID], fieldValues[__CONFIG.COLUMN_TITLE], fieldValues[__CONFIG.COLUMN_RISKACTION], fieldValues[__CONFIG.COLUMN_CONSEQUENCE], fieldValues[__CONFIG.COLUMN_PROBABILITY], fieldValues[__CONFIG.COLUMN_RISKFACTOR]);
-                    }));
+                    });
+                    def.resolve(__RISKS);
                 }, def.reject);
                 return def.promise();
             }
@@ -76,18 +127,44 @@ var GT;
                 var def = jQuery.Deferred(), ctx = SP.ClientContext.get_current(), list = ctx.get_web().get_lists().getByTitle(__CONFIG.RISK_LIST_NAME), views = list.get_views();
                 ctx.load(views);
                 ctx.executeQueryAsync(function () {
-                    def.resolve(views.get_data());
+                    __VIEWS = views.get_data().map(function (v) {
+                        return {
+                            ID: v.get_id().toString(),
+                            Title: v.get_title(),
+                            ServerRelativeUrl: v.get_serverRelativeUrl(),
+                            ViewQuery: v.get_viewQuery()
+                        };
+                    });
+                    def.resolve(__VIEWS);
                 }, def.reject);
                 return def.promise();
             }
             ;
-            function RenderMatrix($__container, containerWidth, containerHeight, showLegend) {
-                GetRisks("<View></View>").then(function (risks) {
+            function RenderViewSelector($__viewSelector) {
+                GetViews().then(function (views) {
+                    console.log(views);
+                    var _outHtml = views
+                        .filter(function (v) { return v.Title !== ""; })
+                        .map(function (v) { return ("<option value=\"" + v.ID + "\">" + v.Title + "</option>"); }).join("");
+                    $__viewSelector
+                        .html(_outHtml)
+                        .on("change", function () {
+                        var viewId = $__viewSelector.val(), viewQuery = __VIEWS.filter(function (v) { return v.ID === viewId; })[0].ViewQuery;
+                        RenderMatrix(viewQuery);
+                    });
+                });
+            }
+            ;
+            function RenderMatrix(viewQuery) {
+                if (viewQuery === void 0) { viewQuery = ""; }
+                var $__container = jQuery(__CONFIG.CONTAINER), __ = new MatrixConfig($__container);
+                $__container
+                    .fadeOut(250)
+                    .empty();
+                GetRisks(viewQuery).then(function (risks) {
                     risks.forEach(function (risk) {
                         var placement = 0;
-                        var identicalRisks = jQuery.grep(risks, function (e) {
-                            return e.Consequence === risk.Consequence && e.Probability === risk.Probability;
-                        });
+                        var identicalRisks = risks.filter(function (e) { return e.Consequence === risk.Consequence && e.Probability === risk.Probability; });
                         if (identicalRisks.length > 1) {
                             for (var ir = 0; ir < identicalRisks.length; ir++) {
                                 identicalRisks[ir].Placement = placement;
@@ -95,35 +172,21 @@ var GT;
                             }
                         }
                     });
-                    var w = containerWidth;
-                    var h = containerHeight;
-                    var hp = h + 30;
-                    var wp = w + 20;
-                    var numCols = (showLegend) ? __CONFIG.NUM_COLUMNS : __CONFIG.NUM_COLUMNS - 1;
-                    var numRows = (showLegend) ? __CONFIG.NUM_ROWS : __CONFIG.NUM_ROWS - 1;
-                    var colWidth = w / numCols;
-                    var rowHeight = h / numRows;
-                    var halfRowHeight = rowHeight / 2;
                     var xScale = d3["scale"].linear()
                         .domain([0.5, 5.5])
-                        .range([w / numCols, w]);
+                        .range([__.W / __.NUM_COLS, __.W]);
                     var yScale = d3["scale"].linear()
                         .domain([0.5, 5.5])
-                        .range([h - (h / numRows), 0]);
+                        .range([__.H - (__.H / __.NUM_ROWS), 0]);
                     var svg = d3.select(__CONFIG.CONTAINER)
                         .append("svg")
-                        .attr("width", w)
-                        .attr("height", h)
+                        .attr("width", __.W)
+                        .attr("height", __.H)
                         .attr("class", "riskSVG")
                         .attr("style", "overflow:visible;");
-                    var riskbg = d3.select(".riskSVG");
-                    var startx = 0;
-                    var starty = 0;
-                    var i = 0;
-                    var fill;
-                    var ltIndex = 0;
-                    while (i < (numCols * numRows)) {
-                        var fillArr = (showLegend === true) ?
+                    var riskbg = d3.select(".riskSVG"), startx = 0, starty = 0, i = 0, fill, ltIndex = 0;
+                    while (i < (__.NUM_COLS * __.NUM_ROWS)) {
+                        var fillArr = (__.SHOW_LEGEND === true) ?
                             [
                                 0, 3, 2, 1, 1, 1,
                                 0, 4, 3, 2, 1, 1,
@@ -142,24 +205,23 @@ var GT;
                                 ];
                         switch (fillArr[i]) {
                             case 0:
-                                // Legend text
                                 var l = riskbg.append("text");
-                                l.attr("class", "dss-risk-legendtext")
+                                l.attr("class", "risk-legendText")
                                     .attr("id", "RiskLegendItem" + ltIndex)
                                     .attr("dx", function () {
                                     if (ltIndex < 5) {
                                         return 5;
                                     }
                                     else {
-                                        return (colWidth * (ltIndex - 3) - (colWidth)) + 20;
+                                        return (__.COL_WIDTH * (ltIndex - 3) - (__.COL_WIDTH)) + 20;
                                     }
                                 })
                                     .attr("dy", function () {
                                     if (ltIndex < 5) {
-                                        return (rowHeight * (ltIndex + 1)) - (halfRowHeight) + 5;
+                                        return (__.ROW_HEIGHT * (ltIndex + 1)) - (__.HALF_ROW_HEIGHT) + 5;
                                     }
                                     else {
-                                        return (h - halfRowHeight) + 5;
+                                        return (__.H - __.HALF_ROW_HEIGHT) + 5;
                                     }
                                 })
                                     .text(__CONFIG.LEGEND_TEXT[ltIndex]);
@@ -185,20 +247,20 @@ var GT;
                                 fill = "none";
                                 break;
                         }
-                        if (i % numCols === 0 && i !== 0) {
-                            starty += (rowHeight);
+                        if (i % __.NUM_COLS === 0 && i !== 0) {
+                            starty += (__.ROW_HEIGHT);
                             startx = 0;
                         }
                         riskbg.append("rect")
                             .attr("fill", fill)
                             .attr("stroke", "#cccccc")
                             .attr("opacity", 1)
-                            .attr("width", colWidth)
-                            .attr("height", rowHeight)
+                            .attr("width", __.COL_WIDTH)
+                            .attr("height", __.ROW_HEIGHT)
                             .attr("x", startx)
                             .attr("y", starty)
                             .attr("id", "rect" + i);
-                        startx += (w / numCols);
+                        startx += (__.W / __.NUM_COLS);
                         i++;
                     }
                     var a = svg.selectAll("g").data(risks).enter().append("a");
@@ -207,24 +269,23 @@ var GT;
                         .attr("xlink:href", "#")
                         .attr("class", "dss-modalLink")
                         .attr("cursor", "pointer")
-                        .attr("dx", function (d) { return getX(d); })
-                        .attr("dy", function (d) { return getY(d); })
-                        .attr("id", function (d) { return "risklink" + d.Id; })
+                        .attr("dx", function (d) { return d.getX(__); })
+                        .attr("dy", function (d) { return d.getY(__); })
+                        .attr("id", function (d) { return ("risklink" + d.Id); })
                         .append("text")
                         .attr("fill", __CONFIG.STATUS_BLUE)
                         .attr("id", function (d) { return "circle" + d.Id; })
-                        .attr("dx", function (d) { return getX(d); })
-                        .attr("dy", function (d) { return getY(d); })
+                        .attr("dx", function (d) { return d.getX(__); })
+                        .attr("dy", function (d) { return d.getY(__); })
                         .text(function (d) { return d.Id; })
                         .on("mouseover", function (d) { d3.select("#risktext" + d.Id)["style"]("display", "block"); })
                         .on("mouseout", function (d) { d3.select("#risktext" + d.Id)["style"]("display", "none"); });
-                    var textPosX = wp;
-                    var textPosY = 0;
+                    var textPosX = __.WP, textPosY = 0;
                     if ($__container.data("textposition")) {
                         var pos = $__container.data("textposition");
                         if (pos = "bottom") {
                             textPosX = 0;
-                            textPosY = hp;
+                            textPosY = __.HP;
                             $__container.css("padding-bottom", "75px");
                         }
                     }
@@ -246,12 +307,12 @@ var GT;
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX)
                         .html(function (d) { return d.Text; });
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX)
-                        .html(function (d) { return "Alvorlighetsgrad: " + d.Consequence; });
+                        .html(function (d) { return ("Alvorlighetsgrad: " + d.Consequence); });
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX)
-                        .html(function (d) { return "Sannsynlighet: " + d.Probability; });
+                        .html(function (d) { return ("Sannsynlighet: " + d.Probability); });
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX).attr("style", "font-weight:bold")
-                        .html(function (d) { return "Sum Risiko: " + getRiskSum(d); });
-                    if (showLegend) {
+                        .html(function (d) { return ("Sum Risiko: " + d.getSum()); });
+                    if (__.SHOW_LEGEND) {
                         d3.select(".riskSVG")
                             .append("g").call(d3["svg"].axis()["scale"](xScale).orient("top").ticks(5))
                             .attr("fill", "none")
@@ -266,61 +327,37 @@ var GT;
                         .attr("stroke", "none");
                     svg.selectAll("text")
                         .attr("fill", __CONFIG.TEXT_BLUE);
-                    $__container.css("opacity", "1");
-                    function getX(d) {
-                        var x = (showLegend) ?
-                            ((w / numCols) * d.Consequence) + (w / 10) - 18 :
-                            ((w / numCols) * d.Consequence) - (w / 10) - 9;
-                        if (d.Id >= 10) {
-                            x -= 10;
-                        }
-                        if (d.Placement === 1) {
-                            x -= (w / 20);
-                        }
-                        else if (d.Placement === 2) {
-                            x += (w / 20);
-                        }
-                        return x;
-                    }
-                    function getY(d) {
-                        var y = (showLegend) ?
-                            h - (((h / numRows * d.Probability)) - (h / 10) + (h / numRows) - 2) :
-                            h - (((h / numRows) * d.Probability) - (h / numRows) + (halfRowHeight / 2));
-                        if (d.Placement === 3) {
-                            y -= (h / 18);
-                        }
-                        if (d.Placement === 4) {
-                            y += (h / 18);
-                        }
-                        return y;
-                    }
-                    function getRiskSum(d) { return (d.Probability * d.Consequence); }
+                    $__container.fadeIn(250);
                 });
             }
             ;
-            function init() {
-                var $__container = jQuery(__CONFIG.CONTAINER);
-                $__container.css("transition", "all .3s");
+            function HandleResize($__container) {
                 var rtime, timeout = false, delta = 200;
                 jQuery(window).resize(function () {
                     rtime = new Date();
                     if (timeout === false) {
                         timeout = true;
-                        setTimeout(resizeend, delta);
+                        setTimeout(_resizeend, delta);
                     }
                 });
-                function resizeend() {
+                function _resizeend() {
                     if (new Date() - rtime < delta) {
-                        setTimeout(resizeend, delta);
+                        setTimeout(_resizeend, delta);
                     }
                     else {
-                        $__container.empty();
-                        $__container.css("opacity", "0");
                         timeout = false;
-                        _render($__container);
+                        RenderMatrix();
                     }
                 }
-                _render($__container);
+                ;
+            }
+            ;
+            function init() {
+                var $__container = jQuery(__CONFIG.CONTAINER), $__viewSelector = jQuery(__CONFIG.VIEWSELECTOR);
+                $__container.css("transition", "all .3s");
+                HandleResize($__container);
+                RenderMatrix();
+                RenderViewSelector($__viewSelector);
             }
             RiskMarix.init = init;
             ;
