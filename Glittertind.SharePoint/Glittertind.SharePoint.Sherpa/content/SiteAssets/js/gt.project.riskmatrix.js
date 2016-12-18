@@ -18,12 +18,15 @@ var GT;
                 VIEWSELECTOR: "#gt-riskmatrix-viewselector",
                 NUM_COLUMNS: 6,
                 NUM_ROWS: 6,
+                STATUS_FILL: [
+                    "none",
+                    "#d94a5e",
+                    "#f5a164",
+                    "#FFE654",
+                    "#9acd62",
+                    "#55AA55"
+                ],
                 STATUS_BLUE: "#3867c8",
-                STATUS_RED: "#d94a5e",
-                STATUS_ORANGE: "#f5a164",
-                STATUS_LIGHTGREEN: "#9acd62",
-                STATUS_YELLOW: "#FFE654",
-                STATUS_GREEN: "#55AA55",
                 TEXT_BLUE: "#002e5e",
                 LEGEND_TEXT: [
                     "Høyst sannsynlig",
@@ -149,18 +152,19 @@ var GT;
                     $__viewSelector
                         .html(_outHtml)
                         .on("change", function () {
-                        var viewId = $__viewSelector.val(), viewQuery = __VIEWS.filter(function (v) { return v.ID === viewId; })[0].ViewQuery;
-                        RenderMatrix(viewQuery);
+                        var viewId = $__viewSelector.val(), view = __VIEWS.filter(function (v) { return v.ID === viewId; })[0];
+                        RenderMatrix(view);
                     });
                 });
             }
             ;
-            function RenderMatrix(viewQuery) {
-                if (viewQuery === void 0) { viewQuery = ""; }
+            function RenderMatrix(view) {
+                if (view === void 0) { view = null; }
                 var $__container = jQuery(__CONFIG.CONTAINER), __ = new MatrixConfig($__container);
                 $__container
-                    .fadeOut(250)
+                    .fadeTo("fast", 0)
                     .empty();
+                var viewQuery = view ? view.ViewQuery : "";
                 GetRisks(viewQuery).then(function (risks) {
                     risks.forEach(function (risk) {
                         var placement = 0;
@@ -203,50 +207,30 @@ var GT;
                                     5, 5, 4, 3, 2,
                                     5, 5, 5, 4, 3,
                                 ];
-                        switch (fillArr[i]) {
-                            case 0:
-                                var l = riskbg.append("text");
-                                l.attr("class", "risk-legendText")
-                                    .attr("id", "RiskLegendItem" + ltIndex)
-                                    .attr("dx", function () {
-                                    if (ltIndex < 5) {
-                                        return 5;
-                                    }
-                                    else {
-                                        return (__.COL_WIDTH * (ltIndex - 3) - (__.COL_WIDTH)) + 20;
-                                    }
-                                })
-                                    .attr("dy", function () {
-                                    if (ltIndex < 5) {
-                                        return (__.ROW_HEIGHT * (ltIndex + 1)) - (__.HALF_ROW_HEIGHT) + 5;
-                                    }
-                                    else {
-                                        return (__.H - __.HALF_ROW_HEIGHT) + 5;
-                                    }
-                                })
-                                    .text(__CONFIG.LEGEND_TEXT[ltIndex]);
-                                ltIndex++;
-                                fill = "none";
-                                break;
-                            case 1:
-                                fill = __CONFIG.STATUS_RED;
-                                break;
-                            case 2:
-                                fill = __CONFIG.STATUS_ORANGE;
-                                break;
-                            case 3:
-                                fill = __CONFIG.STATUS_YELLOW;
-                                break;
-                            case 4:
-                                fill = __CONFIG.STATUS_LIGHTGREEN;
-                                break;
-                            case 5:
-                                fill = __CONFIG.STATUS_GREEN;
-                                break;
-                            default:
-                                fill = "none";
-                                break;
+                        if (fillArr[0] === 0) {
+                            var l = riskbg.append("text");
+                            l.attr("class", "risk-legendText")
+                                .attr("id", "RiskLegendItem" + ltIndex)
+                                .attr("dx", function () {
+                                if (ltIndex < 5) {
+                                    return 5;
+                                }
+                                else {
+                                    return (__.COL_WIDTH * (ltIndex - 3) - (__.COL_WIDTH)) + 20;
+                                }
+                            })
+                                .attr("dy", function () {
+                                if (ltIndex < 5) {
+                                    return (__.ROW_HEIGHT * (ltIndex + 1)) - (__.HALF_ROW_HEIGHT) + 5;
+                                }
+                                else {
+                                    return (__.H - __.HALF_ROW_HEIGHT) + 5;
+                                }
+                            })
+                                .text(__CONFIG.LEGEND_TEXT[ltIndex]);
+                            ltIndex++;
                         }
+                        fill = __CONFIG.STATUS_FILL[fillArr[i]];
                         if (i % __.NUM_COLS === 0 && i !== 0) {
                             starty += (__.ROW_HEIGHT);
                             startx = 0;
@@ -327,7 +311,7 @@ var GT;
                         .attr("stroke", "none");
                     svg.selectAll("text")
                         .attr("fill", __CONFIG.TEXT_BLUE);
-                    $__container.fadeIn(250);
+                    $__container.fadeTo("fast", 1);
                 });
             }
             ;
