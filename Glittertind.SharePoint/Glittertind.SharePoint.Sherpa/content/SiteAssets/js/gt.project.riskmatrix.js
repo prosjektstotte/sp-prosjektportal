@@ -162,12 +162,12 @@ var GT;
                 var $__container = jQuery(__CONFIG.CONTAINER), __ = new MatrixConfig($__container);
                 $__container
                     .fadeTo("fast", 0)
-                    .empty();
+                    .html("");
                 var viewQuery = view ? view.ViewQuery : "";
                 GetRisks(viewQuery).then(function (risks) {
                     risks.forEach(function (risk) {
                         var placement = 0;
-                        var identicalRisks = risks.filter(function (e) { return e.Consequence === risk.Consequence && e.Probability === risk.Probability; });
+                        var identicalRisks = jQuery.grep(risks, function (e) { return e.Consequence === risk.Consequence && e.Probability === risk.Probability; });
                         if (identicalRisks.length > 1) {
                             for (var ir = 0; ir < identicalRisks.length; ir++) {
                                 identicalRisks[ir].Placement = placement;
@@ -248,9 +248,8 @@ var GT;
                     }
                     var a = svg.selectAll("g").data(risks).enter().append("a");
                     a
-                        .attr("onclick", function (d) { return ""; })
+                        .attr("onclick", function (d) { return ("SP.UI.ModalDialog.showModalDialog({ url: '" + _spPageContextInfo.webServerRelativeUrl + "/Lists/Usikkerhet/DispForm.aspx?ID=" + d.Id + "' })"); })
                         .attr("xlink:href", "#")
-                        .attr("class", "dss-modalLink")
                         .attr("cursor", "pointer")
                         .attr("dx", function (d) { return d.getX(__); })
                         .attr("dy", function (d) { return d.getY(__); })
