@@ -67,37 +67,22 @@
       <AllUsersWebPart WebPartZoneID="RightColumn" WebPartOrder="2" >
         <![CDATA[
           <?xml version="1.0" encoding="utf-8"?>
-          <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
-            <Title>gt.riskmatrix.txt</Title>
-            <FrameType>None</FrameType>
-            <Description></Description>
-            <IsIncluded>true</IsIncluded>
-            <ZoneID>RightColumn</ZoneID>
-            <PartOrder>0</PartOrder>
-            <FrameState>Normal</FrameState>
-            <Height />
-            <Width />
-            <AllowRemove>true</AllowRemove>
-            <AllowZoneChange>true</AllowZoneChange>
-            <AllowMinimize>true</AllowMinimize>
-            <AllowConnect>true</AllowConnect>
-            <AllowEdit>true</AllowEdit>
-            <AllowHide>true</AllowHide>
-            <IsVisible>true</IsVisible>
-            <DetailLink />
-            <HelpLink />
-            <HelpMode>Modeless</HelpMode>
-            <Dir>Default</Dir>
-            <PartImageSmall />
-            <MissingAssembly>Kan ikke importere denne webdelen.</MissingAssembly>
-            <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
-            <IsIncludedFilter />
-            <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
-            <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
-            <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">../../SiteAssets/gt/html/gt.riskmatrix.txt</ContentLink>
-            <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
-            <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
-          </WebPart>
+          <webParts>
+	          <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+		          <metaData>
+			          <type name="Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart, Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+			          <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
+		          </metaData>
+		          <data>
+			          <properties>
+                  <property name="Title" type="string">Risikomatrise</property>
+				          <property name="Description" type="string"></property>
+				          <property name="ChromeType" type="chrometype">None</property>
+                  <property name="Content" type="string">&lt;div style="margin-bottom:35px;"&gt;&lt;b&gt;Velg visning:&lt;/b&gt; &lt;select id="gt-riskmatrix-viewselector"&gt;&lt;option&gt;Laster..&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div id="gt-riskmatrix" data-textposition="bottom" data-showlegend="false"&gt;&lt;/div&gt;&lt;script type="text/javascript" language="javascript"&gt;SP.SOD.registerSod('gt.project.riskmatrix.js', String.format("{0}/SiteAssets/gt/js/gt.project.riskmatrix.js", _spPageContextInfo.siteServerRelativeUrl));SP.SOD.registerSod('d3.min.js', String.format("{0}/SiteAssets/gt/js/d3.min.js", _spPageContextInfo.siteServerRelativeUrl));SP.SOD.registerSod('jquery-1.11.1.min.js', String.format("{0}/SiteAssets/gt/js/jquery-1.11.1.min.js", _spPageContextInfo.siteServerRelativeUrl));SP.SOD.registerSodDep("gt.project.riskmatrix.js", "sp.js");SP.SOD.registerSodDep("gt.project.riskmatrix.js", "d3.min.js");SP.SOD.registerSodDep("gt.project.riskmatrix.js", "jquery-1.11.1.min.js");SP.SOD.executeFunc("gt.project.riskmatrix.js", "GT.Project.RiskMatrix", null);&lt;/script&gt;</property>
+			          </properties>
+		          </data>
+	          </webPart>
+          </webParts>
           ]]>
       </AllUsersWebPart>
     </File>
