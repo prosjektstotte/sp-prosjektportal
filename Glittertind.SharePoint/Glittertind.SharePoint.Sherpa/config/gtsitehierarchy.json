@@ -179,6 +179,12 @@
                 "FolderUrl": "",
                 "PropertiesFile": "properties.json",
                 "ExcludeExtensions": ".xml,.placeholder"
+            },
+            {
+                "FolderName": "WebParts",
+                "ListUrl": "_catalogs/wp",
+                "FolderUrl": "",
+                "PropertiesFile": "properties.json"
             }
         ],
         "Properties": {
