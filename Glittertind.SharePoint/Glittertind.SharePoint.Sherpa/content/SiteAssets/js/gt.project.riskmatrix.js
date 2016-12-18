@@ -145,7 +145,6 @@ var GT;
             ;
             function RenderViewSelector($__viewSelector) {
                 GetViews().then(function (views) {
-                    console.log(views);
                     var _outHtml = views
                         .filter(function (v) { return v.Title !== ""; })
                         .map(function (v) { return ("<option value=\"" + v.ID + "\">" + v.Title + "</option>"); }).join("");
