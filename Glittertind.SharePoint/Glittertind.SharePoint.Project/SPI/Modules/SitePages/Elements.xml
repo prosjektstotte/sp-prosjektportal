@@ -22,7 +22,28 @@
          </WebPart>
          ]]>
       </View>
-      <AllUsersWebPart ID="Sitefeed" WebPartZoneID="RightColumn" WebPartOrder="0" >
+      <AllUsersWebPart WebPartZoneID="RightColumn" WebPartOrder="0" >
+        <![CDATA[
+          <?xml version="1.0" encoding="utf-8"?>
+          <webParts>
+	          <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+		          <metaData>
+			          <type name="Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart, Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+			          <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
+		          </metaData>
+		          <data>
+			          <properties>
+                  <property name="Title" type="string">Risikomatrise</property>
+				          <property name="Description" type="string"></property>
+				          <property name="ChromeType" type="chrometype">None</property>
+                  <property name="Content" type="string">&lt;div style="margin-bottom:35px;"&gt;&lt;b&gt;Velg visning:&lt;/b&gt; &lt;select id="gt-riskmatrix-viewselector"&gt;&lt;option&gt;Laster..&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div id="gt-riskmatrix" data-textposition="bottom" data-showlegend="false"&gt;&lt;/div&gt;&lt;script type="text/javascript" language="javascript"&gt;SP.SOD.registerSod('gt.project.riskmatrix.js', String.format("{0}/SiteAssets/gt/js/gt.project.riskmatrix.js", _spPageContextInfo.siteServerRelativeUrl));SP.SOD.registerSod('d3.min.js', String.format("{0}/SiteAssets/gt/js/d3.min.js", _spPageContextInfo.siteServerRelativeUrl));SP.SOD.registerSod('jquery-1.11.1.min.js', String.format("{0}/SiteAssets/gt/js/jquery-1.11.1.min.js", _spPageContextInfo.siteServerRelativeUrl));SP.SOD.registerSodDep("gt.project.riskmatrix.js", "sp.js");SP.SOD.registerSodDep("gt.project.riskmatrix.js", "d3.min.js");SP.SOD.registerSodDep("gt.project.riskmatrix.js", "jquery-1.11.1.min.js");SP.SOD.executeFunc("gt.project.riskmatrix.js", "GT.Project.RiskMatrix", null);&lt;/script&gt;</property>
+			          </properties>
+		          </data>
+	          </webPart>
+          </webParts>
+          ]]>
+      </AllUsersWebPart>
+      <AllUsersWebPart ID="Sitefeed" WebPartZoneID="RightColumn" WebPartOrder="1" >
         <![CDATA[
           <?xml version="1.0" encoding="utf-8"?>
           <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
@@ -55,7 +76,7 @@
           </WebPart>
         ]]>
       </AllUsersWebPart>
-      <View List="Lists/Usikkerhet" BaseViewID="1" WebPartZoneID="RightColumn" WebPartOrder="1" >
+      <View List="Lists/Usikkerhet" BaseViewID="1" WebPartZoneID="RightColumn" WebPartOrder="2" >
         <![CDATA[
          <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
           <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
@@ -64,27 +85,6 @@
          </WebPart>
          ]]>
       </View>
-      <AllUsersWebPart WebPartZoneID="RightColumn" WebPartOrder="2" >
-        <![CDATA[
-          <?xml version="1.0" encoding="utf-8"?>
-          <webParts>
-	          <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-		          <metaData>
-			          <type name="Microsoft.SharePoint.WebPartPages.ScriptEditorWebPart, Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
-			          <importErrorMessage>Kan ikke importere denne webdelen.</importErrorMessage>
-		          </metaData>
-		          <data>
-			          <properties>
-                  <property name="Title" type="string">Risikomatrise</property>
-				          <property name="Description" type="string"></property>
-				          <property name="ChromeType" type="chrometype">None</property>
-                  <property name="Content" type="string">&lt;div style="margin-bottom:35px;"&gt;&lt;b&gt;Velg visning:&lt;/b&gt; &lt;select id="gt-riskmatrix-viewselector"&gt;&lt;option&gt;Laster..&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div id="gt-riskmatrix" data-textposition="bottom" data-showlegend="false"&gt;&lt;/div&gt;&lt;script type="text/javascript" language="javascript"&gt;SP.SOD.registerSod('gt.project.riskmatrix.js', String.format("{0}/SiteAssets/gt/js/gt.project.riskmatrix.js", _spPageContextInfo.siteServerRelativeUrl));SP.SOD.registerSod('d3.min.js', String.format("{0}/SiteAssets/gt/js/d3.min.js", _spPageContextInfo.siteServerRelativeUrl));SP.SOD.registerSod('jquery-1.11.1.min.js', String.format("{0}/SiteAssets/gt/js/jquery-1.11.1.min.js", _spPageContextInfo.siteServerRelativeUrl));SP.SOD.registerSodDep("gt.project.riskmatrix.js", "sp.js");SP.SOD.registerSodDep("gt.project.riskmatrix.js", "d3.min.js");SP.SOD.registerSodDep("gt.project.riskmatrix.js", "jquery-1.11.1.min.js");SP.SOD.executeFunc("gt.project.riskmatrix.js", "GT.Project.RiskMatrix", null);&lt;/script&gt;</property>
-			          </properties>
-		          </data>
-	          </webPart>
-          </webParts>
-          ]]>
-      </AllUsersWebPart>
     </File>
     <File Path="SitePages\Ufiltrert.aspx" Url="Ufiltrert.aspx" Type="GhostableInLibrary" >
       <Property Name="Title" Value="Ufiltrert prosjektvisning" />
