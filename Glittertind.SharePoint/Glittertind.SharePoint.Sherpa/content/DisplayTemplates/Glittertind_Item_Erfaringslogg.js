@@ -11,7 +11,7 @@ function DisplayTemplate_2f1f63a42ec04ebd9617d985692edb45(ctx) {
   ctx['DisplayTemplateData']['TargetControlType']=['Content Web Parts', 'SearchResults'];
   this.DisplayTemplateData = ctx['DisplayTemplateData'];
 
-  ctx['DisplayTemplateData']['ManagedPropertyMapping']={'Path':null, 'Title':null, 'LastModifiedTime':null, 'LoggElement':['GtProjectLogTypeOWSCHCS'], 'MeldtAv':['GtProjectLogReporterOWSUSER'], 'Loggbeskrivelse':['GtProjectLogDescriptionOWSMTXT'], 'Ansvarlig':['GtProjectLogResponsibleOWSCHCS'], 'Konsekvens':['GtProjectLogConsequenceOWSMTXT'], 'Anbefaling':['GtProjectLogRecommendationOWSMTXT'], 'TilErfaringslogg':['GtProjectLogExperienceOWSBOOL'], 'Aktorer':['GtProjectLogActorsOWSCHCM'], 'PavirkerProdukt':['GtProjectLogProductLookup'], 'TilProsjektStyre':['GtProjectLogEventLookup'], 'crawltime':null, 'SPWebUrl':null};
+  ctx['DisplayTemplateData']['ManagedPropertyMapping']={'Path':null, 'Title':null, 'LastModifiedTime':null, 'LoggElement':['GtProjectLogTypeOWSCHCS'], 'MeldtAv':['GtProjectLogReporterOWSUSER'], 'Loggbeskrivelse':['GtProjectLogDescriptionOWSMTXT'], 'Ansvarlig':['GtProjectLogResponsibleOWSCHCS'], 'Konsekvens':['GtProjectLogConsequenceOWSMTXT'], 'Anbefaling':['GtProjectLogRecommendationOWSMTXT'], 'TilErfaringslogg':['GtProjectLogExperienceOWSBOOL'], 'Aktorer':['GtProjectLogActorsOWSCHCM'], 'PavirkerProdukt':['GtProjectLogProductLookup'], 'TilProsjektStyre':['GtProjectLogEventLookup'], 'crawltime':null, 'SPWebUrl':null, 'SiteTitle':null};
   var cachePreviousItemValuesFunction = ctx['ItemValues'];
   ctx['ItemValues'] = function(slotOrPropName) {
     return Srch.ValueInfo.getCachedCtxItemValue(ctx, slotOrPropName)
@@ -42,28 +42,12 @@ myItem.pavirkerProdukt = $getItemValue(ctx, "PavirkerProdukt");
 myItem.tilProsjektStyre = $getItemValue(ctx, "TilProsjektStyre");
 myItem.lastModified = $getItemValue(ctx, "LastModifiedTime");
 myItem.parentWebUrl = $getItemValue(ctx, "SPWebUrl");
+myItem.siteTitle = $getItemValue(ctx, "SiteTitle");
 
 var trClass = 'erfaring';
 if (ctx.CurrentItemIdx % 2 === 0) {
     trClass = trClass + ' ms-HoverBackground-bgColor';
 }
-
-AddPostRenderCallback(ctx, function()
-{              
-     var rootElement = document.getElementById(myItem.id);
-	 var parentProjectHyperLink = rootElement.getElementsByClassName("csom-projectname")[0];
-	 
-	 var loadSiteName = function(item){
-		var clientContext = new SP.ClientContext(item.href);
-		var web = clientContext.get_web();
-		clientContext.load(web, 'Title');
-		clientContext.executeQueryAsync(
-			function(){ item.text = web.get_title();}, 
-			function(){ item.text = "foo";}
-		);
-	}
-	SP.SOD.executeOrDelayUntilScriptLoaded(function(){loadSiteName(parentProjectHyperLink);},"sp.js");
-});
 
 ms_outHtml.push(''
 ,''
@@ -72,7 +56,7 @@ ms_outHtml.push(''
 ,'				<a href="', myItem.url ,'">', myItem.title ,'</a>'
 ,'			</td>'
 ,'			<td>'
-,'				<a class="csom-projectname" href="', myItem.parentWebUrl ,'"></a>'
+,'				', myItem.siteTitle ,''
 ,'			</td>'
 ,'			<td>'
 ,'				', myItem.loggBeskrivelse ,''

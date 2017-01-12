@@ -8,7 +8,8 @@
       "ContentTypeId": "0x0101002039C03B61C64EC4A04F5361F385106605",
       "DisplayTemplateLevel": "Item",
       "TemplateHidden": "0",
-      "TargetControlType": ";#Content Web Parts;#SearchResults;#"      
+      "TargetControlType": ";#Content Web Parts;#SearchResults;#",
+      "ManagedPropertyMapping": "'Path','Title','LastModifiedTime','LoggElement':'GtProjectLogTypeOWSCHCS','MeldtAv':'GtProjectLogReporterOWSUSER','Loggbeskrivelse':'GtProjectLogDescriptionOWSMTXT','Ansvarlig':'GtProjectLogResponsibleOWSCHCS','Konsekvens':'GtProjectLogConsequenceOWSMTXT','Anbefaling':'GtProjectLogRecommendationOWSMTXT','TilErfaringslogg':'GtProjectLogExperienceOWSBOOL','Aktorer':'GtProjectLogActorsOWSCHCM','PavirkerProdukt':'GtProjectLogProductLookup','TilProsjektStyre':'GtProjectLogEventLookup','crawltime','SPWebUrl','SiteTitle'"
     }
   },
   {
@@ -58,7 +59,8 @@
       "DisplayTemplateLevel": "Item",
       "TemplateHidden": "0",
       "TargetControlType": ";#Content Web Parts;#SearchResults;#",
-      "ManagedPropertyMapping": "'Path','Title','GtProjectManagerOWSUSER','GtProjectOwnerOWSUSER','owstaxIdGtProjectPhase'"    }
+      "ManagedPropertyMapping": "'Path','Title','GtProjectManagerOWSUSER','GtProjectOwnerOWSUSER','owstaxIdGtProjectPhase'"
+    }
   },
   {
     "Path": "Glittertind_Control_Table.js",
