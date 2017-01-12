@@ -2,20 +2,14 @@ var GT;
 (function (GT) {
     var Project;
     (function (Project) {
-        var RiskMarix;
-        (function (RiskMarix) {
-            var __RISKS = [], __VIEWS = [];
+        var RiskMatrix;
+        (function (RiskMatrix) {
+            var __RISKS = [], __VIEWS = [], __CURRENT_VIEW = null;
             var __CONFIG = {
                 RISK_LIST_NAME: "Usikkerhet",
-                COLUMN_CONSEQUENCE: "GtRiskConsequence",
-                COLUMN_PROBABILITY: "GtRiskProbability",
-                COLUMN_RISKFACTOR: "GtRiskFactor",
-                COLUMN_RISKACTION: "GtRiskAction",
-                COLUMN_RISKPROXIMITY: "GtRiskProximity",
-                COLUMN_ID: "ID",
-                COLUMN_TITLE: "Title",
                 CONTAINER: "#gt-riskmatrix",
-                VIEWSELECTOR: "#gt-riskmatrix-viewselector",
+                VIEW_SELECTOR: "#gt-riskmatrix-viewselector",
+                POST_ACTION_CHECKBOX: "#gt-riskmatrix-postaction",
                 NUM_COLUMNS: 6,
                 NUM_ROWS: 6,
                 STATUS_FILL: [
@@ -42,19 +36,22 @@ var GT;
                 ]
             };
             var RiskItem = (function () {
-                function RiskItem(id, title, text, consequence, probability, riskFactor) {
-                    this.Id = id;
-                    this.Title = title;
-                    this.Text = text;
-                    this.Consequence = consequence;
-                    this.Probability = probability;
-                    this.RiskFactor = riskFactor;
+                function RiskItem(fieldValues) {
+                    this.Id = fieldValues.ID;
+                    this.Title = fieldValues.Title;
+                    this.Text = fieldValues.GtRiskAction;
+                    this.Consequence = fieldValues.GtRiskConsequence;
+                    this.Probability = fieldValues.GtRiskProbability;
+                    this.RiskFactor = fieldValues.GtRiskFactor;
+                    this.ProbabilityPostAction = fieldValues.GtRiskProbabilityPostAction;
+                    this.ConsequencePostAction = fieldValues.GtRiskConsequencePostAction;
+                    this.RiskFactiorPostAction = fieldValues.GtRiskFactiorPostAction;
                 }
                 ;
                 RiskItem.prototype.getX = function (c) {
                     var x = (c.SHOW_LEGEND) ?
-                        ((c.W / c.NUM_COLS) * this.Consequence) + (c.W / 10) - 18 :
-                        ((c.W / c.NUM_COLS) * this.Consequence) - (c.W / 10) - 9;
+                        ((c.W / c.NUM_COLS) * (c.POST_ACTION ? this.ConsequencePostAction : this.Consequence)) + (c.W / 10) - 18 :
+                        ((c.W / c.NUM_COLS) * (c.POST_ACTION ? this.ConsequencePostAction : this.Consequence)) - (c.W / 10) - 9;
                     if (this.Id >= 10) {
                         x -= 10;
                     }
@@ -69,19 +66,19 @@ var GT;
                 ;
                 RiskItem.prototype.getY = function (c) {
                     var y = (c.SHOW_LEGEND) ?
-                        c.H - (((c.H / c.NUM_ROWS * this.Probability)) - (c.H / 10) + (c.H / c.NUM_ROWS) - 2) :
-                        c.H - (((c.H / c.NUM_ROWS) * this.Probability) - (c.H / c.NUM_ROWS) + (c.HALF_ROW_HEIGHT / 2));
+                        c.H - (((c.H / c.NUM_ROWS * (c.POST_ACTION ? this.ProbabilityPostAction : this.Probability))) - (c.H / 10) + (c.H / c.NUM_ROWS) - 2) :
+                        c.H - (((c.H / c.NUM_ROWS) * (c.POST_ACTION ? this.ProbabilityPostAction : this.Probability)) - (c.H / c.NUM_ROWS) + (c.HALF_ROW_HEIGHT / 2));
                     if (this.Placement === 3) {
-                        y -= (h / 18);
+                        y -= (c.H / 18);
                     }
                     if (this.Placement === 4) {
-                        y += (h / 18);
+                        y += (c.H / 18);
                     }
                     return y;
                 };
                 ;
-                RiskItem.prototype.getSum = function () {
-                    return (this.Probability * this.Consequence);
+                RiskItem.prototype.getSum = function (c) {
+                    return c.POST_ACTION ? (this.Probability * this.Consequence) : (this.ProbabilityPostAction * this.ConsequencePostAction);
                 };
                 return RiskItem;
             }());
@@ -93,7 +90,7 @@ var GT;
             }());
             ;
             var MatrixConfig = (function () {
-                function MatrixConfig($__container) {
+                function MatrixConfig($__container, postAction) {
                     this.AUTO_WIDTH = $__container.parent().width() * 0.9;
                     this.AUTO_HEIGHT = this.AUTO_WIDTH / 2;
                     this.SHOW_LEGEND = ($__container.data("showlegend") === false) ? false : true;
@@ -106,9 +103,16 @@ var GT;
                     this.COL_WIDTH = this.W / this.NUM_COLS;
                     this.ROW_HEIGHT = this.H / this.NUM_ROWS;
                     this.HALF_ROW_HEIGHT = this.ROW_HEIGHT / 2;
+                    this.POST_ACTION = postAction;
                 }
                 return MatrixConfig;
             }());
+            ;
+            /**
+             * Get risks
+             *
+             * @param {string} viewQuery View Query
+             */
             function GetRisks(viewQuery) {
                 if (viewQuery === void 0) { viewQuery = ""; }
                 var def = jQuery.Deferred(), ctx = SP.ClientContext.get_current(), list = ctx.get_web().get_lists().getByTitle(__CONFIG.RISK_LIST_NAME);
@@ -119,13 +123,16 @@ var GT;
                 ctx.executeQueryAsync(function () {
                     __RISKS = items.get_data().map(function (d) {
                         var fieldValues = d.get_fieldValues();
-                        return new RiskItem(fieldValues[__CONFIG.COLUMN_ID], fieldValues[__CONFIG.COLUMN_TITLE], fieldValues[__CONFIG.COLUMN_RISKACTION], fieldValues[__CONFIG.COLUMN_CONSEQUENCE], fieldValues[__CONFIG.COLUMN_PROBABILITY], fieldValues[__CONFIG.COLUMN_RISKFACTOR]);
+                        return new RiskItem(fieldValues);
                     });
                     def.resolve(__RISKS);
                 }, def.reject);
                 return def.promise();
             }
             ;
+            /**
+             * Get views
+             */
             function GetViews() {
                 var def = jQuery.Deferred(), ctx = SP.ClientContext.get_current(), list = ctx.get_web().get_lists().getByTitle(__CONFIG.RISK_LIST_NAME), views = list.get_views();
                 ctx.load(views);
@@ -143,7 +150,11 @@ var GT;
                 return def.promise();
             }
             ;
-            function RenderViewSelector($__viewSelector) {
+            /**
+             * Render View Selector
+             */
+            function RenderViewSelector() {
+                var $__viewSelector = jQuery(__CONFIG.VIEW_SELECTOR);
                 GetViews().then(function (views) {
                     var _outHtml = views
                         .filter(function (v) { return v.Title !== ""; })
@@ -153,21 +164,30 @@ var GT;
                         .on("change", function () {
                         var viewId = $__viewSelector.val(), view = __VIEWS.filter(function (v) { return v.ID === viewId; })[0];
                         RenderMatrix(view);
+                        __CURRENT_VIEW = view;
                     });
                 });
             }
             ;
-            function RenderMatrix(view) {
+            /**
+             * Render Matrix
+             *
+             * @param {View} view The view
+             * @param {boolean} postAction Use post action values
+             */
+            function RenderMatrix(view, postAction) {
                 if (view === void 0) { view = null; }
-                var $__container = jQuery(__CONFIG.CONTAINER), __ = new MatrixConfig($__container);
+                if (postAction === void 0) { postAction = false; }
+                var $__container = jQuery(__CONFIG.CONTAINER), __ = new MatrixConfig($__container, postAction);
                 $__container
                     .fadeTo("fast", 0)
                     .html("");
                 var viewQuery = view ? view.ViewQuery : "";
                 GetRisks(viewQuery).then(function (risks) {
                     risks.forEach(function (risk) {
-                        var placement = 0;
-                        var identicalRisks = jQuery.grep(risks, function (e) { return e.Consequence === risk.Consequence && e.Probability === risk.Probability; });
+                        var placement = 0, identicalRisks = jQuery.grep(risks, function (e) {
+                            return __.POST_ACTION ? (e.Consequence === risk.Consequence && e.Probability === risk.Probability) : (e.Consequence === risk.Consequence && e.Probability === risk.Probability);
+                        });
                         if (identicalRisks.length > 1) {
                             for (var ir = 0; ir < identicalRisks.length; ir++) {
                                 identicalRisks[ir].Placement = placement;
@@ -278,7 +298,7 @@ var GT;
                         .attr("x", textPosX)
                         .attr("y", textPosY)
                         .attr("style", "display:none")
-                        .attr("id", function (d) { return "risktext" + d.Id; });
+                        .attr("id", function (d) { return ("risktext" + d.Id); });
                     var txt = group.append("text")
                         .attr("x", textPosX)
                         .attr("y", textPosY)
@@ -293,7 +313,7 @@ var GT;
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX)
                         .html(function (d) { return ("Sannsynlighet: " + d.Probability); });
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX).attr("style", "font-weight:bold")
-                        .html(function (d) { return ("Sum Risiko: " + d.getSum()); });
+                        .html(function (d) { return ("Sum Risiko: " + d.getSum(__)); });
                     if (__.SHOW_LEGEND) {
                         d3.select(".riskSVG")
                             .append("g").call(d3["svg"].axis()["scale"](xScale).orient("top").ticks(5))
@@ -313,7 +333,11 @@ var GT;
                 });
             }
             ;
-            function HandleResize($__container) {
+            /**
+             * Handle resize
+             */
+            function HandleResize() {
+                var $__container = jQuery(__CONFIG.CONTAINER);
                 var rtime, timeout = false, delta = 200;
                 jQuery(window).resize(function () {
                     rtime = new Date();
@@ -334,17 +358,22 @@ var GT;
                 ;
             }
             ;
-            function init() {
-                var $__container = jQuery(__CONFIG.CONTAINER), $__viewSelector = jQuery(__CONFIG.VIEWSELECTOR);
+            /**
+             * Initializes the Risk Matrix
+             */
+            function _init() {
+                var $__container = jQuery(__CONFIG.CONTAINER);
                 $__container.css("transition", "all .3s");
-                HandleResize($__container);
+                HandleResize();
                 RenderMatrix();
-                RenderViewSelector($__viewSelector);
+                RenderViewSelector();
+                jQuery(__CONFIG.POST_ACTION_CHECKBOX).change(function (event) {
+                    RenderMatrix(__CURRENT_VIEW, event.target.checked);
+                });
             }
-            RiskMarix.init = init;
             ;
-            ExecuteOrDelayUntilBodyLoaded(init);
-        })(RiskMarix = Project.RiskMarix || (Project.RiskMarix = {}));
+            ExecuteOrDelayUntilBodyLoaded(_init);
+        })(RiskMatrix = Project.RiskMatrix || (Project.RiskMatrix = {}));
     })(Project = GT.Project || (GT.Project = {}));
 })(GT || (GT = {}));
 ;

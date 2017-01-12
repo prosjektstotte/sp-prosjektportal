@@ -1,17 +1,13 @@
 namespace GT.Project.RiskMatrix {
-    function log(msg: string) {
-        if (console && console.log) {
-            console.log(`${new Date().toISOString()} GT.Project.RiskMatrix: ${msg}`)
-        }
-    };
-
     let __RISKS: RiskItem[] = [],
-        __VIEWS: View[] = [];
+        __VIEWS: View[] = [],
+        __CURRENT_VIEW = null;
 
     const __CONFIG = {
         RISK_LIST_NAME: "Usikkerhet",
         CONTAINER: "#gt-riskmatrix",
         VIEW_SELECTOR: "#gt-riskmatrix-viewselector",
+        POST_ACTION_CHECKBOX: "#gt-riskmatrix-postaction",
         NUM_COLUMNS: 6,
         NUM_ROWS: 6,
         STATUS_FILL: [
@@ -124,6 +120,11 @@ namespace GT.Project.RiskMatrix {
         }
     };
 
+    /**
+     * Get risks
+     * 
+     * @param {string} viewQuery View Query
+     */
     function GetRisks(viewQuery = ""): JQueryPromise<RiskItem[]> {
         let def = jQuery.Deferred(),
             ctx = SP.ClientContext.get_current(),
@@ -142,6 +143,9 @@ namespace GT.Project.RiskMatrix {
         return def.promise();
     };
 
+    /**
+     * Get views
+     */
     function GetViews(): JQueryPromise<View[]> {
         let def = jQuery.Deferred(),
             ctx = SP.ClientContext.get_current(),
@@ -162,7 +166,11 @@ namespace GT.Project.RiskMatrix {
         return def.promise();
     };
 
-    function RenderViewSelector(container: string, $__viewSelector: JQuery): void {
+    /**
+     * Render View Selector
+     */
+    function RenderViewSelector(): void {
+        let $__viewSelector = jQuery(__CONFIG.VIEW_SELECTOR);
         GetViews().then(views => {
             let _outHtml = views
                 .filter(v => v.Title !== "")
@@ -172,11 +180,18 @@ namespace GT.Project.RiskMatrix {
                 .on("change", () => {
                     let viewId = $__viewSelector.val(),
                         view = __VIEWS.filter(v => v.ID === viewId)[0];
-                    RenderMatrix(container, view)
+                    RenderMatrix(view);
+                    __CURRENT_VIEW = view;
                 });
         });
     };
-
+    
+    /**
+     * Render Matrix
+     * 
+     * @param {View} view The view
+     * @param {boolean} postAction Use post action values
+     */
     function RenderMatrix(view: View = null, postAction = false): void {
         let $__container = jQuery(__CONFIG.CONTAINER),
             __ = new MatrixConfig($__container, postAction);
@@ -365,7 +380,7 @@ namespace GT.Project.RiskMatrix {
                 setTimeout(_resizeend, delta);
             } else {
                 timeout = false;
-                RenderMatrix(__CONFIG.CONTAINER);
+                RenderMatrix();
             }
         };
     };
@@ -379,5 +394,11 @@ namespace GT.Project.RiskMatrix {
         HandleResize();
         RenderMatrix();
         RenderViewSelector();
+
+        jQuery(__CONFIG.POST_ACTION_CHECKBOX).change(event => {
+            RenderMatrix(__CURRENT_VIEW, event.target.checked);
+        });
     };
+
+    ExecuteOrDelayUntilBodyLoaded(_init);
 };
