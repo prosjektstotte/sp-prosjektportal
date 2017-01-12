@@ -120,7 +120,7 @@ GT.Project.ChangeProjectPhase = function () {
             console.log('Changing phase to ' + safeTerm.get_label());
             GT.jQuery.when(
                 GT.Project.ChangeQueryOfListViewOnPage(safeTerm.get_label(), "Dokumenter", "SitePages/Forside.aspx"),
-                GT.Project.ChangeQueryOfListViewOnPage(safeTerm.get_label(), "Oppgaver", "SitePages/Forside.aspx"),
+                GT.Project.ChangeQueryOfListViewOnPage(safeTerm.get_label(), "Oppgaver", "SitePages/Forside.aspx", true),
                 GT.Project.ChangeQueryOfListViewOnPage(safeTerm.get_label(), "Usikkerhet", "SitePages/Forside.aspx"),
                 GT.Project.SetMetaDataDefaultsForLib("Dokumenter", "GtProjectPhase", safeTerm)
             ).then(function () {
@@ -131,17 +131,16 @@ GT.Project.ChangeProjectPhase = function () {
     return deferred.promise();
 };
 
-GT.Project.ChangeQueryOfListViewOnPage = function (phaseName, listName, pageRelativeUrl) {
+GT.Project.ChangeQueryOfListViewOnPage = function (phaseName, listName, pageRelativeUrl, isTaskList) {
     var deferred = GT.jQuery.Deferred();
-    var viewUrl = pageRelativeUrl;
 
     var clientContext = SP.ClientContext.get_current();
     var viewCollection = clientContext.get_web().get_lists().getByTitle(listName).get_views();
 
     clientContext.load(viewCollection);
     clientContext.executeQueryAsync(function () {
-        var view = GT.Project.GetViewFromCollectionByUrl(viewCollection, viewUrl);
-        if (view != null) {
+        var view = GT.Project.GetViewFromCollectionByUrl(viewCollection, pageRelativeUrl);
+        if (view) {
             var camlArray = [];
             camlArray.push(
                 "<Where>",
@@ -156,8 +155,32 @@ GT.Project.ChangeQueryOfListViewOnPage = function (phaseName, listName, pageRela
                         "</Eq>",
                     "</Or>",
                 "</Where>");
-            view.set_viewQuery(camlArray.join(""));
-            view.update();
+                    
+                if (isTaskList) {
+                    camlArray = [];
+                    camlArray.push(
+                    "<Where>",
+                        "<And>",
+                            "<Or>",
+                                "<Eq>",
+                                    "<FieldRef Name='GtProjectPhase' />",
+                                    "<Value Type='TaxonomyFieldType'>" + phaseName + "</Value>",
+                                "</Eq>",
+                                "<Eq>",
+                                    "<FieldRef Name='GtProjectPhase' />",
+                                    "<Value Type='TaxonomyFieldType'>Flere faser</Value>",
+                                "</Eq>",
+                            "</Or>",
+                            "<Neq>",
+                                "<FieldRef Name='Status' />",
+                                "<Value Type='Text'>Fullført</Value>",
+                            "</Neq>",
+                        "</And>",
+                    "</Where>");
+                }
+
+                view.set_viewQuery(camlArray.join(""));
+                view.update();
 
             clientContext.executeQueryAsync(function () {
                 deferred.resolve();
@@ -168,7 +191,7 @@ GT.Project.ChangeQueryOfListViewOnPage = function (phaseName, listName, pageRela
             });
         } else {
             deferred.resolve();
-            console.log('Could not find any view with url ' + viewUrl + ' for list ' + listName);
+            console.log('Could not find any view with url ' + pageRelativeUrl + ' for list ' + listName);
         }
     }, function (sender, args) {
         deferred.reject();
