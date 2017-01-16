@@ -18,7 +18,7 @@
           <FrameType>None</FrameType>
           <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
           <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
-          <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">../../../SiteAssets/gt/html/gt.risikomatrise.txt</ContentLink>
+          <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">../../SiteAssets/gt/html/gt.risikomatrise.txt</ContentLink>
           <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
           <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
       </WebPart>
