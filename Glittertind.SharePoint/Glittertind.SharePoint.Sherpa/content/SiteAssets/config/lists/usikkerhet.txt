@@ -16,6 +16,13 @@
             "ViewFields": ["LinkTitle", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
 	        "RowLimit": 10,
 	        "Query": "<OrderBy><FieldRef Name='Created' Ascending='FALSE' /></OrderBy>"
+	    },	    
+        {
+	    	"Name": "",
+	    	"Url": "SitePages/Usikkerhet.aspx",
+            "ViewFields": ["LinkTitle", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
+	        "RowLimit": 10,
+	        "Query": "<OrderBy><FieldRef Name='Created' Ascending='FALSE' /></OrderBy>"
 	    }
     ]
 }
