@@ -186,7 +186,9 @@ var GT;
                 GetRisks(viewQuery).then(function (risks) {
                     risks.forEach(function (risk) {
                         var placement = 0, identicalRisks = jQuery.grep(risks, function (e) {
-                            return __.POST_ACTION ? (e.Consequence === risk.Consequence && e.Probability === risk.Probability) : (e.Consequence === risk.Consequence && e.Probability === risk.Probability);
+                            return __.POST_ACTION
+                                ? (e.ConsequencePostAction === risk.ConsequencePostAction && e.ProbabilityPostAction === risk.ProbabilityPostAction)
+                                : (e.Consequence === risk.Consequence && e.Probability === risk.Probability);
                         });
                         if (identicalRisks.length > 1) {
                             for (var ir = 0; ir < identicalRisks.length; ir++) {

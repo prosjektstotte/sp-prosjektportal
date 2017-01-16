@@ -185,7 +185,7 @@ namespace GT.Project.RiskMatrix {
                 });
         });
     };
-    
+
     /**
      * Render Matrix
      * 
@@ -204,7 +204,9 @@ namespace GT.Project.RiskMatrix {
             risks.forEach(risk => {
                 let placement = 0,
                     identicalRisks = jQuery.grep(risks, (e: RiskItem) => {
-                        return __.POST_ACTION ? (e.Consequence === risk.Consequence && e.Probability === risk.Probability) : (e.Consequence === risk.Consequence && e.Probability === risk.Probability);
+                        return __.POST_ACTION
+                            ? (e.ConsequencePostAction === risk.ConsequencePostAction && e.ProbabilityPostAction === risk.ProbabilityPostAction)
+                            : (e.Consequence === risk.Consequence && e.Probability === risk.Probability);
                     });
                 if (identicalRisks.length > 1) {
                     for (let ir = 0; ir < identicalRisks.length; ir++) {

@@ -52,6 +52,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Features\WebProjectUsikkerhet\WebProjectUsikkerhet.feature">
+      <FeatureId>{04e838c0-fa54-4963-be1d-8544a54632c0}</FeatureId>
+    </None>
     <None Include="Features\WebProjectLists\WebProjectLists.feature">
       <FeatureId>{5c79da09-b006-4c05-a3ea-ea0900b13482}</FeatureId>
     </None>
@@ -125,9 +128,15 @@
     <None Include="SPI\Modules\PropertyBag\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5d90b9e2-28ce-472a-9b78-10afb6158b97}</SharePointProjectItemId>
     </None>
+    <None Include="SPI\Modules\UsikkerhetPage\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{2db0699f-f9cc-4078-a5d6-4fc23fb8e909}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Features\WebProjectUsikkerhet\WebProjectUsikkerhet.Template.xml">
+      <DependentUpon>WebProjectUsikkerhet.feature</DependentUpon>
+    </Content>
     <Content Include="Features\WebProjectLists\WebProjectLists.Template.xml">
       <DependentUpon>WebProjectLists.feature</DependentUpon>
     </Content>
@@ -171,6 +180,8 @@
     <Content Include="SPI\Modules\ProjectWebTemplate\Onet.xml" />
     <Content Include="SPI\Modules\PropertyBag\Elements.xml" />
     <Content Include="SPI\Modules\SitePages\Motereferat.aspx" />
+    <Content Include="SPI\Modules\UsikkerhetPage\Elements.xml" />
+    <Content Include="SPI\Modules\UsikkerhetPage\Usikkerhet.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
