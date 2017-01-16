@@ -20,7 +20,7 @@
         "Title": "Kommunikasjonsplan"
     },
     {
-        "Url": "Lists/Usikkerhet",
+        "Url": "SitePages/Usikkerhet.aspx",
         "Title": "Usikkerhet"
     },
     {
