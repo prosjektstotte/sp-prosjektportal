@@ -473,7 +473,8 @@
         "Choices": [
             "Kommentar/Bekymring/Hendelse",
             "Endringsforespørsel",
-            "Avvik fra spesifikasjon"
+            "Avvik fra spesifikasjon",
+            "Beslutning"
         ],
         "Description": "",
         "DisplayName": "Loggelement",
