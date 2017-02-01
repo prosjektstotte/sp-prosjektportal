@@ -52,7 +52,7 @@
         "Title": "Forside alle faser"
     },
     {
-        "Url": "{SiteUrl}/SitePages/Forms/DispForm.aspx?ID=3&EditMode=ProjectInfo",
+        "Url": "{SiteUrl}/SitePages/Forms/DispForm.aspx?ID=3&EditMode=ProjectInfo&HideRibbon=1",
         "Title": "Prosjektinfo",
 		"IsExternal":true
     },
