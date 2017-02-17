@@ -44,6 +44,7 @@ GT.Project.Setup.InheritNavigation = function () {
     clientContext.executeQueryAsync(function () {
         deferred.resolve();
     }, function () {
+        GT.Project.Setup.Error('En feil oppstod under arving av navigasjon.', true, arguments);
         deferred.reject();
     });
 
@@ -88,15 +89,14 @@ GT.Project.Setup.CreateSiteSettingsCustomActions = function () {
                 console.log('Configured custom actions for site');
                 deferred.resolve();
             }), Function.createDelegate(this, function() {
-                console.log('Error adding custom actions');
-                console.log(arguments);
+                GT.Project.Setup.Error('En feil oppstod ved oppsett av custom actions', true, arguments);
                 deferred.resolve();
             }));
         } else {
             deferred.resolve();
         }
     }), Function.createDelegate(this, function() {
-        console.log('Error ' + errorThrown);
+        GT.Project.Setup.Error('En feil oppstod ved oppsett av custom actions', true, arguments);
         deferred.resolve();
     }));
 
@@ -121,7 +121,7 @@ GT.Project.Setup.ApplyTheme = function (properties) {
         console.log('Changed theme for web');
         deferred.resolve();
     }, function (jqXHR, textStatus, errorThrown) {
-        console.log('Error ' + errorThrown);
+        GT.Project.Setup.Error('En feil oppstod ved endring av områdets tema', true, arguments);
         deferred.reject();
     });
     return deferred.promise();
@@ -182,27 +182,27 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
                             console.log('Successfully persisted quick launch changes');
                             deferred.resolve(); 
                         }, function (jqXHR, textStatus, errorThrown) {
-                            console.log('Error: Could not persist quick launch changes. Resolving anyway. Error message: ' + errorThrown);
+                            GT.Project.Setup.Error('En feil oppstod ved oppsett under oppsett av hurtigmeny', false, arguments);
                             deferred.resolve(); 
 
                          });
                     }, function (jqXHR, textStatus, errorThrown) {
-                        console.log('Error deleting quicklaunch objects ' + errorThrown);
+                        GT.Project.Setup.Error('En feil oppstod ved oppsett av hurtigmeny', true, arguments);
                         deferred.reject();
                     });
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
-                    console.log('Error: Could not load quicklaunch configuration file. ' + errorThrown);
+                    GT.Project.Setup.Error('En feil oppstod ved henting av hurtigmeny-konfigurasjon', true, arguments);
                     deferred.reject();
                 });
             }
         })
         .fail(function () {
-            console.log("Error: Couldnt load configuration files");
+            GT.Project.Setup.Error('En feil oppstod ved henting av hurtigmeny-konfigurasjon', true, arguments);
             deferred.reject();
         });
     }, function () {
-        console.log("Couldnt load quicklaunchcollection");
+        GT.Project.Setup.Error('En feil oppstod ved henting av hurtigmeny-oppsettet', true, arguments);
         deferred.reject();
     });
     return deferred.promise();
@@ -299,7 +299,8 @@ GT.Project.Setup.Debug.resetConfig = function () {
 GT.Project.Setup.showWaitMessage = function () {
     var evalMsg = "window.waitDialog = SP.UI.ModalDialog.showWaitScreenWithNoClose(" + 
     "'<div class=\"wait-msg\" style=\"text-align:center\"><div id=\"wait-msg-heading\">Vent litt mens vi konfigurerer <br />prosjektområdet</div>" + 
-    "<div id=\"wait-msg-progress\" style=\"font-size:16px;margin-top:20px;\">Setter opp prosjektområdet...</div>" +
+    "<div id=\"wait-msg-progress\" style=\"font-size:16px;margin-top:20px;\">Laster inn konfigurasjon...</div>" +
+    "<div id=\"wait-msg-error\" style=\"font-size:16px;margin-top:20px;color:red;\"></div>" +
     "</div>', '',250, 500);"
     window.parent.eval(evalMsg);
 };
@@ -310,11 +311,26 @@ GT.Project.Setup.updateWaitMessageStatus = function(status) {
     }
 }
 
+GT.Project.Setup.updateWaitMessageError = function(errorMesage) {
+    if (window.parent.waitDialog != null) {
+        GT.jQuery('.wait-msg #wait-msg-error').text(errorMesage);
+    }
+}
+
 GT.Project.Setup.closeWaitMessage = function () {
     if (window.parent.waitDialog != null) {
         window.parent.waitDialog.close();
     }
 };
+
+GT.Project.Setup.Error = function(errorMessage, critical, error) {
+    console.error(errorMessage);
+    console.log(error);
+
+    if (critical) {
+        GT.Project.Setup.updateWaitMessageError(errorMessage);
+    }
+}
 // [end] utility methods
 
 GT.Project.Setup.copyFiles = function (properties) {
@@ -371,6 +387,7 @@ GT.Project.Setup.getFiles = function (srcWeb, lib, folderPath) {
 
         },
         error: function (err) {
+            GT.Project.Setup.Error('En feil oppstod ved henting av filer', true, err);
             deferred.reject();
         }
     };
@@ -412,14 +429,14 @@ GT.Project.Setup.copyFile = function (file, srcWeb, srcLibUrl, dstWeb, dstLib) {
                 },
                 error: function (err2) {
                     var d = JSON.parse(err2.body);
-                    console.log("Did not upload file due to: " + d.error.message.value);
+                    GT.Project.Setup.Error('En feil oppstod ved kopiering av fil', true, d.error.message.value);
                     deferred.reject();
                 }
             }
             executor2.executeAsync(info2)
         },
         error: function (err) {
-            console.error(JSON.stringify(err));
+            GT.Project.Setup.Error('En feil oppstod ved henting av fil for kopiering', true, err);
             deferred.reject();
         }
     };
@@ -486,11 +503,11 @@ GT.Project.Setup.CopyFilesAndFolders = function (properties) {
             });
 
 	    }, function (sender, args) {
-	        console.error('Request failed. ' + args.get_message());
+	        GT.Project.Setup.Error('En feil oppstod ved kopiering av mappestruktur', true, arguments);
 	    });
 	})
 	.fail(function (jqXHR, textStatus, errorThrown) {
-	    console.log("not able to create folder structure, " + textStatus);
+	    GT.Project.Setup.Error('En feil oppstod ved henting av filstruktur', true, arguments);
 	    deferred.resolve();
 	});
     return deferred.promise();
@@ -552,12 +569,12 @@ GT.Project.Setup.populateTaskList = function (listData) {
             console.log("Updated parent task info " + listData.Name);
             deferred.resolve();
         }, function (sender, args) {
-            console.error('Request failed. ' + args.get_message());
+            GT.Project.Setup.Error('En feil oppstod ved konfigurering av oppgavestruktur', true, args);
             deferred.reject();
         });
 
     }, function (sender, args) {
-        console.error('Request failed. ' + args.get_message());
+        GT.Project.Setup.Error('En feil oppstod ved kopiering av oppgavestruktur', true, args);
         deferred.reject();
     });
     return deferred.promise();
@@ -589,7 +606,7 @@ GT.Project.Setup.populateGenericList = function (listData) {
         console.log("Copied default items to " + listData.Name);
         deferred.resolve();
     }, function (sender, args) {
-        console.error('Request failed. ' + args.get_message());
+        GT.Project.Setup.Error('En feil oppstod ved kopiering av listeelementer for listen ' + listData.Name, true, args);
         deferred.reject();
     });
 
@@ -632,7 +649,7 @@ GT.Project.Setup.copyDefaultItems = function () {
 
     })
     .fail(function () {
-        console.log("Could not find path {site collection root}/SiteAssets/gt/config/data");
+        GT.Project.Setup.Error('En feil oppstod ved kopiering av listeelementer for listen, finner ikke {site collection root}/SiteAssets/gt/config/data', true, args);
         _this.deferred.reject();
     });
 
@@ -715,13 +732,14 @@ GT.Project.Setup.CopyListItems = function (properties) {
 	                }
 	            }, function (sender, args) {
 	                console.error('Request failed while copying list items. ' + args.get_message());
+                    GT.Project.Setup.Error('En feil oppstod ved kopiering av listeelementer for listen ' + destListName, true, args);
 	                deferred.reject();
 	            });
 	        } else {
 	            deferred.resolve();
 	        }
 	    }, function (sender, args) {
-	        console.error('Request failed while retrieving list to synch. ' + args.get_message());
+            GT.Project.Setup.Error('En feil oppstod ved henting av listeelementer for listen ' + destListName, true, args);
 	        deferred.reject();
 	    });
 	});
@@ -752,7 +770,7 @@ GT.Project.Setup.UpdateParentReferences = function (clientContext, srcItems) {
         console.log("Updated parent references");
         deferred.resolve();
     }, function (sender, args) {
-        console.error('Request failed while copying list items. ' + args.get_message());
+        GT.Project.Setup.Error('En feil oppstod ved oppsett av oppgavestruktur', true, args);
         deferred.reject();
     });
 
@@ -899,8 +917,8 @@ GT.Project.Setup.UpdateListProperties = function (configData) {
         deferred.resolve();
         console.log("Modified list properties of " + configData.Name);
     }, function (sender, args) {
+        GT.Project.Setup.Error('En feil oppstod ved oppdatering av listeegenskaper for listen ' + configData.Name, true, args);
         deferred.reject();
-        console.error('Request failed. ' + args.get_message());
     });
     return deferred.promise();
 };
@@ -976,8 +994,7 @@ GT.Project.Setup.UpdateListViews = function (data) {
             console.log("Modified list view(s) of " + listName);
         }, function (sender, args) {
             deferred.resolve();
-            console.error('Failed updating list view(s) of ' + listName);
-            console.log(args);
+            GT.Project.Setup.Error('En feil oppstod ved oppdatering av listevisninger for listen ' + listName, true, args);
         });
     }, function (sender, args) {
         deferred.reject();
