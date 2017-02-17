@@ -8,6 +8,7 @@
 	        "Name": "Alle elementer",
 	        "ViewFields": ["LinkTitle", "GtProjectLogType", "GtProjectLogReporter", "GtProjectLogResponsible", "GtProjectLogConsequence", "GtProjectLogRecommendation", "GtProjectLogExperience", "GtProjectLogProductLookup", "GtProjectLogEventLookup"],
 	        "RowLimit": 0,
+            "Paged":true,
 	        "Query": ""
 	    }
     ]

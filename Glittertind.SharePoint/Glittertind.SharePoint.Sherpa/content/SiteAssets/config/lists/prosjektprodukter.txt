@@ -8,6 +8,7 @@
 	        "Name": "Alle elementer",
 	        "ViewFields": ["LinkTitle", "GtProductPhase", "GtProductInteressent", "GtProductQualityResponsible", "GtProductAcceptanceMethod", "GtProductAcceptanceResponsible", "GtProductAcceptanceDate"],
 	        "RowLimit": 0,
+            "Paged":true,
 	        "Query": ""
 	    },
         {
@@ -15,6 +16,7 @@
             "Url": "SitePages/Tilordnet.aspx",
 	        "ViewFields": ["LinkTitle", "GtProductPhase", "GtProductInteressent", "GtProductAcceptanceMethod", "GtProductAcceptanceDate"],
 	        "RowLimit": 30,
+            "Paged":true,
 	        "Query": "<Where><Or><Eq><FieldRef Name='GtProductQualityResponsible' /><Value Type='Integer'><UserID Type='Integer' /></Value></Eq><Eq><FieldRef Name='GtProductAcceptanceResponsible' /><Value Type='Integer'><UserID Type='Integer' /></Value></Eq></Or></Where>"
 	    }
     ]

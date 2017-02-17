@@ -8,6 +8,7 @@
 	    	"Name": "Alle elementer",
 	        "ViewFields": ["LinkTitle", "GtProjectInfoDescription"],
 	        "RowLimit": 0,
+            "Paged":true,
 	        "Query": ""
 	    },
         {
@@ -15,6 +16,7 @@
             "Url": "SitePages/Motereferat.aspx",
 	        "ViewFields": ["LinkTitle", "GtProjectInfoDescription"],
 	        "RowLimit": 30,
+            "Paged":true,
 	        "Query": "<OrderBy><FieldRef Name='Created' Ascending='FALSE' /></OrderBy>"
 	    }
     ]
