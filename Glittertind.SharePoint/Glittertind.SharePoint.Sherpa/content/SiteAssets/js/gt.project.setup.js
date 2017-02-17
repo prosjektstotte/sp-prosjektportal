@@ -19,6 +19,7 @@ GT.Project.Setup.Model.step = function (name, stepNum, callback, properties) {
         var deferred = GT.jQuery.Deferred();
         dependentPromise.done(function () {
             console.log('Executing step ' + self.stepNumber);
+            GT.Project.Setup.updateWaitMessageStatus(self.name);
             return self.callback(properties).done(function () {
                 var properties = { currentStep: { 'key': 'glittertind_currentsetupstep', 'value': self.stepNumber + 1 } };
                 GT.Project.Setup.persistProperties(properties).done(function () { deferred.resolve(); });
@@ -44,8 +45,7 @@ GT.Project.Setup.InheritNavigation = function () {
         deferred.resolve();
     }, function () {
         deferred.reject();
-    }
-    );
+    });
 
     return deferred.promise();
 };
@@ -116,6 +116,7 @@ GT.Project.Setup.ApplyTheme = function (properties) {
     web.applyTheme(colorPaletteUrl, fontSchemeUrl, properties.backgroundImageUrl, properties.shareGenerated);
     web.update();
 
+    console.log('Applying new theme for web');
     clientContext.executeQueryAsync(function () {
         console.log('Changed theme for web');
         deferred.resolve();
@@ -177,25 +178,32 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
 
                             console.log('Adding the link node ' + linkNode.Title + ' to the quicklaunch');
                         };
-                        clientContext.executeQueryAsync(function () { deferred.resolve(); }, function () { });
+                        clientContext.executeQueryAsync(function () { 
+                            console.log('Successfully persisted quick launch changes');
+                            deferred.resolve(); 
+                        }, function (jqXHR, textStatus, errorThrown) {
+                            console.log('Error: Could not persist quick launch changes. Resolving anyway. Error message: ' + errorThrown);
+                            deferred.resolve(); 
+
+                         });
                     }, function (jqXHR, textStatus, errorThrown) {
-                        console.log('Error deleting objects ' + errorThrown);
+                        console.log('Error deleting quicklaunch objects ' + errorThrown);
+                        deferred.reject();
                     });
                 })
-                .done(function () {
-
-                })
                 .fail(function (jqXHR, textStatus, errorThrown) {
-                    console.log('Error ' + errorThrown);
+                    console.log('Error: Could not load quicklaunch configuration file. ' + errorThrown);
                     deferred.reject();
                 });
             }
         })
         .fail(function () {
+            console.log("Error: Couldnt load configuration files");
             deferred.reject();
         });
     }, function () {
         console.log("Couldnt load quicklaunchcollection");
+        deferred.reject();
     });
     return deferred.promise();
 };
@@ -289,8 +297,18 @@ GT.Project.Setup.Debug.resetConfig = function () {
 };
 
 GT.Project.Setup.showWaitMessage = function () {
-    window.parent.eval("window.waitDialog = SP.UI.ModalDialog.showWaitScreenWithNoClose('<div style=\"text-align: left;display: inline-table;margin-top: 13px;\">Vent litt mens vi konfigurerer <br />prosjektområdet</div>', '', 140, 500);");
+    var evalMsg = "window.waitDialog = SP.UI.ModalDialog.showWaitScreenWithNoClose(" + 
+    "'<div class=\"wait-msg\" style=\"text-align:center\"><div id=\"wait-msg-heading\">Vent litt mens vi konfigurerer <br />prosjektområdet</div>" + 
+    "<div id=\"wait-msg-progress\" style=\"font-size:16px;margin-top:20px;\">Setter opp prosjektområdet...</div>" +
+    "</div>', '',250, 500);"
+    window.parent.eval(evalMsg);
 };
+
+GT.Project.Setup.updateWaitMessageStatus = function(status) {
+    if (window.parent.waitDialog != null) {
+        GT.jQuery('.wait-msg #wait-msg-progress').text(status);
+    }
+}
 
 GT.Project.Setup.closeWaitMessage = function () {
     if (window.parent.waitDialog != null) {
@@ -451,16 +469,19 @@ GT.Project.Setup.CopyFilesAndFolders = function (properties) {
 	    }
 
 	    list.update();
+        
+        console.log("Starting to create folder structure of " + dstLib);
 	    ctx.executeQueryAsync(function (sender, args) {
-	        console.log("Created folder structure");
+	        console.log("Created folder structure in " + dstLib);
 
 	        var promises = [];
 	        for (var i = 0; i < files.length; i++) {
 	            promises.push(GT.Project.Setup.copyFile(files[i], srcWeb, srcListUrl, dstWeb, dstLib));
 	        }
+            console.log("Starting to copy files to " + dstLib);
 	        GT.jQuery.when.apply(GT.jQuery, promises)
             .always(function () {
-                console.log("Copied files");
+            console.log("Copied files to " + dstLib);
                 deferred.resolve();
             });
 
@@ -522,9 +543,9 @@ GT.Project.Setup.populateTaskList = function (listData) {
         }
     }
 
+    console.log("Starting to copy default items to " + listData.Name);
     createListItem(listData.Data);
     clientContext.executeQueryAsync(function (sender, args) {
-
         console.log("Copied default items to " + listData.Name);
         updateParentIdReference(listData.Data);
         clientContext.executeQueryAsync(function (sender, args) {
@@ -563,6 +584,7 @@ GT.Project.Setup.populateGenericList = function (listData) {
         clientContext.load(oListItem);
     }
 
+    console.log("Starting to copy default items to " + listData.Name);
     clientContext.executeQueryAsync(function (sender, args) {
         console.log("Copied default items to " + listData.Name);
         deferred.resolve();
@@ -933,7 +955,6 @@ GT.Project.Setup.UpdateListViews = function (data) {
 				view.set_defaultView(defaultView);
                 view.update();
             } else {
-
 				if (deleteView) { continue; }
                 var viewInfo = new SP.ViewCreationInformation();
                 viewInfo.set_title(viewName);
@@ -954,8 +975,9 @@ GT.Project.Setup.UpdateListViews = function (data) {
             deferred.resolve();
             console.log("Modified list view(s) of " + listName);
         }, function (sender, args) {
-            deferred.reject();
-            console.error('Request failed. ' + args.get_message());
+            deferred.resolve();
+            console.error('Failed updating list view(s) of ' + listName);
+            console.log(args);
         });
     }, function (sender, args) {
         deferred.reject();
@@ -1117,6 +1139,7 @@ GT.jQuery(document).ready(function () {
 
                 GT.Project.Setup.execute(properties, steps)
                 .done(function (shouldReload) {
+                    GT.Project.Setup.updateWaitMessageStatus('Persisterer konfigurasjon');
                     if (shouldReload) {
                         location.reload();
                     }
