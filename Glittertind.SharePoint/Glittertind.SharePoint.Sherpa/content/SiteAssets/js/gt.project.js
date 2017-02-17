@@ -53,9 +53,7 @@ GT.Project.ShowMetadataIfIsWelcomePage = function () {
 };
 
 GT.Project.HandleMissingMetadata = function () {
-    if (GT.jQuery('.projectFrontPage .projectMetadata table tr.GtProjectPhase td.fieldValue').text().trim() == '' ||
-        GT.jQuery('.projectFrontPage .projectMetadata table tr.GtProjectManager td.fieldValue').text().trim() == '' ||
-        GT.jQuery('.projectFrontPage .projectMetadata table tr.GtProjectGoals td.fieldValue').text().trim() == '') {
+    if (GT.jQuery('.projectFrontPage .projectMetadata table tr.GtProjectManager td.fieldValue').text().trim() == '') {
         GT.jQuery('.projectFrontPage .missingMetadataWarning').show();
         GT.jQuery('#changeProjectPhaseLink').hide();
     } else {
