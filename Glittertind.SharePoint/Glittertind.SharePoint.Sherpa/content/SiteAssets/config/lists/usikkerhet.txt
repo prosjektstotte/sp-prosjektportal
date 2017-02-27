@@ -8,6 +8,7 @@
 	    	"Name": "Alle elementer",
             "ViewFields": ["LinkTitle", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
 	        "RowLimit": 0,
+            "Paged":true,
 	        "Query": ""
 	    },	    
         {
@@ -15,6 +16,7 @@
 	    	"Url": "SitePages/Forside.aspx",
             "ViewFields": ["LinkTitle", "GtRiskProbability", "GtRiskConsequence", "GtRiskProximity", "GtRiskFactor"],
 	        "RowLimit": 10,
+            "Paged":true,
 	        "Query": "<OrderBy><FieldRef Name='Created' Ascending='FALSE' /></OrderBy>"
 	    },	    
         {

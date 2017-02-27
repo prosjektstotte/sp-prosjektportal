@@ -19,6 +19,7 @@ GT.Project.Setup.Model.step = function (name, stepNum, callback, properties) {
         var deferred = GT.jQuery.Deferred();
         dependentPromise.done(function () {
             console.log('Executing step ' + self.stepNumber);
+            GT.Project.Setup.updateWaitMessageStatus(self.name);
             return self.callback(properties).done(function () {
                 var properties = { currentStep: { 'key': 'glittertind_currentsetupstep', 'value': self.stepNumber + 1 } };
                 GT.Project.Setup.persistProperties(properties).done(function () { deferred.resolve(); });
@@ -43,9 +44,9 @@ GT.Project.Setup.InheritNavigation = function () {
     clientContext.executeQueryAsync(function () {
         deferred.resolve();
     }, function () {
+        GT.Project.Setup.Error('En feil oppstod under arving av navigasjon.', true, arguments);
         deferred.reject();
-    }
-    );
+    });
 
     return deferred.promise();
 };
@@ -88,15 +89,14 @@ GT.Project.Setup.CreateSiteSettingsCustomActions = function () {
                 console.log('Configured custom actions for site');
                 deferred.resolve();
             }), Function.createDelegate(this, function() {
-                console.log('Error adding custom actions');
-                console.log(arguments);
+                GT.Project.Setup.Error('En feil oppstod ved oppsett av custom actions', true, arguments);
                 deferred.resolve();
             }));
         } else {
             deferred.resolve();
         }
     }), Function.createDelegate(this, function() {
-        console.log('Error ' + errorThrown);
+        GT.Project.Setup.Error('En feil oppstod ved oppsett av custom actions', true, arguments);
         deferred.resolve();
     }));
 
@@ -116,11 +116,12 @@ GT.Project.Setup.ApplyTheme = function (properties) {
     web.applyTheme(colorPaletteUrl, fontSchemeUrl, properties.backgroundImageUrl, properties.shareGenerated);
     web.update();
 
+    console.log('Applying new theme for web');
     clientContext.executeQueryAsync(function () {
         console.log('Changed theme for web');
         deferred.resolve();
     }, function (jqXHR, textStatus, errorThrown) {
-        console.log('Error ' + errorThrown);
+        GT.Project.Setup.Error('En feil oppstod ved endring av områdets tema', true, arguments);
         deferred.reject();
     });
     return deferred.promise();
@@ -177,25 +178,32 @@ GT.Project.Setup.ConfigureQuickLaunch = function () {
 
                             console.log('Adding the link node ' + linkNode.Title + ' to the quicklaunch');
                         };
-                        clientContext.executeQueryAsync(function () { deferred.resolve(); }, function () { });
+                        clientContext.executeQueryAsync(function () { 
+                            console.log('Successfully persisted quick launch changes');
+                            deferred.resolve(); 
+                        }, function (jqXHR, textStatus, errorThrown) {
+                            GT.Project.Setup.Error('En feil oppstod ved oppsett under oppsett av hurtigmeny', false, arguments);
+                            deferred.resolve(); 
+
+                         });
                     }, function (jqXHR, textStatus, errorThrown) {
-                        console.log('Error deleting objects ' + errorThrown);
+                        GT.Project.Setup.Error('En feil oppstod ved oppsett av hurtigmeny', true, arguments);
+                        deferred.reject();
                     });
                 })
-                .done(function () {
-
-                })
                 .fail(function (jqXHR, textStatus, errorThrown) {
-                    console.log('Error ' + errorThrown);
+                    GT.Project.Setup.Error('En feil oppstod ved henting av hurtigmeny-konfigurasjon', true, arguments);
                     deferred.reject();
                 });
             }
         })
         .fail(function () {
+            GT.Project.Setup.Error('En feil oppstod ved henting av hurtigmeny-konfigurasjon', true, arguments);
             deferred.reject();
         });
     }, function () {
-        console.log("Couldnt load quicklaunchcollection");
+        GT.Project.Setup.Error('En feil oppstod ved henting av hurtigmeny-oppsettet', true, arguments);
+        deferred.reject();
     });
     return deferred.promise();
 };
@@ -289,14 +297,40 @@ GT.Project.Setup.Debug.resetConfig = function () {
 };
 
 GT.Project.Setup.showWaitMessage = function () {
-    window.parent.eval("window.waitDialog = SP.UI.ModalDialog.showWaitScreenWithNoClose('<div style=\"text-align: left;display: inline-table;margin-top: 13px;\">Vent litt mens vi konfigurerer <br />prosjektområdet</div>', '', 140, 500);");
+    var evalMsg = "window.waitDialog = SP.UI.ModalDialog.showWaitScreenWithNoClose(" + 
+    "'<div class=\"wait-msg\" style=\"text-align:center\"><div id=\"wait-msg-heading\">Vent litt mens vi konfigurerer <br />prosjektområdet</div>" + 
+    "<div id=\"wait-msg-progress\" style=\"font-size:16px;margin-top:20px;\">Laster inn konfigurasjon...</div>" +
+    "<div id=\"wait-msg-error\" style=\"font-size:16px;margin-top:20px;color:red;\"></div>" +
+    "</div>', '',250, 500);"
+    window.parent.eval(evalMsg);
 };
+
+GT.Project.Setup.updateWaitMessageStatus = function(status) {
+    if (window.parent.waitDialog != null) {
+        GT.jQuery('.wait-msg #wait-msg-progress').text(status);
+    }
+}
+
+GT.Project.Setup.updateWaitMessageError = function(errorMesage) {
+    if (window.parent.waitDialog != null) {
+        GT.jQuery('.wait-msg #wait-msg-error').text(errorMesage);
+    }
+}
 
 GT.Project.Setup.closeWaitMessage = function () {
     if (window.parent.waitDialog != null) {
         window.parent.waitDialog.close();
     }
 };
+
+GT.Project.Setup.Error = function(errorMessage, critical, error) {
+    console.error(errorMessage);
+    console.log(error);
+
+    if (critical) {
+        GT.Project.Setup.updateWaitMessageError(errorMessage);
+    }
+}
 // [end] utility methods
 
 GT.Project.Setup.copyFiles = function (properties) {
@@ -353,6 +387,7 @@ GT.Project.Setup.getFiles = function (srcWeb, lib, folderPath) {
 
         },
         error: function (err) {
+            GT.Project.Setup.Error('En feil oppstod ved henting av filer', true, err);
             deferred.reject();
         }
     };
@@ -394,14 +429,14 @@ GT.Project.Setup.copyFile = function (file, srcWeb, srcLibUrl, dstWeb, dstLib) {
                 },
                 error: function (err2) {
                     var d = JSON.parse(err2.body);
-                    console.log("Did not upload file due to: " + d.error.message.value);
+                    GT.Project.Setup.Error('En feil oppstod ved kopiering av fil', true, d.error.message.value);
                     deferred.reject();
                 }
             }
             executor2.executeAsync(info2)
         },
         error: function (err) {
-            console.error(JSON.stringify(err));
+            GT.Project.Setup.Error('En feil oppstod ved henting av fil for kopiering', true, err);
             deferred.reject();
         }
     };
@@ -451,25 +486,28 @@ GT.Project.Setup.CopyFilesAndFolders = function (properties) {
 	    }
 
 	    list.update();
+        
+        console.log("Starting to create folder structure of " + dstLib);
 	    ctx.executeQueryAsync(function (sender, args) {
-	        console.log("Created folder structure");
+	        console.log("Created folder structure in " + dstLib);
 
 	        var promises = [];
 	        for (var i = 0; i < files.length; i++) {
 	            promises.push(GT.Project.Setup.copyFile(files[i], srcWeb, srcListUrl, dstWeb, dstLib));
 	        }
+            console.log("Starting to copy files to " + dstLib);
 	        GT.jQuery.when.apply(GT.jQuery, promises)
             .always(function () {
-                console.log("Copied files");
+            console.log("Copied files to " + dstLib);
                 deferred.resolve();
             });
 
 	    }, function (sender, args) {
-	        console.error('Request failed. ' + args.get_message());
+	        GT.Project.Setup.Error('En feil oppstod ved kopiering av mappestruktur', true, arguments);
 	    });
 	})
 	.fail(function (jqXHR, textStatus, errorThrown) {
-	    console.log("not able to create folder structure, " + textStatus);
+	    GT.Project.Setup.Error('En feil oppstod ved henting av filstruktur', true, arguments);
 	    deferred.resolve();
 	});
     return deferred.promise();
@@ -522,21 +560,21 @@ GT.Project.Setup.populateTaskList = function (listData) {
         }
     }
 
+    console.log("Starting to copy default items to " + listData.Name);
     createListItem(listData.Data);
     clientContext.executeQueryAsync(function (sender, args) {
-
         console.log("Copied default items to " + listData.Name);
         updateParentIdReference(listData.Data);
         clientContext.executeQueryAsync(function (sender, args) {
             console.log("Updated parent task info " + listData.Name);
             deferred.resolve();
         }, function (sender, args) {
-            console.error('Request failed. ' + args.get_message());
+            GT.Project.Setup.Error('En feil oppstod ved konfigurering av oppgavestruktur', true, args);
             deferred.reject();
         });
 
     }, function (sender, args) {
-        console.error('Request failed. ' + args.get_message());
+        GT.Project.Setup.Error('En feil oppstod ved kopiering av oppgavestruktur', true, args);
         deferred.reject();
     });
     return deferred.promise();
@@ -563,11 +601,12 @@ GT.Project.Setup.populateGenericList = function (listData) {
         clientContext.load(oListItem);
     }
 
+    console.log("Starting to copy default items to " + listData.Name);
     clientContext.executeQueryAsync(function (sender, args) {
         console.log("Copied default items to " + listData.Name);
         deferred.resolve();
     }, function (sender, args) {
-        console.error('Request failed. ' + args.get_message());
+        GT.Project.Setup.Error('En feil oppstod ved kopiering av listeelementer for listen ' + listData.Name, true, args);
         deferred.reject();
     });
 
@@ -610,7 +649,7 @@ GT.Project.Setup.copyDefaultItems = function () {
 
     })
     .fail(function () {
-        console.log("Could not find path {site collection root}/SiteAssets/gt/config/data");
+        GT.Project.Setup.Error('En feil oppstod ved kopiering av listeelementer for listen, finner ikke {site collection root}/SiteAssets/gt/config/data', true, args);
         _this.deferred.reject();
     });
 
@@ -693,13 +732,14 @@ GT.Project.Setup.CopyListItems = function (properties) {
 	                }
 	            }, function (sender, args) {
 	                console.error('Request failed while copying list items. ' + args.get_message());
+                    GT.Project.Setup.Error('En feil oppstod ved kopiering av listeelementer for listen ' + destListName, true, args);
 	                deferred.reject();
 	            });
 	        } else {
 	            deferred.resolve();
 	        }
 	    }, function (sender, args) {
-	        console.error('Request failed while retrieving list to synch. ' + args.get_message());
+            GT.Project.Setup.Error('En feil oppstod ved henting av listeelementer for listen ' + destListName, true, args);
 	        deferred.reject();
 	    });
 	});
@@ -730,7 +770,7 @@ GT.Project.Setup.UpdateParentReferences = function (clientContext, srcItems) {
         console.log("Updated parent references");
         deferred.resolve();
     }, function (sender, args) {
-        console.error('Request failed while copying list items. ' + args.get_message());
+        GT.Project.Setup.Error('En feil oppstod ved oppsett av oppgavestruktur', true, args);
         deferred.reject();
     });
 
@@ -877,8 +917,8 @@ GT.Project.Setup.UpdateListProperties = function (configData) {
         deferred.resolve();
         console.log("Modified list properties of " + configData.Name);
     }, function (sender, args) {
+        GT.Project.Setup.Error('En feil oppstod ved oppdatering av listeegenskaper for listen ' + configData.Name, true, args);
         deferred.reject();
-        console.error('Request failed. ' + args.get_message());
     });
     return deferred.promise();
 };
@@ -933,7 +973,6 @@ GT.Project.Setup.UpdateListViews = function (data) {
 				view.set_defaultView(defaultView);
                 view.update();
             } else {
-
 				if (deleteView) { continue; }
                 var viewInfo = new SP.ViewCreationInformation();
                 viewInfo.set_title(viewName);
@@ -954,8 +993,8 @@ GT.Project.Setup.UpdateListViews = function (data) {
             deferred.resolve();
             console.log("Modified list view(s) of " + listName);
         }, function (sender, args) {
-            deferred.reject();
-            console.error('Request failed. ' + args.get_message());
+            deferred.resolve();
+            GT.Project.Setup.Error('En feil oppstod ved oppdatering av listevisninger for listen ' + listName, true, args);
         });
     }, function (sender, args) {
         deferred.reject();
@@ -1117,6 +1156,7 @@ GT.jQuery(document).ready(function () {
 
                 GT.Project.Setup.execute(properties, steps)
                 .done(function (shouldReload) {
+                    GT.Project.Setup.updateWaitMessageStatus('Persisterer konfigurasjon');
                     if (shouldReload) {
                         location.reload();
                     }

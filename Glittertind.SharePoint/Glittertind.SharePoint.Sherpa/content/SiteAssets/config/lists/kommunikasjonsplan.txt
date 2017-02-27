@@ -8,6 +8,7 @@
 	        "Name": "Alle elementer",
 	        "ViewFields": ["LinkTitle", "GtProjectPhase", "GtActionDate", "GtActionResponsible", "GtCommunicationTarget"],
 	        "RowLimit": 0,
+            "Paged":true,
 	        "Query": ""
 	    },
         {
@@ -15,6 +16,7 @@
             "Url": "SitePages/Tilordnet.aspx",
 	        "ViewFields": ["LinkTitle", "GtProjectPhase", "GtActionDate", "GtCommunicationTarget"],
 	        "RowLimit": 30,
+            "Paged":true,
 	        "Query": "<Where><Eq><FieldRef Name='GtActionResponsible' /><Value Type='Integer'><UserID Type='Integer' /></Value></Eq></Where>"
 	    }
     ]

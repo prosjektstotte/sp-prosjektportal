@@ -8,6 +8,7 @@
 	    	"Name": "Alle elementer",
 	        "ViewFields": ["LinkTitle", "GtStakeholderGroup", "GtStakeholderContext", "GtStakeholderStrategy", "GtStakeholderInterest", "GtStakeholderInfluence", "GtStakeholderInfluencePossibilty", "GtStakeholderActions"],
 	        "RowLimit": 0,
+            "Paged":true,
 	        "Query": ""
 	    }
     ]
