@@ -34,6 +34,16 @@ namespace GT.Project.RiskMatrix {
         ],
     };
 
+    const CSSStyles = `
+    <style type="text/css">
+    #gt-riskmatrix{margin-bottom:20px}#gt-riskmatrix svg.riskSVG .dss-risk-legendtext{font-size:13px}
+    #gt-riskmatrix svg.riskSVG rect:hover{opacity:.9}#gt-riskmatrix svg.riskSVG a text{font-size:15px;font-size:1.5vw;transition:all .2s}
+    @media screen and (min-width:1440px){#gt-riskmatrix svg.riskSVG a text{font-size:20px}}
+    @media screen and (max-width:1035px){#gt-riskmatrix svg.riskSVG a text{font-size:15px}}
+    #gt-riskmatrix svg.riskSVG a:hover text{font-size:20px;font-size:1.7vw}
+    </style>
+    `;
+
     class RiskItem {
         public Id?: number
         public Title: string;
@@ -64,17 +74,17 @@ namespace GT.Project.RiskMatrix {
                 ((c.W / c.NUM_COLS) * (c.POST_ACTION ? this.ConsequencePostAction : this.Consequence)) + (c.W / 10) - 18 :
                 ((c.W / c.NUM_COLS) * (c.POST_ACTION ? this.ConsequencePostAction : this.Consequence)) - (c.W / 10) - 9;
             if (this.Id >= 10) { x -= 10; }
-            if (this.Placement === 1) { x -= (c.W / 20); } else
-                if (this.Placement === 2) { x += (c.W / 20); }
+            if ([1, 5, 7].indexOf(this.Placement) !== -1) { x -= (c.W / 20); } else
+                if ([2, 6, 8].indexOf(this.Placement) !== -1) { x += (c.W / 20); }
             return x;
         };
 
         public getY(c: MatrixConfig): number {
             let y = (c.SHOW_LEGEND) ?
                 c.H - (((c.H / c.NUM_ROWS * (c.POST_ACTION ? this.ProbabilityPostAction : this.Probability))) - (c.H / 10) + (c.H / c.NUM_ROWS) - 2) :
-                c.H - (((c.H / c.NUM_ROWS) * (c.POST_ACTION ? this.ProbabilityPostAction : this.Probability)) - (c.H / c.NUM_ROWS) + (c.HALF_ROW_HEIGHT / 2));
-            if (this.Placement === 3) { y -= (c.H / 18); }
-            if (this.Placement === 4) { y += (c.H / 18); }
+                c.H - (((c.H / c.NUM_ROWS) * (c.POST_ACTION ? this.ProbabilityPostAction : this.Probability)) - (c.H / c.NUM_ROWS) + (c.HALF_ROW_HEIGHT) - 10);
+            if ([3, 5, 6].indexOf(this.Placement) !== -1) { y -= (c.H / 18); } else
+                if ([4, 7, 8].indexOf(this.Placement) !== -1) { y += (c.H / 18); }
             return y;
         };
 
@@ -197,10 +207,16 @@ namespace GT.Project.RiskMatrix {
             __ = new MatrixConfig($__container, postAction);
         $__container
             .fadeTo("fast", 0)
-            .html("");
+            .empty()
+            .append(CSSStyles);
 
         let viewQuery = view ? view.ViewQuery : "";
         GetRisks(viewQuery).then(risks => {
+            if (__.POST_ACTION) {
+                risks = risks.filter(function (risk) {
+                    return (risk.ConsequencePostAction !== null && risk.ProbabilityPostAction !== null)
+                });
+            }
             risks.forEach(risk => {
                 let placement = 0,
                     identicalRisks = jQuery.grep(risks, (e: RiskItem) => {
@@ -364,7 +380,6 @@ namespace GT.Project.RiskMatrix {
      * Handle resize
      */
     function HandleResize(): void {
-        let $__container = jQuery(__CONFIG.CONTAINER);
         let rtime,
             timeout = false,
             delta = 200;
@@ -381,8 +396,11 @@ namespace GT.Project.RiskMatrix {
             if (<any>new Date() - rtime < delta) {
                 setTimeout(_resizeend, delta);
             } else {
+                jQuery(__CONFIG.CONTAINER).empty();
+                jQuery(__CONFIG.CONTAINER).css("opacity", "0");
                 timeout = false;
-                RenderMatrix();
+                let postAction = (jQuery(__CONFIG.POST_ACTION_CHECKBOX + ":checked").length) ? true : false;
+                RenderMatrix(__CURRENT_VIEW, postAction);
             }
         };
     };
@@ -398,9 +416,9 @@ namespace GT.Project.RiskMatrix {
         RenderViewSelector();
 
         jQuery(__CONFIG.POST_ACTION_CHECKBOX).change(event => {
-            RenderMatrix(__CURRENT_VIEW, event.target.checked);
+            $__container.empty();
+            RenderMatrix(__CURRENT_VIEW, event.target["checked"]);
         });
     };
-
     ExecuteOrDelayUntilBodyLoaded(_init);
 };

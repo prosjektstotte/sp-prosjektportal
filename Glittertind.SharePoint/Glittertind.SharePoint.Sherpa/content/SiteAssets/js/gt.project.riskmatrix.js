@@ -35,6 +35,7 @@ var GT;
                     "Katastrofalt",
                 ]
             };
+            var CSSStyles = "\n    <style type=\"text/css\">\n    #gt-riskmatrix{margin-bottom:20px}#gt-riskmatrix svg.riskSVG .dss-risk-legendtext{font-size:13px}\n    #gt-riskmatrix svg.riskSVG rect:hover{opacity:.9}#gt-riskmatrix svg.riskSVG a text{font-size:15px;font-size:1.5vw;transition:all .2s}\n    @media screen and (min-width:1440px){#gt-riskmatrix svg.riskSVG a text{font-size:20px}}\n    @media screen and (max-width:1035px){#gt-riskmatrix svg.riskSVG a text{font-size:15px}}\n    #gt-riskmatrix svg.riskSVG a:hover text{font-size:20px;font-size:1.7vw}\n    </style>\n    ";
             var RiskItem = (function () {
                 function RiskItem(fieldValues) {
                     this.Id = fieldValues.ID;
@@ -55,10 +56,10 @@ var GT;
                     if (this.Id >= 10) {
                         x -= 10;
                     }
-                    if (this.Placement === 1) {
+                    if ([1, 5, 7].indexOf(this.Placement) !== -1) {
                         x -= (c.W / 20);
                     }
-                    else if (this.Placement === 2) {
+                    else if ([2, 6, 8].indexOf(this.Placement) !== -1) {
                         x += (c.W / 20);
                     }
                     return x;
@@ -67,11 +68,11 @@ var GT;
                 RiskItem.prototype.getY = function (c) {
                     var y = (c.SHOW_LEGEND) ?
                         c.H - (((c.H / c.NUM_ROWS * (c.POST_ACTION ? this.ProbabilityPostAction : this.Probability))) - (c.H / 10) + (c.H / c.NUM_ROWS) - 2) :
-                        c.H - (((c.H / c.NUM_ROWS) * (c.POST_ACTION ? this.ProbabilityPostAction : this.Probability)) - (c.H / c.NUM_ROWS) + (c.HALF_ROW_HEIGHT / 2));
-                    if (this.Placement === 3) {
+                        c.H - (((c.H / c.NUM_ROWS) * (c.POST_ACTION ? this.ProbabilityPostAction : this.Probability)) - (c.H / c.NUM_ROWS) + (c.HALF_ROW_HEIGHT) - 10);
+                    if ([3, 5, 6].indexOf(this.Placement) !== -1) {
                         y -= (c.H / 18);
                     }
-                    if (this.Placement === 4) {
+                    else if ([4, 7, 8].indexOf(this.Placement) !== -1) {
                         y += (c.H / 18);
                     }
                     return y;
@@ -158,7 +159,7 @@ var GT;
                 GetViews().then(function (views) {
                     var _outHtml = views
                         .filter(function (v) { return v.Title !== ""; })
-                        .map(function (v) { return ("<option value=\"" + v.ID + "\">" + v.Title + "</option>"); }).join("");
+                        .map(function (v) { return "<option value=\"" + v.ID + "\">" + v.Title + "</option>"; }).join("");
                     $__viewSelector
                         .html(_outHtml)
                         .on("change", function () {
@@ -181,9 +182,15 @@ var GT;
                 var $__container = jQuery(__CONFIG.CONTAINER), __ = new MatrixConfig($__container, postAction);
                 $__container
                     .fadeTo("fast", 0)
-                    .html("");
+                    .empty()
+                    .append(CSSStyles);
                 var viewQuery = view ? view.ViewQuery : "";
                 GetRisks(viewQuery).then(function (risks) {
+                    if (__.POST_ACTION) {
+                        risks = risks.filter(function (risk) {
+                            return (risk.ConsequencePostAction !== null && risk.ProbabilityPostAction !== null);
+                        });
+                    }
                     risks.forEach(function (risk) {
                         var placement = 0, identicalRisks = jQuery.grep(risks, function (e) {
                             return __.POST_ACTION
@@ -270,12 +277,12 @@ var GT;
                     }
                     var a = svg.selectAll("g").data(risks).enter().append("a");
                     a
-                        .attr("onclick", function (d) { return ("SP.UI.ModalDialog.showModalDialog({ url: '" + _spPageContextInfo.webServerRelativeUrl + "/Lists/Usikkerhet/DispForm.aspx?ID=" + d.Id + "' })"); })
+                        .attr("onclick", function (d) { return "SP.UI.ModalDialog.showModalDialog({ url: '" + _spPageContextInfo.webServerRelativeUrl + "/Lists/Usikkerhet/DispForm.aspx?ID=" + d.Id + "' })"; })
                         .attr("xlink:href", "#")
                         .attr("cursor", "pointer")
                         .attr("dx", function (d) { return d.getX(__); })
                         .attr("dy", function (d) { return d.getY(__); })
-                        .attr("id", function (d) { return ("risklink" + d.Id); })
+                        .attr("id", function (d) { return "risklink" + d.Id; })
                         .append("text")
                         .attr("fill", __CONFIG.STATUS_BLUE)
                         .attr("id", function (d) { return "circle" + d.Id; })
@@ -300,7 +307,7 @@ var GT;
                         .attr("x", textPosX)
                         .attr("y", textPosY)
                         .attr("style", "display:none")
-                        .attr("id", function (d) { return ("risktext" + d.Id); });
+                        .attr("id", function (d) { return "risktext" + d.Id; });
                     var txt = group.append("text")
                         .attr("x", textPosX)
                         .attr("y", textPosY)
@@ -311,11 +318,11 @@ var GT;
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX)
                         .html(function (d) { return d.Text; });
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX)
-                        .html(function (d) { return ("Alvorlighetsgrad: " + d.Consequence); });
+                        .html(function (d) { return "Alvorlighetsgrad: " + d.Consequence; });
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX)
-                        .html(function (d) { return ("Sannsynlighet: " + d.Probability); });
+                        .html(function (d) { return "Sannsynlighet: " + d.Probability; });
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX).attr("style", "font-weight:bold")
-                        .html(function (d) { return ("Sum Risiko: " + d.getSum(__)); });
+                        .html(function (d) { return "Sum Risiko: " + d.getSum(__); });
                     if (__.SHOW_LEGEND) {
                         d3.select(".riskSVG")
                             .append("g").call(d3["svg"].axis()["scale"](xScale).orient("top").ticks(5))
@@ -339,7 +346,6 @@ var GT;
              * Handle resize
              */
             function HandleResize() {
-                var $__container = jQuery(__CONFIG.CONTAINER);
                 var rtime, timeout = false, delta = 200;
                 jQuery(window).resize(function () {
                     rtime = new Date();
@@ -353,8 +359,11 @@ var GT;
                         setTimeout(_resizeend, delta);
                     }
                     else {
+                        jQuery(__CONFIG.CONTAINER).empty();
+                        jQuery(__CONFIG.CONTAINER).css("opacity", "0");
                         timeout = false;
-                        RenderMatrix();
+                        var postAction = (jQuery(__CONFIG.POST_ACTION_CHECKBOX + ":checked").length) ? true : false;
+                        RenderMatrix(__CURRENT_VIEW, postAction);
                     }
                 }
                 ;
@@ -370,7 +379,8 @@ var GT;
                 RenderMatrix();
                 RenderViewSelector();
                 jQuery(__CONFIG.POST_ACTION_CHECKBOX).change(function (event) {
-                    RenderMatrix(__CURRENT_VIEW, event.target.checked);
+                    $__container.empty();
+                    RenderMatrix(__CURRENT_VIEW, event.target["checked"]);
                 });
             }
             ;
