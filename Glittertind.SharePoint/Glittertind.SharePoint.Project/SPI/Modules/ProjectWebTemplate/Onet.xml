@@ -45,6 +45,8 @@
         <Feature ID="c6acf269-fa5c-4821-8b40-3bb58f0b9fb8" />
         <!-- WebProjectFrontPage -->
         <Feature ID="0afd3c78-c2b0-4f96-a787-78c2f75f8f92" />
+        <!-- WebProjectUsikkerhet -->
+        <Feature ID="f3657c64-525e-41a6-8022-e7888b0a4198" />
       </WebFeatures>
     </Configuration>
   </Configurations>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="UsikkerhetPage" Url="SitePages" List="119">
+    <File Path="UsikkerhetPage\Usikkerhet.aspx" Url="Usikkerhet.aspx" Type="GhostableInLibrary">
+      <View List="Lists/Usikkerhet" BaseViewID="1" WebPartZoneID="LeftColumn" WebPartOrder="0" >
+        <![CDATA[
+         <WebPart xmlns="http://schemas.microsoft.com/WebPart/v2">
+          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <TypeName>Microsoft.SharePoint.WebPartPages.XsltListViewWebPart</TypeName>
+          <Title>Usikkerhet</Title>
+         </WebPart>
+         ]]>
+      </View>
+      <AllUsersWebPart ID="Risikomatrise" WebPartZoneID="LeftColumn" WebPartOrder="1" >
+        <![CDATA[
+      <WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+          <Title>Risikomatrise</Title>
+          <FrameType>None</FrameType>
+          <Assembly>Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+          <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
+          <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">../../SiteAssets/gt/html/gt.risikomatrise.txt</ContentLink>
+          <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+          <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+      </WebPart>
+          ]]>
+      </AllUsersWebPart>
+    </File>
+  </Module>
+</Elements>
