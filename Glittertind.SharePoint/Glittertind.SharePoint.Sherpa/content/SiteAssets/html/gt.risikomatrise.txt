@@ -3,7 +3,7 @@
     <b>Etter tiltak:</b> <input type="checkbox" id="gt-riskmatrix-postaction" />
 </div>
 
-<div id="gt-riskmatrix" data-textposition="bottom" data-showlegend="false"></div>
+<div id="gt-riskmatrix" data-textposition="bottom" data-showlegend="true"></div>
 <script type="text/javascript" language="javascript">
     SP.SOD.registerSod('gt.project.riskmatrix.js', String.format("{0}/SiteAssets/gt/js/gt.project.riskmatrix.js", _spPageContextInfo.siteServerRelativeUrl));
     SP.SOD.registerSod('d3.min.js', String.format("{0}/SiteAssets/gt/js/d3.min.js", _spPageContextInfo.siteServerRelativeUrl));

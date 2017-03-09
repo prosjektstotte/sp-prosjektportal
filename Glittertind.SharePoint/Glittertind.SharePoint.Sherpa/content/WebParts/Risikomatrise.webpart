@@ -10,7 +10,20 @@
         <property name="HelpUrl" type="string" />
         <property name="Hidden" type="bool">False</property>
         <property name="Description" type="string" />
-        <property name="Content" type="string">&lt;div style="margin-bottom:35px;"&gt;&lt;b&gt;Velg visning:&lt;/b&gt; &lt;select id="gt-riskmatrix-viewselector"&gt;&lt;option&gt;Laster..&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div id="gt-riskmatrix" data-textposition="bottom" data-showlegend="false"&gt;&lt;/div&gt;&lt;script type="text/javascript" language="javascript"&gt;SP.SOD.registerSod('gt.project.riskmatrix.js', String.format("{0}/SiteAssets/gt/js/gt.project.riskmatrix.js", _spPageContextInfo.siteServerRelativeUrl));SP.SOD.registerSod('d3.min.js', String.format("{0}/SiteAssets/gt/js/d3.min.js", _spPageContextInfo.siteServerRelativeUrl));SP.SOD.registerSod('jquery-1.11.1.min.js', String.format("{0}/SiteAssets/gt/js/jquery-1.11.1.min.js", _spPageContextInfo.siteServerRelativeUrl));SP.SOD.registerSodDep("gt.project.riskmatrix.js", "sp.js");SP.SOD.registerSodDep("gt.project.riskmatrix.js", "d3.min.js");SP.SOD.registerSodDep("gt.project.riskmatrix.js", "jquery-1.11.1.min.js");SP.SOD.executeFunc("gt.project.riskmatrix.js", "GT.Project.RiskMatrix", null);&lt;/script&gt;</property>
+        <property name="Content" type="string">&lt;div style="margin-bottom:35px;"&gt;
+    &lt;b&gt;Velg visning:&lt;/b&gt; &lt;select id="gt-riskmatrix-viewselector"&gt;&lt;option&gt;Laster..&lt;/option&gt;&lt;/select&gt;
+    &lt;b&gt;Etter tiltak:&lt;/b&gt; &lt;input type="checkbox" id="gt-riskmatrix-postaction" /&gt;
+&lt;/div&gt;
+&lt;div id="gt-riskmatrix" data-textposition="bottom" data-showlegend="true"&gt;&lt;/div&gt;
+&lt;script type="text/javascript" language="javascript"&gt;
+    SP.SOD.registerSod('gt.project.riskmatrix.js', String.format("{0}/SiteAssets/gt/js/gt.project.riskmatrix.js", _spPageContextInfo.siteServerRelativeUrl));
+    SP.SOD.registerSod('d3.min.js', String.format("{0}/SiteAssets/gt/js/d3.min.js", _spPageContextInfo.siteServerRelativeUrl));
+    SP.SOD.registerSod('jquery-1.11.1.min.js', String.format("{0}/SiteAssets/gt/js/jquery-1.11.1.min.js", _spPageContextInfo.siteServerRelativeUrl));
+    SP.SOD.registerSodDep("gt.project.riskmatrix.js", "sp.js");
+    SP.SOD.registerSodDep("gt.project.riskmatrix.js", "d3.min.js");
+    SP.SOD.registerSodDep("gt.project.riskmatrix.js", "jquery-1.11.1.min.js");
+    SP.SOD.executeFunc("gt.project.riskmatrix.js", "GT.Project.RiskMatrix", null);
+&lt;/script&gt;</property>
         <property name="CatalogIconImageUrl" type="string" />
         <property name="Title" type="string">Risikomatrise</property>
         <property name="AllowHide" type="bool">True</property>

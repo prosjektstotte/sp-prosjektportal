@@ -35,7 +35,7 @@ var GT;
                     "Katastrofalt",
                 ]
             };
-            var CSSStyles = "\n    <style type=\"text/css\">\n    #gt-riskmatrix{margin-bottom:20px}#gt-riskmatrix svg.riskSVG .dss-risk-legendtext{font-size:13px}\n    #gt-riskmatrix svg.riskSVG rect:hover{opacity:.9}#gt-riskmatrix svg.riskSVG a text{font-size:15px;font-size:1.5vw;transition:all .2s}\n    @media screen and (min-width:1440px){#gt-riskmatrix svg.riskSVG a text{font-size:20px}}\n    @media screen and (max-width:1035px){#gt-riskmatrix svg.riskSVG a text{font-size:15px}}\n    #gt-riskmatrix svg.riskSVG a:hover text{font-size:20px;font-size:1.7vw}\n    </style>\n    ";
+            var CSSStyles = "\n    <style type=\"text/css\">\n   #gt-riskmatrix #rect30 {fill: white;} #gt-riskmatrix{margin-bottom:20px}#gt-riskmatrix svg.riskSVG .dss-risk-legendtext{font-size:13px}\n    #gt-riskmatrix svg.riskSVG rect:hover{opacity:.9}#gt-riskmatrix svg.riskSVG a text{font-size:15px;font-size:1.5vw;transition:all .2s}\n    @media screen and (min-width:1440px){#gt-riskmatrix svg.riskSVG a text{font-size:20px}}\n    @media screen and (max-width:1035px){#gt-riskmatrix svg.riskSVG a text{font-size:15px}}\n    #gt-riskmatrix svg.riskSVG a:hover text{font-size:20px;font-size:1.7vw}\n    </style>\n    ";
             var RiskItem = (function () {
                 function RiskItem(fieldValues) {
                     this.Id = fieldValues.ID;
@@ -163,10 +163,10 @@ var GT;
                     $__viewSelector
                         .html(_outHtml)
                         .on("change", function () {
-                        var viewId = $__viewSelector.val(), view = __VIEWS.filter(function (v) { return v.ID === viewId; })[0];
-                        RenderMatrix(view);
-                        __CURRENT_VIEW = view;
-                    });
+                            var viewId = $__viewSelector.val(), view = __VIEWS.filter(function (v) { return v.ID === viewId; })[0];
+                            RenderMatrix(view);
+                            __CURRENT_VIEW = view;
+                        });
                 });
             }
             ;
@@ -228,33 +228,33 @@ var GT;
                                 6, 0, 0, 0, 0, 0,
                             ]
                             :
-                                [
-                                    3, 2, 1, 1, 1,
-                                    4, 3, 2, 1, 1,
-                                    5, 4, 3, 2, 1,
-                                    5, 5, 4, 3, 2,
-                                    5, 5, 5, 4, 3,
-                                ];
+                            [
+                                3, 2, 1, 1, 1,
+                                4, 3, 2, 1, 1,
+                                5, 4, 3, 2, 1,
+                                5, 5, 4, 3, 2,
+                                5, 5, 5, 4, 3,
+                            ];
                         if (fillArr[0] === 0) {
                             var l = riskbg.append("text");
                             l.attr("class", "risk-legendText")
                                 .attr("id", "RiskLegendItem" + ltIndex)
                                 .attr("dx", function () {
-                                if (ltIndex < 5) {
-                                    return 5;
-                                }
-                                else {
-                                    return (__.COL_WIDTH * (ltIndex - 3) - (__.COL_WIDTH)) + 20;
-                                }
-                            })
+                                    if (ltIndex < 5) {
+                                        return 5;
+                                    }
+                                    else {
+                                        return (__.COL_WIDTH * (ltIndex - 3) - (__.COL_WIDTH)) + 20;
+                                    }
+                                })
                                 .attr("dy", function () {
-                                if (ltIndex < 5) {
-                                    return (__.ROW_HEIGHT * (ltIndex + 1)) - (__.HALF_ROW_HEIGHT) + 5;
-                                }
-                                else {
-                                    return (__.H - __.HALF_ROW_HEIGHT) + 5;
-                                }
-                            })
+                                    if (ltIndex < 5) {
+                                        return (__.ROW_HEIGHT * (ltIndex + 1)) - (__.HALF_ROW_HEIGHT) + 5;
+                                    }
+                                    else {
+                                        return (__.H - __.HALF_ROW_HEIGHT) + 5;
+                                    }
+                                })
                                 .text(__CONFIG.LEGEND_TEXT[ltIndex]);
                             ltIndex++;
                         }

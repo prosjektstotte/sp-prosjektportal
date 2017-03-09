@@ -36,7 +36,8 @@ namespace GT.Project.RiskMatrix {
 
     const CSSStyles = `
     <style type="text/css">
-    #gt-riskmatrix{margin-bottom:20px}#gt-riskmatrix svg.riskSVG .dss-risk-legendtext{font-size:13px}
+    #gt-riskmatrix {margin-bottom:20px}#gt-riskmatrix svg.riskSVG .dss-risk-legendtext{font-size:13px}
+    #gt-riskmatrix #rect30 {fill: white;}
     #gt-riskmatrix svg.riskSVG rect:hover{opacity:.9}#gt-riskmatrix svg.riskSVG a text{font-size:15px;font-size:1.5vw;transition:all .2s}
     @media screen and (min-width:1440px){#gt-riskmatrix svg.riskSVG a text{font-size:20px}}
     @media screen and (max-width:1035px){#gt-riskmatrix svg.riskSVG a text{font-size:15px}}
