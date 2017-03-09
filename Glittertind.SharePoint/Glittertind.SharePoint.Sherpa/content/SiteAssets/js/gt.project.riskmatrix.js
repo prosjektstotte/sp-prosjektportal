@@ -35,7 +35,7 @@ var GT;
                     "Katastrofalt",
                 ]
             };
-            var CSSStyles = "\n    <style type=\"text/css\">\n   #gt-riskmatrix #rect30 {fill: white;} #gt-riskmatrix{margin-bottom:20px}#gt-riskmatrix svg.riskSVG .dss-risk-legendtext{font-size:13px}\n    #gt-riskmatrix svg.riskSVG rect:hover{opacity:.9}#gt-riskmatrix svg.riskSVG a text{font-size:15px;font-size:1.5vw;transition:all .2s}\n    @media screen and (min-width:1440px){#gt-riskmatrix svg.riskSVG a text{font-size:20px}}\n    @media screen and (max-width:1035px){#gt-riskmatrix svg.riskSVG a text{font-size:15px}}\n    #gt-riskmatrix svg.riskSVG a:hover text{font-size:20px;font-size:1.7vw}\n    </style>\n    ";
+            var CSSStyles = "\n    <style type=\"text/css\">\n    #gt-riskmatrix {margin-bottom:20px} \n    #gt-riskmatrix svg.riskSVG .dss-risk-legendtext {font-size:13px}\n    #gt-riskmatrix #rect30 {fill: white;}\n    #gt-riskmatrix.gt-small-matrix svg.riskSVG a text {font-size: 9px;}\n    #gt-riskmatrix.gt-small-matrix svg.riskSVG a:hover text {font-size: 14px}\n    #gt-riskmatrix svg.riskSVG rect:hover{opacity:.9}\n    #gt-riskmatrix svg.riskSVG a text{font-size:15px;font-size:1.5vw;transition:all .2s}\n    #gt-riskmatrix svg.riskSVG a:hover text{font-size:20px;font-size:1.7vw}\n    @media screen and (min-width:1440px){#gt-riskmatrix svg.riskSVG a text{font-size:20px}}\n    @media screen and (max-width:1035px){#gt-riskmatrix svg.riskSVG a text{font-size:15px}}\n    </style>\n    ";
             var RiskItem = (function () {
                 function RiskItem(fieldValues) {
                     this.Id = fieldValues.ID;
@@ -159,14 +159,14 @@ var GT;
                 GetViews().then(function (views) {
                     var _outHtml = views
                         .filter(function (v) { return v.Title !== ""; })
-                        .map(function (v) { return "<option value=\"" + v.ID + "\">" + v.Title + "</option>"; }).join("");
+                        .map(function (v) { return ("<option value=\"" + v.ID + "\">" + v.Title + "</option>"); }).join("");
                     $__viewSelector
                         .html(_outHtml)
                         .on("change", function () {
-                            var viewId = $__viewSelector.val(), view = __VIEWS.filter(function (v) { return v.ID === viewId; })[0];
-                            RenderMatrix(view);
-                            __CURRENT_VIEW = view;
-                        });
+                        var viewId = $__viewSelector.val(), view = __VIEWS.filter(function (v) { return v.ID === viewId; })[0];
+                        RenderMatrix(view);
+                        __CURRENT_VIEW = view;
+                    });
                 });
             }
             ;
@@ -228,33 +228,33 @@ var GT;
                                 6, 0, 0, 0, 0, 0,
                             ]
                             :
-                            [
-                                3, 2, 1, 1, 1,
-                                4, 3, 2, 1, 1,
-                                5, 4, 3, 2, 1,
-                                5, 5, 4, 3, 2,
-                                5, 5, 5, 4, 3,
-                            ];
+                                [
+                                    3, 2, 1, 1, 1,
+                                    4, 3, 2, 1, 1,
+                                    5, 4, 3, 2, 1,
+                                    5, 5, 4, 3, 2,
+                                    5, 5, 5, 4, 3,
+                                ];
                         if (fillArr[0] === 0) {
                             var l = riskbg.append("text");
                             l.attr("class", "risk-legendText")
                                 .attr("id", "RiskLegendItem" + ltIndex)
                                 .attr("dx", function () {
-                                    if (ltIndex < 5) {
-                                        return 5;
-                                    }
-                                    else {
-                                        return (__.COL_WIDTH * (ltIndex - 3) - (__.COL_WIDTH)) + 20;
-                                    }
-                                })
+                                if (ltIndex < 5) {
+                                    return 5;
+                                }
+                                else {
+                                    return (__.COL_WIDTH * (ltIndex - 3) - (__.COL_WIDTH)) + 20;
+                                }
+                            })
                                 .attr("dy", function () {
-                                    if (ltIndex < 5) {
-                                        return (__.ROW_HEIGHT * (ltIndex + 1)) - (__.HALF_ROW_HEIGHT) + 5;
-                                    }
-                                    else {
-                                        return (__.H - __.HALF_ROW_HEIGHT) + 5;
-                                    }
-                                })
+                                if (ltIndex < 5) {
+                                    return (__.ROW_HEIGHT * (ltIndex + 1)) - (__.HALF_ROW_HEIGHT) + 5;
+                                }
+                                else {
+                                    return (__.H - __.HALF_ROW_HEIGHT) + 5;
+                                }
+                            })
                                 .text(__CONFIG.LEGEND_TEXT[ltIndex]);
                             ltIndex++;
                         }
@@ -277,12 +277,12 @@ var GT;
                     }
                     var a = svg.selectAll("g").data(risks).enter().append("a");
                     a
-                        .attr("onclick", function (d) { return "SP.UI.ModalDialog.showModalDialog({ url: '" + _spPageContextInfo.webServerRelativeUrl + "/Lists/Usikkerhet/DispForm.aspx?ID=" + d.Id + "' })"; })
+                        .attr("onclick", function (d) { return ("SP.UI.ModalDialog.showModalDialog({ url: '" + _spPageContextInfo.webServerRelativeUrl + "/Lists/Usikkerhet/DispForm.aspx?ID=" + d.Id + "' })"); })
                         .attr("xlink:href", "#")
                         .attr("cursor", "pointer")
                         .attr("dx", function (d) { return d.getX(__); })
                         .attr("dy", function (d) { return d.getY(__); })
-                        .attr("id", function (d) { return "risklink" + d.Id; })
+                        .attr("id", function (d) { return ("risklink" + d.Id); })
                         .append("text")
                         .attr("fill", __CONFIG.STATUS_BLUE)
                         .attr("id", function (d) { return "circle" + d.Id; })
@@ -307,7 +307,7 @@ var GT;
                         .attr("x", textPosX)
                         .attr("y", textPosY)
                         .attr("style", "display:none")
-                        .attr("id", function (d) { return "risktext" + d.Id; });
+                        .attr("id", function (d) { return ("risktext" + d.Id); });
                     var txt = group.append("text")
                         .attr("x", textPosX)
                         .attr("y", textPosY)
@@ -318,11 +318,11 @@ var GT;
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX)
                         .html(function (d) { return d.Text; });
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX)
-                        .html(function (d) { return "Alvorlighetsgrad: " + d.Consequence; });
+                        .html(function (d) { return ("Alvorlighetsgrad: " + d.Consequence); });
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX)
-                        .html(function (d) { return "Sannsynlighet: " + d.Probability; });
+                        .html(function (d) { return ("Sannsynlighet: " + d.Probability); });
                     txt.append("tspan").attr("dy", 22).attr("x", textPosX).attr("style", "font-weight:bold")
-                        .html(function (d) { return "Sum Risiko: " + d.getSum(__); });
+                        .html(function (d) { return ("Sum Risiko: " + d.getSum(__)); });
                     if (__.SHOW_LEGEND) {
                         d3.select(".riskSVG")
                             .append("g").call(d3["svg"].axis()["scale"](xScale).orient("top").ticks(5))
