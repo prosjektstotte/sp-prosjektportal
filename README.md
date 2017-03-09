@@ -3,7 +3,7 @@
 
 Prosjektportal for SharePoint er et prosjektstyringsverktøy for SharePoint basert på <a href="http://prosjektveiviseren.no">Prosjektveiviseren</a>. 
 
-*Merk: Versjonensom ligger ute nå bygger fortsatt på klassisk arkitektur, dvs. sherpa-provisjonering og sandbox solution. Vi planlegger en helt ny versjon som vil komme ila. Q2 som vil være en fullstendig oppgradering av tekniske rammeverk. Vår intensjon er at den kommende versjonen vil utgjøre en versjon 1.0 av prosjektportalen som vil danne et grunnlag for et enklere og bedre oppgraderings- og tilpasningsløp. For de fleste vil vi anbefale å vente til denne versjonen kommer med å oppgradere/migrere. Om du ikke har tatt Prosjektportalen i bruk ennå vil vi definitivt anbefale å vente til den kommende versjonen - med mindre du ønsker å kun teste ut hva Prosjektportalen tilbyr.*
+*Merk: Versjonen som ligger ute nå bygger fortsatt på klassisk arkitektur, dvs. sherpa-provisjonering og sandbox solution. Vi planlegger en helt ny versjon som vil komme ila. Q2 som vil være en fullstendig oppgradering av tekniske rammeverk. Vår intensjon er at den kommende versjonen vil utgjøre en versjon 1.0 av prosjektportalen som vil danne et grunnlag for et enklere og bedre oppgraderings- og tilpasningsløp. For de fleste vil vi anbefale å vente til denne versjonen kommer med å oppgradere/migrere. Om du ikke har tatt Prosjektportalen i bruk ennå vil vi definitivt anbefale å vente til den kommende versjonen - med mindre du ønsker å kun teste ut hva Prosjektportalen tilbyr.*
 
 # Hva er prosjektportal for SharePoint? #
 
