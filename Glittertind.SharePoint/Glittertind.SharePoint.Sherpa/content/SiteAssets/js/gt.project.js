@@ -32,23 +32,28 @@ GT.Project.HideProductsInLogFormIfEmpty = function () {
 };
 
 GT.Project.ShowMetadataIfIsWelcomePage = function () {
-    var selector = ".projectFrontPage .rightColumnStatic";
-    var ctx = SP.ClientContext.get_current();
-    var web = ctx.get_web();
-    var rootFolder = web.get_rootFolder();
+    SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
+        SP.SOD.registerSod('sp.taxonomy.js', SP.Utilities.Utility.getLayoutsPageUrl('sp.taxonomy.js'));
+        SP.SOD.executeFunc('sp.taxonomy.js', 'SP.Taxonomy.TaxonomySession', function () {
+            var selector = ".projectFrontPage .rightColumnStatic";
+            var ctx = SP.ClientContext.get_current();
+            var web = ctx.get_web();
+            var rootFolder = web.get_rootFolder();
 
-    ctx.load(rootFolder);
-    ctx.executeQueryAsync(function () {
-        var welcomePage = rootFolder.get_welcomePage();
-        if (_spPageContextInfo.serverRequestPath.endsWith(welcomePage)) {
-            GT.jQuery(selector).show();
-        } else {
-            GT.jQuery(selector).html('<p>Informasjon om prosjektet er kun tilgjengelig fra <a href="../' + welcomePage + '">forsiden</a></p>').show();
-        }
+            ctx.load(rootFolder);
+            ctx.executeQueryAsync(function () {
+                var welcomePage = rootFolder.get_welcomePage();
+                if (_spPageContextInfo.serverRequestPath.endsWith(welcomePage)) {
+                    GT.jQuery(selector).show();
+                } else {
+                    GT.jQuery(selector).html('<p>Informasjon om prosjektet er kun tilgjengelig fra <a href="../' + welcomePage + '">forsiden</a></p>').show();
+                }
 
-    }, function () {
-        console.log('An error has accured. Showing metadata to avoid hiding it in fault.');
-        GT.jQuery(selector).show();
+            }, function () {
+                console.log('An error has accured. Showing metadata to avoid hiding it in fault.');
+                GT.jQuery(selector).show();
+            });
+        });
     });
 };
 
@@ -252,10 +257,10 @@ GT.Project.SetMetaDataDefaultsForLib = function (lib, field, term) {
                 deferred.reject();
             });
     },
-    function (sender, args) {
-        console.log("fail: " + args.get_message());
-        deferred.reject();
-    });
+        function (sender, args) {
+            console.log("fail: " + args.get_message());
+            deferred.reject();
+        });
     return deferred.promise();
 
 };
@@ -277,7 +282,6 @@ GT.Project.GetSafeTerm = function (term) {
 };
 
 GT.Project.EnsureMetaDataDefaultsEventReceiver = function (lib) {
-
     var ctx = new SP.ClientContext.get_current();
     var web = ctx.get_web();
     var eventReceivers = web.get_lists().getByTitle(lib).get_eventReceivers();
@@ -315,26 +319,31 @@ GT.Project.EnsureMetaDataDefaultsEventReceiver = function (lib) {
 
 
 GT.Project.PopulateProjectPhasePart = function () {
-    GT.jQuery.when(
-        GT.Project.GetPhaseNameFromCurrentItem(),
-        GT.Project.GetProjectPhases(),
-        GT.Project.GetChecklistData()
-    ).then(function (currentPhase, allPhases, checklistData) {
-        if (allPhases) {
-            var oldInternetExplorer = detectIE() && detectIE() < 11;
-            var frontPagePhases = allPhases.filter(function (f) { return f.ShowOnFrontpage; });
-            if (frontPagePhases && frontPagePhases.length > 0) {
-                var phasesWithSubText = frontPagePhases.filter(function (f) { return f.SubText; });
-                var widthPerPhase = 100 / frontPagePhases.length;
-                for (var ix = 0; ix < frontPagePhases.length; ix++) {
-                    if (frontPagePhases[ix].ShowOnFrontpage) {
-                        var checkListItemStats = checklistData[frontPagePhases[ix].Name];
-                        var phaseLogoMarkup = GT.Project.GetPhaseLogoMarkup(frontPagePhases[ix], frontPagePhases[ix].Name == currentPhase, true, true, widthPerPhase, ix, (ix + 1) == frontPagePhases.length, checkListItemStats, oldInternetExplorer);
-                        GT.jQuery('.projectPhases').append(phaseLogoMarkup).addClass(oldInternetExplorer ? 'legacy-ie' : 'not-legacy-ie').addClass(phasesWithSubText.length > 0 ? 'has-subtext' : 'no-subtext');
+    SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
+        SP.SOD.registerSod('sp.taxonomy.js', SP.Utilities.Utility.getLayoutsPageUrl('sp.taxonomy.js'));
+        SP.SOD.executeFunc('sp.taxonomy.js', 'SP.Taxonomy.TaxonomySession', function () {
+            GT.jQuery.when(
+                GT.Project.GetPhaseNameFromCurrentItem(),
+                GT.Project.GetProjectPhases(),
+                GT.Project.GetChecklistData()
+            ).then(function (currentPhase, allPhases, checklistData) {
+                if (allPhases) {
+                    var oldInternetExplorer = detectIE() && detectIE() < 11;
+                    var frontPagePhases = allPhases.filter(function (f) { return f.ShowOnFrontpage; });
+                    if (frontPagePhases && frontPagePhases.length > 0) {
+                        var phasesWithSubText = frontPagePhases.filter(function (f) { return f.SubText; });
+                        var widthPerPhase = 100 / frontPagePhases.length;
+                        for (var ix = 0; ix < frontPagePhases.length; ix++) {
+                            if (frontPagePhases[ix].ShowOnFrontpage) {
+                                var checkListItemStats = checklistData[frontPagePhases[ix].Name];
+                                var phaseLogoMarkup = GT.Project.GetPhaseLogoMarkup(frontPagePhases[ix], frontPagePhases[ix].Name == currentPhase, true, true, widthPerPhase, ix, (ix + 1) == frontPagePhases.length, checkListItemStats, oldInternetExplorer);
+                                GT.jQuery('.projectPhases').append(phaseLogoMarkup).addClass(oldInternetExplorer ? 'legacy-ie' : 'not-legacy-ie').addClass(phasesWithSubText.length > 0 ? 'has-subtext' : 'no-subtext');
+                            }
+                        }
                     }
                 }
-            }
-        }
+            });
+        });
     });
 };
 
