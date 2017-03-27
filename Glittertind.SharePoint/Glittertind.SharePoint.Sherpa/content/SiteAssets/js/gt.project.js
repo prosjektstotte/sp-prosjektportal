@@ -420,8 +420,8 @@ GT.Project.GetPhaseLogoMarkup = function (phase, selected, wrapInListItemMarkup,
             "<li><span class='gt-icon gt-completed'></span>{2} utførte punkter</li>" +
             "<li><span class='gt-icon gt-ignored'></span>{3} ikke relevante</li>" +
             "<li class='spacer'><span> </span></li>" +
-            "<li><a class='see-all' href='{4}/Lists/Fasesjekkliste/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={0}'>Se alle sjekkpunktene for denne fasen</a></li></ul>",
-            phaseDisplayName, checklistStats.Open, checklistStats.Closed, checklistStats.Ignored, _spPageContextInfo.webServerRelativeUrl);
+            "<li><a class='see-all' href='{4}/Lists/Fasesjekkliste/AllItems.aspx?FilterField1=GtProjectPhase&FilterValue1={5}'>Se alle sjekkpunktene for denne fasen</a></li></ul>",
+            phaseDisplayName, checklistStats.Open, checklistStats.Closed, checklistStats.Ignored, _spPageContextInfo.webServerRelativeUrl, encodeURIComponent(phaseDisplayName));
     }
 
     var markup = String.format('<div class="gt-phaseIcon {0}">' +
