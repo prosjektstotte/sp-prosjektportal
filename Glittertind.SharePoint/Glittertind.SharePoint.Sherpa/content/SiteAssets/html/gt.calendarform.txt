@@ -1,7 +1,7 @@
 ﻿<script type="text/javascript" src="../../../SiteAssets/gt/js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="../../../SiteAssets/gt/js/gt.generics.js?rev=20170217"></script>
-<script type="text/javascript" src="../../../SiteAssets/gt/js/gt.project.js?rev=20170217"></script>
-<link rel="stylesheet" type="text/css" href="../../../SiteAssets/gt/css/gt.style.css?rev=20170217">
+<script type="text/javascript" src="../../../SiteAssets/gt/js/gt.generics.js?rev=20170327"></script>
+<script type="text/javascript" src="../../../SiteAssets/gt/js/gt.project.js?rev=20170327"></script>
+<link rel="stylesheet" type="text/css" href="../../../SiteAssets/gt/css/gt.style.css?rev=20170327">
 
 <script type="text/javascript" language="javascript">
     ExecuteOrDelayUntilScriptLoaded(GT.Project.CalendarForm.RenderRelatedLogElements, "sp.js")
