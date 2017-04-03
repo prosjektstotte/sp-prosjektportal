@@ -262,7 +262,6 @@ GT.Project.SetMetaDataDefaultsForLib = function (lib, field, term) {
             deferred.reject();
         });
     return deferred.promise();
-
 };
 
 GT.Project.GetSafeTerm = function (term) {
