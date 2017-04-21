@@ -480,6 +480,9 @@ GT.Project.Setup.CopyFilesAndFolders = function (properties) {
                     files.push(docItems[j]);
                 }
             }
+            if (folders && folders.length > 0) {
+                folders.sort(function (a, b) { return (a.FileRef > b.FileRef) ? 1 : ((b.FileRef > a.FileRef) ? -1 : 0); });
+            }
             for (var i = 0; i < folders.length; i++) {
                 var folderUrl = folders[i].Folder.ServerRelativeUrl.replace(srcListUrl, '');
                 root.get_folders().add(dstListUrl + folderUrl);
