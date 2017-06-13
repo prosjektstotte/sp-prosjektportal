@@ -118,7 +118,7 @@
         ],
         "Default": "På plan",
         "Description": "",
-        "DisplayName": "Status tid",
+        "DisplayName": "Status fremdrift",
         "Format": "RadioButtons",
         "Group": "Prosjektportalen områdekolonner",
         "ID": "1447ef51-8e9b-4d16-aa2a-526dc9f1539e",
@@ -126,8 +126,8 @@
         "Type": "Choice"
     },
     {
-        "Description": "Kommentar til status tid angitt over",
-        "DisplayName": "Kommentar, tid",
+        "Description": "Kommentar til status fremdrift angitt over",
+        "DisplayName": "Kommentar, fremdrift",
         "Group": "Prosjektportalen områdekolonner",
         "ID": "cb1fc0b7-cbb8-40af-a782-c6b9ad4ee40f",
         "InternalName": "GtStatusTimeComment",
@@ -172,7 +172,7 @@
     },
     {
         "Description": "Beskriv hva prosjektet skal levere",
-        "DisplayName": "Målsetning",
+        "DisplayName": "Effektmål",
         "Group": "Prosjektportalen områdekolonner",
         "ID": "018f09b8-4954-41bb-a8f6-fa531b90b79f",
         "InternalName": "GtProjectGoals",
@@ -473,7 +473,8 @@
         "Choices": [
             "Kommentar/Bekymring/Hendelse",
             "Endringsforespørsel",
-            "Avvik fra spesifikasjon"
+            "Avvik fra spesifikasjon",
+            "Beslutning"
         ],
         "Description": "",
         "DisplayName": "Loggelement",

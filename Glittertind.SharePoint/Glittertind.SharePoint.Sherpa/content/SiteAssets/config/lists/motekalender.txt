@@ -8,6 +8,7 @@
 	        "Name": "Kalender",
 	        "ViewFields": [],
 	        "RowLimit": 0,
+            "Paged":true,
 	        "Query": ""
 	    }
     ]

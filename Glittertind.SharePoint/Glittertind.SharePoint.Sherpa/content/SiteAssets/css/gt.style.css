@@ -1,4 +1,4 @@
-﻿.validationMessage {
+.validationMessage {
   color: red;
 }
 .newProjectPage h1 {
@@ -124,12 +124,6 @@ ul.gt-List .gt-projectItem.new {
   top: 9px;
   left: 9px;
 }
-.gt-list-control .clear-search {
-  cursor: pointer;
-}
-.gt-list-control .clear-search:hover {
-  text-decoration: underline;
-}
 .gt-list-control ul#Paging {
   display: block;
   list-style-type: none;
@@ -139,6 +133,12 @@ ul.gt-List .gt-projectItem.new {
 .gt-list-control ul#Paging li {
   display: inline-block;
   margin-right: 10px;
+}
+.clear-search {
+  cursor: pointer;
+}
+.clear-search:hover {
+  text-decoration: underline;
 }
 .loadingSpinner {
   vertical-align: top;
@@ -168,6 +168,10 @@ ul.gt-List .gt-projectItem.new {
 }
 .gt-result-table td.restrict-width {
   max-width: 100px;
+}
+.gt-result-table .status-unknown {
+  background-color: #bbb;
+  background-color: rgba(50, 50, 50, 0.3);
 }
 .gt-result-table .status-red {
   background-color: #cc6666;

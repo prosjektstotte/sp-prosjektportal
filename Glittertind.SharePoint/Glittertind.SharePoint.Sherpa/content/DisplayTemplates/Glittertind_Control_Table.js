@@ -36,6 +36,8 @@ window.GT.GetStatusCssClass = function (status) {
     else if (statusToCheck === 'på plan') return 'status-green';
     else if (statusToCheck === 'høy') return 'status-red';
     else if (statusToCheck === 'medium') return 'status-yellow';
+    else if (statusToCheck === 'mindre overskridelser som kan tas igjen') return 'status-yellow';
+    else if (statusToCheck === 'mindre forsinkelse som kan tas igjen') return 'status-yellow';
     else if (statusToCheck === 'lav') return 'status-green';
     else if (statusToCheck === 'over budsjett') return 'status-red';
     else if (statusToCheck === 'på budsjett') return 'status-green';
@@ -63,7 +65,7 @@ ms_outHtml.push(''
 ,'		<thead>'
 ,'			<tr>'
 ,'				<th>Tittel</th>'
-,'				<th>Effektm&#229;l</th>'
+,'				<th>Målsetning</th>'
 ,'				<th>Prosjekteier</th>'
 ,'				<th>Prosjektleder</th>'
 ,'				<th>Status tid</th>'
@@ -143,7 +145,7 @@ ms_outHtml.push(''
 function RegisterTemplate_83e2c63a510448eeb5a9b6a183b01866() {
 
 if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {
-  Srch.U.registerRenderTemplateByName("Control_List", DisplayTemplate_83e2c63a510448eeb5a9b6a183b01866);
+  Srch.U.registerRenderTemplateByName("Glittertind_Control_Table", DisplayTemplate_83e2c63a510448eeb5a9b6a183b01866);
 }
 
 if ("undefined" != typeof (Srch) &&"undefined" != typeof (Srch.U) &&typeof(Srch.U.registerRenderTemplateByName) == "function") {

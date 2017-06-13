@@ -4,7 +4,7 @@
     ],
     "ContentTypeConfigurations": [
         "gtcontenttypes.json",
-        "gtfrontpagecontenttype.json"
+        "gtfrontpagecontenttypes.json"
     ],
     "TaxonomyConfigurations": [
         "gttaxonomy.json"
