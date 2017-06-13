@@ -575,5 +575,13 @@
         "InternalName": "GtProjectTaskUrl",
         "Type": "URL",
         "Format": "Hyperlink"
+    },
+    {
+        "Description": "",
+        "DisplayName": "Sorteringsindeks",
+        "Group": "Prosjektportalen områdekolonner",
+        "ID": "0e82c395-9ed9-43f9-871a-208215b18558",
+        "InternalName": "GtSortOrder",
+        "Type": "Number"
     }
 ]

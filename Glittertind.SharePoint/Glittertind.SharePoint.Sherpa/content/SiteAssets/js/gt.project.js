@@ -586,7 +586,7 @@ GT.Project.PhaseForm.CheckList.getData = function () {
         var ctx = new SP.ClientContext.get_current();
         var list = ctx.get_web().get_lists().getByTitle('Fasesjekkliste');
         var camlQuery = new SP.CamlQuery();
-        camlQuery.set_viewXml("<View><Query><Where><Eq><FieldRef Name='GtProjectPhase'/><Value Type='TaxonomyFieldType'>" + phase + "</Value></Eq></Where><OrderBy><FieldRef Name='ID' /></OrderBy></Query></View>");
+        camlQuery.set_viewXml("<View><Query><Where><Eq><FieldRef Name='GtProjectPhase'/><Value Type='TaxonomyFieldType'>" + phase + "</Value></Eq></Where><OrderBy><FieldRef Name='GtSortOrder' /><FieldRef Name='ID' /></OrderBy></Query></View>");
         var listItems = list.getItems(camlQuery);
         ctx.load(listItems);
         ctx.executeQueryAsync(function () {
