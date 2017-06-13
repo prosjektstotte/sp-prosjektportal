@@ -23,7 +23,8 @@
                 "Fields": [
                     "ID",
                     "Title",
-                    "GtProjectPhase"
+                    "GtProjectPhase",
+                    "GtSortOrder"
                 ]
             },
             {
