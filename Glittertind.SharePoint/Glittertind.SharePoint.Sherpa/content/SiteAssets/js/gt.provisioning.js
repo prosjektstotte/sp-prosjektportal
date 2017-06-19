@@ -190,7 +190,7 @@ GT.Provisioning.PopulateCopyListElementPage = function (sourceListTitle) {
 
         clientContext.load(this.srcListItems, 'Include(Id,Title,GtProjectPhase,Created)');
         clientContext.executeQueryAsync(Function.createDelegate(this, function() {
-            GT.jQuery('.gtinfomessage').text(String.format("Viser {0} elementer fra listen {1} som du kan kopiere ned til prosjektområdet ditt. Listen er sortert på når oppgavene ble opprettet, med de nyeste øverst. Oppgavefasen blir også kopiert. Dessverre kan ikke oppgaverelasjonene gjenskapes.", this.srcListItems.get_count(), sourceListTitle));
+            GT.jQuery('.gtinfomessage').text(String.format("Viser {0} elementer fra listen {1} som du kan kopiere ned til prosjektområdet ditt. Listen er sortert på når elementene ble opprettet, med de nyeste øverst.", this.srcListItems.get_count(), sourceListTitle));
 
             var newMarkup = String.format('<span class="ms-newdocument-iconouter"><img class="ms-newdocument-icon" src="{0}/_layouts/15/images/spcommon.png?rev=44" alt="ny" title="ny"></span>', _spPageContextInfo.siteServerRelativeUrl);
             var daysToShowNewIndicator = 7;
@@ -250,7 +250,12 @@ GT.Provisioning.CopyListElements = function() {
         var chosenIds = [];
         checkedValues.forEach(function(id){
             var srcItem = srcList.getItemById(id);
-            srcContext.load(srcItem, "Title", "Id", "GtProjectPhase");
+
+            if (destinationListTitle === "Fasesjekkliste") {
+                srcContext.load(srcItem, "Title", "Id", "GtProjectPhase", "GtSortOrder");
+            } else {
+                srcContext.load(srcItem, "Title", "Id", "GtProjectPhase");
+            }
             chosenIds.push(srcItem);
         });
         srcContext.executeQueryAsync(function() {
@@ -261,6 +266,10 @@ GT.Provisioning.CopyListElements = function() {
 
             chosenIds.forEach(function(item){
                 var fieldsToSynch = ["Title", "GtProjectPhase"];
+                
+                if (destinationListTitle === "Fasesjekkliste") { 
+                    fieldsToSynch.push("GtSortOrder");
+                }
                 try {
                     var itemCreateInfo = new SP.ListItemCreationInformation();
                     var newItem = dstList.addItem(itemCreateInfo);

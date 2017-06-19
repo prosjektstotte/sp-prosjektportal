@@ -1,0 +1,16 @@
+﻿[
+    {
+        "Description": "",
+        "DisplayName": "Sjekkpunkt",
+        "Fields": [
+            "GtSortOrder",
+            "GtProjectPhase",
+            "GtChecklistStatus",
+            "GtComment"
+        ],
+        "Group": "Prosjektportalen innholdstyper",
+        "ID": "0x010088578e7470cc4aa68d5663464831070204",
+        "InternalName": "GtProjectChecklistElement",
+        "RequiredFields": []
+    }
+]

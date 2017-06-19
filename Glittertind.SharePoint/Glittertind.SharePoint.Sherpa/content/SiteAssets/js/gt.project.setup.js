@@ -51,7 +51,7 @@ GT.Project.Setup.InheritNavigation = function () {
     return deferred.promise();
 };
 
-GT.Project.Setup.CreateSiteSettingsCustomActions = function () {
+GT.Project.Setup.CreateSiteSettingsCustomActions = function (properties) {
     var deferred = GT.jQuery.Deferred();
 
     var clientContext = SP.ClientContext.get_current();
@@ -61,28 +61,30 @@ GT.Project.Setup.CreateSiteSettingsCustomActions = function () {
     clientContext.load(web, 'Title', 'UserCustomActions');
     clientContext.load(customActions);
     clientContext.executeQueryAsync(Function.createDelegate(this, function () {
-        var alreadyExists = false;
+        var siteColRelativeUrl = _spPageContextInfo.siteServerRelativeUrl === '/' ? '' : _spPageContextInfo.siteServerRelativeUrl;
+        
+        var copyTasksAlreadyExists = false;
         var customActionsEnumerator = customActions.getEnumerator();
         while (customActionsEnumerator.moveNext()) {
             var currentCustomAction = customActionsEnumerator.get_current();
-            if (currentCustomAction.get_name() === 'GT.SiteSettings.CopyTasks') {
-                alreadyExists = true;
+            if (currentCustomAction.get_name() === properties.name) {
+                copyTasksAlreadyExists = true;
             }
         }
-        if (!alreadyExists) {
-            var newCustomAction = customActions.add();
-            newCustomAction.set_location('Microsoft.SharePoint.SiteSettings');
-            newCustomAction.set_group('Customization');
-            newCustomAction.set_sequence(150);
-            newCustomAction.set_name('GT.SiteSettings.CopyTasks');
-            newCustomAction.set_title('Hent oppgaver fra porteføljeområdet');
-            newCustomAction.set_description('Velg oppgaver fra porteføljeområdet og kopier oppgavene til prosjektet.');
+        if (!copyTasksAlreadyExists) {
 
-            var siteColRelativeUrl = _spPageContextInfo.siteServerRelativeUrl === '/' ? '' : _spPageContextInfo.siteServerRelativeUrl;
-            var customActionJavaScript = String.format('{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings', siteColRelativeUrl, 'Standardoppgaver', 'Oppgaver', encodeURIComponent(_spPageContextInfo.webServerRelativeUrl));;
+            var copyTasksCustomAction = customActions.add();
+            copyTasksCustomAction.set_location('Microsoft.SharePoint.SiteSettings');
+            copyTasksCustomAction.set_group('Customization');
+            copyTasksCustomAction.set_sequence(properties.sequence);
+            copyTasksCustomAction.set_name(properties.name);
+            copyTasksCustomAction.set_title(properties.title);
+            copyTasksCustomAction.set_description(properties.description);
 
-            newCustomAction.set_url(customActionJavaScript);
-            newCustomAction.update();
+            var customActionJavaScript = String.format('{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings', siteColRelativeUrl, properties.srcList, properties.dstList, encodeURIComponent(_spPageContextInfo.webServerRelativeUrl));;
+
+            copyTasksCustomAction.set_url(customActionJavaScript);
+            copyTasksCustomAction.update();
 
             clientContext.load(web, 'Title', 'UserCustomActions');
             clientContext.executeQueryAsync(Function.createDelegate(this, function () {
@@ -101,7 +103,7 @@ GT.Project.Setup.CreateSiteSettingsCustomActions = function () {
     }));
 
     return deferred.promise();
-}
+};
 
 GT.Project.Setup.ApplyTheme = function (properties) {
     var deferred = GT.jQuery.Deferred();
@@ -1143,14 +1145,17 @@ GT.jQuery(document).ready(function () {
             '1.0.0.0': [
                 new GT.Project.Setup.Model.step("Setter områdets temafarger", 0, GT.Project.Setup.ApplyTheme,
                     { colorPaletteName: "palette013.spcolor", fontSchemeName: "SharePointPersonality.spfont", backgroundImageUrl: "", shareGenerated: true }),
-                new GT.Project.Setup.Model.step("Setter områdets temafarger", 1, GT.Project.Setup.CreateSiteSettingsCustomActions, {}),
-                new GT.Project.Setup.Model.step("Oppretter områdenivå innholdstyper", 2, GT.Project.Setup.CreateWebContentTypes, {}),
-                new GT.Project.Setup.Model.step("Sett arving av navigasjon", 3, GT.Project.Setup.InheritNavigation, {}),
-                new GT.Project.Setup.Model.step("Konfigurer quicklaunch", 4, GT.Project.Setup.ConfigureQuickLaunch, {}),
-                new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", 5, GT.Project.Setup.UpdateListsFromConfig, {})
+                new GT.Project.Setup.Model.step("Legg inn lenke til å hente oppgaver", 1, GT.Project.Setup.CreateSiteSettingsCustomActions, 
+                {name: 'GT.SiteSettings.CopyTasks', title: 'Hent oppgaver fra porteføljeområdet', description: 'Velg oppgaver fra porteføljeområdet og hent de ned til prosjektet.', srcList: 'Standardoppgaver', dstList: 'Oppgaver', sequence: 150}),
+                new GT.Project.Setup.Model.step("Legg inn lenke til å hente fasesjekkpunkter", 2, GT.Project.Setup.CreateSiteSettingsCustomActions, 
+                {name: 'GT.SiteSettings.CopyCheckList', title: 'Hent fasesjekkpunkter fra porteføljeområdet', description: 'Velg fasesjekkpunkter fra porteføljeområdet og hent de ned til prosjektet.', srcList: 'Fasesjekkliste', dstList: 'Fasesjekkliste', sequence: 160}),
+                new GT.Project.Setup.Model.step("Oppretter områdenivå innholdstyper", 3, GT.Project.Setup.CreateWebContentTypes, {}),
+                new GT.Project.Setup.Model.step("Sett arving av navigasjon", 4, GT.Project.Setup.InheritNavigation, {}),
+                new GT.Project.Setup.Model.step("Konfigurer quicklaunch", 5, GT.Project.Setup.ConfigureQuickLaunch, {}),
+                new GT.Project.Setup.Model.step("Oppdater listeegenskaper og visninger", 6, GT.Project.Setup.UpdateListsFromConfig, {})
             ]
         };
-        var dataSourceSteps = GT.Project.Setup.GetCopyDataFromSourceListsSteps(dataSources, 6);
+        var dataSourceSteps = GT.Project.Setup.GetCopyDataFromSourceListsSteps(dataSources, 7);
         steps['1.0.0.0'] = steps['1.0.0.0'].concat(dataSourceSteps);
 
         var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";

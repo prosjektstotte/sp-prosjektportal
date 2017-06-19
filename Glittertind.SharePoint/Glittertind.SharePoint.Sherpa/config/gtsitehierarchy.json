@@ -105,7 +105,8 @@
                             "GtProjectPhase",
                             "Modified",
                             "Editor"
-                        ]
+                        ],
+	                    "Query": "<OrderBy><FieldRef Name='GtSortOrder' /><FieldRef Name='ID' /></OrderBy>"
                     }
                 ]
             },

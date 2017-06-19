@@ -6,7 +6,14 @@
     "Views": [
 	    {
 	        "Name": "Alle elementer",
-	        "ViewFields": ["GtSortOrder", "LinkTitle", "GtProjectPhase", "GtChecklistStatus", "GtComment"],
+	        "ViewFields": ["LinkTitle", "GtProjectPhase", "GtChecklistStatus", "GtComment"],
+	        "RowLimit": 50,
+            "Paged":true,
+	        "Query": "<OrderBy><FieldRef Name='GtSortOrder' /><FieldRef Name='ID' /></OrderBy>"
+	    },
+	    {
+	        "Name": "Rekkefølgestyring",
+	        "ViewFields": ["GtSortOrder", "LinkTitle", "GtProjectPhase", "GtChecklistStatus"],
 	        "RowLimit": 50,
             "Paged":true,
 	        "Query": "<OrderBy><FieldRef Name='GtSortOrder' /><FieldRef Name='ID' /></OrderBy>"

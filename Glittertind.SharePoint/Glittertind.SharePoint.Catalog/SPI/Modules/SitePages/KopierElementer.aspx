@@ -50,8 +50,8 @@
 					</div>
 				</div>
 				<script type="text/javascript">
-														GT.jQuery(document).ready(function () {
-															GT.Provisioning.InitalizeCopyElementsPage();
-														});
+					GT.jQuery(document).ready(function () {
+						GT.Provisioning.InitalizeCopyElementsPage();
+					});
 				</script>
 			</asp:Content>

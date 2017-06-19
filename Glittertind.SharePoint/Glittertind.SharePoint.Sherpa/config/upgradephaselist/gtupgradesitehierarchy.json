@@ -1,0 +1,72 @@
+﻿{
+    "FieldConfigurations": [
+        "gtupgradefields.json"
+    ],
+    "ContentTypeConfigurations": [
+        "gtupgradecontenttypes.json"
+    ],
+    "SiteFeatures": [
+    ],
+    "RootWeb": {
+        "CustomTaskTypes": [
+            {
+                "Fullname": "Glittertind.Sherpa.UpgradeProjectFrontPages.UpgradeProjectFrontPages",
+                "DisplayName": "Upgrade project portal"
+            }
+        ],
+        "Description": "",
+        "Language": "1044",
+        "Name": "Prosjektportalen",
+        "Lists": [
+            {
+                "Title": "Fasesjekkliste",
+                "Description": "",
+                "Url": "Lists/Fasesjekkliste",
+                "TemplateType": "100",
+                "VersioningEnabled": "true",
+                "OnQuickLaunch": "false",
+                "RemoveExisitingContentTypes": "true",
+                "ContentTypes": [
+                    "Sjekkpunkt"
+                ],
+                "Views": [
+                    {
+                        "Title": "Alle elementer",
+                        "Rowlimit": 100,
+                        "ViewFields": [
+                            "GtSortOrder",
+                            "LinkTitle",
+                            "GtProjectPhase",
+                            "Modified",
+                            "Editor"
+                        ],
+	                    "Query": "<OrderBy><FieldRef Name='GtSortOrder' /><FieldRef Name='ID' /></OrderBy>"
+                    }
+                ]
+            }
+        ],
+        "ContentFolders": [
+            {
+                "FolderName": "SiteAssets",
+                "ListUrl": "SiteAssets",
+                "FolderUrl": "gt",
+                "ExcludeExtensions": ""
+            }
+        ],
+        "Properties": {
+        },
+        "Quicklaunch": {
+            "Hjem": "",
+            "Porteføljeoversikt": "SitePages/PortefoljeOversikt.aspx",
+            "Porteføljeoppfølging": "SitePages/PortefoljeOppfolging.aspx",
+            "Erfaringslogg": "SitePages/Erfaringslogg.aspx",
+            "Standarddokumenter": "Standarddokumenter",
+            "Områdeinnhold": "_layouts/15/viewlsts.aspx"
+        },
+        "Template": "",
+        "Url": "/",
+        "WebFeatures": [
+        ],
+        "WelcomePageUrl": "SitePages/Portefolje.aspx"
+    }
+}
