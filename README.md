@@ -3,6 +3,7 @@
 
 Prosjektportalen for SharePoint er et prosjektstyringsverktøy for SharePoint basert på <a href="http://prosjektveiviseren.no">Prosjektveiviseren</a>. 
 
+## Den nye versjonen ligger ikke her ##
 *<a href="https://github.com/Puzzlepart/prosjektportalen">Prosjektportalen 2.0 er nå ute på GitHub under Puzzlepart/prosjektportalen</a>.* Les mer om den nye versjonen <a href="https://www.puzzlepart.com/prosjektportalen-2-tilgjengelig/">her</a>.
 
 # Hva er prosjektportal for SharePoint? #
