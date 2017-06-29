@@ -62,29 +62,28 @@ GT.Project.Setup.CreateSiteSettingsCustomActions = function (properties) {
     clientContext.load(customActions);
     clientContext.executeQueryAsync(Function.createDelegate(this, function () {
         var siteColRelativeUrl = _spPageContextInfo.siteServerRelativeUrl === '/' ? '' : _spPageContextInfo.siteServerRelativeUrl;
-        
-        var copyTasksAlreadyExists = false;
+
+        var customActionAlreadyExists = false;
         var customActionsEnumerator = customActions.getEnumerator();
         while (customActionsEnumerator.moveNext()) {
             var currentCustomAction = customActionsEnumerator.get_current();
             if (currentCustomAction.get_name() === properties.name) {
-                copyTasksAlreadyExists = true;
+                customActionAlreadyExists = true;
             }
         }
-        if (!copyTasksAlreadyExists) {
-
-            var copyTasksCustomAction = customActions.add();
-            copyTasksCustomAction.set_location('Microsoft.SharePoint.SiteSettings');
-            copyTasksCustomAction.set_group('Customization');
-            copyTasksCustomAction.set_sequence(properties.sequence);
-            copyTasksCustomAction.set_name(properties.name);
-            copyTasksCustomAction.set_title(properties.title);
-            copyTasksCustomAction.set_description(properties.description);
+        if (!customActionAlreadyExists) {
+            var newCustomAction = customActions.add();
+            newCustomAction.set_location('Microsoft.SharePoint.SiteSettings');
+            newCustomAction.set_group('Customization');
+            newCustomAction.set_sequence(properties.sequence);
+            newCustomAction.set_name(properties.name);
+            newCustomAction.set_title(properties.title);
+            newCustomAction.set_description(properties.description);
 
             var customActionJavaScript = String.format('{0}/SitePages/KopierElementer.aspx?srclist={1}&dstlist={2}&dstweb={3}&Origin=SiteSettings', siteColRelativeUrl, properties.srcList, properties.dstList, encodeURIComponent(_spPageContextInfo.webServerRelativeUrl));;
 
-            copyTasksCustomAction.set_url(customActionJavaScript);
-            copyTasksCustomAction.update();
+            newCustomAction.set_url(customActionJavaScript);
+            newCustomAction.update();
 
             clientContext.load(web, 'Title', 'UserCustomActions');
             clientContext.executeQueryAsync(Function.createDelegate(this, function () {
@@ -1145,10 +1144,10 @@ GT.jQuery(document).ready(function () {
             '1.0.0.0': [
                 new GT.Project.Setup.Model.step("Setter områdets temafarger", 0, GT.Project.Setup.ApplyTheme,
                     { colorPaletteName: "palette013.spcolor", fontSchemeName: "SharePointPersonality.spfont", backgroundImageUrl: "", shareGenerated: true }),
-                new GT.Project.Setup.Model.step("Legg inn lenke til å hente oppgaver", 1, GT.Project.Setup.CreateSiteSettingsCustomActions, 
-                {name: 'GT.SiteSettings.CopyTasks', title: 'Hent oppgaver fra porteføljeområdet', description: 'Velg oppgaver fra porteføljeområdet og hent de ned til prosjektet.', srcList: 'Standardoppgaver', dstList: 'Oppgaver', sequence: 150}),
-                new GT.Project.Setup.Model.step("Legg inn lenke til å hente fasesjekkpunkter", 2, GT.Project.Setup.CreateSiteSettingsCustomActions, 
-                {name: 'GT.SiteSettings.CopyCheckList', title: 'Hent fasesjekkpunkter fra porteføljeområdet', description: 'Velg fasesjekkpunkter fra porteføljeområdet og hent de ned til prosjektet.', srcList: 'Fasesjekkliste', dstList: 'Fasesjekkliste', sequence: 160}),
+                new GT.Project.Setup.Model.step("Legg inn lenke til å hente oppgaver", 1, GT.Project.Setup.CreateSiteSettingsCustomActions,
+                    { name: 'GT.SiteSettings.CopyTasks', title: 'Hent oppgaver fra porteføljeområdet', description: 'Velg oppgaver fra porteføljeområdet og hent de ned til prosjektet.', srcList: 'Standardoppgaver', dstList: 'Oppgaver', sequence: 150 }),
+                new GT.Project.Setup.Model.step("Legg inn lenke til å hente fasesjekkpunkter", 2, GT.Project.Setup.CreateSiteSettingsCustomActions,
+                    { name: 'GT.SiteSettings.CopyCheckList', title: 'Hent fasesjekkpunkter fra porteføljeområdet', description: 'Velg fasesjekkpunkter fra porteføljeområdet og hent de ned til prosjektet.', srcList: 'Fasesjekkliste', dstList: 'Fasesjekkliste', sequence: 160 }),
                 new GT.Project.Setup.Model.step("Oppretter områdenivå innholdstyper", 3, GT.Project.Setup.CreateWebContentTypes, {}),
                 new GT.Project.Setup.Model.step("Sett arving av navigasjon", 4, GT.Project.Setup.InheritNavigation, {}),
                 new GT.Project.Setup.Model.step("Konfigurer quicklaunch", 5, GT.Project.Setup.ConfigureQuickLaunch, {}),
